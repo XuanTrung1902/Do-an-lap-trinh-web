@@ -1,21 +1,39 @@
 html, body {
-    padding: 0;
+    box-sizing: border-box;
     margin: 0;
-    font-family:Tahoma, sans-serif;
+    padding: 0;
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: darkgray;
 }
-.container {
+
+.from_sub {
     width: 500px;
-    height: 600px;
-    padding: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: white;
+    position: relative;
 }
-.container h1 {
-    text-align: center;
+
+.form_sub_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form_sub_header h2 {
+    font-size: 30px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
 }
 .container > div > input {
     width: 80%;
