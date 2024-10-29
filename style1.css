@@ -17,6 +17,20 @@ html, body {
 }
 .container > div > input {
     width: 80%;
-    height: 40px;
+    height: 20px;
    padding: 20px;
+}
+.container button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 40px;
+    width: 100px;
+}
+.container .logo {
+    display: flex;
+    justify-content: center;
+    padding-left: 20px;
+}
+.container h5{
+    text-align: center;
 }
