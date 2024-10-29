@@ -1,0 +1,22 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family:Tahoma, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+.container {
+    width: 500px;
+    height: 600px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+.container h1 {
+    text-align: center;
+}
+.container > div > input {
+    width: 80%;
+    height: 40px;
+   padding: 20px;
+}
