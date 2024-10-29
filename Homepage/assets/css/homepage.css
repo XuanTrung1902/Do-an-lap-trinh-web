@@ -1,0 +1,133 @@
+.header {
+    height: var(--header-height);
+    background-color: var(--black-color);
+    /* background-color: #595959; */
+}
+
+.logo {
+    display: inline-block;
+    list-style: none;
+    border: 0;
+    outline: 0;
+    margin-right: 12.5rem;
+}
+
+.logo img {
+    width: 168px;
+    height: 61px;
+}
+
+/* Header */
+
+.header__navbar {
+    width: 100%;
+}
+
+.header__navbar--top ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    
+    list-style: none;
+}
+
+.header__navbar--top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--navbar-height);
+    padding-top: 24px;
+}
+
+.header__navbar--item {
+    display: inline-block;
+    position: relative;
+}
+
+.header__navbar--item a {
+    text-decoration: none;
+    color: var(--white-color);
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 0 0.8rem;
+}
+
+.header__navbar--separate::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border: 1px solid #595959;
+    height: 12px;
+    right: 0;
+    top: 0;
+}
+
+.header__navbar--item a:hover {
+    color: var(--primary-color);
+}
+
+.header__navbar--top_right {
+    display: flex;
+    align-items: center;
+}
+
+.header__navbar--icon a {
+    text-decoration: none;
+    color: var(--white-color);
+    opacity: 0.5;
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 0 0.8rem;
+}
+
+.header__navbar--icon a:hover {
+    opacity: 1;
+    color: var(--white-color);
+}
+
+
+/* bot*/
+.header__navbar--bot {
+    height: var(--header__search-height);
+    display: flex;
+    align-items: center;
+}
+
+.header__search {
+    height: 40px;
+    background-color: var(--white-color);
+    flex: 1;
+    border-radius: 2px;
+}
+
+.header__cart {
+    width: 120px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.header__cart-link {
+    margin: 0 auto;
+    padding: 5px;
+    display: block;
+    height: 40px;
+    background-color:#ccc ;
+    border-radius: 2px;
+    text-decoration: none;
+    color: var(--white-color);
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.header__cart-icon {
+    font-size: 2.6rem;
+    color: var(--white-color);
+}
+
+
+
+
+
