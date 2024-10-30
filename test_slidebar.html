@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vertical Slide Bar</title>
+    <style>
+        .slidebar {
+            width: 200px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .option {
+            padding: 10px;
+            background-color: #ddd;
+            cursor: pointer;
+        }
+        .sub-options {
+            display: none;
+            padding-left: 20px;
+        }
+        .sub-option {
+            padding: 5px;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <p id="text">Text: </p>
+
+    <div class="slidebar">
+        <div class="option" value="Option 1" onclick="toggleSubOptions('sub1', this)">Option 1</div>
+        <div id="sub1" class="sub-options">
+            <div class="sub-option">Sub-option 1.1</div>
+            <div class="sub-option">Sub-option 1.2</div>
+            <div class="sub-option">Sub-option 1.3</div>
+        </div>
+
+        <div class="option" value="Option 2" onclick="toggleSubOptions('sub2', this)">Option 2</div>
+        <div id="sub2" class="sub-options">
+            <div class="sub-option">Sub-option 2.1</div>
+            <div class="sub-option">Sub-option 2.2</div>
+            <div class="sub-option">Sub-option 2.3</div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSubOptions(id, element) {
+            var text = document.getElementById("text");
+            var optionValue = element.getAttribute("value");
+            
+            var subOptions = document.getElementById(id);
+            if (subOptions.style.display === "none" || subOptions.style.display === "") {
+                subOptions.style.display = "block";
+                text.textContent = "Text: " + optionValue;
+            } else {
+                subOptions.style.display = "none";
+                text.textContent = "Text:";
+            }
+        }
+    </script>
+
+</body>
+</html>

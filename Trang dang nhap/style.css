@@ -60,22 +60,22 @@
       transform: rotate(-12deg) skew(-12deg);
   }
   .box-divider--light-all-2 {
-      box-shadow: inset 0 0 0 2px #e3e8ee;
+      box-shadow: inset 0 0 0 2px #bb000e;
   }
   .box-background--blue {
-      background-color: #5469d4;
+      background-color: #e31c25;
   }
   .box-background--white {
-    background-color: #ffffff; 
+    background-color: #1c1c1c; 
   }
   .box-background--blue800 {
-      background-color: #212d63;
+      background-color: #bb000e;
   }
   .box-background--gray100 {
       background-color: #e3e8ee;
   }
   .box-background--cyan200 {
-      background-color: #7fd3ed;
+      background-color: white;
   }
   .padding-top--24 {
     padding-top: 24px;
@@ -127,6 +127,7 @@
   .reset-pass > a {
       text-align: right;
       margin-bottom: 10px;
+      color: #e31c25;
   }
   .grid--50-50 {
       display: grid;
@@ -141,8 +142,8 @@
       width: 100%;
       min-height: 44px;
       border: unset;
-      border-radius: 4px;
-      outline-color: rgb(84 105 212 / 0.5);
+      border-radius: 100px;
+      outline-color: rgba(212, 84, 86, 0.61);
       background-color: rgb(255, 255, 255);
       box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                   rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
@@ -154,11 +155,11 @@
   }
   
   input[type="submit"] {
-      background-color: rgb(84, 105, 212);
+      background-color: #e31c25;
       box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                   rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                   rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, 
-                  rgb(84, 105, 212) 0px 0px 0px 1px, 
+                  #e31c25 0px 0px 0px 1px, 
                   rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                   rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                   rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
@@ -178,17 +179,17 @@
       align-items: center;
       margin: 0;
   }
-  a.ssolink {
-      display: block;
-      text-align: center;
-      font-weight: 600;
+  .ssolink {
+      display: flex;
+      align-content: center;
+      margin-left: 70px;
   }
   .footer-link span {
       font-size: 14px;
       text-align: center;
   }
   .listing a {
-      color: #697386;
+      color: #fdeded;
       font-weight: 600;
       margin: 0 10px;
   }
