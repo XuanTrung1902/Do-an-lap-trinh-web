@@ -1,7 +1,7 @@
 .header {
     height: var(--header-height);
-    /* background-color: var(--black-color); */
-    background-color: #595959;
+    background-color: var(--black-color);
+    /* background-color: #595959; */
 }
 
 .logo {
