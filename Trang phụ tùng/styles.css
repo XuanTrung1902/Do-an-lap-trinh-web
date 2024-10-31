@@ -244,3 +244,64 @@ html,body {
     color: #555;
     margin: 0;
 }
+/*thương hiệu*/
+.brand-section {
+    background-color: #ffffff; /* Nền trắng cho phần Thương Hiệu */
+    padding: 20px;
+    margin: 20px 80px;
+    width: fit-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    border-radius: 8px; /* Bo góc nhẹ */
+}
+
+.brand-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.brand-header h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.brand-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.brand-item {
+    width: 120px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.brand-item img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.view-all-brands {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.view-all-brands a {
+    color: #007bff; /* Màu xanh cho liên kết */
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.view-all-brands a:hover {
+    text-decoration: underline;
+}
