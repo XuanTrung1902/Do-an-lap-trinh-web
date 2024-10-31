@@ -1,0 +1,127 @@
+
+.container {
+    padding: 2rem;
+    background-color: #f8f8f8;
+}
+
+
+.navbar {
+    background-color: #f8f8f8;
+    padding: 0.5rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    display: inline;
+    border-right: 1px solid #ccc;
+}
+
+.nav-menu li:last-child {
+    border-right: none;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.nav-menu a:hover {
+    background-color: #ddd;
+}
+
+/* Phong cách cho liên kết "USED" */
+.used-link {
+    background-color: #e00; /* Màu nền đỏ cho mục USED */
+    color: #fff; /* Màu chữ trắng cho mục USED */
+    font-weight: bold; /* In đậm chữ */
+    border-radius: 3px; /* Làm tròn nhẹ cho mục USED */
+}
+
+
+/* USED Link Styling */
+.used-link {
+    background-color: #e00;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/* Product Grid */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+/* Product Item */
+.product-item {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    width: calc(20% - 1.5rem);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-item img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.product-name {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #ee4d2d;
+    margin-bottom: 0.5rem;
+}
+
+/* Labels */
+.used-label,
+.stock-label,
+.condition-label {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 3px;
+    margin: 0.2rem;
+}
+
+.used-label {
+    background-color: #ff9900;
+}
+
+.stock-label {
+    background-color: #4caf50;
+}
+
+.condition-label {
+    background-color: #ff5722;
+}
