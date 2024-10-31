@@ -1,0 +1,41 @@
+.flex-flex{
+    display: flex;
+    align-items: center;
+}
+
+.optionBar{
+    background-color: #bb000e;
+}
+.optionBar .option_container{
+    margin-left: 60px;
+}
+.option_container .option{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+}
+.option_container .option .item{
+    /* height: 100%; */
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    padding: 20px;
+}
+.option_container .option .item:hover{
+    background: #fff;
+}
+.option_container .option .item:hover .option-text {
+     color: #000; 
+}
+.option a{
+    text-decoration: none;
+}
+.option-text{
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    padding: 20px;
+    font-weight: 600;
+}
+
+
