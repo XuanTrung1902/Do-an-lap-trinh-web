@@ -58,7 +58,7 @@ html,body {
 .Use {
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
     background-color: #fff5d7; /* Màu nền vàng nhạt */
     border-radius: 10px;
@@ -189,4 +189,58 @@ html,body {
 .item p {
     margin-top: 10px;
     font-size: 14px;
+}
+/*danh mục sản phẩm*/
+
+.product-section {
+    background-color: #ffffff; /* Nền trắng cho phần bao quanh danh mục */
+    padding: 20px;
+    margin: 20px auto;
+    width: fit-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    border-radius: 8px; /* Bo góc nhẹ */
+}
+.category-header {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.category-header h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.category-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.category-item {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 15px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    width: 150px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.category-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.category-item p {
+    font-weight: bold;
+    font-size: 14px;
+    color: #555;
+    margin: 0;
 }
