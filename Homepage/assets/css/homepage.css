@@ -284,7 +284,6 @@
 #motorSelectionCategory {
     margin-top: 20px;
     height: 740px;
-    background-color: #f5f5f5;
 }
 
 .motorbike__row {
@@ -295,12 +294,128 @@
 }
 
 .motorbike-item {
-    display: block;
     height: 370px;
     width: calc((100% / 3) - 16px);
-    background-color: #4a4a4a;
     margin: 8px;
+    box-shadow: 0 2px 3px #ccc;
 }
+
+.motorbike-item-link {
+    text-decoration: none;
+    color: var(--black-color);
+    height: 100%;
+    display: block;
+}
+
+.motorbike-item-link:hover .motorbike__title {
+    color: var(--primary-color);
+}
+
+.motorbike-item-link:hover span {
+    color: var(--primary-color);
+}
+
+.motorbike__content {
+    height: 100%;
+}
+
+.motorbike__thumb {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.motorbike-item-img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+}
+
+.motorbike__body {
+    text-align: center;
+    height: 170px;
+    background-color: #f5f5f5;
+    position: relative;
+}
+
+
+.motorbike__title {
+    padding-top: 56px;
+    font-size: 2.6rem;;
+    height: 100%;
+    color: #5f5f5f;
+    text-align: center;
+    position: relative;
+}
+
+.motorbike__body--bf {
+    position: absolute;
+    top: 4px;
+    width: 85px;
+    height: 34px;
+    right: 200px;
+    background-color: #f5f5f5;
+    transform: translateY(-100%);
+    border-radius: 51% 49% 100% 0 / 100% 100% 0 0;
+}
+
+.motorbike__body--bf::before {
+    content: "";
+    position: absolute;
+    width: 67px;
+    height: 44px;
+    bottom: 4px;
+    box-shadow: 4px 14px 0 0 #f5f5f5;
+    right: 77px;
+    border-radius: 0 100% 100% 0 / 100% 57% 43% 0;
+}
+
+.motorbike__body--bf::after {
+    content: "";
+    position: absolute;
+    width: 67px;
+    height: 44px;
+    bottom: 5px;
+    box-shadow: -4px 14px 0 0 #f5f5f5;
+    left: 77px;
+    border-radius: 100% 0 0 100% / 57% 100% 0 43%;
+}
+
+.motorbike__body-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-top: 3px solid #de0000;
+    border-right: 3px solid #de0000;
+    transform: rotate(45deg) translate(2px, 3px);
+}
+
+.motorbike__body-icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -2px;
+    width: 18px;
+    height: 3px;
+    background-color: #de0000;
+    transform-origin: right center;
+    transform: rotate(-45deg) translateY(-2.5px);
+}
+
+.motorbike__body-see-all {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.motorbike__body-see-all-icon {
+    color: #de0000;
+}
+
 
 
 
