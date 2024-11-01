@@ -115,7 +115,7 @@ a {
 .form_sub_header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
@@ -139,7 +139,7 @@ a {
 }
 
 .input_name input{
-    width: 49% ;
+    width: 49.4% ;
 }
 
 .input_information input {
