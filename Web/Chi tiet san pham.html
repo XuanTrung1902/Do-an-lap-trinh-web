@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webike: Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/homepage.css">
+    <link rel="stylesheet" href="./assets/css/Chi tiet san pham.css">
+    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
+     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css">
+
+     <link rel="stylesheet" href="assets/js/Chi tiet san pham.js">
+</head>
+<body>
+
+    <!--header-->
+    <header class="header">
+        <div class="grid__full-width">
+            <a href="#" class="logo">
+                <img src="https://www.webike.vn/frontend/moto-v2/pc/img/logo.png?158926651620200827" alt="Webike VN">
+            </a>
+            <nav class="header__navbar">
+                <div class="header__navbar--top">
+                    <ul class="header__navbar--top_left">
+                        <li class="header__navbar--item">
+                            <a href="#">Trang chủ</a>
+                        </li>
+                        <li class="header__navbar--item">
+                            <a href="#">Phụ tùng</a>
+                        </li>
+                        <li class="header__navbar--item">
+                            <a href="#">Chợ xe máy</a>
+                        </li>
+                        <li class="header__navbar--item">
+                            <a href="#">Tin tức</a>
+                        </li>
+                        <li class="header__navbar--item">
+                            <a href="#">Đại lí</a>
+                        </li>
+                    </ul>
+
+                    <ul class="header__navbar--top_right">
+                        <li class="header__navbar--icon">
+                            <a href="#">
+                                <i class="fa-brands fa-facebook m-r-8"></i>
+                            </a>
+                        </li>
+                        <li class="header__navbar--icon">
+                            <a href="#">
+                                <i class="fa-brands fa-youtube m-r-8"></i>
+                            </a>
+                        </li>
+
+                        <li class="header__navbar--item header__navbar--separate">
+                            <a href="#">
+                                <i class="fa-solid fa-user m-r-8" ></i>
+                                Đăng nhập
+                            </a>
+                        </li>
+                        <li class="header__navbar--item">
+                            <a href="#">Đăng ký</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="header__navbar--bot">
+                    <div class="header__search">
+                        <input type="text" class="header__search--input" placeholder="Nhập từ khoá tìm kiếm">
+                        <div class="header__search-select">
+                            <span class="header__search-select-label">Tìm xe</span>
+                            <i class="header__search-select-icon fa-solid fa-chevron-down"></i>
+
+                            <ul class="header__search-option">
+                                <li class="header__search-option-item">
+                                    <span >Tìm phụ tùng</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="header__search--btn">
+                            <i class="header__search--btn-icon fa-solid fa-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="header__cart">
+                        <a href="#" class="header__cart-link" >
+                            <i class="header__cart-icon ti-shopping-cart"></i>
+                            <span class="header__cart--text">Giỏ Hàng</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main">
+        <!-- chua hinh anh va thong tin sp: gia, mau... -->
+        <div class="info">
+            <div class="info__img">
+                <div class="img__container">
+                    <img src="assets/img/ducati red.png" alt="ducati red img">
+                </div>
+            </div>
+
+            <div class="info__description">
+                <div class="name padding--bottom--8">DUCATI  Panigale V4</div>    
+                <div class="description">
+                    <div class="price padding--bottom--8">
+                        <span class="infoHeader">Giá: </span>
+                        <span class="text--description">640.500.000 vnd</span>
+                    </div>
+
+                    <div class="brand padding--bottom--8">
+                        <div class="brand__text">
+                            <span class="infoHeader">Nhà sản xuất: </span>
+                            <span class="text--type text--description">Ducati</span>
+                        </div>
+                    </div>
+
+                    <div class="phanKhoi padding--bottom--8">
+                        <span class="infoHeader">Phân khối: </span>
+                        <span class="text--description">1.103cc</span>
+                    </div>
+
+                    <div class="enigne padding--bottom--8">
+                        <span class="infoHeader">Động cơ: </span>
+                        <span class="text--description">Desmosedici Stradal</span>
+                    </div>
+
+                    <div class="color padding--bottom--8">
+                        <span class="infoHeader">Màu sắc: </span>
+                        <div class="btnCointainer">
+                            <div class="redbtn">
+                                <div class="colorbtn"></div>
+                                <span class="color--text text--description">Đỏ</span>
+                            </div>
+                            <div class="blackbtn">
+                                <div class="colorbtn"></div>
+                                <span class="color--text text--description">Đen</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="remain padding--bottom--8">
+                        <span class="infoHeader">Số lượng còn lại: </span>
+                        <span class="text--description">18</span>
+                    </div>
+
+                </div>    
+                <div class="container--button">
+                    <button class="buy">Mua ngay</button>
+                    <button class="addToCart">Thêm vào giỏ hàng</button>    
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- thông số kỹ thuật của sản phẩm: phân khối, khung xe... -->
+        <div class="detail">
+            <div class="detail--header">THÔNG SỐ KỸ THUẬT</div>
+            <div class="container">
+                <div class="detail--enigne" onclick="toggleOptions('sub1', this)">
+                    <span class="detail--header">ĐỘNG CƠ</span>
+                    <ul class="options" id="sub1">
+                        <li class="item gray-100">
+                            <span class="item--header text--header ">LOẠI</span>
+                            <span class="item--detail text--item">Blue Core, 4 thì, 2 van, SOHC, Làm mát bằng không khí cưỡng bức</span>
+                        </li>
+                        <li class="item">
+                            <span class="item--header text--header ">BỐ TRÍ XY LANH</span>
+                            <span class="item--detail text--item">Xy lanh đơn</span>
+                        </li>
+                        <li class="item gray-100">
+                            <span class="item--header text--header ">DUNG TÍCH XY LANH(CC)</span>
+                            <span class="item--detail text--item">124.9 cc</span>
+                        </li>
+                        <li class="item">
+                            <span class="item--header text--header ">Đường kính và hành trình piston</span>
+                            <span class="item--detail text--item">52,4 mm x 57,9 mm</span>
+                        </li>
+                        <li class="item gray-100">
+                            <span class="item--header text--header">Tỷ số nén</span>
+                            <span class="item--detail text--item">9,5 : 1</span>
+                        </li>
+                        <li class="item">
+                            <span class="item--header text--header">Công suất tối đa</span>
+                            <span class="item--detail text--item">7,0 kW (9,5 ps)/8.000 vòng/phút</span>
+                        </li>
+                        <li class="item gray-100">
+                            <span class="item--header text--header">Mô men xoắn cực đại</span>
+                            <span class="item--detail text--item">9.6 Nm (1.0 kgf-m)/5500 vòng/phút</span>
+                        </li>
+                        <li class="item">
+                            <span class="item--header text--header">Hệ thống khởi động</span>
+                            <span class="item--detail text--item">Điện</span>
+                        </li>
+                        <li class="item gray-100">
+                            <span class="item--header text--header">Hệ thống bôi trơn</span>
+                            <span class="item--detail text--item">Các te ướt</span>
+                        </li>
+                        <li class="item">
+                            <span class="item--header text--header">Dung tích dầu máy</span>
+                            <span class="item--detail text--item">0,84 L</span>
+                        </li>
+                        <li class="item gray-100">
+                            <span class="item--header text--header">Dung tích bình xăng</span>
+                            <span class="item--detail text--item">4,2 L</span>
+                        </li>
+                        <li class="item">
+                            <span class="item--header text--header">Mức tiêu thụ nhiên liệu (l/100km)</span>
+                            <span class="item--detail text--item">1,87</span>
+                        </li>
+                        <li class="item gray-100">
+                            <span class="item--header text--header">Hệ thống đánh lửa</span>
+                            <span class="item--detail text--item">T.C.I (kỹ thuật số)</span>
+                        </li>
+                        <li class="item">
+                            <span class="item--header text--header">Tỷ số truyền sơ cấp và thứ cấp</span>
+                            <span class="item--detail text--item">1,000/10,156 (50/16 x 39/12)</span>
+                        </li>
+                        <li class="item gray-100">
+                            <span class="item--header text--header">Hệ thống ly hợp</span>
+                            <span class="item--detail text--item">Khô, ly tâm tự động</span>
+                        </li>
+                        <li class="item">
+                            <span class="item--header text--header">Tỷ số truyền động</span>
+                            <span class="item--detail text--item">2,294 - 0,804 : 1</span>
+                        </li>
+                        <li class="item gray-100">
+                            <span class="item--header text--header">Hệ thống làm mát</span>
+                            <span class="item--detail text--item">Làm mát bằng không khí</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="detail--frame"></div>
+
+                <div class="detail--size"></div>
+
+                <!--bao hanh-->
+                <div class="detail--warranty">
+                </div> 
+
+            </div>
+        </div>
+
+        <div class="otherProducts"></div>
+    </div>
+    
+</body>
+</html>
