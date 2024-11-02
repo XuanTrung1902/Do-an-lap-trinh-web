@@ -1,0 +1,179 @@
+/* CSS cho navbar */
+.navbar-container {
+    background-color: #efefef;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+
+.navbar-container a {
+    text-decoration: none;
+    color: black;
+    margin-right: 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+.navbar-container a:last-child {
+    color: red;
+}
+
+
+.navbar-container a:not(:last-child)::after {
+    content: '|';
+    color: #c0c0c0;
+    margin-left: 20px;
+}
+
+/* CSS cho container chính */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 100%;
+    justify-content: center;
+}
+
+/* Phần chứa ảnh lớn và ảnh nhỏ */
+.image-section {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Phần ảnh lớn */
+.large-image {
+    position: relative;
+    width: 45%;
+}
+
+.large-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.large-image .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.large-image .overlay .type-i {
+    color: white;
+}
+/* Phần ảnh nhỏ */
+.small-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    width: 45%;
+}
+
+.small-image {
+    position: relative;
+}
+
+.small-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.small-image .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.small-image .overlay .type-i {
+    color: white;
+}
+
+/* Phần chứa TIN MỚI và TIN THEO HÃNG XE */
+.info-section {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Cột TIN MỚI */
+.news-section {
+    width: 70%;
+}
+
+.news-section h2 {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.news-item {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.news-item img {
+    width: 80px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.news-content p {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.news-content span {
+    font-size: 12px;
+    color: gray;
+}
+
+/* Cột TIN THEO HÃNG XE */
+.brand-section {
+    width: 30%;
+}
+
+.brand-section h2 {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.brand-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.brand-section li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.brand-section li img {
+    width: 20px;
+    height: 10px;
+    margin-right: 8px;
+}
+
+
