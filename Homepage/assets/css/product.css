@@ -291,4 +291,237 @@
     font-size: 3rem;
 }
 
+/* list bike */
+.motor__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    width: 100%;
+    overflow: hidden;
+    padding: 30px 10px;
+    position: relative;
+}
 
+.bike__link {
+    text-decoration: none;
+    color: var(--black-color);
+}
+
+.box__bike--item {
+    display: block;
+    width: 275px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-right: 20px;
+    transition: 0.5s;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+.box__bike--item:hover {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+.bike__link:hover 
+.box__bike--name{
+    color: var(--primary-color);
+}
+
+.bike__link:hover .box__bike--origin-text {
+    color: var(--primary-color);
+}
+
+.box__bike-img {
+
+}
+
+.box__bike--name {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+    height: 1.8rem;
+    font-weight: 500;
+    color: var(--black-color);
+    margin: 8px 10px 8px 8px;
+    /* hiện dấu ... khi nội dung quá dài */
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    /* text-overflow: ellipsis;
+    white-space: nowrap; */
+}
+
+.box__bike-img img {
+    width: 275px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.box__sub--title {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 6px 12px;
+    color: var(--white-color);
+    background-color: #f2994a;
+    border-radius: 3px;
+}
+
+.box__bike--price {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
+.box__bike--price-old  {
+    margin-left: 10px;
+    font-size: 1.4rem;
+    color: #666;
+    text-decoration: line-through ;
+}
+
+.box__bike--price-current {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-left: 6px;
+}
+
+.box__bike--origin {
+    margin-bottom: 10px;
+}
+.box__bike--origin-text {
+    font-size: 1.4rem;
+    color: #666;
+    margin-left: 10px;
+}
+
+.box__bike--favourite {
+    position: absolute;
+    top: 194px ;
+    left: 6px;
+    font-size: 1.6rem;
+    color: var(--white-color);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.box__bike--favourite i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box__bike--sale-off {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 36px;
+    text-align: center;
+    background-color: rgba(255, 216, 64,0.94);
+}
+
+.box__bike--sale-off::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    border-width: 0 20px 6px;
+    border-style: solid;
+    border-color: transparent rgba(255, 216, 64,0.94) transparent rgba(255, 216, 64,0.94) ;    
+}
+
+.box__bike--sale-off-percent {
+    color: #EE4D2D;
+    font-weight: 600;
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+}
+
+.box__bike--sale-off-label {
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    font-weight: 600;
+    color: var(--white-color);
+}
+
+.motor__list--arrow {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    top: 35%;
+    
+}
+
+.arrow-left,
+.arrow-right {
+    font-size: 3.6rem;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #c7c7c7;
+    outline: none;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+/* paper */
+.box__paper {
+    position: relative;
+    border-top: 8px solid #2a313c;
+    padding: 8px 0;
+    text-align: center;
+    margin-bottom: 12px;
+    margin-top: 24px;
+}
+
+.box__paper span {
+    max-width: 615px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.box__paper span::before {
+    content: "";
+    display: block;
+    height: 17px;
+    flex-grow: 1;
+    background-image: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 10px, #efefef 11px, #efefef 19px);
+}
+
+.box__paper span::after {
+    content: "";
+    display: block;
+    height: 17px;
+    flex-grow: 1;
+    background-image: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 10px, #efefef 11px, #efefef 19px);
+}
+
+.motor__market--paper {
+    padding: 0 8px;
+    font-size: 3rem;
+}
+
+
+
+
+
+
+
+
+
+footer {
+    height: 300px;
+}
