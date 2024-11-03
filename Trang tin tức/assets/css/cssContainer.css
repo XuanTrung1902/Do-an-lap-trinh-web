@@ -110,16 +110,20 @@
 
 /* Cột TIN MỚI */
 .news-section {
-    width: 70%;
+    width: 55%;
+    padding-left: 40px;
 }
 
 .news-section h2 {
-    color: red;
-    font-size: 18px;
+    color: #d50000;
+    font-size: 1.3em;
     font-weight: bold;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
+    background-color: darkgray;
     margin-bottom: 10px;
+    border-bottom: 2px solid #d50000; /* Đường kẻ màu đỏ phía dưới */
+    padding-bottom: 5px;
+    border-top: 1px solid #ddd; /* Viền xám phía trên */
+    padding-top: 5px;
 }
 
 .news-item {
@@ -134,7 +138,7 @@
 }
 
 .news-content p {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
     margin: 0;
 }
@@ -147,15 +151,19 @@
 /* Cột TIN THEO HÃNG XE */
 .brand-section {
     width: 30%;
+    padding-right: 40px;
 }
 
 .brand-section h2 {
-    color: red;
-    font-size: 18px;
+    color: #d50000;
+    font-size: 1.3em;
     font-weight: bold;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
+    background-color: darkgray;
     margin-bottom: 10px;
+    border-bottom: 2px solid #d50000; /* Đường kẻ màu đỏ phía dưới */
+    padding-bottom: 5px;
+    border-top: 1px solid #ddd; /* Viền xám phía trên */
+    padding-top: 5px;
 }
 
 .brand-section ul {
@@ -175,5 +183,184 @@
     height: 10px;
     margin-right: 8px;
 }
+/* Đặt cho toàn bộ container */
+.container-newHot {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Đặt cho cột trái chứa các mục tin tức */
+.left-column {
+    width: 65%;
+}
+
+/* Đặt cho từng mục tin tức */
+.news-item {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.news-item img {
+    width: 150px;
+    height: 100px;
+    margin-right: 15px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.news-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.news-content h3 {
+    font-size: 1.5em;
+    margin: 0;
+    color: #d50000; /* Màu đỏ cho tiêu đề */
+}
+
+.news-content p {
+    margin: 5px 0 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Đặt cho cột phải chứa các mục nổi bật */
+.right-column {
+    width: 40%;
+    padding-left: 20px;
+    border-left: 1px solid #ddd;
+}
+
+.highlight-title {
+    color: #d50000;
+    font-size: 1.3em;
+    font-weight: bold;
+    background-color: darkgray;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #d50000; /* Đường kẻ màu đỏ phía dưới */
+    padding-bottom: 5px;
+    border-top: 1px solid #ddd; /* Viền xám phía trên */
+    padding-top: 5px;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.highlight-item img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.highlight-item p {
+    margin: 0;
+    font-size: 1.2em;
+}
+.footer {
+    background-color: #21252b;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    border-bottom: 1px solid #444;
+}
+
+.logo-section {
+    max-width: 250px;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.buttons {
+    margin-top: 10px;
+}
+
+.buttons button {
+    background-color: #d91b1b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttons .sell {
+    background-color: #ffbb00;
+}
+
+.buttons button:hover {
+    opacity: 0.8;
+}
+
+.links-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.links-section h3 {
+    font-size: 16px;
+    color: #ffbb00;
+    margin-bottom: 10px;
+}
+
+.links-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.links-section ul li {
+    margin-bottom: 5px;
+    color: #ccc;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 10px;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.footer-bottom p {
+    margin: 5px 0;
+}
+
+.footer-bottom address {
+    font-style: normal;
+    line-height: 1.6;
+}
+
+.social-media a {
+    color: #ffbb00;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-media a:hover {
+    text-decoration: underline;
+}
+
+
+
 
 
