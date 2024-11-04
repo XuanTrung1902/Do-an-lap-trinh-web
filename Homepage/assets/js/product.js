@@ -11,7 +11,6 @@ function left () {
 }
 
 function right () {
-
     if(counter == products.length/3 - 1) {
         counter = 0;
     } else {

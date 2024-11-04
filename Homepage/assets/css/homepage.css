@@ -416,6 +416,50 @@
     color: #de0000;
 }
 
+/* brand*/
+.motor__brand {
+    margin: 40px 0;
+    width: 100%;
+    height: 150px;
+}
+
+.motor__brand--heading{
+     padding-left: 40px;
+}
+
+.motor__brand--title{
+     font-size: 2.4rem;
+     text-transform: uppercase;
+}
+
+.motor__brand--list {
+    display: flex;
+    margin: 20px 8px 24px;
+    padding-left: 26px;
+}
+
+.brand-item {
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    max-width: 100%;
+    padding: 0 8px;
+}
+
+.brand-link {
+    display: block;
+    height: 75px;
+    overflow: hidden;
+    border: 1px solid #efefef;
+}
+
+.brand-link > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
 /* footer */
 .footer {
     border-top: 3px solid #000;
