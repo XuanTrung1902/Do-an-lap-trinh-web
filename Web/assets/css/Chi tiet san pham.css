@@ -1,6 +1,6 @@
 html, body, p, ul{
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
 
 }
 .infoHeader{
@@ -110,29 +110,68 @@ html, body, p, ul{
 }
 
 /* thông số  */
+.detail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail--container{
+    padding-left: 50px;
+}
+.cursor__pointer{
+    cursor: pointer;
+}
 .detail--header{
+    font-size: 3rem;
+    font-weight: bolder;
+    width: fit-content;
+}
+.detail--option{
+    padding: 10px;
+    width: 920px;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid #151515;
+}
+
+.options{
+    width: 920px;
+    padding: 0;
+    display: none;
+}
+.section--header{
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 15px 15px;
 
 }
-.text--header{
-
+.header--text{
+    font-size: 15px;
+    font-weight: 350;
+    text-transform: uppercase;
 }
 .text--item{
-
+    font-size: 14px;
+    font-weight: 500;
 }
 .gray-100{
     background-color: #f8f9fa;
+    box-shadow: 2px 3px 0px 0px rgba(134, 164, 163, 0.347);
 }
-
 .item{
     list-style-type: none;
     display: flex;
     align-items: center;
 }
 .item--header{
-    width: 20%;
+   max-width: 350px;
+   width: 100%;
+   padding: 15px 25px;
 }
 .item--detail{
-    
+    max-width: 500px;
+    width: 100%;
 }
 
 
