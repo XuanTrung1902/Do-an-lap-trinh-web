@@ -104,10 +104,10 @@
 
     <div class="main">
         <!-- chua hinh anh va thong tin sp: gia, mau... -->
-        <div class="info">
+        <div class="info">  
             <div class="info__img">
                 <div class="img__container">
-                    <img src="assets/img/ducati red.png" alt="ducati red img">
+                    <img src="assets/img/ducati red.png" alt="ducati red img" id="img">
                 </div>
             </div>
 
@@ -139,11 +139,11 @@
                     <div class="color padding--bottom--8">
                         <span class="infoHeader">Màu sắc: </span>
                         <div class="btnCointainer">
-                            <div class="redbtn">
+                            <div class="redbtn cursor__pointer" id="red" onclick="changeBikeColor(this.id)">
                                 <div class="colorbtn"></div>
                                 <span class="color--text text--description">Đỏ</span>
                             </div>
-                            <div class="blackbtn">
+                            <div class="blackbtn cursor__pointer" id="black" onclick="changeBikeColor(this.id)">
                                 <div class="colorbtn"></div>
                                 <span class="color--text text--description">Đen</span>
                             </div>
@@ -164,6 +164,9 @@
             </div>
 
         </div>
+
+        <!-- duong phan cach 2 section info va detail -->
+        <div class="seprator"></div>
 
         <!-- thông số kỹ thuật của sản phẩm: phân khối, khung xe... -->
         <div class="detail">
