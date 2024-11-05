@@ -444,6 +444,11 @@
     flex-grow: 1;
     max-width: 100%;
     padding: 0 8px;
+    transition: 0.4s;
+}
+
+.brand-item:hover {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
 }
 
 .brand-link {
