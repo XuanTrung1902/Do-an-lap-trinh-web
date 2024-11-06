@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+}
+
+.account-management {
+    width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.header {
+    background-color: #00bcd4;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.back-arrow {
+    font-size: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.profile {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #4ac7e4;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.details h2 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.details p {
+    color: #666;
+    font-size: 14px;
+}
+
+.view-details {
+    margin-left: auto;
+    background-color: #00bcd4;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.section {
+    padding: 10px 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.section h3 {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.linked-account {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.icon.facebook { background-color: #3b5998; }
+.icon.google { background-color: #db4437; }
+.icon.apple { background-color: #333; }
+
+.link-btn, .unlink-btn {
+    margin-left: auto;
+    background-color: #00bcd4;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.unlink-btn {
+    background-color: #e0e0e0;
+    color: #666;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.contact-info .default {
+    color: #00bcd4;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.add-new {
+    margin-left: auto;
+    color: #00bcd4;
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.actions {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.logout {
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.delete-account {
+    width: 100%;
+    padding: 10px;
+    background: none;
+    color: #ff0000;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+.footer {
+    width: 800px; /* Đặt chiều rộng cố định cho footer */
+    margin: auto; /* Căn giữa footer */
+    display: flex;
+    justify-content: space-between;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.footer-section {
+    width: 30%;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-section p {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.footer-section .phone,
+.footer-section .hotline {
+    color: #00a859;
+    font-weight: bold;
+}
+
+.footer-section h3::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background-color: #e0e0e0;
+    margin: 5px 0 15px;
+}
+.footer .about-us {
+    margin-left: 20px;
+}
