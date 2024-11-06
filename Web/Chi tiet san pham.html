@@ -16,10 +16,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
-     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css">
-
-     <link rel="stylesheet" href="assets/js/Chi tiet san pham.js">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/js/Chi tiet san pham.js">
 </head>
 <body>
 
@@ -157,198 +158,251 @@
 
                 </div>    
                 <div class="container--button">
-                    <button class="buy">Mua ngay</button>
-                    <button class="addToCart">Thêm vào giỏ hàng</button>    
+                    <a href="#"><button class="buy">Mua ngay</button></a>
+                    <a href="#"><button class="addToCart">Thêm vào giỏ hàng</button></a>    
                 </div>
 
             </div>
 
         </div>
 
-        <!-- duong phan cach 2 section info va detail -->
-        <div class="seprator"></div>
 
         <!-- thông số kỹ thuật của sản phẩm: phân khối, khung xe... -->
-        <div class="detail">
-            <div class="detail--header">THÔNG SỐ KỸ THUẬT</div>
-            <div class="detail--container">
-                <!-- động cơ -->
-                <div class="detail--option cursor__pointer" onclick="toggleSubOptions('sub1', this)">
-                    <span class="section--header">ĐỘNG CƠ</span>
+        <div class="detail container mt-5 d-flex flex-column justify-content-between align-items-center">
+            <h1 class="detail--header">THÔNG SỐ KỸ THUẬT</h1>
+            <div class="accordion">
+                <!-- dong co -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOpen2">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#open1" aria-expanded="true" aria-controls="open1">
+                            <span class="accordionItem__Header">động cơ</span>
+                        </button>
+                    </h2>
+                    <div id="open1" class="accordion-collapse collapse collapse" aria-labelledby="headingOpen1">
+                        <div class="accordion-body p-0">
+                            <ul class="list-group item--container">
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">LOẠI</h4>
+                                    <small class="lead text-muted item--detail">Blue Core, 4 thì, 2 van, SOHC, Làm mát bằng không khí cưỡng bức</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">BỐ TRÍ XY LANH</h4>
+                                    <small class="lead text-muted item--detail">Xy lanh đơn</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">DUNG TÍCH XY LANH(CC)</h4>
+                                    <small class="lead text-muted item--detail">124.9 cc</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Đường kính và hành trình piston</h4>
+                                    <small class="lead text-muted item--detail">52,4 mm x 57,9 mm</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Tỷ số nén</h4>
+                                    <small class="lead text-muted item--detail">9,5 : 1</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Công suất tối đa</h4>
+                                    <small class="lead text-muted item--detail">7,0 kW (9,5 ps)/8.000 vòng/phút</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Mô men xoắn cực đại</h4>
+                                    <small class="lead text-muted item--detail">9.6 Nm (1.0 kgf-m)/5500 vòng/phút</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Hệ thống khởi động</h4>
+                                    <small class="lead text-muted item--detail">Điện</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Hệ thống bôi trơn</h4>
+                                    <small class="lead text-muted item--detail">Các te ướt</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Dung tích dầu máy</h4>
+                                    <small class="lead text-muted item--detail">0,84 L</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Dung tích bình xăng</h4>
+                                    <small class="lead text-muted item--detail">4,2 L</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Mức tiêu thụ nhiên liệu (l/100km)</h4>
+                                    <small class="lead text-muted item--detail">1,87</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Hệ thống đánh lửa</h4>
+                                    <small class="lead text-muted item--detail">T.C.I (kỹ thuật số)</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Tỷ số truyền sơ cấp và thứ cấp</h4>
+                                    <small class="lead text-muted item--detail">1,000/10,156 (50/16 x 39/12)</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Hệ thống ly hợp</h4>
+                                    <small class="lead text-muted item--detail">Khô, ly tâm tự động</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Tỷ số truyền động</h4>
+                                    <small class="lead text-muted item--detail">2,294 - 0,804 : 1</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Hệ thống làm mát</h4>
+                                    <small class="lead text-muted item--detail">Làm mát bằng không khí</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <ul class="options" id="sub1">
-                    <li class="item gray-100">
-                        <span class="item--header header--text ">LOẠI</span>
-                        <span class="item--detail text--item">Blue Core, 4 thì, 2 van, SOHC, Làm mát bằng không khí cưỡng bức</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text ">BỐ TRÍ XY LANH</span>
-                        <span class="item--detail text--item">Xy lanh đơn</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text ">DUNG TÍCH XY LANH(CC)</span>
-                        <span class="item--detail text--item">124.9 cc</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text ">Đường kính và hành trình piston</span>
-                        <span class="item--detail text--item">52,4 mm x 57,9 mm</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text">Tỷ số nén</span>
-                        <span class="item--detail text--item">9,5 : 1</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text">Công suất tối đa</span>
-                        <span class="item--detail text--item">7,0 kW (9,5 ps)/8.000 vòng/phút</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text">Mô men xoắn cực đại</span>
-                        <span class="item--detail text--item">9.6 Nm (1.0 kgf-m)/5500 vòng/phút</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text">Hệ thống khởi động</span>
-                        <span class="item--detail text--item">Điện</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text">Hệ thống bôi trơn</span>
-                        <span class="item--detail text--item">Các te ướt</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text">Dung tích dầu máy</span>
-                        <span class="item--detail text--item">0,84 L</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text">Dung tích bình xăng</span>
-                        <span class="item--detail text--item">4,2 L</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text">Mức tiêu thụ nhiên liệu (l/100km)</span>
-                        <span class="item--detail text--item">1,87</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text">Hệ thống đánh lửa</span>
-                        <span class="item--detail text--item">T.C.I (kỹ thuật số)</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text">Tỷ số truyền sơ cấp và thứ cấp</span>
-                        <span class="item--detail text--item">1,000/10,156 (50/16 x 39/12)</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text">Hệ thống ly hợp</span>
-                        <span class="item--detail text--item">Khô, ly tâm tự động</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text">Tỷ số truyền động</span>
-                        <span class="item--detail text--item">2,294 - 0,804 : 1</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text">Hệ thống làm mát</span>
-                        <span class="item--detail text--item">Làm mát bằng không khí</span>
-                    </li>
-                </ul>
                 <!-- khung xe -->
-                <div class="detail--option cursor__pointer" onclick="toggleSubOptions('sub2', this)">
-                    <span class="section--header">khung xe</span>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOpen2">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#open2" aria-expanded="true" aria-controls="open2">
+                            <span class="accordionItem__Header">khung xe</span>
+                        </button>
+                    </h2>
+                    <div id="open2" class="accordion-collapse collapse collapse" aria-labelledby="headingOpen2">
+                        <div class="accordion-body p-0">
+                            <ul class="list-group item--container">
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">loại khung</h4>
+                                    <small class="lead text-muted item--detail">Underbone</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">hệ thống giảm xóc trước</h4>
+                                    <small class="lead text-muted item--detail">Phuộc ống lồng</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Độ lệch phương trục lái</h4>
+                                    <small class="lead text-muted item--detail">26°30 / 100 mm</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Hệ thống giảm xóc sau</h4>
+                                    <small class="lead text-muted item--detail">Giảm chấn lò xo dầu</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Phanh trước</h4>
+                                    <small class="lead text-muted item--detail">Phanh đĩa đơn thủy lực</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Phanh sau</h4>
+                                    <small class="lead text-muted item--detail">Phanh tang trống</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Lốp trước</h4>
+                                    <small class="lead text-muted item--detail">80/80-14M/C 43P</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Lốp sau</h4>
+                                    <small class="lead text-muted item--detail">110/70-14M/C 56P</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Đèn trước</h4>
+                                    <small class="lead text-muted item--detail">Halogen 12V 35W / 35W x 1</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Đèn sau</h4>
+                                    <small class="lead text-muted item--detail">LED</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <ul class="options" id="sub2">
-                    <li class="item gray-100">
-                        <span class="item--header header--text ">loại khung</span>
-                        <span class="item--detail text--item">Underbone</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text ">hệ thống giảm xóc trước</span>
-                        <span class="item--detail text--item">Phuộc ống lồng</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text ">Độ lệch phương trục lái</span>
-                        <span class="item--detail text--item">26°30 / 100 mm</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text ">Hệ thống giảm xóc sau</span>
-                        <span class="item--detail text--item">Giảm chấn lò xo dầu</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text">Phanh trước</span>
-                        <span class="item--detail text--item">Phanh đĩa đơn thủy lực</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text">Phanh sau</span>
-                        <span class="item--detail text--item">Phanh tang trống</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text">Lốp trước</span>
-                        <span class="item--detail text--item">80/80-14M/C 43P</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text">Lốp sau</span>
-                        <span class="item--detail text--item">110/70-14M/C 56P</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text">Đèn trước</span>
-                        <span class="item--detail text--item">Halogen 12V 35W / 35W x 1</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text">Đèn sau</span>
-                        <span class="item--detail text--item">LED</span>
-                    </li>
-                </ul>   
-                
                 <!-- kích thước -->
-                <div class="detail--option cursor__pointer" onclick="toggleSubOptions('sub3', this)">
-                    <span class="section--header">kích thước</span>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOpen3">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#open3" aria-expanded="true" aria-controls="open3">
+                            <span class="accordionItem__Header">kích thước</span>
+                        </button>
+                    </h2>
+                    <div id="open3" class="accordion-collapse collapse collapse" aria-labelledby="headingOpen3">
+                        <div class="accordion-body p-0">
+                            <ul class="list-group item--container">
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Kích thước (dài x rộng x cao)</h4>
+                                    <small class="lead text-muted item--detail">1850 mm x 705 mm x 1120 mm</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Độ cao yên xe</h4>
+                                    <small class="lead text-muted item--detail">769 mm</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Độ cao gầm xe</h4>
+                                    <small class="lead text-muted item--detail">135 mm</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Đường kính và hành trình piston</h4>
+                                    <small class="lead text-muted item--detail">52,4 mm x 57,9 mm</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Khoảng cách giữa 2 trục bánh xe</h4>
+                                    <small class="lead text-muted item--detail">1260 mm</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Trọng lượng ướt</h4>
+                                    <small class="lead text-muted item--detail">99 kg</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Dung tích bình xăng</h4>
+                                    <small class="lead text-muted item--detail">4,2 L</small>
+                                </li>
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">Ngăn chứa đồ</h4>
+                                    <small class="lead text-muted item--detail">14.2</small>
+                                </li>            
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <ul class="options" id="sub3">
-                    <li class="item gray-100">
-                        <span class="item--header header--text ">Kích thước (dài x rộng x cao)</span>
-                        <span class="item--detail text--item">1850 mm x 705 mm x 1120 mm</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text ">Độ cao yên xe</span>
-                        <span class="item--detail text--item">769 mm</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text ">Độ cao gầm xe</span>
-                        <span class="item--detail text--item">135 mm</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text ">Đường kính và hành trình piston</span>
-                        <span class="item--detail text--item">52,4 mm x 57,9 mm</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text">Khoảng cách giữa 2 trục bánh xe</span>
-                        <span class="item--detail text--item">1260 mm</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text">Trọng lượng ướt</span>
-                        <span class="item--detail text--item">99 kg</span>
-                    </li>
-                    <li class="item gray-100">
-                        <span class="item--header header--text">Dung tích bình xăng</span>
-                        <span class="item--detail text--item">4,2 L</span>
-                    </li>
-                    <li class="item">
-                        <span class="item--header header--text">Ngăn chứa đồ</span>
-                        <span class="item--detail text--item">14.2</span>
-                    </li>
-                </ul>        
-
                 <!--bao hanh-->
-                <div class="detail--option cursor__pointer" onclick="toggleSubOptions('sub4', this)">
-                    <span class="section--header">bảo hành</span>
-                </div> 
-                <ul class="options" id="sub4">
-                    <li class="item gray-100">
-                        <span class="item--header header--text ">thời gian bảo hành</span>
-                        <span class="item--detail text--item">3 năm/ 30.000 km (Tùy điều kiện nào đến trước)</span>
-                    </li>
-                </ul>    
-
-
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOpen4">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#open4" aria-expanded="true" aria-controls="open4">
+                            <span class="accordionItem__Header">động cơ</span>
+                        </button>
+                    </h2>
+                    <div id="open4" class="accordion-collapse collapse collapse" aria-labelledby="headingOpen4">
+                        <div class="accordion-body p-0">
+                            <ul class="list-group item--container">
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">thời gian bảo hành</h4>
+                                    <small class="lead text-muted item--detail">3 năm/ 30.000 km (Tùy điều kiện nào đến trước)</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="otherProducts"></div>
+
+        <!-- <div class="otherProducts">
+            <div class="product--header">các sản phẩm khác</div>
+            <div class="product--container">
+                <a href="#">
+                    <div class="product--item">
+                        <img class="product--img" src="assets/img/ducati red.png" alt="">
+                        <div class="product__detail">
+                            <div class="productName">yamaha jenus</div>
+                            <div class="productPrice">120.000.000 vnd</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div> -->
+
+        <!-- <div class="card">
+            <img src="assets/img/ducati red.png" class="card-img-top" alt="???">
+            <div class="card-body">
+                <h5 class="card-title">yamaha jenus</h5>
+                <p class="card-text">120.000.000 vnd</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+        </div> -->
+
+
     </div>
     <script src="assets/js/Chi tiet san pham.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </body>
 </html>
