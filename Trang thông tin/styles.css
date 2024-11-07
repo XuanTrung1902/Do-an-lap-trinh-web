@@ -61,6 +61,8 @@ html, body {
 .username {
     font-size: 16px;
     color: white;
+    text-decoration: none;
+
 }
 .container {
     margin-right: auto;

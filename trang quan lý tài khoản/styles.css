@@ -33,8 +33,9 @@ html,body {
     font-size: 30px;
     margin-right: 10px;
     cursor: pointer;
+    color: white;
+    text-decoration: none;
 }
-
 .profile {
     padding: 15px;
     border-bottom: 1px solid #e0e0e0;
@@ -77,6 +78,7 @@ html,body {
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .section {
@@ -179,7 +181,7 @@ html,body {
 }
 .footer {
     width: 800px;
-    margin: auto;   
+    margin: auto;
     display: flex;
     justify-content: space-between;
     background-color: #f8f8f8;

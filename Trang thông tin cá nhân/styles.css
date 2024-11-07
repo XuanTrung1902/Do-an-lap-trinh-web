@@ -38,8 +38,9 @@ html,body {
     cursor: pointer;
 }
 
-.back-button i {
+.back-button a  {
     margin-right: 5px;
+    color: #ff253a;
 }
 
 .back-button span {
