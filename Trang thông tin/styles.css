@@ -1,12 +1,8 @@
-/* styles.css */
 
-* {
+html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
 }
@@ -25,7 +21,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px; /* Khoảng cách giữa phần trên và phần dưới */
+    margin-bottom: 10px;
 }
 
 .account-text {
@@ -51,7 +47,7 @@ body {
 .avatar {
     width: 40px;
     height: 40px;
-    background-color: #fff5d7;
+    background-color: white;
     color: black;
     font-size: 20px;
     font-weight: bold;
@@ -64,6 +60,7 @@ body {
 
 .username {
     font-size: 16px;
+    color: white;
 }
 .container {
     margin-right: auto;
