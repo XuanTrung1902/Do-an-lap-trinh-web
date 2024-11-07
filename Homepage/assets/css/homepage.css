@@ -59,7 +59,7 @@
     border: 1px solid #595959;
     height: 12px;
     right: 0;
-    top: 0;
+    top: 6px;
 }
 
 .header__navbar--item a:hover {

@@ -59,7 +59,7 @@
     border: 1px solid #595959;
     height: 12px;
     right: 0;
-    top: 0;
+    top: 6px;
 }
 
 .header__navbar--item a:hover {
@@ -552,7 +552,7 @@
 
 .bike__info {
     background-color: var(--white-color);
-    padding: 10px 10px 0 10px;
+    padding: 10px 10px 10px 10px;
 }
 
 .bike__name {
@@ -602,12 +602,29 @@
     font-size: 1.6rem;
 }
 
+.motor__addToCard--btn {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 5px 0;
+    width: 100%;
+    border: none;
+    background-color: #e61e25;
+    border-radius: 3px;
+    color: var(--white-color);
+}
+
+.motor__addToCard--btn:hover {
+    background-color: #d25238;
+    cursor: pointer;
+}
+
 /* Pagination */
 .motor__pagination {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 80px;
 }
 
 .pagination {
@@ -626,7 +643,7 @@
 
 .pagination ul li {
     position: relative;
-    display: inline-flex;
+    display: inline-block;
     margin: 0 10px;
     width: 45px;
     height: 45px;
@@ -636,12 +653,15 @@
     font-weight: 500;
     line-height: 45px;
     cursor: pointer;
+    background-position: 0 -45px;
+    transition: background-position 0.5s ;
 }
 
 .pagination ul li.pagination__link--active {
     color: #fff;
     background-image: linear-gradient(#ff4568, #ff4568);
     background-repeat: no-repeat;
+    background-position: 0 0;
 }
 
 /* .pagination ul li {
@@ -723,14 +743,33 @@
     font-size: 3rem;
 }
 
+/* footer */
 
+.footer {
+    border-top: 3px solid #000;
+    font-size: 1.6rem;
+    background-color: var(--black-color);
+    color: var(--white-color);
+    padding: 0 20px;
+}
 
+.footer h5 {
+    font-size: 2.4rem;
+    font-weight: 600;
+}
 
+.footer ul a {
+    text-decoration: none;
+    color: var(--white-color);
+}
 
+.footer__banking {
+    height: 35px;
+    width: 52.5px;
+}
 
-
-
-
-footer {
-    height: 300px;
+.footer__rectangle img  {
+    width: 265px;
+    height: 60.5px;
+    margin-top: 10px;
 }
