@@ -1,10 +1,7 @@
-* {
+html,body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
 }
@@ -12,21 +9,26 @@ body {
 .account-management {
     width: 800px;
     margin: 20px auto;
-    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
 .header {
-    background-color: #00bcd4;
+    background-color: black;
     color: #fff;
     padding: 10px 15px;
     font-size: 12px;
     display: flex;
     align-items: center;
 }
-
+.line{
+    background-color: red;
+    padding: 10px 15px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
 .back-arrow {
     font-size: 30px;
     margin-right: 10px;
@@ -47,7 +49,7 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #4ac7e4;
+    background-color: black;
     color: #fff;
     font-size: 20px;
     font-weight: bold;
@@ -69,7 +71,7 @@ body {
 
 .view-details {
     margin-left: auto;
-    background-color: #00bcd4;
+    background-color: red;
     color: #fff;
     border: none;
     padding: 5px 10px;
@@ -112,7 +114,7 @@ body {
 
 .link-btn, .unlink-btn {
     margin-left: auto;
-    background-color: #00bcd4;
+    background-color: red;
     color: #fff;
     border: none;
     padding: 5px 10px;
@@ -133,14 +135,14 @@ body {
 }
 
 .contact-info .default {
-    color: #00bcd4;
+    color: red;
     margin-left: 10px;
     font-size: 12px;
 }
 
 .add-new {
     margin-left: auto;
-    color: #00bcd4;
+    color: red;
     background: none;
     border: none;
     font-size: 14px;
@@ -176,8 +178,8 @@ body {
     cursor: pointer;
 }
 .footer {
-    width: 800px; /* Đặt chiều rộng cố định cho footer */
-    margin: auto; /* Căn giữa footer */
+    width: 800px;
+    margin: auto;   
     display: flex;
     justify-content: space-between;
     background-color: #f8f8f8;
