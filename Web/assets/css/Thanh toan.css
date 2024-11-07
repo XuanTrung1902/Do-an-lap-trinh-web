@@ -1,0 +1,64 @@
+.logo-img{
+    width: 150px;
+    margin-right: 20px;
+    margin-left: 80px;
+}
+.separator{
+    border-left: 3px yellow solid;
+    height: 40px;
+    margin: 0 10px;
+}
+.header__text{
+    margin-left: 20px;
+    color: white;
+    font-size: 25px;
+    font-weight: 450;
+    text-transform: capitalize;
+}
+.header{
+    background-color: blue;
+    margin-bottom: 20px;
+}
+
+
+.container{
+    width: 60%;
+}
+.address{
+    border: 2px blueviolet solid;
+    width: 80%;
+}
+.head__line{
+    background-image: repeating-linear-gradient(45deg, #6fa6d6, #6fa6d6 33px, transparent 0, transparent 41px, #f18d9b 0, #f18d9b 74px, transparent 0, transparent 82px);
+    background-position-x: -30px;
+    background-size: 116px 3px;
+    height: 3px;
+}
+.ti-location-pin{
+    color: orange;
+    width: fit-content;
+}
+.address__text{
+    color: black;
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+    text-transform: capitalize;
+}
+
+.info__text{
+    font-weight: 650;
+}
+.address--address{
+    font-weight: 400;
+}
+.address__status{
+    color: #e31c25;
+    border: #e31c25 2px solid;
+    border-radius: 5px;
+    padding: 5px 8px;
+}
+.address__change{
+    color: #6fa6d6;
+    cursor: pointer;
+}
