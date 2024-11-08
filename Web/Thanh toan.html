@@ -27,27 +27,118 @@
             <div class="separator"></div>
             <h1 class="header__text">thanh toán</h1>
         </div>
-        <div class="container d-flex align-items-center justify-content-center">
-            <div class="address pb-5">
-                <div class="head__line"></div>
-                <div class="title d-flex align-items-center mt-5 mb-3">
-                    <i class="fa-solid fa-location-dot fa-3x me-3 ms-5" style="color: #e31c25;"></i>
-                    <h2 class="address__text">địa chỉ nhận hàng</h2>
-                </div>
-                <div class="info d-flex align-items-center gap-4">
-                    <div class="name d-flex align-items-center">
-                        <h3 class="ms-5 me-3 info__text">chiến thần bom hàng</h3>
-                        <h3 class="info__text">(+84) 822114139</h3>
+        <div class="head__line"></div>       
+        <div class="info-container d-flex align-items-center justify-content-center">
+            <div class="left-container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Giỏ hàng</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Thông tin đặt hàng</li>
+                      </ol>
+                </nav>
+                <form action="" class="m-5">
+                    <div class="row mb-3 me-0 ms-0">
+                        <input type="text" class="form-control form-control-lg" placeholder="Họ tên">
                     </div>
-                    <h3 class="address--address">Cổng sau ktx khu B ĐHQG, Phường Linh Trung, Thành Phố Thủ Đức, TP. Hồ Chí Minh</h3>
-                    <h4 class="address__status">Mặc định</h4>
-                    <h4 class="address__change">Thay đổi</h4>
-                </div>
+                    <div class="row mb-3 me-0 ms-0 gap-3">
+                        <div class="col p-0"><input type="email" class="form-control form-control-lg" placeholder="Email">
+                        </div>
+                        <div class="col p-0"><input type="tel" class="form-control form-control-lg" placeholder="Số điện thoại">
+                        </div>
+                    </div>
+                    <div class="row mb-3 me-0 ms-0">
+                        <input type="text" class="form-control form-control-lg" placeholder="Địa chỉ">
+                    </div>
+                    <div class="row mb-3 me-0 ms-0 gap-3">
+                        <div class="col p-0">
+                            <div class="form-floating">
+                                <select class="form-select" id="tinh" aria-label="">
+                                    <option selected>Chọn tỉnh / thành</option>
+                                    <option id="An Giang">An Giang</option>
+                                    <option id="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
+                                    <option id="Bạc Liêu">Bạc Liêu</option>
+                                    <option id="Bắc Giang">Bắc Giang</option>
+                                    <option id="Bắc Kạn">Bắc Kạn</option>
+                                    <option id="Bắc Ninh">Bắc Ninh</option>
+                                    <option id="Bến Tre">Bến Tre</option>
+                                    <option id="Bình Dương">Bình Dương</option>
+                                    <option id="Bình Định">Bình Định</option>
+                                    <option id="Bình Phước">Bình Phước</option>
+                                    <option id="Bình Thuận">Bình Thuận</option>
+                                    <option id="Cà Mau">Cà Mau</option>
+                                    <option id="Cao Bằng">Cao Bằng</option>
+                                    <option id="Cần Thơ">Cần Thơ</option>
+                                    <option id="Đà Nẵng">Đà Nẵng</option>
+                                    <option id="Đắk Lắk">Đắk Lắk</option>
+                                    <option id="Đắk Nông">Đắk Nông</option>
+                                    <option id="Điện Biên">Điện Biên</option>
+                                    <option id="Đồng Nai">Đồng Nai</option>
+                                    <option id="Đồng Tháp">Đồng Tháp</option>
+                                    <option id="Gia Lai">Gia Lai</option>
+                                    <option id="Hà Giang">Hà Giang</option>
+                                    <option id="Hà Nam">Hà Nam</option>
+                                    <option id="Hà Nội">Hà Nội</option>
+                                    <option id="Hà Tĩnh">Hà Tĩnh</option>
+                                    <option id="Hải Dương">Hải Dương</option>
+                                    <option id="Hải Phòng">Hải Phòng</option>
+                                    <option id="Hậu Giang">Hậu Giang</option>
+                                    <option id="Hòa Bình">Hòa Bình</option>
+                                    <option id="Hưng Yên">Hưng Yên</option>
+                                    <option id="Khánh Hòa">Khánh Hòa</option>
+                                    <option id="Kiên Giang">Kiên Giang</option>
+                                    <option id="Kon Tum">Kon Tum</option>
+                                    <option id="Lai Châu">Lai Châu</option>
+                                    <option id="Lâm Đồng">Lâm Đồng</option>
+                                    <option id="Lạng Sơn">Lạng Sơn</option>
+                                    <option id="Lào Cai">Lào Cai</option>
+                                    <option id="Long An">Long An</option>
+                                    <option id="Nam Định">Nam Định</option>
+                                    <option id="Nghệ An">Nghệ An</option>
+                                    <option id="Ninh Bình">Ninh Bình</option>
+                                    <option id="Ninh Thuận">Ninh Thuận</option>
+                                    <option id="Phú Thọ">Phú Thọ</option>
+                                    <option id="Phú Yên">Phú Yên</option>
+                                    <option id="Quảng Bình">Quảng Bình</option>
+                                    <option id="Quảng Nam">Quảng Nam</option>
+                                    <option id="Quảng Ngãi">Quảng Ngãi</option>
+                                    <option id="Quảng Ninh">Quảng Ninh</option>
+                                    <option id="Quảng Trị">Quảng Trị</option>
+                                    <option id="Sóc Trăng">Sóc Trăng</option>
+                                    <option id="Sơn La">Sơn La</option>
+                                    <option id="Tây Ninh">Tây Ninh</option>
+                                    <option id="Thái Bình">Thái Bình</option>
+                                    <option id="Thái Nguyên">Thái Nguyên</option>
+                                    <option id="Thanh Hóa">Thanh Hóa</option>
+                                    <option id="Thừa Thiên Huế">Thừa Thiên Huế</option>
+                                    <option id="Tiền Giang">Tiền Giang</option>
+                                    <option id="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                                    <option id="Trà Vinh">Trà Vinh</option>
+                                    <option id="Tuyên Quang">Tuyên Quang</option>
+                                    <option id="Vĩnh Long">Vĩnh Long</option>
+                                    <option id="Vĩnh Phúc">Vĩnh Phúc</option>
+                                    <option id="Yên Bái">Yên Bái</option>
+                                </select>
+                                <label for="tinh">Tỉnh / thành</label>
+                            </div>
+                        </div>
+                        <div class="col p-0">
+                            <div class="form-floating">
+                                <select class="form-select" id="quan" aria-label="">
+                                    <option selected>Chọn quận / huyện</option>
+                                </select>
+                                <label for="quan">Quận / huyện</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="" style="float: right;"><h3 class="m-0 p-0">Tiếp tục đến phương thức thanh toán</h3></button>
+                </form>
             </div>
-            
-            <div class="product"></div>
-            <div class="payment"></div>
+            <div class="right-container">
+
+            </div>
         </div>
+        
+
     </div>
 
     
