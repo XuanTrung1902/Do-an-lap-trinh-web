@@ -246,7 +246,7 @@
     font-size: 1.4rem;
 }
 
-/*  */
+/* body */
 
 .container {
     margin: 10px 20px;
@@ -290,6 +290,127 @@
     padding: 0 8px;
     font-size: 3rem;
 }
+
+/* banner */
+.banner {
+    height: 200px;
+    border-bottom: 1px solid #ccc;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* search--bike */
+.search__container {
+    position: relative;
+    top: -20px;
+    height: 455px;
+    width: 1280px;
+    margin: 0 auto 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search__bike {
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+.search--title-name {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.search-initialized {
+    display: flex;
+    gap: 10px;
+}
+
+.search-initialized input[type="text"],
+.search-initialized select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    width: 200px;
+}
+
+.search-initialized button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.search-initialized button:hover {
+    background-color: #d25238;
+}
+
+/* brand*/
+.motor__brand {
+    margin: 6px 0;
+    width: 100%;
+    height: 150px;
+}
+
+.motor__brand--heading{
+     padding-left: 16px;
+}
+
+.motor__brand--title{
+     font-size: 2.4rem;
+     text-transform: uppercase;
+}
+
+.motor__brand--list {
+    display: flex;
+    margin: 20px 8px 24px;
+}
+
+.brand-item {
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    max-width: 100%;
+    padding: 0 8px;
+    transition: 0.4s;
+    text-align: center;
+}
+
+.brand-item:hover {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+.brand-link {
+    display: block;
+    height: 75px;
+    overflow: hidden;
+    border: 1px solid #efefef;
+}
+
+.brand-link > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.type__bike {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
 
 /* list bike */
 .motor__list {

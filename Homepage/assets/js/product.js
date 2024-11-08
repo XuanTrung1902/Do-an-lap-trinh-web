@@ -40,7 +40,6 @@ function changePage () {
     }
     event.target.classList.add('pagination__link--active');
     currentPage = event.target.value;
-
 }
 
 function backBtn () {
