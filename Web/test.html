@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,5 +58,59 @@
 }
 
     </script>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .warp {
+            position: relative;
+        }
+        .background img {
+            position: relative;
+            z-index: 0; /* Background image layer */
+        }
+        .img1 img {
+            position: absolute;
+            top: 50px; /* Adjust as needed */
+            left: 50px; /* Adjust as needed */
+            z-index: 2; /* Foreground image layer */
+        }
+        .text{
+        position: absolute;
+        top: -31px;
+        left: -16px;
+        font-size: 230px;
+        font-size: 23rem;
+        line-height: 1em;
+        letter-spacing: .02em;
+        font-weight: 600;
+        mix-blend-mode: soft-light;
+        z-index: 1;
+        color: blue;
+        text-transform: uppercase;
+        white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="warp">
+            <p class="img background">
+                <img width="1164" height="419" src="https://yamaha-motor.com.vn/wp/wp-content/uploads/2024/02/Mask-Group-6249.jpg" alt="">
+                <span class="text">LAL</span>
+            </p>
+            <p class="img1">
+                <img width="624" height="606" src="https://yamaha-motor.com.vn/wp/wp-content/uploads/2024/01/PG1-orange-005-1.png" alt="">
+            </p>
+        </div>
+        <p>describe something bla bla</p>
+    </div>
 </body>
 </html>

@@ -9,7 +9,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/homepage.css">
-    <link rel="stylesheet" href="./assets/css/Thanh toan.css">
+    <link rel="stylesheet" href="./assets/css/Thanh toan 0.css">
     <link rel="stylesheet" href="./assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
     <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,7 @@
         </div>
 
         <div class="head__line"></div>   
-        <nav aria-label="breadcrumb " style="--bs-breadcrumb-divider: '>'; margin: 40px 0px 40px 100px">
+        <nav aria-label="breadcrumb " style="--bs-breadcrumb-divider: '>'; margin: 22px 0px 22px 100px">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item "><a href="#" class="noTextDecoration"><h2>Giỏ hàng</h2></a></li>
                 <li class="breadcrumb-item active" aria-current="page"><h2 class="d-inline">Thông tin đặt hàng</h2></li>
@@ -38,7 +38,7 @@
         <div class="info-container d-flex justify-content-center ">
             
             <div class="left-container" style="margin: 50px;">
-                <h1 class="m-5 mt-0 left--header">THÔNG TIN KHÁCH HÀNG</h2>
+                <h1 class="m-5 mt-0 left--header">THÔNG TIN KHÁCH HÀNG</h1>
                 <form action="" class="m-5 mt-0 info">
                     <div class="row mb-3 me-0 ms-0">
                         <input type="text" class="form-control form-control-lg p-3" placeholder="Họ tên">
@@ -55,7 +55,7 @@
                     <div class="row mb-3 me-0 ms-0 gap-3">
                         <div class="col p-0">
                             <div class="form-floating">
-                                <select class="form-select" style="font-size: 1.25rem; height: 50px;" id="tinh" aria-label="">
+                                <select class="form-select" style="font-size: 1.25rem; height: 60px;" id="tinh" aria-label="">
                                     <option selected>Chọn tỉnh / thành</option>
                                     <option id="An Giang">An Giang</option>
                                     <option id="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
@@ -126,31 +126,70 @@
                         </div>
                         <div class="col p-0">
                             <div class="form-floating">
-                                <select class="form-select" style="font-size: 1.25rem; height: 50px;" id="quan" aria-label="">
+                                <select class="form-select" style="font-size: 1.25rem; height: 60px;" id="quan" aria-label="">
                                     <option selected>Chọn quận / huyện</option>
-                                    <option id="An Giang">Quận 1</option>
-                                    <option id="An Giang">Quận 2</option>
-                                    <option id="An Giang">Quận 3</option>
-                                    <option id="An Giang">Quận 4</option>
-                                    <option id="An Giang">Quận 5</option>
-                                    <option id="An Giang">Quận 6</option>
-                                    <option id="An Giang">Quận 7</option>
-                                    <option id="An Giang">Quận 8</option>
-                                    <option id="An Giang">Quận 10</option>
-                                    <option id="An Giang">Quận 11</option>
-                                    <option id="An Giang">Quận 12</option>
-                                    <option id="An Giang">Quận Tân Bình</option>
-                                    <option id="An Giang">Quận Bình Tân</option>
-                                    <option id="An Giang">Quận Bình Thạnh</option>
-                                    <option id="An Giang">Quận Gò Vấp</option>
-                                    <option id="An Giang">Quận Phú Nhuận</option>
-                                    
-
+                                    <option id="q1">Huyện Bình Chánh</option>
+                                    <option id="q1">Huyện Cần Giờ</option>
+                                    <option id="q1">Huyện Củ Chi</option>
+                                    <option id="q1">Huyện Hóc Môn</option>
+                                    <option id="q1">Huyện Nhà Bè</option>
+                                    <option id="q1">Quận 1</option>
+                                    <option id="q2">Quận 2</option>
+                                    <option id="q3">Quận 3</option>
+                                    <option id="q4">Quận 4</option>
+                                    <option id="q5">Quận 5</option>
+                                    <option id="q6">Quận 6</option>
+                                    <option id="q7">Quận 7</option>
+                                    <option id="q8">Quận 8</option>
+                                    <option id="q10">Quận 10</option>
+                                    <option id="q11">Quận 11</option>
+                                    <option id="q12">Quận 12</option>
+                                    <option id="qBT">Quận Bình Tân</option>
+                                    <option id="qBThanh">Quận Bình Thạnh</option>
+                                    <option id="qGV">Quận Gò Vấp</option>
+                                    <option id="qPN">Quận Phú Nhuận</option>
+                                    <option id="qTB">Quận Tân Bình</option>
+                                    <option id="qTP">Quận Tân Phú</option>
+                                    <option id="tpTD">Thành phố Thủ Đức</option>
                                 </select>
                                 <label for="quan" style="font-size: 14px;">Quận / huyện</label>
                             </div>
                         </div>
+                        <div class="col p-0">
+                            <div class="form-floating">
+                                <select class="form-select" style="font-size: 1.25rem; height: 60px;" id="phuong" aria-label="">
+                                    <option selected>Chọn phường / xã</option>
+                                    <option id="p1">Phường 1</option>
+                                    <option id="p2">Phường 2</option>
+                                    <option id="p3">Phường 3</option>
+                                    <option id="p4">Phường 4</option>
+                                    <option id="p5">Phường 5</option>
+                                    <option id="p6">Phường 6</option>
+                                    <option id="p7">Phường 7</option>
+                                    <option id="p8">Phường 8</option>
+                                    <option id="p9">Phường 9</option>
+                                    <option id="p10">Phường 10</option>
+                                    <option id="p11">Phường 11</option>
+                                    <option id="p12">Phường 12</option>
+                                    <option id="p13">Phường 13</option>
+                                    <option id="p14">Phường 14</option>
+                                    <option id="p15">Phường 15</option>
+                                </select>
+                                <label for="phuong" style="font-size: 14px;">Phường / xã</label>
+                            </div>
+                        </div>
                     </div>
+                    <!-- <div class="row mb-3 me-0 ms-0 gap-3">
+                        <div class="col p-0">
+                            <div class="form-floating">
+                                <select class="form-select" style="font-size: 1.25rem; height: 60px;" id="phuong" aria-label="">
+                                    <option selected>Chọn đơn vị vận chuyển </option>
+                                    
+                                </select>
+                                <label for="phuong" style="font-size: 14px;">Đơn vị vận chuyển</label>
+                            </div>
+                        </div>
+                    </div> -->
                     <button class="button shadow"><h3 class="m-0 p-3" style="color: white;">Tiếp tục đến phương thức thanh toán</h3></button>
                 </form>
             </div>
@@ -189,8 +228,6 @@
                 </div>
             </div>
         </div>
-        
-
     </div>
 
     
