@@ -1,37 +1,54 @@
-document.querySelector('.header__navbar-news > a').addEventListener('click', function (e) {
-    e.preventDefault();
-    const dropdown = document.querySelector('.news-dropdown');
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-});
 
 let currentPage = 1;
-const totalPages = 3;
+const totalPages = document.querySelectorAll('.news-left').length;
 
-function setPage(page) {
-    if (page < 1 || page > 3) return;
-    currentPage = page;
+function showPage(page) {
+    if (page < 1 || page > totalPages) return;
+
+    document.querySelectorAll('.news-left').forEach(group => {
+        group.style.display = 'none';
+    });
+
+
+    const currentGroup = document.querySelector(`.news-left[data-page="${page}"]`);
+    if (currentGroup) {
+        currentGroup.style.display = 'flex';
+    }
+
+
     updatePagination();
 }
 
-function changePage(step) {
-    if (currentPage === 3 && step === 1) return;
-    if (currentPage === 1 && step === -1) return;
-    setPage(currentPage + step);
-}
 
 function updatePagination() {
-
-    document.querySelectorAll('.pagination .page-number').forEach(page => {
-        page.classList.remove('active');
-        if (parseInt(page.textContent) === currentPage) {
-            page.classList.add('active');
+    document.querySelectorAll('.pagination .page-number').forEach(pageElement => {
+        pageElement.classList.remove('active');
+        if (parseInt(pageElement.textContent) === currentPage) {
+            pageElement.classList.add('active');
         }
     });
 
 
     document.querySelector('.prev').disabled = currentPage === 1;
-    document.querySelector('.next').disabled = currentPage === 3;
+    document.querySelector('.next').disabled = currentPage === totalPages;
 }
 
 
-updatePagination();
+function setPage(page) {
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+    showPage(currentPage);
+}
+
+
+function changePage(step) {
+    const newPage = currentPage + step;
+    if (newPage >= 1 && newPage <= totalPages) {
+        setPage(newPage);
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    showPage(currentPage);
+});
