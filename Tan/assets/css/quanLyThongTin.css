@@ -36,14 +36,21 @@ html,body {
     color: white;
     text-decoration: none;
 }
+/* Profile */
 .profile {
     padding: 15px;
     border-bottom: 1px solid #e0e0e0;
 }
 
+/* Hiệu ứng hover cho toàn bộ phần profile-info */
 .profile-info {
     display: flex;
     align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.profile-info:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .avatar {
@@ -79,17 +86,108 @@ html,body {
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+.view-details:hover {
+    background-color: darkred;
 }
 
+/* Section */
 .section {
     padding: 10px 15px;
     border-bottom: 1px solid #e0e0e0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .section h3 {
     font-size: 14px;
     color: #666;
     margin-bottom: 10px;
+}
+
+.linked-account {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.linked-account:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.link-btn, .unlink-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.link-btn:hover, .unlink-btn:hover {
+    background-color: #0056b3;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.contact-info:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.default {
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.add-new {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.add-new:hover {
+    background-color: #e68a00;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+}
+
+.logout, .delete-account {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.logout:hover, .delete-account:hover {
+    background-color: #d32f2f;
 }
 
 .linked-account {

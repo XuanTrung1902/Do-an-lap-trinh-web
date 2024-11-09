@@ -92,8 +92,9 @@
 .news-left {
     display: flex;
     flex-wrap: wrap;
-    gap: 0px;
-    flex: 3 ;
+    gap: 20px;
+    flex: 3;
+    justify-content: space-between;
 }
 
 
@@ -152,6 +153,10 @@
     font-family: Arial, sans-serif;
     margin-left: 500px;
 }
+.pagination .prev,
+.pagination .next{
+    font-size: 30px;
+}
 
 .pagination button,
 .pagination .page-number {
@@ -161,7 +166,7 @@
     background-color: transparent;
     color: #888;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
     transition: background-color 0.3s, color 0.3s;
 }
 
