@@ -27,32 +27,35 @@
             <div class="separator"></div>
             <h1 class="header__text">thanh toán</h1>
         </div>
-        <div class="head__line"></div>       
-        <div class="info-container d-flex align-items-center justify-content-center">
-            <div class="left-container">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Giỏ hàng</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Thông tin đặt hàng</li>
-                      </ol>
-                </nav>
-                <form action="" class="m-5">
+
+        <div class="head__line"></div>   
+        <nav aria-label="breadcrumb " style="--bs-breadcrumb-divider: '>'; margin: 40px 0px 40px 100px">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item "><a href="#" class="noTextDecoration"><h2>Giỏ hàng</h2></a></li>
+                <li class="breadcrumb-item active" aria-current="page"><h2 class="d-inline">Thông tin đặt hàng</h2></li>
+              </ol>
+        </nav>
+        <div class="info-container d-flex justify-content-center ">
+            
+            <div class="left-container" style="margin: 50px;">
+                <h1 class="m-5 mt-0 left--header">THÔNG TIN KHÁCH HÀNG</h2>
+                <form action="" class="m-5 mt-0 info">
                     <div class="row mb-3 me-0 ms-0">
-                        <input type="text" class="form-control form-control-lg" placeholder="Họ tên">
+                        <input type="text" class="form-control form-control-lg p-3" placeholder="Họ tên">
                     </div>
                     <div class="row mb-3 me-0 ms-0 gap-3">
-                        <div class="col p-0"><input type="email" class="form-control form-control-lg" placeholder="Email">
+                        <div class="col p-0"><input type="email" class="form-control form-control-lg p-3" placeholder="Email">
                         </div>
-                        <div class="col p-0"><input type="tel" class="form-control form-control-lg" placeholder="Số điện thoại">
+                        <div class="col p-0"><input type="tel" class="form-control form-control-lg p-3" placeholder="Số điện thoại">
                         </div>
                     </div>
                     <div class="row mb-3 me-0 ms-0">
-                        <input type="text" class="form-control form-control-lg" placeholder="Địa chỉ">
+                        <input type="text" class="form-control form-control-lg p-3" placeholder="Địa chỉ">
                     </div>
                     <div class="row mb-3 me-0 ms-0 gap-3">
                         <div class="col p-0">
                             <div class="form-floating">
-                                <select class="form-select" id="tinh" aria-label="">
+                                <select class="form-select" style="font-size: 1.25rem; height: 50px;" id="tinh" aria-label="">
                                     <option selected>Chọn tỉnh / thành</option>
                                     <option id="An Giang">An Giang</option>
                                     <option id="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
@@ -118,23 +121,72 @@
                                     <option id="Vĩnh Phúc">Vĩnh Phúc</option>
                                     <option id="Yên Bái">Yên Bái</option>
                                 </select>
-                                <label for="tinh">Tỉnh / thành</label>
+                                <label for="tinh" style="font-size: 14px;">Tỉnh / thành</label>
                             </div>
                         </div>
                         <div class="col p-0">
                             <div class="form-floating">
-                                <select class="form-select" id="quan" aria-label="">
+                                <select class="form-select" style="font-size: 1.25rem; height: 50px;" id="quan" aria-label="">
                                     <option selected>Chọn quận / huyện</option>
+                                    <option id="An Giang">Quận 1</option>
+                                    <option id="An Giang">Quận 2</option>
+                                    <option id="An Giang">Quận 3</option>
+                                    <option id="An Giang">Quận 4</option>
+                                    <option id="An Giang">Quận 5</option>
+                                    <option id="An Giang">Quận 6</option>
+                                    <option id="An Giang">Quận 7</option>
+                                    <option id="An Giang">Quận 8</option>
+                                    <option id="An Giang">Quận 10</option>
+                                    <option id="An Giang">Quận 11</option>
+                                    <option id="An Giang">Quận 12</option>
+                                    <option id="An Giang">Quận Tân Bình</option>
+                                    <option id="An Giang">Quận Bình Tân</option>
+                                    <option id="An Giang">Quận Bình Thạnh</option>
+                                    <option id="An Giang">Quận Gò Vấp</option>
+                                    <option id="An Giang">Quận Phú Nhuận</option>
+                                    
+
                                 </select>
-                                <label for="quan">Quận / huyện</label>
+                                <label for="quan" style="font-size: 14px;">Quận / huyện</label>
                             </div>
                         </div>
                     </div>
-                    <button class="" style="float: right;"><h3 class="m-0 p-0">Tiếp tục đến phương thức thanh toán</h3></button>
+                    <button class="button shadow"><h3 class="m-0 p-3" style="color: white;">Tiếp tục đến phương thức thanh toán</h3></button>
                 </form>
             </div>
-            <div class="right-container">
+            <div class="right-container" style="margin: 50px;">
+                <div class="product d-flex flex-column">
+                    <div class="product--header pt-4 pb-4">
+                        <div class="product--name">
+                            <h3 class="display-6">DUCATI Panigale V4</h3>
+                            <h4 class="">
+                                <small class="pColor">Đỏ</small>
+                                <small> / </small>
+                                <small class="pPayment">Chuyển khoản đầy đủ</small>
+                            </h4>
+                        </div>
+                        <div class="product--price">
+                            <h3 class="" style="font-size: 2.5rem;">640.500.000 vnd</h3>
+                        </div>
+                    </div>
+                    <div class="product--shipping d-flex flex-column pt-4 pb-4">
+                        <div class="">
+                            <h3 class="float-start">Tạm tính</h3>
+                            <h3 class="float-end">640.500.000 vnd</h3>
+                        </div>
+                        <div class="">
+                            <h3 class="float-start">Phí vận chuyển</h3>
+                            <h3 class="float-end"><i class="fa-solid fa-minus"></i></h3>
+                        </div>
+                    </div>
+                    <div class="product--total pt-4 pb-4">
+                        <h3 class="float-start">Tổng cộng</h3>
+                        <h3 class="float-end">640.500.000 vnd</h3>
 
+                    </div>
+                    
+
+                </div>
             </div>
         </div>
         

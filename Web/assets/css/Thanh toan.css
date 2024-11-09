@@ -1,13 +1,16 @@
 .main{
     /* background-color: lightgrey; */
 }
+.noTextDecoration{
+    text-decoration: none;
+}
 .logo-img{
     width: 150px;
     margin-right: 20px;
     margin-left: 80px;
 }
 .separator{
-    border-left: 3px yellow solid;
+    border-left: 3px white solid;
     height: 40px;
     margin: 0 10px;
 }
@@ -19,7 +22,7 @@
     text-transform: capitalize;
 }
 .header{
-    background-color: blue;
+    background-color: black;
     /* margin-bottom: 20px; */
 }
 
@@ -32,7 +35,7 @@
     background-color: aliceblue;
 }
 .head__line{
-    background-image: repeating-linear-gradient(45deg, #6fa6d6, #6fa6d6 33px, transparent 0, transparent 41px,
+    background-image: repeating-linear-gradient(45deg, #e31c25, #e31c25 33px, transparent 0, transparent 41px,
     #f18d9b 0, #f18d9b 74px, transparent 0, transparent 82px);
     height: 10px;
 }
@@ -48,11 +51,59 @@
 .left-container{
     width: 60%;
     height: 100%;
-    /* background-color: yellow; */
+    margin: 100px;
+    margin-top: 20px;
+    padding: 20px;
+    border: 5px #e31c25 solid;
+    border-radius: 10px;
+    /* background-color: lightgray; */
 }
+.info-container{
+    background-color: lightgray;
+}
+.left--header{
+    font-weight: 620; 
+    border-bottom: 3px black solid; 
+    width: fit-content;
+    padding: 10px;
+}
+.breadcrumb-item::before { /* đường phân cách giữa các breadcrumb*/
+    font-size: 1.75rem;
+    font-weight: 800;
+}
+.info{
+}
+.button{
+    border-radius: 10px;
+    float: right;
+    background-color: #e31c25;
+    margin: 20px 0;
+    border: 2px white solid;
+}
+.button:hover{
+    
+}
+
+
 .right-container{
     width: 40%;
     height: 100px;
-    background-color: red;
+    /* background-color: red; */
+}
+.product{
 
 }
+.product--header{
+    border-bottom: 2px yellow solid;
+}
+.product--name {
+    float: left;
+}
+.product--price {
+    float: right;
+}
+.product--shipping{
+    border-bottom: 2px yellow solid;
+}
+
+
