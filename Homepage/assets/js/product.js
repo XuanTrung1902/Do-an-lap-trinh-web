@@ -60,3 +60,46 @@ function nextBtn () {
     paginationLink[currentPage - 1].click();
 }
 
+// filter for product
+function filterImages() {
+    const checkboxes = document.querySelectorAll('#checkboxes input[type="checkbox"]');
+    const checkboxes1 = document.querySelectorAll('#checkboxes1 input[type="checkbox"]');
+    const images = document.querySelectorAll('.list-bike .grid__column-2');
+    const detailList = document.querySelector('.motor__detail-list');
+
+    const selectedAttributes = Array.from(checkboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+
+    const selectedAttributes1 = Array.from(checkboxes1)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+
+    let visibleCount = 0;
+
+    if (selectedAttributes.length === 0 && selectedAttributes1.length === 0) {
+        images.forEach(image => {
+            image.style.display = 'block';
+        });
+        visibleCount = images.length;
+    } else {
+        images.forEach(image => {
+            const imageAttributes = image.getAttribute('data-attributes').split(', ').map(attr => attr.trim());
+            const matchesGroup1 = selectedAttributes.length === 0 || selectedAttributes.some(attr => imageAttributes.includes(attr));
+            const matchesGroup2 = selectedAttributes1.length === 0 || selectedAttributes1.some(attr => imageAttributes.includes(attr));
+
+            if (matchesGroup1 && matchesGroup2) {
+                image.style.display = 'block';
+                visibleCount++;
+            } else {
+                image.style.display = 'none';
+            }
+        });
+    }
+    const itemHeight = 430; 
+    const rows = Math.ceil(visibleCount / 5); 
+    detailList.style.height = `${rows * itemHeight}px`;
+    detailList.style.backgroundColor = '#f6f6f6'; 
+    detailList.style.marginBottom = '40px';
+}
+

@@ -517,213 +517,230 @@
             <div class="title-second">
               <h3 class="title-second-name">Xe mới đăng</h3>
             </div>
-            <div class="list-bike">
-              <div class="grid__row" style="padding: 0 40px;">
-                <div class="grid__column-2" style="padding: 20px;">
-                  <a href="#" class="bike--item">
-                    <div class="bike__img zoom-img">
-                      <img src="./assets/images/dt1.jpeg" alt="#" />
-                    </div>
-                    <div class="bike__info">
-                      <h3 class="bike__name">HONDA Wave 110 HQTrắng - 2008</h3>
-                      <span class="bike__price">Liên hệ</span>
-                      <div class="source">
-                        <span class="condition">Xe cũ</span>
-                        <span class="time">1 tháng trước</span>
-                      </div>
-                      <address class="address">Tân Bình, Hồ Chí Minh</address>
-                      <button class="motor__addToCard--btn">Thêm vào giỏ</button>
-                    </div>
-                  </a>
+            <div class="grid-2-8" style="padding-bottom: 10px;">
+              <div class="checkbox__category">
+                <div id="checkboxes">
+                  <h4>Hãng xe</h4>
+                  <label><input type="checkbox" value="honda" onclick="filterImages()"> HONDA</label>
+                  <label><input type="checkbox" value="ducati" onclick="filterImages()"> DUCATI</label>
+                  <label><input type="checkbox" value="sym" onclick="filterImages()"> SYM</label>
+                  <label><input type="checkbox" value="piaggio" onclick="filterImages()"> PIAGGIO</label>
                 </div>
-                <div class="grid__column-2" style="padding: 20px;">
-                  <a href="#" class="bike--item">
-                    <div class="bike__img zoom-img">
-                      <img src="./assets/images/dt2.jpg" alt="#" />
-                    </div>
-                    <div class="bike__info">
-                      <h3 class="bike__name">DUCATI Ducati 848 Đen - 2013</h3>
-                      <span class="bike__price">Liên hệ</span>
-                      <div class="source">
-                        <span class="condition">Xe cũ</span>
-                        <span class="time">1 tháng trước</span>
-                      </div>
-                      <address class="address">Bình Thạnh, Hồ Chí Minh</address>
-                      <button class="motor__addToCard--btn">Thêm vào giỏ</button>
-                    </div>
-                  </a>
+                <div id="checkboxes1">
+                  <h4>Màu sắc</h4>
+                  <label><input type="checkbox" value="den" onclick="filterImages()"> ĐEN</label>
+                  <label><input type="checkbox" value="trang" onclick="filterImages()"> TRẮNG</label>
+                  <label><input type="checkbox" value="xam" onclick="filterImages()"> XÁM</label>
                 </div>
-                <div class="grid__column-2" style="padding: 20px;">
-                  <a href="#" class="bike--item">
-                    <div class="bike__img zoom-img">
-                      <img src="./assets/images/dt3.jpeg" alt="#" />
-                    </div>
-                    <div class="bike__info">
-                      <h3 class="bike__name">SYM Angela 50cc 2016 màu đỏ trắng</h3>
-                      <span class="bike__price">Liên hệ</span>
-                      <div class="source">
-                        <span class="condition">Xe cũ</span>
-                        <span class="time">4 tháng trước</span>
+              </div>
+              <div class="list-bike">
+                <div class="grid__row" style="padding: 0 40px;">
+                  <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
+                    <a href="#" class="bike--item">
+                      <div class="bike__img zoom-img">
+                        <img src="./assets/images/dt1.jpeg" alt="#" />
                       </div>
-                      <address class="address">Quận 7, Hồ Chí Minh</address>
-                      <button class="motor__addToCard--btn">Thêm vào giỏ</button>
-                    </div>
-                  </a>
-                </div>
-                <div class="grid__column-2" style="padding: 20px;">
-                  <a href="#" class="bike--item">
-                    <div class="bike__img zoom-img">
-                      <img src="./assets/images/dt4.jpg" alt="#" />
-                    </div>
-                    <div class="bike__info">
-                      <h3 class="bike__name">PIAGGIO Vespa LX 125 Đen - 2015</h3>
-                      <span class="bike__price">8.500.000đ</span>
-                      <div class="source">
-                        <span class="condition">Xe cũ</span>
-                        <span class="time">5 tháng trước</span>
+                      <div class="bike__info">
+                        <h3 class="bike__name">HONDA Wave 110 HQTrắng - 2008</h3>
+                        <span class="bike__price">Liên hệ</span>
+                        <div class="source">
+                          <span class="condition">Xe cũ</span>
+                          <span class="time">1 tháng trước</span>
+                        </div>
+                        <address class="address">Tân Bình, Hồ Chí Minh</address>
+                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
                       </div>
-                      <address class="address">Cầu Giấy, Hồ Chí Minh</address>
-                      <button class="motor__addToCard--btn">Thêm vào giỏ</button>
-                    </div>
-                  </a>
-                </div>
-                <div class="grid__column-2" style="padding: 20px;">
-                  <a href="#" class="bike--item">
-                    <div class="bike__img zoom-img">
-                      <img src="./assets/images/dt5.jpg" alt="#" />
-                    </div>
-                    <div class="bike__info">
-                      <h3 class="bike__name">HONDA Cub 50cc Vàng Trắng - 2020</h3>
-                      <span class="bike__price">7.500.00đ</span>
-                      <div class="source">
-                        <span class="condition">Xe cũ</span>
-                        <span class="time">5 tháng trước</span>
+                    </a>
+                  </div>
+                  <div class="grid__column-2" data-attributes="ducati, den" style="padding: 10px;">
+                    <a href="#" class="bike--item">
+                      <div class="bike__img zoom-img">
+                        <img src="./assets/images/dt2.jpg" alt="#" />
                       </div>
-                      <address class="address">Cầu Giấy, Hồ Chí Minh</address>
-                      <button class="motor__addToCard--btn">Thêm vào giỏ</button>
-                    </div>
-                  </a>
-                </div>
-                <div class="grid__column-2" style="padding: 20px;">
-                  <a href="#" class="bike--item">
-                    <div class="bike__img zoom-img">
-                      <img src="./assets/images/dt6.jpeg" alt="#" />
-                    </div>
-                    <div class="bike__info">
-                      <h3 class="bike__name">HONDA Airblade 110 Fi 2013 màu đen vàng</h3>
-                      <span class="bike__price">Liên hệ</span>
-                      <div class="source">
-                        <span class="condition">Xe cũ</span>
-                        <span class="time">7 tháng trước</span>
+                      <div class="bike__info">
+                        <h3 class="bike__name">DUCATI Ducati 848 Đen - 2013</h3>
+                        <span class="bike__price">Liên hệ</span>
+                        <div class="source">
+                          <span class="condition">Xe cũ</span>
+                          <span class="time">1 tháng trước</span>
+                        </div>
+                        <address class="address">Bình Thạnh, Hồ Chí Minh</address>
+                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
                       </div>
-                      <address class="address">Bình Tân, Hồ Chí Minh</address>
-                      <button class="motor__addToCard--btn">Thêm vào giỏ</button>
-                    </div>
-                  </a>
-                </div>
-                <div class="grid__column-2" style="padding: 20px;">
-                  <a href="#" class="bike--item">
-                    <div class="bike__img zoom-img">
-                      <img src="./assets/images/dt7.jpg" alt="#" />
-                    </div>
-                    <div class="bike__info">
-                      <h3 class="bike__name">HONDA Wave Alpha 110 hqld,  màu trắng</h3>
-                      <span class="bike__price">5.800.000đ</span>
-                      <div class="source">
-                        <span class="condition">Xe cũ</span>
-                        <span class="time">8 tháng trước</span>
+                    </a>
+                  </div>
+                  <div class="grid__column-2" data-attributes="sym, trang" style="padding: 10px;">
+                    <a href="#" class="bike--item">
+                      <div class="bike__img zoom-img">
+                        <img src="./assets/images/dt3.jpeg" alt="#" />
                       </div>
-                      <address class="address">Bình Tân, Hồ Chí Minh</address>
-                      <button class="motor__addToCard--btn">Thêm vào giỏ</button>
-                    </div>
-                  </a>
-                </div>
-                <div class="grid__column-2" style="padding: 20px;">
-                  <a href="#" class="bike--item">
-                    <div class="bike__img zoom-img">
-                      <img src="./assets/images/dt8.jpeg" alt="#" />
-                    </div>
-                    <div class="bike__info">
-                      <h3 class="bike__name">PIAGGIO Liberty 3V i.e 125 2015 màu trắng</h3>
-                      <span class="bike__price">19.500.000đ</span>
-                      <div class="source">
-                        <span class="condition">Xe cũ</span>
-                        <span class="time">9 tháng trước</span>
+                      <div class="bike__info">
+                        <h3 class="bike__name">SYM Angela 50cc 2016 màu đỏ trắng</h3>
+                        <span class="bike__price">Liên hệ</span>
+                        <div class="source">
+                          <span class="condition">Xe cũ</span>
+                          <span class="time">4 tháng trước</span>
+                        </div>
+                        <address class="address">Quận 7, Hồ Chí Minh</address>
+                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
                       </div>
-                      <address class="address">Cầu Giấy, Hà Nội</address>
-                      <button class="motor__addToCard--btn">Thêm vào giỏ</button>
-                    </div>
-                  </a>
-                </div>
-                <div class="grid__column-2" style="padding: 20px;">
-                  <a href="#" class="bike--item">
-                    <div class="bike__img zoom-img">
-                      <img src="./assets/images/dt9.jpg" alt="#" />
-                    </div>
-                    <div class="bike__info">
-                      <h3 class="bike__name">HONDA Airblade 110 Fi Trắng Đỏ - 2013</h3>
-                      <span class="bike__price">10.500.00đ</span>
-                      <div class="source">
-                        <span class="condition">Xe cũ</span>
-                        <span class="time">10 tháng trước</span>
+                    </a>
+                  </div>
+                  <div class="grid__column-2"  data-attributes="piaggio, den" style="padding: 10px;">
+                    <a href="#" class="bike--item">
+                      <div class="bike__img zoom-img">
+                        <img src="./assets/images/dt4.jpg" alt="#" />
                       </div>
-                      <address class="address">Quận 11, Hồ Chí Minh</address>
-                      <button class="motor__addToCard--btn">Thêm vào giỏ</button>
-                    </div>
-                  </a>
-                </div>
-                <div class="grid__column-2" style="padding: 20px;">
-                  <a href="#" class="bike--item">
-                    <div class="bike__img zoom-img">
-                      <img src="./assets/images/dt10.jpeg" alt="#" />
-                    </div>
-                    <div class="bike__info">
-                      <h3 class="bike__name">DUCATI Scrambler 1100 Sport 2021 Xám Mờ</h3>
-                      <span class="bike__price">Liên hệ</span>
-                      <div class="source">
-                        <span class="condition">Xe cũ</span>
-                        <span class="time">11 tháng trước</span>
+                      <div class="bike__info">
+                        <h3 class="bike__name">PIAGGIO Vespa LX 125 Đen - 2015</h3>
+                        <span class="bike__price">8.500.000đ</span>
+                        <div class="source">
+                          <span class="condition">Xe cũ</span>
+                          <span class="time">5 tháng trước</span>
+                        </div>
+                        <address class="address">Cầu Giấy, Hồ Chí Minh</address>
+                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
                       </div>
-                      <address class="address">Thủ Đức, Hồ Chí Minh</address>
-                      <button class="motor__addToCard--btn">Thêm vào giỏ</button>
-                    </div>
-                  </a>
-                </div>
-                <div class="grid__column-2" style="padding: 20px;">
-                  <a href="#" class="bike--item">
-                    <div class="bike__img zoom-img">
-                      <img src="./assets/images/dt11.jpeg" alt="#" />
-                    </div>
-                    <div class="bike__info">
-                      <h3 class="bike__name">HONDA Vision 110 2013 màu đen đỏ</h3>
-                      <span class="bike__price">15.800.000đ</span>
-                      <div class="source">
-                        <span class="condition">Xe cũ</span>
-                        <span class="time">1 tháng trước</span>
+                    </a>
+                  </div>
+                  <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
+                    <a href="#" class="bike--item">
+                      <div class="bike__img zoom-img">
+                        <img src="./assets/images/dt5.jpg" alt="#" />
                       </div>
-                      <address class="address">Tân Bình, Hồ Chí Minh</address>
-                      <button class="motor__addToCard--btn">Thêm vào giỏ</button>
-                    </div>
-                  </a>
-                </div>
-                <div class="grid__column-2" style="padding: 20px;">
-                  <a href="#" class="bike--item">
-                    <div class="bike__img zoom-img">
-                      <img src="./assets/images/dt12.jpg" alt="#" />
-                    </div>
-                    <div class="bike__info">
-                      <h3 class="bike__name">PIAGGIO Liberty 125 i.e Đen - 2015</h3>
-                      <span class="bike__price">6.800.000đ</span>
-                      <div class="source">
-                        <span class="condition">Xe cũ</span>
-                        <span class="time">11 tháng trước</span>
+                      <div class="bike__info">
+                        <h3 class="bike__name">HONDA Cub 50cc Vàng Trắng - 2020</h3>
+                        <span class="bike__price">7.500.00đ</span>
+                        <div class="source">
+                          <span class="condition">Xe cũ</span>
+                          <span class="time">5 tháng trước</span>
+                        </div>
+                        <address class="address">Cầu Giấy, Hồ Chí Minh</address>
+                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
                       </div>
-                      <address class="address">Gò Vấp, Hồ Chí Minh</address>
-                      <button class="motor__addToCard--btn">Thêm vào giỏ</button>
-                    </div>
-                  </a>
+                    </a>
+                  </div>
+                  <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
+                    <a href="#" class="bike--item">
+                      <div class="bike__img zoom-img">
+                        <img src="./assets/images/dt6.jpeg" alt="#" />
+                      </div>
+                      <div class="bike__info">
+                        <h3 class="bike__name">HONDA Airblade 110 Fi 2013 màu đen vàng</h3>
+                        <span class="bike__price">Liên hệ</span>
+                        <div class="source">
+                          <span class="condition">Xe cũ</span>
+                          <span class="time">7 tháng trước</span>
+                        </div>
+                        <address class="address">Bình Tân, Hồ Chí Minh</address>
+                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
+                    <a href="#" class="bike--item">
+                      <div class="bike__img zoom-img">
+                        <img src="./assets/images/dt7.jpg" alt="#" />
+                      </div>
+                      <div class="bike__info">
+                        <h3 class="bike__name">HONDA Wave Alpha 110 hqld,  màu trắng</h3>
+                        <span class="bike__price">5.800.000đ</span>
+                        <div class="source">
+                          <span class="condition">Xe cũ</span>
+                          <span class="time">8 tháng trước</span>
+                        </div>
+                        <address class="address">Bình Tân, Hồ Chí Minh</address>
+                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="grid__column-2" data-attributes="piaggio, trang" style="padding: 10px;">
+                    <a href="#" class="bike--item">
+                      <div class="bike__img zoom-img">
+                        <img src="./assets/images/dt8.jpeg" alt="#" />
+                      </div>
+                      <div class="bike__info">
+                        <h3 class="bike__name">PIAGGIO Liberty 3V i.e 125 2015 màu trắng</h3>
+                        <span class="bike__price">19.500.000đ</span>
+                        <div class="source">
+                          <span class="condition">Xe cũ</span>
+                          <span class="time">9 tháng trước</span>
+                        </div>
+                        <address class="address">Cầu Giấy, Hà Nội</address>
+                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="grid__column-2"  data-attributes="honda, trang" style="padding: 10px;">
+                    <a href="#" class="bike--item">
+                      <div class="bike__img zoom-img">
+                        <img src="./assets/images/dt9.jpg" alt="#" />
+                      </div>
+                      <div class="bike__info">
+                        <h3 class="bike__name">HONDA Airblade 110 Fi Trắng Đỏ - 2013</h3>
+                        <span class="bike__price">10.500.00đ</span>
+                        <div class="source">
+                          <span class="condition">Xe cũ</span>
+                          <span class="time">10 tháng trước</span>
+                        </div>
+                        <address class="address">Quận 11, Hồ Chí Minh</address>
+                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="grid__column-2" data-attributes="ducati, xam" style="padding: 10px;">
+                    <a href="#" class="bike--item">
+                      <div class="bike__img zoom-img">
+                        <img src="./assets/images/dt10.jpeg" alt="#" />
+                      </div>
+                      <div class="bike__info">
+                        <h3 class="bike__name">DUCATI Scrambler 1100 Sport 2021 Xám Mờ</h3>
+                        <span class="bike__price">Liên hệ</span>
+                        <div class="source">
+                          <span class="condition">Xe cũ</span>
+                          <span class="time">11 tháng trước</span>
+                        </div>
+                        <address class="address">Thủ Đức, Hồ Chí Minh</address>
+                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
+                    <a href="#" class="bike--item">
+                      <div class="bike__img zoom-img">
+                        <img src="./assets/images/dt11.jpeg" alt="#" />
+                      </div>
+                      <div class="bike__info">
+                        <h3 class="bike__name">HONDA Vision 110 2013 màu đen đỏ</h3>
+                        <span class="bike__price">15.800.000đ</span>
+                        <div class="source">
+                          <span class="condition">Xe cũ</span>
+                          <span class="time">1 tháng trước</span>
+                        </div>
+                        <address class="address">Tân Bình, Hồ Chí Minh</address>
+                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="grid__column-2"  data-attributes="piaggio, den" style="padding: 10px;">
+                    <a href="#" class="bike--item">
+                      <div class="bike__img zoom-img">
+                        <img src="./assets/images/dt12.jpg" alt="#" />
+                      </div>
+                      <div class="bike__info">
+                        <h3 class="bike__name">PIAGGIO Liberty 125 i.e Đen - 2015</h3>
+                        <span class="bike__price">6.800.000đ</span>
+                        <div class="source">
+                          <span class="condition">Xe cũ</span>
+                          <span class="time">11 tháng trước</span>
+                        </div>
+                        <address class="address">Gò Vấp, Hồ Chí Minh</address>
+                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
+                      </div>
+                    </a>
+                  </div>
+                  
                 </div>
-                
               </div>
             </div>
           </div>

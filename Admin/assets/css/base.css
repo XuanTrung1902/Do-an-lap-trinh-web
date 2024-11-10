@@ -9,6 +9,7 @@
   --sub-bg-color: #f2f7fb;
   --main-transition: all 0.3s ease;
   --top-height : 70px;
+  --color-hover-text: #4a87ce;
 
 }
 
@@ -51,3 +52,12 @@ html {
     display: grid;
     justify-content: space-between;
   } */
+
+  @keyframes notification {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
