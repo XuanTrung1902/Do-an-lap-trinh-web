@@ -21,14 +21,14 @@
                 </div>
                 <div class="admin__sidebar--content">
                     <ul>
-                        <li><a href="#">
+                        <li><a href="admin.html">
                                 <i class="ri-dashboard-line"></i>
                                 Dashboard
                                 <i></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="#">
+                                    <li><a href="admin.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -102,11 +102,27 @@
                     <div class="admin-content-main-title">
                         <h1>Thêm sản phẩm</h1>
                     </div>
-                    <div class="admin-content-main-container">
+                    <form class="admin-content-main-container" >
                         <div class="admin-content-main-container-two-input">
                             <input type="text" placeholder="Tên sản phẩm">
+                            <input type="text" placeholder="Hãng xe">
                         </div>
-                    </div>
+                        <div class="admin-content-main-container-two-input">
+                            <input type="text" placeholder="Phân khối">
+                            <input type="text" placeholder="Giá bán">
+                        </div>
+                        <div class="admin-content-main-container-choose-img">
+                            <input type="file" id="file" style="display: none;">
+                            <label for="file">Thêm hình ảnh</label>
+                        </div>
+                        <div class="admin-content-main-container-description">
+                            <textarea name="" id="" cols="30" rows="5" placeholder="Đặc điểm nổi bật"></textarea>
+                        </div>
+                        <div class="admin-content-main-container-description">
+                            <textarea name="" id="" cols="30" rows="5" placeholder="Mô tả sản phẩm"></textarea>
+                        </div>
+                        <button>Thêm sản phẩm</button>
+                    </form>
                 </div>
             </div>
         </div>
