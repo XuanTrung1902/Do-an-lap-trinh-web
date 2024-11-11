@@ -1,3 +1,6 @@
+html{
+    background-color: rgb(234, 234, 234);
+}
 .main{
     /* background-color: lightgrey; */
 }
@@ -26,15 +29,6 @@
     height: 80px;
     /* margin-bottom: 20px; */
 }
-
-
-.container{
-    width: 60%;
-}
-.address{
-    width: 80%;
-    background-color: aliceblue;
-}
 .head__line{
     background-image: repeating-linear-gradient(45deg, #e31c25, #e31c25 33px, transparent 0, transparent 41px,
     #f18d9b 0, #f18d9b 74px, transparent 0, transparent 82px);
@@ -49,18 +43,23 @@
 
 
 /* !!!!!!!!!!!!!! */
+.breadcrumb--container{
+    padding: 30px 100px;
+}
+
+
+
 .left-container{
     width: 60%;
-    /* height: 100%; */
-    margin: 100px;
-    margin-top: 20px;
+    margin: 50px;
+    margin-top: 0;
     padding: 20px;
-    border: 5px #e31c25 solid;
+    /* border: 5px #e31c25 solid; */
     border-radius: 10px;
-    /* background-color: lightgray; */
+    background-color: #fff;
 }
 .info-container{
-    background-color: lightgray;
+    background-color: rgb(234, 234, 234);
 }
 .left--header{
     font-weight: 620; 
@@ -68,11 +67,18 @@
     width: fit-content;
     padding: 10px;
 }
-.breadcrumb-item::before { /* đường phân cách giữa các breadcrumb*/
-    font-size: 1.75rem;
-    font-weight: 800;
-}
 .info{
+
+}
+.payment{
+    border-radius: 0.5rem;
+}
+.option-label{
+    font-size: 1.25rem;
+    font-weight: 400;
+    font-style: normal;
+    color: #212529;
+    opacity: 0.8;
 }
 .button{
     border-radius: 10px;
@@ -88,8 +94,12 @@
 
 .right-container{
     width: 40%;
-    /* height: 100px; */
-    /* background-color: red; */
+    border-radius: 10px;
+    margin: 50px;
+    margin-top: 0;
+    padding: 40px;
+    height: fit-content;
+    background-color: #fff;
 }
 .product{
 
