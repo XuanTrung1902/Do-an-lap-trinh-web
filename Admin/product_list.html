@@ -21,14 +21,14 @@
                 </div>
                 <div class="admin__sidebar--content">
                     <ul>
-                        <li><a href="admin.html">
+                        <li><a href="#">
                                 <i class="ri-dashboard-line"></i>
                                 Dashboard
                                 <i></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="admin.html">
+                                    <li><a href="#">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -60,12 +60,12 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="product_list.html">
+                                    <li><a href="#">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="#">
+                                    <li><a href="product_add.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -100,34 +100,78 @@
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
-                        <h1>Thêm sản phẩm</h1>
+                        <h1>Danh sách sản phẩm</h1>
                     </div>
-                    <form class="admin-content-main-container" >
-                        <div class="admin-content-main-container-two-input">
-                            <input type="text" placeholder="Tên sản phẩm">
-                            <input type="text" placeholder="Hãng xe">
-                        </div>
-                        <div class="admin-content-main-container-two-input">
-                            <input type="text" placeholder="Phân khối">
-                            <input type="text" placeholder="Giá bán">
-                        </div>
-                        <div class="admin-content-main-container-choose-img">
-                            <input type="file" id="file" style="display: none;">
-                            <label for="file">Thêm hình ảnh</label>
-                        </div>
-                        <div class="admin-content-main-container-description" >
-                            <textarea name="" id="" cols="30" rows="5" placeholder="Đặc điểm nổi bật"></textarea>
-                        </div>
-                        <div class="admin-content-main-container-description">
-                            <textarea name="" id="" cols="30" rows="5" placeholder="Mô tả sản phẩm"></textarea>
-                        </div>
-                        <button>Thêm sản phẩm</button>
-                    </form>
+                    <div class="admin-content-main-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Ảnh</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Phân khối</th>
+                                    <th>Giá bán</th>
+                                    <th>Ngày đăng</th>
+                                    <th>Tuỳ chỉnh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="img__item"><img src="./assets/images/vario.png" alt=""></td>
+                                    <td>Xe Vario</td>
+                                    <td>150</td>
+                                    <td>49.000.000đ</td>
+                                    <td>2024-12-11</td>
+                                    <td>
+                                        <a href="#" class="btn-edit">Sửa</a>
+                                        <a href="#" class="btn-delete">Xóa</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><img src="./assets/images/vario.png" alt=""></td>
+                                    <td>Xe Vario</td>
+                                    <td>150</td>
+                                    <td>49.000.000đ</td>
+                                    <td>2024-12-11</td>
+                                    <td>
+                                        <a href="#" class="btn-edit">Sửa</a>
+                                        <a href="#" class="btn-delete">Xóa</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><img src="./assets/images/vario.png" alt=""></td>
+                                    <td>Xe Vario</td>
+                                    <td>150</td>
+                                    <td>49.000.000đ</td>
+                                    <td>2024-12-11</td>
+                                    <td>
+                                        <a href="#" class="btn-edit">Sửa</a>
+                                        <a href="#" class="btn-delete">Xóa</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td><img src="./assets/images/vario.png" alt=""></td>
+                                    <td>Xe Vario</td>
+                                    <td>150</td>
+                                    <td>49.000.000đ</td>
+                                    <td>2024-12-11</td>
+                                    <td>
+                                        <a href="#" class="btn-edit">Sửa</a>
+                                        <a href="#" class="btn-delete">Xóa</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="assets/js/product_add.js"></script>
+    <script src="assets/js/product_list.js"></script>
 </body>
 </html>
