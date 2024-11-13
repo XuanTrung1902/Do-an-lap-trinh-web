@@ -33,6 +33,9 @@
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item pe-4"><a href="#" class="noTextDecoration"><h2>Giỏ hàng </h2></a></li>
                 <li class="breadcrumb-item pe-4 active" aria-current="page"><h2 class="d-inline"> Thông tin đặt hàng</h2></li>
+                <li class="breadcrumb-item pe-4"><a href="#" class="noTextDecoration"><h2>Xác nhận thông tin </h2></a></li>
+
+
             </ol>
         </nav>
         <div class="info-container d-flex justify-content-center">
@@ -50,18 +53,6 @@
                         </div>
                         <div class="row mb-3 me-0 ms-0">
                             <input type="text" class="form-control form-control-lg p-3" placeholder="Địa chỉ">
-                        </div>
-                        <div class="row mb-3 me-0 ms-0 payment p-3 border" onclick="showAddressSection()">
-                            <input class="" checked type="radio" id="option1" name="paymentOption" style="width: fit-content;">
-                            <label class="option-label" for="option1" style="width: fit-content;">
-                              Chuyển khoản toàn bộ
-                            </label>
-                        </div>
-                        <div class="row mb-3 me-0 ms-0 payment p-3 border" onclick="showAddressSection()">
-                            <input class="" type="radio" id="option2" name="paymentOption" style="width: fit-content;">
-                            <label class="option-label" for="option2" style="width: fit-content;">
-                              Đặt cọc và nhận hàng trực tiếp
-                            </label>
                         </div>
                         <div class="row mb-3 me-0 ms-0 gap-3" id="address">
                             <div class="col p-0">
@@ -190,6 +181,29 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row mb-3 me-0 ms-0 gap-3" id="shop-address" style="display: none;">
+                            <div class="col p-0">
+                                <div class="form-floating">
+                                    <select class="form-select" style="font-size: 1.25rem; height: 60px;" id="shop" aria-label="">
+                                        <option selected>Chọn chi nhánh</option>
+                                        <option id="An Giang">An Giang</option>
+                                    </select>
+                                    <label for="shop" style="font-size: 14px;">Danh sách các chi nhánh</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3 me-0 ms-0 payment p-3 border" onclick="showAddressSection()">
+                            <input class="" checked type="radio" id="option1" name="paymentOption" style="width: fit-content;">
+                            <label class="option-label" for="option1" style="width: fit-content;">
+                              Chuyển khoản toàn bộ
+                            </label>
+                        </div>
+                        <div class="row mb-3 me-0 ms-0 payment p-3 border" onclick="showAddressSection()">
+                            <input class="" type="radio" id="option2" name="paymentOption" style="width: fit-content;">
+                            <label class="option-label" for="option2" style="width: fit-content;">
+                              Đặt cọc và nhận hàng trực tiếp
+                            </label>
+                        </div>
                         <button class="button shadow p-5 pt-0 pb-0"><h3 class="m-0 p-4" style="color: white;">Tiếp tục</h3></button>
                     </form>
                 </div>
@@ -210,21 +224,21 @@
                         </div>
                         <div class="product--shipping d-flex flex-column pt-4 pb-4">
                             <div class="">
-                                <h3 class="float-start">Tạm tính</h3>
-                                <h3 class="float-end">640.500.000 vnd</h3>
+                                <h3 class="float-left">Tạm tính</h3>
+                                <h3 class="float-right">640.500.000 vnd</h3>
                             </div>
                             <div class="" id="shipping">
-                                <h3 class="float-start">Phí vận chuyển</h3>
-                                <h3 class="float-end">340.000 vnd</h3>
+                                <h3 class="float-left">Phí vận chuyển</h3>
+                                <h3 class="float-right">340.000 vnd</h3>
                             </div>
-                            <div class="" id="deposit">
-                                <h3 class="float-start">Phí đặt cọc</h3>
-                                <h3 class="float-end"><i class="fa-solid fa-minus"></i></h3>
+                            <div class="" id="deposit" style="display: none;">
+                                <h3 class="float-left">Phí đặt cọc</h3>
+                                <h3 class="float-right">5.000.000 vnd</i></h3>
                             </div>
                         </div>
                         <div class="product--total pt-4 pb-4">
-                            <h3 class="float-start">Tổng cộng</h3>
-                            <h3 class="float-end">640.500.000 vnd</h3>
+                            <h3 class="float-left">Tổng cộng</h3>
+                            <h3 class="float-right">640.500.000 vnd</h3>
     
                         </div>
                         
