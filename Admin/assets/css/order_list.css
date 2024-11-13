@@ -4,64 +4,10 @@
     box-sizing: border-box;
 }
 
-a {
-    text-decoration: none;
-    color: unset;
-}
-
-li {
-    list-style: none;
-}
-
-.row__grid {
-    display: grid;
-    justify-content: space-between;
-}
-
-.flex-box {
-    display: flex;
-}
-
-/* Add fade-in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.fade-in {
-    animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.slide-in {
-    animation: slideIn 0.5s ease-in-out;
-}
-
-.hovered {
-    background-color: #e0f7fa;
-    transition: background-color 0.3s ease;
-}
-
 /* main admin */
 .admin .row__grid {
     grid-template-columns: 20% 80%;
 }
-
-
 
 
 /* side bar */
@@ -132,9 +78,6 @@ li {
 .admin__content {
     background-color: var(--sub-bg-color);
 }
-
-
-
 
 .admin__content-top {
     display: flex;
@@ -408,3 +351,108 @@ li {
     opacity: 0.85;
 }
 
+/* order List */
+.admin-content-main-container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow-x: auto;
+    overflow-y: hidden; 
+}
+
+.admin-content-main-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.admin-content-main-container table thead {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.admin-content-main-container table thead th {
+    padding: 12px;
+    text-align: left;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.admin-content-main-container table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
+}
+
+.admin-content-main-container table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.admin-content-main-container table tbody td {
+    padding: 12px;
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+
+.admin-content-main-container .coform-order {
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white-color);
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 104px; 
+}
+
+.admin-content-main-container .detail-button {
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white-color);
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 65px;
+}
+
+.admin-content-main-container .delete-button {
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white-color);
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50px;
+}
+
+.admin-content-main-container .detail-button {
+    background-color: #3498db; 
+}
+
+.admin-content-main-container .delete-button {
+    background-color: red;
+}
+
+.admin-content-main-container .coform-order.success {
+    background-color: #2ecc71;
+}
+
+.admin-content-main-container .coform-order {
+    background-color: #e74c3c;
+}
+
+.admin-content-main-container .detail-button:hover,
+.admin-content-main-container .delete-button:hover,
+.admin-content-main-container .coform-order:hover {
+    opacity: 0.85;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
