@@ -133,16 +133,33 @@ html{
 
 
 /* trang xac nhan thanh toan */
+.noti{
+    font-size: 30px;
+    width: 100%;
+}
+.fa-circle-check{
+    color: #e31c25;
+}
+.title-code{
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+.code{
+    font-size: 20px;
+    font-weight: 500;
+}
 .info{
-
+    border: 20px rgb(225, 202, 202) solid;
+    border-radius: 10px;
 }
 .title{
-    width: 35%;
+    width: 40%;
     font-size: 1.75rem;
     font-weight: 600;
 }
 .content{
     font-size: 1.75rem;
-    font-weight: 300;
+    font-weight: 370;
 }
 
