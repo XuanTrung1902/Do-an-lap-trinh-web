@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/admin.css">
+    <!-- <link rel="stylesheet" href="./assets/css/admin.css"> -->
+    <link rel="stylesheet" href="./assets/css/order_detail.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <title>Admin</title>
 </head>
@@ -28,7 +29,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="#">
+                                    <li><a href="admin.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -100,60 +101,60 @@
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
-                        <h1>Dashboard</h1>
+                        <h1>Chi tiết đơn hàng</h1>
                     </div>
                     <div class="admin-content-main-container">
-                        <div class="dashboard">
-                            <div class="dashboard__item">
-                                <h2>Tổng số sản phẩm</h2>
-                                <p>150</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Đơn hàng mới</h2>
-                                <p>25</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Khách hàng mới</h2>
-                                <p>10</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Doanh thu hôm nay</h2>
-                                <p>5,000,000 VND</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Đánh giá mới</h2>
-                                <p>8</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Phản hồi khách hàng</h2>
-                                <p>12</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Đánh giá mới</h2>
-                                <p>8</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Phản hồi khách hàng</h2>
-                                <p>12</p>
-                            </div>
-                        </div>
-                        <div class="charts">
-                            <div class="chart__item">
-                                <h2>Biểu đồ doanh thu</h2>
-                                <canvas id="revenueChart"></canvas>
-                            </div>
-                            <div class="chart__item">
-                                <h2>Biểu đồ đơn hàng</h2>
-                                <canvas id="ordersChart"></canvas>
-                            </div>
-                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Ảnh</th>
+                                    <th>Tên</th>
+                                    <th>Hãng xe</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá thành</th>
+                                    <th>Thành tiền</th>
+                                    <th>Tuỳ chỉnh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><img src="./assets/images/vario.png" alt=""></td>
+                                    <td>Xe Vario</td>
+                                    <td>Honda</td>
+                                    <td>1</td>
+                                    <td>49.000.000đ</td>
+                                    <td>49.000.000đ</td>
+                                    <td>
+                                        <a href="#" class="delete-button">Xóa</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><img src="./assets/images/vario.png" alt=""></td>
+                                    <td>Xe Vario</td>
+                                    <td>Honda</td>
+                                    <td>2</td>
+                                    <td>49.000.000đ</td>
+                                    <td>98.000.000đ</td>
+                                    <td>
+                                        <a href="#" class="delete-button">Xóa</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">Tổng cộng</td>
+                                    <td>147.000.000đ</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="assets/js/admin.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/product_list.js"></script>
 </body>
 </html>
