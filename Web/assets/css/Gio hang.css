@@ -1,0 +1,27 @@
+.logo-img{
+    width: 150px;
+    margin-right: 20px;
+    margin-left: 80px;
+}
+.separator{
+    border-left: 3px white solid;
+    height: 40px;
+    margin: 0 10px;
+}
+.header__text{
+    margin-left: 20px;
+    color: white;
+    font-size: 25px;
+    font-weight: 450;
+    text-transform: capitalize;
+}
+.header{
+    background-color: black;
+    height: 80px;
+    /* margin-bottom: 20px; */
+}
+.head__line{
+    background-image: repeating-linear-gradient(45deg, #e31c25, #e31c25 33px, transparent 0, transparent 41px,
+    #f18d9b 0, #f18d9b 74px, transparent 0, transparent 82px);
+    height: 10px;
+}
