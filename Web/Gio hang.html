@@ -35,21 +35,21 @@
         <div class="head__line"></div>
         <div class="product m-5 p-5">
             <div class="head row p-5 ms-5 me-5 mb-5 pt-4 pb-4 border shadow-sm rounded">
-                <div class="col-5 d-flex align-items-center gap-3">
-                    <input type="checkbox" id="sp" style="width: fit-content;">
-                    <label for="#sp" style="width: fit-content;">Sản phẩm</label>
+                <div class="col-6 d-flex align-items-center gap-3">
+                    <input type="checkbox" id="sp">
+                    <label class="text " for="#sp">Sản phẩm</label>
                 </div>
-                <div class="col">
-                    <div class="text-center">Đơn giá</div>
-                </div>
+                <!-- <div class="col">
+                    <div class="text text-center">Đơn giá</div>
+                </div> -->
                 <div class="col-2">
-                    <div class="text-center">Số lượng</div>
+                    <div class="text text-center">Số lượng</div>
                 </div>
                 <div class="col">
-                    <div class="text-center">Giá tiền</div>
+                    <div class="text text-center">Giá tiền</div>
                 </div>
                 <div class="col">
-                    <div class="text-center">Thao tác</div>
+                    <div class="text text-center">Thao tác</div>
                 </div>
             </div>
 
@@ -57,79 +57,155 @@
                 <li class="products mb-5" style="padding: 0px; margin: 0px;">
                     <!-- hang xe -->
                     <div class="control row p-5 ms-5 me-5 pt-3 pb-3 border d-flex align-items-center gap-3">
-                        <div class="col-5 d-flex align-items-center gap-3">
-                            <input type="checkbox" name="" id="brand1" style="width: fit-content;">
-                            <label for="brand1" style="width: fit-content;">DUCATI</label>
+                        <div class="col-6 d-flex align-items-center gap-3">
+                            <input type="checkbox" name="" id="brand1">
+                            <label class="brand-label text" for="brand1">DUCATI</label>
                         </div>
                     </div>
                     <!-- sp 1 -->
-                    <div class="item row p-5 ms-5 me-5 border">
-                        <div class="item col-5 d-flex align-items-center gap-3">
+                    <div id="ducati1"  class="item row p-5 ms-5 me-5 border">
+                        <div class="item col-6 d-flex align-items-center gap-4">
                             <input type="checkbox">
-                            <img class="img-modi " src="assets/img/ducati red.png" alt="">
-                            <span class="pName text-break text-truncate">DUCATI Panigale V4 (Đỏ)</span>
+                            <img class="img-modi" src="assets/img/ducati red.png" alt="">
+                            <span class="pName text-1 text-break">DUCATI Panigale V4 (Đỏ)</span>
                         </div>
-                        <div class="item col d-flex align-items-center">
-                            <span class="text-center" style="width: 100%;">
-                                <!-- Đơn giá -->
+                        <!-- <div class="item col d-flex align-items-center">
+                            <span class=" text-1 text-center full-width">
                                 221.010.000 vnd
                             </span>
-                        </div>
+                        </div> -->
                         <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
                             <!-- Ô này để cái button tăng giảm số lượng -->
                             <div class="number d-flex align-items-center">
                                 <button class="button-modi">
                                     <i class="fa-solid fa-minus"></i>
                                 </button>
-                                <div class="quantity">1</div>
+                                <div class="quantity text-1">1</div>
                                 <button class="button-modi">
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="item col d-flex align-items-center">
-                            <span class="text-center" style="width: 100%;">
+                            <span class=" text-1 text-center full-width">
                                 <!-- Giá tiền -->
                                 221.010.000 vnd
                             </span>
                         </div>
                         <div class="item col d-flex align-items-center gap-3">
-                            <span>Thao tác xóa sp khỏi giỏ hoặc tìm sp khác</span>
+                            <span class="text-1 text-center text-danger full-width">Xóa</span>
                         </div>
                     </div>
                     <!-- sp 2 -->
-                    <div class="item row p-5 ms-5 me-5 border">
-                        <div class="item col-5 d-flex align-items-center gap-3">
+                    <div id="ducati2"  class="item row p-5 ms-5 me-5 border">
+                        <div class="item col-6 d-flex align-items-center gap-4">
                             <input type="checkbox">
-                            <img class="img-modi " src="assets/img/ducati black.png" alt="">
-                            <span class="pName text-break text-truncate">DUCATI Panigale V4 (Đen)</span>
+                            <img class="img-modi" src="assets/img/ducati black.png" alt="">
+                            <span class="pName text-1 text-break">DUCATI Panigale V4 (Đen)</span>
                         </div>
-                        <div class="item col d-flex align-items-center">
-                            <span class="text-center" style="width: 100%;">
-                                <!-- Đơn giá -->
+                        <!-- <div class="item col d-flex align-items-center">
+                            <span class=" text-1 text-center full-width">
                                 221.010.000 vnd
                             </span>
-                        </div>
+                        </div> -->
                         <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
                             <!-- Ô này để cái button tăng giảm số lượng -->
                             <div class="number d-flex align-items-center">
                                 <button class="button-modi">
                                     <i class="fa-solid fa-minus"></i>
                                 </button>
-                                <div class="quantity">1</div>
+                                <div class="quantity text-1">1</div>
                                 <button class="button-modi">
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="item col d-flex align-items-center">
-                            <span class="text-center" style="width: 100%;">
+                            <span class=" text-1 text-center full-width">
                                 <!-- Giá tiền -->
                                 221.010.000 vnd
                             </span>
                         </div>
                         <div class="item col d-flex align-items-center gap-3">
-                            <span>Thao tác xóa sp khỏi giỏ hoặc tìm sp khác</span>
+                            <span class="text-1 text-center text-danger full-width">Xóa</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="products mb-5" style="padding: 0px; margin: 0px;">
+                    <!-- hang xe -->
+                    <div class="control row p-5 ms-5 me-5 pt-3 pb-3 border d-flex align-items-center gap-3">
+                        <div class="col-6 d-flex align-items-center gap-3">
+                            <input type="checkbox" name="" id="brand1">
+                            <label class="brand-label text" for="brand1">YAMAHA</label>
+                        </div>
+                    </div>
+                    <!-- sp 1 -->
+                    <div id="yamaha1"  class="item row p-5 ms-5 me-5 border">
+                        <div class="item col-6 d-flex align-items-center gap-4">
+                            <input type="checkbox">
+                            <img class="img-modi" src="assets/img/yamaha freego black.webp" alt="">
+                            <span class="pName text-1 text-break">YAMAHA FreeGo (Đen)</span>
+                        </div>
+                        <!-- <div class="item col d-flex align-items-center">
+                            <span class=" text-1 text-center full-width">
+                                56.420.000 vnd
+                            </span>
+                        </div> -->
+                        <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
+                            <!-- Ô này để cái button tăng giảm số lượng -->
+                            <div class="number d-flex align-items-center">
+                                <button class="button-modi">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <div class="quantity text-1">1</div>
+                                <button class="button-modi">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item col d-flex align-items-center">
+                            <span class=" text-1 text-center full-width">
+                                <!-- Giá tiền -->
+                                56.420.000 vnd
+                            </span>
+                        </div>
+                        <div class="item col d-flex align-items-center gap-3">
+                            <span class="text-1 text-center text-danger full-width">Xóa</span>
+                        </div>
+                    </div>
+                    <!-- sp 2 -->
+                    <div id="yamaha2" class="item row p-5 ms-5 me-5 border">
+                        <div class="item col-6 d-flex align-items-center gap-4">
+                            <input type="checkbox">
+                            <img class="img-modi" src="assets/img/yamaha lexi black.webp" alt="">
+                            <span class="pName text-1 text-break">YAMAHA Lexi (Đen)</span>
+                        </div>
+                        <!-- <div class="item col d-flex align-items-center">
+                            <span class=" text-1 text-center full-width">
+                                21.710.000 vnd
+                            </span>
+                        </div> -->
+                        <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
+                            <!-- Ô này để cái button tăng giảm số lượng -->
+                            <div class="number d-flex align-items-center">
+                                <button class="button-modi">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <div class="quantity text-1">1</div>
+                                <button class="button-modi">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item col d-flex align-items-center">
+                            <span class=" text-1 text-center full-width">
+                                <!-- Giá tiền -->
+                                21.710.000 vnd
+                            </span>
+                        </div>
+                        <div class="item col d-flex align-items-center gap-3">
+                            <span class="text-1 text-center text-danger full-width">Xóa</span>
                         </div>
                     </div>
                 </li>
