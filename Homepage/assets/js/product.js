@@ -52,58 +52,58 @@ function nextBtn() {
 }
 
 // filter for product
-function filterImages() {
-  const checkboxes = document.querySelectorAll(
-    '#checkboxes input[type="checkbox"]'
-  );
-  const checkboxes1 = document.querySelectorAll(
-    '#checkboxes1 input[type="checkbox"]'
-  );
-  const images = document.querySelectorAll(".list-bike .grid__column-2");
-  const detailList = document.querySelector(".motor__detail-list");
+// function filterImages() {
+//   const checkboxes = document.querySelectorAll(
+//     '#checkboxes input[type="checkbox"]'
+//   );
+//   const checkboxes1 = document.querySelectorAll(
+//     '#checkboxes1 input[type="checkbox"]'
+//   );
+//   const images = document.querySelectorAll(".list-bike .grid__column-2");
+//   const detailList = document.querySelector(".motor__detail-list");
 
-  const selectedAttributes = Array.from(checkboxes)
-    .filter((checkbox) => checkbox.checked)
-    .map((checkbox) => checkbox.value);
+//   const selectedAttributes = Array.from(checkboxes)
+//     .filter((checkbox) => checkbox.checked)
+//     .map((checkbox) => checkbox.value);
 
-  const selectedAttributes1 = Array.from(checkboxes1)
-    .filter((checkbox) => checkbox.checked)
-    .map((checkbox) => checkbox.value);
+//   const selectedAttributes1 = Array.from(checkboxes1)
+//     .filter((checkbox) => checkbox.checked)
+//     .map((checkbox) => checkbox.value);
 
-  let visibleCount = 0;
+//   let visibleCount = 0;
 
-  if (selectedAttributes.length === 0 && selectedAttributes1.length === 0) {
-    images.forEach((image) => {
-      image.style.display = "block";
-    });
-    visibleCount = images.length;
-  } else {
-    images.forEach((image) => {
-      const imageAttributes = image
-        .getAttribute("data-attributes")
-        .split(", ")
-        .map((attr) => attr.trim());
-      const matchesGroup1 =
-        selectedAttributes.length === 0 ||
-        selectedAttributes.some((attr) => imageAttributes.includes(attr));
-      const matchesGroup2 =
-        selectedAttributes1.length === 0 ||
-        selectedAttributes1.some((attr) => imageAttributes.includes(attr));
+//   if (selectedAttributes.length === 0 && selectedAttributes1.length === 0) {
+//     images.forEach((image) => {
+//       image.style.display = "block";
+//     });
+//     visibleCount = images.length;
+//   } else {
+//     images.forEach((image) => {
+//       const imageAttributes = image
+//         .getAttribute("data-attributes")
+//         .split(", ")
+//         .map((attr) => attr.trim());
+//       const matchesGroup1 =
+//         selectedAttributes.length === 0 ||
+//         selectedAttributes.some((attr) => imageAttributes.includes(attr));
+//       const matchesGroup2 =
+//         selectedAttributes1.length === 0 ||
+//         selectedAttributes1.some((attr) => imageAttributes.includes(attr));
 
-      if (matchesGroup1 && matchesGroup2) {
-        image.style.display = "block";
-        visibleCount++;
-      } else {
-        image.style.display = "none";
-      }
-    });
-  }
-  const itemHeight = 430;
-  const rows = Math.ceil(visibleCount / 5);
-  detailList.style.height = `${rows * itemHeight}px`;
-  detailList.style.backgroundColor = "#f6f6f6";
-  detailList.style.marginBottom = "40px";
-}
+//       if (matchesGroup1 && matchesGroup2) {
+//         image.style.display = "block";
+//         visibleCount++;
+//       } else {
+//         image.style.display = "none";
+//       }
+//     });
+//   }
+//   const itemHeight = 430;
+//   const rows = Math.ceil(visibleCount / 5);
+//   // detailList.style.height = `${rows * itemHeight}px`;
+//   detailList.style.backgroundColor = "#f6f6f6";
+//   detailList.style.marginBottom = "40px";
+// }
 
 // pagination for product
 const productItems = $$(".list-bike .grid__column-2");
@@ -112,7 +112,10 @@ let currentProductPage = 1;
 
 function renderProductItems() {
   productItems.forEach((product, index) => {
-    if (index >= (currentProductPage - 1) * itemsPerPage && index < currentProductPage * itemsPerPage) {
+    if (
+      index >= (currentProductPage - 1) * itemsPerPage &&
+      index < currentProductPage * itemsPerPage
+    ) {
       product.style.display = "block";
     } else {
       product.style.display = "none";
@@ -164,8 +167,93 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const leftButton = document.querySelector(".btn--left");
   const rightButton = document.querySelector(".btn--right");
-//   console.log(leftButton, rightButton);
+  //   console.log(leftButton, rightButton);
 
-    leftButton.addEventListener("click", handleLeftButtonClick);
-    rightButton.addEventListener("click", handleRightButtonClick);
+  leftButton.addEventListener("click", handleLeftButtonClick);
+  rightButton.addEventListener("click", handleRightButtonClick);
+});
+
+// filter: product
+function filterImages() {
+  const checkboxes = document.querySelectorAll(
+    '#checkboxes input[type="checkbox"]'
+  );
+  const checkboxes1 = document.querySelectorAll(
+    '#checkboxes1 input[type="checkbox"]'
+  );
+  const images = document.querySelectorAll(".list-bike .grid__column-2");
+  const detailList = document.querySelector(".motor__detail-list");
+
+  const selectedAttributes = Array.from(checkboxes)
+    .filter((checkbox) => checkbox.checked)
+    .map((checkbox) => checkbox.value);
+
+  const selectedAttributes1 = Array.from(checkboxes1)
+    .filter((checkbox) => checkbox.checked)
+    .map((checkbox) => checkbox.value);
+
+  let visibleImages = [];
+
+  if (selectedAttributes.length === 0 && selectedAttributes1.length === 0) {
+    visibleImages = Array.from(images);
+  } else {
+    images.forEach((image) => {
+      const imageAttributes = image
+        .getAttribute("data-attributes")
+        .split(", ")
+        .map((attr) => attr.trim());
+      const matchesGroup1 =
+        selectedAttributes.length === 0 ||
+        selectedAttributes.some((attr) => imageAttributes.includes(attr));
+      const matchesGroup2 =
+        selectedAttributes1.length === 0 ||
+        selectedAttributes1.some((attr) => imageAttributes.includes(attr));
+
+      if (matchesGroup1 && matchesGroup2) {
+        visibleImages.push(image);
+      }
+    });
+  }
+
+  const totalPages = Math.ceil(visibleImages.length / itemsPerPage);
+  currentPage = Math.min(currentPage, totalPages);
+
+  let start = (currentPage - 1) * itemsPerPage;
+  let end = start + itemsPerPage;
+
+  images.forEach((image) => {
+    image.style.display = "none";
+  });
+
+  visibleImages.slice(start, end).forEach((image) => {
+    image.style.display = "block";
+  });
+
+  renderPagination(totalPages);
+  detailList.style.backgroundColor = "#f6f6f6";
+  detailList.style.marginBottom = "40px";
+}
+
+// render product after filter
+function renderPagination(totalPages) {
+  const paginationContainer = document.querySelector(".pagination");
+  paginationContainer.innerHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    const li = document.createElement("li");
+    li.classList.add("pagination__link");
+    if (i === currentPage) {
+      li.classList.add("pagination__link--active");
+    }
+    li.textContent = i;
+    li.addEventListener("click", () => {
+      currentPage = i;
+      filterImages();
+    });
+    paginationContainer.appendChild(li);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  filterImages();
 });
