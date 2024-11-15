@@ -54,7 +54,7 @@
             </div>
 
             <ul class="list-product" style="padding: 0px; margin: 0px; list-style-type: none;">
-                <li class="products mb-5" style="padding: 0px; margin: 0px;">
+                <li id="list1" class="products mb-5" style="padding: 0px; margin: 0px;">
                     <!-- hang xe -->
                     <div class="control row p-5 ms-5 me-5 pt-3 pb-3 border d-flex align-items-center gap-3">
                         <div class="col-6 d-flex align-items-center gap-3">
@@ -69,11 +69,6 @@
                             <img class="img-modi" src="assets/img/ducati red.png" alt="">
                             <span class="pName text-1 text-break">DUCATI Panigale V4 (Đỏ)</span>
                         </div>
-                        <!-- <div class="item col d-flex align-items-center">
-                            <span class=" text-1 text-center full-width">
-                                221.010.000 vnd
-                            </span>
-                        </div> -->
                         <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
                             <!-- Ô này để cái button tăng giảm số lượng -->
                             <div class="number d-flex align-items-center">
@@ -93,7 +88,7 @@
                             </span>
                         </div>
                         <div class="item col d-flex align-items-center gap-3">
-                            <span class="text-1 text-center text-danger full-width">Xóa</span>
+                            <span class="text-1 text-center text-danger full-width" onclick="deleteProduct('list1','ducati1')">Xóa</span>
                         </div>
                     </div>
                     <!-- sp 2 -->
@@ -127,12 +122,12 @@
                             </span>
                         </div>
                         <div class="item col d-flex align-items-center gap-3">
-                            <span class="text-1 text-center text-danger full-width">Xóa</span>
+                            <span class="text-1 text-center text-danger full-width" onclick="deleteProduct('list1','ducati2')">Xóa</span>
                         </div>
                     </div>
                 </li>
 
-                <li class="products mb-5" style="padding: 0px; margin: 0px;">
+                <li id="list2" class="products mb-5" style="padding: 0px; margin: 0px;">
                     <!-- hang xe -->
                     <div class="control row p-5 ms-5 me-5 pt-3 pb-3 border d-flex align-items-center gap-3">
                         <div class="col-6 d-flex align-items-center gap-3">
@@ -147,11 +142,6 @@
                             <img class="img-modi" src="assets/img/yamaha freego black.webp" alt="">
                             <span class="pName text-1 text-break">YAMAHA FreeGo (Đen)</span>
                         </div>
-                        <!-- <div class="item col d-flex align-items-center">
-                            <span class=" text-1 text-center full-width">
-                                56.420.000 vnd
-                            </span>
-                        </div> -->
                         <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
                             <!-- Ô này để cái button tăng giảm số lượng -->
                             <div class="number d-flex align-items-center">
@@ -171,7 +161,7 @@
                             </span>
                         </div>
                         <div class="item col d-flex align-items-center gap-3">
-                            <span class="text-1 text-center text-danger full-width">Xóa</span>
+                            <span class="text-1 text-center text-danger full-width" onclick="deleteProduct('list2','yamaha1')">Xóa</span>
                         </div>
                     </div>
                     <!-- sp 2 -->
@@ -181,11 +171,6 @@
                             <img class="img-modi" src="assets/img/yamaha lexi black.webp" alt="">
                             <span class="pName text-1 text-break">YAMAHA Lexi (Đen)</span>
                         </div>
-                        <!-- <div class="item col d-flex align-items-center">
-                            <span class=" text-1 text-center full-width">
-                                21.710.000 vnd
-                            </span>
-                        </div> -->
                         <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
                             <!-- Ô này để cái button tăng giảm số lượng -->
                             <div class="number d-flex align-items-center">
@@ -205,7 +190,7 @@
                             </span>
                         </div>
                         <div class="item col d-flex align-items-center gap-3">
-                            <span class="text-1 text-center text-danger full-width">Xóa</span>
+                            <span class="text-1 text-center text-danger full-width" onclick="deleteProduct('list2','yamaha2')">Xóa</span>
                         </div>
                     </div>
                 </li>
@@ -215,10 +200,19 @@
         </div>
     </div>
 
+<!-- noti -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body p-5 pt-3 pb-3 d-flex align-items-center justify-content-between">
+               <span class="toast-text">Đã xóa sản phẩm khỏi giỏ hàng.</span>
+               <button type="button" class="btn-close custom-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
 
+    <script src="assets/js/Gio hang.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>
-
 </html>
