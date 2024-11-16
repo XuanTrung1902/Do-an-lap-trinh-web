@@ -16,7 +16,7 @@ html,body {
     width: 800px;
     border-radius: 8px;
     padding: 20px;
-    padding-top: 60px;
+    /*padding-top: 20px;*/
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;

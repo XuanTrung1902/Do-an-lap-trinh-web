@@ -7,20 +7,20 @@ html,body {
 }
 
 .account-management {
-    width: 800px;
-    margin: 20px auto;
+    margin: 20px ;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
 .header {
+    width: 100%;
     background-color: black;
     color: #fff;
-    padding: 10px 15px;
     font-size: 12px;
     display: flex;
-    align-items: center;
+    border-radius: 10px;
+
 }
 .line{
     background-color: red;
@@ -28,6 +28,8 @@ html,body {
     font-size: 12px;
     display: flex;
     align-items: center;
+    border-radius: 10px;
+
 }
 .back-arrow {
     font-size: 30px;
@@ -38,11 +40,14 @@ html,body {
 }
 /* Profile */
 .profile {
+    width: 1200px;
+    margin-left: 150px ;
     padding: 15px;
     border-bottom: 1px solid #e0e0e0;
+    align-items: center;
+    /*background-color: red;*/
 }
 
-/* Hiệu ứng hover cho toàn bộ phần profile-info */
 .profile-info {
     display: flex;
     align-items: center;
@@ -94,9 +99,11 @@ html,body {
 
 /* Section */
 .section {
+    width: 1200px;
     padding: 10px 15px;
     border-bottom: 1px solid #e0e0e0;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 150px;
 }
 .section:hover {
     transform: translateY(-3px);
@@ -172,9 +179,11 @@ html,body {
 
 /* Actions */
 .actions {
+    width: 1200px;
     display: flex;
     justify-content: space-between;
     padding: 10px 15px;
+    margin-left: 150px;
 }
 
 .logout, .delete-account {
@@ -277,9 +286,10 @@ html,body {
     font-size: 14px;
     cursor: pointer;
 }
+
 .footer {
-    width: 800px;
-    margin: auto;
+    width: 100%;
+    margin: 20px 50px 20px  110px ;
     display: flex;
     justify-content: space-between;
     background-color: #f8f8f8;
