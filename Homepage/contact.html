@@ -29,7 +29,7 @@
                     <div class="header__navbar--top">
                         <ul class="header__navbar--top_left">
                             <li class="header__navbar--item">
-                                <a href="#">Trang chủ</a>
+                                <a href="homepage.html">Trang chủ</a>
                             </li>
                             <li class="header__navbar--item">
                                 <a href="product.html">Chợ xe máy</a>
@@ -39,6 +39,9 @@
                             </li>
                             <li class="header__navbar--item">
                                 <a href="#">Đại lí</a>
+                            </li>
+                            <li class="header__navbar--item">
+                                <a href="#">Liên hệ</a>
                             </li>
                         </ul>
 
@@ -96,7 +99,7 @@
         </header>
 
         <div class="container" style="padding: 0;">
-            <!-- <div class="contact">
+            <div class="contact">
                 <div class="contact__title">
                     <h1>Liên hệ</h1>
                 </div>
@@ -124,10 +127,10 @@
                                     <input type="phone" id="phone" name="phone" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="message">
+                                    <label for="editor">
                                         <i class="fa-solid fa-message"></i>
                                         Tin nhắn:</label>
-                                    <textarea id="message" name="message" rows="5" required></textarea>
+                                    <textarea id="editor" name="message" rows="5" required></textarea>
                                 </div>
                                 <button type="submit">Gửi</button>
                             </form>
@@ -137,9 +140,9 @@
                         <h2>Thông tin liên hệ</h2>
                         <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua các thông tin dưới đây:</p>
                         <ul>
-                            <li><strong>Địa chỉ:</strong> 123 Đường ABC, Quận 1, TP. Hồ Chí Minh</li>
+                            <li><strong>Địa chỉ:</strong> Khu phố 6, phường Linh Trung, thành phố Thủ Đức, thành phố Hồ Chí Minh</li>
                             <li><strong>Điện thoại:</strong> 0123 456 789</li>
-                            <li><strong>Email:</strong> lienhe@webike.vn</li>
+                            <li><strong>Email:</strong> 22130049@st.hcmuaf.edu.vn</li>
                         </ul>
                         <div class="contact_map">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.2145947051067!2d106.78918677480638!3d10.871276389283311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276398969f7b%3A0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRQLiBI4buTIENow60gTWluaA!5e0!3m2!1svi!2s!4v1731764191110!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -147,7 +150,7 @@
                     </div>
 
                 </div>
-            </div> -->
+            </div>
         </div>
         
 
@@ -219,5 +222,11 @@
               </div>
         </footer>
     </div>
+
+
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'editor' );
+    </script>
 </body>
 </html>
