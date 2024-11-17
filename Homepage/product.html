@@ -55,34 +55,37 @@
                   </a>
                 </li>
 
-                <li class="header__navbar--item header__navbar--separate">
-                  <a href="#">
-                    <i class="fa-solid fa-user m-r-8"></i>
-                    Đăng nhập
-                  </a>
+                <!-- <li class="header__navbar--item header__navbar--separate">
+                  <a href="#"><i class="fa-solid fa-user m-r-8"></i>Đăng nhập</a>
                 </li>
-                <li class="header__navbar--item">
-                  <a href="#">Đăng ký</a>
-                </li>
+                <li class="header__navbar--item">a href="#">Đăng ký</a></li> -->
+
+                <li class="header__navbar--item header__navbar--user">
+                  <img src="./assets/images/avt1.jpg" alt="" class="header__navbar--user-img">
+                  <span class="header__navbar--user-name">Trí Đức</span>
+
+                  <ul class="header__navbar--user-menu">
+                      <li class="header__navbar--user-menu-item">
+                          <a href="#"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>
+                      </li>
+                      <li class="header__navbar--user-menu-item">
+                          <a href="#"><i class="fa-solid fa-shopping-cart m-r-8"></i>Lịch sử mua hàng</a>
+                      </li>
+                      <li class="header__navbar--user-menu-item">
+                          <a href="#"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
+                      </li>
+                  </ul>
+              </li>
               </ul>
             </div>
 
             <div class="header__navbar--bot">
               <div class="header__search">
-                <input
-                  type="text"
-                  class="header__search--input"
-                  placeholder="Nhập từ khoá tìm kiếm"
-                />
+                <input type="text" class="header__search--input" placeholder="Nhập từ khoá tìm kiếm"/>
                 <div class="header__search-select">
                   <span class="header__search-select-label">Tìm xe</span>
                   <i class="header__search-select-icon"></i>
 
-                  <!-- <ul class="header__search-option">
-                                    <li class="header__search-option-item">
-                                        <span >Tìm phụ tùng</span>
-                                    </li>
-                                </ul> -->
                 </div>
                 <button class="header__search--btn">
                   <i class="header__search--btn-icon fa-solid fa-search"></i>

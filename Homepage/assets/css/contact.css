@@ -45,7 +45,7 @@
 .contact__form label {
     display: block;
     margin-bottom: 5px;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: var(--text-color);
 }
 
@@ -87,7 +87,7 @@
 }
 
 .contact__content--right p {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin-bottom: 20px;
     color: var(--text-color);
 }
@@ -98,7 +98,7 @@
 }
 
 .contact__content--right ul li {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin-bottom: 10px;
     color: var(--text-color);
 }
