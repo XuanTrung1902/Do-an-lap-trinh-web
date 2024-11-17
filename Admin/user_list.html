@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/admin.css">
+    <link rel="stylesheet" href="./assets/css/user_list.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <title>Admin</title>
 </head>
@@ -21,16 +21,32 @@
                 </div>
                 <div class="admin__sidebar--content">
                     <ul>
-                        <li><a href="admin.html">
+                        <li><a href="#">
                                 <i class="ri-dashboard-line"></i>
                                 Dashboard
                                 <i></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="admin.html">
+                                    <li><a href="#">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ri-file-list-line"></i>
+                                Người dùng
+                                <i class="ri-add-box-line"></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="#">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Danh sách
                                         </a>
                                     </li>
                                 </div>
@@ -55,22 +71,6 @@
                         <li>
                             <a href="#">
                                 <i class="ri-file-list-line"></i>
-                                Người dùng
-                                <i class="ri-add-box-line"></i>
-                            </a>
-                            <ul class="sub-menu">
-                                <div class="sub-menu-items">
-                                    <li><a href="user_list.html">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Danh sách
-                                        </a>
-                                    </li>
-                                </div>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="ri-file-list-line"></i>
                                 Sản phẩm
                                 <i class="ri-add-box-line"></i>
                             </a>
@@ -81,7 +81,7 @@
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="#">
+                                    <li><a href="product_add.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -116,34 +116,16 @@
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
-                        <h1>Thêm sản phẩm</h1>
+                        <h1>Người dùng</h1>
                     </div>
-                    <form class="admin-content-main-container" >
-                        <div class="admin-content-main-container-two-input">
-                            <input type="text" placeholder="Tên sản phẩm">
-                            <input type="text" placeholder="Hãng xe">
-                        </div>
-                        <div class="admin-content-main-container-two-input">
-                            <input type="text" placeholder="Phân khối">
-                            <input type="text" placeholder="Giá bán">
-                        </div>
-                        <div class="admin-content-main-container-choose-img">
-                            <input type="file" id="file" style="display: none;">
-                            <label for="file">Thêm hình ảnh</label>
-                        </div>
-                        <div class="admin-content-main-container-description" >
-                            <textarea name="" id="" cols="30" rows="5" placeholder="Đặc điểm nổi bật"></textarea>
-                        </div>
-                        <div class="admin-content-main-container-description">
-                            <textarea name="" id="" cols="30" rows="5" placeholder="Mô tả sản phẩm"></textarea>
-                        </div>
-                        <button>Thêm sản phẩm</button>
-                    </form>
+                    <div class="admin-content-main-container">
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="assets/js/product_add.js"></script>
+    <script src="assets/js/admin.js"></script>
 </body>
 </html>
