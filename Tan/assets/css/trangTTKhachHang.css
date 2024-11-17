@@ -1,21 +1,58 @@
 /* Container */
 .container {
+    display: flex;
     width: 1200px;
     padding: 20px;
     background-color: #f8f8f8;
-    margin:  0px auto;
-
+    margin: 0 auto;
 }
 
-.section-title {
-    font-size: 24px;
+.sidebar {
+    width: 250px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    padding: 20px;
+}
+
+.sidebar h3 {
+    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 20px;
     color: #333;
+    margin-bottom: 20px;
 }
 
-/* Profile Form Styling */
+.sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 10px;
+}
+
+.sidebar-menu li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar-menu li a:hover {
+    background-color: #f0f0f0;
+    color: red;
+}
+
+.sidebar-menu li a.active {
+    color: red;
+}
+
 .profile-form {
+    width: calc(100% - 270px);
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -156,7 +193,7 @@ a.link-toggle.active {
 }
 
 .custom-radio input:checked + .checkmark {
-    background-color: #000; /* Màu đen khi chọn */
+    background-color: #000;
     border-color: #000;
 }
 
@@ -210,35 +247,5 @@ select {
 
 .save-btn:hover {
     background-color: #d25238;
-}
-/* footer */
-.footer {
-    border-top: 3px solid #000;
-    margin-top: 50px;
-    font-size: 1.6rem;
-    background-color: var(--black-color);
-    color: var(--white-color);
-    padding: 0 20px;
-}
-
-.footer h5 {
-    font-size: 2.4rem;
-    font-weight: 600;
-}
-
-.footer ul a {
-    text-decoration: none;
-    color: var(--white-color);
-}
-
-.footer__banking {
-    height: 35px;
-    width: 52.5px;
-}
-
-.footer__rectangle img  {
-    width: 265px;
-    height: 60.5px;
-    margin-top: 10px;
 }
 
