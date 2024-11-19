@@ -1,6 +1,3 @@
-html{
-    background-color: rgb(234, 234, 234);
-}
 .main{
     /* background-color: lightgrey; */
 }
@@ -29,7 +26,7 @@ html{
     margin-left: 20px;
     color: white;
     font-size: 25px;
-    font-weight: 450;
+    font-weight: 550;
     text-transform: capitalize;
 }
 .header{
@@ -113,7 +110,7 @@ html{
 
 }
 .product--header{
-    border-bottom: 2px yellow solid;
+    border-bottom: 2px darkcyan solid;
 }
 .product--name {
     float: left;
@@ -122,7 +119,7 @@ html{
     float: right;
 }
 .product--shipping{
-    border-bottom: 2px yellow solid;
+    border-bottom: 2px darkcyan solid;
 }
 .float-left{
     float: left;
@@ -149,9 +146,11 @@ html{
     font-size: 20px;
     font-weight: 500;
 }
-.info{
-    border: 20px rgb(225, 202, 202) solid;
+.cus-info{
     border-radius: 10px;
+    /* border: 20px rgb(225, 202, 202) solid; */
+    border: 20px solid transparent;
+    border-image: linear-gradient(to left, rgb(224, 183, 183), #cd4f55) 1;
 }
 .title{
     width: 40%;
