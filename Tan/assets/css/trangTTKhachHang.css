@@ -17,7 +17,7 @@
 }
 
 .sidebar h3 {
-    font-size: 18px;
+    font-size: 26px;
     font-weight: bold;
     color: #333;
     margin-bottom: 20px;
@@ -30,6 +30,7 @@
 }
 
 .sidebar-menu li {
+    font-size: 16px;
     margin-bottom: 10px;
 }
 
@@ -48,9 +49,10 @@
 }
 
 .sidebar-menu li a.active {
+    background-color: #f0f0f0;
     color: red;
+    font-weight: bold;
 }
-
 .profile-form {
     width: calc(100% - 270px);
     background-color: #fff;
@@ -252,3 +254,58 @@ select {
     background-color: #d25238;
 }
 
+.change-password-form {
+    width: calc(100% - 270px);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.change-password-form .form-group {
+    margin-bottom: 15px;
+}
+
+.change-password-form label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.change-password-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.change-password-form input[type="password"]:hover {
+    border-color: red;
+}
+
+.change-password-form input[type="password"]:focus {
+    border-color: red;
+    outline: none;
+}
+
+.change-password-form button.save-btn {
+    background-color: #ee4d2d;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    margin-left: 220px;
+    width: 50%;
+}
+
+.change-password-form button.save-btn:hover {
+    background-color: #d25238;
+}

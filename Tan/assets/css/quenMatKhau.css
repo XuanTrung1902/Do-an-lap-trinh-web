@@ -76,7 +76,7 @@ label {
 
 input[type="text"],
 input[type="email"] {
-    width: 95%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -88,7 +88,6 @@ input[type="text"]:hover,
 input[type="email"]:hover{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
-    border-color: #e31c25;
 }
 input[type="text"]:focus,
 input[type="email"]:focus
@@ -103,16 +102,16 @@ input[type="email"]:focus
     justify-content: space-between;
 }
 .captcha-container input {
-    width: 60%;
+    width: 50%;
 }
 
 .captcha-img {
-    height: 1px; /
-    width: 1px;
+    height: 0px;
+    width: 0px;
 }
 
 button {
-    background-color: #ffcc66;
+    background-color: red;
     border: none;
     color: #fff;
     padding: 10px;
@@ -125,7 +124,6 @@ button {
 }
 
 button:hover {
-    background-color: #ffb84d;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-3px);
 }
