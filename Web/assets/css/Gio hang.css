@@ -43,8 +43,7 @@ input[type="checkbox"] {
     font-weight: 400;
 }
 .list-product{
-    flex: 2;
-    overflow-y: auto;
+    position: relative;
 }
 .control , .item{
     background-color: white;
@@ -106,9 +105,10 @@ input[type="checkbox"] {
 /* buy button */
 .buy-section{
     background-color: white;
-    padding: 30px 50px;
+    padding: 10px 50px;
     flex: 1;
-
+    position: sticky;
+    bottom: 0;
 }
 .buybtn{
     border-radius: 6px;
