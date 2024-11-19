@@ -419,7 +419,7 @@
 
 .motorbike-item-img {
     width: 100%;
-    height: 200px;
+    height: 264px;
     object-fit: contain;
 }
 
@@ -512,7 +512,7 @@
 .motor__brand {
     margin: 40px 0;
     width: 100%;
-    height: 150px;
+    /* height: 150px; */
 }
 
 .motor__brand--heading{
@@ -555,6 +555,97 @@
     height: 100%;
     object-fit: cover;
 }
+
+/* dealer */
+.dealer {
+    margin: 40px 0;
+    width: 100%;
+}
+
+.dealer__heading {
+    padding-left: 40px;
+}
+
+.dealer__heading--title {
+    font-size: 2.4rem;
+    text-transform: uppercase;
+}
+
+.dealer__list {
+    margin-top: 20px;
+}
+
+.dealer__list--row {
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dealer__list--item {
+    text-decoration: none;
+    display: block;
+    height: 310px;
+    width: calc((100% / 3) - 16px);
+    margin: 8px;
+    box-shadow: 0 2px 3px #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dealer__list--item:hover {
+    /* transform: translateY(-5px); */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dealer__list--img {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.dealer__list--img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* filter: grayscale(100%); */
+    transition: transform 0.3s ease;
+}
+
+.dealer__list--item:hover .dealer__list--img img {
+    transform: scale(1.1);
+}
+
+.dealer__list--name {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.dealer__list--description {
+    padding: 16px;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.dealer__list--description p {
+    margin: 0;
+}
+
+
+
+
+
+
 
 
 /* footer */
