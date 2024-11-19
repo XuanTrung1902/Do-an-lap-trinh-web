@@ -112,21 +112,24 @@ select:focus {
     font-size: 16px;
     color: #333;
     margin-right: 10px;
-    width: 80px;
-    text-align: right;
+    min-width: 4px;
+    text-align: left;
+    margin-top: 9px;
+
 }
+
 
 .info-edit {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 15px;
 }
 
 a.link-toggle {
     color: gray;
     text-decoration: none;
     cursor: pointer;
+    margin-top: 8px;
     transition: color 0.3s ease;
 }
 
