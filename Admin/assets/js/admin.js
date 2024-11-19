@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const revenueChart = new Chart(revenueCtx, {
         type: 'line',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7'],
             datasets: [{
                 label: 'Doanh thu',
                 data: [12000, 15000, 18000, 20000, 22000, 25000, 30000],
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const ordersChart = new Chart(ordersCtx, {
         type: 'bar',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7'],
             datasets: [{
                 label: 'Đơn hàng',
                 data: [30, 50, 40, 60, 70, 80, 90],
