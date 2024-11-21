@@ -408,6 +408,36 @@ li {
     opacity: 0.85;
 }
 
+/* Search */
+.admin-content-main-search {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust the gap between elements as needed */
+    margin-bottom: 20px; /* Add some space below the search bar */
+}
+
+.admin-content-main-search .search-input,
+.admin-content-main-search .search-select,
+.admin-content-main-search .search-button {
+    padding: 10px;
+    font-size: 1.6rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.admin-content-main-search .search-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.admin-content-main-search .search-button:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    opacity: 0.85;
+}
+
 /* product líst */
 
 
@@ -446,7 +476,7 @@ li {
 }
 
 .admin-content-main-container table tbody {
-    max-height: 400px; /* Đặt chiều cao tối đa cho tbody */
+    max-height: 300px; /* Đặt chiều cao tối đa cho tbody */
     overflow-y: auto; /* Thêm thanh cuộn dọc cho tbody */
 }
 
