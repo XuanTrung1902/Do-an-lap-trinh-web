@@ -84,11 +84,11 @@ input[type="email"] {
     transition: all 0.3s ease;
 
 }
-input[type="text"]:hover,
-input[type="email"]:hover{
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-}
+/*input[type="text"]:hover,*/
+/*input[type="email"]:hover{*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);*/
+/*    transform: translateY(-2px);*/
+/*}*/
 input[type="text"]:focus,
 input[type="email"]:focus
  {
