@@ -241,6 +241,43 @@ li {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Search */
+.admin-content-main-search {
+    margin-bottom: 20px;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-content-main-search input,
+.admin-content-main-search select {
+    padding: 10px 15px;
+    font-size: 1.6rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.admin-content-main-search input {
+    width: 300px;
+}
+
+.admin-content-main-search select {
+    width: 200px;
+    margin-left: 10px;
+}
+
+.admin-content-main-search input:focus,
+.admin-content-main-search select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+
 /*  */
 .admin-content-main-container table {
     width: 100%;
@@ -278,7 +315,7 @@ li {
 }
 
 .admin-content-main-container table tbody {
-    max-height: 500px; /* Đặt chiều cao tối đa cho tbody */
+    max-height: 290px; /* Đặt chiều cao tối đa cho tbody */
     overflow-y: auto; /* Thêm thanh cuộn dọc cho tbody */
 }
 

@@ -17,3 +17,40 @@ menuLi.forEach((item, index) => {
 });
 
 
+
+// Search logic
+document.getElementById('searchInput').addEventListener('keyup', function() {
+    var searchValue = this.value.toLowerCase();
+    var filterType = document.getElementById('filterType').value;
+    var tableRows = document.querySelectorAll('.admin-content-main-container table tbody tr');
+
+    tableRows.forEach(function(row) {
+        var cells = row.getElementsByTagName('td');
+        var match = false;
+
+        switch (filterType) {
+            case 'name':
+                if (cells[1].innerText.toLowerCase().includes(searchValue)) {
+                    match = true;
+                }
+                break;
+            case 'address':
+                if (cells[4].innerText.toLowerCase().includes(searchValue)) {
+                    match = true;
+                }
+                break;
+            case 'phone':
+                if (cells[5].innerText.toLowerCase().includes(searchValue)) {
+                    match = true;
+                }
+                break;
+        }
+
+        if (match) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+
