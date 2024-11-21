@@ -130,29 +130,41 @@ a {
     gap: 15px;
 }
 
-.input_name input,
-.input_information input {
-    width: calc(50% - 10px);
-    padding: 10px;
+.input_field {
+    margin-bottom: 20px;
+}
+
+.input_field input {
+    width: 100%;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 10px;
     transition: all 0.3s ease;
 }
-.input_name input:hover,
-.input_information input:hover {
-    border-color: #e31c25;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
+
+/*.input_field input:hover {*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);*/
+/*    transform: translateY(-2px);*/
+/*}*/
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.input_name input{
-    width: 49.4% ;
-}
-
-.input_information input {
+.submit_btn {
     width: 100%;
+    padding: 12px;
+    background-color: #e31c25;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
 }
-
 .checkbox {
     display: flex;
     align-items: center;
