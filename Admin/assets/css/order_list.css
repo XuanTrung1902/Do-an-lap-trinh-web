@@ -446,6 +446,10 @@
     background-color: #2ecc71;
 }
 
+.admin-content-main-container .coform-order.warning {
+    background-color: #ffc107;
+}
+
 .admin-content-main-container .coform-order {
     background-color: #e74c3c;
 }
