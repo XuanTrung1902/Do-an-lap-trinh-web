@@ -40,29 +40,17 @@ tableRows.forEach(row => {
 });
 
 // Filtering functionality
-document.querySelector('.search-button').addEventListener('click', function () {
-    const nameFilter = document.querySelector('.search-input[placeholder="Tên sản phẩm"]').value.toLowerCase();
-    const ccFilter = document.querySelector('.search-select').value;
-    const priceFrom = parseInt(document.querySelector('.search-input[placeholder="Giá từ"]').value) || 0;
-    const priceTo = parseInt(document.querySelector('.search-input[placeholder="Giá đến"]').value) || Infinity;
-    const rows = document.querySelectorAll('table tbody tr');
+const filterDropdown = $('#order-status-filter');
+// const tableRows = $$('.admin-content-main-container table tbody tr');
 
-    rows.forEach(row => {
-        const name = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
-        const cc = parseInt(row.querySelector('td:nth-child(4)').textContent);
-        const priceText = row.querySelector('td:nth-child(5)').textContent.replace(/[^\d]/g, ''); // Bỏ dấu
-        const price = parseInt(priceText);
-
-        // Kiểm tra điều kiện lọc
-        const matchName = name.includes(nameFilter);
-        const matchCC = ccFilter === "" || (ccFilter === "150" && cc < 150) || (ccFilter === "200" && cc < 200) || (ccFilter === "250" && cc > 200);
-        const matchPrice = price >= priceFrom && price <= priceTo;
-
-        if (matchName && matchCC && matchPrice) {
-            row.style.display = ''; 
+filterDropdown.addEventListener('change', () => {
+    const filterValue = filterDropdown.value;
+    tableRows.forEach(row => {
+        const statusCell = row.querySelector('.coform-order');
+        if (filterValue === 'all' || statusCell.classList.contains(filterValue)) {
+            row.style.display = '';
         } else {
-            row.style.display = 'none'; 
+            row.style.display = 'none';
         }
     });
 });
-
