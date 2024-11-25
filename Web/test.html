@@ -1,0 +1,116 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Filter Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+  #imageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    display: none;
+}
+
+</style>
+<body>
+    <div id="checkboxes">
+        <label><input type="checkbox" value="A" onclick="filterImages()"> A</label>
+        <label><input type="checkbox" value="B" onclick="filterImages()"> B</label>
+        <label><input type="checkbox" value="C" onclick="filterImages()"> C</label>
+    </div>
+
+    <div id="imageContainer">
+        <div src="image1.jpg" data-attributes="A, B" class="image">1</div>
+        <div src="image2.jpg" data-attributes="A" class="image">2</div>
+        <div src="image3.jpg" data-attributes="B" class="image">3</div>
+        <div src="image4.jpg" data-attributes="C" class="image">4</div>
+        <div src="image5.jpg" data-attributes="A, C" class="image">5</div>
+        <div src="image6.jpg" data-attributes="B, C" class="image">6</div>
+        <div src="image7.jpg" data-attributes="A, B, C" class="image">7</div>
+        <div src="image8.jpg" data-attributes="A" class="image">8</div>
+    </div>
+
+    <script>
+      function filterImages() {
+    const checkboxes = document.querySelectorAll('#checkboxes input[type="checkbox"]');
+    const images = document.querySelectorAll('#imageContainer .image');
+    
+    const selectedAttributes = Array.from(checkboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+
+    images.forEach(image => {
+        const imageAttributes = image.getAttribute('data-attributes').split(', ');
+        if (selectedAttributes.length === 0 || selectedAttributes.some(attr => imageAttributes.includes(attr))) {
+            image.style.display = 'block';
+        } else {
+            image.style.display = 'none';
+        }
+    });
+}
+
+    </script>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .warp {
+            position: relative;
+        }
+        .background img {
+            position: relative;
+            z-index: 0; /* Background image layer */
+        }
+        .img1 img {
+            position: absolute;
+            top: 50px; /* Adjust as needed */
+            left: 50px; /* Adjust as needed */
+            z-index: 2; /* Foreground image layer */
+        }
+        /* .text{
+        position: absolute;
+        top: -31px;
+        left: -16px;
+        font-size: 230px;
+        font-size: 23rem;
+        line-height: 1em;
+        letter-spacing: .02em;
+        font-weight: 600;
+        mix-blend-mode: soft-light;
+        z-index: 1;
+        color: blue;
+        text-transform: uppercase;
+        white-space: nowrap;
+        } */
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="warp">
+            <p class="img background">
+                <img width="1164" height="419" src="https://yamaha-motor.com.vn/wp/wp-content/uploads/2024/02/Mask-Group-6249.jpg" alt="">
+                <span class="text">LAL</span>
+            </p>
+            <p class="img1">
+                <img width="624" height="606" src="https://yamaha-motor.com.vn/wp/wp-content/uploads/2024/01/PG1-orange-005-1.png" alt="">
+            </p>
+        </div>
+        <p>describe something bla bla</p>
+    </div>
+</body>
+</html>
