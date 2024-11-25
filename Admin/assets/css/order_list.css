@@ -353,13 +353,38 @@
 
 /* order List */
 .admin-content-main-container {
-    padding: 20px;
+    padding: 0px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
     overflow-x: auto;
     overflow-y: hidden; 
+}
+
+.admin-content-main-title {
+    display: flex;
+    align-items: center;
+    color: var(--white-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+
+
+#order-status-filter {
+    padding: 8px 12px;
+    font-size: 1.4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--white-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+}
+
+#order-status-filter:focus {
+    border-color: var(--primary-color);
+    outline: none;
 }
 
 .admin-content-main-container table {
@@ -380,6 +405,20 @@
     font-weight: 700;
 }
 
+.admin-content-main-container table thead, 
+.admin-content-main-container table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.admin-content-main-container table tbody {
+    display: block;
+    max-height: 400px;
+    overflow-y: auto;
+    width: 100%;
+}
+
 .admin-content-main-container table tbody tr {
     border-bottom: 1px solid var(--border-color);
     transition: background-color 0.3s ease;
@@ -393,6 +432,18 @@
     padding: 12px;
     font-size: 1.4rem;
     color: var(--text-color);
+}
+
+.admin-content-main-container table tbody td:nth-child(4){
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 14px;
+}
+
+.admin-content-main-container table tbody td:nth-child(5) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
 }
 
 .admin-content-main-container .coform-order {
@@ -444,6 +495,10 @@
 
 .admin-content-main-container .coform-order.success {
     background-color: #2ecc71;
+}
+
+.admin-content-main-container .coform-order.warning {
+    background-color: #ffc107;
 }
 
 .admin-content-main-container .coform-order {
