@@ -6,7 +6,7 @@
 
 }
 body {
-    background-image: url('../imgs/quenMatKhau/background.png'); /* Thay URL ảnh nền vào đây */
+    background-image: url('../img/background.png'); /* Thay URL ảnh nền vào đây */
     background-size: cover;
     background-position: center;
     display: flex;
