@@ -53,6 +53,7 @@
     color: red;
     font-weight: bold;
 }
+
 .profile-form {
     width: calc(100% - 270px);
     background-color: #fff;
@@ -310,5 +311,62 @@ select {
 }
 
 .change-password-form button.save-btn:hover {
+    background-color: #d25238;
+}
+.change-picture-form {
+    width: calc(100% - 270px);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.change-picture-form .form-group {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.profile-image-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px auto;
+    border: 2px solid #ccc;
+    display: block;
+}
+
+.change-picture-form label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.change-picture-form input[type="file"] {
+    display: block;
+    margin: 0 auto;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.change-picture-form button.save-btn {
+    background-color: #ee4d2d;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto;
+    width: calc(100% - 40px);
+    max-width: 200px;
+}
+
+.change-picture-form button.save-btn:hover {
     background-color: #d25238;
 }

@@ -119,6 +119,7 @@
                 <ul class="sidebar-menu">
                     <li><a href="#" id="show-profile">Thông tin tài khoản</a></li>
                     <li><a href="#" id="change-password">Đổi mật khẩu</a></li>
+                    <li><a href="#" id="change-picture">Đổi ảnh đại diện</a></li>
                     <li><a href="#">Đăng xuất</a></li>
                 </ul>
             </div>
@@ -208,6 +209,23 @@
                     <button type="submit" class="save-btn">Đổi mật khẩu</button>
                 </form>
             </div>
+
+            <!-- Form đỏi ảnh -->
+            <div class="change-picture-form" id="change-picture-form" style="display: none;">
+                <form id="picture-form">
+                    <div class="form-group">
+                        <label>Ảnh đại diện hiện tại</label>
+                        <img src="./assets/imgs/images/avt1.jpg" alt="Profile Picture" id="current-profile-image" class="profile-image-preview">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-profile-picture">Chọn ảnh mới</label>
+                        <input type="file" id="new-profile-picture" accept=".jpg, .jpeg, .png">
+                    </div>
+                    <button type="submit" class="save-btn">Lưu ảnh đại diện</button>
+                </form>
+            </div>
+
+
         </div>
         
 
