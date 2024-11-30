@@ -41,16 +41,26 @@ tableRows.forEach(row => {
 
 // Filtering functionality
 const filterDropdown = $('#order-status-filter');
-// const tableRows = $$('.admin-content-main-container table tbody tr');
+const searchInput = $('#searchInput');
 
-filterDropdown.addEventListener('change', () => {
-    const filterValue = filterDropdown.value;
+function filterOrders() {
+    const filterValue = filterDropdown.value.toLowerCase();
+    const searchValue = searchInput.value.toLowerCase();
+
     tableRows.forEach(row => {
         const statusCell = row.querySelector('.coform-order');
-        if (filterValue === 'all' || statusCell.classList.contains(filterValue)) {
+        const nameCell = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+
+        const matchesStatus = filterValue === 'all' || statusCell.classList.contains(filterValue);
+        const matchesName = nameCell.includes(searchValue);
+
+        if (matchesStatus && matchesName) {
             row.style.display = '';
         } else {
             row.style.display = 'none';
         }
     });
-});
+}
+
+filterDropdown.addEventListener('change', filterOrders);
+searchInput.addEventListener('input', filterOrders);
