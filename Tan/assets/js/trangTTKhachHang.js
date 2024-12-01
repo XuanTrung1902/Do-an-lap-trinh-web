@@ -51,16 +51,14 @@
                 link.classList.toggle("active");
             });
 
-
-            document.addEventListener("click", function (event) {
-                if (!link.contains(event.target)) {
-                    link.classList.remove("active");
-                }
-            });
+            // document.addEventListener("click", function (event) {
+            //     if (!link.contains(event.target)) {
+            //         link.classList.remove("active");
+            //     }
+            // });
         });
     });
     document.addEventListener("DOMContentLoaded", function () {
-        // Chọn các phần tử cần thiết
         const changePasswordLink = document.getElementById("change-password");
         const profileForm = document.querySelector(".profile-form");
         const changePasswordForm = document.querySelector(".change-password-form");
@@ -81,7 +79,6 @@
             const newPassword = document.getElementById("new-password").value;
             const confirmPassword = document.getElementById("confirm-password").value;
 
-            // Kiểm tra các điều kiện mật khẩu
             if (!currentPassword || !newPassword || !confirmPassword) {
                 alert("Vui lòng nhập đầy đủ thông tin.");
                 return;
@@ -92,60 +89,52 @@
                 return;
             }
 
-            // Xử lý thành công
             alert("Đổi mật khẩu thành công!");
 
-            // Reset form và trở lại profile-form
             passwordForm.reset();
             changePasswordForm.style.display = "none";
             profileForm.style.display = "block";
         });
     });
     document.addEventListener("DOMContentLoaded", function () {
-        // Lấy các phần tử cần thao tác
         const profileForm = document.getElementById("profile-form");
         const changePasswordForm = document.getElementById("change-password-form");
         const showProfileLink = document.getElementById("show-profile");
         const changePasswordLink = document.getElementById("change-password");
 
-        // Hàm hiển thị thông tin tài khoản
         function showProfile() {
-            profileForm.style.display = "block"; // Hiện thông tin tài khoản
-            changePasswordForm.style.display = "none"; // Ẩn đổi mật khẩu
+            profileForm.style.display = "block";
+            changePasswordForm.style.display = "none";
         }
 
-        // Hàm hiển thị đổi mật khẩu
         function showChangePassword() {
-            profileForm.style.display = "none"; // Ẩn thông tin tài khoản
-            changePasswordForm.style.display = "block"; // Hiện đổi mật khẩu
+            profileForm.style.display = "none";
+            changePasswordForm.style.display = "block";
         }
 
-        // Gắn sự kiện click cho các liên kết
+
         showProfileLink.addEventListener("click", function (e) {
-            e.preventDefault(); // Ngăn chặn hành động mặc định
-            showProfile(); // Chuyển sang hiển thị thông tin tài khoản
+            e.preventDefault();
+            showProfile();
         });
 
         changePasswordLink.addEventListener("click", function (e) {
-            e.preventDefault(); // Ngăn chặn hành động mặc định
-            showChangePassword(); // Chuyển sang hiển thị đổi mật khẩu
+            e.preventDefault();
+            showChangePassword();
         });
     });
     document.addEventListener("DOMContentLoaded", function () {
-        // Lấy danh sách tất cả các liên kết trong menu
+
         const menuLinks = document.querySelectorAll(".sidebar-menu li a");
 
-        // Hàm để xử lý khi nhấn vào một mục
-        function handleMenuClick(event) {
-            event.preventDefault(); // Ngăn hành động mặc định
 
-            // Loại bỏ lớp 'active' khỏi tất cả các liên kết
+        function handleMenuClick(event) {
+            event.preventDefault();
+
             menuLinks.forEach(link => link.classList.remove("active"));
 
-            // Thêm lớp 'active' vào liên kết được nhấn
             this.classList.add("active");
 
-            // Hiển thị hoặc ẩn các nội dung tương ứng
             const targetId = this.id;
             if (targetId === "show-profile") {
                 document.getElementById("profile-form").style.display = "block";
@@ -156,13 +145,11 @@
             }
         }
 
-        // Gắn sự kiện click cho từng liên kết
         menuLinks.forEach(link => {
             link.addEventListener("click", handleMenuClick);
         });
     });
     document.addEventListener("DOMContentLoaded", function () {
-        // Lấy các phần tử cần thao tác
         const profileForm = document.getElementById("profile-form");
         const changePasswordForm = document.getElementById("change-password-form");
         const changePictureForm = document.getElementById("change-picture-form");
@@ -170,45 +157,40 @@
         const changePasswordLink = document.getElementById("change-password");
         const changePictureLink = document.getElementById("change-picture");
 
-        // Hàm hiển thị thông tin tài khoản
         function showProfile() {
-            profileForm.style.display = "block"; // Hiện thông tin tài khoản
-            changePasswordForm.style.display = "none"; // Ẩn đổi mật khẩu
-            changePictureForm.style.display = "none"; // Ẩn đổi ảnh đại diện
+            profileForm.style.display = "block";
+            changePasswordForm.style.display = "none";
+            changePictureForm.style.display = "none";
         }
 
-        // Hàm hiển thị đổi mật khẩu
         function showChangePassword() {
-            profileForm.style.display = "none"; // Ẩn thông tin tài khoản
-            changePasswordForm.style.display = "block"; // Hiện đổi mật khẩu
-            changePictureForm.style.display = "none"; // Ẩn đổi ảnh đại diện
+            profileForm.style.display = "none";
+            changePasswordForm.style.display = "block";
+            changePictureForm.style.display = "none";
         }
 
-        // Hàm hiển thị đổi ảnh đại diện
         function showChangePicture() {
-            profileForm.style.display = "none"; // Ẩn thông tin tài khoản
-            changePasswordForm.style.display = "none"; // Ẩn đổi mật khẩu
-            changePictureForm.style.display = "block"; // Hiện đổi ảnh đại diện
+            profileForm.style.display = "none";
+            changePasswordForm.style.display = "none";
+            changePictureForm.style.display = "block";
         }
 
-        // Gắn sự kiện click cho các liên kết
         showProfileLink.addEventListener("click", function (e) {
-            e.preventDefault(); // Ngăn chặn hành động mặc định
-            showProfile(); // Chuyển sang hiển thị thông tin tài khoản
+            e.preventDefault();
+            showProfile();
         });
 
         changePasswordLink.addEventListener("click", function (e) {
-            e.preventDefault(); // Ngăn chặn hành động mặc định
-            showChangePassword(); // Chuyển sang hiển thị đổi mật khẩu
+            e.preventDefault();
+            showChangePassword();
         });
 
         changePictureLink.addEventListener("click", function (e) {
-            e.preventDefault(); // Ngăn chặn hành động mặc định
-            showChangePicture(); // Chuyển sang hiển thị đổi ảnh đại diện
+            e.preventDefault();
+            showChangePicture();
         });
     });
 
-    // Đảm bảo các liên kết trong sidebar hiển thị trạng thái 'active'
     document.addEventListener("DOMContentLoaded", function () {
         const menuLinks = document.querySelectorAll(".sidebar-menu li a");
 
@@ -216,10 +198,8 @@
             link.addEventListener("click", function (event) {
                 event.preventDefault(); // Ngăn hành động mặc định
 
-                // Loại bỏ lớp 'active' khỏi tất cả các liên kết
                 menuLinks.forEach(link => link.classList.remove("active"));
 
-                // Thêm lớp 'active' vào liên kết được nhấn
                 this.classList.add("active");
             });
         });

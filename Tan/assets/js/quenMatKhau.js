@@ -4,11 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailInput = document.getElementById("email");
     const captchaInput = document.getElementById("captcha");
 
-    // Mã captcha mặc định
     const correctCaptcha = "1264";
 
     form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Ngăn chặn gửi form để xử lý trước
+        event.preventDefault();
 
         const username = usernameInput.value.trim();
         const email = emailInput.value.trim();

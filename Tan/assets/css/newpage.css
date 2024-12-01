@@ -109,7 +109,11 @@
     cursor: pointer;
     box-sizing: border-box;
 }
-
+.news-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
 
 .news-item:hover {
     transform: translateY(-5px);
