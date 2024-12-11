@@ -1,0 +1,354 @@
+
+.header__navbar--item a {
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+
+.header__navbar--item a:hover {
+    color: red;
+}
+
+.header__navbar-news {
+    position: relative;
+}
+
+.news-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 350px;
+    background-color: #f7f7f7;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+    padding: 10px;
+}
+
+.navabar-news-item {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.navabar-news-item:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.navabar-news-item:hover h4 {
+    color: red;
+}
+
+.navabar-news-item:last-child {
+    border-bottom: none;
+}
+
+.navabar-news-item h4 {
+    font-size: 16px;
+    margin: 0 0 5px;
+    color: #333;
+}
+
+.navabar-news-item p {
+    font-size: 14px;
+    margin: 0;
+    color: #666;
+}
+
+.view-all {
+    display: block;
+    text-align: right;
+    font-weight: bold;
+    margin-top: 10px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.news-dropdown a {
+    color: black;
+}
+
+.view-all:hover {
+    color: #cc0000;
+    text-decoration: underline;
+}
+
+.header__navbar-news:hover .news-dropdown {
+    display: block;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: center;
+    margin-left: 30px;
+}
+
+
+.news-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex: 3;
+    justify-content: space-between;
+}
+
+
+.news-item {
+    width: 32%;
+    height: 300px;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.news-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.news-item img {
+    width: 100%;
+    height: 150px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+
+.news-item h4 {
+    margin: 5px 0;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+
+.news-item h4:hover {
+    color: red;
+}
+
+
+.news-item p {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+    margin-left: 500px;
+}
+.pagination .prev,
+.pagination .next{
+    font-size: 30px;
+}
+
+.pagination button,
+.pagination .page-number {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #888;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination .page-number.active {
+    background-color: #ff5722;
+    color: white;
+    font-weight: bold;
+}
+
+.pagination .dots {
+    color: #888;
+}
+
+.pagination button:hover,
+.pagination .page-number:hover:not(.active) {
+    color: #ff5722;
+}
+
+.pagination button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+
+.news-right {
+    flex: 1;
+}
+
+.news-category,
+.latest-news {
+    margin-bottom: 30px;
+}
+
+.news-category h3,
+.latest-news h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.news-category ul,
+.latest-news ul {
+    list-style: none;
+    padding: 0;
+}
+
+.news-category ul li,
+.latest-news ul li {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.news-category ul li a,
+.latest-news ul li a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.news-category ul li a:hover,
+.latest-news ul li a:hover {
+    color: red;
+}
+
+.latest-news-right {
+    margin-top: 20px;
+}
+
+.latest-news-right h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.latest-news-right ul {
+    list-style: none;
+    padding: 0;
+}
+
+.latest-news-right ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hiệu ứng hover cho li */
+.latest-news-right ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Hình ảnh tin tức */
+.latest-news-right ul li img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+/* Liên kết */
+.latest-news-right ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.latest-news-right ul li a:hover {
+    color: red;
+}
+
+.latest-products-right h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.latest-products-right ul {
+    list-style: none;
+    padding: 0;
+}
+
+.latest-products-right ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.latest-products-right ul li img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: darkgray;
+    transition: transform 0.3s ease;
+}
+
+.latest-products-right ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    flex-grow: 1;
+    transition: color 0.3s ease, transform 0.3s ease;
+    margin: 10px;
+}
+
+.latest-products-right ul li span {
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+
+.latest-products-right ul li:hover img,
+.latest-products-right ul li:hover a {
+    transform: scale(1.1);
+}
+
+.latest-products-right ul li a:hover {
+    color: red;
+}
+
+.latest-products-right ul li img:hover {
+    filter: brightness(1.2);
+}
+
+.latest-products-right ul li span:hover {
+    color: darkred;
+}
+
