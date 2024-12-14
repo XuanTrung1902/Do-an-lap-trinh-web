@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./assets/css/admin.css"> -->
+    <link rel="stylesheet" href="./assets/css/order_detail.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <title>Admin</title>
+</head>
+<body>
+    <section class="admin">
+        <div class="row__grid">
+            <div class="admin__sidebar">
+                <div class="admin__sidebar--top">
+                    <img src="./assets/images/logo.png" alt="">
+                </div>
+                <div class="admin__sidebar--content">
+                    <ul>
+                        <li><a href="#">
+                                <i class="ri-dashboard-line"></i>
+                                Dashboard
+                                <i></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="admin.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Tổng quan
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ri-file-list-line"></i>
+                                Người dùng
+                                <i class="ri-add-box-line"></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="user_list.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Danh sách
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ri-file-list-line"></i>
+                                Đơn hàng
+                                <i class="ri-add-box-line"></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="order_list.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Danh sách
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ri-file-list-line"></i>
+                                Sản phẩm
+                                <i class="ri-add-box-line"></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="product_list.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Danh sách
+                                        </a>
+                                    </li>
+                                    <li><a href="product_add.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Thêm
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="admin__content">
+                <div class="admin__content-top flex-box">
+                    <div class="admin__content-top-left">
+                        <ul class="flex-box">
+                            <li><i class="ri-search-line"></i></li>
+                            <li> <i class="ri-drag-move-line"></i></li>
+                        </ul>
+                    </div>
+                    <div class="admin__content-top-right flex-box">
+                        <ul class="flex-box">
+                            <li><i class="ri-notification-line" number="3"></i></li>
+                            <li><i class="ri-message-2-line" number="5"></i></li>
+                            <li class="flex-box">
+                                <img style="width: 50px;" src="assets/images/logo.png" alt="">
+                                <p>Trí Đức</p>
+                                <i class="ri-arrow-down-s-fill"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="admin-content-main">
+                    <div class="admin-content-main-title">
+                        <h1>Chi tiết đơn hàng</h1>
+                    </div>
+                    <div class="admin-content-main-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Ảnh</th>
+                                    <th>Tên</th>
+                                    <th>Hãng xe</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá thành</th>
+                                    <th>Thành tiền</th>
+                                    <th>Tuỳ chỉnh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><img src="./assets/images/vario.png" alt=""></td>
+                                    <td>Xe Vario</td>
+                                    <td>Honda</td>
+                                    <td>1</td>
+                                    <td>49.000.000đ</td>
+                                    <td>49.000.000đ</td>
+                                    <td>
+                                        <a href="#" class="delete-button">Xóa</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><img src="./assets/images/vario.png" alt=""></td>
+                                    <td>Xe Vario</td>
+                                    <td>Honda</td>
+                                    <td>2</td>
+                                    <td>49.000.000đ</td>
+                                    <td>98.000.000đ</td>
+                                    <td>
+                                        <a href="#" class="delete-button">Xóa</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">Tổng cộng</td>
+                                    <td>147.000.000đ</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/product_list.js"></script>
+</body>
+</html>
