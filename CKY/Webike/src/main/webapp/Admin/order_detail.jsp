@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/css/admin.css"> -->
+ 
     <link rel="stylesheet" href="./assets/css/order_detail.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <title>Admin</title>
@@ -120,7 +121,7 @@
                         <h1>Chi tiết đơn hàng</h1>
                     </div>
                     <div class="admin-content-main-container">
-                        <table>
+                        <table >
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -170,7 +171,7 @@
             </div>
         </div>
     </section>
-
     <script src="assets/js/product_list.js"></script>
+
 </body>
 </html>
