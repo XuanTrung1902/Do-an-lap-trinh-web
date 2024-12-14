@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.9.0">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="25.0.1">
   <diagram name="Page-1" id="k7pRj-IjoH5O8OIZpJND">
-    <mxGraphModel dx="4231" dy="5346" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+    <mxGraphModel dx="4907" dy="5705" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -844,7 +844,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="Lolbqv4gbnwPOJyDjvau-248" value="NhaPhanPhoi" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-3366.86" y="-3732" width="140.00000000000045" height="90" as="geometry" />
+          <mxGeometry x="-3376.86" y="-3732" width="140.00000000000045" height="90" as="geometry" />
         </mxCell>
         <mxCell id="Lolbqv4gbnwPOJyDjvau-249" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" parent="Lolbqv4gbnwPOJyDjvau-248" vertex="1">
           <mxGeometry y="30" width="140.00000000000045" height="30" as="geometry" />
@@ -1492,8 +1492,10 @@
         <mxCell id="A79eRkretajxV6eStGty-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERoneToMany;endFill=0;" parent="1" source="Lolbqv4gbnwPOJyDjvau-249" target="Lolbqv4gbnwPOJyDjvau-62" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="-3226.86" y="-3647" />
-              <mxPoint x="-3226.86" y="-3492" />
+              <mxPoint x="-3227" y="-3687" />
+              <mxPoint x="-3227" y="-3600" />
+              <mxPoint x="-3120" y="-3600" />
+              <mxPoint x="-3120" y="-3597" />
             </Array>
           </mxGeometry>
         </mxCell>

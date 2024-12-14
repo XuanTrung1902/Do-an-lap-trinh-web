@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="./assets/css/user_list.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <title>Admin</title>
@@ -28,7 +29,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="#">
+                                    <li><a href="admin.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -119,15 +120,15 @@
                         <h1>Người dùng</h1>
                     </div>
                     <div class="admin-content-main-container">
-                        <div class="admin-content-main-search">
+                        <!-- <div class="admin-content-main-search">
                             <input type="text" id="searchInput" placeholder="Tìm kiếm người dùng...">
                             <select id="filterType">
                                 <option value="name">Tên đăng nhập</option>
                                 <option value="address">Địa chỉ</option>
                                 <option value="phone">SĐT</option>
                             </select>
-                        </div>
-                        <table>
+                        </div> -->
+                        <table id="list-user" style="background-color: white; font-size: 1.6rem;" >
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -140,162 +141,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>LeTriDuc</td>
-                                    <td>123456</td>
-                                    <td>11/6/2004</td>
-                                    <td>Đồng Nai</td>
-                                    <td>0123456789</td>
+                                <!-- <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td</td>
+                                    <td></td>
                                     <td>
-                                        <a href="#" class="delete-button">Xóa</a>
+                                        <a href="#" class="delete-button">Xoá</a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>TongXuanTrung</td>
-                                    <td>147258</td>
-                                    <td>11/6/2004</td>
-                                    <td>Đà Nẵng</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>NguyenQuocTan</td>
-                                    <td>258369</td>
-                                    <td>11/6/2004</td>
-                                    <td>Hà Nội</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>TranNhutAnh</td>
-                                    <td>145678</td>
-                                    <td>11/6/2004</td>
-                                    <td>Long An</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>DoDucDuong</td>
-                                    <td>145789</td>
-                                    <td>11/6/2004</td>
-                                    <td>Đồng Tháp</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>NguyenQuocTan</td>
-                                    <td>123456</td>
-                                    <td>11/6/2004</td>
-                                    <td>Tiền Giang</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>LeTriDuc</td>
-                                    <td>123456</td>
-                                    <td>11/6/2004</td>
-                                    <td>An Giang</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>TongXuanTrung</td>
-                                    <td>123456</td>
-                                    <td>11/6/2004</td>
-                                    <td>Huế</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>NguyenQuocTan</td>
-                                    <td>123456</td>
-                                    <td>11/6/2004</td>
-                                    <td>Đà Nẵng</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>LeTriDuc</td>
-                                    <td>123456</td>
-                                    <td>11/6/2004</td>
-                                    <td>Hà Nội</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>TongXuanTrung</td>
-                                    <td>123456</td>
-                                    <td>11/6/2004</td>
-                                    <td>Hải Phòng</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td>NguyenQuocTan</td>
-                                    <td>123456</td>
-                                    <td>11/6/2004</td>
-                                    <td>Bình Dương</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>13</td>
-                                    <td>NguyenQuocTan</td>
-                                    <td>123456</td>
-                                    <td>11/6/2004</td>
-                                    <td>Đồng Nai</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>14</td>
-                                    <td>NguyenQuocTan</td>
-                                    <td>123456</td>
-                                    <td>11/6/2004</td>
-                                    <td>Quảng Nam</td>
-                                    <td>0123456789</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                
-                                
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -305,5 +161,110 @@
     </section>
 
     <script src="assets/js/user_list.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script>
+       var table ;
+        function initTableData () {
+            var data = [
+                {
+                    id: 1,
+                    name: 'LeTriDuc',
+                    password: '123456',
+                    birthday: '11/6/2004',
+                    address: 'Đồng Nai',
+                    phone: '0123456789'
+                },
+                {
+                    id: 2,
+                    name: 'TongXuanTrung',
+                    password: '147258',
+                    birthday: '11/6/2004',
+                    address: 'Đà Nẵng',
+                    phone: '0123456789'
+                },
+                {
+                    id: 3,
+                    name: 'NguyenQuocTan',
+                    password: '258369',
+                    birthday: '11/6/2004',
+                    address: 'Hà Nội',
+                    phone: '0123456789'
+                },
+                {
+                    id: 4,
+                    name: 'TranNhutAnh',
+                    password: '145678',
+                    birthday: '11/6/2004',
+                    address: 'Long An',
+                    phone: '0123456789'
+                },
+                {
+                    id: 5,
+                    name: 'DoDucDuong',
+                    password: '145789',
+                    birthday: '11/6/2004',
+                    address: 'Đồng Tháp',
+                    phone: '0123456789'
+                }
+            ];
+            // var jsonData = JSON.stringify(data);
+            // console.log(jsonData);
+            table = $('#list-user').DataTable({
+                "processing" : true,
+                data,
+                columns: [
+                    { data: 'id' },
+                    { data: 'name' },
+                    { data: 'password' },
+                    { data: 'birthday' },
+                    { data: 'address' },
+                    { data: 'phone' },
+                    {
+                        data: null,
+                        render: function (data, type, row) {
+                            return `
+                                <a href="#" class="delete-button">Xóa</a>
+                            `;
+                        }
+                    }
+                ],
+                // paging: true,
+                // searching: true
+                "paging": true,
+                "searching": true,
+                "info": true,
+                "lengthChange": true,
+                "pageLength": 5,
+                "dom": '<"top"f>rt<"bottom"ip><"clear">',
+                "language": {
+                    "search": "Tìm kiếm:",
+                    "paginate": {
+                        "first": "Đầu",
+                        "last": "Cuối",
+                        "next": "Sau",
+                        "previous": "Trước"
+                    },
+                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+                    "infoEmpty": "Không có dữ liệu",
+                    "infoFiltered": "(lọc từ _MAX_ mục)",
+                    "zeroRecords": "Không tìm thấy kết quả"
+                }
+            });
+        }
+        // initTableData();
+
+        $(document).ready(function() {
+            initTableData();
+            $('#list-user').on({
+                mouseenter: function () {
+                    $(this).css('background-color', 'white');
+                },
+                mouseleave: function () {
+                    $(this).css('background-color', 'white');
+                }
+            })
+        });
+    </script>
 </body>
 </html>
