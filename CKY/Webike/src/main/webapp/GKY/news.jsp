@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeBike</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/homepage.css">
+    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/newpage.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="grid__full-width">
+                <a href="homepage.jsp" class="logo">
+                    <img src="https://www.webike.vn/frontend/moto-v2/pc/img/logo.png?158926651620200827" alt="Webike VN">
+                </a>
+                <nav class="header__navbar">
+                    <div class="header__navbar--top">
+                        <ul class="header__navbar--top_left">
+                            <li class="header__navbar--item">
+                                <a href="#">Trang chủ</a>
+                            </li>
+                            <li class="header__navbar--item">
+                                <a href="product.jsp">Chợ xe máy</a>
+                            </li>
+                            <li class="header__navbar--item">
+                                <a href="news.html">Tin tức</a>
+                            </li>
+                            <!-- <li class="header__navbar--item">
+                                <a href="#">Đại lí</a>
+                            </li> -->
+                            <li class="header__navbar--item">
+                                <a href="contact.jsp">Liên hệ</a>
+                            </li>
+                        </ul>
+        
+                        <ul class="header__navbar--top_right">
+                            <li class="header__navbar--icon">
+                                <a href="#">
+                                    <i class="fa-brands fa-facebook m-r-8"></i>
+                                </a>
+                            </li>
+                            <li class="header__navbar--icon">
+                                <a href="#">
+                                    <i class="fa-brands fa-youtube m-r-8"></i>
+                                </a>
+                            </li>
+        
+                            <!-- <li class="header__navbar--item header__navbar--separate">
+                                <a href="#"><i class="fa-solid fa-user m-r-8" ></i>Đăng nhập</a>
+                            </li>
+                            <li class="header__navbar--item"><a href="#">Đăng ký</a></li> -->
+        
+                            <li class="header__navbar--item header__navbar--user">
+                                <img src="./assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
+                                <span class="header__navbar--user-name">Trí Đức</span>
+        
+                                <ul class="header__navbar--user-menu">
+                                    <li class="header__navbar--user-menu-item">
+                                        <a href="trangTTKhachHang.jsp"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>
+                                    </li>
+                                    <li class="header__navbar--user-menu-item">
+                                        <a href="#"><i class="fa-solid fa-shopping-cart m-r-8"></i>Lịch sử mua hàng</a>
+                                    </li>
+                                    <li class="header__navbar--user-menu-item">
+                                        <a href="Dangnhap.jsp"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                        </ul>
+                    </div>
+        
+                    <div class="header__navbar--bot">
+                        <div class="header__search">
+                            <input type="text" class="header__search--input" placeholder="Nhập từ khoá tìm kiếm">
+                            <div class="header__search-select">
+                                <span class="header__search-select-label">Tìm xe</span>
+                                <i class="header__search-select-icon "></i>
+        
+                                <!-- <ul class="header__search-option">
+                                    <li class="header__search-option-item">
+                                        <span >Tìm phụ tùng</span>
+                                    </li>
+                                </ul> -->
+                            </div>
+                            <button class="header__search--btn">
+                                <i class="header__search--btn-icon fa-solid fa-search"></i>
+                            </button>
+                        </div>
+        
+                        <div class="header__cart">
+                            <a href="Gio%20hang.jsp" class="header__cart-link" >
+                                <i class="header__cart-icon ti-shopping-cart"></i>
+                                <span class="header__cart--text">Giỏ Hàng</span>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="news-left" data-page="1">
+                <div class="news-item">
+                    <img src="assets/img/img.png" height="416" width="825"/>
+                    <h4>Địa chỉ mua xe AB 150 tại TP HCM</h4>
+                    <p>Honda Air Blade 150 là dòng xe tay ga nổi bật tại Việt Nam nhờ thiết kế mạnh mẽ, hiện đại. Việc tìm một địa chỉ mua xe AB 150</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_1.png" height="416" width="825"/>
+                    <h4>Mua AB 150 trả trước bao nhiêu?</h4>
+                    <p>Việc sở hữu một chiếc Honda Air Blade 150 động cơ mạnh mẽ và sự tiện lợi trong việc di chuyển. Với các phương thức trả góp linh...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_2.png" height="416" width="825"/>
+                    <h4>Bảng giá mua trả góp xe Honda</h4>
+                    <p>Honda SH với mức giá không hề nhỏ, việc mua xe SH có thể là một trở ngại tài chính. SH trả góp lãi suất thấp tại TP.HCM bài viết...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_5.png" height="416" width="825"/>
+                    <h4>Bảng giá mua trả góp xe Honda</h4>
+                    <p>Xe máy Honda là lựa chọn được ưa chuộng bởi chất lượng bền bỉ, mẫu mã đa dạng và chế độ bảo hành tốt. Bài viết này sẽ cung cấp bảng giá mua trả góp xe Honda mới...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_6.png" height="416" width="825"/>
+                    <h4>Giá xe AB 150 2024 ngày hôm nay </h4>
+                    <p>Giá xe AB 150 2024 lăn bánh tại Hà Nội và Thành phố Hồ Chí Minh dao động từ 63- 67 triệu hơn tuỳ thuộc vào các phiên bản...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_7.png" height="416" width="825"/>
+                    <h4>Thông số kỹ thuật xe Vision 2024</h4>
+                    <p>Thông số kỹ thuật xe Vision 2024 tương tự phiên bản thể thao Vision. Điểm nổi bật của phiên bản mới này chính là bảng màu sắc...</p>
+                </div>
+
+                <div class="news-item">
+                    <img src="assets/img/img_8.png" height="416" width="825"/>
+                    <h4>Giá xe Vision 2024 lăn bánh hôm nay</h4>
+                    <p>Giá xe Vision 2024 lăn bánh vẫn được duy trì ở mức 32.000.000 (Tiêu Chuẩn) và 33.200.000 (Cao Cấp). Tuy nhiên, các phiên...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_9.png" height="416" width="825"/>
+                    <h4>Vision 2023 Xám Xi Măng giá bao nhiêu? </h4>
+                    <p>Giá Vision Xám Xi Măng: 39.000.000 VNĐ. So với tuần vừa rồi, giá xe Vision 2024 nhìn chung vẫn không có sự thay đổi quá lớn....</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_10.png" height="416" width="825"/>
+                    <h4>Review - So Sánh Vision 2024 Và Vision 2023</h4>
+                    <p>TVision cổ điển (2024) được ra mắt và đang được bán trên thị trường hiện nay với mức giá là 42 triệu với 2 màu mới độc đáo. Hãy cùng chúng tôi tìm hiểu ở bài viết “so s...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_11.png" height="416" width="825"/>
+                    <h4>Địa chỉ bán xe Honda SH giá tốt tại Nhơn Trạch - Đồng Nai </h4>
+                    <p>Bạn đang ở Nhơn Trạch - Đồng Nai và đang muốn mua xe Honda nhưng chưa tìm được địa chỉ mua xe ưng ý? Vậy bạn có thể tham...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_13.png" height="416" width="825"/>
+                    <h4>Top những dòng xe SH được yêu thích nhất</h4>
+                    <p>Xe Honda SH đang được yêu thích những dòng xe nào nhất hiện nay? Nam Tiến sẽ update ngay cho bạn 4 xe dòng SH bán chạy...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_12.png" height="416" width="825"/>
+                    <h4>Top những dòng xe SH được yêu thích nhất</h4>
+                    <p>Xe Honda SH đang được yêu thích những dòng xe nào nhất hiện nay? Nam Tiến sẽ update ngay cho bạn 4 xe dòng SH bán...</p>
+                </div>
+
+                <div class="pagination">
+                    <button class="prev" onclick="changePage(-1)">&#8249;</button>
+                    <span class="page-number active" onclick="setPage(1)">1</span>
+                    <span class="page-number" onclick="setPage(2)">2</span>
+                    <span class="page-number" onclick="setPage(3)">3</span>
+                    <button class="next" onclick="changePage(1)">&#8250;</button>
+                </div>
+            </div>
+
+            <div class="news-left" data-page="2" style="display: none;">
+                <div class="news-item">
+                    <img src="assets/img/img_17.png" height="416" width="825"/>
+                    <h4>Thông số kỹ thuật xe Air Blade 2024</h4>
+                    <p>Air Blade 2024 đã trở thành biểu tượng của phong cách sống với động, thể thao và hiện đại. Nếu bạn đang có ý định mua một chiếc...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_18.png" height="416" width="825"/>
+                    <h4>Giá Honda Air Blade 125 đầu tháng 4</h4>
+                    <p>Đầu tháng 4, như một làn gió mới thổi vào thị trường xe máy, sự chú ý của người tiêu dùng đang dần hướng về những mẫu xe ..</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_19.png" height="416" width="825"/>
+                    <h4>Cửa hàng phụ tùng xe máy gần đây</h4>
+                    <p>Việc tìm kiếm một cửa hàng phụ tùng xe máy uy tín và chất lượng trở nên vô cùng quan trọng. Không chỉ đáp ứng được nhu cầu sửa chữa, bảo dưỡng xe máy thường</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_20.png" height="416" width="825"/>
+                    <h4>Giá xe AB 125 2024</h4>
+                    <p>Khi thị trường xe máy ngày càng trở nên sôi động, Honda AB 125 2024 thu hút sự chú ý của người tiêu dùng với thiết kế hiện đại và nhiều cải tiến vượt trội. Bên cạnh nhữn...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_21.png" height="416" width="825"/>
+                    <h4>Review xe Vario 160 ABS 2024 </h4>
+                    <p>Vario 160 ABS 2024 là dòng xe tay ga thể thao đầy sức mạnh nhờ sự kết hợp hoàn hảo từ thiết kế, động cơ và tính năng tiện ích tích...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_22.png" height="416" width="825"/>
+                    <h4>Review SH Mode 2023 ABS phiên bản đặc biệt</h4>
+                    <p>SH Mode 2023 ABS phiên bản đặc biệt là phiên bản xe tay ga cao cấp được Honda sản xuất riêng cho thị trường Việt Nam. Được...</p>
+                </div>
+
+                <div class="news-item">
+                    <img src="assets/img/img_23.png" height="416" width="825"/>
+                    <h4>Vario 160 ABS và CBS khác nhau như thế nào? </h4>
+                    <p>Vario 160 ABS và Vario 160 CBS đều là những sản phẩm được yêu thích của nhà Honda, mang lại sự hiện đại và tiện nghi..</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_24.png" height="416" width="825"/>
+                    <h4>Giá xe Exciter 155 ABS 2024 mới nhất tháng 2</h4>
+                    <p>Exciter 155 abs là một siêu phẩm được ra mắt vào tháng 9 của Yamaha Motor Việt Nam, với sự ra mắt dòng xe côn tay nổi tiến...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_25.png" height="416" width="825"/>
+                    <h4>Review xe Air Blade 2023</h4>
+                    <p>Thừa hưởng những ưu điểm từ các phiên bản trước, Air Blade 2023 tiếp tục khẳng định vị thế trong thị trường xe máy Việt...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_26.png" height="416" width="825"/>
+                    <h4>Vario 125 có ABS không?</h4>
+                    <p>Vario 125 có ABS không là câu hỏi của rất nhiều người. Ngay hôm nay, Nam Tiến- cửa hàng chuyên bán xe giá rẻ sẽ cùng các bạn...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_27.png" height="416" width="825"/>
+                    <h4>Exciter 155 ABS 2024 giá tháng 11</h4>
+                    <p>Exciter 155 ABS 2024 giá tháng 11 đang có mức giá cực kỳ ưu đãi hấp dẫn dành cho những ai có ý định mua trong thời điểm cuố...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_28.png" height="416" width="825"/>
+                    <h4>Giá xe Vario 125 2024 mới nhất ngày hôm nay </h4>
+                    <p>Giá xe Vario 125 2024 Tiêu Chuẩn là 38.700.000 VNĐ và phiên bản Vario 125 Cao Cấp 2024 là 42.700.000 VNĐ. Hiện tại Nam Tiến đang giảm ngay 2,5 triệu cho tất cả các...</p>
+                </div>
+
+                <div class="pagination">
+                    <button class="prev" onclick="changePage(-1)">&#8249;</button>
+                    <span class="page-number active" onclick="setPage(1)">1</span>
+                    <span class="page-number" onclick="setPage(2)">2</span>
+                    <span class="page-number" onclick="setPage(3)">3</span>
+                    <button class="next" onclick="changePage(1)">&#8250;</button>
+                </div>
+            </div>
+
+            <div class="news-left" data-page="3" style="display: none;">
+                <div class="news-item">
+                    <img src="assets/img/img_29.png" height="416" width="825"/>
+                    <h4>Dầu nhớt nhập khẩu mua ở đâu để được giá tốt</h4>
+                    <p>Trong thế giới phương tiện giao thông hiện đại, việc lựa chọn dầu nhớt phù hợp không chỉ giúp tăng tuổi thọ cho động cơ mà còn...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_30.png" height="416" width="825"/>
+                    <h4>Địa chỉ thay nhớt láp xe AB uy tín</h4>
+                    <p>Địa chỉ thay nhớt láp xe AB uy tín & chính hãng tại Hồ Chí Minh, Đồng Nai và Bình Dương, các loại nhớt tốt dành cho xe cũng như lịch thay nhớt định kỳ đang là câu hỏi...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_31.png" height="416" width="825"/>
+                    <h4>Cửa hàng xe máy Honda gần đây -[Cập nhật 2024]</h4>
+                    <p>Mạng lưới cửa hàng xe máy Honda đã được mở rộng khắp cả nước, tạo điều kiện thuận lợi để khách hàng có thể dễ dàng tiếp cận ...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_5.png" height="416" width="825"/>
+                    <h4>Bảng giá mua trả góp xe Honda</h4>
+                    <p>Xe máy Honda là lựa chọn được ưa chuộng bởi chất lượng bền bỉ, mẫu mã đa dạng và chế độ bảo hành tốt. Bài viết này sẽ cung cấp bảng giá mua trả góp xe Honda mới...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_6.png" height="416" width="825"/>
+                    <h4>Giá xe AB 150 2024 ngày hôm nay </h4>
+                    <p>Giá xe AB 150 2024 lăn bánh tại Hà Nội và Thành phố Hồ Chí Minh dao động từ 63- 67 triệu hơn tuỳ thuộc vào các phiên bản...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_7.png" height="416" width="825"/>
+                    <h4>Thông số kỹ thuật xe Vision 2024</h4>
+                    <p>Thông số kỹ thuật xe Vision 2024 tương tự phiên bản thể thao Vision. Điểm nổi bật của phiên bản mới này chính là bảng màu sắc...</p>
+                </div>
+
+                <div class="news-item">
+                    <img src="assets/img/img_8.png" height="416" width="825"/>
+                    <h4>Giá xe Vision 2024 lăn bánh hôm nay</h4>
+                    <p>Giá xe Vision 2024 lăn bánh vẫn được duy trì ở mức 32.000.000 (Tiêu Chuẩn) và 33.200.000 (Cao Cấp). Tuy nhiên, các phiên...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_9.png" height="416" width="825"/>
+                    <h4>Vision 2023 Xám Xi Măng giá bao nhiêu? </h4>
+                    <p>Giá Vision Xám Xi Măng: 39.000.000 VNĐ. So với tuần vừa rồi, giá xe Vision 2024 nhìn chung vẫn không có sự thay đổi quá lớn....</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_10.png" height="416" width="825"/>
+                    <h4>Review - So Sánh Vision 2024 Và Vision 2023</h4>
+                    <p>TVision cổ điển (2024) được ra mắt và đang được bán trên thị trường hiện nay với mức giá là 42 triệu với 2 màu mới độc đáo. Hãy cùng chúng tôi tìm hiểu ở bài viết “so s...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_32.png" height="416" width="825"/>
+                    <h4>Bao lâu thì nên thay nhớt xe tay ga 1 lần? </h4>
+                    <p>Nhớt xe tay ga là một trong những yếu tố quan trọng nhất để đảm bảo hoạt động hiệu quả của một chiếc xe máy. Việc sử dụng...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_33.png" height="416" width="825"/>
+                    <h4>Không đủ tuổi chạy xe 50cc phạt bao nhiêu?</h4>
+                    <p>Trong bối cảnh luật giao thông ngày càng được siết chặt, câu hỏi về mức phạt đối với những người không đủ tuổi lái xe 50cc trở...</p>
+                </div>
+                <div class="news-item">
+                    <img src="assets/img/img_34.png" height="416" width="825"/>
+                    <h4>Thời Điểm Thích Hợp Để Mua Xe Máy Chạy Tết </h4>
+                    <p>Chỉ còn chưa đầy 2 tháng nữa thôi là sẽ đến Tết Nguyên Đán 2024, thời điểm cuối năm cũng là dịp mà nhu cầu mua xe máy tăng...</p>
+                </div>
+
+                <div class="pagination">
+                    <button class="prev" onclick="changePage(-1)">&#8249;</button>
+                    <span class="page-number active" onclick="setPage(1)">1</span>
+                    <span class="page-number" onclick="setPage(2)">2</span>
+                    <span class="page-number" onclick="setPage(3)">3</span>
+                    <button class="next" onclick="changePage(1)">&#8250;</button>
+                </div>
+            </div>
+
+            <div class="news-right">
+                <div class="news-category">
+                    <h3>Danh Mục Tin Tức</h3>
+                    <ul>
+                        <li><a href="#">Kiến Thức Xe Máy</a></li>
+                        <li><a href="#">Hoạt Động Của Doanh Nghiệp</a></li>
+                        <li><a href="#">Về Xe Máy Nam Tiến</a></li>
+                        <li><a href="#">Điều Khoản Sử Dụng</a></li>
+                        <li><a href="#">Bản Tin Xe</a></li>
+                        <li><a href="#">Tin Nóng Mỗi Ngày</a></li>
+                        <li><a href="#">Thông Báo</a></li>
+                        <li><a href="#">Tin Khuyến Mại</a></li>
+                    </ul>
+                </div>
+
+                <div class="latest-news-right">
+                    <h3>Tin Tức Mới Nhất</h3>
+                    <ul>
+                        <li>
+                            <img src="assets/img/img.png" height="416" width="825"/>
+                            <a href="#">Địa chỉ mua xe AB 150 tại TP HCM</a>
+                        </li>
+                        <li>
+                            <img src="assets/img/img_1.png" height="416" width="825"/>
+                            <a href="#">Mua AB 150 trả trước bao nhiêu?</a>
+                        </li>
+                        <li>
+                            <img src="assets/img/img_2.png" height="416" width="825"/>
+                            <a href="#">Mua SH trả góp lãi suất thấp tại TP HCM</a>
+                        </li>
+                        <li>
+                            <img src="assets/img/img_6.png" height="416" width="825"/>
+                            <a href="#">Giá xe AB 150 2024 ngày hôm nay</a>
+                        </li>
+                        <li>
+                            <img src="assets/img/img_7.png" height="416" width="825"/>
+                            <a href="#">Thông số kỹ thuật xe Vision 2024</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="latest-products-right">
+                    <h3>Sản Phẩm Mới Nhất</h3>
+                    <ul>
+                        <li>
+                            <img src="assets/img/img_3.png" height="859" width="1024"/>
+                            <a href="#">Janus 2025 Các Phiên Bản</a>
+                            <span>liên hệ</span>
+                        </li>
+                        <li>
+                            <img src="assets/img/img_14.png" height="683" width="1024"/>
+                            <a href="#">Honda Lead ABS 2025</a>
+                            <span>47,300,000đ</span>
+                        </li>
+                        <li>
+                            <img src="assets/img/img_15.png" height="845" width="1024"/>
+                            <a href="#">Xe máy Honda Beat Street 2024</a>
+                            <span>liên hệ</span>
+                        </li>
+                        <li>
+                            <img src="assets/img/img_16.png" height="744" width="1024"/>
+                            <a href="#">Xe Honda Wave Alpha 2025 Cổ Điển</a>
+                            <span>liên hệ</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <footer class="footer">
+            
+        </footer>
+    </div>
+    <script src="assets/js/newpage.js"></script>
+</body>
+</html>
