@@ -1,6 +1,6 @@
 package vn.edu.hcmuaf.fit.webike.db;
 
-import com.hcmuaf.edu.vn.demo1.model.Product;
+//import com.hcmuaf.edu.vn.demo1.model.Product;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
 
@@ -32,12 +32,12 @@ public class JDBIConnect {
         jdbi = Jdbi.create(ds);
     }
 
-    public static void main(String[] args) {
-        Jdbi jdbi1 = get();
-        List<Product> products = jdbi1.withHandle(handle -> handle.createQuery("select * from products")
-                .mapToBean(Product.class)
-                .list());
-        System.out.println(products);
-    }
+//    public static void main(String[] args) {
+//        Jdbi jdbi1 = get();
+//        List<Product> products = jdbi1.withHandle(handle -> handle.createQuery("select * from products")
+//                .mapToBean(Product.class)
+//                .list());
+//        System.out.println(products);
+//    }
 
 }

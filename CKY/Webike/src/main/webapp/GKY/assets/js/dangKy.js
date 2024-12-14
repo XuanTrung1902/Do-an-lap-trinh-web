@@ -28,3 +28,33 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Liên kết Google thành công!");
     });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const daySelect = document.getElementById("day-select");
+    const monthSelect = document.getElementById("month-select");
+    const yearSelect = document.getElementById("year-select");
+
+    // Thêm ngày
+    for (let i = 1; i <= 31; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        daySelect.appendChild(option);
+    }
+
+    // Thêm tháng
+    for (let i = 1; i <= 12; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = `Tháng ${i}`;
+        monthSelect.appendChild(option);
+    }
+
+    // Thêm năm (1900 - hiện tại)
+    const currentYear = new Date().getFullYear();
+    for (let i = currentYear; i >= 1900; i--) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        yearSelect.appendChild(option);
+    }
+});

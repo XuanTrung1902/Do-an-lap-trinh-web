@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -56,7 +58,7 @@
 
     <div class="form_container">
       <div class="form_sub_header">
-        <a href="Dangnhap.jsp"><h2>Đăng ký</h2></a>
+        <a href="Dangnhap.html"><h2>Đăng ký</h2></a>
       </div>
       <form class="form_center">
         <div class="input_field">
@@ -66,21 +68,48 @@
           <input type="tel" placeholder="Số điện thoại" required>
         </div>
         <div class="input_field">
+          <input type="address" placeholder="Dịa chỉ" required>
+        </div>
+
+        <div class="form-group ">
+          <div class="gender-group">
+            <label class="custom-radio">
+              <input type="radio" id="male" name="gender" value="male">
+              <span class="checkmark"></span> Nam
+            </label>
+            <label class="custom-radio">
+              <input type="radio" id="female" name="gender" value="female">
+              <span class="checkmark"></span> Nữ
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="birth-date">
+            <select id="day-select"></select>
+            <select id="month-select"></select>
+            <select id="year-select"></select>
+          </div>
+        </div>
+
+
+        <div class="input_field">
           <input type="password" placeholder="Mật khẩu" required>
         </div>
         <div class="input_field">
           <input type="password" placeholder="Nhập lại mật khẩu" required>
         </div>
+
         <div class="checkbox">
           <input type="checkbox" required>
           <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>
         </div>
         <button type="submit" class="submit_btn"><i class="fa-regular fa-user"></i> ĐĂNG KÝ</button>
-        <p class="or-text">hoặc tiếp tục với</p>
-        <div class="social-login">
-          <button class="facebook-btn"><i class="fa-brands fa-facebook"></i> Facebook</button>
-          <button class="google-btn"><i class="fa-brands fa-google"></i> Google</button>
-        </div>
+<!--        <p class="or-text">hoặc tiếp tục với</p>-->
+<!--        <div class="social-login">-->
+<!--          <button class="facebook-btn"><i class="fa-brands fa-facebook"></i> Facebook</button>-->
+<!--          <button class="google-btn"><i class="fa-brands fa-google"></i> Google</button>-->
+<!--        </div>-->
         <p class="login-link">Bạn có sẵn sàng để tạo một tài khoản? <a href="#">Đăng nhập</a></p>
       </form>
     </div>
