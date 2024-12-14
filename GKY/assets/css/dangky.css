@@ -1,0 +1,306 @@
+* {
+    padding: 0;
+    margin: 0;
+    color: #1a1f36;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    font-family: Tahoma,sans-serif;
+}
+body {
+    min-height: 100%;
+    background-color: #ffffff;
+}
+h1 {
+    letter-spacing: -1px;
+}
+a {
+    color: #5469d4;
+    text-decoration: unset;
+}
+.sub-root {
+    background: #fff;
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.loginbackground {
+    min-height: 692px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+.flex-flex {
+    display: flex;
+}
+.align-center {
+    align-items: center;
+}
+.center-center {
+    align-items: center;
+    justify-content: center;
+}
+.box-root {
+    box-sizing: border-box;
+}
+.flex-direction--column {
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.loginbackground-gridContainer {
+    display: grid;
+    grid-template-columns: [start] 1fr [left-gutter] repeat(16,86.6px) [left-gutter] 1fr [end];
+    grid-template-rows: [top] 1fr [top-gutter] repeat(8,64px) [bottom-gutter] 1fr [bottom];
+    justify-content: center;
+    margin: 0 -2%;
+    transform: rotate(-12deg) skew(-12deg);
+}
+.box-divider--light-all-2 {
+    box-shadow: inset 0 0 0 2px #bb000e;
+}
+.box-background--blue {
+    background-color: #e31c25;
+}
+.box-background--white {
+    background-color: #1c1c1c;
+}
+.box-background--blue800 {
+    background-color: #bb000e;
+}
+.box-background--gray100 {
+    background-color: #e3e8ee;
+}
+.box-background--cyan200 {
+    background-color: white;
+}
+.padding-top--24 {
+    padding-top: 24px;
+}
+.padding-top--64 {
+    padding-top: 64px;
+}
+.padding-top--48 {
+    padding-top: 48px;
+}
+.padding-bottom--24 {
+    padding-bottom: 24px;
+}
+.padding-horizontal--48 {
+    padding: 48px;
+}
+.padding-bottom--15 {
+    padding-bottom: 15px;
+}
+
+
+.flex-justifyContent--center {
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.form_container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.form_sub_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.form_sub_header h2 {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.form_center {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input_field {
+    margin-bottom: 20px;
+}
+
+.input_field input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/*.input_field input:hover {*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);*/
+/*    transform: translateY(-2px);*/
+/*}*/
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.submit_btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #e31c25;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox label {
+    font-size: 14px;
+    color: #555;
+}
+
+.submit_btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #e31c25;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.submit_btn i {
+    margin-right: 8px;
+}
+
+
+.social-login {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.facebook-btn, .google-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+.submit_btn i {
+    margin-right: 8px;
+}
+
+.submit_btn:hover,
+.facebook-btn:hover,
+.google-btn:hover {
+    background-color: #bb000e;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+
+.facebook-btn {
+    background-color: #3b5998;
+}
+
+.facebook-btn:hover {
+    background-color: #2e477a;
+}
+
+
+.google-btn {
+    background-color: #db4437;
+}
+
+.google-btn:hover {
+    background-color: #c23321;
+}
+
+
+.checkbox input:checked + label {
+    color: #e31c25;
+}
+
+.facebook-btn {
+    background-color: #3b5998;
+}
+
+.google-btn {
+    background-color: #db4437;
+}
+
+.or-text {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+.login-link {
+    text-align: center;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #e31c25;
+    text-decoration: none;
+}
+
+
+.animationRightLeft {
+    animation: animationRightLeft 2s ease-in-out infinite;
+}
+.animationLeftRight {
+    animation: animationLeftRight 2s ease-in-out infinite;
+}
+.tans3s {
+    animation: animationLeftRight 3s ease-in-out infinite;
+}
+.tans4s {
+    animation: animationLeftRight 4s ease-in-out infinite;
+}
+
+@keyframes animationLeftRight {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(1000px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes animationRightLeft {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(-1000px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
