@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>Webike: Đăng nhập</title>
-  <link rel="stylesheet" type="text/css" href="assets/css/Dang nhap.css">
+  <base href="${pageContext.request.contextPath}/GKY/assets/">
+  <link rel="stylesheet" type="text/css" href="css/Dang nhap.css">
+<%--  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">--%>
+
 </head>
 
 <body>
@@ -52,15 +55,18 @@
           </a></h1>
         </div>
 
+
         <div class="formbg-outer">
         <!--form-->
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Đăng nhập tài khoản</span>
-              <form id="stripe-login" action="homepage.jsp">
+
+<%--              action="homepage.jsp"--%>
+              <form id="stripe-login" method="post" action="${pageContext.request.contextPath}/Dangnhap" >
                 <div class="field padding-bottom--24">
-                  <label for="email">Email hoặc SĐT</label>
-                  <input type="email" name="email">
+                  <label for="Phone">Email hoặc SĐT</label>
+                  <input type="phone" name="phone">
                 </div>
                 <div class="field padding-bottom--24">
                   <div class="grid--50-50">
@@ -83,13 +89,14 @@
                   <div class="ssolink">
                     <span style="margin-right: 10px;text-align: center; font-weight: 600; color: #e31c25;">Đăng nhập bằng</span>
                     <a href="#" class=""><img src="assets/img/facebook.png" alt="" style="width: 30px; margin-right: 10px;"></a>
-                    <a href="#" class=""><img src="assets/img/google.png" alt="" style="width: 30px; border: 0.2px #ebd3d3 solid; border-radius: 100px;"></a>  
+                    <a href="#" class=""><img src="assets/img/google.png" alt="" style="width: 30px; border: 0.2px #ebd3d3 solid; border-radius: 100px;"></a>
                   </div>
-                 
+
                 </div>
               </form>
             </div>
           </div>
+
 
         <!--footer-->
           <div class="footer-link " style="padding: 10px;">

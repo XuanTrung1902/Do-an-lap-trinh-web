@@ -1,18 +1,24 @@
 package vn.edu.hcmuaf.fit.webike.db;
 
-//import com.hcmuaf.edu.vn.demo1.model.Product;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class JDBIConnect {
+    private static final Logger logger = LoggerFactory.getLogger(JDBIConnect.class);
     private static Jdbi jdbi;
     static String url = "jdbc:mysql://" + DBProperties.host() + ":" + DBProperties.port() + "/" + DBProperties.dbname() + "?" + DBProperties.option();
+
     public static Jdbi get() {
         if (jdbi == null) {
-            makeConnect();
+            synchronized (JDBIConnect.class) {
+                if (jdbi == null) {
+                    makeConnect();
+                }
+            }
         }
         return jdbi;
     }
@@ -26,18 +32,13 @@ public class JDBIConnect {
         try {
             ds.setUseCompression(true);
             ds.setAutoReconnect(true);
+            logger.info("Database connection successfully established.");
         } catch (SQLException e) {
+            logger.error("Failed to configure the data source", e);
             throw new RuntimeException(e);
         }
+
         jdbi = Jdbi.create(ds);
     }
-
-//    public static void main(String[] args) {
-//        Jdbi jdbi1 = get();
-//        List<Product> products = jdbi1.withHandle(handle -> handle.createQuery("select * from products")
-//                .mapToBean(Product.class)
-//                .list());
-//        System.out.println(products);
-//    }
-
 }
+

@@ -1,12 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 <html>
 <head>
   <meta charset="utf-8">
   <title>Webike: Đăng nhập</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="assets/css/dangky.css">
+  <base href="${pageContext.request.contextPath}/GKY/assets/">
+  <link rel="stylesheet" href="css/dangky.css">
 
 </head>
 
@@ -60,15 +60,18 @@
       <div class="form_sub_header">
         <a href="Dangnhap.html"><h2>Đăng ký</h2></a>
       </div>
-      <form class="form_center">
+
+
+
+      <form class="form_center" method="post"  action="${pageContext.request.contextPath}/Dangky">
         <div class="input_field">
-          <input type="text" placeholder="Họ Tên" required>
+          <input type="text" name="fullname" placeholder="Họ Tên" required>
         </div>
         <div class="input_field">
-          <input type="tel" placeholder="Số điện thoại" required>
+          <input type="tel" name="phone"  placeholder="Số điện thoại" required>
         </div>
         <div class="input_field">
-          <input type="address" placeholder="Dịa chỉ" required>
+          <input type="text" name="address"  placeholder="Dịa chỉ" required>
         </div>
 
         <div class="form-group ">
@@ -86,39 +89,46 @@
 
         <div class="form-group">
           <div class="birth-date">
-            <select id="day-select"></select>
-            <select id="month-select"></select>
-            <select id="year-select"></select>
+            <select id="day-select" name="day"></select>
+            <select id="month-select"name="month"></select>
+            <select id="year-select" name="year"></select>
           </div>
         </div>
 
 
         <div class="input_field">
-          <input type="password" placeholder="Mật khẩu" required>
+          <input type="password"  name="password" placeholder="Mật khẩu" required>
         </div>
         <div class="input_field">
-          <input type="password" placeholder="Nhập lại mật khẩu" required>
+          <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" required>
         </div>
 
         <div class="checkbox">
-          <input type="checkbox" required>
+          <input type="checkbox"  name="terms" required>
           <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>
         </div>
         <button type="submit" class="submit_btn"><i class="fa-regular fa-user"></i> ĐĂNG KÝ</button>
-<!--        <p class="or-text">hoặc tiếp tục với</p>-->
-<!--        <div class="social-login">-->
-<!--          <button class="facebook-btn"><i class="fa-brands fa-facebook"></i> Facebook</button>-->
-<!--          <button class="google-btn"><i class="fa-brands fa-google"></i> Google</button>-->
-<!--        </div>-->
+        <!--        <p class="or-text">hoặc tiếp tục với</p>-->
+        <!--        <div class="social-login">-->
+        <!--          <button class="facebook-btn"><i class="fa-brands fa-facebook"></i> Facebook</button>-->
+        <!--          <button class="google-btn"><i class="fa-brands fa-google"></i> Google</button>-->
+        <!--        </div>-->
         <p class="login-link">Bạn có sẵn sàng để tạo một tài khoản? <a href="#">Đăng nhập</a></p>
       </form>
+      <c:if test="${not empty error}">
+        <div class="error">${error}</div>
+      </c:if>
+
+
+
+
     </div>
 
   </div>
   </div>
 </div>
 </div>
-<script src="assets/js/dangKy.js"></script>
+<script src="js/dangKy.js"></script>
 </body>
 
 </html>
