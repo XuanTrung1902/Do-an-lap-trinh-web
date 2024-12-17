@@ -1,10 +1,10 @@
-package vn.edu.hcmuaf.fit.webike.controllers;
+package vn.edu.hcmuaf.fit.webike.t.services.controllers;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.hcmuaf.fit.webike.services.UserSevice;
-import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.t.services.UserSevice;
+import vn.edu.hcmuaf.fit.webike.t.services.models.User;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.db;
+package vn.edu.hcmuaf.fit.webike.t.services.db;
 import java.io.IOException;
 import java.util.Properties;
 

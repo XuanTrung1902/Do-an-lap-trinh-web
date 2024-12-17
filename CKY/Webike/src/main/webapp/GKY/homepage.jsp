@@ -72,7 +72,7 @@
                                         <a href="trangTTKhachHang.jsp"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>
                                     </li>
                                     <!-- <li class="header__navbar--user-menu-item">
-                                        <a href="#"><i class="fa-solid fa-shopping-cart m-r-8"></i>Lịch sử mua hàng</a>
+                                        <a href="#"><i class="fa-solid fa-shopping-vn.edu.hcmuaf.fit.webike.t.services.cart m-r-8"></i>Lịch sử mua hàng</a>
                                     </li> -->
                                     <li class="header__navbar--user-menu-item">
                                         <a href="Dangnhap.jsp"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>

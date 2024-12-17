@@ -151,7 +151,7 @@ clicdata:
     - diagram-sankey
     - diagram-venn
     - filter-list
-    - filters
+    - vn.edu.hcmuaf.fit.webike.t.services.filters
     - input-numeric
     - input-pipe
     - input-text
@@ -934,9 +934,9 @@ stay-linked:
     - box
     - box-check
     - boxes-stacked
-    - cart-flatbed
-    - cart-flatbed-boxes
-    - cart-flatbed-empty
+    - vn.edu.hcmuaf.fit.webike.t.services.cart-flatbed
+    - vn.edu.hcmuaf.fit.webike.t.services.cart-flatbed-boxes
+    - vn.edu.hcmuaf.fit.webike.t.services.cart-flatbed-empty
     - clipboard-check
     - clipboard-list
     - conveyor-belt

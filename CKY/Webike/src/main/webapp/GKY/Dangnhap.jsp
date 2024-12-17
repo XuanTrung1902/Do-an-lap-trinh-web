@@ -62,7 +62,7 @@
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Đăng nhập tài khoản</span>
 
-<%--              action="homepage.jsp"--%>
+<%--            ${pageContext.request.contextPath}--%>
               <form id="stripe-login" method="post" action="${pageContext.request.contextPath}/Dangnhap" >
                 <div class="field padding-bottom--24">
                   <label for="Phone">Email hoặc SĐT</label>

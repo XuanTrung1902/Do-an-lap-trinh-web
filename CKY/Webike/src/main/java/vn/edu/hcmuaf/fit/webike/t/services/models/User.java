@@ -1,5 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.models;
-import java.util.Date;
+package vn.edu.hcmuaf.fit.webike.t.services.models;
 
 public class User {
     private int userid;
@@ -36,9 +35,10 @@ public class User {
 
 
     public User() {
-        this.createdAt = new Date().toString(); // Tạo ngày hiện tại
+        this.createdAt = java.time.LocalDateTime.now().toString(); // Ngày giờ hiện tại
         this.locked = false; // Mặc định không bị khóa
         this.img = "default.png"; // Ảnh mặc định
+        this.role = 0; // Người dùng thường
     }
 
     // Getters and Setters

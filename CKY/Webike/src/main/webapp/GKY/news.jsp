@@ -135,7 +135,7 @@
                 <div class="news-item">
                     <img src="assets/img/img_6.png" height="416" width="825"/>
                     <h4>Giá xe AB 150 2024 ngày hôm nay </h4>
-                    <p>Giá xe AB 150 2024 lăn bánh tại Hà Nội và Thành phố Hồ Chí Minh dao động từ 63- 67 triệu hơn tuỳ thuộc vào các phiên bản...</p>
+                    <p>Giá xe AB 150 2024 lăn bánh tại Hà Nội và Thành phố Hồ Chí Minh vn.edu.hcmuaf.fit.webike.t.services.dao động từ 63- 67 triệu hơn tuỳ thuộc vào các phiên bản...</p>
                 </div>
                 <div class="news-item">
                     <img src="assets/img/img_7.png" height="416" width="825"/>
@@ -279,7 +279,7 @@
                 <div class="news-item">
                     <img src="assets/img/img_6.png" height="416" width="825"/>
                     <h4>Giá xe AB 150 2024 ngày hôm nay </h4>
-                    <p>Giá xe AB 150 2024 lăn bánh tại Hà Nội và Thành phố Hồ Chí Minh dao động từ 63- 67 triệu hơn tuỳ thuộc vào các phiên bản...</p>
+                    <p>Giá xe AB 150 2024 lăn bánh tại Hà Nội và Thành phố Hồ Chí Minh vn.edu.hcmuaf.fit.webike.t.services.dao động từ 63- 67 triệu hơn tuỳ thuộc vào các phiên bản...</p>
                 </div>
                 <div class="news-item">
                     <img src="assets/img/img_7.png" height="416" width="825"/>

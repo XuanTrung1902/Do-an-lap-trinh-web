@@ -62,7 +62,7 @@
       </div>
 
 
-
+<%--${pageContext.request.contextPath}--%>
       <form class="form_center" method="post"  action="${pageContext.request.contextPath}/Dangky">
         <div class="input_field">
           <input type="text" name="fullname" placeholder="Họ Tên" required>
@@ -107,7 +107,8 @@
           <input type="checkbox"  name="terms" required>
           <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>
         </div>
-        <button type="submit" class="submit_btn"><i class="fa-regular fa-user"></i> ĐĂNG KÝ</button>
+<%--        onclick="window.location.href='${pageContext.request.contextPath}/Dangky'"--%>
+        <button  type="submit" class="submit_btn"><i class="fa-regular fa-user"></i> ĐĂNG KÝ</button>
         <!--        <p class="or-text">hoặc tiếp tục với</p>-->
         <!--        <div class="social-login">-->
         <!--          <button class="facebook-btn"><i class="fa-brands fa-facebook"></i> Facebook</button>-->
