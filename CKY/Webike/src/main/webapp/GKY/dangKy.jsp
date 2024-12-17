@@ -61,7 +61,9 @@
         <a href="Dangnhap.html"><h2>Đăng ký</h2></a>
       </div>
 
-
+      <c:if test="${not empty error}">
+        <div class="error">${error}</div>
+      </c:if>
 <%--${pageContext.request.contextPath}--%>
       <form class="form_center" method="post"  action="${pageContext.request.contextPath}/Dangky">
         <div class="input_field">
@@ -116,9 +118,7 @@
         <!--        </div>-->
         <p class="login-link">Bạn có sẵn sàng để tạo một tài khoản? <a href="#">Đăng nhập</a></p>
       </form>
-      <c:if test="${not empty error}">
-        <div class="error">${error}</div>
-      </c:if>
+
 
 
 

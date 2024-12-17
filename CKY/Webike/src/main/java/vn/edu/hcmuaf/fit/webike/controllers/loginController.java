@@ -1,10 +1,10 @@
-package vn.edu.hcmuaf.fit.webike.t.services.controllers;
+package vn.edu.hcmuaf.fit.webike.controllers;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.hcmuaf.fit.webike.t.services.UserSevice;
-import vn.edu.hcmuaf.fit.webike.t.services.models.User;
+import vn.edu.hcmuaf.fit.webike.services.UserSevice;
+import vn.edu.hcmuaf.fit.webike.models.User;
 
 import java.io.IOException;
 
@@ -25,6 +25,7 @@ public class loginController extends HttpServlet {
         if (user != null) { // nếu login đúng
             HttpSession session = request.getSession(true);
             session.setAttribute("auth", user); // Đặt user vào session với key "auth"
+            session.setAttribute("welcomeMessage", "Xin chào, " + user.getUsername() + "!");
 
             if (user.getRole() == 1) { // nếu là admin
                 response.sendRedirect("Admin/admin.jsp");
@@ -33,8 +34,8 @@ public class loginController extends HttpServlet {
             }
         } else { // nếu login sai
             request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu");
+            request.setAttribute("phone", phone);
             request.getRequestDispatcher("GKY/Dangnhap.jsp").forward(request, response);
         }
     }
-
 }

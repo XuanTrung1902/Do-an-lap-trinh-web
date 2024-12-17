@@ -1,7 +1,7 @@
-package vn.edu.hcmuaf.fit.webike.t.services.dao;
+package vn.edu.hcmuaf.fit.webike.dao;
 
-import vn.edu.hcmuaf.fit.webike.t.services.db.JDBIConnect;
-import vn.edu.hcmuaf.fit.webike.t.services.models.User;
+import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
+import vn.edu.hcmuaf.fit.webike.models.User;
 
 import java.util.List;
 
@@ -29,6 +29,12 @@ public class UserDao {
                         .bind("img", user.getImg())
                         .execute() > 0
         );
+    }
+    public boolean updateUser(User user) {
+        return JDBIConnect.get().withHandle(h -> h.createUpdate("update users set password = :password where phone = :phone")
+                .bind("password", user.getPassword())
+                .bind("phone", user.getPhone())
+                .execute()) > 0;
     }
 
 

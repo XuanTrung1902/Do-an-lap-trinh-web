@@ -3,8 +3,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-
 }
+
 body {
     background-image: url('../img/background.png'); /* Thay URL ảnh nền vào đây */
     background-size: cover;
@@ -37,13 +37,11 @@ body {
     box-sizing: border-box;
 }
 
-
 .logo {
     height: 60px;
     display: block;
     margin: 0 auto;
 }
-
 
 .form-container {
     background-color: #ffffff;
@@ -53,12 +51,11 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     transition: all 0.3s ease;
-
 }
+
 .form-container:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
 }
-
 
 h2 {
     color: #333;
@@ -75,39 +72,32 @@ label {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="tel"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 10px;
     transition: all 0.3s ease;
-
 }
-/*input[type="text"]:hover,*/
-/*input[type="email"]:hover{*/
-/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);*/
-/*    transform: translateY(-2px);*/
-/*}*/
+
 input[type="text"]:focus,
-input[type="email"]:focus
- {
+input[type="email"]:focus,
+input[type="tel"]:focus {
     outline: none;
     border-color: #e31c25;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 .captcha-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.captcha-container input {
-    width: 50%;
-}
 
-.captcha-img {
-    height: 0px;
-    width: 0px;
+.captcha-container input {
+    width: 60%;
 }
 
 button {
@@ -120,19 +110,9 @@ button {
     cursor: pointer;
     width: 100%;
     transition: all 0.3s ease;
-
 }
 
 button:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-3px);
-}
-.captcha-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.captcha-container input {
-    width: 60%;
 }

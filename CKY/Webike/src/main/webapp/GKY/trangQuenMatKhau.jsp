@@ -19,12 +19,12 @@
 
 <div class="form-container">
     <h2>Quên mật khẩu?</h2>
-    <form action="Dangnhap.jsp">
+    <form action="${pageContext.request.contextPath}/QuenMatKhau" method="post">
         <label for="username">Tên đăng nhập:</label>
         <input type="text" id="username" name="username" required>
 
-        <label for="email">Địa chỉ Email hoặc SDT:</label>
-        <input type="email" id="email" name="email" required>
+        <label for="phone">SDT:</label>
+        <input type="tel" id="phone" name="phone" required>
 
         <label for="captcha">Nhập mã captcha:</label>
         <div class="captcha-container">

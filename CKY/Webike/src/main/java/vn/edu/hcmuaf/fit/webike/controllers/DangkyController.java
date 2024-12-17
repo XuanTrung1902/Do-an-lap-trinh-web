@@ -1,10 +1,10 @@
-package vn.edu.hcmuaf.fit.webike.t.services.controllers;
+package vn.edu.hcmuaf.fit.webike.controllers;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.hcmuaf.fit.webike.t.services.models.User;
-import vn.edu.hcmuaf.fit.webike.t.services.UserSevice;
+import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 
 import java.io.IOException;
 @WebServlet(name = "DangkyController", value = "/Dangky")

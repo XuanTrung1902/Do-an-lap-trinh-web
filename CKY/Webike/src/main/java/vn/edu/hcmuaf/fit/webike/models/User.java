@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.t.services.models;
+package vn.edu.hcmuaf.fit.webike.models;
 
 public class User {
     private int userid;

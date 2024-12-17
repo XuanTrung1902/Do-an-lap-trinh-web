@@ -65,8 +65,8 @@
 <%--            ${pageContext.request.contextPath}--%>
               <form id="stripe-login" method="post" action="${pageContext.request.contextPath}/Dangnhap" >
                 <div class="field padding-bottom--24">
-                  <label for="Phone">Email hoặc SĐT</label>
-                  <input type="phone" name="phone">
+                  <label for="Phone">SĐT</label>
+                  <input type="phone" name="phone" value="${phone != null ? phone : ''}">
                 </div>
                 <div class="field padding-bottom--24">
                   <div class="grid--50-50">

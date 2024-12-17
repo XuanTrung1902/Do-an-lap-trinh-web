@@ -1,8 +1,8 @@
-package vn.edu.hcmuaf.fit.webike.t.services;
-import vn.edu.hcmuaf.fit.webike.t.services.dao.UserDao;
-import vn.edu.hcmuaf.fit.webike.t.services.models.User;
+package vn.edu.hcmuaf.fit.webike.services;
+import vn.edu.hcmuaf.fit.webike.dao.UserDao;
+import vn.edu.hcmuaf.fit.webike.models.User;
 
-import java.math.BigInteger;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 public class UserSevice {
@@ -21,6 +21,15 @@ public class UserSevice {
         UserDao userdao = new UserDao();
         return userdao.saveUser(user);
     }
+    public static boolean updatePasswordByPhone(String phone, String newPassword) {
+        UserDao userdao = new UserDao();
+        User user = userdao.findUserPhone(phone);
+        if (user != null) {
+            user.setPassword(hashPassword(newPassword));
+            return userdao.updateUser(user);
+        }
+        return false;
+    }
 
     public static String hashPassword(String password) {
         try {
@@ -33,20 +42,6 @@ public class UserSevice {
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error hashing password", e);
-        }
-    }
-    public static String hashPasswordDangKy(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] messageDigest = md.digest(password.getBytes());
-            BigInteger number = new BigInteger(1, messageDigest);
-            String hashedPassword = number.toString(16);
-            while (hashedPassword.length() < 32) {
-                hashedPassword = "0" + hashedPassword;
-            }
-            return hashedPassword;
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
         }
     }
 

@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.t.services.controllers;
+package vn.edu.hcmuaf.fit.webike.controllers;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;

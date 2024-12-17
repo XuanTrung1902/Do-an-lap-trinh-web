@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.t.services.db;
+package vn.edu.hcmuaf.fit.webike.db;
 
 import java.sql.*;
 
