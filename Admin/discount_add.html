@@ -8,9 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="./assets/css/admin.css"> -->
- 
-    <link rel="stylesheet" href="./assets/css/order_detail.css">
+    <link rel="stylesheet" href="./assets/css/admin.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <title>Admin</title>
 </head>
@@ -23,7 +21,7 @@
                 </div>
                 <div class="admin__sidebar--content">
                     <ul>
-                        <li><a href="#">
+                        <li><a href="admin.html">
                                 <i class="ri-dashboard-line"></i>
                                 Dashboard
                                 <i></i>
@@ -33,22 +31,6 @@
                                     <li><a href="admin.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
-                                        </a>
-                                    </li>
-                                </div>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="ri-file-list-line"></i>
-                                Người dùng
-                                <i class="ri-add-box-line"></i>
-                            </a>
-                            <ul class="sub-menu">
-                                <div class="sub-menu-items">
-                                    <li><a href="user_list.html">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Danh sách
                                         </a>
                                     </li>
                                 </div>
@@ -79,6 +61,23 @@
                         <li>
                             <a href="#">
                                 <i class="ri-file-list-line"></i>
+                                Người dùng
+                                <i class="ri-add-box-line"></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="user_list.html">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Danh sách
+                                        </a>
+                                    </li>
+                                    
+                                </div>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ri-file-list-line"></i>
                                 Sản phẩm
                                 <i class="ri-add-box-line"></i>
                             </a>
@@ -89,7 +88,7 @@
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="product_add.html">
+                                    <li><a href="#">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -98,7 +97,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="discount.html">
                                 <i class="ri-file-list-line"></i>
                                 Giảm giá
                                 <i class="ri-add-box-line"></i>
@@ -145,60 +144,27 @@
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
-                        <h1>Chi tiết đơn hàng</h1>
+                        <h1>Thêm giảm giá</h1>
                     </div>
-                    <div class="admin-content-main-container">
-                        <table >
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Ảnh</th>
-                                    <th>Tên</th>
-                                    <th>Hãng xe</th>
-                                    <th>Số lượng</th>
-                                    <th>Giá thành</th>
-                                    <th>Thành tiền</th>
-                                    <th>Tuỳ chỉnh</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td><img src="./assets/images/vario.png" alt=""></td>
-                                    <td>Xe Vario</td>
-                                    <td>Honda</td>
-                                    <td>1</td>
-                                    <td>49.000.000đ</td>
-                                    <td>49.000.000đ</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td><img src="./assets/images/vario.png" alt=""></td>
-                                    <td>Xe Vario</td>
-                                    <td>Honda</td>
-                                    <td>2</td>
-                                    <td>49.000.000đ</td>
-                                    <td>98.000.000đ</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6">Tổng cộng</td>
-                                    <td>147.000.000đ</td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <form class="admin-content-main-container" >
+                        <div class="admin-content-main-container-two-input">
+                            <input type="text" placeholder="Mã giảm giá">
+                            <input type="text" placeholder="% giảm giá">
+                        </div>
+                        <div class="admin-content-main-container-two-input">
+                            <input type="datetime-local" placeholder="Ngày bắt đầu">
+                            <input type="datetime-local" placeholder="Ngày kết thúc">
+                        </div>
+                        <div class="admin-content-main-container-description">
+                            <textarea name="" id="" cols="30" rows="5" placeholder="Mô tả"></textarea>
+                        </div>
+                        <button>Thêm giảm giá</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
-    <script src="assets/js/product_list.js"></script>
 
+    <script src="assets/js/product_add.js"></script>
 </body>
 </html>
