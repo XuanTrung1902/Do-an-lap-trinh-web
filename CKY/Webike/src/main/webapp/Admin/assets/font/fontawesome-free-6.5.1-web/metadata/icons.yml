@@ -30684,7 +30684,7 @@ product-hunt:
   changes:
     - 4.5.0
     - 5.0.0
-  label: Products Hunt
+  label: Product Hunt
   search:
     terms: []
   styles:

@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
-import vn.edu.hcmuaf.fit.webike.models.Products;
 
 import java.io.IOException;
 
@@ -17,7 +16,7 @@ public class Product extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ProductDAO dao = new ProductDAO();
-        Products p = dao.getProduct(1);
+        vn.edu.hcmuaf.fit.webike.models.Product p = dao.getProduct(1);
 
         request.setAttribute("p", p);
 

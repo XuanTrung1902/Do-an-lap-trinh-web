@@ -3,7 +3,7 @@ package vn.edu.hcmuaf.fit.webike.dao;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 import vn.edu.hcmuaf.fit.webike.models.Feature;
-import vn.edu.hcmuaf.fit.webike.models.Products;
+import vn.edu.hcmuaf.fit.webike.models.Product;
 import vn.edu.hcmuaf.fit.webike.models.Spec;
 import vn.edu.hcmuaf.fit.webike.models.Warranty;
 
@@ -19,17 +19,17 @@ public class ProductDAO {
 //        System.out.println(dao.getWarranty(1));
     }
 
-    public List<Products> getAllProducts() { // lấy ra tca sp
+    public List<Product> getAllProducts() { // lấy ra tca sp
         Jdbi jdbi = JDBIConnect.get();
         return jdbi.withHandle(handle -> handle.createQuery("select * from products")
-                .mapToBean(Products.class).list());
+                .mapToBean(Product.class).list());
     }
 
-    public Products getProduct(int id) { // lay sp theo id
+    public Product getProduct(int id) { // lay sp theo id
         Jdbi jdbi = JDBIConnect.get();
         return jdbi.withHandle(handle -> handle.createQuery("select * from products where id = :id")
                 .bind("id", id)
-                .mapToBean(Products.class)
+                .mapToBean(Product.class)
                 .findOne()
                 .orElse(null));
     }
