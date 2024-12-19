@@ -2,11 +2,8 @@ package vn.edu.hcmuaf.fit.webike.db;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
-import vn.edu.hcmuaf.fit.webike.models.Product;
-import vn.edu.hcmuaf.fit.webike.models.Spec;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class JDBIConnect {
     static String url = "jdbc:mysql://" + DBProperties.host() + ":" + DBProperties.port() + "/" + DBProperties.dbname() + "?" + DBProperties.option();

@@ -37603,7 +37603,7 @@ product-hunt:
     pro:
       - family: classic
         style: brands
-  label: Product Hunt
+  label: Products Hunt
   search:
     terms: []
   unicode: f288

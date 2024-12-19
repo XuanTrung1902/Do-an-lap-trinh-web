@@ -7,15 +7,15 @@
     <title>Chợ xe máy</title>
     <title>WeBike</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="./assets/css/base.css" />
-    <link rel="stylesheet" href="./assets/css/product.css" />
-    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.5.1-web/css/all.min.css"/>
-    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/product.css" />
+    <link rel="stylesheet" href="assets/font/fontawesome-free-6.5.1-web/css/all.min.css"/>
+    <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
     <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" />
   </head>
   <body>
     <div class="app">
@@ -62,7 +62,7 @@
                 <li class="header__navbar--item">a href="#">Đăng ký</a></li> -->
 
                 <li class="header__navbar--item header__navbar--user">
-                  <img src="./assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
+                  <img src="assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
                   <span class="header__navbar--user-name">Trí Đức</span>
 
                   <ul class="header__navbar--user-menu">
@@ -94,7 +94,7 @@
               </div>
 
               <div class="header__cart">
-                <a href="Gio%20hang.jsp" class="header__cart-link">
+                <a href="Gio hang.jsp" class="header__cart-link">
                   <i class="header__cart-icon ti-shopping-cart"></i>
                   <span class="header__cart--text">Giỏ Hàng</span>
                 </a>
@@ -106,7 +106,7 @@
 
       <div class="container" style="padding: 0">
         <div class="banner">
-          <img src="./assets/img/banner.jpg" alt="">
+          <img src="assets/img/banner.jpg" alt="">
         </div>
         <div class="search__container">
           <div class="search__bike">
@@ -145,52 +145,52 @@
             <div class="motor__brand--list">
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/hang1.jpg" alt="">
+                      <img src="assets/img/hang1.jpg" alt="">
                   </a>
               </div>
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/hang2.jpg" alt="">
+                      <img src="assets/img/hang2.jpg" alt="">
                   </a>
               </div>
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/hang3.jpg" alt="">
+                      <img src="assets/img/hang3.jpg" alt="">
                   </a>
               </div>
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/hang4.jpg" alt="">
+                      <img src="assets/img/hang4.jpg" alt="">
                   </a>
               </div>
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/hang5.jpg" alt="">
+                      <img src="assets/img/hang5.jpg" alt="">
                   </a>
               </div>
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/hang6.jpg" alt="">
+                      <img src="assets/img/hang6.jpg" alt="">
                   </a>
               </div>
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/hang7.jpg" alt="">
+                      <img src="assets/img/hang7.jpg" alt="">
                   </a>
               </div>
               <div class="brand-item">
                 <a href="#" class="brand-link">
-                    <img src="./assets/img/hang8.jpg" alt="">
+                    <img src="assets/img/hang8.jpg" alt="">
                 </a>
               </div>
               <div class="brand-item">
                 <a href="#" class="brand-link">
-                    <img src="./assets/img/hang9.jpg" alt="">
+                    <img src="assets/img/hang9.jpg" alt="">
                 </a>
               </div>
               <div class="brand-item">
                 <a href="#" class="brand-link">
-                    <img src="./assets/img/hang10.jpg" alt="">
+                    <img src="assets/img/hang10.jpg" alt="">
                 </a>
               </div>
             </div>
@@ -205,61 +205,61 @@
             <div class="motor__brand--list">
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/type1.jpg" alt="">
+                      <img src="assets/img/type1.jpg" alt="">
                   </a>
                   <span class="type__bike">Xe tay ga</span>
               </div>
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/type2.jpg" alt="">
+                      <img src="assets/img/type2.jpg" alt="">
                   </a>
                   <span class="type__bike">Xe số</span>
               </div>
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/type3.jpg" alt="">
+                      <img src="assets/img/type3.jpg" alt="">
                   </a>
                   <span class="type__bike">Xe côn tay</span>
               </div>
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/type4.jpg" alt="">
+                      <img src="assets/img/type4.jpg" alt="">
                   </a>
                   <span class="type__bike">Xe đạp trần</span>
               </div>
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/type5.jpg" alt="">
+                      <img src="assets/img/type5.jpg" alt="">
                   </a>
                   <span class="type__bike">Xe thể thao</span>
               </div>
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/type6.jpg" alt="">
+                      <img src="assets/img/type6.jpg" alt="">
                   </a>
                   <span class="type__bike">Cruser</span>
               </div>
               <div class="brand-item">
                   <a href="#" class="brand-link">
-                      <img src="./assets/img/type7.jpg" alt="">
+                      <img src="assets/img/type7.jpg" alt="">
                   </a>
                   <span class="type__bike">Chopper</span>
               </div>
               <div class="brand-item">
                 <a href="#" class="brand-link">
-                    <img src="./assets/img/type8.jpg" alt="">
+                    <img src="assets/img/type8.jpg" alt="">
                 </a>
                 <span class="type__bike">Bobber</span>
               </div>
               <div class="brand-item">
                 <a href="#" class="brand-link">
-                    <img src="./assets/img/type9.jpg" alt="">
+                    <img src="assets/img/type9.jpg" alt="">
                 </a>
                 <span class="type__bike">Drag</span>
               </div>
               <div class="brand-item">
                 <a href="#" class="brand-link">
-                    <img src="./assets/img/type10.jpg" alt="">
+                    <img src="assets/img/type10.jpg" alt="">
                 </a>
                 <span class="type__bike">Touring</span>
               </div>
@@ -283,7 +283,7 @@
             <a href="#" class="bike__link">
               <div class="box__bike--item">
                 <div class="box__bike-img">
-                  <img src="./assets/img/xe1.png" alt="#" />
+                  <img src="assets/img/xe1.png" alt="#" />
                   <h5 class="box__bike--name">
                     HONDA Airblade 110 Fi 2013
                   </h5>
@@ -308,7 +308,7 @@
             <a href="#" class="bike__link">
               <div class="box__bike--item">
                 <div class="box__bike-img">
-                  <img src="./assets/img/xe1.png" alt="#" />
+                  <img src="assets/img/xe1.png" alt="#" />
                   <h5 class="box__bike--name">
                     HONDA Airblade 110 Fi 2013 
                   </h5>
@@ -333,7 +333,7 @@
             <a href="Chi%20tiet%20san%20pham.jsp" class="bike__link">
               <div class="box__bike--item">
                 <div class="box__bike-img">
-                  <img src="./assets/img/xe1.png" alt="#" />
+                  <img src="assets/img/xe1.png" alt="#" />
                   <h5 class="box__bike--name">
                     HONDA Airblade 110 Fi 2013
                   </h5>
@@ -358,7 +358,7 @@
             <a href="#" class="bike__link">
               <div class="box__bike--item">
                 <div class="box__bike-img">
-                  <img src="./assets/img/cup50.png" alt="#" />
+                  <img src="assets/img/cup50.png" alt="#" />
                   <h5 class="box__bike--name">
                     Super cup C125 2021
                   </h5>
@@ -383,7 +383,7 @@
             <a href="#" class="bike__link">
               <div class="box__bike--item">
                 <div class="box__bike-img">
-                  <img src="./assets/img/vario.png" alt="#" />
+                  <img src="assets/img/vario.png" alt="#" />
                   <h5 class="box__bike--name">
                     Varior 160 2021
                   </h5>
@@ -408,7 +408,7 @@
             <a href="#" class="bike__link">
               <div class="box__bike--item">
                 <div class="box__bike-img">
-                  <img src="./assets/img/air_blade160.png" alt="#" />
+                  <img src="assets/img/air_blade160.png" alt="#" />
                   <h5 class="box__bike--name">
                     Air Blade 160 2021
                   </h5>
@@ -433,7 +433,7 @@
             <a href="#" class="bike__link">
               <div class="box__bike--item">
                 <div class="box__bike-img">
-                  <img src="./assets/img/lead_abs.png" alt="#" />
+                  <img src="assets/img/lead_abs.png" alt="#" />
                   <h5 class="box__bike--name">
                     Lead 125 ABS 2022
                   </h5>
@@ -458,7 +458,7 @@
             <a href="#" class="bike__link">
               <div class="box__bike--item">
                 <div class="box__bike-img">
-                  <img src="./assets/img/winnerX.jpg" alt="#" />
+                  <img src="assets/img/winnerX.jpg" alt="#" />
                   <h5 class="box__bike--name">
                     Winner X 150 2022
                   </h5>
@@ -483,7 +483,7 @@
             <a href="#" class="bike__link">
               <div class="box__bike--item">
                 <div class="box__bike-img">
-                  <img src="./assets/img/waveRSX.png" alt="#" />
+                  <img src="assets/img/waveRSX.png" alt="#" />
                   <h5 class="box__bike--name">
                     Wave RSX 110 2022
                   </h5>
@@ -542,7 +542,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="Chi%20tiet%20san%20pham.jsp" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt1.jpeg" alt="#" />
+                        <img src="assets/img/dt1.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave 110 HQTrắng - 2008</h3>
@@ -559,7 +559,7 @@
                   <div class="grid__column-2" data-attributes="ducati, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt2.jpg" alt="#" />
+                        <img src="assets/img/dt2.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Ducati 848 Đen - 2013</h3>
@@ -576,7 +576,7 @@
                   <div class="grid__column-2" data-attributes="sym, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt3.jpeg" alt="#" />
+                        <img src="assets/img/dt3.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">SYM Angela 50cc 2016 màu đỏ trắng</h3>
@@ -593,7 +593,7 @@
                   <div class="grid__column-2"  data-attributes="piaggio, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt4.jpg" alt="#" />
+                        <img src="assets/img/dt4.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Vespa LX 125 Đen - 2015</h3>
@@ -610,7 +610,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt5.jpg" alt="#" />
+                        <img src="assets/img/dt5.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Cub 50cc Vàng Trắng - 2020</h3>
@@ -627,7 +627,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt6.jpeg" alt="#" />
+                        <img src="assets/img/dt6.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi 2013 màu đen vàng</h3>
@@ -644,7 +644,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt7.jpg" alt="#" />
+                        <img src="assets/img/dt7.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave Alpha 110 hqld,  màu trắng</h3>
@@ -661,7 +661,7 @@
                   <div class="grid__column-2" data-attributes="piaggio, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt8.jpeg" alt="#" />
+                        <img src="assets/img/dt8.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Liberty 3V i.e 125 2015 màu trắng</h3>
@@ -678,7 +678,7 @@
                   <div class="grid__column-2"  data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt9.jpg" alt="#" />
+                        <img src="assets/img/dt9.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi Trắng Đỏ - 2013</h3>
@@ -695,7 +695,7 @@
                   <div class="grid__column-2" data-attributes="ducati, xam" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt10.jpeg" alt="#" />
+                        <img src="assets/img/dt10.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Scrambler 1100 Sport 2021 Xám Mờ</h3>
@@ -712,7 +712,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt11.jpeg" alt="#" />
+                        <img src="assets/img/dt11.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Vision 110 2013 màu đen đỏ</h3>
@@ -729,7 +729,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt1.jpeg" alt="#" />
+                        <img src="assets/img/dt1.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave 110 HQTrắng - 2008</h3>
@@ -746,7 +746,7 @@
                   <div class="grid__column-2" data-attributes="ducati, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt2.jpg" alt="#" />
+                        <img src="assets/img/dt2.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Ducati 848 Đen - 2013</h3>
@@ -763,7 +763,7 @@
                   <div class="grid__column-2" data-attributes="sym, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt3.jpeg" alt="#" />
+                        <img src="assets/img/dt3.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">SYM Angela 50cc 2016 màu đỏ trắng</h3>
@@ -780,7 +780,7 @@
                   <div class="grid__column-2"  data-attributes="piaggio, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt4.jpg" alt="#" />
+                        <img src="assets/img/dt4.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Vespa LX 125 Đen - 2015</h3>
@@ -797,7 +797,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt5.jpg" alt="#" />
+                        <img src="assets/img/dt5.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Cub 50cc Vàng Trắng - 2020</h3>
@@ -814,7 +814,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt6.jpeg" alt="#" />
+                        <img src="assets/img/dt6.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi 2013 màu đen vàng</h3>
@@ -831,7 +831,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt7.jpg" alt="#" />
+                        <img src="assets/img/dt7.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave Alpha 110 hqld,  màu trắng</h3>
@@ -848,7 +848,7 @@
                   <div class="grid__column-2" data-attributes="piaggio, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt8.jpeg" alt="#" />
+                        <img src="assets/img/dt8.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Liberty 3V i.e 125 2015 màu trắng</h3>
@@ -865,7 +865,7 @@
                   <div class="grid__column-2"  data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt9.jpg" alt="#" />
+                        <img src="assets/img/dt9.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi Trắng Đỏ - 2013</h3>
@@ -882,7 +882,7 @@
                   <div class="grid__column-2" data-attributes="ducati, xam" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt10.jpeg" alt="#" />
+                        <img src="assets/img/dt10.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Scrambler 1100 Sport 2021 Xám Mờ</h3>
@@ -899,7 +899,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt11.jpeg" alt="#" />
+                        <img src="assets/img/dt11.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Vision 110 2013 màu đen đỏ</h3>
@@ -916,7 +916,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt1.jpeg" alt="#" />
+                        <img src="assets/img/dt1.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave 110 HQTrắng - 2008</h3>
@@ -933,7 +933,7 @@
                   <div class="grid__column-2" data-attributes="ducati, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt2.jpg" alt="#" />
+                        <img src="assets/img/dt2.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Ducati 848 Đen - 2013</h3>
@@ -950,7 +950,7 @@
                   <div class="grid__column-2" data-attributes="sym, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt3.jpeg" alt="#" />
+                        <img src="assets/img/dt3.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">SYM Angela 50cc 2016 màu đỏ trắng</h3>
@@ -967,7 +967,7 @@
                   <div class="grid__column-2"  data-attributes="piaggio, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt4.jpg" alt="#" />
+                        <img src="assets/img/dt4.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Vespa LX 125 Đen - 2015</h3>
@@ -984,7 +984,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt1.jpeg" alt="#" />
+                        <img src="assets/img/dt1.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave 110 HQTrắng - 2008</h3>
@@ -1001,7 +1001,7 @@
                   <div class="grid__column-2" data-attributes="ducati, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt2.jpg" alt="#" />
+                        <img src="assets/img/dt2.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Ducati 848 Đen - 2013</h3>
@@ -1018,7 +1018,7 @@
                   <div class="grid__column-2" data-attributes="sym, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt3.jpeg" alt="#" />
+                        <img src="assets/img/dt3.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">SYM Angela 50cc 2016 màu đỏ trắng</h3>
@@ -1035,7 +1035,7 @@
                   <div class="grid__column-2"  data-attributes="piaggio, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt4.jpg" alt="#" />
+                        <img src="assets/img/dt4.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Vespa LX 125 Đen - 2015</h3>
@@ -1052,7 +1052,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt5.jpg" alt="#" />
+                        <img src="assets/img/dt5.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Cub 50cc Vàng Trắng - 2020</h3>
@@ -1069,7 +1069,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt6.jpeg" alt="#" />
+                        <img src="assets/img/dt6.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi 2013 màu đen vàng</h3>
@@ -1086,7 +1086,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt7.jpg" alt="#" />
+                        <img src="assets/img/dt7.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave Alpha 110 hqld,  màu trắng</h3>
@@ -1103,7 +1103,7 @@
                   <div class="grid__column-2" data-attributes="piaggio, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt8.jpeg" alt="#" />
+                        <img src="assets/img/dt8.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Liberty 3V i.e 125 2015 màu trắng</h3>
@@ -1120,7 +1120,7 @@
                   <div class="grid__column-2"  data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt9.jpg" alt="#" />
+                        <img src="assets/img/dt9.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi Trắng Đỏ - 2013</h3>
@@ -1137,7 +1137,7 @@
                   <div class="grid__column-2" data-attributes="ducati, xam" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt10.jpeg" alt="#" />
+                        <img src="assets/img/dt10.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Scrambler 1100 Sport 2021 Xám Mờ</h3>
@@ -1154,7 +1154,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt11.jpeg" alt="#" />
+                        <img src="assets/img/dt11.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Vision 110 2013 màu đen đỏ</h3>
@@ -1171,7 +1171,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt1.jpeg" alt="#" />
+                        <img src="assets/img/dt1.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave 110 HQTrắng - 2008</h3>
@@ -1188,7 +1188,7 @@
                   <div class="grid__column-2" data-attributes="ducati, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt2.jpg" alt="#" />
+                        <img src="assets/img/dt2.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Ducati 848 Đen - 2013</h3>
@@ -1205,7 +1205,7 @@
                   <div class="grid__column-2" data-attributes="sym, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt3.jpeg" alt="#" />
+                        <img src="assets/img/dt3.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">SYM Angela 50cc 2016 màu đỏ trắng</h3>
@@ -1222,7 +1222,7 @@
                   <div class="grid__column-2"  data-attributes="piaggio, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt4.jpg" alt="#" />
+                        <img src="assets/img/dt4.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Vespa LX 125 Đen - 2015</h3>
@@ -1239,7 +1239,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt5.jpg" alt="#" />
+                        <img src="assets/img/dt5.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Cub 50cc Vàng Trắng - 2020</h3>
@@ -1256,7 +1256,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt6.jpeg" alt="#" />
+                        <img src="assets/img/dt6.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi 2013 màu đen vàng</h3>
@@ -1273,7 +1273,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt7.jpg" alt="#" />
+                        <img src="assets/img/dt7.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave Alpha 110 hqld,  màu trắng</h3>
@@ -1290,7 +1290,7 @@
                   <div class="grid__column-2" data-attributes="piaggio, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt8.jpeg" alt="#" />
+                        <img src="assets/img/dt8.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Liberty 3V i.e 125 2015 màu trắng</h3>
@@ -1307,7 +1307,7 @@
                   <div class="grid__column-2"  data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt9.jpg" alt="#" />
+                        <img src="assets/img/dt9.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi Trắng Đỏ - 2013</h3>
@@ -1324,7 +1324,7 @@
                   <div class="grid__column-2" data-attributes="ducati, xam" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt10.jpeg" alt="#" />
+                        <img src="assets/img/dt10.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Scrambler 1100 Sport 2021 Xám Mờ</h3>
@@ -1341,7 +1341,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt11.jpeg" alt="#" />
+                        <img src="assets/img/dt11.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Vision 110 2013 màu đen đỏ</h3>
@@ -1358,7 +1358,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt1.jpeg" alt="#" />
+                        <img src="assets/img/dt1.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave 110 HQTrắng - 2008</h3>
@@ -1375,7 +1375,7 @@
                   <div class="grid__column-2" data-attributes="ducati, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt2.jpg" alt="#" />
+                        <img src="assets/img/dt2.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Ducati 848 Đen - 2013</h3>
@@ -1392,7 +1392,7 @@
                   <div class="grid__column-2" data-attributes="sym, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt3.jpeg" alt="#" />
+                        <img src="assets/img/dt3.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">SYM Angela 50cc 2016 màu đỏ trắng</h3>
@@ -1409,7 +1409,7 @@
                   <div class="grid__column-2"  data-attributes="piaggio, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt4.jpg" alt="#" />
+                        <img src="assets/img/dt4.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Vespa LX 125 Đen - 2015</h3>
@@ -1426,7 +1426,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt1.jpeg" alt="#" />
+                        <img src="assets/img/dt1.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave 110 HQTrắng - 2008</h3>
@@ -1443,7 +1443,7 @@
                   <div class="grid__column-2" data-attributes="ducati, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt2.jpg" alt="#" />
+                        <img src="assets/img/dt2.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Ducati 848 Đen - 2013</h3>
@@ -1460,7 +1460,7 @@
                   <div class="grid__column-2" data-attributes="sym, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt3.jpeg" alt="#" />
+                        <img src="assets/img/dt3.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">SYM Angela 50cc 2016 màu đỏ trắng</h3>
@@ -1477,7 +1477,7 @@
                   <div class="grid__column-2"  data-attributes="piaggio, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt4.jpg" alt="#" />
+                        <img src="assets/img/dt4.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Vespa LX 125 Đen - 2015</h3>
@@ -1494,7 +1494,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt5.jpg" alt="#" />
+                        <img src="assets/img/dt5.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Cub 50cc Vàng Trắng - 2020</h3>
@@ -1511,7 +1511,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt6.jpeg" alt="#" />
+                        <img src="assets/img/dt6.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi 2013 màu đen vàng</h3>
@@ -1528,7 +1528,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt7.jpg" alt="#" />
+                        <img src="assets/img/dt7.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave Alpha 110 hqld,  màu trắng</h3>
@@ -1545,7 +1545,7 @@
                   <div class="grid__column-2" data-attributes="piaggio, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt8.jpeg" alt="#" />
+                        <img src="assets/img/dt8.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Liberty 3V i.e 125 2015 màu trắng</h3>
@@ -1562,7 +1562,7 @@
                   <div class="grid__column-2"  data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt9.jpg" alt="#" />
+                        <img src="assets/img/dt9.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi Trắng Đỏ - 2013</h3>
@@ -1579,7 +1579,7 @@
                   <div class="grid__column-2" data-attributes="ducati, xam" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt10.jpeg" alt="#" />
+                        <img src="assets/img/dt10.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Scrambler 1100 Sport 2021 Xám Mờ</h3>
@@ -1596,7 +1596,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt11.jpeg" alt="#" />
+                        <img src="assets/img/dt11.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Vision 110 2013 màu đen đỏ</h3>
@@ -1613,7 +1613,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt1.jpeg" alt="#" />
+                        <img src="assets/img/dt1.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave 110 HQTrắng - 2008</h3>
@@ -1630,7 +1630,7 @@
                   <div class="grid__column-2" data-attributes="ducati, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt2.jpg" alt="#" />
+                        <img src="assets/img/dt2.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Ducati 848 Đen - 2013</h3>
@@ -1647,7 +1647,7 @@
                   <div class="grid__column-2" data-attributes="sym, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt3.jpeg" alt="#" />
+                        <img src="assets/img/dt3.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">SYM Angela 50cc 2016 màu đỏ trắng</h3>
@@ -1664,7 +1664,7 @@
                   <div class="grid__column-2"  data-attributes="piaggio, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt4.jpg" alt="#" />
+                        <img src="assets/img/dt4.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Vespa LX 125 Đen - 2015</h3>
@@ -1681,7 +1681,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt5.jpg" alt="#" />
+                        <img src="assets/img/dt5.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Cub 50cc Vàng Trắng - 2020</h3>
@@ -1698,7 +1698,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt6.jpeg" alt="#" />
+                        <img src="assets/img/dt6.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi 2013 màu đen vàng</h3>
@@ -1715,7 +1715,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt7.jpg" alt="#" />
+                        <img src="assets/img/dt7.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave Alpha 110 hqld,  màu trắng</h3>
@@ -1732,7 +1732,7 @@
                   <div class="grid__column-2" data-attributes="piaggio, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt8.jpeg" alt="#" />
+                        <img src="assets/img/dt8.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Liberty 3V i.e 125 2015 màu trắng</h3>
@@ -1749,7 +1749,7 @@
                   <div class="grid__column-2"  data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt9.jpg" alt="#" />
+                        <img src="assets/img/dt9.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi Trắng Đỏ - 2013</h3>
@@ -1766,7 +1766,7 @@
                   <div class="grid__column-2" data-attributes="ducati, xam" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt10.jpeg" alt="#" />
+                        <img src="assets/img/dt10.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Scrambler 1100 Sport 2021 Xám Mờ</h3>
@@ -1783,7 +1783,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt11.jpeg" alt="#" />
+                        <img src="assets/img/dt11.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Vision 110 2013 màu đen đỏ</h3>
@@ -1800,7 +1800,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt1.jpeg" alt="#" />
+                        <img src="assets/img/dt1.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave 110 HQTrắng - 2008</h3>
@@ -1817,7 +1817,7 @@
                   <div class="grid__column-2" data-attributes="ducati, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt2.jpg" alt="#" />
+                        <img src="assets/img/dt2.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Ducati 848 Đen - 2013</h3>
@@ -1834,7 +1834,7 @@
                   <div class="grid__column-2" data-attributes="sym, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt3.jpeg" alt="#" />
+                        <img src="assets/img/dt3.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">SYM Angela 50cc 2016 màu đỏ trắng</h3>
@@ -1851,7 +1851,7 @@
                   <div class="grid__column-2"  data-attributes="piaggio, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt4.jpg" alt="#" />
+                        <img src="assets/img/dt4.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Vespa LX 125 Đen - 2015</h3>
@@ -1868,7 +1868,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt5.jpg" alt="#" />
+                        <img src="assets/img/dt5.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Cub 50cc Vàng Trắng - 2020</h3>
@@ -1885,7 +1885,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt6.jpeg" alt="#" />
+                        <img src="assets/img/dt6.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi 2013 màu đen vàng</h3>
@@ -1902,7 +1902,7 @@
                   <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt7.jpg" alt="#" />
+                        <img src="assets/img/dt7.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Wave Alpha 110 hqld,  màu trắng</h3>
@@ -1919,7 +1919,7 @@
                   <div class="grid__column-2" data-attributes="piaggio, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt8.jpeg" alt="#" />
+                        <img src="assets/img/dt8.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Liberty 3V i.e 125 2015 màu trắng</h3>
@@ -1936,7 +1936,7 @@
                   <div class="grid__column-2"  data-attributes="honda, trang" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt9.jpg" alt="#" />
+                        <img src="assets/img/dt9.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Airblade 110 Fi Trắng Đỏ - 2013</h3>
@@ -1953,7 +1953,7 @@
                   <div class="grid__column-2" data-attributes="ducati, xam" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt10.jpeg" alt="#" />
+                        <img src="assets/img/dt10.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">DUCATI Scrambler 1100 Sport 2021 Xám Mờ</h3>
@@ -1970,7 +1970,7 @@
                   <div class="grid__column-2" data-attributes="honda, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt11.jpeg" alt="#" />
+                        <img src="assets/img/dt11.jpeg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">HONDA Vision 110 2013 màu đen đỏ</h3>
@@ -1987,7 +1987,7 @@
                   <div class="grid__column-2"  data-attributes="piaggio, den" style="padding: 10px;">
                     <a href="#" class="bike--item">
                       <div class="bike__img zoom-img">
-                        <img src="./assets/img/dt12.jpg" alt="#" />
+                        <img src="assets/img/dt12.jpg" alt="#" />
                       </div>
                       <div class="bike__info">
                         <h3 class="bike__name">PIAGGIO Liberty 125 i.e Đen - 2015</h3>
@@ -2074,15 +2074,15 @@
                   <h5>Phương thức thanh toán</h5>
                   <!-- <p>Monthly digest of what's new and exciting from us.</p> -->
                   <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                      <img class="footer__banking" src="./assets/img/bankcard1.png" alt="">
-                      <img class="footer__banking" src="./assets/img/bankcard2.png" alt="">
-                      <img class="footer__banking" src="./assets/img/bankcard3.png" alt="">
-                      <img class="footer__banking" src="./assets/img/bankcard4.png" alt="">
-                      <img class="footer__banking" src="./assets/img/bankcard5.png" alt="">
-                      <img class="footer__banking" src="./assets/img/bankcard6.png" alt="">
+                      <img class="footer__banking" src="assets/img/bankcard1.png" alt="">
+                      <img class="footer__banking" src="assets/img/bankcard2.png" alt="">
+                      <img class="footer__banking" src="assets/img/bankcard3.png" alt="">
+                      <img class="footer__banking" src="assets/img/bankcard4.png" alt="">
+                      <img class="footer__banking" src="assets/img/bankcard5.png" alt="">
+                      <img class="footer__banking" src="assets/img/bankcard6.png" alt="">
                   </div>
                   <div class="footer__rectangle">
-                      <img src="./assets/img/Rectangle.png" alt="">
+                      <img src="assets/img/Rectangle.png" alt="">
                   </div>
                 </form>
               </div>
@@ -2101,8 +2101,8 @@
   </footer>
     </div>
 
-    <script src="./assets/js/product.js"></script>
-    <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/bootstrap/js/popper.min.js"></script>
+    <script src="assets/js/product.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/bootstrap/js/popper.min.js"></script>
   </body>
 </html>

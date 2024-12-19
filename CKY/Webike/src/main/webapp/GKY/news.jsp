@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/homepage.css">
-    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -61,7 +61,7 @@
                             <li class="header__navbar--item"><a href="#">Đăng ký</a></li> -->
         
                             <li class="header__navbar--item header__navbar--user">
-                                <img src="./assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
+                                <img src="assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
                                 <span class="header__navbar--user-name">Trí Đức</span>
         
                                 <ul class="header__navbar--user-menu">
@@ -99,7 +99,7 @@
                         </div>
         
                         <div class="header__cart">
-                            <a href="Gio%20hang.jsp" class="header__cart-link" >
+                            <a href="Gio hang.jsp" class="header__cart-link" >
                                 <i class="header__cart-icon ti-shopping-cart"></i>
                                 <span class="header__cart--text">Giỏ Hàng</span>
                             </a>

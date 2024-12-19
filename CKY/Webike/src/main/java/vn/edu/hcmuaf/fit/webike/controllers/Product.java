@@ -6,28 +6,22 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
-import vn.edu.hcmuaf.fit.webike.models.Feature;
-import vn.edu.hcmuaf.fit.webike.models.Spec;
-import vn.edu.hcmuaf.fit.webike.models.Warranty;
+import vn.edu.hcmuaf.fit.webike.models.Products;
 
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(name = "ProductDetail", value = "/ProductDetail")
-public class ProductDetail extends HttpServlet {
+@WebServlet(name = "productDetail", value = "/productDetail")
+public class Product extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = 1;
+
         ProductDAO dao = new ProductDAO();
-        List<Spec> spec = dao.getSpec(id);
-        List<Feature> feature = dao.getFeature(id);
-        List<Warranty> warranty = dao.getWarranty(id);
+        Products p = dao.getProduct(1);
 
+        request.setAttribute("p", p);
 
-        request.setAttribute("id", id);
-        request.setAttribute("spec", spec);
-        request.getRequestDispatcher("productDetail.jsp").forward(request, response);
+        request.getRequestDispatcher("GKY/productDetail.jsp").forward(request, response);
 
     }
 

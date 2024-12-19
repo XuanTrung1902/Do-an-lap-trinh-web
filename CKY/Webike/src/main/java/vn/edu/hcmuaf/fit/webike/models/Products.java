@@ -1,27 +1,33 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
-import java.util.List;
-
-public class Product {
+public class Products {
     private int id;
     private String name;
     private String des;
+    private double price;
+    private int quantity;
+    private String version;
     private String launch;
+    private String status;
     private int brandID;
     private int typeID;
-    private List<ProductDetail> details;
+//    private List<Product> details;
 
-    public Product() {
+    public Products() {
     }
 
-    public Product(int id, String name, String des, String launch, int brandID, int typeID, List<ProductDetail> details) {
+    public Products(int id, String name, String des, double price, int quantity, String version, String launch, String status, int brandID, int typeID) {
         this.id = id;
         this.name = name;
         this.des = des;
+        this.price = price;
+        this.quantity = quantity;
+        this.version = version;
         this.launch = launch;
+        this.status = status;
         this.brandID = brandID;
         this.typeID = typeID;
-        this.details = details;
+//        this.details = details;
     }
 
     public int getId() {
@@ -48,12 +54,44 @@ public class Product {
         this.des = des;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
     public String getLaunch() {
         return launch;
     }
 
     public void setLaunch(String launch) {
         this.launch = launch;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getBrandID() {
@@ -72,24 +110,20 @@ public class Product {
         this.typeID = typeID;
     }
 
-    public List<ProductDetail> getDetails() {
-        return details;
-    }
-
-    public void setDetails(List<ProductDetail> details) {
-        this.details = details;
-    }
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "Products{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", des='" + des + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", version='" + version + '\'' +
                 ", launch='" + launch + '\'' +
+                ", status='" + status + '\'' +
                 ", brandID=" + brandID +
                 ", typeID=" + typeID +
-                ", details=" + details +
                 '}' + "\n";
     }
 }
