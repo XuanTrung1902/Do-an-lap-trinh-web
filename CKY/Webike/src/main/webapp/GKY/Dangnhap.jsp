@@ -63,7 +63,7 @@
               <span class="padding-bottom--15">Đăng nhập tài khoản</span>
 
 <%--            ${pageContext.request.contextPath}--%>
-              <form id="stripe-login" method="post" action="${pageContext.request.contextPath}/Dangnhap" >
+              <form id="stripe-login" method="post" action="${pageContext.request.contextPath}/Dangnhap">
                 <div class="field padding-bottom--24">
                   <label for="Phone">SĐT</label>
                   <input type="phone" name="phone" value="${phone != null ? phone : ''}">
@@ -82,16 +82,15 @@
                     <input type="checkbox" name="checkbox"> Lưu mật khẩu?
                   </label>
                 </div>
-                  <div class="field padding-bottom--24">
-                    <input type="submit" name="submit" value="Đăng nhập">
-                  </div>
+                <div class="field padding-bottom--24">
+                  <input type="submit" name="submit" value="Đăng nhập">
+                </div>
                 <div class="field">
                   <div class="ssolink">
                     <span style="margin-right: 10px;text-align: center; font-weight: 600; color: #e31c25;">Đăng nhập bằng</span>
                     <a href="#" class=""><img src="assets/img/facebook.png" alt="" style="width: 30px; margin-right: 10px;"></a>
                     <a href="#" class=""><img src="assets/img/google.png" alt="" style="width: 30px; border: 0.2px #ebd3d3 solid; border-radius: 100px;"></a>
                   </div>
-
                 </div>
               </form>
             </div>

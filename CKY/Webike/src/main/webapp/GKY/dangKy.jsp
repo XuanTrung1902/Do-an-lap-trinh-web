@@ -65,62 +65,51 @@
         <div class="error">${error}</div>
       </c:if>
 <%--${pageContext.request.contextPath}--%>
-      <form class="form_center" method="post"  action="${pageContext.request.contextPath}/Dangky">
+      <form class="form_center" method="post" action="${pageContext.request.contextPath}/Dangky">
+        <c:if test="${not empty error}">
+          <div class="error">${error}</div>
+        </c:if>
         <div class="input_field">
           <input type="text" name="fullname" placeholder="Họ Tên" required>
         </div>
         <div class="input_field">
-          <input type="tel" name="phone"  placeholder="Số điện thoại" required>
+          <input type="tel" name="phone" placeholder="Số điện thoại" required>
         </div>
         <div class="input_field">
-          <input type="text" name="address"  placeholder="Dịa chỉ" required>
+          <input type="text" name="address" placeholder="Địa chỉ" required>
         </div>
-
-        <div class="form-group ">
+        <div class="form-group">
           <div class="gender-group">
             <label class="custom-radio">
-              <input type="radio" id="male" name="gender" value="male">
+              <input type="radio" id="male" name="gender" value="Nam">
               <span class="checkmark"></span> Nam
             </label>
             <label class="custom-radio">
-              <input type="radio" id="female" name="gender" value="female">
+              <input type="radio" id="female" name="gender" value="Nữ">
               <span class="checkmark"></span> Nữ
             </label>
           </div>
         </div>
-
         <div class="form-group">
           <div class="birth-date">
             <select id="day-select" name="day"></select>
-            <select id="month-select"name="month"></select>
+            <select id="month-select" name="month"></select>
             <select id="year-select" name="year"></select>
           </div>
         </div>
-
-
         <div class="input_field">
-          <input type="password"  name="password" placeholder="Mật khẩu" required>
+          <input type="password" name="password" placeholder="Mật khẩu" required>
         </div>
         <div class="input_field">
           <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" required>
         </div>
-
         <div class="checkbox">
-          <input type="checkbox"  name="terms" required>
+          <input type="checkbox" name="terms" required>
           <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>
         </div>
-<%--        onclick="window.location.href='${pageContext.request.contextPath}/Dangky'"--%>
-        <button  type="submit" class="submit_btn"><i class="fa-regular fa-user"></i> ĐĂNG KÝ</button>
-        <!--        <p class="or-text">hoặc tiếp tục với</p>-->
-        <!--        <div class="social-login">-->
-        <!--          <button class="facebook-btn"><i class="fa-brands fa-facebook"></i> Facebook</button>-->
-        <!--          <button class="google-btn"><i class="fa-brands fa-google"></i> Google</button>-->
-        <!--        </div>-->
-        <p class="login-link">Bạn có sẵn sàng để tạo một tài khoản? <a href="#">Đăng nhập</a></p>
+        <button type="submit" class="submit_btn"><i class="fa-regular fa-user"></i> ĐĂNG KÝ</button>
+        <p class="login-link">Bạn đã có tài khoản? <a href="${pageContext.request.contextPath}/Dangnhap">Đăng nhập</a></p>
       </form>
-
-
-
 
 
     </div>

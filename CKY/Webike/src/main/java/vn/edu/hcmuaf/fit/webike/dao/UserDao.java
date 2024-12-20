@@ -7,9 +7,9 @@ import java.util.List;
 
 public class UserDao {
 
-    public User findUserPhone(String phone) {
-        return JDBIConnect.get().withHandle(h-> h.createQuery("select  * from users where phone = :phone")
-                .bind("phone",phone)
+    public User findUserPhone(String phoneNum) {
+        return JDBIConnect.get().withHandle(h -> h.createQuery("SELECT * FROM accounts WHERE phoneNum = :phoneNum")
+                .bind("phoneNum", phoneNum)
                 .mapToBean(User.class)
                 .findFirst()
                 .orElse(null));
@@ -17,35 +17,44 @@ public class UserDao {
 
     public boolean saveUser(User user) {
         return JDBIConnect.get().withHandle(h ->
-                h.createUpdate("INSERT INTO users (username, password, name, phone, dob, gender, address, role, img) VALUES (:username, :password, :name, :phone, :dob, :gender, :address, :role, :img)")
-                        .bind("username", user.getUsername()) // Gán giá trị cho username
+                h.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address)")
+                        .bind("name", user.getName())
+                        .bind("phoneNum", user.getPhoneNum())
+                        .bind("DOB", user.getDOB())
+                        .bind("sex", user.getSex())
                         .bind("password", user.getPassword())
-                        .bind("name", user.getName())         // Gán giá trị cho name
-                        .bind("phone", user.getPhone())
-                        .bind("dob", user.getDob())
-                        .bind("gender", user.getGender())
-                        .bind("address", user.getAddress())
+                        .bind("created", user.getCreated())
+                        .bind("locked", user.getLocked())
+                        .bind("verify", user.getVerify())
                         .bind("role", user.getRole())
-                        .bind("img", user.getImg())
+                        .bind("address", user.getAddress())
                         .execute() > 0
         );
     }
+
+    public boolean isPhoneNumExists(String phoneNum) {
+        return JDBIConnect.get().withHandle(h ->
+                h.createQuery("SELECT COUNT(*) FROM accounts WHERE phoneNum = :phoneNum")
+                        .bind("phoneNum", phoneNum)
+                        .mapTo(Integer.class)
+                        .findOnly() > 0
+        );
+    }
+
     public boolean updateUser(User user) {
-        return JDBIConnect.get().withHandle(h -> h.createUpdate("update users set password = :password where phone = :phone")
+        return JDBIConnect.get().withHandle(h -> h.createUpdate("UPDATE accounts SET password = :password WHERE phoneNum = :phoneNum")
                 .bind("password", user.getPassword())
-                .bind("phone", user.getPhone())
+                .bind("phoneNum", user.getPhoneNum())
                 .execute()) > 0;
     }
 
-
     public List<User> findAll() {
         return JDBIConnect.get().withHandle(handle ->
-                handle.createQuery("SELECT * FROM users")
+                handle.createQuery("SELECT * FROM accounts")
                         .mapToBean(User.class)
                         .list()
         );
     }
-
 
 }
 

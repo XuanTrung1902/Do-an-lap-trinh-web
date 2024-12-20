@@ -1,69 +1,42 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
 public class User {
-    private int userid;
-    private String username;
-    private String password;
+    private int id;
     private String name;
-    private String phone;
-    private String dob;
-    private String gender; // "M" hoặc "F"
+    private String phoneNum;
+    private String DOB;
+    private String sex;
+    private String password;
+    private String created;
+    private int locked;
+    private int verify;
+    private int role;
     private String address;
-    private String createdAt;
-    private boolean locked; // true nếu tài khoản bị khóa
-    private int role; // 1 = admin, 0 = user
-    private String img; // URL ảnh đại diện
 
     // Constructors
-//    public User() {}
+    public User() {}
 
-    public User(int userid, String username, String password, String name, String phone, String dob, String gender,
-                String address, String createdAt, boolean locked, int role, String img) {
-        this.userid = userid;
-        this.username = username;
-        this.password = password;
+    public User(int id, String name, String phoneNum, String DOB, String sex, String password, String created, int locked, int verify, int role, String address) {
+        this.id = id;
         this.name = name;
-        this.phone = phone;
-        this.dob = dob;
-        this.gender = gender;
-        this.address = address;
-        this.createdAt = createdAt;
+        this.phoneNum = phoneNum;
+        this.DOB = DOB;
+        this.sex = sex;
+        this.password = password;
+        this.created = created;
         this.locked = locked;
+        this.verify = verify;
         this.role = role;
-        this.img = img;
-    }
-
-
-    public User() {
-        this.createdAt = java.time.LocalDateTime.now().toString(); // Ngày giờ hiện tại
-        this.locked = false; // Mặc định không bị khóa
-        this.img = "default.png"; // Ảnh mặc định
-        this.role = 0; // Người dùng thường
+        this.address = address;
     }
 
     // Getters and Setters
-    public int getUserid() {
-        return userid;
+    public int getId() {
+        return id;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -74,52 +47,60 @@ public class User {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
-    public String getDob() {
-        return dob;
+    public String getDOB() {
+        return DOB;
     }
 
-    public void setDob(String dob) {
-        this.dob = dob;
+    public void setDOB(String DOB) {
+        this.DOB = DOB;
     }
 
-    public String getGender() {
-        return gender;
+    public String getSex() {
+        return sex;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public String getCreated() {
+        return created;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated(String created) {
+        this.created = created;
     }
 
-    public boolean isLocked() {
+    public int getLocked() {
         return locked;
     }
 
-    public void setLocked(boolean locked) {
+    public void setLocked(int locked) {
         this.locked = locked;
+    }
+
+    public int getVerify() {
+        return verify;
+    }
+
+    public void setVerify(int verify) {
+        this.verify = verify;
     }
 
     public int getRole() {
@@ -130,31 +111,31 @@ public class User {
         this.role = role;
     }
 
-    public String getImg() {
-        return img;
+    public String getAddress() {
+        return address;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userid=" + userid +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", dob=" + dob +
-                ", gender='" + gender + '\'' +
-                ", address='" + address + '\'' +
-                ", createdAt=" + createdAt +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", DOB='" + DOB + '\'' +
+                ", sex='" + sex + '\'' +
+                ", password='" + password + '\'' +
+                ", created='" + created + '\'' +
                 ", locked=" + locked +
+                ", verify=" + verify +
                 ", role=" + role +
-                ", img='" + img + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
+
 }
 
 
