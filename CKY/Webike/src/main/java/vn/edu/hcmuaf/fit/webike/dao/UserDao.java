@@ -41,12 +41,30 @@ public class UserDao {
         );
     }
 
+//    public boolean updateUser(User user) {
+//        return JDBIConnect.get().withHandle(h -> h.createUpdate("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, sex = :sex, address = :address WHERE id = :id")
+//                .bind("name", user.getName())
+//                .bind("phoneNum", user.getPhoneNum())
+//                .bind("DOB", user.getDOB())
+//                .bind("sex", user.getSex())
+//                .bind("address", user.getAddress())
+//                .bind("id", user.getId())
+//                .execute() > 0);
+//    }
     public boolean updateUser(User user) {
-        return JDBIConnect.get().withHandle(h -> h.createUpdate("UPDATE accounts SET password = :password WHERE phoneNum = :phoneNum")
-                .bind("password", user.getPassword())
+        return JDBIConnect.get().withHandle(h -> h.createUpdate("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, sex = :sex, address = :address, password = :password WHERE id = :id")
+                .bind("name", user.getName())
                 .bind("phoneNum", user.getPhoneNum())
-                .execute()) > 0;
+                .bind("DOB", user.getDOB())
+                .bind("sex", user.getSex())
+                .bind("address", user.getAddress())
+                .bind("password", user.getPassword())
+                .bind("id", user.getId())
+                .execute() > 0);
     }
+
+
+
 
     public List<User> findAll() {
         return JDBIConnect.get().withHandle(handle ->

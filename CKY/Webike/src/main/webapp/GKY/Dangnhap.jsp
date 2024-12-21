@@ -72,7 +72,7 @@
                   <div class="grid--50-50">
                     <label for="password">Mật khẩu</label>
                     <div class="reset-pass">
-                      <a href="trangQuenMatKhau.jsp">Quên mật khẩu?</a>
+                      <a href="${pageContext.request.contextPath}/GKY/trangQuenMatKhau.jsp">Quên mật khẩu?</a>
                     </div>
                   </div>
                   <input type="password" name="password">
@@ -99,7 +99,7 @@
 
         <!--footer-->
           <div class="footer-link " style="padding: 10px;">
-            <span style="color: #fdeded">Chưa có tài khoản? <a href="" style="color: #e31c25">Đăng ký</a></span>
+            <span style="color: #fdeded">Chưa có tài khoản? <a href="${pageContext.request.contextPath}/GKY/dangKy.jsp" style="color: #e31c25">Đăng ký</a></span>
             <div class="listing  padding-bottom--24 flex-flex center-center">
               <span><a href="#">© ByMoto</a></span>
               <span><a href="#">Liên hệ</a></span>

@@ -69,23 +69,45 @@
                             </li>
                             <li class="header__navbar--item"><a href="#">Đăng ký</a></li> -->
 
-                            <li class="header__navbar--item header__navbar--user">
-                                <img src="./assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
-                                <span class="header__navbar--user-name">Trí Đức</span>
 
+
+
+<%--                            <li class="header__navbar--item header__navbar--user">--%>
+<%--                                <img src="./assets/img/avt1.jpg" alt="" class="header__navbar--user-img">--%>
+<%--                                <span class="header__navbar--user-name">Trí Đức</span>--%>
+
+<%--                                <ul class="header__navbar--user-menu">--%>
+<%--                                    <li class="header__navbar--user-menu-item">--%>
+<%--                                        <a href="trangTTKhachHang.jsp"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>--%>
+<%--                                    </li>--%>
+<%--                                    <!-- <li class="header__navbar--user-menu-item">--%>
+<%--                                        <a href="#"><i class="fa-solid fa-shopping-vn.edu.hcmuaf.fit.webike.t.services.cart m-r-8"></i>Lịch sử mua hàng</a>--%>
+<%--                                    </li> -->--%>
+<%--                                    <li class="header__navbar--user-menu-item">--%>
+<%--                                        <a href="Dangnhap.jsp"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>--%>
+<%--                                    </li>--%>
+<%--                                </ul>--%>
+<%--                            </li>--%>
+<%--                            --%>
+
+
+
+                            <li class="header__navbar--item header__navbar--user">
+                                <img src="assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
+                                <span class="header__navbar--user-name">${sessionScope.auth.name}</span>
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
                                         <a href="trangTTKhachHang.jsp"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>
                                     </li>
-                                    <!-- <li class="header__navbar--user-menu-item">
-                                        <a href="#"><i class="fa-solid fa-shopping-vn.edu.hcmuaf.fit.webike.t.services.cart m-r-8"></i>Lịch sử mua hàng</a>
-                                    </li> -->
+<%--                                    <li class="header__navbar--user-menu-item">--%>
+<%--                                        <a href="${pageContext.request.contextPath}/Profile"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>--%>
+<%--                                    </li>--%>
                                     <li class="header__navbar--user-menu-item">
-                                        <a href="Dangnhap.jsp"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
+                                        <a href="${pageContext.request.contextPath}/Logout"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
                                     </li>
                                 </ul>
                             </li>
-                            
+
                         </ul>
                     </div>
 

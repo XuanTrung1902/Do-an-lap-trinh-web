@@ -9,8 +9,13 @@
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/css/base.css">
+
+
+
     <link rel="stylesheet" href="./assets/css/headerFooter.css">
     <link rel="stylesheet" href="./assets/css/trangTTKhachHang.css">
+
+
 
     <link rel="stylesheet" href="./assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
     <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
@@ -67,8 +72,7 @@
 
                             <li class="header__navbar--item header__navbar--user">
                                 <img src="./assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
-                                <span class="header__navbar--user-name">Trí Đức</span>
-
+                                <span class="header__navbar--user-name">${sessionScope.auth.name}</span>
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
                                         <a href="#"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>
@@ -77,11 +81,12 @@
                                         <a href="#"><i class="fa-solid fa-shopping-cart m-r-8"></i>Lịch sử mua hàng</a>
                                     </li>
                                     <li class="header__navbar--user-menu-item">
-                                        <a href="#"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
+                                        <a href="${pageContext.request.contextPath}/Logout"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
                                     </li>
                                 </ul>
                             </li>
-                            
+
+
                         </ul>
                     </div>
 
@@ -120,69 +125,62 @@
                 <ul class="sidebar-menu">
                     <li><a href="#" id="show-profile">Thông tin tài khoản</a></li>
                     <li><a href="#" id="change-password">Đổi mật khẩu</a></li>
-                    <li><a href="Dangnhap.html">Đăng xuất</a></li>
                 </ul>
             </div>
 
             <div class="profile-form" id="profile-form">
-                <form>
+                <form action="${pageContext.request.contextPath}/Profile" method="post">
+                    <c:if test="${not empty message}">
+                        <div class="message">${message}</div>
+                    </c:if>
+                    <c:if test="${not empty error}">
+                        <div class="error">${error}</div>
+                    </c:if>
                     <div class="form-group">
                         <label for="username">Tên đăng nhập</label>
-                        <input type="text" id="username" value="Chuong123" disabled>
+                        <input type="text" id="username" value="${sessionScope.auth.name}" disabled>
                     </div>
 
                     <div class="form-group">
                         <label for="fullname">Tên</label>
-                        <input type="text" id="fullname" placeholder="Văn Chương">
+                        <input type="text" id="fullname" name="fullname" value="${sessionScope.auth.name}" placeholder="Văn Chương">
                     </div>
 
-<!--                    <div class="form-group email-facebook-group">-->
-<!--                        <label for="email">Email   </label>-->
-<!--                        <div class="info-edit">-->
-<!--                            <input type="email" id="email" value="VanChuong@gmail.com" disabled>-->
-<!--                            <a href="#" class="email-change link-toggle" id="email-link">Liên Kết</a>-->
-<!--                        </div>-->
-
-<!--                        <label for="facebook">Facebook</label>-->
-<!--                        <div class="info-edit">-->
-<!--                            <input type="text" id="facebook" value="(Chưa liên Kêt)" disabled>-->
-<!--                            <a href="#" class="facebook-change link-toggle" id="facebook-link">Liên Kết</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
                     <div class="form-group">
-                        <label >Số điện thoại</label>
-                        <input type="tel"  placeholder="0312358497">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="tel" id="phone" name="phone" value="${sessionScope.auth.phoneNum}" placeholder="0312358497">
                     </div>
                     <div class="form-group">
-                        <label >Địa chỉ</label>
-                        <input type="addres"  placeholder="Tỉnh/Thành Phố, Huyện, Xã">
+                        <label for="address">Địa chỉ</label>
+                        <input type="text" id="address" name="address" value="${sessionScope.auth.address}" placeholder="Tỉnh/Thành Phố, Huyện, Xã">
                     </div>
 
                     <div class="form-group">
                         <label>Giới tính</label>
                         <div class="gender-group">
                             <label class="custom-radio">
-                                <input type="radio" id="male" name="gender" value="male">
+                                <input type="radio" id="male" name="gender" value="Nam" ${sessionScope.auth.sex == 'Nam' ? 'checked' : ''}>
                                 <span class="checkmark"></span> Nam
                             </label>
                             <label class="custom-radio">
-                                <input type="radio" id="female" name="gender" value="female">
+                                <input type="radio" id="female" name="gender" value="Nữ" ${sessionScope.auth.sex == 'Nữ' ? 'checked' : ''}>
                                 <span class="checkmark"></span> Nữ
                             </label>
-<!--                            <label class="custom-radio">-->
-<!--                                <input type="radio" id="other" name="gender" value="other">-->
-<!--                                <span class="checkmark"></span> Khác-->
-<!--                            </label>-->
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label >Ngày sinh</label>
+                        <label>Ngày sinh</label>
                         <div class="birth-date">
-                            <select id="day-select"></select>
-                            <select id="month-select"></select>
-                            <select id="year-select"></select>
+                            <select id="day-select" name="day">
+                                <!-- Add options for days -->
+                            </select>
+                            <select id="month-select" name="month">
+                                <!-- Add options for months -->
+                            </select>
+                            <select id="year-select" name="year">
+                                <!-- Add options for years -->
+                            </select>
                         </div>
                     </div>
 
@@ -191,24 +189,26 @@
             </div>
 
 
-<!--            form đổi mật khẩu-->
-            <div class="change-password-form"  id="change-password-form" style="display: none;">
-                <form id="password-form">
+            <!--            form đổi mật khẩu-->
+            <div class="change-password-form" id="change-password-form" style="display: none;">
+                <form id="password-form" action="${pageContext.request.contextPath}/ChangePassword" method="post">
                     <div class="form-group">
                         <label for="current-password">Mật khẩu cũ</label>
-                        <input type="password" id="current-password" placeholder="Nhập mật khẩu cũ" required>
+                        <input type="password" id="current-password" name="current-password" placeholder="Nhập mật khẩu cũ" required>
                     </div>
                     <div class="form-group">
                         <label for="new-password">Mật khẩu mới</label>
-                        <input type="password" id="new-password" placeholder="Nhập mật khẩu mới" required>
+                        <input type="password" id="new-password" name="new-password" placeholder="Nhập mật khẩu mới" required>
                     </div>
                     <div class="form-group">
                         <label for="confirm-password">Xác nhận mật khẩu mới</label>
-                        <input type="password" id="confirm-password" placeholder="Xác nhận mật khẩu mới" required>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Xác nhận mật khẩu mới" required>
                     </div>
                     <button type="submit" class="save-btn">Đổi mật khẩu</button>
                 </form>
             </div>
+
+
         </div>
         
 

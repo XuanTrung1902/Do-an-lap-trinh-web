@@ -12,7 +12,6 @@ public class UserSevice {
 
         if (u != null && password != null) {
             String hashedPassword = hashPassword(password);
-            System.out.println("Hashed Password: " + hashedPassword); // In ra mật khẩu đã mã hóa
             if (hashedPassword.equals(u.getPassword())) {
                 u.setPassword(null); // Xóa mật khẩu trước khi trả về user
                 return u;
@@ -56,5 +55,25 @@ public class UserSevice {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error hashing password", e);
         }
+    }
+    public static boolean updateUser(User user) {
+        UserDao userDao = new UserDao();
+        return userDao.updateUser(user);
+    }
+    public static boolean updatePassword(User user, String currentPassword, String newPassword) {
+        UserDao userDao = new UserDao();
+        String hashedCurrentPassword = hashPassword(currentPassword);
+        if (hashedCurrentPassword.equals(user.getPassword())) {
+            String hashedNewPassword = hashPassword(newPassword);
+            user.setPassword(hashedNewPassword);
+            boolean isUpdated = userDao.updateUser(user);
+            System.out.println("Password updated: " + isUpdated); // In ra log để kiểm tra
+            return isUpdated;
+        }
+        return false;
+    }
+    public static User findUserByPhone(String phoneNum) {
+        UserDao userdao = new UserDao();
+        return userdao.findUserPhone(phoneNum);
     }
 }

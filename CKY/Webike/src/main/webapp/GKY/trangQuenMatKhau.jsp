@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Quên Mật Khẩu</title>
-    <link rel="stylesheet" href="assets/css/quenMatKhau.css">
+    <base href="${pageContext.request.contextPath}/GKY/assets/">
+    <link rel="stylesheet" href="css/quenMatKhau.css">
 
 </head>
 <body>
@@ -13,27 +14,32 @@
 <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
     <h1>
         <a href="#">
-            <img src="assets/img/logo.png" alt="Webike VN" class="logo" /></a>
+            <img src="img/logo.png" alt="Webike VN" class="logo" /></a>
     </h1>
 </div>
 
 <div class="form-container">
     <h2>Quên mật khẩu?</h2>
     <form action="${pageContext.request.contextPath}/QuenMatKhau" method="post">
-        <label for="username">Tên đăng nhập:</label>
-        <input type="text" id="username" name="username" required>
+<%--        <c:if test="${not empty error}">--%>
+<%--            <div class="error">${error}</div>--%>
+<%--        </c:if>--%>
+<%--        <c:if test="${not empty message}">--%>
+<%--            <div class="message">${message}</div>--%>
+<%--        </c:if>--%>
 
         <label for="phone">SDT:</label>
         <input type="tel" id="phone" name="phone" required>
 
-        <label for="captcha">Nhập mã captcha:</label>
-        <div class="captcha-container">
-            <input type="text" id="captcha" name="captcha" required>
-            <img src="assets/img/quenMatKhau.png" height="34" width="128"/>
-        </div>
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="confirm_password">Nhập lại mật khẩu:</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+
         <button type="submit">Gửi</button>
     </form>
 </div>
-<script src="assets/js/quenMatKhau.js"></script>
+<%--<script src="js/quenMatKhau.js"></script>--%>
 </body>
 </html>
