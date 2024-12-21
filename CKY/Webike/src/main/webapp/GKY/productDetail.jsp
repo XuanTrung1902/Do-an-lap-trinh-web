@@ -126,7 +126,7 @@
     <div class="info">
         <div class="info__img">
             <div class="img__container">
-                <img src="" alt="anh xe" id="img">
+                <img src=" ${i.get(0)} " alt="anh xe" id="img">
             </div>
         </div>
         <div class="info__description">
@@ -160,14 +160,13 @@
                 <div class="color padding--bottom--8">
                     <span class="infoHeader">Màu sắc: </span>
                     <div class="btnCointainer">
-                        <div class="redbtn cursor__pointer" id="red" onclick="changeBikeColor(this.id)">
-                            <div class="colorbtn"></div>
-                            <span class="color--text text--description">Đỏ</span>
-                        </div>
-                        <div class="blackbtn cursor__pointer" id="black" onclick="changeBikeColor(this.id)">
-                            <div class="colorbtn"></div>
-                            <span class="color--text text--description">Đen</span>
-                        </div>
+                        <c:forEach var="c" items="${colors}">
+                            <div class="colorbtn cursor__pointer" id="${c.name}" onclick="changeBikeColor(this.id)"
+                                 style="background-color: ${c.code};">
+                                <div class="color"></div>
+                                <span class="color--text text--description">${c.name}</span>
+                            </div>
+                        </c:forEach>
                     </div>
 
                 </div>
@@ -185,9 +184,7 @@
                     <button class="addToCart">Thêm vào giỏ hàng</button>
                 </a>
             </div>
-
         </div>
-
     </div>
 
     <!-- tinh nang noi bat -->
@@ -195,21 +192,21 @@
         <h1 class="features--header mb-5">TÍNH NĂNG NỔI BẬT</h1>
         <div class="img-warp ">
             <p class="img-background">
-                <img src="assets/img/street background.jpg" alt="">
-                <span class="img-text"> ??? </span>
+                <img src="img/background/street background.jpg" alt="anh nen">
+                <span class="img-text"> ${p.name} </span>
             </p>
             <p class="img-bike">
-                <img src=%{p.imgID} alt="">
+                <img src=" ${i.get(0)} " alt="anh xe">
             </p>
         </div>
-        <p class="des mb-3" style="max-width: 600px;">
+        <p class="des mb-3">
             ${p.des}
         </p>
     </div>
     <ul class="features-item d-flex p-0 m-0 ">
         <c:forEach var="f" items="${f}">
             <li class="fItem shadow">
-                <img class="img-bound" src="f.img" alt="">
+                <img class="img-bound" src="${f.img}" alt="">
                 <div class="m-4 mt-3 p-2 mb-0 pb-0 mb-0 pb-0">
                     <h2 class="fs-2">${f.tag}</h2>
                     <p class="fs-4">${f.des}</p>

@@ -12,7 +12,7 @@ html, body, p, ul {
 }
 
 .info {
-    /* margin: 0px 50px; */
+    width: 100%;
     padding: 20px 100px;
     display: flex;
     align-items: center;
@@ -46,6 +46,7 @@ html, body, p, ul {
 
 .info__img .img__container img {
     width: 100%;
+    max-height: 500px;
     border-radius: 7px;
     border: 4px lightslategray solid;
 }
@@ -67,9 +68,10 @@ html, body, p, ul {
 .info__description .btnCointainer {
     display: flex;
     width: fit-content;
+    gap: 5px;
 }
 
-.redbtn, .blackbtn {
+.redbtn, .blackbtn .colorbtn {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -77,17 +79,17 @@ html, body, p, ul {
     border-radius: 10px;
 }
 
-.redbtn:hover, .blackbtn:hover {
+.redbtn:hover, .blackbtn:hover ,.colorbtn:hover{
     background-color: rgb(147, 157, 163);
 }
 
-.redbtn .colorbtn {
-    background-color: red;
-}
+/*.redbtn .color {*/
+/*    background-color: red;*/
+/*}*/
 
-.blackbtn .colorbtn {
-    background-color: black;
-}
+/*.blackbtn .color {*/
+/*    background-color: black;*/
+/*}*/
 
 
 .container--button {
@@ -163,6 +165,8 @@ html, body, p, ul {
 }
 
 .img-bike img {
+    width: 600px;
+    height: 375px;
     position: absolute;
     z-index: 1;
     top: 70px;
@@ -173,7 +177,7 @@ html, body, p, ul {
 .features .des {
     font-size: 17px;
     font-weight: 400;
-    /*max-width: 600px;*/
+    max-width: 600px;
     width: fit-content;
 }
 

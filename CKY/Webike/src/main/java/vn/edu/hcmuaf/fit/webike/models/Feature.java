@@ -44,7 +44,7 @@ public class Feature {
         return img;
     }
 
-    public void setImg(String imgID) {
+    public void setImg(String img) {
         this.img = img;
     }
 

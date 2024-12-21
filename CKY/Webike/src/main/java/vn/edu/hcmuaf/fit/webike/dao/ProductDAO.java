@@ -2,10 +2,7 @@ package vn.edu.hcmuaf.fit.webike.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
-import vn.edu.hcmuaf.fit.webike.models.Feature;
-import vn.edu.hcmuaf.fit.webike.models.Product;
-import vn.edu.hcmuaf.fit.webike.models.Spec;
-import vn.edu.hcmuaf.fit.webike.models.Warranty;
+import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.util.List;
 
@@ -15,9 +12,11 @@ public class ProductDAO {
 //        System.out.println(dao.getProduct(1));
 //        System.out.println(dao.getAll());
 //        System.out.println(dao.getSpec(1, "động cơ"));
-        System.out.println(dao.getFeature(1));
+//        System.out.println(dao.getFeature(1));
 //        System.out.println(dao.getWarranty(1));
 //        System.out.println(dao.getSpecType());
+        System.out.println(dao.getImg(2));
+        System.out.println(dao.getColor(2));
     }
 
     public List<Product> getAllProducts() { // lấy ra tca sp
@@ -70,4 +69,27 @@ public class ProductDAO {
                 .bind("id", id)
                 .mapToBean(Warranty.class).list());
     }
+
+    public List<String> getImg(int id) {
+        Jdbi jdbi = JDBIConnect.get();
+        return jdbi.withHandle(handle -> handle.createQuery("" +
+                        "SELECT i.url, c.code, c.name from products as p \n" +
+                        "join imgs as i on p.id= i.productID\n" +
+                        "join colors as c on i.colorID = c.id \n" +
+                        "WHERE p.id = :id")
+                .bind("id", id)
+                .mapTo(String.class).list());
+    }
+
+    public List<Color> getColor(int id) {
+        Jdbi jdbi = JDBIConnect.get();
+        return jdbi.withHandle(handle -> handle.createQuery("" +
+                        "SELECT c.code, c.name from products as p \n" +
+                        "join imgs as i on p.id= i.productID\n" +
+                        "join colors as c on i.colorID = c.id \n" +
+                        "WHERE p.id = :id")
+                .bind("id", id)
+                .mapToBean(Color.class).list());
+    }
+
 }
