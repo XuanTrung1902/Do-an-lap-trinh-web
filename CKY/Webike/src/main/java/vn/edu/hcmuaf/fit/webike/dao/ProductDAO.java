@@ -12,11 +12,12 @@ import java.util.List;
 public class ProductDAO {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        System.out.println(dao.getProduct(1));
+//        System.out.println(dao.getProduct(1));
 //        System.out.println(dao.getAll());
 //        System.out.println(dao.getSpec(1, "động cơ"));
-//        System.out.println(dao.getFeature(1));
+        System.out.println(dao.getFeature(1));
 //        System.out.println(dao.getWarranty(1));
+//        System.out.println(dao.getSpecType());
     }
 
     public List<Product> getAllProducts() { // lấy ra tca sp
@@ -34,6 +35,12 @@ public class ProductDAO {
                 .orElse(null));
     }
 
+    public List<String> getSpecType() { // lay ra cac type trong specs [ho tro cho getSpec() ]
+        Jdbi jdbi = JDBIConnect.get();
+        return jdbi.withHandle(handle -> handle.createQuery(
+                "SELECT DISTINCT s.type from specs as s").mapTo(String.class).list());
+    }
+
     public List<Spec> getSpec(int id, String type) {
         Jdbi jdbi = JDBIConnect.get();
         return jdbi.withHandle(handle -> handle.createQuery
@@ -49,9 +56,9 @@ public class ProductDAO {
         Jdbi jdbi = JDBIConnect.get();
         return jdbi.withHandle(handle -> handle.createQuery
                         ("SELECT f.id, f.tag, f.des, f.img from products as p\n" +
-                                "join productdetails as pd on p.id = pd.productID\n" +
-                                "join detailrecords as dr on pd.id = dr.pdID \n" +
-                                "join features as f on f.id = dr.featureID where p.id =  :id")
+                                "join productdetails as pd on pd.productID = p.id\n" +
+                                "join features as f on f.id = pd.featureID where p.id =  :id")
+                .bind("id", id)
                 .mapToBean(Feature.class).list());
     }
 
@@ -60,6 +67,7 @@ public class ProductDAO {
         return jdbi.withHandle(handle -> handle.createQuery
                         ("select w.id, w.km, w.duration, w.productID from products as p\n"
                                 + "join warranties as w on w.productID= p.id where p.id =  :id")
+                .bind("id", id)
                 .mapToBean(Warranty.class).list());
     }
 }

@@ -10,7 +10,7 @@ public class Product {
     private String launch;
     private String status;
 
-//    private List<Product> details;
+//    private List<ProductDetail> details;
 
     public Product() {
     }
@@ -94,7 +94,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "ProductDetail{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", des='" + des + '\'' +

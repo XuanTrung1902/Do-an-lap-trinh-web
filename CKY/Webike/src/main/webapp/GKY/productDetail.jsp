@@ -157,11 +157,6 @@
                     <span class="text--description"> ????? </span>
                 </div>
 
-                <%--                    <div class="enigne padding--bottom--8">--%>
-                <%--                        <span class="infoHeader">Tình trạng: </span>--%>
-                <%--                        <span class="text--description">Xe mới</span>--%>
-                <%--                    </div>--%>
-
                 <div class="color padding--bottom--8">
                     <span class="infoHeader">Màu sắc: </span>
                     <div class="btnCointainer">
@@ -207,253 +202,87 @@
                 <img src=%{p.imgID} alt="">
             </p>
         </div>
-        <p class="des mb-3">
-            <%--               Ducati Panigale V4 là siêu mô tô hiệu suất cao với động cơ V4 1.103cc mạnh --%>
-            <%--            <br> mẽ. Thiết kế đẹp mắt và công nghệ tiên tiến, xe mang đến trải nghiệm lái --%>
-            <%--            <br> đầy phấn khích và linh hoạt. Hoàn hảo cho người đam mê tốc độ--%>
+        <p class="des mb-3" style="max-width: 600px;">
             ${p.des}
         </p>
     </div>
-
     <ul class="features-item d-flex p-0 m-0 ">
-        <%--        <c:forEach var="f" item="${feature}">--%>
-        <%--            <li class="fItem shadow">--%>
-        <%--                <img class="img-bound" src="f.img" alt="">--%>
-        <%--                <div class="m-4 mt-3 p-2 mb-0 pb-0 mb-0 pb-0">--%>
-        <%--                    <h2 class="fs-2">f.tag</h2>--%>
-        <%--                    <p class="fs-4">f.des</p>--%>
-        <%--                </div>--%>
-        <%--            </li>--%>
-        <%--        </c:forEach>--%>
-
-        <%--            <li class="fItem shadow">--%>
-        <%--                <img class="img-bound" src="assets/img/dong co panigale.png" alt="">--%>
-        <%--                <div class="m-4 mt-3 p-2 mb-0 pb-0 mb-0 pb-0">--%>
-        <%--                    <h2 class="fs-2">Động cơ tiên tiến, hiệu suất mạnh mẽ</h2>--%>
-        <%--                    <p class="fs-4">Ducati Panigale V4 được trang bị động cơ V4 1.103 cc mạnh mẽ, đem đến công suất và mô-men xoắn ấn tượng.--%>
-        <%--                        <br> Động cơ được thiết kế với công nghệ tiên tiến như hệ thống van desmodromic, giúp tối ưu hóa hiệu suất và độ bền. --%>
-        <%--                        <br> Động cơ này không chỉ cung cấp hiệu suất vượt trội mà còn mang lại trải nghiệm lái xe đầy phấn khích và mượt mà.--%>
-        <%--                    </p>--%>
-        <%--                </div>--%>
-        <%--                --%>
-        <%--            </li>--%>
-
-        <%--            <li class="fItem shadow ">--%>
-        <%--                <img class="img-bound" src="assets/img/tke khi dong hoc.png" alt="">--%>
-        <%--                <div class="m-4 mt-3 p-2 mb-0 pb-0">--%>
-        <%--                    <h2 class="fs-2">Thiết kế khí động học tinh tế, sắc sảo</h2>--%>
-        <%--                    <p class="fs-4">Thiết kế khí động học của Panigale V4 được tối ưu hóa để giảm sức cản gió, tăng cường sự ổn định và hiệu suất trên đường đua. --%>
-        <%--                    <br> Các đường nét sắc sảo và tinh tế không chỉ tạo nên vẻ ngoài cuốn hút mà còn cải thiện tính năng vận hành của xe.</p>--%>
-        <%--                </div>--%>
-        <%--            </li>--%>
-        <%--            <li class="fItem shadow">--%>
-        <%--                <img class="img-bound" src="assets/img/he thong dien tu panigale.png" alt="">--%>
-        <%--                <div class="m-4 mt-3 p-2 mb-0 pb-0">--%>
-        <%--                    <h2 class="fs-2">Hệ thống điện tử tiên tiến, chính xác</h2>--%>
-        <%--                    <p class="fs-4">Panigale V4 sở hữu hệ thống điện tử tiên tiến với nhiều chế độ lái, kiểm soát lực kéo, và hệ thống phanh ABS.--%>
-        <%--                    <br> Những tính năng này đảm bảo sự an toàn và kiểm soát tối đa, giúp người lái dễ dàng tinh chỉnh xe phù hợp với mọi điều kiện vận hành.</p>--%>
-        <%--                </div>--%>
-        <%--            </li>--%>
+        <c:forEach var="f" items="${f}">
+            <li class="fItem shadow">
+                <img class="img-bound" src="f.img" alt="">
+                <div class="m-4 mt-3 p-2 mb-0 pb-0 mb-0 pb-0">
+                    <h2 class="fs-2">${f.tag}</h2>
+                    <p class="fs-4">${f.des}</p>
+                </div>
+            </li>
+        </c:forEach>
     </ul>
 
     <!-- thông số kỹ thuật của sản phẩm: phân khối, khung xe... -->
     <div class="detail container mt-5 d-flex flex-column justify-content-between align-items-center">
         <h1 class="detail--header">THÔNG SỐ KỸ THUẬT</h1>
         <div class="accordion">
-            <!-- dong co -->
+            <!-- thong so ky thuat -->
+            <c:forEach var="type" items="${specType}" varStatus="status">
+                <%-- varstatus dung de theo doi trang thai lap foreach trong jstl --%>
+                <%-- index de lay ra index cua phan tu trong loop --%>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOpen${status.index}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#open${status.index}" aria-expanded="false"
+                                aria-controls="open${status.index}">
+                            <span class="accordionItem__Header"> ${type} </span>
+                        </button>
+                    </h2>
+                    <div id="open${status.index}" class="accordion-collapse collapse"
+                         aria-labelledby="headingOpen${status.index}">
+                        <div class="accordion-body p-0">
+                            <ul class="list-group item--container">
+                                <c:forEach var="s" items="${specMap[type]}">
+                                    <li class="list-group-item d-flex">
+                                        <h4 class="item--header">${s.tag}</h4>
+                                        <small class="lead text-muted item--detail">
+                                                ${s.des}
+                                        </small>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+
+            <!-- bao hanh -->
             <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOpen1">
+                <h2 class="accordion-header" id="headingOpen${specType.size()+1}">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#open1" aria-expanded="false" aria-controls="open1">
-                        <span class="accordionItem__Header">động cơ</span>
+                            data-bs-target="#open${specType.size()+1}" aria-expanded="false"
+                            aria-controls="open${specType.size()+1}">
+                        <span class="accordionItem__Header"> Chính sách bảo hành </span>
                     </button>
                 </h2>
-                <div id="open1" class="accordion-collapse collapse collapse" aria-labelledby="headingOpen1">
+                <div id="open${specType.size()+1}" class="accordion-collapse collapse"
+                     aria-labelledby="headingOpen${specType.size()+1}">
                     <div class="accordion-body p-0">
                         <ul class="list-group item--container">
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">LOẠI</h4>
-                                <small class="lead text-muted item--detail">Blue Core, 4 thì, 2 van, SOHC, Làm mát bằng
-                                    không khí cưỡng bức</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">BỐ TRÍ XY LANH</h4>
-                                <small class="lead text-muted item--detail">Xy lanh đơn</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">DUNG TÍCH XY LANH(CC)</h4>
-                                <small class="lead text-muted item--detail">124.9 cc</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Đường kính và hành trình piston</h4>
-                                <small class="lead text-muted item--detail">52,4 mm x 57,9 mm</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Tỷ số nén</h4>
-                                <small class="lead text-muted item--detail">9,5 : 1</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Công suất tối đa</h4>
-                                <small class="lead text-muted item--detail">7,0 kW (9,5 ps)/8.000 vòng/phút</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Mô men xoắn cực đại</h4>
-                                <small class="lead text-muted item--detail">9.6 Nm (1.0 kgf-m)/5500 vòng/phút</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Hệ thống khởi động</h4>
-                                <small class="lead text-muted item--detail">Điện</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Hệ thống bôi trơn</h4>
-                                <small class="lead text-muted item--detail">Các te ướt</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Dung tích dầu máy</h4>
-                                <small class="lead text-muted item--detail">0,84 L</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Dung tích bình xăng</h4>
-                                <small class="lead text-muted item--detail">4,2 L</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Mức tiêu thụ nhiên liệu (l/100km)</h4>
-                                <small class="lead text-muted item--detail">1,87</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Hệ thống đánh lửa</h4>
-                                <small class="lead text-muted item--detail">T.C.I (kỹ thuật số)</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Tỷ số truyền động</h4>
-                                <small class="lead text-muted item--detail">2,294 - 0,804 : 1</small>
-                            </li>
+                            <c:forEach var="w" items="${warranties}">
+                                <li class="list-group-item d-flex">
+                                    <h4 class="item--header">thời gian bảo hành</h4>
+                                    <small class="lead text-muted item--detail">
+                                            ${w.km} km/ ${w.duration} năm (Tùy điều kiện nào đến trước)
+                                    </small>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- khung xe -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOpen2">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#open2" aria-expanded="true" aria-controls="open2">
-                        <span class="accordionItem__Header">khung xe</span>
-                    </button>
-                </h2>
-                <div id="open2" class="accordion-collapse collapse collapse" aria-labelledby="headingOpen2">
-                    <div class="accordion-body p-0">
-                        <ul class="list-group item--container">
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">loại khung</h4>
-                                <small class="lead text-muted item--detail">Underbone</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">hệ thống giảm xóc trước</h4>
-                                <small class="lead text-muted item--detail">Phuộc ống lồng</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Độ lệch phương trục lái</h4>
-                                <small class="lead text-muted item--detail">26°30 / 100 mm</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Hệ thống giảm xóc sau</h4>
-                                <small class="lead text-muted item--detail">Giảm chấn lò xo dầu</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Phanh trước</h4>
-                                <small class="lead text-muted item--detail">Phanh đĩa đơn thủy lực</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Phanh sau</h4>
-                                <small class="lead text-muted item--detail">Phanh tang trống</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Lốp trước</h4>
-                                <small class="lead text-muted item--detail">80/80-14M/C 43P</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Lốp sau</h4>
-                                <small class="lead text-muted item--detail">110/70-14M/C 56P</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Đèn trước</h4>
-                                <small class="lead text-muted item--detail">Halogen 12V 35W / 35W x 1</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Đèn sau</h4>
-                                <small class="lead text-muted item--detail">LED</small>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- kích thước -->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOpen3">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#open3" aria-expanded="true" aria-controls="open3">
-                        <span class="accordionItem__Header">kích thước</span>
-                    </button>
-                </h2>
-                <div id="open3" class="accordion-collapse collapse collapse" aria-labelledby="headingOpen3">
-                    <div class="accordion-body p-0">
-                        <ul class="list-group item--container">
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Kích thước (dài x rộng x cao)</h4>
-                                <small class="lead text-muted item--detail">1850 mm x 705 mm x 1120 mm</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Độ cao yên xe</h4>
-                                <small class="lead text-muted item--detail">769 mm</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Độ cao gầm xe</h4>
-                                <small class="lead text-muted item--detail">135 mm</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Khoảng cách giữa 2 trục bánh xe</h4>
-                                <small class="lead text-muted item--detail">1260 mm</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Trọng lượng ướt</h4>
-                                <small class="lead text-muted item--detail">99 kg</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Dung tích bình xăng</h4>
-                                <small class="lead text-muted item--detail">4,2 L</small>
-                            </li>
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">Ngăn chứa đồ</h4>
-                                <small class="lead text-muted item--detail">14.2</small>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!--bao hanh-->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOpen4">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#open4" aria-expanded="true" aria-controls="open4">
-                        <span class="accordionItem__Header">chính sách bảo hành</span>
-                    </button>
-                </h2>
-                <div id="open4" class="accordion-collapse collapse collapse" aria-labelledby="headingOpen4">
-                    <div class="accordion-body p-0">
-                        <ul class="list-group item--container">
-                            <li class="list-group-item d-flex">
-                                <h4 class="item--header">thời gian bảo hành</h4>
-                                <small class="lead text-muted item--detail">3 năm/ 30.000 km (Tùy điều kiện nào đến
-                                    trước)</small>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 
 
+    <%-- cac sp khac --%>
     <div class="container d-flex flex-column justify-content-between align-items-center" style="width: 90%;">
         <h1 class="">CÓ THỂ BẠN QUAN TÂM</h1>
         <div class="container--card row">

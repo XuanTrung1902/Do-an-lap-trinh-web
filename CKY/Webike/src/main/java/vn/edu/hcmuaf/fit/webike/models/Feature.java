@@ -4,16 +4,16 @@ public class Feature {
     private int id;
     private String tag;
     private String des;
-    private String imgID;
+    private String img;
 
     public Feature() {
     }
 
-    public Feature(int id, String tag, String des, String imgID) {
+    public Feature(int id, String tag, String des, String img) {
         this.id = id;
         this.tag = tag;
         this.des = des;
-        this.imgID = imgID;
+        this.img = img;
     }
 
     public int getId() {
@@ -40,12 +40,12 @@ public class Feature {
         this.des = des;
     }
 
-    public String getImgID() {
-        return imgID;
+    public String getImg() {
+        return img;
     }
 
-    public void setImgID(String imgID) {
-        this.imgID = imgID;
+    public void setImg(String imgID) {
+        this.img = img;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class Feature {
                 "id=" + id +
                 ", tag='" + tag + '\'' +
                 ", des='" + des + '\'' +
-                ", imgID='" + imgID + '\'' +
+                ", img='" + img + '\'' +
                 '}' + "\n";
     }
 }
