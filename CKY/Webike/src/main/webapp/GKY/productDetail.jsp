@@ -161,14 +161,35 @@
                     <span class="infoHeader">Màu sắc: </span>
                     <div class="btnCointainer">
                         <c:forEach var="c" items="${colors}">
-                            <div class="colorButton cursor__pointer" id="${c.name}" onclick="changeBikeColor(this.id)">
+                            <div class="colorButton cursor__pointer" id="${c.id}" onclick="changColor(this.id)">
                                 <div class="colorbtn" style="background-color: ${c.code};"></div>
                                 <span class="color--text text--description">${c.name}</span>
                             </div>
                         </c:forEach>
-                    </div>
+                        <script>
+                            var imgColor = {};
+                            // truyen gia tri tu servlet vao map cua js
+                            <c:forEach var="entry" items="${imgColor}">
+                            imgColor[${entry.key}] = '${entry.value}';
+                            </c:forEach>
 
+                            function changColor(id) {
+                                const imgElement = document.getElementById('img');
+                                var btn = document.getElementById(id);
+                                imgElement.src = imgColor[id];
+                                const allBtns = document.querySelectorAll('.colorButton');
+                                allBtns.forEach(function (btn) {
+                                    if (btn.id !== id.toString()) {
+                                        btn.style.background = "none";
+                                    } else {
+                                        btn.style.background = "rgb(147, 157, 163)";
+                                    }
+                                });
+                            }
+                        </script>
+                    </div>
                 </div>
+
                 <div class="remain padding--bottom--8">
                     <span class="infoHeader">Số lượng còn lại: </span>
                     <span class="text--description"> ${p.quantity} </span>

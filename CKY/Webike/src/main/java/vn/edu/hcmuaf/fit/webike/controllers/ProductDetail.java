@@ -21,7 +21,7 @@ public class ProductDetail extends HttpServlet {
 //        int id = Integer.parseInt(request.getParameter("id"));
 
         ProductDAO dao = new ProductDAO();
-        Product p = dao.getProduct(32);
+        Product p = dao.getProduct(2);
         List<String> specType = dao.getSpecType();
         Map<String, List<Spec>> specMap = new HashMap<>();
         for (String s : specType) {
@@ -34,6 +34,13 @@ public class ProductDetail extends HttpServlet {
         List<String> imgs = dao.getImg(p.getId());
         List<Color> colors = dao.getColor(p.getId());
 
+        Map<Integer, String> imgColor = new HashMap<>();
+        for (Color c : colors) {
+            String x = dao.chooseColor(p.getId(), c.getId());
+            imgColor.put(c.getId(), x);
+        }
+
+
         request.setAttribute("p", p);
         request.setAttribute("specType", specType);
         request.setAttribute("specMap", specMap);
@@ -41,8 +48,8 @@ public class ProductDetail extends HttpServlet {
         request.setAttribute("warranties", warranties);
         request.setAttribute("i", imgs);
         request.setAttribute("colors", colors);
+        request.setAttribute("imgColor", imgColor);
 
-//        System.out.println(features.get(0).getImg());
 
         request.getRequestDispatcher("GKY/productDetail.jsp").forward(request, response);
     }

@@ -15,8 +15,9 @@ public class ProductDAO {
 //        System.out.println(dao.getFeature(1));
 //        System.out.println(dao.getWarranty(1));
 //        System.out.println(dao.getSpecType());
-        System.out.println(dao.getImg(2));
-        System.out.println(dao.getColor(2));
+//        System.out.println(dao.getImg(2));
+//        System.out.println(dao.getColor(2));
+        System.out.println(dao.chooseColor(2,1));
     }
 
     public List<Product> getAllProducts() { // lấy ra tca sp
@@ -84,12 +85,26 @@ public class ProductDAO {
     public List<Color> getColor(int id) {
         Jdbi jdbi = JDBIConnect.get();
         return jdbi.withHandle(handle -> handle.createQuery("" +
-                        "SELECT c.code, c.name from products as p \n" +
-                        "join imgs as i on p.id= i.productID\n" +
-                        "join colors as c on i.colorID = c.id \n" +
+                        "SELECT c.id, c.code, c.name from products as p \n" +
+                        "JOIN imgs as i on p.id= i.productID\n" +
+                        "JOIN colors as c on i.colorID = c.id \n" +
                         "WHERE p.id = :id")
                 .bind("id", id)
                 .mapToBean(Color.class).list());
     }
 
+    // lay anh sp dua vao id mau (chon mau sp)
+    public String chooseColor(int id, int colorID) {
+        Jdbi jdbi = JDBIConnect.get();
+        return jdbi.withHandle(handle -> handle.createQuery(
+                        "SELECT i.url FROM products AS p " +
+                                "JOIN imgs AS i ON p.id = i.productID " +
+                                "JOIN colors AS c ON i.colorID = c.id " +
+                                "WHERE p.id = :id AND c.id = :colorID")
+                .bind("id", id)
+                .bind("colorID", colorID)
+                .mapTo(String.class)
+                .findOne()
+                .orElse(null));
+    }
 }
