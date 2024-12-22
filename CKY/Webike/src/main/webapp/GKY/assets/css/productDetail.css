@@ -68,10 +68,10 @@ html, body, p, ul {
 .info__description .btnCointainer {
     display: flex;
     width: fit-content;
-    gap: 5px;
+    /*gap: 5px;*/
 }
 
-.redbtn, .blackbtn .colorbtn {
+.colorButton {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -79,17 +79,9 @@ html, body, p, ul {
     border-radius: 10px;
 }
 
-.redbtn:hover, .blackbtn:hover ,.colorbtn:hover{
+.colorButton:hover {
     background-color: rgb(147, 157, 163);
 }
-
-/*.redbtn .color {*/
-/*    background-color: red;*/
-/*}*/
-
-/*.blackbtn .color {*/
-/*    background-color: black;*/
-/*}*/
 
 
 .container--button {

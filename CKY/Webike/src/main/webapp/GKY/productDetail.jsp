@@ -161,9 +161,8 @@
                     <span class="infoHeader">Màu sắc: </span>
                     <div class="btnCointainer">
                         <c:forEach var="c" items="${colors}">
-                            <div class="colorbtn cursor__pointer" id="${c.name}" onclick="changeBikeColor(this.id)"
-                                 style="background-color: ${c.code};">
-                                <div class="color"></div>
+                            <div class="colorButton cursor__pointer" id="${c.name}" onclick="changeBikeColor(this.id)">
+                                <div class="colorbtn" style="background-color: ${c.code};"></div>
                                 <span class="color--text text--description">${c.name}</span>
                             </div>
                         </c:forEach>
