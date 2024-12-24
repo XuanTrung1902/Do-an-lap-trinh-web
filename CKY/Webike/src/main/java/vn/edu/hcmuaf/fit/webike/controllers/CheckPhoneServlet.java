@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.webike.controllers;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 
 import java.io.IOException;
@@ -19,12 +20,11 @@ public class CheckPhoneServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String phone = request.getParameter("phone");
         boolean exists = UserSevice.isPhoneNumExists(phone);
+//        boolean exists = new UserDao().isPhoneNumExists(phone);
 
         response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
-        out.print("{\"exists\": " + exists + "}");
-        out.flush();
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write("{\"exists\": " + exists + "}");
     }
-
 
 }

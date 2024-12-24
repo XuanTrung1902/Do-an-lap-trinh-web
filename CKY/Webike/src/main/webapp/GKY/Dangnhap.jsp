@@ -6,7 +6,17 @@
   <base href="${pageContext.request.contextPath}/GKY/assets/">
   <link rel="stylesheet" type="text/css" href="css/Dang nhap.css">
 <%--  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">--%>
-
+  <script>
+    function validateForm() {
+      var phone = document.forms["stripe-login"]["phone"].value;
+      var password = document.forms["stripe-login"]["password"].value;
+      if (phone == "" || password == "") {
+        alert("SĐT và Mật khẩu không được để trống");
+        return false;
+      }
+      return true;
+    }
+  </script>
 </head>
 
 <body>
@@ -63,7 +73,7 @@
               <span class="padding-bottom--15">Đăng nhập tài khoản</span>
 
 <%--            ${pageContext.request.contextPath}--%>
-              <form id="stripe-login" method="post" action="${pageContext.request.contextPath}/Dangnhap">
+              <form id="stripe-login" method="post" action="${pageContext.request.contextPath}/Dangnhap"  onsubmit="return validateForm()">
                 <div class="field padding-bottom--24">
                   <label for="Phone">SĐT</label>
                   <input type="phone" name="phone" value="${phone != null ? phone : ''}">

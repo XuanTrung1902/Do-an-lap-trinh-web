@@ -6,7 +6,7 @@ import vn.edu.hcmuaf.fit.webike.models.User;
 import java.util.List;
 
 public class UserDao {
-
+// dăng nhập
     public User findUserPhone(String phoneNum) {
         return JDBIConnect.get().withHandle(h -> h.createQuery("SELECT * FROM accounts WHERE phoneNum = :phoneNum")
                 .bind("phoneNum", phoneNum)
@@ -15,6 +15,23 @@ public class UserDao {
                 .orElse(null));
     }
 
+//    public boolean saveUser(User user) {
+//        return JDBIConnect.get().withHandle(h ->
+//                h.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address)")
+//                        .bind("name", user.getName())
+//                        .bind("phoneNum", user.getPhoneNum())
+//                        .bind("DOB", user.getDOB())
+//                        .bind("sex", user.getSex())
+//                        .bind("password", user.getPassword())
+//                        .bind("created", user.getCreated())
+//                        .bind("locked", user.getLocked())
+//                        .bind("verify", user.getVerify())
+//                        .bind("role", user.getRole())
+//                        .bind("address", user.getAddress())
+//                        .execute() > 0
+//        );
+//    }
+    // Đăng ký
     public boolean saveUser(User user) {
         return JDBIConnect.get().withHandle(h ->
                 h.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address)")
@@ -32,6 +49,8 @@ public class UserDao {
         );
     }
 
+
+// Kiểm tra sdt
     public boolean isPhoneNumExists(String phoneNum) {
         return JDBIConnect.get().withHandle(h ->
                 h.createQuery("SELECT COUNT(*) FROM accounts WHERE phoneNum = :phoneNum")
@@ -51,6 +70,8 @@ public class UserDao {
 //                .bind("id", user.getId())
 //                .execute() > 0);
 //    }
+
+// Cập nhật user cho trang TT kHách hàng
     public boolean updateUser(User user) {
         return JDBIConnect.get().withHandle(h -> h.createUpdate("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, sex = :sex, address = :address, password = :password WHERE id = :id")
                 .bind("name", user.getName())

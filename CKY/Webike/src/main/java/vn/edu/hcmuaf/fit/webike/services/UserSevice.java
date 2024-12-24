@@ -6,6 +6,7 @@ import vn.edu.hcmuaf.fit.webike.models.User;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 public class UserSevice {
+    // Đăng nhập
     public static User checklogin(String phoneNum, String password) {
         UserDao userdao = new UserDao();
         User u = userdao.findUserPhone(phoneNum);
@@ -20,19 +21,20 @@ public class UserSevice {
         return null;
     }
 
-    public static boolean isPhoneNumExists(String phoneNum) {
-        UserDao userdao = new UserDao();
-        return userdao.isPhoneNumExists(phoneNum);
-    }
 
+//    public static boolean registerUser(User user) {
+//        UserDao userdao = new UserDao();
+//        if (isPhoneNumExists(user.getPhoneNum())) {
+//            return false; // Số điện thoại đã tồn tại
+//        }
+//        return userdao.saveUser(user);
+//    }
+    // Đăng ký
     public static boolean registerUser(User user) {
         UserDao userdao = new UserDao();
-        if (isPhoneNumExists(user.getPhoneNum())) {
-            return false; // Số điện thoại đã tồn tại
-        }
         return userdao.saveUser(user);
     }
-
+// Quên mật Khẩu
     public static boolean updatePasswordByPhone(String phoneNum, String newPassword) {
         UserDao userdao = new UserDao();
         User user = userdao.findUserPhone(phoneNum);
@@ -42,7 +44,7 @@ public class UserSevice {
         }
         return false;
     }
-
+// Mã hóa mật khẩu
     public static String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -56,6 +58,7 @@ public class UserSevice {
             throw new RuntimeException("Error hashing password", e);
         }
     }
+    // Cập nhật user cho trang TT kHách hàng
     public static boolean updateUser(User user) {
         UserDao userDao = new UserDao();
         return userDao.updateUser(user);
@@ -72,6 +75,12 @@ public class UserSevice {
         }
         return false;
     }
+    // Kiểm tra số điện thoại tồn tại
+    public static boolean isPhoneNumExists(String phoneNum) {
+        UserDao userDao = new UserDao();
+        return userDao.isPhoneNumExists(phoneNum);
+    }
+
     public static User findUserByPhone(String phoneNum) {
         UserDao userdao = new UserDao();
         return userdao.findUserPhone(phoneNum);

@@ -7,7 +7,37 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <base href="${pageContext.request.contextPath}/GKY/assets/">
   <link rel="stylesheet" href="css/dangky.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const phoneInput = document.querySelector("input[name='phone']");
+            const phoneError = document.getElementById("phone-error");
 
+            phoneInput.addEventListener("blur", function () {
+                const phoneNum = phoneInput.value;
+                if (phoneNum) {
+                    fetch(`${pageContext.request.contextPath}/CheckPhone`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ phone: phoneNum })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.exists) {
+                                phoneError.style.display = "block";
+                            } else {
+                                phoneError.style.display = "none";
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert("Có lỗi xảy ra. Vui lòng kiểm tra sdt hoặc các thông tin");
+                        });
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -61,55 +91,51 @@
         <a href="Dangnhap.html"><h2>Đăng ký</h2></a>
       </div>
 
-      <c:if test="${not empty error}">
-        <div class="error">${error}</div>
-      </c:if>
-<%--${pageContext.request.contextPath}--%>
-      <form class="form_center" method="post" action="${pageContext.request.contextPath}/Dangky">
-        <c:if test="${not empty error}">
-          <div class="error">${error}</div>
-        </c:if>
-        <div class="input_field">
-          <input type="text" name="fullname" placeholder="Họ Tên" required>
-        </div>
-        <div class="input_field">
-          <input type="tel" name="phone" placeholder="Số điện thoại" required>
-        </div>
-        <div class="input_field">
-          <input type="text" name="address" placeholder="Địa chỉ" required>
-        </div>
-        <div class="form-group">
-          <div class="gender-group">
-            <label class="custom-radio">
-              <input type="radio" id="male" name="gender" value="Nam">
-              <span class="checkmark"></span> Nam
-            </label>
-            <label class="custom-radio">
-              <input type="radio" id="female" name="gender" value="Nữ">
-              <span class="checkmark"></span> Nữ
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="birth-date">
-            <select id="day-select" name="day"></select>
-            <select id="month-select" name="month"></select>
-            <select id="year-select" name="year"></select>
-          </div>
-        </div>
-        <div class="input_field">
-          <input type="password" name="password" placeholder="Mật khẩu" required>
-        </div>
-        <div class="input_field">
-          <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" required>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" name="terms" required>
-          <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>
-        </div>
-        <button type="submit" class="submit_btn"><i class="fa-regular fa-user"></i> ĐĂNG KÝ</button>
-        <p class="login-link">Bạn đã có tài khoản? <a href="${pageContext.request.contextPath}/Dangnhap">Đăng nhập</a></p>
-      </form>
+<%--        <c:if test="${not empty error}">--%>
+<%--            <div class="error">${error}</div>--%>
+<%--        </c:if>--%>
+        <form class="form_center" method="post" action="${pageContext.request.contextPath}/Dangky" onsubmit="return validateForm()">
+            <div class="input_field">
+                <input type="text" name="fullname" placeholder="Họ Tên" required>
+            </div>
+            <div class="input_field">
+                <input type="tel" name="phone" placeholder="Số điện thoại" required>
+            </div>
+            <div class="input_field">
+                <input type="text" name="address" placeholder="Địa chỉ" required>
+            </div>
+            <div class="form-group">
+                <div class="gender-group">
+                    <label class="custom-radio">
+                        <input type="radio" id="male" name="gender" value="Nam">
+                        <span class="checkmark"></span> Nam
+                    </label>
+                    <label class="custom-radio">
+                        <input type="radio" id="female" name="gender" value="Nữ">
+                        <span class="checkmark"></span> Nữ
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="birth-date">
+                    <select id="day-select" name="day"></select>
+                    <select id="month-select" name="month"></select>
+                    <select id="year-select" name="year"></select>
+                </div>
+            </div>
+            <div class="input_field">
+                <input type="password" name="password" placeholder="Mật khẩu" required>
+            </div>
+            <div class="input_field">
+                <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" required>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="terms" required>
+                <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>
+            </div>
+            <button type="submit" class="submit_btn"><i class="fa-regular fa-user"></i> ĐĂNG KÝ</button>
+            <p class="login-link">Bạn có sẵn sàng để tạo một tài khoản? <a href="${pageContext.request.contextPath}/Dangnhap" >Đăng nhập</a></p>
+        </form>
 
 
     </div>
