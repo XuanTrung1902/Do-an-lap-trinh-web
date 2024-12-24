@@ -19,48 +19,48 @@ menuLi.forEach((item, index) => {
 
 var table;
 function initTableData() {
-  var data = [
-    {
-      id: 1,
-      name: "LeTriDuc",
-      password: "123456",
-      birthday: "11/6/2004",
-      address: "Đồng Nai",
-      phone: "0123456789",
-    },
-    {
-      id: 2,
-      name: "TongXuanTrung",
-      password: "147258",
-      birthday: "11/6/2004",
-      address: "Đà Nẵng",
-      phone: "0123456789",
-    },
-    {
-      id: 3,
-      name: "NguyenQuocTan",
-      password: "258369",
-      birthday: "11/6/2004",
-      address: "Hà Nội",
-      phone: "0123456789",
-    },
-    {
-      id: 4,
-      name: "TranNhutAnh",
-      password: "145678",
-      birthday: "11/6/2004",
-      address: "Long An",
-      phone: "0123456789",
-    },
-    {
-      id: 5,
-      name: "DoDucDuong",
-      password: "145789",
-      birthday: "11/6/2004",
-      address: "Đồng Tháp",
-      phone: "0123456789",
-    },
-  ];
+  // var data = [
+  //   {
+  //     id: 1,
+  //     name: "LeTriDuc",
+  //     password: "123456",
+  //     birthday: "11/6/2004",
+  //     address: "Đồng Nai",
+  //     phone: "0123456789",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "TongXuanTrung",
+  //     password: "147258",
+  //     birthday: "11/6/2004",
+  //     address: "Đà Nẵng",
+  //     phone: "0123456789",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "NguyenQuocTan",
+  //     password: "258369",
+  //     birthday: "11/6/2004",
+  //     address: "Hà Nội",
+  //     phone: "0123456789",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "TranNhutAnh",
+  //     password: "145678",
+  //     birthday: "11/6/2004",
+  //     address: "Long An",
+  //     phone: "0123456789",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "DoDucDuong",
+  //     password: "145789",
+  //     birthday: "11/6/2004",
+  //     address: "Đồng Tháp",
+  //     phone: "0123456789",
+  //   },
+  // ];
   // var jsonData = JSON.stringify(data);
   // console.log(jsonData);
   table = $("#list-user").DataTable({
@@ -77,13 +77,12 @@ function initTableData() {
         data: null,
         render: function (data, type, row) {
           return `
+                                <a href="#" class="btn-edit">Sửa</a>
                                 <a href="#" class="delete-button">Xóa</a>
                             `;
         },
       },
     ],
-    // paging: true,
-    // searching: true
     paging: true,
     searching: true,
     info: true,
