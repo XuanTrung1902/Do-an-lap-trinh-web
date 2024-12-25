@@ -8,22 +8,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./assets/css/base.css">
+
+
+    <base href="${pageContext.request.contextPath}/GKY/assets/">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/headerFooter.css">
+    <link rel="stylesheet" href="css/trangTTKhachHang.css">
 
 
 
-    <link rel="stylesheet" href="./assets/css/headerFooter.css">
-    <link rel="stylesheet" href="./assets/css/trangTTKhachHang.css">
-
-
-
-    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="font/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="font/themify-icons/themify-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
-     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css">
+     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 
 </head>
 <body>
@@ -71,7 +71,7 @@
                             <li class="header__navbar--item"><a href="#">Đăng ký</a></li> -->
 
                             <li class="header__navbar--item header__navbar--user">
-                                <img src="./assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
+                                <img src="img/avt1.jpg" alt="" class="header__navbar--user-img">
                                 <span class="header__navbar--user-name">${sessionScope.auth.name}</span>
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
@@ -130,12 +130,12 @@
 
             <div class="profile-form" id="profile-form">
                 <form action="${pageContext.request.contextPath}/Profile" method="post">
-                    <c:if test="${not empty message}">
-                        <div class="message">${message}</div>
-                    </c:if>
-                    <c:if test="${not empty error}">
-                        <div class="error">${error}</div>
-                    </c:if>
+<%--                    <c:if test="${not empty message}">--%>
+<%--                        <div class="message">${message}</div>--%>
+<%--                    </c:if>--%>
+<%--                    <c:if test="${not empty error}">--%>
+<%--                        <div class="error">${error}</div>--%>
+<%--                    </c:if>--%>
                     <div class="form-group">
                         <label for="username">Tên đăng nhập</label>
                         <input type="text" id="username" value="${sessionScope.auth.name}" disabled>
@@ -184,7 +184,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="save-btn">Lưu</button>
+                    <button type="submit" class="save-btn"  >Lưu</button>
                 </form>
             </div>
 
@@ -283,6 +283,6 @@
 
     <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/bootstrap/js/popper.min.js"></script>
-    <script src="./assets/js/trangTTKhachHang.js"></script>
+    <script src="js/trangTTKhachHang.js"></script>
 </body>
 </html>

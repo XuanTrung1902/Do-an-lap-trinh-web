@@ -25,6 +25,8 @@
 //         }
 //     });
 // });
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
     form.addEventListener("submit", function (event) {
@@ -56,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert("Có lỗi xảy ra. Vui lòng thử lại sau.");
+                    alert("Có lỗi xảy ra. Vui lòng thử lại sau.");
             });
     });
 });

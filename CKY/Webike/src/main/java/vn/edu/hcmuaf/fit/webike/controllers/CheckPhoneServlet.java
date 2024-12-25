@@ -19,6 +19,7 @@ public class CheckPhoneServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String phone = request.getParameter("phone");
+        System.out.println(phone);
         boolean exists = UserSevice.isPhoneNumExists(phone);
 //        boolean exists = new UserDao().isPhoneNumExists(phone);
 

@@ -15,22 +15,7 @@ public class UserDao {
                 .orElse(null));
     }
 
-//    public boolean saveUser(User user) {
-//        return JDBIConnect.get().withHandle(h ->
-//                h.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address)")
-//                        .bind("name", user.getName())
-//                        .bind("phoneNum", user.getPhoneNum())
-//                        .bind("DOB", user.getDOB())
-//                        .bind("sex", user.getSex())
-//                        .bind("password", user.getPassword())
-//                        .bind("created", user.getCreated())
-//                        .bind("locked", user.getLocked())
-//                        .bind("verify", user.getVerify())
-//                        .bind("role", user.getRole())
-//                        .bind("address", user.getAddress())
-//                        .execute() > 0
-//        );
-//    }
+
     // Đăng ký
     public boolean saveUser(User user) {
         return JDBIConnect.get().withHandle(h ->
@@ -60,16 +45,7 @@ public class UserDao {
         );
     }
 
-//    public boolean updateUser(User user) {
-//        return JDBIConnect.get().withHandle(h -> h.createUpdate("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, sex = :sex, address = :address WHERE id = :id")
-//                .bind("name", user.getName())
-//                .bind("phoneNum", user.getPhoneNum())
-//                .bind("DOB", user.getDOB())
-//                .bind("sex", user.getSex())
-//                .bind("address", user.getAddress())
-//                .bind("id", user.getId())
-//                .execute() > 0);
-//    }
+
 
 // Cập nhật user cho trang TT kHách hàng
     public boolean updateUser(User user) {

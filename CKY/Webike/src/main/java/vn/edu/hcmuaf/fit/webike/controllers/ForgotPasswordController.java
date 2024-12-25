@@ -23,11 +23,13 @@ public class ForgotPasswordController extends HttpServlet {
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirm_password");
 
+
         if (!password.equals(confirmPassword)) {
             request.setAttribute("error", "Mật khẩu và Nhập lại mật khẩu không khớp!");
             request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
             return;
         }
+
 
         boolean isUpdated = UserSevice.updatePasswordByPhone(phone, password);
 
@@ -38,6 +40,7 @@ public class ForgotPasswordController extends HttpServlet {
             request.setAttribute("error", "Không tìm thấy số điện thoại này!");
             request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
         }
+
     }
 
 }

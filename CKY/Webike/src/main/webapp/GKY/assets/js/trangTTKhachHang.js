@@ -213,6 +213,7 @@ function populateYears(selectedYear) {
 
 window.onload = function () {
     const dob = "${sessionScope.auth.DOB}";
+    console.log(dob); // Log the DOB value to the console
     const [year, month, day] = dob.split('-');
     populateDays(day);
     populateMonths(month);

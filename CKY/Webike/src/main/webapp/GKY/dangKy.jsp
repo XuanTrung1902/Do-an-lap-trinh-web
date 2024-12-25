@@ -5,39 +5,9 @@
   <title>Webike: Đăng nhập</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <base href="${pageContext.request.contextPath}/GKY/assets/">
-  <link rel="stylesheet" href="css/dangky.css">
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const phoneInput = document.querySelector("input[name='phone']");
-            const phoneError = document.getElementById("phone-error");
+<%--  <base href="/GKY/assets/">--%>
+  <link rel="stylesheet" href="assets/css/dangky.css">
 
-            phoneInput.addEventListener("blur", function () {
-                const phoneNum = phoneInput.value;
-                if (phoneNum) {
-                    fetch(`${pageContext.request.contextPath}/CheckPhone`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ phone: phoneNum })
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.exists) {
-                                phoneError.style.display = "block";
-                            } else {
-                                phoneError.style.display = "none";
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert("Có lỗi xảy ra. Vui lòng kiểm tra sdt hoặc các thông tin");
-                        });
-                }
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -94,12 +64,17 @@
 <%--        <c:if test="${not empty error}">--%>
 <%--            <div class="error">${error}</div>--%>
 <%--        </c:if>--%>
-        <form class="form_center" method="post" action="${pageContext.request.contextPath}/Dangky" onsubmit="return validateForm()">
+
+<%--        onsubmit="return validateForm()"--%>
+<%--        onsubmit="return validatePhone(event)"--%>
+        <form class="form_center" method="post" action="${pageContext.request.contextPath}/Dangky"  >
             <div class="input_field">
                 <input type="text" name="fullname" placeholder="Họ Tên" required>
             </div>
             <div class="input_field">
                 <input type="tel" name="phone" placeholder="Số điện thoại" required>
+<%--                <div id="phone-error" style="display:none;color:red;">Số điện thoại đã tồn tại</div>--%>
+                            <span id="phone-error" style="color: red; display: none;">Số điện thoại đã tồn tại!</span>
             </div>
             <div class="input_field">
                 <input type="text" name="address" placeholder="Địa chỉ" required>
@@ -144,7 +119,42 @@
   </div>
 </div>
 </div>
-<script src="js/dangKy.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const phoneInput = document.querySelector("input[name='phone']");
+        const phoneError = document.getElementById("phone-error");
+
+        phoneInput.addEventListener("blur", function () {
+            const phoneNum = phoneInput.value;
+            console.log(phoneNum);
+            if (phoneNum) {
+                <%--                    ${pageContext.request.contextPath}--%>
+                let baseUrl = "http://localhost:8080/Webike/CheckPhone?phone=";
+                let fullUrl = new URL(baseUrl + phoneNum, window.location.href);
+                fetch(`baseUrl${encodeURIComponent(phoneNum)}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(phoneNum)
+                }).then(response => {
+                    if (response.ok) {
+                        alert("Đã thêm sản phẩm vào giỏ hàng!");
+                    } else {
+                        alert("Lỗi khi thêm sản phẩm.");
+                    }
+                }).catch(error => {
+                    console.error("Lỗi:", error);
+                    alert("Đã xảy ra lỗi khi thêm sản phẩm.");
+                });
+            }
+        });
+    });
+
+
+
+</script>
+<%--<script src="js/dangKy.js"></script>--%>
 </body>
 
 </html>

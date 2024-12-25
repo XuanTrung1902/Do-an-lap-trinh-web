@@ -37,12 +37,14 @@ public class ProfileController extends HttpServlet {
             String month = request.getParameter("month");
             String year = request.getParameter("year");
             String dob = year + "-" + month + "-" + day;
-
+            System.out.println(user.toString());
             user.setName(fullname);
             user.setPhoneNum(phone);
             user.setAddress(address);
             user.setSex(gender);
             user.setDOB(dob);
+            user.setPassword(user.getPassword());
+
 
             boolean isUpdated = UserSevice.updateUser(user);
 

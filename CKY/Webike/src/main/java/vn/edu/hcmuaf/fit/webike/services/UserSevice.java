@@ -14,7 +14,7 @@ public class UserSevice {
         if (u != null && password != null) {
             String hashedPassword = hashPassword(password);
             if (hashedPassword.equals(u.getPassword())) {
-                u.setPassword(null); // Xóa mật khẩu trước khi trả về user
+//                u.setPassword(null); // Xóa mật khẩu trước khi trả về user
                 return u;
             }
         }

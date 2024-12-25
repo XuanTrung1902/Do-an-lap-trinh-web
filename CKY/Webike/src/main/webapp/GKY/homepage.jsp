@@ -97,7 +97,9 @@
                                 <span class="header__navbar--user-name">${sessionScope.auth.name}</span>
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
-                                        <a href="trangTTKhachHang.jsp"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>
+<%--                                        ${pageContext.request.contextPath}/Profile--%>
+<%--    trangTTKhachHang.jsp--%>
+                                        <a href="${pageContext.request.contextPath}/Profile"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>
                                     </li>
 <%--                                    <li class="header__navbar--user-menu-item">--%>
 <%--                                        <a href="${pageContext.request.contextPath}/Profile"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>--%>
