@@ -1,0 +1,29 @@
+package vn.edu.hcmuaf.fit.webike.controllers;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
+import vn.edu.hcmuaf.fit.webike.models.Product;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+@WebServlet(name = "Products", value = "/products")
+public class Products extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ProductDAO dao = new ProductDAO();
+        List<Map<String, Object>> products = dao.getAllProductImg(); // Lấy danh sách sản phẩm kèm ảnh
+        System.out.println(products);
+        request.setAttribute("products", products);                 // Gửi dữ liệu sang JSP
+        request.getRequestDispatcher("GKY/product.jsp").forward(request, response);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+}

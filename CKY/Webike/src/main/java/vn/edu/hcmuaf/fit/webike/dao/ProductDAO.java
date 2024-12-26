@@ -5,11 +5,12 @@ import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class ProductDAO {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        System.out.println(dao.getProduct(1));
+//        System.out.println(dao.getProduct(1));
 //        System.out.println(dao.getAll());
 //        System.out.println(dao.getSpec(1, "động cơ"));
 //        System.out.println(dao.getFeature(1));
@@ -18,6 +19,20 @@ public class ProductDAO {
 //        System.out.println(dao.getImg(2));
 //        System.out.println(dao.getColor(2));
 //        System.out.println(dao.chooseColor(2,1));
+        System.out.println(dao.getAllProductImg());
+    }
+
+    public List<Map<String, Object>> getAllProductImg() {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+        SELECT p.*, i.url AS imgUrl
+        FROM products AS p
+        JOIN imgs AS i ON i.productID = p.id
+        LIMIT 100
+    """;
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql).mapToMap().list()
+        );
     }
 
     public List<Product> getAllProducts() { // lấy ra tca sp
@@ -25,7 +40,6 @@ public class ProductDAO {
         return jdbi.withHandle(handle -> handle.createQuery("select * from products")
                 .mapToBean(Product.class).list());
     }
-
 
     public Product getProduct(int id) { // lay sp theo id
         Jdbi jdbi = JDBIConnect.get();

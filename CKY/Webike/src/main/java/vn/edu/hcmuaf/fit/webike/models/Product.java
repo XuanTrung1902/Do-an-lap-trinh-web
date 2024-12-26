@@ -1,6 +1,10 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
-public class Product {
+import org.jdbi.v3.core.mapper.reflect.ColumnName;
+
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private int id;
     private String name;
     private String des;
