@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./assets/css/homepage.css">
-    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/homepage.css">
+    <link rel="stylesheet" href="assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
-     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css">
+     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
 
 </head>
 <body>
@@ -63,7 +63,7 @@
                             <li class="header__navbar--item"><a href="#">Đăng ký</a></li> -->
 
                             <li class="header__navbar--item header__navbar--user">
-                                <img src="./assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
+                                <img src="assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
                                 <span class="header__navbar--user-name">Trí Đức</span>
 
                                 <ul class="header__navbar--user-menu">
@@ -101,7 +101,7 @@
                         </div>
 
                         <div class="header__cart">
-                            <a href="Gio%20hang.jsp" class="header__cart-link" >
+                            <a href="Gio hang.jsp" class="header__cart-link" >
                                 <i class="header__cart-icon ti-shopping-cart"></i>
                                 <span class="header__cart--text">Giỏ Hàng</span>
                             </a>
@@ -123,21 +123,21 @@
                     </div>
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img src="./assets/img/xe1.png" class="d-block w-100 slider_img" alt="">
+                        <img src="assets/img/xe1.png" class="d-block w-100 slider_img" alt="">
                         <div class="carousel-caption d-none d-md-block">
                           <h5>SH 350i</h5>
                           <p>Một biểu tượng của sự đẳng cấp, sang trọng và hoàn mỹ.</p>
                         </div>
                       </div>
                       <div class="carousel-item">
-                        <img src="./assets/img/xe2.jpg" class="d-block w-100 slider_img" alt="">
+                        <img src="assets/img/xe2.jpg" class="d-block w-100 slider_img" alt="">
                         <div class="carousel-caption d-none d-md-block">
                           <h5>Winner X 2024</h5>
                           <p>Khẳng định chất riêng biệt hướng tới hình ảnh một mẫu siêu mô tô</p>
                         </div>
                       </div>
                       <div class="carousel-item">
-                        <img src="./assets/img/xe3.jpg" class="d-block w-100 slider_img " alt="">
+                        <img src="assets/img/xe3.jpg" class="d-block w-100 slider_img " alt="">
                         <div class="carousel-caption d-none d-md-block">
                           <h5>Vespa Sprint S125</h5>
                           <p>Cho những tâm hồn bản lĩnh, khát khao và cá tính</p>
@@ -162,7 +162,7 @@
                         <a href="product.jsp" class="motorbike-item-link">
                             <div class="motorbike__content">
                                 <div class="motorbike__thumb">
-                                    <img class="motorbike-item-img" src="./assets/img/product1.png" alt="xe">
+                                    <img class="motorbike-item-img" src="assets/img/product1.png" alt="xe">
                                 </div>
                                 <div class="motorbike__body">
                                     <h3 class="motorbike__title">Xe tay ga</h3>
@@ -178,7 +178,7 @@
                         <a href="product.jsp" class="motorbike-item-link">
                             <div class="motorbike__content">
                                 <div class="motorbike__thumb">
-                                    <img class="motorbike-item-img" src="./assets/img/product2.png" alt="xe">
+                                    <img class="motorbike-item-img" src="assets/img/product2.png" alt="xe">
                                 </div>
                                 <div class="motorbike__body">
                                     <h3 class="motorbike__title">Xe số</h3>
@@ -194,7 +194,7 @@
                         <a href="product.jsp" class="motorbike-item-link">
                             <div class="motorbike__content">
                                 <div class="motorbike__thumb">
-                                    <img class="motorbike-item-img" src="./assets/img/product3.png" alt="xe">
+                                    <img class="motorbike-item-img" src="assets/img/product3.png" alt="xe">
                                 </div>
                                 <div class="motorbike__body">
                                     <h3 class="motorbike__title">Xe côn tay</h3>
@@ -210,7 +210,7 @@
                         <a href="product.jsp" class="motorbike-item-link">
                             <div class="motorbike__content">
                                 <div class="motorbike__thumb">
-                                    <img class="motorbike-item-img" src="./assets/img/product4.png" alt="xe">
+                                    <img class="motorbike-item-img" src="assets/img/product4.png" alt="xe">
                                 </div>
                                 <div class="motorbike__body">
                                     <h3 class="motorbike__title">Xe phân khối lớn</h3>
@@ -226,7 +226,7 @@
                         <a href="product.jsp" class="motorbike-item-link">
                             <div class="motorbike__content">
                                 <div class="motorbike__thumb">
-                                    <img class="motorbike-item-img" src="./assets/img/product5.png" alt="xe">
+                                    <img class="motorbike-item-img" src="assets/img/product5.png" alt="xe">
                                 </div>
                                 <div class="motorbike__body">
                                     <h3 class="motorbike__title">Xe điện</h3>
@@ -258,37 +258,37 @@
                 <div class="motor__brand--list">
                     <div class="brand-item">
                         <a href="#" class="brand-link">
-                            <img src="./assets/img/brand1.jpg" alt="">
+                            <img src="assets/img/brand1.jpg" alt="">
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#" class="brand-link">
-                            <img src="./assets/img/brand2.jpg" alt="">
+                            <img src="assets/img/brand2.jpg" alt="">
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#" class="brand-link">
-                            <img src="./assets/img/brand3.jpg" alt="">
+                            <img src="assets/img/brand3.jpg" alt="">
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#" class="brand-link">
-                            <img src="./assets/img/brand4.jpg" alt="">
+                            <img src="assets/img/brand4.jpg" alt="">
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#" class="brand-link">
-                            <img src="./assets/img/brand5.jpg" alt="">
+                            <img src="assets/img/brand5.jpg" alt="">
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#" class="brand-link">
-                            <img src="./assets/img/brand6.jpg" alt="">
+                            <img src="assets/img/brand6.jpg" alt="">
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#" class="brand-link">
-                            <img src="./assets/img/brand7.jpg" alt="">
+                            <img src="assets/img/brand7.jpg" alt="">
                         </a>
                     </div>
                 </div>
@@ -303,7 +303,7 @@
                     <div class="dealer__list--row">
                         <a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+N%C3%B4ng+L%C3%A2m+TP.+H%E1%BB%93+Ch%C3%AD+Minh/@10.8712764,106.7917617,15z/data=!4m2!3m1!1s0x0:0x9672b7efd0893fc4?sa=X&ved=1t:2428&ictx=111" class="dealer__list--item">
                             <div class="dealer__list--img">
-                                <img src="./assets/img/banner.jpg" alt="#">
+                                <img src="assets/img/banner.jpg" alt="#">
                                 <span class="dealer__list--name">Quận 12</span>
                             </div>
                             <div class="dealer__list--description">
@@ -312,7 +312,7 @@
                         </a>
                         <a href="#" class="dealer__list--item">
                             <div class="dealer__list--img">
-                                <img src="./assets/img/banner.jpg" alt="#">
+                                <img src="assets/img/banner.jpg" alt="#">
                                 <span class="dealer__list--name">Quận 2</span>
                             </div>
                             <div class="dealer__list--description">
@@ -321,7 +321,7 @@
                         </a>
                         <a href="#" class="dealer__list--item">
                             <div class="dealer__list--img">
-                                <img src="./assets/img/banner.jpg" alt="#">
+                                <img src="assets/img/banner.jpg" alt="#">
                                 <span class="dealer__list--name">Quận 3</span>
                             </div>
                             <div class="dealer__list--description">
@@ -330,7 +330,7 @@
                         </a>
                         <a href="#" class="dealer__list--item">
                             <div class="dealer__list--img">
-                                <img src="./assets/img/banner.jpg" alt="#">
+                                <img src="assets/img/banner.jpg" alt="#">
                                 <span class="dealer__list--name">Quận 4</span>
                             </div>
                             <div class="dealer__list--description">
@@ -339,7 +339,7 @@
                         </a>
                         <a href="#" class="dealer__list--item">
                             <div class="dealer__list--img">
-                                <img src="./assets/img/banner.jpg" alt="#">
+                                <img src="assets/img/banner.jpg" alt="#">
                                 <span class="dealer__list--name">Quận 5</span>
                             </div>
                             <div class="dealer__list--description">
@@ -348,7 +348,7 @@
                         </a>
                         <a href="#" class="dealer__list--item">
                             <div class="dealer__list--img">
-                                <img src="./assets/img/banner.jpg" alt="#">
+                                <img src="assets/img/banner.jpg" alt="#">
                                 <span class="dealer__list--name">Quận 6</span>
                             </div>
                             <div class="dealer__list--description">
@@ -404,15 +404,15 @@
                         <h5>Phương thức thanh toán</h5>
                         <!-- <p>Monthly digest of what's new and exciting from us.</p> -->
                         <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                            <img class="footer__banking" src="./assets/img/bankcard1.png" alt="">
-                            <img class="footer__banking" src="./assets/img/bankcard2.png" alt="">
-                            <img class="footer__banking" src="./assets/img/bankcard3.png" alt="">
-                            <img class="footer__banking" src="./assets/img/bankcard4.png" alt="">
-                            <img class="footer__banking" src="./assets/img/bankcard5.png" alt="">
-                            <img class="footer__banking" src="./assets/img/bankcard6.png" alt="">
+                            <img class="footer__banking" src="assets/img/bankcard1.png" alt="">
+                            <img class="footer__banking" src="assets/img/bankcard2.png" alt="">
+                            <img class="footer__banking" src="assets/img/bankcard3.png" alt="">
+                            <img class="footer__banking" src="assets/img/bankcard4.png" alt="">
+                            <img class="footer__banking" src="assets/img/bankcard5.png" alt="">
+                            <img class="footer__banking" src="assets/img/bankcard6.png" alt="">
                         </div>
                         <div class="footer__rectangle">
-                            <img src="./assets/img/Rectangle.png" alt="">
+                            <img src="assets/img/Rectangle.png" alt="">
                         </div>
                       </form>
                     </div>
@@ -431,7 +431,7 @@
         </footer>
     </div>
 
-    <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/bootstrap/js/popper.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/bootstrap/js/popper.min.js"></script>
 </body>
 </html>

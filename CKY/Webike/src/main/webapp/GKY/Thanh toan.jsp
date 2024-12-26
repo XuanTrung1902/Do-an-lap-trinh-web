@@ -7,16 +7,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./assets/css/homepage.css">
-    <link rel="stylesheet" href="./assets/css/Thanh toan 0.css">
-    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/homepage.css">
+    <link rel="stylesheet" href="assets/css/Thanh toan 0.css">
+    <link rel="stylesheet" href="assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
     <title>Webike: Thanh toán</title>
 </head>
 <body>
@@ -33,7 +33,7 @@
         <div class="head__line"></div>   
         <nav class="breadcrumb--container" aria-label="breadcrumb" style="--bs-breadcrumb-divider: ''; background-color: rgb(234, 234, 234);">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item pe-4"><a href="Gio%20hang.jsp" class="noTextDecoration"><h2>Giỏ hàng </h2></a></li>
+                <li class="breadcrumb-item pe-4"><a href="Gio hang.jsp" class="noTextDecoration"><h2>Giỏ hàng </h2></a></li>
                 <li class="breadcrumb-item pe-4 active" aria-current="page"><h2 class="d-inline"> Thông tin đặt hàng</h2></li>
                 <li class="breadcrumb-item pe-4"><a href="#" class="noTextDecoration"><h2>Xác nhận thông tin </h2></a></li>
 
@@ -300,15 +300,15 @@
                       <h5>Phương thức thanh toán</h5>
                       <!-- <p>Monthly digest of what's new and exciting from us.</p> -->
                       <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                          <img class="footer__banking" src="./assets/img/bankcard1.png" alt="">
-                          <img class="footer__banking" src="./assets/img/bankcard2.png" alt="">
-                          <img class="footer__banking" src="./assets/img/bankcard3.png" alt="">
-                          <img class="footer__banking" src="./assets/img/bankcard4.png" alt="">
-                          <img class="footer__banking" src="./assets/img/bankcard5.png" alt="">
-                          <img class="footer__banking" src="./assets/img/bankcard6.png" alt="">
+                          <img class="footer__banking" src="assets/img/bankcard1.png" alt="">
+                          <img class="footer__banking" src="assets/img/bankcard2.png" alt="">
+                          <img class="footer__banking" src="assets/img/bankcard3.png" alt="">
+                          <img class="footer__banking" src="assets/img/bankcard4.png" alt="">
+                          <img class="footer__banking" src="assets/img/bankcard5.png" alt="">
+                          <img class="footer__banking" src="assets/img/bankcard6.png" alt="">
                       </div>
                       <div class="footer__rectangle">
-                          <img src="./assets/img/Rectangle.png" alt="">
+                          <img src="assets/img/Rectangle.png" alt="">
                       </div>
                     </form>
                   </div>

@@ -23,7 +23,7 @@ public class DBConnect {
         Statement statement = getStatement();
         ResultSet rs = statement.executeQuery("select  * from products");
         while (rs.next()) {
-            System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getDouble(3) + "\t" + rs.getString(4) );
+            System.out.println(rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getString(3) + "\t" + rs.getDate(4) );
         }
     }
 }
