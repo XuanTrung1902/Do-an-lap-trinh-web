@@ -9,13 +9,13 @@ public class Product {
     private String version;
     private String launch;
     private String status;
-
-//    private List<ProductDetail> details;
+    private String brand;
+    private String type;
 
     public Product() {
     }
 
-    public Product(int id, String name, String des, double price, int quantity, String version, String launch, String status) {
+    public Product(int id, String name, String des, double price, int quantity, String version, String launch, String status, String brand, String type) {
         this.id = id;
         this.name = name;
         this.des = des;
@@ -24,7 +24,8 @@ public class Product {
         this.version = version;
         this.launch = launch;
         this.status = status;
-
+        this.brand = brand;
+        this.type = type;
     }
 
     public int getId() {
@@ -91,10 +92,25 @@ public class Product {
         this.status = status;
     }
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     @Override
     public String toString() {
-        return "ProductDetail{" +
+        return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", des='" + des + '\'' +
@@ -103,7 +119,9 @@ public class Product {
                 ", version='" + version + '\'' +
                 ", launch='" + launch + '\'' +
                 ", status='" + status + '\'' +
-                '}' + "\n";
+                ", brand='" + brand + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }
 

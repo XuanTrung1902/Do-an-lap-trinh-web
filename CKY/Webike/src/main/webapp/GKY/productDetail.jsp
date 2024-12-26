@@ -148,13 +148,13 @@
                 <div class="brand padding--bottom--8">
                     <div class="brand__text">
                         <span class="infoHeader">Nhà sản xuất: </span>
-                        <span class="text--type text--description"> ???? </span>
+                        <span class="text--type text--description"> ${p.brand} </span>
                     </div>
                 </div>
 
                 <div class="enigne padding--bottom--8">
                     <span class="infoHeader">Loại xe: </span>
-                    <span class="text--description"> ????? </span>
+                    <span class="text--description"> ${p.type} </span>
                 </div>
 
                 <div class="color padding--bottom--8">

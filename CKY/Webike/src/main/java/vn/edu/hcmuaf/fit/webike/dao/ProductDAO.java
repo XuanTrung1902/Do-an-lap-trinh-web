@@ -9,7 +9,7 @@ import java.util.List;
 public class ProductDAO {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-//        System.out.println(dao.getProduct(1));
+        System.out.println(dao.getProduct(1));
 //        System.out.println(dao.getAll());
 //        System.out.println(dao.getSpec(1, "động cơ"));
 //        System.out.println(dao.getFeature(1));
@@ -17,7 +17,7 @@ public class ProductDAO {
 //        System.out.println(dao.getSpecType());
 //        System.out.println(dao.getImg(2));
 //        System.out.println(dao.getColor(2));
-        System.out.println(dao.chooseColor(2,1));
+//        System.out.println(dao.chooseColor(2,1));
     }
 
     public List<Product> getAllProducts() { // lấy ra tca sp
@@ -28,7 +28,11 @@ public class ProductDAO {
 
     public Product getProduct(int id) { // lay sp theo id
         Jdbi jdbi = JDBIConnect.get();
-        return jdbi.withHandle(handle -> handle.createQuery("select * from products where id = :id")
+        return jdbi.withHandle(handle -> handle.createQuery("select p.*, b.name as brand, t.type as type " +
+                        "from products AS p \n" +
+                        "join brands as b on b.id = p.brandID\n" +
+                        "join biketypes as t ON t.id = p.typeID\n" +
+                        "where p.id = :id")
                 .bind("id", id)
                 .mapToBean(Product.class)
                 .findOne()
