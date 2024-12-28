@@ -14,7 +14,7 @@
     <title>WeBike</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/css/base.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/css/product.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/css/product.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/font/fontawesome-free-6.5.1-web/css/all.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/font/themify-icons/themify-icons.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,7 +34,7 @@
             <div class="header__navbar--top">
               <ul class="header__navbar--top_left">
                 <li class="header__navbar--item">
-                  <a href="homepage.jsp">Trang chủ</a>
+                  <a href="homepage">Trang chủ</a>
                 </li>
                 <li class="header__navbar--item">
                   <a href="#">Chợ xe máy</a>
@@ -323,9 +323,10 @@
                           <span class="time">${p.launch}</span>
                         </div>
                         <address class="address">${p.status}</address>
-                        <button class="motor__addToCard--btn">Thêm vào giỏ</button>
+<%--                        <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>--%>
                       </div>
                     </a>
+                    <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>
                   </div>
                   </c:forEach>
 

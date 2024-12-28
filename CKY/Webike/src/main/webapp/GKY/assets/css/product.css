@@ -848,6 +848,8 @@
 }
 
 .motor__addToCard--btn {
+    display: block;
+    text-decoration: none;
     text-align: center;
     font-size: 1.6rem;
     font-weight: 500;

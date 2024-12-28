@@ -10,7 +10,7 @@ import java.util.Map;
 public class ProductDAO {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-//        System.out.println(dao.getProduct(1));
+        System.out.println(dao.getProduct(1));
 //        System.out.println(dao.getAll());
 //        System.out.println(dao.getSpec(1, "động cơ"));
 //        System.out.println(dao.getFeature(1));
@@ -19,7 +19,7 @@ public class ProductDAO {
 //        System.out.println(dao.getImg(2));
 //        System.out.println(dao.getColor(2));
 //        System.out.println(dao.chooseColor(2,1));
-        System.out.println(dao.getAllProductImg2());
+//        System.out.println(dao.getAllProductImg2());
 //        System.out.println(dao.getBrandOfProduct());
     }
 
