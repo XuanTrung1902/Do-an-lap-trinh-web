@@ -1,4 +1,9 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -6,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <%--  <base href="/GKY/assets/">--%>
-  <link rel="stylesheet" href="assets/css/dangky.css">
+  <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/dangky.css">
 
 </head>
 
@@ -67,7 +72,7 @@
 
 <%--        onsubmit="return validateForm()"--%>
 <%--        onsubmit="return validatePhone(event)"--%>
-        <form class="form_center" method="post" action="${pageContext.request.contextPath}/Dangky"  >
+        <form class="form_center" method="post" action="<%= request.getContextPath()%>/Dangky"  >
             <div class="input_field">
                 <input type="text" name="fullname" placeholder="Họ Tên" required>
             </div>
@@ -109,7 +114,7 @@
                 <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>
             </div>
             <button type="submit" class="submit_btn"><i class="fa-regular fa-user"></i> ĐĂNG KÝ</button>
-            <p class="login-link">Bạn có sẵn sàng để tạo một tài khoản? <a href="${pageContext.request.contextPath}/Dangnhap" >Đăng nhập</a></p>
+            <p class="login-link">Bạn có sẵn sàng để tạo một tài khoản? <a href="<%= request.getContextPath()%>/Dangnhap" >Đăng nhập</a></p>
         </form>
 
 
@@ -119,42 +124,42 @@
   </div>
 </div>
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const phoneInput = document.querySelector("input[name='phone']");
-        const phoneError = document.getElementById("phone-error");
+<%--<script>--%>
+<%--    document.addEventListener("DOMContentLoaded", function () {--%>
+<%--        const phoneInput = document.querySelector("input[name='phone']");--%>
+<%--        const phoneError = document.getElementById("phone-error");--%>
 
-        phoneInput.addEventListener("blur", function () {
-            const phoneNum = phoneInput.value;
-            console.log(phoneNum);
-            if (phoneNum) {
-                <%--                    ${pageContext.request.contextPath}--%>
-                let baseUrl = "http://localhost:8080/Webike/CheckPhone?phone=";
-                let fullUrl = new URL(baseUrl + phoneNum, window.location.href);
-                fetch(`baseUrl${encodeURIComponent(phoneNum)}`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(phoneNum)
-                }).then(response => {
-                    if (response.ok) {
-                        alert("Đã thêm sản phẩm vào giỏ hàng!");
-                    } else {
-                        alert("Lỗi khi thêm sản phẩm.");
-                    }
-                }).catch(error => {
-                    console.error("Lỗi:", error);
-                    alert("Đã xảy ra lỗi khi thêm sản phẩm.");
-                });
-            }
-        });
-    });
+<%--        phoneInput.addEventListener("blur", function () {--%>
+<%--            const phoneNum = phoneInput.value;--%>
+<%--            console.log(phoneNum);--%>
+<%--            if (phoneNum) {--%>
+<%--                &lt;%&ndash;                    ${pageContext.request.contextPath}&ndash;%&gt;--%>
+<%--                let baseUrl = "http://localhost:8080/Webike/CheckPhone?phone=";--%>
+<%--                let fullUrl = new URL(baseUrl + phoneNum, window.location.href);--%>
+<%--                fetch(`baseUrl${encodeURIComponent(phoneNum)}`, {--%>
+<%--                    method: "POST",--%>
+<%--                    headers: {--%>
+<%--                        "Content-Type": "application/json"--%>
+<%--                    },--%>
+<%--                    body: JSON.stringify(phoneNum)--%>
+<%--                }).then(response => {--%>
+<%--                    if (response.ok) {--%>
+<%--                        alert("Đã thêm sản phẩm vào giỏ hàng!");--%>
+<%--                    } else {--%>
+<%--                        alert("Lỗi khi thêm sản phẩm.");--%>
+<%--                    }--%>
+<%--                }).catch(error => {--%>
+<%--                    console.error("Lỗi:", error);--%>
+<%--                    alert("Đã xảy ra lỗi khi thêm sản phẩm.");--%>
+<%--                });--%>
+<%--            }--%>
+<%--        });--%>
+<%--    });--%>
 
 
 
-</script>
-<%--<script src="js/dangKy.js"></script>--%>
+<%--</script>--%>
+<script src="<%= request.getContextPath()%>/GKY/assets/js/dangKy.js"></script>
 </body>
 
 </html>

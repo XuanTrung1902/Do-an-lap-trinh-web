@@ -10,20 +10,20 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <base href="${pageContext.request.contextPath}/GKY/assets/">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/headerFooter.css">
-    <link rel="stylesheet" href="css/trangTTKhachHang.css">
+<%--    <base href="${pageContext.request.contextPath}/GKY/assets/">--%>
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/headerFooter.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/trangTTKhachHang.css">
 
 
 
-    <link rel="stylesheet" href="font/fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/font/themify-icons/themify-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
-     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/bootstrap/css/bootstrap.css">
 
 </head>
 <body>
@@ -81,7 +81,7 @@
                                         <a href="#"><i class="fa-solid fa-shopping-cart m-r-8"></i>Lịch sử mua hàng</a>
                                     </li>
                                     <li class="header__navbar--user-menu-item">
-                                        <a href="${pageContext.request.contextPath}/Logout"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
+                                        <a href="<%= request.getContextPath()%>/Logout"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
                                     </li>
                                 </ul>
                             </li>
@@ -123,13 +123,13 @@
             <div class="sidebar">
                 <h3>TÀI KHOẢN</h3>
                 <ul class="sidebar-menu">
-                    <li><a href="#" id="show-profile">Thông tin tài khoản</a></li>
-                    <li><a href="#" id="change-password">Đổi mật khẩu</a></li>
+                    <li><a href="<%= request.getContextPath()%>/Profile" id="show-profile">Thông tin tài khoản</a></li>
+                    <li><a href="<%= request.getContextPath()%>/ChangePassword" id="change-password"  >Đổi mật khẩu</a></li>
                 </ul>
             </div>
 
             <div class="profile-form" id="profile-form">
-                <form action="${pageContext.request.contextPath}/Profile" method="post">
+                <form action="<%= request.getContextPath()%>/Profile" method="post">
 <%--                    <c:if test="${not empty message}">--%>
 <%--                        <div class="message">${message}</div>--%>
 <%--                    </c:if>--%>
@@ -191,7 +191,7 @@
 
             <!--            form đổi mật khẩu-->
             <div class="change-password-form" id="change-password-form" style="display: none;">
-                <form id="password-form" action="${pageContext.request.contextPath}/ChangePassword" method="post">
+                    <form id="password-form" action="<%= request.getContextPath()%>/ChangePassword" method="post">
                     <div class="form-group">
                         <label for="current-password">Mật khẩu cũ</label>
                         <input type="password" id="current-password" name="current-password" placeholder="Nhập mật khẩu cũ" required>
@@ -254,15 +254,15 @@
                         <h5>Phương thức thanh toán</h5>
                         <!-- <p>Monthly digest of what's new and exciting from us.</p> -->
                         <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                            <img class="footer__banking" src="./assets/img/bankcard1.png" alt="">
-                            <img class="footer__banking" src="./assets/img/bankcard2.png" alt="">
-                            <img class="footer__banking" src="./assets/img/bankcard3.png" alt="">
-                            <img class="footer__banking" src="./assets/img/bankcard4.png" alt="">
-                            <img class="footer__banking" src="./assets/img/bankcard5.png" alt="">
-                            <img class="footer__banking" src="./assets/img/bankcard6.png" alt="">
+                            <img class="footer__banking" src="<%= request.getContextPath()%>/GKY/assets/img/bankcard1.png" alt="">
+                            <img class="footer__banking" src="<%= request.getContextPath()%>/GKY/assets/img/bankcard2.png" alt="">
+                            <img class="footer__banking" src="<%= request.getContextPath()%>/GKY/assets/img/bankcard3.png" alt="">
+                            <img class="footer__banking" src="<%= request.getContextPath()%>/GKY/assets/img/bankcard4.png" alt="">
+                            <img class="footer__banking" src="<%= request.getContextPath()%>/GKY/assets/img/bankcard5.png" alt="">
+                            <img class="footer__banking" src="<%= request.getContextPath()%>/GKY/assets/img/bankcard6.png" alt="">
                         </div>
                         <div class="footer__rectangle">
-                            <img src="./assets/img/Rectangle.png" alt="">
+                            <img src="<%= request.getContextPath()%>/GKY/assets/img/Rectangle.png" alt="">
                         </div>
                       </form>
                     </div>
@@ -281,8 +281,8 @@
         </footer>
     </div>
 
-    <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/bootstrap/js/popper.min.js"></script>
-    <script src="js/trangTTKhachHang.js"></script>
+    <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/popper.min.js"></script>
+    <script src="<%= request.getContextPath()%>/GKY/assets/js/trangTTKhachHang.js"></script>
 </body>
 </html>

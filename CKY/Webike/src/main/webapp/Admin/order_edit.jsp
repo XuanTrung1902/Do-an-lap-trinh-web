@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/admin.css">
+    <!-- <link rel="stylesheet" href="./assets/css/admin.css"> -->
+    <link rel="stylesheet" href="./assets/css/order_edit.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <title>Admin</title>
 </head>
@@ -29,7 +30,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="#">
+                                    <li><a href="admin.jsp">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -66,12 +67,11 @@
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="order_edit.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Sửa    
-                                         </a>
-                                    </li>
+                                    <li><a href="order_edit.html">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Sửa
+                                    </a>
+                                </li>
                                 </div>
                             </ul>
                         </li>
@@ -144,67 +144,52 @@
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
-                        <h1>Dashboard</h1>
+                        <h1>Chỉnh sửa đơn hàng</h1>
                     </div>
                     <div class="admin-content-main-container">
-                        <div class="dashboard">
-                            <div class="dashboard__item">
-                                <h2>Tổng số sản phẩm</h2>
-                                <p>150</p>
+                        <form action="#" method="post" class="order-edit-form">
+                            <div class="form-group">
+                                <label for="order-id">ID Đơn hàng</label>
+                                <input type="text" id="order-id" name="order-id" readonly>
                             </div>
-                            <div class="dashboard__item">
-                                <h2>Đơn hàng mới</h2>
-                                <p>25</p>
+                            <div class="form-group">
+                                <label for="customer-name">Tên khách hàng</label>
+                                <input type="text" id="customer-name" name="customer-name">
                             </div>
-                            <div class="dashboard__item">
-                                <h2>Khách hàng mới</h2>
-                                <p>10</p>
+                            <div class="form-group">
+                                <label for="customer-phone">Số điện thoại</label>
+                                <input type="text" id="customer-phone" name="customer-phone" >
                             </div>
-                            <div class="dashboard__item">
-                                <h2>Doanh thu hôm nay</h2>
-                                <p>5,000,000 VND</p>
+                            <div class="form-group">
+                                <label for="customer-email">Email</label>
+                                <input type="email" id="customer-email" name="customer-email" >
                             </div>
-                        </div>
-                        <div class="dashboard__recent--customer">
-                            <h2>Khách hàng gần đây</h2>
-                            <ul>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="./assets/images/avt1.jpg" alt="">
-                                    </div>
-                                    <span class="customer__name">Lê Trí Đức</span>
-                                </li>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="./assets/images/vario.png" alt="">
-                                    </div>
-                                    <span class="customer__name">Tống Xuân Trung</span>
-                                </li>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="./assets/images/avt2.jpg" alt="">
-                                    </div>
-                                    <span class="customer__name">Nguyễn Quốc Tấn</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="charts">
-                            <div class="chart__item">
-                                <h2>Biểu đồ doanh thu</h2>
-                                <canvas id="revenueChart"></canvas>
+                            <div class="form-group">
+                                <label for="customer-address">Địa chỉ</label>
+                                <input type="text" id="customer-address" name="customer-address">
                             </div>
-                            <div class="chart__item">
-                                <h2>Biểu đồ đơn hàng</h2>
-                                <canvas id="ordersChart"></canvas>
+                            <div class="form-group">
+                                <label for="order-status">Trạng thái</label>
+                                <select id="order-status" name="order-status">
+                                    <option value="success">Đã thanh toán</option>
+                                    <option value="warning">Đã đặt cọc</option>
+                                </select>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <label for="order-date">Ngày</label>
+                                <input type="date" id="order-date" name="order-date" value="2024-11-13">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="save-button">Lưu</button>
+                                <button type="reset" class="cancel-button">Hủy</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="assets/js/admin.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/sidebar.js"></script>
 </body>
 </html>

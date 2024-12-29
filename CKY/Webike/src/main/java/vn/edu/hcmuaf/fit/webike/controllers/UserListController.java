@@ -1,0 +1,23 @@
+package vn.edu.hcmuaf.fit.webike.controllers;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.webike.dao.UserDao;
+import vn.edu.hcmuaf.fit.webike.models.User;
+import java.io.IOException;
+import java.util.List;
+
+@WebServlet(name = "UserListController", value = "/admin/userList")
+public class UserListController extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserDao userDao = new UserDao();
+        List<User> userList = userDao.getAllUsers();
+        request.setAttribute("userList", userList);
+        request.getRequestDispatcher("/admin/user_list.jsp").forward(request, response);
+    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+}

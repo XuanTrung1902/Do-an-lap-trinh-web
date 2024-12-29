@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="./assets/css/discount.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <title>Admin</title>
 </head>
@@ -29,7 +30,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="#">
+                                    <li><a href="admin.jsp">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -104,12 +105,12 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="discount.jsp">
+                                    <li><a href="#">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="#">
+                                    <li><a href="discount_add.jsp">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -144,67 +145,89 @@
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
-                        <h1>Dashboard</h1>
+                        <h1>Giảm giá</h1>
                     </div>
                     <div class="admin-content-main-container">
-                        <div class="dashboard">
-                            <div class="dashboard__item">
-                                <h2>Tổng số sản phẩm</h2>
-                                <p>150</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Đơn hàng mới</h2>
-                                <p>25</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Khách hàng mới</h2>
-                                <p>10</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Doanh thu hôm nay</h2>
-                                <p>5,000,000 VND</p>
-                            </div>
-                        </div>
-                        <div class="dashboard__recent--customer">
-                            <h2>Khách hàng gần đây</h2>
-                            <ul>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="./assets/images/avt1.jpg" alt="">
-                                    </div>
-                                    <span class="customer__name">Lê Trí Đức</span>
-                                </li>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="./assets/images/vario.png" alt="">
-                                    </div>
-                                    <span class="customer__name">Tống Xuân Trung</span>
-                                </li>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="./assets/images/avt2.jpg" alt="">
-                                    </div>
-                                    <span class="customer__name">Nguyễn Quốc Tấn</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="charts">
-                            <div class="chart__item">
-                                <h2>Biểu đồ doanh thu</h2>
-                                <canvas id="revenueChart"></canvas>
-                            </div>
-                            <div class="chart__item">
-                                <h2>Biểu đồ đơn hàng</h2>
-                                <canvas id="ordersChart"></canvas>
-                            </div>
-                        </div>
+                        <table id="list-disount" style="background-color: white; font-size: 1.6rem;" >
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã giảm giá</th>
+                                    <th>Giảm %</th>
+                                    <th>Ngày bắt đầu</th>
+                                    <th>Ngày hết hạn</th>
+                                    <th>Tuỳ chỉnh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>ABC123</td>
+                                    <td>10%</td>
+                                    <td>2024-12-01</td>
+                                    <td>2024-12-31</td>
+                                    <td>
+                                        <a href="#" class="btn-edit">Sửa</a>
+                                        <a href="#" class="btn-delete">Xóa</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>XYZ456</td>
+                                    <td>20%</td>
+                                    <td>2024-11-01</td>
+                                    <td>2024-11-30</td>
+                                    <td>
+                                        <a href="#" class="btn-edit">Sửa</a>
+                                        <a href="#" class="btn-delete">Xóa</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
+                    
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="assets/js/admin.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/discount.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Khởi tạo DataTable
+            $('#list-disount').DataTable({
+                language: {
+                    search: "Tìm kiếm:",
+                    lengthMenu: "Hiển thị _MENU_ dòng",
+                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                    paginate: {
+                        first: "Đầu",
+                        last: "Cuối",
+                        next: ">",
+                        previous: "<",
+                    },
+                    infoFiltered: "(Lọc từ _MAX_ dòng)",
+                    infoEmpty: "Không có dữ liệu",
+                    zeroRecords: "Không tìm thấy dữ liệu phù hợp",
+                },
+                pageLength: 5, // Số dòng mặc định
+                lengthMenu: [5, 10, 20], // Tuỳ chọn số dòng hiển thị
+            });
+     
+            // Hiệu ứng hover cho bảng
+            $("#list-disount").on({
+                mouseenter: function () {
+                    $(this).css("background-color", "white");
+                },
+                mouseleave: function () {
+                    $(this).css("background-color", "white");
+                },
+            });
+        });
+     </script>
+     
+
 </body>
 </html>

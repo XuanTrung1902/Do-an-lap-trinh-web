@@ -22,13 +22,7 @@ public class UserSevice {
     }
 
 
-//    public static boolean registerUser(User user) {
-//        UserDao userdao = new UserDao();
-//        if (isPhoneNumExists(user.getPhoneNum())) {
-//            return false; // Số điện thoại đã tồn tại
-//        }
-//        return userdao.saveUser(user);
-//    }
+
     // Đăng ký
     public static boolean registerUser(User user) {
         UserDao userdao = new UserDao();

@@ -473,6 +473,10 @@
     overflow-x: hidden;
 }
 
+.admin-content-main-container table tbody td:last-child {
+    display: flex;
+}
+
 .admin-content-main-container .coform-order {
     display: inline-block;
     padding: 8px 12px;
@@ -510,6 +514,28 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 50px;
+}
+
+.admin-content-main-container .edit-button {
+    margin-right: 5px;
+    display: inline-block;
+    padding: 8px 12px;
+    color: var(--white-color);
+    background-color: #3d85f9;
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50px;
+}
+
+.admin-content-main-container .edit-button:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    opacity: 0.85;
 }
 
 .admin-content-main-container .detail-button {

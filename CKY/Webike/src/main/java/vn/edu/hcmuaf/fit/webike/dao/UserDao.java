@@ -33,9 +33,28 @@ public class UserDao {
                         .execute() > 0
         );
     }
+// Admin
+    // Thêm người dùng mới
+    public boolean addUser(User user) {
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address)")
+                        .bind("name", user.getName())
+                        .bind("phoneNum", user.getPhoneNum())
+                        .bind("DOB", user.getDOB())
+                        .bind("sex", user.getSex())
+                        .bind("password", user.getPassword())
+                        .bind("created", user.getCreated())
+                        .bind("locked", user.getLocked())
+                        .bind("verify", user.getVerify())
+                        .bind("role", user.getRole())
+                        .bind("address", user.getAddress())
+                        .execute() > 0
+        );
+    }
 
 
-// Kiểm tra sdt
+
+    // Kiểm tra sdt
     public boolean isPhoneNumExists(String phoneNum) {
         return JDBIConnect.get().withHandle(h ->
                 h.createQuery("SELECT COUNT(*) FROM accounts WHERE phoneNum = :phoneNum")
@@ -63,13 +82,44 @@ public class UserDao {
 
 
 
-    public List<User> findAll() {
+    // Lấy danh sách tất cả người dùng
+    public List<User> getAllUsers() {
         return JDBIConnect.get().withHandle(handle ->
                 handle.createQuery("SELECT * FROM accounts")
                         .mapToBean(User.class)
                         .list()
         );
     }
+
+// Admin
+    // Sửa thông tin người dùng
+    public boolean updateUserAdmin(User user) {
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createUpdate("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, sex = :sex, password = :password, created = :created, locked = :locked, verify = :verify, role = :role, address = :address WHERE id = :id")
+                        .bind("name", user.getName())
+                        .bind("phoneNum", user.getPhoneNum())
+                        .bind("DOB", user.getDOB())
+                        .bind("sex", user.getSex())
+                        .bind("password", user.getPassword())
+                        .bind("created", user.getCreated())
+                        .bind("locked", user.getLocked())
+                        .bind("verify", user.getVerify())
+                        .bind("role", user.getRole())
+                        .bind("address", user.getAddress())
+                        .bind("id", user.getId())
+                        .execute() > 0
+        );
+    }
+// Admin
+    // Xóa người dùng
+    public boolean deleteUser(int id) {
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createUpdate("DELETE FROM accounts WHERE id = :id")
+                        .bind("id", id)
+                        .execute() > 0
+        );
+    }
+
 
 }
 

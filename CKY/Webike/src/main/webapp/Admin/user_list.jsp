@@ -1,8 +1,11 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<%--    <meta charset="UTF-8">--%>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -10,8 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
-    <link rel="stylesheet" href="./assets/css/user_list.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/user_list.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/base.css">
     <title>Admin</title>
 </head>
 <body>
@@ -19,7 +22,7 @@
         <div class="row__grid">
             <div class="admin__sidebar">
                 <div class="admin__sidebar--top">
-                    <img src="./assets/images/logo.png" alt="">
+                    <img src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
                 </div>
                 <div class="admin__sidebar--content">
                     <ul>
@@ -67,6 +70,12 @@
                                             Danh sách
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="order_edit.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Sửa    
+                                         </a>
+                                    </li>
                                 </div>
                             </ul>
                         </li>
@@ -91,6 +100,27 @@
                                 </div>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#">
+                                <i class="ri-file-list-line"></i>
+                                Giảm giá
+                                <i class="ri-add-box-line"></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="discount.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Danh sách
+                                        </a>
+                                    </li>
+                                    <li><a href="discount.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Thêm
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -108,7 +138,7 @@
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
                             <li class="flex-box">
-                                <img style="width: 50px;" src="assets/images/logo.png" alt="">
+                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
                                 <p>Trí Đức</p>
                                 <i class="ri-arrow-down-s-fill"></i>
                             </li>
@@ -142,17 +172,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td</td>
-                                    <td></td>
+                            <c:forEach var="user" items="${userList}">
+                                <tr>
+                                    <<td>${user.id}</td>
+                                    <td>${sessionScope.auth.name}</td>
+                                    <td>${user.password}</td>
+                                    <td>${user.DOB}</td>
+                                    <td>${user.address}</td>
+                                    <td>${user.phoneNum}</td>
                                     <td>
-                                        <a href="#" class="delete-button">Xoá</a>
+                                        <a href="user_edit.jsp?id=${user.id}" class="btn-edit">Sửa</a>
+<%--                                        <a href="user_delete.jsp?id=${user.id}" class="delete-button">Xoá</a>--%>
+                                        <form action="<%= request.getContextPath() %>/admin/deleteUser" method="post" style="display:inline;">
+                                            <input type="hidden" name="id" value="${user.id}">
+                                            <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">Xóa</button>
+                                        </form>
                                     </td>
-                                </tr> -->
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -161,111 +198,38 @@
         </div>
     </section>
 
-    <script src="assets/js/user_list.js"></script>
+    <script src="<%= request.getContextPath() %>/Admin/assets/js/user_list.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script>
-       var table ;
-        function initTableData () {
-            var data = [
-                {
-                    id: 1,
-                    name: 'LeTriDuc',
-                    password: '123456',
-                    birthday: '11/6/2004',
-                    address: 'Đồng Nai',
-                    phone: '0123456789'
+        $(document).ready(function () {
+        $('#list-user').DataTable({
+            language: {
+                search: "Tìm kiếm:",
+                lengthMenu: "Hiển thị _MENU_ dòng",
+                info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                paginate: {
+                    first: "Đầu",
+                    last: "Cuối",
+                    next: ">",
+                    previous: "<",
                 },
-                {
-                    id: 2,
-                    name: 'TongXuanTrung',
-                    password: '147258',
-                    birthday: '11/6/2004',
-                    address: 'Đà Nẵng',
-                    phone: '0123456789'
-                },
-                {
-                    id: 3,
-                    name: 'NguyenQuocTan',
-                    password: '258369',
-                    birthday: '11/6/2004',
-                    address: 'Hà Nội',
-                    phone: '0123456789'
-                },
-                {
-                    id: 4,
-                    name: 'TranNhutAnh',
-                    password: '145678',
-                    birthday: '11/6/2004',
-                    address: 'Long An',
-                    phone: '0123456789'
-                },
-                {
-                    id: 5,
-                    name: 'DoDucDuong',
-                    password: '145789',
-                    birthday: '11/6/2004',
-                    address: 'Đồng Tháp',
-                    phone: '0123456789'
-                }
-            ];
-            // var jsonData = JSON.stringify(data);
-            // console.log(jsonData);
-            table = $('#list-user').DataTable({
-                "processing" : true,
-                data,
-                columns: [
-                    { data: 'id' },
-                    { data: 'name' },
-                    { data: 'password' },
-                    { data: 'birthday' },
-                    { data: 'address' },
-                    { data: 'phone' },
-                    {
-                        data: null,
-                        render: function (data, type, row) {
-                            return `
-                                <a href="#" class="delete-button">Xóa</a>
-                            `;
-                        }
-                    }
-                ],
-                // paging: true,
-                // searching: true
-                "paging": true,
-                "searching": true,
-                "info": true,
-                "lengthChange": true,
-                "pageLength": 5,
-                "dom": '<"top"f>rt<"bottom"ip><"clear">',
-                "language": {
-                    "search": "Tìm kiếm:",
-                    "paginate": {
-                        "first": "Đầu",
-                        "last": "Cuối",
-                        "next": "Sau",
-                        "previous": "Trước"
-                    },
-                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
-                    "infoEmpty": "Không có dữ liệu",
-                    "infoFiltered": "(lọc từ _MAX_ mục)",
-                    "zeroRecords": "Không tìm thấy kết quả"
-                }
-            });
-        }
-        // initTableData();
-
-        $(document).ready(function() {
-            initTableData();
-            $('#list-user').on({
-                mouseenter: function () {
-                    $(this).css('background-color', 'white');
-                },
-                mouseleave: function () {
-                    $(this).css('background-color', 'white');
-                }
-            })
+                infoFiltered: "(Lọc từ _MAX_ dòng)",
+                infoEmpty: "Không có dữ liệu",
+                zeroRecords: "Không tìm thấy dữ liệu phù hợp",
+            },
+            pageLength: 5, // Số dòng mặc định
+            lengthMenu: [5, 10, 20], // Tuỳ chọn số dòng hiển thị
         });
+        $("#list-user").on({
+            mouseenter: function () {
+                $(this).css("background-color", "white");
+            },
+            mouseleave: function () {
+                $(this).css("background-color", "white");
+            },
+        });
+       });
     </script>
 </body>
 </html>

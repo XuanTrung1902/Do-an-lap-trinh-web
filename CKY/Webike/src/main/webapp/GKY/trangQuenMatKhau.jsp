@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Quên Mật Khẩu</title>
-    <base href="${pageContext.request.contextPath}/GKY/assets/">
-    <link rel="stylesheet" href="css/quenMatKhau.css">
+<%--    <base href="${pageContext.request.contextPath}/GKY/assets/">--%>
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/quenMatKhau.css">
 <%--    <script>--%>
 <%--        function validatePhone() {--%>
 <%--            var phone = document.forms["stripe-login"]["phone"].value;--%>
@@ -25,14 +25,14 @@
 <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
     <h1>
         <a href="#">
-            <img src="img/logo.png" alt="Webike VN" class="logo"/></a>
+            <img src="<%= request.getContextPath()%>/GKY/assets/img/logo.png" alt="Webike VN" class="logo"/></a>
     </h1>
 </div>
 
 <div class="form-container">
     <h2>Quên mật khẩu?</h2>
 <%--    onsubmit="return validatePhone()"--%>
-    <form action="${pageContext.request.contextPath}/QuenMatKhau" method="post" >
+    <form action="<%= request.getContextPath()%>/QuenMatKhau" method="post" >
         <label for="phone">SDT:</label>
         <input type="tel" id="phone" name="phone" required>
 
@@ -45,6 +45,6 @@
         <button type="submit">Gửi</button>
     </form>
 </div>
-<script src="./assets/js/quenMatKhau.js"></script>
+<script src="<%= request.getContextPath()%>/GKY/assets/js/quenMatKhau.js"></script>
 </body>
 </html>

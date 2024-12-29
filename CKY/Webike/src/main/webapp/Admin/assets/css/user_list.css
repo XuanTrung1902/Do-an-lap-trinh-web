@@ -381,6 +381,10 @@ li {
     margin: 10px 0 ;
 }
 
+.dt-length label {
+    font-size: 1.6rem;
+}
+
 .bottom {
     display: flex;
     justify-content: space-between;
@@ -469,6 +473,24 @@ li {
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.admin-content-main-container .btn-edit {
+    background-color: #4a87ce;
+    padding: 4px 12px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+.admin-content-main-container .btn-edit:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    opacity: 0.85;
 }
 
  

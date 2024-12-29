@@ -22,32 +22,16 @@
                 </div>
                 <div class="admin__sidebar--content">
                     <ul>
-                        <li><a href="#">
+                        <li><a href="admin.jsp">
                                 <i class="ri-dashboard-line"></i>
                                 Dashboard
                                 <i></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="#">
+                                    <li><a href="admin.jsp">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
-                                        </a>
-                                    </li>
-                                </div>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="ri-file-list-line"></i>
-                                Người dùng
-                                <i class="ri-add-box-line"></i>
-                            </a>
-                            <ul class="sub-menu">
-                                <div class="sub-menu-items">
-                                    <li><a href="user_list.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Danh sách
                                         </a>
                                     </li>
                                 </div>
@@ -78,6 +62,23 @@
                         <li>
                             <a href="#">
                                 <i class="ri-file-list-line"></i>
+                                Người dùng
+                                <i class="ri-add-box-line"></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="user_list.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Danh sách
+                                        </a>
+                                    </li>
+                                    
+                                </div>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ri-file-list-line"></i>
                                 Sản phẩm
                                 <i class="ri-add-box-line"></i>
                             </a>
@@ -97,19 +98,19 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="discount.jsp">
                                 <i class="ri-file-list-line"></i>
                                 Giảm giá
                                 <i class="ri-add-box-line"></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="discount.jsp">
+                                    <li><a href="product_list.jsp">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="#">
+                                    <li><a href="product_add.jsp">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -144,67 +145,31 @@
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
-                        <h1>Dashboard</h1>
+                        <h1>Cập nhật sản phẩm</h1>
                     </div>
-                    <div class="admin-content-main-container">
-                        <div class="dashboard">
-                            <div class="dashboard__item">
-                                <h2>Tổng số sản phẩm</h2>
-                                <p>150</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Đơn hàng mới</h2>
-                                <p>25</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Khách hàng mới</h2>
-                                <p>10</p>
-                            </div>
-                            <div class="dashboard__item">
-                                <h2>Doanh thu hôm nay</h2>
-                                <p>5,000,000 VND</p>
-                            </div>
+                    <form class="admin-content-main-container" >
+                        <div class="admin-content-main-container-two-input">
+                            <input type="text" placeholder="Tên sản phẩm">
+                            <input type="text" placeholder="Hãng xe">
                         </div>
-                        <div class="dashboard__recent--customer">
-                            <h2>Khách hàng gần đây</h2>
-                            <ul>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="./assets/images/avt1.jpg" alt="">
-                                    </div>
-                                    <span class="customer__name">Lê Trí Đức</span>
-                                </li>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="./assets/images/vario.png" alt="">
-                                    </div>
-                                    <span class="customer__name">Tống Xuân Trung</span>
-                                </li>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="./assets/images/avt2.jpg" alt="">
-                                    </div>
-                                    <span class="customer__name">Nguyễn Quốc Tấn</span>
-                                </li>
-                            </ul>
+                        <div class="admin-content-main-container-two-input">
+                            <input type="text" placeholder="Phân khối">
+                            <input type="text" placeholder="Giá bán">
                         </div>
-                        <div class="charts">
-                            <div class="chart__item">
-                                <h2>Biểu đồ doanh thu</h2>
-                                <canvas id="revenueChart"></canvas>
-                            </div>
-                            <div class="chart__item">
-                                <h2>Biểu đồ đơn hàng</h2>
-                                <canvas id="ordersChart"></canvas>
-                            </div>
+                        <div class="admin-content-main-container-choose-img">
+                            <input type="file" id="file" style="display: none;">
+                            <label for="file">Thêm hình ảnh</label>
                         </div>
-                    </div>
+                        <div class="admin-content-main-container-description">
+                            <textarea name="" id="" cols="30" rows="5" placeholder="Mô tả sản phẩm"></textarea>
+                        </div>
+                        <button>Thêm sản phẩm</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="assets/js/admin.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/sidebar.js"></script>
 </body>
 </html>

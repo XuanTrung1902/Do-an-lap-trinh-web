@@ -408,38 +408,17 @@ li {
     opacity: 0.85;
 }
 
-/* Search */
-.admin-content-main-search {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Adjust the gap between elements as needed */
-    margin-bottom: 20px; /* Add some space below the search bar */
+/* discount líst */
+
+.admin-content-main-container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
-
-.admin-content-main-search .search-input,
-.admin-content-main-search .search-select,
-.admin-content-main-search .search-button {
-    padding: 10px;
-    font-size: 1.6rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.admin-content-main-search .search-button {
-    background-color: var(--primary-color);
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.admin-content-main-search .search-button:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    opacity: 0.85;
-}
-
-/* product líst */
-
 
 .admin-content-main-container table {
     width: 100%;
@@ -447,99 +426,206 @@ li {
     margin-top: 20px;
 }
 
-.admin-content-main-container table thead,
-.admin-content-main-container table tbody {
-    display: block;
-}
-
 .admin-content-main-container table thead {
     background-color: var(--primary-color);
-    color: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 1;
+    color: var(--white-color);
 }
 
 .admin-content-main-container table th,
 .admin-content-main-container table td {
-    font-size: 1.6rem;
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-    width: 159px; /* Đặt chiều rộng cố định cho các cột */
-}
-
-.admin-content-main-container table th {
-    font-size: 1.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.admin-content-main-container table tbody {
-    max-height: 300px; /* Đặt chiều cao tối đa cho tbody */
-    overflow-y: auto; /* Thêm thanh cuộn dọc cho tbody */
-}
-
-.admin-content-main-container table tbody tr {
-    position: relative;
-    display: table;
-    width: 100%;
-    table-layout: fixed;
 }
 
 .admin-content-main-container table tbody tr:hover {
     background-color: #f1f1f1;
 }
 
-.admin-content-main-container table img {
-    position: relative;
-    top: 0;
-    right: 45px;
-    width: 180px;
-    height: auto;
-    border-radius: 4px;
-    display: block;
-}
-
-.admin-content-main-container table th:nth-child(2),
-.admin-content-main-container table td:nth-child(2) {
-    text-align: center; /* Căn giữa nội dung cột chứa hình ảnh */
-    vertical-align: middle; /* Căn giữa nội dung theo chiều dọc */
-    padding-right: 20px;
-}
-
-
-
 .admin-content-main-container .btn-edit,
 .admin-content-main-container .btn-delete {
     padding: 8px 12px;
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 1.4rem;
+    font-weight: 500;
     color: #fff;
     border-radius: 4px;
-    text-align: center;
-    cursor: pointer;
+    text-decoration: none;
+    margin-right: 10px;
     transition: background-color 0.3s ease;
 }
 
 .admin-content-main-container .btn-edit {
-    background-color: #4a87ce;
-    margin-right: 10px;
+    background-color: #4caf50;
 }
 
 .admin-content-main-container .btn-edit:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    opacity: 0.85;
+    background-color: #45a049;
 }
 
 .admin-content-main-container .btn-delete {
-    background-color: #e74c3c;
+    background-color: #f44336;
 }
 
 .admin-content-main-container .btn-delete:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    opacity: 0.85;
+    background-color: #e53935;
 }
+
+/* datatable */
+/* ==== Bảng DataTable ==== */
+table.dataTable thead {
+    background-color: #f04e30; /* Màu cam nổi bật */
+    color: #fff; /* Chữ màu trắng */
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Viền giữa các cột */
+table.dataTable th, table.dataTable td {
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+}
+
+/* Nền xen kẽ cho các hàng */
+table.dataTable tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Màu nền nhạt */
+}
+
+table.dataTable tbody tr:nth-child(even) {
+    background-color: #ffffff; /* Màu nền trắng */
+}
+
+/* Hiệu ứng hover cho hàng */
+table.dataTable tbody tr:hover {
+    background-color: #f0f0f0; /* Màu xám nhạt khi hover */
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Nút Tuỳ chỉnh: Sửa và Xóa */
+.btn-edit, .btn-delete {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin: 0 3px;
+}
+
+.btn-edit {
+    background-color: #28a745; /* Màu xanh lá */
+    color: #fff;
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Màu đỏ */
+    color: #fff;
+}
+
+.btn-edit:hover {
+    background-color: #218838; /* Xanh lá đậm hơn */
+    transform: scale(1.05);
+}
+
+.btn-delete:hover {
+    background-color: #c82333; /* Đỏ đậm hơn */
+    transform: scale(1.05);
+}
+
+/* ==== Phân trang và điều khiển DataTable ==== */
+/* Thanh phân trang */
+/* Phần phân trang DataTable */
+.dataTables_paginate {
+    display: flex; /* Chỉnh phân trang theo chiều ngang */
+    justify-content: center; /* Căn giữa */
+    align-items: center;
+    margin-top: 20px; /* Tạo khoảng cách trên */
+}
+
+
+.dt-search {
+    font-size: 1.6rem;
+    margin: 10px 0 ;
+}
+
+.dt-length {
+    font-size: 1.6rem;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: row-reverse; */
+    padding: 0 35px 0 0 ;
+}
+
+.dt-info {
+    font-size: 1.6rem;
+    margin: 10px 0;
+}
+
+.dt-paging {
+    font-size: 1.4rem;
+    margin: 10px 0;
+}
+
+.dt-paging > nav {
+    display: flex;
+}
+
+.dataTables_paginate .paginate_button {
+    margin: 0 5px; /* Khoảng cách giữa các nút */
+    background-color: #f04e30;
+    color: white !important;
+    border: 1px solid #f04e30;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.dataTables_paginate .paginate_button:hover {
+    background-color: #e33d20;
+    border-color: #e33d20;
+}
+
+.dataTables_paginate .paginate_button.current {
+    background-color: #e33d20; /* Nút hiện tại đậm hơn */
+    font-weight: bold;
+}
+
+
+/* Phần tìm kiếm và dropdown */
+.dataTables_length, .dataTables_filter {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.dataTables_filter input {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.4rem;
+}
+
+.dataTables_length select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1.4rem;
+}
+
+/* Thông tin dưới bảng */
+.dataTables_info {
+    font-size: 1.4rem;
+    margin-top: 10px;
+    color: #666;
+}
+
+
 
  
 

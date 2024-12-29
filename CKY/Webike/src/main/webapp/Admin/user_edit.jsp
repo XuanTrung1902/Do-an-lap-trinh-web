@@ -1,4 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
+<%--<%@ taglib prefix="c" uri="jakarta.tags.core" %>--%>
+<%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +14,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/admin.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
+    <!-- <link rel="stylesheet" href="./assets/css/admin.css"> -->
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/user_edit.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/base.css">
     <title>Admin</title>
 </head>
 <body>
@@ -29,7 +35,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="#">
+                                    <li><a href="admin.jsp">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -66,12 +72,11 @@
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="order_edit.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Sửa    
-                                         </a>
-                                    </li>
+                                    <li><a href="order_edit.jsp">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Sửa
+                                    </a>
+                                </li>
                                 </div>
                             </ul>
                         </li>
@@ -134,7 +139,7 @@
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
                             <li class="flex-box">
-                                <img style="width: 50px;" src="assets/images/logo.png" alt="">
+                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
                                 <p>Trí Đức</p>
                                 <i class="ri-arrow-down-s-fill"></i>
                             </li>
@@ -144,67 +149,45 @@
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
-                        <h1>Dashboard</h1>
+                        <h1>Chỉnh sửa thông tin người dùng</h1>
                     </div>
                     <div class="admin-content-main-container">
-                        <div class="dashboard">
-                            <div class="dashboard__item">
-                                <h2>Tổng số sản phẩm</h2>
-                                <p>150</p>
+                        <form class="edit-user-form" action="<%= request.getContextPath() %>/admin/updateUser" method="post">
+                            <div class="form-group">
+                                <label for="userId">ID</label>
+                                <input type="text" id="userId" name="userId" value="${user.id}" readonly>
                             </div>
-                            <div class="dashboard__item">
-                                <h2>Đơn hàng mới</h2>
-                                <p>25</p>
+                            <div class="form-group">
+                                <label for="username">Tên đăng nhập</label>
+                                <input type="text" id="username" name="username" value="${user.name}">
                             </div>
-                            <div class="dashboard__item">
-                                <h2>Khách hàng mới</h2>
-                                <p>10</p>
+                            <div class="form-group">
+                                <label for="password">Mật khẩu</label>
+                                <input type="password" id="password" name="password" value="${user.password}">
                             </div>
-                            <div class="dashboard__item">
-                                <h2>Doanh thu hôm nay</h2>
-                                <p>5,000,000 VND</p>
+                            <div class="form-group">
+                                <label for="birthday">Ngày sinh</label>
+                                <input type="date" id="birthday" name="birthday" value="${user.DOB}">
                             </div>
-                        </div>
-                        <div class="dashboard__recent--customer">
-                            <h2>Khách hàng gần đây</h2>
-                            <ul>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="./assets/images/avt1.jpg" alt="">
-                                    </div>
-                                    <span class="customer__name">Lê Trí Đức</span>
-                                </li>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="./assets/images/vario.png" alt="">
-                                    </div>
-                                    <span class="customer__name">Tống Xuân Trung</span>
-                                </li>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="./assets/images/avt2.jpg" alt="">
-                                    </div>
-                                    <span class="customer__name">Nguyễn Quốc Tấn</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="charts">
-                            <div class="chart__item">
-                                <h2>Biểu đồ doanh thu</h2>
-                                <canvas id="revenueChart"></canvas>
+                            <div class="form-group">
+                                <label for="address">Địa chỉ</label>
+                                <input type="text" id="address" name="address" value="${user.address}">
                             </div>
-                            <div class="chart__item">
-                                <h2>Biểu đồ đơn hàng</h2>
-                                <canvas id="ordersChart"></canvas>
+                            <div class="form-group">
+                                <label for="phone">SĐT</label>
+                                <input type="text" id="phone" name="phone" value="${user.phoneNum}">
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn-save">Lưu</button>
+                                <button type="reset" class="btn-cancel">Hủy</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="assets/js/admin.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="<%= request.getContextPath() %>/Admin/assets/js/sidebar.js"></script>
 </body>
 </html>
