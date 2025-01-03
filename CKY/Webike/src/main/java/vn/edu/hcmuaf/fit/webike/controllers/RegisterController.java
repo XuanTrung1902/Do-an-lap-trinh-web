@@ -7,6 +7,7 @@ import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 import vn.edu.hcmuaf.fit.webike.models.User;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -16,6 +17,7 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
+//                response.sendRedirect("GKY/dangKy.jsp");
     }
 
 
@@ -29,6 +31,7 @@ public class RegisterController extends HttpServlet {
         String month = request.getParameter("month");
         String year = request.getParameter("year");
         String dob = year + "-" + month + "-" + day;
+        Date date = Date.valueOf(dob);
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirm_password");
 
@@ -51,7 +54,7 @@ public class RegisterController extends HttpServlet {
         user.setPhoneNum(phone);
         user.setAddress(address);
         user.setSex(gender);
-        user.setDOB(dob);
+        user.setDOB(date);
         user.setPassword(UserSevice.hashPassword(password));
         user.setCreated(LocalDate.now().toString());
         user.setLocked(0);

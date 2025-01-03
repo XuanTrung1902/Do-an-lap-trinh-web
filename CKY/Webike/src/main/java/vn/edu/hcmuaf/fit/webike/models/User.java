@@ -1,10 +1,12 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
+import java.sql.Date;
+
 public class User {
     private int id;
     private String name;
     private String phoneNum;
-    private String DOB;
+    private Date DOB;
     private String sex;
     private String password;
     private String created;
@@ -16,7 +18,7 @@ public class User {
     // Constructors
     public User() {}
 
-    public User(int id, String name, String phoneNum, String DOB, String sex, String password, String created, int locked, int verify, int role, String address) {
+    public User(int id, String name, String phoneNum, Date DOB, String sex, String password, String created, int locked, int verify, int role, String address) {
         this.id = id;
         this.name = name;
         this.phoneNum = phoneNum;
@@ -55,11 +57,11 @@ public class User {
         this.phoneNum = phoneNum;
     }
 
-    public String getDOB() {
+    public Date getDOB() {
         return DOB;
     }
 
-    public void setDOB(String DOB) {
+    public void setDOB(Date DOB) {
         this.DOB = DOB;
     }
 

@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 import vn.edu.hcmuaf.fit.webike.models.User;
 import java.io.IOException;
+import java.sql.Date;
 
 @WebServlet(name = "ProfileController", value = "/Profile")
 public class ProfileController extends HttpServlet {
@@ -14,6 +15,7 @@ public class ProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
+        System.out.println(user.toString());
 
         if (user != null) {
             request.setAttribute("user", user);
@@ -37,12 +39,13 @@ public class ProfileController extends HttpServlet {
             String month = request.getParameter("month");
             String year = request.getParameter("year");
             String dob = year + "-" + month + "-" + day;
+            Date date = Date.valueOf(dob);
             System.out.println(user.toString());
             user.setName(fullname);
             user.setPhoneNum(phone);
             user.setAddress(address);
             user.setSex(gender);
-            user.setDOB(dob);
+            user.setDOB(date);
             user.setPassword(user.getPassword());
 
 

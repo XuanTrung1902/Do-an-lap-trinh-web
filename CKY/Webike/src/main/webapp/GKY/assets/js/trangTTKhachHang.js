@@ -212,13 +212,13 @@ function populateYears(selectedYear) {
 }
 
 window.onload = function () {
-    const dob = "${sessionScope.auth.DOB}";
-    console.log(dob); // Log the DOB value to the console
+    console.log(dob); // Log giá trị DOB ra console
     const [year, month, day] = dob.split('-');
-    populateDays(day);
-    populateMonths(month);
-    populateYears(year);
+    populateDays(parseInt(day));
+    populateMonths(parseInt(month));
+    populateYears(parseInt(year));
 };
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const showProfileLink = document.getElementById("show-profile");

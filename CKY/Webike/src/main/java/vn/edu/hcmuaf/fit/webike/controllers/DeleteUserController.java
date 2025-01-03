@@ -7,7 +7,7 @@ import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 
 import java.io.IOException;
 
-@WebServlet(name = "DeleteUserController", value = "/admin/deleteUser")
+@WebServlet(name = "DeleteUserController", value = "/deleteUser")
 public class DeleteUserController extends HttpServlet {
 
     @Override
@@ -21,10 +21,10 @@ public class DeleteUserController extends HttpServlet {
         boolean isDeleted = userDao.deleteUser(id);
 
         if (isDeleted) {
-            response.sendRedirect(request.getContextPath() + "/admin/userList");
+            response.sendRedirect(request.getContextPath() + "/userList");
         } else {
             request.setAttribute("error", "Xóa người dùng thất bại.");
-            request.getRequestDispatcher("/admin/user_list.jsp").forward(request, response);
+            request.getRequestDispatcher("Admin/user_list.jsp").forward(request, response);
         }
     }
 

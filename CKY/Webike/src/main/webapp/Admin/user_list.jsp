@@ -175,15 +175,15 @@
                             <c:forEach var="user" items="${userList}">
                                 <tr>
                                     <<td>${user.id}</td>
-                                    <td>${sessionScope.auth.name}</td>
+                                    <td>${user.name}</td>
                                     <td>${user.password}</td>
                                     <td>${user.DOB}</td>
                                     <td>${user.address}</td>
                                     <td>${user.phoneNum}</td>
                                     <td>
-                                        <a href="user_edit.jsp?id=${user.id}" class="btn-edit">Sửa</a>
+                                        <a href="<%= request.getContextPath() %>/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
 <%--                                        <a href="user_delete.jsp?id=${user.id}" class="delete-button">Xoá</a>--%>
-                                        <form action="<%= request.getContextPath() %>/admin/deleteUser" method="post" style="display:inline;">
+                                        <form action="<%= request.getContextPath() %>/deleteUser" method="post" style="display:inline;">
                                             <input type="hidden" name="id" value="${user.id}">
                                             <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">Xóa</button>
                                         </form>

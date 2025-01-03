@@ -1,4 +1,12 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="vn.edu.hcmuaf.fit.webike.models.User" %>
+
+<%@page import="java.io.Console"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -280,9 +288,26 @@
               </div>
         </footer>
     </div>
+    <%
+        User user = (User) request.getAttribute("user");
+        Date date = user.getDOB();
+        String formattedDate = new java.text.SimpleDateFormat("yyyy-MM-dd").format(date);
+        System.out.println(formattedDate);
+
+    %>
 
     <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/popper.min.js"></script>
-    <script src="<%= request.getContextPath()%>/GKY/assets/js/trangTTKhachHang.js"></script>
+
+
+    <script>
+        let dob = "<%= formattedDate %>";
+        console.log(dob);
+    </script>
+
+    <script src="<%= request.getContextPath()%>/GKY/assets/js/trangTTKhachHang.js">
+
+    </script>
+
 </body>
 </html>

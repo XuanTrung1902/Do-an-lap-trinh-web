@@ -45,7 +45,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="user_list.jsp">
+                                    <li><a href="${pageContext.request.contextPath}/userList">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>

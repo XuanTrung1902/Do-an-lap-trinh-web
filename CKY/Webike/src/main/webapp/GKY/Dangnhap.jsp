@@ -117,7 +117,7 @@
 
             <!--footer-->
             <div class="footer-link " style="padding: 10px;">
-                <span style="color: #fdeded">Chưa có tài khoản? <a href="<%= request.getContextPath()%>/DangKy" style="color: #e31c25">Đăng ký</a></span>
+                <span style="color: #fdeded">Chưa có tài khoản? <a href="${pageContext.request.contextPath}/Dangky" style="color: #e31c25">Đăng ký</a></span>
                 <div class="listing  padding-bottom--24 flex-flex center-center">
                     <span><a href="#">© ByMoto</a></span>
                     <span><a href="#">Liên hệ</a></span>
