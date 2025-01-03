@@ -347,29 +347,26 @@
     <div class="commentSection d-flex flex-column align-items-center ">
         <h1 class="text-center">BÌNH LUẬN</h1>
         <div class="comment_container d-flex flex-column align-items-center gap-2">
-            <div id="xx" class="p-3 d-flex align-items-center justify-content-center gap-4">
+            <c:forEach var="c" items="${c}">
+            <div class="p-3 d-flex align-items-center justify-content-center gap-4">
                 <div class="user-avt d-flex flex-row">
                     <img id="" class="" src="/img/userAvt/user.png" alt="default avt">
                 </div>
                 <div class="comment_content d-flex flex-column align-items-center">
-                    <h3 class=" username text-start">@Tên người dùng</h3>
+                    <div class="d-flex align-items-center" style="width: 100%;">
+                        <h3 class="username text-start">@ ${c.username}</h3>
+                        <h3 class="ms-5" style="font-weight: 400;">${c.created}</h3>
+                    </div>
                     <h4 class="cmt">
-                        I watched Aldnoah.Zero because Sawano did the soundtrack.
-                        I’m not a mech anime fan but I must say the anime was underrated.
-                        It actually had a good plot and the ending is so not cliché.
-                        I watched Aldnoah.Zero because Sawano did the soundtrack.
-                        I’m not a mech anime fan but I must say the anime was underrated.
-                        It actually had a good plot and the ending is so not cliché.
-                        I watched Aldnoah.Zero because Sawano did the soundtrack.
+                            ${c.content}
                     </h4>
                 </div>
                 <div class="option cursor__pointer">
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </div>
             </div>
-
         </div>
-
+        </c:forEach>
 
     </div>
 

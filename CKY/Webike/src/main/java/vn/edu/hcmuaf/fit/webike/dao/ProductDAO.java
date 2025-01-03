@@ -9,7 +9,7 @@ import java.util.List;
 public class ProductDAO {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        System.out.println(dao.getProduct(1));
+//        System.out.println(dao.getProduct(1));
 //        System.out.println(dao.getAll());
 //        System.out.println(dao.getSpec(1, "động cơ"));
 //        System.out.println(dao.getFeature(1));
@@ -18,6 +18,7 @@ public class ProductDAO {
 //        System.out.println(dao.getImg(2));
 //        System.out.println(dao.getColor(2));
 //        System.out.println(dao.chooseColor(2,1));
+        System.out.println(dao.getComment(1));
     }
 
     public List<Product> getAllProducts() { // lấy ra tca sp
@@ -111,5 +112,14 @@ public class ProductDAO {
                 .mapTo(String.class)
                 .findOne()
                 .orElse(null));
+    }
+
+    public List<Comment> getComment(int id) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "select c.content, c.created, a.name as username from comments as c join accounts as a" +
+                " on c.accountID = a.id where productID = :id";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("id", id)
+                .mapToBean(Comment.class).list());
     }
 }
