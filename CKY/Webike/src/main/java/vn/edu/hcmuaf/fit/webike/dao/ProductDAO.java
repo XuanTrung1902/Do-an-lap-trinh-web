@@ -26,6 +26,7 @@ public class ProductDAO {
                 .mapToBean(Product.class).list());
     }
 
+
     public Product getProduct(int id) { // lay sp theo id
         Jdbi jdbi = JDBIConnect.get();
         return jdbi.withHandle(handle -> handle.createQuery("select p.*, b.name as brand, t.type as type " +
