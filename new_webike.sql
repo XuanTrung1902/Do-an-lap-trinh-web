@@ -11,7 +11,7 @@
  Target Server Version : 100432 (10.4.32-MariaDB)
  File Encoding         : 65001
 
- Date: 26/12/2024 10:35:32
+ Date: 26/12/2024 11:30:50
 */
 
 SET NAMES utf8mb4;
@@ -64,11 +64,11 @@ CREATE TABLE `biketypes`  (
 -- ----------------------------
 -- Records of biketypes
 -- ----------------------------
-INSERT INTO `biketypes` VALUES (1, 'Xe số', 'img	ypessố.jpg');
-INSERT INTO `biketypes` VALUES (2, 'Xe thể thao', 'img	ypes	hể thao.jpg');
-INSERT INTO `biketypes` VALUES (3, 'Xe moto', 'img	ypesmoto.jpg');
-INSERT INTO `biketypes` VALUES (4, 'Xe tay ga', 'img	ypes	ay ga.jpg');
-INSERT INTO `biketypes` VALUES (5, 'Xe cổ điển', 'img	ypescổ điển.jpg');
+INSERT INTO `biketypes` VALUES (1, 'Xe số', 'img/types/số.jpg');
+INSERT INTO `biketypes` VALUES (2, 'Xe thể thao', 'img/types/thể thao.jpg');
+INSERT INTO `biketypes` VALUES (3, 'Xe moto', 'img/types/moto.jpg');
+INSERT INTO `biketypes` VALUES (4, 'Xe tay ga', 'img/types/tay ga.jpg');
+INSERT INTO `biketypes` VALUES (5, 'Xe cổ điển', 'img/types/cổ điển.jpg');
 
 -- ----------------------------
 -- Table structure for brands

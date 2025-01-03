@@ -283,3 +283,25 @@ html, body, p, ul {
 .cursor__pointer {
     cursor: pointer;
 }
+
+/* comment */
+.user-avt img{
+    width: 60px; height: 60px;
+}
+
+.comment_content{
+    width: 60%;
+}
+
+.username{
+    width: 100%;
+}
+.cmt{
+    margin-top: 8px;
+    text-align: justify;
+    font-weight: 400;
+}
+
+.option i{
+    font-size: 24px;
+}
