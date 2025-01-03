@@ -33,7 +33,7 @@
         <div class="head__line"></div>   
         <nav class="breadcrumb--container" aria-label="breadcrumb" style="--bs-breadcrumb-divider: ''; background-color: rgb(234, 234, 234);">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item pe-4"><a href="Gio hang.jsp" class="noTextDecoration"><h2>Giỏ hàng </h2></a></li>
+                <li class="breadcrumb-item pe-4"><a href="cart.jsp" class="noTextDecoration"><h2>Giỏ hàng </h2></a></li>
                 <li class="breadcrumb-item pe-4 active" aria-current="page"><h2 class="d-inline"> Thông tin đặt hàng</h2></li>
                 <li class="breadcrumb-item pe-4"><a href="#" class="noTextDecoration"><h2>Xác nhận thông tin </h2></a></li>
 

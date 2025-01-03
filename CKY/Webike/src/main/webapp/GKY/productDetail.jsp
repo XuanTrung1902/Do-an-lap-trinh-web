@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="header__cart">
-                    <a href="Gio hang.jsp" class="header__cart-link">
+                    <a href="cart.jsp" class="header__cart-link">
                         <i class="header__cart-icon ti-shopping-cart"></i>
                         <span class="header__cart--text">Giỏ Hàng</span>
                     </a>
@@ -297,7 +297,6 @@
         </div>
     </div>
 
-
     <%-- cac sp khac --%>
     <div class="container d-flex flex-column justify-content-between align-items-center" style="width: 90%;">
         <h1 class="">CÓ THỂ BẠN QUAN TÂM</h1>
@@ -348,9 +347,9 @@
         <h1 class="text-center">BÌNH LUẬN</h1>
         <div class="comment_container d-flex flex-column align-items-center gap-2">
             <c:forEach var="c" items="${c}">
-            <div class="p-3 d-flex align-items-center justify-content-center gap-4">
+            <div class="p-3 d-flex align-items-center justify-content-center gap-4" style="width: 1500px">
                 <div class="user-avt d-flex flex-row">
-                    <img id="" class="" src="/img/userAvt/user.png" alt="default avt">
+                    <img id="" class="" src="img/userAvt/user.png" alt="default avt">
                 </div>
                 <div class="comment_content d-flex flex-column align-items-center">
                     <div class="d-flex align-items-center" style="width: 100%;">

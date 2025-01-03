@@ -1,6 +1,10 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
-public class Product {
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Product implements Serializable {
     private int id;
     private String name;
     private String des;
@@ -11,11 +15,13 @@ public class Product {
     private String status;
     private String brand;
     private String type;
+    private Map<String, String> img;
 
     public Product() {
+        this.img = new HashMap<>();
     }
 
-    public Product(int id, String name, String des, double price, int quantity, String version, String launch, String status, String brand, String type) {
+    public Product(int id, String name, String des, double price, int quantity, String version, String launch, String status, String brand, String type, Map<String, String> img) {
         this.id = id;
         this.name = name;
         this.des = des;
@@ -26,6 +32,7 @@ public class Product {
         this.status = status;
         this.brand = brand;
         this.type = type;
+        this.img = img;
     }
 
     public int getId() {
@@ -108,6 +115,14 @@ public class Product {
         this.type = type;
     }
 
+    public Map<String, String> getImg() {
+        return img;
+    }
+
+    public void setImg(Map<String, String> img) {
+        this.img = img;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -121,7 +136,8 @@ public class Product {
                 ", status='" + status + '\'' +
                 ", brand='" + brand + '\'' +
                 ", type='" + type + '\'' +
-                '}';
+                ", img=" + img +
+                '}' + "\n";
     }
 }
 

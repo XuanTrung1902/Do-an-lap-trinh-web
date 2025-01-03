@@ -298,8 +298,9 @@ html, body, p, ul {
 }
 .cmt{
     margin-top: 8px;
-    text-align: justify;
+    text-align: left;
     font-weight: 400;
+    width: 100%;
 }
 
 .option i{
