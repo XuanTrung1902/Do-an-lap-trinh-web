@@ -19,7 +19,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
 
-    <link rel="stylesheet" href="assets/css/Gio hang.css">
+    <link rel="stylesheet" href="assets/css/cart.css">
 </head>
 <title>Giỏ hàng</title>
 </head>
@@ -38,7 +38,7 @@
             <div class="head row p-5 ms-5 me-5 mb-5 pt-4 pb-4 border shadow-sm rounded">
                 <div class="col-6 d-flex align-items-center gap-3">
                     <input type="checkbox" id="cart">
-                    <label class="text " for="#cart">Sản phẩm</label>
+                    <label class="text " for="cart">Sản phẩm</label>
                 </div>
                 <!-- <div class="col">
                     <div class="text text-center">Đơn giá</div>
@@ -196,9 +196,13 @@
                     </div>
                 </li>
 
-                
-                <div class="buy-section shadow rounded pe-5 m-5 mb-0">
-                    <a href="Thanh toan.jsp">
+
+                <div class="buy-section shadow rounded d-flex align-items-center pe-5 m-5 mb-0 pt-4 pb-4">
+                    <div class="d-flex gap-3">
+                        <h2 class="fs-1 fw-normal">Tổng thanh toán (0 sản phẩm):</h2>
+                        <h2 class="fs-1 fw-bold price">123.555vnd</h2>
+                    </div>
+                    <a href="Thanh toan .html" class="ms-auto me-5">
                         <button class=" buybtn">
                             <span class="buybtn-text">Mua hàng</span>
                         </button>
