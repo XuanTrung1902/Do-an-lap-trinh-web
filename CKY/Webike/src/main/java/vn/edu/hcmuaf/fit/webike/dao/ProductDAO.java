@@ -5,7 +5,6 @@ import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.util.List;
-import java.util.Map;
 
 public class ProductDAO {
     public static void main(String[] args) {
@@ -16,9 +15,6 @@ public class ProductDAO {
 //        System.out.println(dao.getFeature(1));
 //        System.out.println(dao.getWarranty(1));
 //        System.out.println(dao.getSpecType());
-//        System.out.println(dao.getImg(2));
-//        System.out.println(dao.getColor(2));
-//        System.out.println(dao.chooseColor(2,1));
 //        System.out.println(dao.getComment(1));
     }
 
@@ -27,22 +23,6 @@ public class ProductDAO {
         return jdbi.withHandle(handle -> handle.createQuery("select * from products")
                 .mapToBean(Product.class).list());
     }
-
-
-//    public Product getProduct(int id) { // lay sp theo id
-//        Jdbi jdbi = JDBIConnect.get();
-//        String sql = "select p.*, b.name as brand, t.type as type, c.code, i.url from products as p \n" +
-//                "join brands as b on p.brandID = b.id\n" +
-//                "join biketypes as t on t.id = p.typeID\n" +
-//                "join imgs AS i on p.id= i.productID\n" +
-//                "join colors as c on c.id = i.colorID\n" +
-//                "WHERE p.id = :id";
-//        return jdbi.withHandle(handle -> handle.createQuery(sql)
-//                .bind("id", id)
-//                // hien thuc code
-//                .findOne()
-//                .orElse(null));
-//    }
 
     public Product getProduct(int id) {
         Jdbi jdbi = JDBIConnect.get();
@@ -54,11 +34,12 @@ public class ProductDAO {
                     WHERE p.id = :id
                 """;
         String sqlImg = """
-                    SELECT c.code, i.url 
+                    SELECT c.name, c.code, i.url 
                     FROM imgs AS i
                     JOIN colors AS c ON c.id = i.colorID
                     WHERE i.productID = :id
                 """;
+
         return jdbi.withHandle(handle -> {
             Product product = handle.createQuery(sqlProduct)
                     .bind("id", id)
@@ -74,13 +55,22 @@ public class ProductDAO {
                         p.setStatus(rs.getString("status"));
                         p.setBrand(rs.getString("brand"));
                         p.setType(rs.getString("type"));
+//                        p.setImg(new HashMap<>());
                         return p;
                     }).findOne().orElse(null);
 
+            // Xử lý ảnh
             handle.createQuery(sqlImg)
                     .bind("id", id)
-                    .map((rs, ctx) -> Map.entry(rs.getString("code"), rs.getString("url")))
-                    .forEach(entry -> product.getImg().put(entry.getKey(), entry.getValue()));
+                    .mapToMap()
+                    .forEach(rs -> {
+                        Color c = new Color();
+                        c.setName((String) rs.get("name"));
+                        c.setCode((String) rs.get("code"));
+                        String url = (String) rs.get("url");
+                        product.getImg().put(c, url);
+                    });
+
             return product;
         });
     }
@@ -120,43 +110,6 @@ public class ProductDAO {
                                 + "join warranties as w on w.productID= p.id where p.id =  :id")
                 .bind("id", id)
                 .mapToBean(Warranty.class).list());
-    }
-
-    public List<String> getImg(int id) {
-        Jdbi jdbi = JDBIConnect.get();
-        return jdbi.withHandle(handle -> handle.createQuery("" +
-                        "SELECT i.url, c.code, c.name from products as p \n" +
-                        "join imgs as i on p.id= i.productID\n" +
-                        "join colors as c on i.colorID = c.id \n" +
-                        "WHERE p.id = :id")
-                .bind("id", id)
-                .mapTo(String.class).list());
-    }
-
-    public List<Color> getColor(int id) {
-        Jdbi jdbi = JDBIConnect.get();
-        return jdbi.withHandle(handle -> handle.createQuery("" +
-                        "SELECT c.id, c.code, c.name from products as p \n" +
-                        "JOIN imgs as i on p.id= i.productID\n" +
-                        "JOIN colors as c on i.colorID = c.id \n" +
-                        "WHERE p.id = :id")
-                .bind("id", id)
-                .mapToBean(Color.class).list());
-    }
-
-    // lay anh sp dua vao id mau (chon mau sp)
-    public String chooseColor(int id, int colorID) {
-        Jdbi jdbi = JDBIConnect.get();
-        return jdbi.withHandle(handle -> handle.createQuery(
-                        "SELECT i.url FROM products AS p " +
-                                "JOIN imgs AS i ON p.id = i.productID " +
-                                "JOIN colors AS c ON i.colorID = c.id " +
-                                "WHERE p.id = :id AND c.id = :colorID")
-                .bind("id", id)
-                .bind("colorID", colorID)
-                .mapTo(String.class)
-                .findOne()
-                .orElse(null));
     }
 
     public List<Comment> getComment(int id) {

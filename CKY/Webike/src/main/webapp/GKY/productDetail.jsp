@@ -126,7 +126,11 @@
     <div class="info">
         <div class="info__img">
             <div class="img__container">
-                <img src=" ${i.get(0)} " alt="anh xe" id="img">
+
+                <%--<img src=" ${i.get(0)} " alt="anh xe" id="img">--%>
+
+                <img src ="${p.img.entrySet().iterator().next().getValue()}" alt="anh xe" id="img">
+
             </div>
         </div>
         <div class="info__description">
@@ -160,20 +164,20 @@
                 <div class="color padding--bottom--8">
                     <span class="infoHeader">Màu sắc: </span>
                     <div class="btnCointainer">
-                        <c:forEach var="c" items="${colors}">
-                            <div class="colorButton cursor__pointer" id="${c.id}" onclick="changColor(this.id)">
-                                <div class="colorbtn" style="background-color: ${c.code};"></div>
-                                <span class="color--text text--description">${c.name}</span>
+                        <c:forEach var="c" items="${p.img.entrySet()}">
+                            <div class="colorButton cursor__pointer" id="${c.getKey().getCode()}" onclick="changeColor(this.id)">
+                                <div class="colorbtn" style="background-color: ${c.getKey().getCode()};"></div>
+                                <span class="color--text text--description">${c.getKey().getName()}</span>
                             </div>
                         </c:forEach>
                         <script>
                             var imgColor = {};
                             // truyen gia tri tu servlet vao map cua js
-                            <c:forEach var="entry" items="${imgColor}">
-                            imgColor[${entry.key}] = '${entry.value}';
+                            <c:forEach var="entry" items="${p.img.entrySet()}">
+                            imgColor['${entry.key.code}'] = '${entry.value}';
                             </c:forEach>
 
-                            function changColor(id) {
+                            function changeColor(id) {
                                 const imgElement = document.getElementById('img');
                                 var btn = document.getElementById(id);
                                 imgElement.src = imgColor[id];
@@ -216,7 +220,7 @@
                 <span class="img-text"> ${p.name} </span>
             </p>
             <p class="img-bike">
-                <img src=" ${i.get(0)} " alt="anh xe">
+                <img src=" ${p.img.entrySet().iterator().next().getValue()} " alt="anh xe">
             </p>
         </div>
         <p class="des mb-3">
