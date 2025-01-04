@@ -39,11 +39,11 @@ public class ProductDAO {
     public List<Map<String, Object>> getAllProductImg2() {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-        SELECT DISTINCT p.*, i.url AS imgUrl
+        SELECT p.*, min(i.url) AS imgUrl
         FROM products AS p
         JOIN imgs AS i ON i.productID = p.id
-        WHERE p.id > 20
-        LIMIT 9
+        GROUP BY p.id
+        LIMIT 9;
     """;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql).mapToMap().list()
@@ -55,10 +55,11 @@ public class ProductDAO {
     public List<Map<String, Object>> getAllProductImg() {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-        SELECT p.*, i.url AS imgUrl
+        SELECT p.*, min(i.url) AS imgUrl
         FROM products AS p
         JOIN imgs AS i ON i.productID = p.id
-        LIMIT 100
+        GROUP BY p.id
+        LIMIT 100;
     """;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql).mapToMap().list()
