@@ -129,7 +129,7 @@
 
                 <%--<img src=" ${i.get(0)} " alt="anh xe" id="img">--%>
 
-                <img src ="${p.img.entrySet().iterator().next().getValue()}" alt="anh xe" id="img">
+                <img id="img" src ="${p.img.entrySet().iterator().next().getValue()}" alt="anh xe" >
 
             </div>
         </div>
@@ -165,7 +165,7 @@
                     <span class="infoHeader">Màu sắc: </span>
                     <div class="btnCointainer">
                         <c:forEach var="c" items="${p.img.entrySet()}">
-                            <div class="colorButton cursor__pointer" id="${c.getKey().getCode()}" onclick="changeColor(this.id)">
+                            <div class="colorButton cursor__pointer" id="${c.getKey().getName()}" onclick="changeColor(this.id)">
                                 <div class="colorbtn" style="background-color: ${c.getKey().getCode()};"></div>
                                 <span class="color--text text--description">${c.getKey().getName()}</span>
                             </div>
@@ -174,12 +174,12 @@
                             var imgColor = {};
                             // truyen gia tri tu servlet vao map cua js
                             <c:forEach var="entry" items="${p.img.entrySet()}">
-                            imgColor['${entry.key.code}'] = '${entry.value}';
+                            imgColor['${entry.key.name}'] = '${entry.value}';
                             </c:forEach>
 
                             function changeColor(id) {
                                 const imgElement = document.getElementById('img');
-                                var btn = document.getElementById(id);
+                                // var btn = document.getElementById(id);
                                 imgElement.src = imgColor[id];
                                 const allBtns = document.querySelectorAll('.colorButton');
                                 allBtns.forEach(function (btn) {
@@ -189,6 +189,10 @@
                                         btn.style.background = "rgb(147, 157, 163)";
                                     }
                                 });
+                                const color = document.getElementById("color");
+                                const img = document.getElementById("productImg");
+                                color.value = id;
+                                img.value = imgColor[id];
                             }
                         </script>
                     </div>
@@ -200,13 +204,18 @@
                 </div>
 
             </div>
-            <div class="container--button">
+            <div class="container--button d-flex">
                 <a href="Thanh toan.jsp">
                     <button class="buy">Mua ngay</button>
                 </a>
-                <a href="#">
-                    <button class="addToCart">Thêm vào giỏ hàng</button>
-                </a>
+            <%--    <a href="add-cart">--%>
+                <form action="add-cart?id=${p.id}" method="GET">
+                    <input type="hidden" name="id" id="id" value="${p.id}">
+                    <input type="hidden" name="color" id="color" value="">
+                    <input type="hidden" name="img" id="productImg" value="">
+                    <button type="submit" class="addToCart">Thêm vào giỏ hàng</button>
+                </form>
+            <%--    </a>    --%>
             </div>
         </div>
     </div>

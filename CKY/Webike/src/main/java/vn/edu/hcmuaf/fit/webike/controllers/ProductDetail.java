@@ -18,10 +18,10 @@ public class ProductDetail extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
 
+        int id = Integer.parseInt(request.getParameter("id"));
         ProductDAO dao = new ProductDAO();
-        Product p = dao.getProduct(2);
+        Product p = dao.getProduct(id);
         List<String> specType = dao.getSpecType();
         Map<String, List<Spec>> specMap = new HashMap<>();
         for (String s : specType) {

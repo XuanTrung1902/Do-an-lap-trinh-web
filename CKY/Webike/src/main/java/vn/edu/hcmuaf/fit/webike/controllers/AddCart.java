@@ -12,24 +12,31 @@ import vn.edu.hcmuaf.fit.webike.models.Product;
 
 import java.io.IOException;
 
-@WebServlet(name = "AddCart", value = "/add-Cart")
+@WebServlet(name = "AddCart", value = "/add-cart")
 public class AddCart extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
+        String color = request.getParameter("color"); // lay mau duoc chon
+        String img = request.getParameter("img"); // anh theo mau sp
+        System.out.println(color);
+        System.out.println(img);
 
         ProductDAO dao = new ProductDAO();
-        Product p = dao.getProduct(Integer.parseInt(request.getParameter("id")));
-
+        Product p = dao.getProduct(id);
         HttpSession session = request.getSession(true);
         Cart cart = (Cart) session.getAttribute("cart");
 
+        if (p == null) response.sendRedirect("list-products?addCart=false"); // neu sp ko ton tai
+
         if (cart == null) cart = new Cart();
-        cart.add(p);
+        cart.add(p, color, img);
         session.setAttribute("cart", cart);
-        response.sendRedirect("cart.jsp?addCart=ok");
+
+        response.sendRedirect("productDetail?addCart=ok");
+//        response.sendRedirect("list-products?addCart=ok");
     }
 
     @Override

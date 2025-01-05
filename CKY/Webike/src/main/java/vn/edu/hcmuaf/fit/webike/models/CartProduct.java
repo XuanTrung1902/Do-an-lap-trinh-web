@@ -1,20 +1,23 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public class CartProduct implements Serializable {
-    private int id;
+    private String id;
     private String name;
     private double price;
     private int quantity;
     private String version;
     private String status;
     private String brand;
+    private String type;
+    private Map<String, String> img;
 
     public CartProduct() {
     }
 
-    public CartProduct(int id, String name, double price, int quantity, String version, String status, String brand) {
+    public CartProduct(String id, String name, double price, int quantity, String version, String status, String brand, String type, Map<String, String> img) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -22,14 +25,15 @@ public class CartProduct implements Serializable {
         this.version = version;
         this.status = status;
         this.brand = brand;
+        this.type = type;
+        this.img = img;
     }
 
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -79,5 +83,21 @@ public class CartProduct implements Serializable {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Map<String, String> getImg() {
+        return img;
+    }
+
+    public void setImg(Map<String, String> img) {
+        this.img = img;
     }
 }

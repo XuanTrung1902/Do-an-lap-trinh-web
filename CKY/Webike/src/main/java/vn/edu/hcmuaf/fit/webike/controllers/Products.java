@@ -1,26 +1,28 @@
 package vn.edu.hcmuaf.fit.webike.controllers;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
+import vn.edu.hcmuaf.fit.webike.models.Product;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "Products", value = "/products")
+@WebServlet(name = "Products", value = "/list-products")
 public class Products extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductDAO dao = new ProductDAO();
-        List<Map<String, Object>> products = dao.getAllProductImg(); // Lấy danh sách sản phẩm kèm ảnh
+//        List<Map<String, Object>> products = dao.getAllProductImg(); // Lấy danh sách sản phẩm kèm ảnh
+        List<Product> products = dao.getAllProductImg(); // Lấy danh sách sản phẩm kèm ảnh
+
         List<Map<String, Object>> products2 = dao.getAllProductImg2(); // Lấy  9 sản phẩm
         List<String> brands = dao.getBrandOfProduct(); // Lấy 10 thương hiệu
-
-
 
 
         request.setAttribute("brands", brands);                 // Gửi dữ liệu sang JSP

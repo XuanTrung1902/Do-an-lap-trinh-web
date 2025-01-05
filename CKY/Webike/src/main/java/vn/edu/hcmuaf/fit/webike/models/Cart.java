@@ -9,12 +9,12 @@ public class Cart {
     Map<Integer, CartProduct> data = new HashMap<Integer, CartProduct>();
 
 
-    public boolean add(Product p) {
+    public boolean add(Product p, String color, String img) {
         if (data.containsKey(p.getId())) {
             update(p.getId(), data.get(p.getId()).getQuantity() + 1);
             return true;
         }
-        data.put(p.getId(), convert(p));
+        data.put(p.getId(), convert(p, color, img));
         return true;
     }
 
@@ -32,17 +32,25 @@ public class Cart {
         return true;
     }
 
-    public List<CartProduct> getProducts() {
+    public List<CartProduct> getList() {
         List<CartProduct> rs = new ArrayList<>(data.values());
         return rs;
     }
 
-    private CartProduct convert(Product p) {
+    private CartProduct convert(Product p, String color, String img) {
         CartProduct cp = new CartProduct();
-        cp.setId(p.getId());
+        cp.setId(p.getId() + color);
         cp.setName(p.getName());
         cp.setPrice(p.getPrice());
         cp.setQuantity(1);
+        cp.setVersion(p.getVersion());
+        cp.setStatus(p.getStatus());
+        cp.setBrand(p.getBrand());
+        cp.setType(p.getType());
+
+        Map<String, String> imgColor = new HashMap<>();
+        imgColor.put(color, img);
+        cp.setImg(imgColor);
         return cp;
     }
 }
