@@ -45,6 +45,6 @@
         <button type="submit">Gửi</button>
     </form>
 </div>
-<script src="<%= request.getContextPath()%>/GKY/assets/js/quenMatKhau.js"></script>
+<%--<script src="<%= request.getContextPath()%>/GKY/assets/js/quenMatKhau.js"></script>--%>
 </body>
 </html>
