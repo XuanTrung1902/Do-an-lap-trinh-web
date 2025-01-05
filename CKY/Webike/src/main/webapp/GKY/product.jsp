@@ -123,22 +123,22 @@
                 <div class="search--title">
                     <h2 class="search--title-name">Tìm kiếm xe máy</h2>
                 </div>
-                <form class="search-initialized">
-                    <input type="text" placeholder="Hãng xe">
-                    <input type="text" placeholder="Loại xe">
-                    <select name="" class="bike--cubic">
+                <form id="searchForm" class="search-initialized" method="post">
+                    <input type="text" id="brand" name="brand" placeholder="Hãng xe">
+                    <input type="text" id="type" name="type" placeholder="Loại xe">
+                    <select id="cubic" name="cubic" class="bike--cubic">
                         <option value="" selected>Phân khối</option>
-                        <option value="">50cc</option>
-                        <option value="">50cc - 125cc</option>
-                        <option value="">125cc - 175cc</option>
-                        <option value="">175cc - 250cc</option>
+                        <option value="50cc">50cc</option>
+                        <option value="50cc - 125cc">50cc - 125cc</option>
+                        <option value="125cc - 175cc">125cc - 175cc</option>
+                        <option value="175cc - 250cc">175cc - 250cc</option>
                     </select>
-                    <select name="" class="bike--price">
+                    <select id="price" name="price" class="bike--price">
                         <option value="">Đến giá</option>
-                        <option value="">10.000.000đ</option>
-                        <option value="">50.000.000đ</option>
-                        <option value="">100.000.000đ</option>
-                        <option value="">300.000.000đ</option>
+                        <option value="10000000">10.000.000đ</option>
+                        <option value="50000000">50.000.000đ</option>
+                        <option value="100000000">100.000.000đ</option>
+                        <option value="300000000">300.000.000đ</option>
                     </select>
                     <button class="bike__search--btn">
                         <i class="bike__search--btn-icon fa-solid fa-search"></i>
@@ -291,33 +291,35 @@
                 <div class="title-second">
                     <h3 class="title-second-name">Xe mới đăng</h3>
                 </div>
+<%--                value="xam" onclick="filterimg()"--%>
+
                 <div class="grid-2-8" style="padding-bottom: 10px;">
                     <div class="checkbox__category">
                         <div id="checkboxes">
                             <h4>Hãng xe</h4>
-                            <label><input type="checkbox" value="honda" onclick="filterimg()"> HONDA</label>
-                            <label><input type="checkbox" value="ducati" onclick="filterimg()"> DUCATI</label>
-                            <label><input type="checkbox" value="sym" onclick="filterimg()"> SYM</label>
-                            <label><input type="checkbox" value="piaggio" onclick="filterimg()"> PIAGGIO</label>
+                            <label><input type="checkbox" value="HONDA"> HONDA</label>
+                            <label><input type="checkbox" value="DUCATI"> DUCATI</label>
+                            <label><input type="checkbox" value="SYM"> SYM</label>
+                            <label><input type="checkbox" value="PIAGGIO"> PIAGGIO</label>
                         </div>
                         <div id="checkboxes1">
                             <h4>Màu sắc</h4>
-                            <label><input type="checkbox" value="den" onclick="filterimg()"> ĐEN</label>
-                            <label><input type="checkbox" value="trang" onclick="filterimg()"> TRẮNG</label>
-                            <label><input type="checkbox" value="xam" onclick="filterimg()"> XÁM</label>
+                            <label><input type="checkbox" value="ĐEN"> ĐEN</label>
+                            <label><input type="checkbox" value="TRẮNG"> TRẮNG</label>
+                            <label><input type="checkbox" value="XÁM"> XÁM</label>
                         </div>
                     </div>
                     <div class="list-bike">
                         <div class="grid__row" style="padding: 0 40px;">
 
                             <c:forEach var="p" items="${products}">
-                                <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px;">
+                                <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px; height: 380px">
                                     <a href="products" class="bike--item">
                                         <div class="bike__img zoom-img">
                                             <img src="${p['imgurl']}" alt="${p.name}"/>
                                         </div>
                                         <div class="bike__info">
-                                            <h3 class="bike__name">${p.name}</h3>
+                                            <h3 class="bike__name" style="display: block; height: 49px;" >${p.name}</h3>
                                             <span class="bike__price">
                                                 <f:formatNumber value="${p['price']}" pattern="#,##0.###"/>đ
                                             </span>
@@ -337,6 +339,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <!-- pagination -->
@@ -444,8 +447,37 @@
     </footer>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/popper.min.js"></script>
+
+<%--<script>--%>
+<%--    document.addEventListener('DOMContentLoaded', function () {--%>
+<%--        const inputs = document.querySelectorAll('#searchForm input, #searchForm select');--%>
+<%--        const bikeList = document.getElementById('bikeList');--%>
+
+<%--        inputs.forEach(input => {--%>
+<%--            input.addEventListener('keyup', performSearch);--%>
+<%--            input.addEventListener('change', performSearch); // Bắt sự kiện khi chọn dropdown--%>
+<%--        });--%>
+
+<%--        function performSearch() {--%>
+<%--            const formData = new FormData(document.getElementById('searchForm'));--%>
+<%--            const params = new URLSearchParams(formData).toString();--%>
+
+<%--            fetch('products', {--%>
+<%--                method: 'POST',--%>
+<%--                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },--%>
+<%--                body: params,--%>
+<%--            })--%>
+<%--                .then(response => response.text())--%>
+<%--                .then(html => {--%>
+<%--                    bikeList.innerHTML = html; // Cập nhật kết quả tìm kiếm--%>
+<%--                })--%>
+<%--                .catch(error => console.error('Error:', error));--%>
+<%--        }--%>
+<%--    });--%>
+<%--</script>--%>
 </body>
 </html>

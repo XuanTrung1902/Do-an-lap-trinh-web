@@ -127,6 +127,11 @@ public class Product implements Serializable {
                 ", type='" + type + '\'' +
                 '}';
     }
+
+    public static void main(String[] args) {
+        Product product = new Product(1, "name", "des", 1000, 10, "version", "launch", "status", "brand", "type");
+        System.out.println(product);
+    }
 }
 
 

@@ -6,6 +6,7 @@ import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class ProductDAO {
     public static void main(String[] args) {
@@ -21,9 +22,35 @@ public class ProductDAO {
 //        System.out.println(dao.chooseColor(2,1));
 //        System.out.println(dao.getAllProductImg2());
 //        System.out.println(dao.getBrandOfProduct());
+
     }
 
+    public List<Map<String, Object>> filterProducts(List<String> brands, List<String> colors) {
+        Jdbi jdbi = JDBIConnect.get();
+        StringBuilder sql = new StringBuilder("""
+                    SELECT p.*, min(i.url) AS imgUrl
+                    FROM products AS p
+                    JOIN imgs AS i ON i.productID = p.id
+                    JOIN brands AS b ON b.id = p.brandID
+                    JOIN colors AS c ON c.id = i.colorID
+                    WHERE 1 = 1
+                """);
 
+        if (!brands.isEmpty()) {
+            sql.append(" AND b.name IN (<brands>)");
+        }
+        if (!colors.isEmpty()) {
+            sql.append(" AND c.name IN (<colors>)");
+        }
+
+        sql.append(" GROUP BY p.id");
+
+        return jdbi.withHandle(handle -> handle.createQuery(sql.toString())
+                .bindList("brands", brands)
+                .bindList("colors", colors)
+                .mapToMap()
+                .list());
+    }
 
 
     // lay ra 10 thuong hieu
@@ -39,12 +66,12 @@ public class ProductDAO {
     public List<Map<String, Object>> getAllProductImg2() {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-        SELECT p.*, min(i.url) AS imgUrl
-        FROM products AS p
-        JOIN imgs AS i ON i.productID = p.id
-        GROUP BY p.id
-        LIMIT 9;
-    """;
+                    SELECT p.*, min(i.url) AS imgUrl
+                    FROM products AS p
+                    JOIN imgs AS i ON i.productID = p.id
+                    GROUP BY p.id
+                    LIMIT 9;
+                """;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql).mapToMap().list()
         );
@@ -55,12 +82,12 @@ public class ProductDAO {
     public List<Map<String, Object>> getAllProductImg() {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-        SELECT p.*, min(i.url) AS imgUrl
-        FROM products AS p
-        JOIN imgs AS i ON i.productID = p.id
-        GROUP BY p.id
-        LIMIT 100;
-    """;
+                    SELECT p.*, min(i.url) AS imgUrl
+                    FROM products AS p
+                    JOIN imgs AS i ON i.productID = p.id
+                    GROUP BY p.id
+                    LIMIT 100;
+                """;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql).mapToMap().list()
         );
@@ -157,4 +184,51 @@ public class ProductDAO {
                 .findOne()
                 .orElse(null));
     }
+
+
+    // tim kiem sp
+//    public List<Map<String, Object>> searchProducts(String brand, String type, String cubic, String price) {
+//        Jdbi jdbi = JDBIConnect.get();
+//        StringBuilder sql = new StringBuilder("""
+//        SELECT p.*, MIN(i.url) AS imgUrl
+//        FROM products AS p
+//        JOIN imgs AS i ON i.productID = p.id
+//        WHERE 1=1
+//    """);
+//
+//        if (brand != null && !brand.isEmpty()) {
+//            sql.append(" AND p.brandID IN (SELECT id FROM brands WHERE name LIKE :brand) ");
+//        }
+//        if (type != null && !type.isEmpty()) {
+//            sql.append(" AND p.typeID IN (SELECT id FROM biketypes WHERE type LIKE :type) ");
+//        }
+//        if (cubic != null && !cubic.isEmpty()) {
+//            sql.append(" AND p.cubic = :cubic ");
+//        }
+//        if (price != null && !price.isEmpty()) {
+//            sql.append(" AND p.price <= :price ");
+//        }
+//
+//        sql.append(" GROUP BY p.id LIMIT 100");
+//
+//        return jdbi.withHandle(handle -> {
+//            var query = handle.createQuery(sql.toString());
+//
+//            if (brand != null && !brand.isEmpty()) {
+//                query.bind("brand", "%" + brand + "%");
+//            }
+//            if (type != null && !type.isEmpty()) {
+//                query.bind("type", "%" + type + "%");
+//            }
+//            if (cubic != null && !cubic.isEmpty()) {
+//                query.bind("cubic", cubic);
+//            }
+//            if (price != null && !price.isEmpty()) {
+//                query.bind("price", Integer.parseInt(price));
+//            }
+//
+//            return query.mapToMap().list();
+//        });
+//    }
+
 }

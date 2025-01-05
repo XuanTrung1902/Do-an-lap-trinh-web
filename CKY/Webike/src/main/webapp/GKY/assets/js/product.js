@@ -257,3 +257,5 @@ function renderPagination(totalPages) {
 document.addEventListener("DOMContentLoaded", () => {
   filterImages();
 });
+
+
