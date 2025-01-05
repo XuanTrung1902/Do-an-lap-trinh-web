@@ -12,26 +12,20 @@ import vn.edu.hcmuaf.fit.webike.models.Product;
 
 import java.io.IOException;
 
-@WebServlet(name = "AddCart", value = "/AddCart")
+@WebServlet(name = "AddCart", value = "/add-Cart")
 public class AddCart extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = -1;
-        try {
-            id = Integer.parseInt(request.getParameter("id"));
 
-        } catch (NumberFormatException e) {
-            response.sendRedirect("product.jsp");
-        }
-        if (id < 0) {
-            response.sendRedirect("product.jsp?addCart=false");
-        }
+        int id = Integer.parseInt(request.getParameter("id"));
+
         ProductDAO dao = new ProductDAO();
         Product p = dao.getProduct(Integer.parseInt(request.getParameter("id")));
 
         HttpSession session = request.getSession(true);
         Cart cart = (Cart) session.getAttribute("cart");
+
         if (cart == null) cart = new Cart();
         cart.add(p);
         session.setAttribute("cart", cart);
