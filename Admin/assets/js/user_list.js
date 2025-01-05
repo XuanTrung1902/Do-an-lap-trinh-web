@@ -140,3 +140,26 @@ function initTableData() {
 //         }
 //     });
 // });
+
+
+// MODAL JS
+document.querySelector('.btn-add__user').addEventListener('click', function() {
+  document.getElementById('modal').style.display = 'block';
+});
+
+document.querySelector('.close-button').addEventListener('click', function() {
+  document.getElementById('modal').style.display = 'none';
+});
+
+document.getElementById('add-user-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  // Add user logic here
+  document.getElementById('modal').style.display = 'none';
+});
+
+window.addEventListener('click', function(event) {
+  const modal = document.getElementById('modal');
+  if (event.target === modal) {
+      modal.style.display = 'none';
+  }
+});
