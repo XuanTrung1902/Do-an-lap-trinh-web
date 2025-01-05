@@ -34,8 +34,8 @@ public class ChangePasswordServlet extends HttpServlet {
             } else {
                 request.setAttribute("error", "Mật khẩu mới và xác nhận mật khẩu không khớp!");
             }
-
-            request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/Profile");
+//            request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
         } else {
             response.sendRedirect("GKY/Dangnhap.jsp");
         }

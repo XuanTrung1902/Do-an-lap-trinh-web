@@ -83,6 +83,7 @@ public class UserDao {
 
 
     // Lấy danh sách tất cả người dùng
+    // chức năng quản lý người duùng admin
     public List<User> getAllUsers() {
         return JDBIConnect.get().withHandle(handle ->
                 handle.createQuery("SELECT * FROM accounts")
@@ -120,6 +121,47 @@ public class UserDao {
         );
     }
 
-
+    // admin phần quản lý người dùng
+    public List<User> getVerifiedUsers(int verify) {
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createQuery("SELECT * FROM accounts WHERE verify = :verify")
+                        .bind("verify", verify)
+                        .mapToBean(User.class)
+                        .list()
+        );
+    }
+    // admin quản lý người dùng
+    // Cập nhật verify của người dùng
+    public boolean updateUserVerify(int id, int verify) {
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createUpdate("UPDATE accounts SET verify = :verify WHERE id = :id")
+                        .bind("verify", verify)
+                        .bind("id", id)
+                        .execute() > 0
+        );
+    }
+    // Lấy người dùng theo ID
+    public User getUserById(int id) {
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createQuery("SELECT * FROM accounts WHERE id = :id")
+                        .bind("id", id)
+                        .mapToBean(User.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
+    // Sửa thông tin người dùng
+    public boolean updateUserSua(User user) {
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createUpdate("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, password = :password, address = :address WHERE id = :id")
+                        .bind("name", user.getName())
+                        .bind("phoneNum", user.getPhoneNum())
+                        .bind("DOB", user.getDOB())
+                        .bind("password", user.getPassword())
+                        .bind("address", user.getAddress())
+                        .bind("id", user.getId())
+                        .execute() > 0
+        );
+    }
 }
 

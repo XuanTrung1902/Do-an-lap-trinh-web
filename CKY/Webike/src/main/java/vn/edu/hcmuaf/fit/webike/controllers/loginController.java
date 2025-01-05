@@ -21,8 +21,6 @@ public class loginController extends HttpServlet {
         String phoneNum = request.getParameter("phone");
         String password = request.getParameter("password");
         User user = UserSevice.checklogin(phoneNum, password);  // kiểm tra login
-        System.out.println(password);
-        System.out.println(user.toString());
 
         if (user != null) { // nếu login đúng
             HttpSession session = request.getSession(true);

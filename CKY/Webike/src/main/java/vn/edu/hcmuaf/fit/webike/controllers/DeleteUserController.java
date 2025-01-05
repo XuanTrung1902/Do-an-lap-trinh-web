@@ -18,9 +18,10 @@ public class DeleteUserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         UserDao userDao = new UserDao();
-        boolean isDeleted = userDao.deleteUser(id);
+//        boolean isDeleted = userDao.deleteUser(id);
+        boolean isUpdated = userDao.updateUserVerify(id, 1); // Cập nhật verify thành 1
 
-        if (isDeleted) {
+        if (isUpdated) {
             response.sendRedirect(request.getContextPath() + "/userList");
         } else {
             request.setAttribute("error", "Xóa người dùng thất bại.");

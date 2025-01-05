@@ -152,7 +152,7 @@
                         <h1>Chỉnh sửa thông tin người dùng</h1>
                     </div>
                     <div class="admin-content-main-container">
-                        <form class="edit-user-form" action="<%= request.getContextPath() %>/admin/updateUser" method="post">
+                        <form class="edit-user-form" action="<%= request.getContextPath() %>/updateUser" method="post">
                             <div class="form-group">
                                 <label for="userId">ID</label>
                                 <input type="text" id="userId" name="userId" value="${user.id}" readonly>
@@ -179,7 +179,7 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn-save">Lưu</button>
-                                <button type="reset" class="btn-cancel">Hủy</button>
+                                <button type="button" class="btn-cancel" onclick="window.location.href='<%= request.getContextPath() %>/userList'">Hủy</button>
                             </div>
                         </form>
                     </div>
