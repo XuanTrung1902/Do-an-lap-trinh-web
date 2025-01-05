@@ -5,17 +5,60 @@ import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class ProductDAO {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        System.out.println(dao.getProduct(2));
+        System.out.println(dao.getProduct(1));
 //        System.out.println(dao.getAll());
 //        System.out.println(dao.getSpec(1, "động cơ"));
 //        System.out.println(dao.getFeature(1));
 //        System.out.println(dao.getWarranty(1));
 //        System.out.println(dao.getSpecType());
 //        System.out.println(dao.getComment(1));
+//        System.out.println(dao.getAllProductImg2());
+//        System.out.println(dao.getBrandOfProduct());
+    }
+
+    // lay ra 10 thuong hieu
+    public List<String> getBrandOfProduct() {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "SELECT img FROM brands LIMIT 10";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql).mapTo(String.class).list()
+        );
+    }
+
+    // lay ra 9 sp kem anh cho slider
+    public List<Map<String, Object>> getAllProductImg2() {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+                    SELECT p.*, min(i.url) AS imgUrl
+                    FROM products AS p
+                    JOIN imgs AS i ON i.productID = p.id
+                    GROUP BY p.id
+                    LIMIT 9;
+                """;
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql).mapToMap().list()
+        );
+    }
+
+    // lay ra tat ca sp kem anh
+    public List<Map<String, Object>> getAllProductImg() {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+                    SELECT p.*, min(i.url) AS imgUrl
+                    FROM products AS p
+                    JOIN imgs AS i ON i.productID = p.id
+                    GROUP BY p.id
+                    LIMIT 100;
+                """;
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql).mapToMap().list()
+        );
     }
 
     public List<Product> getAllProducts() { // lấy ra tca sp
@@ -74,7 +117,6 @@ public class ProductDAO {
             return product;
         });
     }
-
 
     public List<String> getSpecType() { // lay ra cac type trong specs [ho tro cho getSpec() ]
         Jdbi jdbi = JDBIConnect.get();
