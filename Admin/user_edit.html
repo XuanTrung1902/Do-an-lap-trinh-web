@@ -132,10 +132,15 @@
                         <ul class="flex-box">
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
-                            <li class="flex-box">
+                            <li class="flex-box user__login">
                                 <img style="width: 50px;" src="assets/images/logo.png" alt="">
                                 <p>Trí Đức</p>
                                 <i class="ri-arrow-down-s-fill"></i>
+                                <ul class="header__navbar--user-menu">
+                                    <li class="header__navbar--user-menu-item">
+                                        <a href="#">Đăng xuất</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -148,33 +153,46 @@
                     <div class="admin-content-main-container">
                         <form class="edit-user-form">
                             <div class="form-group">
-                                <label for="userId">ID</label>
-                                <input type="text" id="userId" name="userId" value="1" readonly>
+                                <label for="username">Tên đăng nhập:</label>
+                                <input type="text" id="username" name="username" required>
                             </div>
                             <div class="form-group">
-                                <label for="username">Tên đăng nhập</label>
-                                <input type="text" id="username" name="username" value="LeTriDuc">
+                                <label for="password">Mật khẩu:</label>
+                                <input type="password" id="password" name="password" required>
                             </div>
                             <div class="form-group">
-                                <label for="password">Mật khẩu</label>
-                                <input type="password" id="password" name="password" value="123456">
+                                <label for="phone">SĐT:</label>
+                                <input type="text" id="phone" name="phone" required>
                             </div>
                             <div class="form-group">
-                                <label for="birthday">Ngày sinh</label>
-                                <input type="date" id="birthday" name="birthday" value="2004-06-11">
+                                <label for="birthday">Ngày sinh:</label>
+                                <input type="date" id="birthday" name="birthday" required>
                             </div>
-                            <div class="form-group">
-                                <label for="address">Địa chỉ</label>
-                                <input type="text" id="address" name="address" value="Đồng Nai">
+                            <div class="form-group-inline">
+                                <label for="sex">Giới tính:</label>
+                                <select id="sex" name="sex" required>
+                                    <option value="">Chọn giới tính</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <label for="phone">SĐT</label>
-                                <input type="text" id="phone" name="phone" value="0123456789">
+                            <div class="form-group-inline">
+                                <label for="created_at">Ngày tạo:</label>
+                                <input type="date" id="created_at" name="created_at" required>
+                                <label for="status">Trạng thái:</label>
+                                <select id="status" name="status" required>
+                                    <option value="active">Active</option>
+                                    <option value="locked">Locked</option>
+                                    <option value="verified">Verified</option>
+                                </select>
+                                <label for="role">Role:</label>
+                                <select id="role" name="role" required>
+                                    <option value="user">User</option>
+                                    <option value="admin">Admin</option>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn-save">Lưu</button>
-                                <button type="reset" class="btn-cancel">Hủy</button>
-                            </div>
+                            <button type="submit" class="btn-save">Lưu</button>
+                            <button type="button" class="btn-cancel">Hủy</button>
                         </form>
                     </div>
                 </div>

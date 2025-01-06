@@ -132,10 +132,15 @@
                         <ul class="flex-box">
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
-                            <li class="flex-box">
+                            <li class="flex-box user__login">
                                 <img style="width: 50px;" src="assets/images/logo.png" alt="">
                                 <p>Trí Đức</p>
                                 <i class="ri-arrow-down-s-fill"></i>
+                                <ul class="header__navbar--user-menu">
+                                    <li class="header__navbar--user-menu-item">
+                                        <a href="#">Đăng xuất</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -147,41 +152,7 @@
                     </div>
                     <div class="admin-content-main-container">
                         <form action="#" method="post" class="order-edit-form">
-                            <div class="form-group">
-                                <label for="order-id">ID Đơn hàng</label>
-                                <input type="text" id="order-id" name="order-id" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="customer-name">Tên khách hàng</label>
-                                <input type="text" id="customer-name" name="customer-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="customer-phone">Số điện thoại</label>
-                                <input type="text" id="customer-phone" name="customer-phone" >
-                            </div>
-                            <div class="form-group">
-                                <label for="customer-email">Email</label>
-                                <input type="email" id="customer-email" name="customer-email" >
-                            </div>
-                            <div class="form-group">
-                                <label for="customer-address">Địa chỉ</label>
-                                <input type="text" id="customer-address" name="customer-address">
-                            </div>
-                            <div class="form-group">
-                                <label for="order-status">Trạng thái</label>
-                                <select id="order-status" name="order-status">
-                                    <option value="success">Đã thanh toán</option>
-                                    <option value="warning">Đã đặt cọc</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="order-date">Ngày</label>
-                                <input type="date" id="order-date" name="order-date" value="2024-11-13">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="save-button">Lưu</button>
-                                <button type="reset" class="cancel-button">Hủy</button>
-                            </div>
+                            
                         </form>
                     </div>
                 </div>
