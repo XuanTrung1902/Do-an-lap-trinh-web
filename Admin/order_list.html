@@ -162,7 +162,11 @@
                                 <!-- <option value="pending">Chưa xác nhận</option> -->
                             </select>
                             <button class="search-button">Tìm kiếm</button>
+                            <div class="admin--create__order" style="margin-left: 50px;">
+                                <button class="create--order__btn"> Thêm đơn hàng</button>
+                            </div>
                         </div>
+                        
                         <table>
                             <thead>
                                 <tr>
@@ -240,6 +244,67 @@
         </div>
     </section>
 
+    <!-- MODAL -->
+     <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Thêm đơn hàng</h2>
+            <form action="#" method="post" class="order-edit-form">
+                <div class="form-group">
+                    <div class="form-item">
+                        <label for="order_id">ID Đơn hàng:</label>
+                        <input type="text" id="order_id" name="order_id" value="1" readonly>
+                    </div>
+                    <div class="form-item">
+                        <label for="user_id">ID Người dùng:</label>
+                        <input type="text" id="user_id" name="user_id" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="branch_id">Chi nhánh:</label>
+                        <select id="branch_id" name="branch_id" required>
+                            <option value="1">Thành phố Hồ Chí Minh</option>
+                            <option value="2">Hà Nội</option>
+                            <option value="3">Đà Nẵng</option>
+                            <option value="4">Nha Trang</option>
+                            <option value="5">Vũng Tàu</option>
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label for="deposit_amount">Tiền đã cọc:</label>
+                        <input type="number" id="deposit_amount" name="deposit_amount" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="remaining_amount">Tiền còn lại:</label>
+                        <input type="number" id="remaining_amount" name="remaining_amount" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-item">
+                        <label for="order_date">Ngày tạo đơn hàng:</label>
+                        <input type="date" id="order_date" name="order_date" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="return_date">Ngày trả:</label>
+                        <input type="date" id="return_date" name="return_date" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="order_status">Trạng thái đơn hàng:</label>
+                        <select id="order_status" name="order_status" required>
+                            <option value="pending">Chưa xác nhận</option>
+                            <option value="confirmed">Đã đặt cọc</option>
+                            <option value="completed">Đã thanh toán</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <button type="submit" class="save-button">Lưu</button>
+                    <button type="button" class="cancel-button">Hủy</button>
+                </div>
+            </form>
+        </div>
+     </div>
+
     <script src="assets/js/order_list.js"></script>
+    
 </body>
 </html>

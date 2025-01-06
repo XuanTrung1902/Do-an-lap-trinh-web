@@ -510,6 +510,12 @@ li {
     width: 159px; /* Đặt chiều rộng cố định cho các cột */
 }
 
+.admin-content-main-container table th:first-child,
+.admin-content-main-container table td:first-child {
+    width: 6%;
+}
+
+
 .admin-content-main-container table th {
     font-size: 1.6rem;
     font-weight: 700;
@@ -583,5 +589,5 @@ li {
 }
 
  
-
+/* MODAL VIEW */
 

@@ -64,3 +64,25 @@ function filterOrders() {
 
 filterDropdown.addEventListener('change', filterOrders);
 searchInput.addEventListener('input', filterOrders);
+
+
+// MODAL
+document.querySelector('.create--order__btn').addEventListener('click', function() {
+    document.getElementById('modal').style.display = 'block';
+});
+
+document.querySelector('.close-button').addEventListener('click', function() {
+    document.getElementById('modal').style.display = 'none';
+});
+
+document.querySelector('.cancel-button').addEventListener('click', function() {
+    document.getElementById('modal').style.display = 'none';
+});
+
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+// ////////////////////////////////////
