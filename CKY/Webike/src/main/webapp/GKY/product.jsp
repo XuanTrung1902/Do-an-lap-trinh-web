@@ -310,14 +310,15 @@
                     <div class="list-bike">
                         <div class="grid__row" style="padding: 0 40px;">
 
+
                             <c:forEach var="p" items="${products}">
                                 <div id="SP${p.id}" class="grid__column-2" data-attributes="honda, trang" style="padding: 10px; height: 380px">
                                     <a href="productDetail?id=${p.id}" class="bike--item">
                                         <div class="bike__img zoom-img">
-<%--                                            <img src="${p['imgurl']}" alt="${p.name}"/>--%>
-                                            <c:set var="color" value="${p.img.entrySet().iterator().next().getKey()}" />
-                                            <c:set var="img" value="${p.img.entrySet().iterator().next().getValue()}" />
-                                            <img src="${img}" alt="${p.name}"/>
+                                            <img src="${p['imgurl']}" alt="${p.name}"/>
+<%--                                            <c:set var="color" value="${p.img.entrySet().iterator().next().getKey()}" />--%>
+<%--                                            <c:set var="img" value="${p.img.get(color)}" />--%>
+<%--                                            <img src="${img}" alt="${p.name}"/>--%>
                                         </div>
                                         <div class="bike__info">
                                             <h3 class="bike__name" style="display: block; height: 49px;" >${p.name}</h3>
@@ -332,14 +333,14 @@
                                         </div>
                                     </a>
 
-                                    <form action="add-cart?id=${p.id}" method="GET">
-                                        <input type="hidden" name="id" value="${p.id}">
-                                        <input type="hidden" name="color" value="mau anh">
-                                        <input type="hidden" name="img" value="src hinh">
-                                        <button type="submit" style="text-decoration: none; display: block;" class="motor__addToCard--btn">
-                                            Thêm vào giỏ hàng
-                                        </button>
-                                    </form>
+<%--                                    <form action="add-cart?id=${p.id}" method="GET">--%>
+<%--                                        <input type="hidden" name="id" value="${p.id}">--%>
+<%--&lt;%&ndash;                                        <input type="hidden" name="color" value="mau anh">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                        <input type="hidden" name="img" value="src hinh">&ndash;%&gt;--%>
+<%--                                        <button type="submit" style="text-decoration: none; display: block;" class="motor__addToCard--btn">--%>
+<%--                                            Thêm vào giỏ hàng--%>
+<%--                                        </button>--%>
+<%--                                    </form>--%>
 
 <%--                                    <a href="add-cart?id=${p.id}" style="text-decoration: none; display: block;" class="motor__addToCard--btn">--%>
 <%--                                        Thêm vào giỏ hàng--%>

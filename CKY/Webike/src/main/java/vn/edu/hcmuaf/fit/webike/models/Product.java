@@ -1,7 +1,9 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Product implements Serializable {
@@ -39,18 +41,34 @@ public class Product implements Serializable {
         Map<Color, String> img = new HashMap<>();
         Color c1 = new Color("do", "#111");
         Color c2 = new Color("do", "#22");
-
         img.put(c1, "anh");
         img.put(c2, "anh1");
 
+        Map<Color, String> img2 = new HashMap<>();
+        Color c3 = new Color("c3", "#c3");
+        Color c4 = new Color("c4", "#c4");
+        img2.put(c3, "anh2");
+        img2.put(c4, "anh3");
+
         Product p = new Product(1, "ten", "des", 12.3, 43, "ver", "launch", "status", "brand", "type", img);
+        Product p1 = new Product(2, "ten", "des", 12.3, 43, "ver", "launch", "status", "brand", "type", img2);
+        List<Product> ls = new ArrayList<>();
+        ls.add(p);
+        ls.add(p1);
 
-
-        System.out.println(p.getImg().keySet().iterator().next());
-        for (Map.Entry<Color, String> x : p.getImg().entrySet()) {
-            System.out.println("Mau: "+x.getKey().getName());
-            System.out.println(x.getKey().getCode());
+        for (Product x : ls) {
+            System.out.println("id: "+x.getId()+ "\n+\t"+x.getImg());
+            System.out.println("-----------------------------"+ p.getImg().size());
+            Color key= x.getImg().entrySet().iterator().next().getKey();
+            System.out.println("Key:"+key);
+            System.out.println("Value:"+x.getImg().get(key));
         }
+
+//        System.out.println(p.getImg().keySet().iterator().next());
+//        for (Map.Entry<Color, String> x : p.getImg().entrySet()) {
+//            System.out.println("Mau: "+x.getKey().getName());
+//            System.out.println(x.getKey().getCode());
+//        }
 
 //        p.getImg().keySet().forEach(System.out::println);
 //        System.out.println("///////");

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class ProductDAO {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        System.out.println(dao.getProduct(1));
+//        System.out.println(dao.getProduct(1));
 //        System.out.println(dao.getAll());
 //        System.out.println(dao.getSpec(1, "động cơ"));
 //        System.out.println(dao.getFeature(1));
@@ -49,75 +49,76 @@ public class ProductDAO {
     }
 
     // lay ra tat ca sp kem anh
-//    public List<Map<String, Object>> getAllProductImg() {
-//        Jdbi jdbi = JDBIConnect.get();
-//        String sql = """
-//                    SELECT p.*, min(i.url) AS imgUrl
-//                    FROM products AS p
-//                    JOIN imgs AS i ON i.productID = p.id
-//                    GROUP BY p.id
-//                    LIMIT 100;
-//                """;
-//        return jdbi.withHandle(handle ->
-//                handle.createQuery(sql).mapToMap().list()
-//        );
-//    }
-
-    public List<Product> getAllProductImg() {
+    public List<Map<String, Object>> getAllProductImg() {
         Jdbi jdbi = JDBIConnect.get();
-        String sqlProduct = """
-                SELECT p.*, b.name AS brand, t.type AS type 
-                FROM products AS p
-                JOIN brands AS b ON p.brandID = b.id
-                JOIN biketypes AS t ON t.id = p.typeID
-            """;
-        String sqlImg = """
-                SELECT c.name, c.code, i.url, i.productID 
-                FROM imgs AS i
-                JOIN colors AS c ON c.id = i.colorID
-            """;
-
-        return jdbi.withHandle(handle -> {
-            // Lấy danh sách sản phẩm
-            List<Product> products = handle.createQuery(sqlProduct)
-                    .map((rs, ctx) -> {
-                        Product p = new Product();
-                        p.setId(rs.getInt("id"));
-                        p.setName(rs.getString("name"));
-                        p.setDes(rs.getString("des"));
-                        p.setPrice(rs.getDouble("price"));
-                        p.setQuantity(rs.getInt("quantity"));
-                        p.setVersion(rs.getString("version"));
-                        p.setLaunch(rs.getString("launch"));
-                        p.setStatus(rs.getString("status"));
-                        p.setBrand(rs.getString("brand"));
-                        p.setType(rs.getString("type"));
-                        p.setImg(new HashMap<>()); // Khởi tạo map để lưu ảnh
-                        return p;
-                    }).list();
-
-            // Tạo map từ productID đến Product để xử lý nhanh
-            Map<Integer, Product> productMap = products.stream()
-                    .collect(Collectors.toMap(Product::getId, p -> p));
-
-            // Xử lý ảnh và gán vào sản phẩm
-            handle.createQuery(sqlImg)
-                    .mapToMap()
-                    .forEach(rs -> {
-                        int productId = (int) rs.get("productID");
-                        Product product = productMap.get(productId);
-                        if (product != null) {
-                            Color c = new Color();
-                            c.setName((String) rs.get("name"));
-                            c.setCode((String) rs.get("code"));
-                            String url = (String) rs.get("url");
-                            product.getImg().put(c, url);
-                        }
-                    });
-
-            return products;
-        });
+        String sql = """
+                    SELECT p.*, min(i.url) AS imgUrl
+                    FROM products AS p
+                    JOIN imgs AS i ON i.productID = p.id
+                    GROUP BY p.id
+                    ORDER BY p.id
+                """;
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql).mapToMap().list()
+        );
     }
+
+//    public List<Product> getAllProductImg() {
+//        Jdbi jdbi = JDBIConnect.get();
+//        String sqlProduct = """
+//                    SELECT p.*, b.name AS brand, t.type AS type
+//                    FROM products AS p
+//                    JOIN brands AS b ON p.brandID = b.id
+//                    JOIN biketypes AS t ON t.id = p.typeID
+//                    ORDER BY p.id
+////                    limit 30
+//                """;
+//        String sqlImg = """
+//                    SELECT c.name, c.code, i.url, i.productID
+//                    FROM imgs AS i
+//                    JOIN colors AS c ON c.id = i.colorID ;
+//                """;
+//
+//        return jdbi.withHandle(handle -> {
+//            // danh sách sản phẩm
+//            List<Product> products = handle.createQuery(sqlProduct)
+//                    .map((rs, ctx) -> {
+//                        Product p = new Product();
+//                        p.setId(rs.getInt("id"));
+//                        p.setName(rs.getString("name"));
+//                        p.setDes(rs.getString("des"));
+//                        p.setPrice(rs.getDouble("price"));
+//                        p.setQuantity(rs.getInt("quantity"));
+//                        p.setVersion(rs.getString("version"));
+//                        p.setLaunch(rs.getString("launch"));
+//                        p.setStatus(rs.getString("status"));
+//                        p.setBrand(rs.getString("brand"));
+//                        p.setType(rs.getString("type"));
+//                        p.setImg(new HashMap<>());
+//                        return p;
+//                    }).list();
+//
+//            // Tạo map từ productID đến Product để xử lý nhanh
+//            Map<Integer, Product> productMap = products.stream()
+//                    .collect(Collectors.toMap(Product::getId, p -> p));
+//
+//            // Xử lý ảnh và gán vào sản phẩm
+//            handle.createQuery(sqlImg)
+//                    .mapToMap()
+//                    .forEach(rs -> {
+//                        Integer productId = (Integer) rs.get("productid");
+//                        Product product = productMap.get(productId);
+//                        if (product != null) {
+//                            Color c = new Color();
+//                            c.setName((String) rs.get("name"));
+//                            c.setCode((String) rs.get("code"));
+//                            String url = (String) rs.get("url");
+//                            product.getImg().put(c, url);
+//                        }
+//                    });
+//            return products;
+//        });
+//    }
 
     public Product getProduct(int id) {
         Jdbi jdbi = JDBIConnect.get();
