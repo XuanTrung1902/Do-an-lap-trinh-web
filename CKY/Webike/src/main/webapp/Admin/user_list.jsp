@@ -1,11 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%--    <meta charset="UTF-8">--%>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -13,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/user_list.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/Admin/assets/css/user_list.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/Admin/assets/css/base.css">
     <title>Admin</title>
 </head>
 <body>
@@ -22,7 +19,7 @@
         <div class="row__grid">
             <div class="admin__sidebar">
                 <div class="admin__sidebar--top">
-                    <img src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
+                    <img src="./assets/images/logo.png" alt="">
                 </div>
                 <div class="admin__sidebar--content">
                     <ul>
@@ -137,10 +134,15 @@
                         <ul class="flex-box">
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
-                            <li class="flex-box">
+                            <li class="flex-box user__login">
                                 <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
-                                <p>Trí Đức</p>
+                                <p>${sessionScope.auth.name}</p>
                                 <i class="ri-arrow-down-s-fill"></i>
+                                <ul class="header__navbar--user-menu">
+                                    <li class="header__navbar--user-menu-item">
+                                        <a href="${pageContext.request.contextPath}/Logout">Đăng xuất</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -149,6 +151,7 @@
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
                         <h1>Người dùng</h1>
+                        <button class="btn-add__user">Thêm người dùng</button>
                     </div>
                     <div class="admin-content-main-container">
                         <!-- <div class="admin-content-main-search">
@@ -172,24 +175,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="user" items="${userList}">
-                                <tr>
-                                    <<td>${user.id}</td>
-                                    <td>${user.name}</td>
-                                    <td>${user.password}</td>
-                                    <td>${user.DOB}</td>
-                                    <td>${user.address}</td>
-                                    <td>${user.phoneNum}</td>
-                                    <td>
-                                        <a href="<%= request.getContextPath() %>/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
-<%--                                        <a href="user_delete.jsp?id=${user.id}" class="delete-button">Xoá</a>--%>
-                                        <form action="<%= request.getContextPath() %>/deleteUser" method="post" style="display:inline;">
-                                            <input type="hidden" name="id" value="${user.id}">
-                                            <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">Xóa</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                                <c:forEach var="user" items="${userList}">
+                                    <tr>
+                                        <td>${user.id}</td>
+                                        <td>${user.name}</td>
+                                        <td>${user.password}</td>
+                                        <td>${user.DOB}</td>
+                                        <td>${user.address}</td>
+                                        <td>${user.phoneNum}</td>
+                                        <td>
+                                            <a href="<%= request.getContextPath() %>/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
+                                            <form action="<%= request.getContextPath() %>/deleteUser" method="post" style="display:inline;">
+                                                <input type="hidden" name="id" value="${user.id}">
+                                                <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">Xóa</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -198,7 +200,58 @@
         </div>
     </section>
 
-    <script src="<%= request.getContextPath() %>/Admin/assets/js/user_list.js"></script>
+    <!-- Modal -->
+    <!-- Modal -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Thêm người dùng</h2>
+                <form id="add-user-form">
+                    <div class="form-group">
+                        <label for="username">Tên đăng nhập:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mật khẩu:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">SĐT:</label>
+                        <input type="text" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthday">Ngày sinh:</label>
+                        <input type="date" id="birthday" name="birthday" required>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="sex">Giới tính:</label>
+                        <select id="sex" name="sex" required>
+                            <option value="">Chọn giới tính</option>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="created_at">Ngày tạo:</label>
+                        <input type="date" id="created_at" name="created_at" required>
+                        <label for="status">Trạng thái:</label>
+                        <select id="status" name="status" required>
+                            <option value="active">Active</option>
+                            <option value="locked">Locked</option>
+                            <option value="verified">Verified</option>
+                        </select>
+                        <label for="role">Role:</label>
+                        <select id="role" name="role" required>
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Thêm</button>
+                </form>
+            </div>
+        </div>
+
+    <script src="<%= request.getContextPath()%>/Admin/assets/js/user_list.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script>
@@ -231,5 +284,29 @@
         });
        });
     </script>
+
+    <script>
+        document.querySelector('.btn-add__user').addEventListener('click', function() {
+            document.getElementById('modal').style.display = 'block';
+        });
+
+        document.querySelector('.close-button').addEventListener('click', function() {
+            document.getElementById('modal').style.display = 'none';
+        });
+
+        document.getElementById('add-user-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add user logic here
+            document.getElementById('modal').style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+
 </body>
 </html>

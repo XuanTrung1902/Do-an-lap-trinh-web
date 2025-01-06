@@ -120,8 +120,8 @@ public class UserDao {
                         .execute() > 0
         );
     }
-
-    // admin phần quản lý người dùng
+    // admin quan lý ngươi dung
+    // Lấy danh sách tất cả người dùng có verify = 0
     public List<User> getVerifiedUsers(int verify) {
         return JDBIConnect.get().withHandle(handle ->
                 handle.createQuery("SELECT * FROM accounts WHERE verify = :verify")

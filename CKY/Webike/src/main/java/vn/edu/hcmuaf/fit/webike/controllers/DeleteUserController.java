@@ -18,13 +18,12 @@ public class DeleteUserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         UserDao userDao = new UserDao();
-//        boolean isDeleted = userDao.deleteUser(id);
         boolean isUpdated = userDao.updateUserVerify(id, 1); // Cập nhật verify thành 1
 
         if (isUpdated) {
             response.sendRedirect(request.getContextPath() + "/userList");
         } else {
-            request.setAttribute("error", "Xóa người dùng thất bại.");
+            request.setAttribute("error", "Cập nhật trạng thái người dùng thất bại.");
             request.getRequestDispatcher("Admin/user_list.jsp").forward(request, response);
         }
     }

@@ -1,8 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
-<%--<%@ taglib prefix="c" uri="jakarta.tags.core" %>--%>
-<%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/css/admin.css"> -->
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/user_edit.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/user_edit.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
     <title>Admin</title>
 </head>
 <body>
@@ -35,7 +31,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="admin.jsp">
+                                    <li><a href="admin.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -51,7 +47,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="user_list.jsp">
+                                    <li><a href="user_list.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
@@ -67,12 +63,12 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="order_list.jsp">
+                                    <li><a href="order_list.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="order_edit.jsp">
+                                    <li><a href="order_edit.html">
                                         <i class="ri-arrow-right-s-fill"></i>
                                         Sửa
                                     </a>
@@ -88,12 +84,12 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="product_list.jsp">
+                                    <li><a href="product_list.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="product_add.jsp">
+                                    <li><a href="product_add.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -109,7 +105,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="discount.jsp">
+                                    <li><a href="discount.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
@@ -138,10 +134,15 @@
                         <ul class="flex-box">
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
-                            <li class="flex-box">
-                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
+                            <li class="flex-box user__login">
+                                <img style="width: 50px;" src="assets/images/logo.png" alt="">
                                 <p>Trí Đức</p>
                                 <i class="ri-arrow-down-s-fill"></i>
+                                <ul class="header__navbar--user-menu">
+                                    <li class="header__navbar--user-menu-item">
+                                        <a href="#">Đăng xuất</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -154,33 +155,49 @@
                     <div class="admin-content-main-container">
                         <form class="edit-user-form" action="<%= request.getContextPath() %>/updateUser" method="post">
                             <div class="form-group">
-                                <label for="userId">ID</label>
-                                <input type="text" id="userId" name="userId" value="${user.id}" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="username">Tên đăng nhập</label>
+                                <label for="username">Tên đăng nhập:</label>
                                 <input type="text" id="username" name="username" value="${user.name}">
                             </div>
                             <div class="form-group">
-                                <label for="password">Mật khẩu</label>
-                                <input type="password" id="password" name="password" value="${user.password}">
+                                <label for="password">Mật khẩu:</label>
+                                <input type="password" id="password" name="password" value="${user.password}">                            </div>
+                            <div class="form-group">
+                                <label for="phone">SĐT:</label>
+                                <input type="text" id="phone" name="phone" value="${user.phoneNum}">
                             </div>
                             <div class="form-group">
-                                <label for="birthday">Ngày sinh</label>
+                                <label for="birthday">Ngày sinh:</label>
                                 <input type="date" id="birthday" name="birthday" value="${user.DOB}">
                             </div>
                             <div class="form-group">
                                 <label for="address">Địa chỉ</label>
                                 <input type="text" id="address" name="address" value="${user.address}">
                             </div>
-                            <div class="form-group">
-                                <label for="phone">SĐT</label>
-                                <input type="text" id="phone" name="phone" value="${user.phoneNum}">
+                            <div class="form-group-inline">
+                                <label for="sex">Giới tính:</label>
+                                <select id="sex" name="sex" required>
+                                    <option value="">Chọn giới tính</option>
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn-save">Lưu</button>
-                                <button type="button" class="btn-cancel" onclick="window.location.href='<%= request.getContextPath() %>/userList'">Hủy</button>
+                            <div class="form-group-inline">
+                                <label for="created_at">Ngày tạo:</label>
+                                <input type="date" id="created_at" name="created_at" required>
+                                <label for="status">Trạng thái:</label>
+                                <select id="status" name="status" required>
+                                    <option value="active">Active</option>
+                                    <option value="locked">Locked</option>
+                                    <option value="verified">Verified</option>
+                                </select>
+                                <label for="role">Role:</label>
+                                <select id="role" name="role" required>
+                                    <option value="user">User</option>
+                                    <option value="admin">Admin</option>
+                                </select>
                             </div>
+                            <button type="submit" class="btn-save">Lưu</button>
+                            <button type="button" class="btn-cancel" onclick="window.location.href='<%= request.getContextPath() %>/userList'">Hủy</button>
                         </form>
                     </div>
                 </div>
@@ -188,6 +205,6 @@
         </div>
     </section>
 
-    <script src="<%= request.getContextPath() %>/Admin/assets/js/sidebar.js"></script>
+    <script src="assets/js/sidebar.js"></script>
 </body>
 </html>

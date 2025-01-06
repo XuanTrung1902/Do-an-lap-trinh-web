@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
-    <link rel="stylesheet" href="./assets/css/discount.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/discount.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/base.css">
     <title>Admin</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
         <div class="row__grid">
             <div class="admin__sidebar">
                 <div class="admin__sidebar--top">
-                    <img src="./assets/images/logo.png" alt="">
+                    <img src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
                 </div>
                 <div class="admin__sidebar--content">
                     <ul>
@@ -135,8 +135,7 @@
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
                             <li class="flex-box">
-                                <img style="width: 50px;" src="assets/images/logo.png" alt="">
-                                <p>Trí Đức</p>
+                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">                                <p>Trí Đức</p>
                                 <i class="ri-arrow-down-s-fill"></i>
                             </li>
                         </ul>
@@ -150,38 +149,32 @@
                     <div class="admin-content-main-container">
                         <table id="list-disount" style="background-color: white; font-size: 1.6rem;" >
                             <thead>
-                                <tr>
-                                    <th>STT</th>
-                                    <th>Mã giảm giá</th>
-                                    <th>Giảm %</th>
-                                    <th>Ngày bắt đầu</th>
-                                    <th>Ngày hết hạn</th>
-                                    <th>Tuỳ chỉnh</th>
-                                </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Giảm giá (%)</th>
+                                <th>Ngày bắt đầu</th>
+                                <th>Ngày kết thúc</th>
+                                <th>Mã sản phẩm</th>
+                                <th>Tuỳ chỉnh</th>
+                            </tr>
                             </thead>
                             <tbody>
+                            <c:forEach var="discount" items="${discountList}">
                                 <tr>
-                                    <td>1</td>
-                                    <td>ABC123</td>
-                                    <td>10%</td>
-                                    <td>2024-12-01</td>
-                                    <td>2024-12-31</td>
+                                    <td>${discount.id}</td>
+                                    <td>${discount.amount}</td>
+                                    <td>${discount.start}</td>
+                                    <td>${discount.end}</td>
+                                    <td>${discount.productID}</td>
                                     <td>
-                                        <a href="#" class="btn-edit">Sửa</a>
-                                        <a href="#" class="btn-delete">Xóa</a>
+                                        <a href="<%= request.getContextPath() %>/updateDiscount?id=${discount.id}" class="btn-edit">Sửa</a>
+                                        <form action="<%= request.getContextPath() %>/deleteDiscount" method="post" style="display:inline;">
+                                            <input type="hidden" name="id" value="${discount.id}">
+                                            <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa giảm giá này?');">Xóa</button>
+                                        </form>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>XYZ456</td>
-                                    <td>20%</td>
-                                    <td>2024-11-01</td>
-                                    <td>2024-11-30</td>
-                                    <td>
-                                        <a href="#" class="btn-edit">Sửa</a>
-                                        <a href="#" class="btn-delete">Xóa</a>
-                                    </td>
-                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -191,7 +184,7 @@
         </div>
     </section>
 
-    <script src="assets/js/discount.js"></script>
+    <script src="<%= request.getContextPath() %>/Admin/assets/js/discount.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script>

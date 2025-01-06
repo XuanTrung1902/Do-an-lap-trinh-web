@@ -149,7 +149,7 @@
                     </div>
                     <form class="admin-content-main-container" >
                         <div class="admin-content-main-container-two-input">
-                            <input type="text" placeholder="Mã giảm giá">
+                            <input type="text" placeholder="mã sản phẩm">
                             <input type="text" placeholder="% giảm giá">
                         </div>
                         <div class="admin-content-main-container-two-input">
