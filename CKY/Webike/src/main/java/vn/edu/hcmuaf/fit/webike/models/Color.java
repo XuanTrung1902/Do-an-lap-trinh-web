@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
-public class Color {
+import java.io.Serializable;
+
+public class Color implements Serializable {
     private String name;
     private String code;
 

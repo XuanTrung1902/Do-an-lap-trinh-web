@@ -21,6 +21,8 @@ public class AddCart extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String color = request.getParameter("color"); // lay mau duoc chon
         String img = request.getParameter("img"); // anh theo mau sp
+
+        System.out.println(id);
         System.out.println(color);
         System.out.println(img);
 
@@ -35,8 +37,8 @@ public class AddCart extends HttpServlet {
         cart.add(p, color, img);
         session.setAttribute("cart", cart);
 
-        response.sendRedirect("productDetail?addCart=ok");
-//        response.sendRedirect("list-products?addCart=ok");
+//        response.sendRedirect("show-cart");
+        response.sendRedirect("productDetail?id=" + id);
     }
 
     @Override

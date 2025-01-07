@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
-public class Warranty {
+import java.io.Serializable;
+
+public class Warranty implements Serializable {
     private int id;
     private int km;
     private int duration;

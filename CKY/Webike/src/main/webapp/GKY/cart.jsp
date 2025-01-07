@@ -13,18 +13,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
           integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/homepage.css">
-    <link rel="stylesheet" href="assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/homepage.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/font/themify-icons/themify-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/bootstrap/css/bootstrap.css">
 
-    <link rel="stylesheet" href="assets/css/cart.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/cart.css">
 </head>
 <title>Giỏ hàng</title>
 </head>
@@ -59,55 +59,53 @@
             </div>
         </div>
 
+
         <ul class="list-product" style="padding: 0px; margin: 0px; list-style-type: none;">
+            <c:forEach var="p" items="${sessionScope.cart.list}">
+                <li id="list2" class="products mb-5" style="padding: 0px; margin: 0px;">
+                    <!-- hang xe -->
+                        <%--                    <div class="control row p-5 ms-5 me-5 pt-3 pb-3 border d-flex align-items-center gap-3">--%>
+                        <%--                        <div class="col-6 d-flex align-items-center gap-3">--%>
+                        <%--                            <input type="checkbox" name="" class="brand" id="brand2" onchange="brandItemChecked('brand2','item brand2')">--%>
+                        <%--                            <label class="brand-label text" for="brand2">YAMAHA</label>--%>
+                        <%--                        </div>--%>
+                        <%--                    </div>--%>
+                    <!-- product -->
 
-
-            <li id="list2" class="products mb-5" style="padding: 0px; margin: 0px;">
-                <!-- hang xe -->
-                <%--                    <div class="control row p-5 ms-5 me-5 pt-3 pb-3 border d-flex align-items-center gap-3">--%>
-                <%--                        <div class="col-6 d-flex align-items-center gap-3">--%>
-                <%--                            <input type="checkbox" name="" class="brand" id="brand2" onchange="brandItemChecked('brand2','item brand2')">--%>
-                <%--                            <label class="brand-label text" for="brand2">YAMAHA</label>--%>
-                <%--                        </div>--%>
-                <%--                    </div>--%>
-                <!-- product -->
-                <c:forEach var="p" items="${sessionScope.cart.list}">
-
-                </c:forEach>
-                <div id="yamaha1" class="item row p-5 ms-5 me-5 border">
-                    <div class="item col-6 d-flex align-items-center gap-4">
-                        <input type="checkbox" class="item brand2">
-                        <img class="img-modi" src="assets/img/yamaha freego black.webp" alt="">
-                        <span class="pName text-1 text-break">YAMAHA FreeGo (Đen)</span>
-                    </div>
-                    <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
-                        <!-- Ô này để cái button tăng giảm số lượng -->
-                        <div class="number d-flex align-items-center">
-                            <button class="button-modi">
-                                <i class="fa-solid fa-minus"></i>
-                            </button>
-                            <div class="quantity text-1">1</div>
-                            <button class="button-modi">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
+                    <div id="yamaha1" class="item row p-5 ms-5 me-5 border">
+                        <div class="item col-6 d-flex align-items-center gap-4">
+                            <input type="checkbox" class="item brand2">
+                            <img class="img-modi" src="${p.img.entrySet().iterator().next().getValue()}" alt="">
+                            <span class="pName text-1 text-break">${p.name} (${p.img.entrySet().iterator().next().getKey()})</span>
                         </div>
-                    </div>
-                    <div class="item col d-flex align-items-center">
+                        <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
+                            <!-- Ô này để cái button tăng giảm số lượng -->
+                            <div class="number d-flex align-items-center">
+                                <button class="button-modi">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <div class="quantity text-1">${p.quantity}</div>
+                                <button class="button-modi">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item col d-flex align-items-center">
                             <span class=" text-1 text-center full-width">
                                 <!-- Giá tiền -->
-                                56.420.000 vnd
+                                ${p.price}
                             </span>
-                    </div>
-                    <div class="item col d-flex align-items-center gap-3">
+                        </div>
+                        <div class="item col d-flex align-items-center gap-3">
                             <span class="text-1 text-center text-danger full-width"
                                   onclick="deleteProduct('list2','yamaha1')">
                                 Xóa
                             </span>
+                        </div>
                     </div>
-                </div>
 
-            </li>
-
+                </li>
+            </c:forEach>
 
             <div class="buy-section shadow rounded d-flex align-items-center pe-5 m-5 mb-0 pt-4 pb-4">
                 <div class="d-flex gap-3">
@@ -120,7 +118,9 @@
                     </button>
                 </a>
             </div>
+
         </ul>
+
 
     </div>
 

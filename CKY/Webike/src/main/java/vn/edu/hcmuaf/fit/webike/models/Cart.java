@@ -1,11 +1,12 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Cart {
+public class Cart implements Serializable {
     Map<Integer, CartProduct> data = new HashMap<Integer, CartProduct>();
 
 
@@ -39,7 +40,9 @@ public class Cart {
 
     private CartProduct convert(Product p, String color, String img) {
         CartProduct cp = new CartProduct();
-        cp.setId(p.getId() + color);
+//        cp.setId(p.getId() + color);
+        cp.setId(String.valueOf(p.getId()));
+
         cp.setName(p.getName());
         cp.setPrice(p.getPrice());
         cp.setQuantity(1);

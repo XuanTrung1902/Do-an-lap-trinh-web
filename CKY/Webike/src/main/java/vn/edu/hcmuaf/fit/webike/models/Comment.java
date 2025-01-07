@@ -1,8 +1,9 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
+import java.io.Serializable;
 import java.util.StringTokenizer;
 
-public class Comment {
+public class Comment implements Serializable {
     private String content;
     private String created;
     private String username;
