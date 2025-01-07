@@ -2,9 +2,10 @@ package vn.edu.hcmuaf.fit.webike.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public class Product implements Serializable {
     private int id;
@@ -20,7 +21,7 @@ public class Product implements Serializable {
     private Map<Color, String> img;
 
     public Product() {
-        this.img = new HashMap<>();
+        this.img = new LinkedHashMap<>();
     }
 
     public Product(int id, String name, String des, double price, int quantity, String version, String launch, String status, String brand, String type, Map<Color, String> img) {
@@ -38,13 +39,13 @@ public class Product implements Serializable {
     }
 
     public static void main(String[] args) {
-        Map<Color, String> img = new HashMap<>();
+        Map<Color, String> img = new LinkedHashMap<>();
         Color c1 = new Color("do", "#111");
         Color c2 = new Color("do", "#22");
         img.put(c1, "anh");
         img.put(c2, "anh1");
 
-        Map<Color, String> img2 = new HashMap<>();
+        Map<Color, String> img2 = new LinkedHashMap<>();
         Color c3 = new Color("c3", "#c3");
         Color c4 = new Color("c4", "#c4");
         img2.put(c3, "anh2");

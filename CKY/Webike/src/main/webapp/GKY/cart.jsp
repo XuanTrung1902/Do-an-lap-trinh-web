@@ -72,8 +72,8 @@
                         <%--                    </div>--%>
                     <!-- product -->
 
-                    <div id="yamaha1" class="item row p-5 ms-5 me-5 border">
-                        <div class="item col-6 d-flex align-items-center gap-4">
+                    <div id="" class="item row p-5 ms-5 me-5 border">
+                        <div id="${p.id}" class="item col-6 d-flex align-items-center gap-4">
                             <input type="checkbox" class="item brand2">
                             <img class="img-modi" src="${p.img.entrySet().iterator().next().getValue()}" alt="">
                             <span class="pName text-1 text-break">${p.name} (${p.img.entrySet().iterator().next().getKey()})</span>
@@ -136,7 +136,7 @@
     </div>
 </div>
 
-<script src="assets/js/Gio hang.js"></script>
+<script src="<%= request.getContextPath()%>/GKY/assets/js/Gio hang.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

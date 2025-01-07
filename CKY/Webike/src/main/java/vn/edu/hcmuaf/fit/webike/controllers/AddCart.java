@@ -22,9 +22,6 @@ public class AddCart extends HttpServlet {
         String color = request.getParameter("color"); // lay mau duoc chon
         String img = request.getParameter("img"); // anh theo mau sp
 
-        System.out.println(id);
-        System.out.println(color);
-        System.out.println(img);
 
         ProductDAO dao = new ProductDAO();
         Product p = dao.getProduct(id);
