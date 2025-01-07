@@ -34,7 +34,6 @@ public class AddCart extends HttpServlet {
         cart.add(p, color, img);
         session.setAttribute("cart", cart);
 
-//        response.sendRedirect("show-cart");
         response.sendRedirect("productDetail?id=" + id);
     }
 

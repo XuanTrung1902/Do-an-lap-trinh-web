@@ -98,12 +98,6 @@
                     <div class="header__search-select">
                         <span class="header__search-select-label">Tìm xe</span>
                         <i class="header__search-select-icon "></i>
-
-                        <!-- <ul class="header__search-option">
-                            <li class="header__search-option-item">
-                                <span >Tìm phụ tùng</span>
-                            </li>
-                        </ul> -->
                     </div>
                     <button class="header__search--btn">
                         <i class="header__search--btn-icon fa-solid fa-search"></i>
@@ -111,9 +105,7 @@
                 </div>
 
                 <div class="header__cart">
-                    <%--                    <a href="cart.jsp" class="header__cart-link">--%>
-                        <a href="show-cart" class="header__cart-link">
-
+                    <a href="show-cart" class="header__cart-link">
                         <i class="header__cart-icon ti-shopping-cart"></i>
                         <span class="header__cart--text">Giỏ Hàng</span>
                     </a>
@@ -128,10 +120,7 @@
     <div class="info">
         <div class="info__img">
             <div class="img__container">
-
-                <%--<img src=" ${i.get(0)} " alt="anh xe" id="img">--%>
-
-                <img id="img" src ="${p.img.entrySet().iterator().next().getValue()}" alt="anh xe" >
+                <img id="img" src="${p.img.entrySet().iterator().next().getValue()}" alt="anh xe">
 
             </div>
         </div>
@@ -167,7 +156,8 @@
                     <span class="infoHeader">Màu sắc: </span>
                     <div class="btnCointainer">
                         <c:forEach var="c" items="${p.img.entrySet()}">
-                            <div class="colorButton cursor__pointer" id="${c.getKey().getName()}" onclick="changeColor(this.id)">
+                            <div class="colorButton cursor__pointer" id="${c.getKey().getName()}"
+                                 onclick="changeColor(this.id)">
                                 <div class="colorbtn" style="background-color: ${c.getKey().getCode()};"></div>
                                 <span class="color--text text--description">${c.getKey().getName()}</span>
                             </div>
@@ -210,14 +200,14 @@
                 <a href="Thanh toan.jsp">
                     <button class="buy">Mua ngay</button>
                 </a>
-            <%--    <a href="add-cart">--%>
+                <%--    <a href="add-cart">--%>
                 <form action="add-cart?id=${p.id}" method="GET">
                     <input type="hidden" name="id" id="id" value="${p.id}">
                     <input type="hidden" name="color" id="productColor" value="">
                     <input type="hidden" name="img" id="productImg" value="">
                     <button type="submit" class="addToCart">Thêm vào giỏ hàng</button>
                 </form>
-            <%--    </a>    --%>
+                <%--    </a>    --%>
             </div>
         </div>
     </div>
@@ -316,42 +306,42 @@
     <div class="container d-flex flex-column justify-content-between align-items-center" style="width: 90%;">
         <h1 class="">CÓ THỂ BẠN QUAN TÂM</h1>
         <div class="container--card row">
-<%--            <a href="#" class="card col m-3 bg-light cursor__pointer shadow" style="width: 300px; padding: 0px;">--%>
-<%--                <img src="assets/img/future blue.png" class="card-img-top img__modi" alt="???">--%>
-<%--                <div class="card--body">--%>
-<%--                    <h3 class="card-title">--%>
-<%--                        <span class="uppercase padding__5px__8px text__white">honda future</span>--%>
-<%--                    </h3>--%>
-<%--                    <span class="card-text padding__5px__8px text__white">85.050.000 vnd</span>--%>
-<%--                </div>--%>
-<%--            </a>--%>
-<%--            <a href="#" class="card col m-3 bg-light cursor__pointer shadow" style="width: 300px; padding: 0px;">--%>
-<%--                <img src="assets/img/honda harley.png" class="card-img-top img__modi" alt="???">--%>
-<%--                <div class="card--body">--%>
-<%--                    <h3 class="card-title">--%>
-<%--                        <span class="uppercase padding__5px__8px text__white">honda harley</span>--%>
-<%--                    </h3>--%>
-<%--                    <span class="card-text padding__5px__8px text__white">374.000.000 vnd</span>--%>
-<%--                </div>--%>
-<%--            </a>--%>
-<%--            <a href="#" class="card col m-3 bg-light cursor__pointer shadow" style="width: 300px; padding: 0px;">--%>
-<%--                <img src="assets/img/kawasaki black harley.png" class="card-img-top img__modi" alt="???">--%>
-<%--                <div class="card--body">--%>
-<%--                    <h3 class="card-title">--%>
-<%--                        <span class="uppercase padding__5px__8px text__white">kawasaki sora</span>--%>
-<%--                    </h3>--%>
-<%--                    <span class="card-text padding__5px__8px text__white">1.069.000.000 vnd</span>--%>
-<%--                </div>--%>
-<%--            </a>--%>
-<%--            <a href="#" class="card col m-3 bg-light cursor__pointer shadow" style="width: 300px; padding: 0px;">--%>
-<%--                <img src="assets/img/kawasaki green 1.png" class="card-img-top img__modi" alt="???">--%>
-<%--                <div class="card--body">--%>
-<%--                    <h3 class="card-title">--%>
-<%--                        <span class="uppercase padding__5px__8px text__white">kawasaki ninjas</span>--%>
-<%--                    </h3>--%>
-<%--                    <span class="card-text padding__5px__8px text__white">3.111.000.000 vnd</span>--%>
-<%--                </div>--%>
-<%--            </a>--%>
+            <%--            <a href="#" class="card col m-3 bg-light cursor__pointer shadow" style="width: 300px; padding: 0px;">--%>
+            <%--                <img src="assets/img/future blue.png" class="card-img-top img__modi" alt="???">--%>
+            <%--                <div class="card--body">--%>
+            <%--                    <h3 class="card-title">--%>
+            <%--                        <span class="uppercase padding__5px__8px text__white">honda future</span>--%>
+            <%--                    </h3>--%>
+            <%--                    <span class="card-text padding__5px__8px text__white">85.050.000 vnd</span>--%>
+            <%--                </div>--%>
+            <%--            </a>--%>
+            <%--            <a href="#" class="card col m-3 bg-light cursor__pointer shadow" style="width: 300px; padding: 0px;">--%>
+            <%--                <img src="assets/img/honda harley.png" class="card-img-top img__modi" alt="???">--%>
+            <%--                <div class="card--body">--%>
+            <%--                    <h3 class="card-title">--%>
+            <%--                        <span class="uppercase padding__5px__8px text__white">honda harley</span>--%>
+            <%--                    </h3>--%>
+            <%--                    <span class="card-text padding__5px__8px text__white">374.000.000 vnd</span>--%>
+            <%--                </div>--%>
+            <%--            </a>--%>
+            <%--            <a href="#" class="card col m-3 bg-light cursor__pointer shadow" style="width: 300px; padding: 0px;">--%>
+            <%--                <img src="assets/img/kawasaki black harley.png" class="card-img-top img__modi" alt="???">--%>
+            <%--                <div class="card--body">--%>
+            <%--                    <h3 class="card-title">--%>
+            <%--                        <span class="uppercase padding__5px__8px text__white">kawasaki sora</span>--%>
+            <%--                    </h3>--%>
+            <%--                    <span class="card-text padding__5px__8px text__white">1.069.000.000 vnd</span>--%>
+            <%--                </div>--%>
+            <%--            </a>--%>
+            <%--            <a href="#" class="card col m-3 bg-light cursor__pointer shadow" style="width: 300px; padding: 0px;">--%>
+            <%--                <img src="assets/img/kawasaki green 1.png" class="card-img-top img__modi" alt="???">--%>
+            <%--                <div class="card--body">--%>
+            <%--                    <h3 class="card-title">--%>
+            <%--                        <span class="uppercase padding__5px__8px text__white">kawasaki ninjas</span>--%>
+            <%--                    </h3>--%>
+            <%--                    <span class="card-text padding__5px__8px text__white">3.111.000.000 vnd</span>--%>
+            <%--                </div>--%>
+            <%--            </a>--%>
         </div>
     </div>
 

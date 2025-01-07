@@ -2,6 +2,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,8 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/base.css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/homepage.css">
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet"
+          href="<%= request.getContextPath()%>/GKY/assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/font/themify-icons/themify-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,18 +65,9 @@
         <ul class="list-product" style="padding: 0px; margin: 0px; list-style-type: none;">
             <c:forEach var="p" items="${sessionScope.cart.list}">
                 <li id="list2" class="products mb-5" style="padding: 0px; margin: 0px;">
-                    <!-- hang xe -->
-                        <%--                    <div class="control row p-5 ms-5 me-5 pt-3 pb-3 border d-flex align-items-center gap-3">--%>
-                        <%--                        <div class="col-6 d-flex align-items-center gap-3">--%>
-                        <%--                            <input type="checkbox" name="" class="brand" id="brand2" onchange="brandItemChecked('brand2','item brand2')">--%>
-                        <%--                            <label class="brand-label text" for="brand2">YAMAHA</label>--%>
-                        <%--                        </div>--%>
-                        <%--                    </div>--%>
-                    <!-- product -->
-
                     <div id="" class="item row p-5 ms-5 me-5 border">
                         <div id="${p.id}" class="item col-6 d-flex align-items-center gap-4">
-                            <input type="checkbox" class="item brand2">
+                            <input type="checkbox" value="${p.id}" class="item check">
                             <img class="img-modi" src="${p.img.entrySet().iterator().next().getValue()}" alt="">
                             <span class="pName text-1 text-break">${p.name} (${p.img.entrySet().iterator().next().getKey()})</span>
                         </div>
@@ -91,28 +84,57 @@
                             </div>
                         </div>
                         <div class="item col d-flex align-items-center">
-                            <span class=" text-1 text-center full-width">
+                            <span class=" text-1 text-center full-width productPrice">
                                 <!-- Giá tiền -->
-                                ${p.price}
+                                <f:setLocale value="vi_VN"/>
+                                <f:formatNumber value="${p.price * p.quantity}" type="currency"/>
                             </span>
                         </div>
-                        <div class="item col d-flex align-items-center gap-3">
-                            <span class="text-1 text-center text-danger full-width"
-                                  onclick="deleteProduct('list2','yamaha1')">
+                        <form action="remove-cart?id=${p.id}" method="GET">
+                            <input type="hidden" name="id" id="id" value="${p.id}">
+                            <button type="submit" class="item col d-flex align-items-center gap-3">
+                            <span class="text-1 text-center text-danger full-width">
                                 Xóa
                             </span>
-                        </div>
+                            </button>
+                        </form>
                     </div>
-
                 </li>
             </c:forEach>
+            <script>
+                function totalPrice() {
+                    const checkboxes = document.querySelectorAll('.check input[type="checkbox"]:checked');
+                    let totalPrice = 0;
+                    checkboxes.forEach((checkbox) => {
+                        const parentRow = checkbox.closest('.item');
+                        const price = parseInt(parentRow.querySelector('.productPrice').textContent, 10);
+                        totalPrice += price;
+                    });
+                    document.getElementById('total-price').textContent = totalPrice;
+                }
+                document.querySelectorAll('.item input[type="checkbox"]').forEach((checkbox) => {
+                    checkbox.addEventListener('change', totalPrice);
+                });
+            </script>
+
 
             <div class="buy-section shadow rounded d-flex align-items-center pe-5 m-5 mb-0 pt-4 pb-4">
                 <div class="d-flex gap-3">
-                    <h2 class="fs-1 fw-normal">Tổng thanh toán (0 sản phẩm):</h2>
-                    <h2 class="fs-1 fw-bold price">123.555vnd</h2>
+                    <h2 class="fs-1 fw-normal">Tổng thanh toán ( sản phẩm):</h2>
+                    <h2 id="total-price" class="fs-1 fw-bold price">
+                        0
+                    </h2>
+                    <script>
+                        function formatCurrency(value) {
+                            return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(value);
+                        }
+
+                        const total = document.getElementById('total-price');
+                        const value = parseInt(total.textContent, 10); // 10 la he thap phan
+                        total.textContent = formatCurrency(value);
+                    </script>
                 </div>
-                <a href="Thanh toan .html" class="ms-auto me-5">
+                <a href="" class="ms-auto me-5">
                     <button class=" buybtn">
                         <span class="buybtn-text">Mua hàng</span>
                     </button>
@@ -120,10 +142,7 @@
             </div>
 
         </ul>
-
-
     </div>
-
 </div>
 
 <!-- noti -->
