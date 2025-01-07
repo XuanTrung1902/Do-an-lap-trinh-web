@@ -148,25 +148,22 @@
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
-                        <h1>Thêm giảm giá/h1>
+                        <h1>Chỉnh sửa giảm giá</h1>
                     </div>
-                    <form class="admin-content-main-container" action="<%= request.getContextPath() %>/addDiscount" method="post">
-                        <c:if test="${not empty error}">
-                            <div class="alert alert-danger" role="alert">
-                                    ${error}
-                            </div>
-                        </c:if>
+                    <form class="admin-content-main-container" action="<%= request.getContextPath() %>/updateDiscount" method="post">
+                        <input type="hidden" name="id" value="${discount.id}">
                         <div class="admin-content-main-container-two-input">
-                            <input type="text" name="productID" placeholder="Mã sản phẩm" required>
-                            <input type="text" name="amount" placeholder="% giảm giá" required>
+                            <input type="text" name="productID" placeholder="Mã sản phẩm" value="${discount.productID}" required>
+                            <input type="text" name="amount" placeholder="% giảm giá" value="${discount.amount}" required>
                         </div>
                         <div class="admin-content-main-container-two-input">
-                            <input type="date" name="start" placeholder="Ngày bắt đầu" required>
-                            <input type="date" name="end" placeholder="Ngày kết thúc" required>
+                            <input type="date" name="start" placeholder="Ngày bắt đầu" value="${discount.start}" required>
+                            <input type="date" name="end" placeholder="Ngày kết thúc" value="${discount.end}" required>
                         </div>
-                        <button type="submit">Thêm giảm giá</button>
+                        <button type="submit">Cập nhật giảm giá</button>
                     </form>
                 </div>
+
 
             </div>
         </div>

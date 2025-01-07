@@ -15,9 +15,6 @@ public class UserListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao userDao = new UserDao();
         List<User> userList = userDao.getVerifiedUsers(0); // Chỉ lấy những tài khoản có verify = 0
-        for(User user : userList){
-            System.out.println(user.toString());
-        }
         if (!userList.isEmpty()) {
             request.setAttribute("userList", userList);
             request.getRequestDispatcher("Admin/user_list.jsp").forward(request, response);

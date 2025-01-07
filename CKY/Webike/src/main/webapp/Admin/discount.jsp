@@ -1,4 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="java.io.Console"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +16,29 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/discount.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/base.css">
+    <style>
+        .table th, .table td {
+            padding: 10px; /* Tăng khoảng cách giữa các ô */
+        }
+
+        .table th:nth-child(2), .table td:nth-child(2) {
+            width: 100px; /* Điều chỉnh chiều rộng của cột "Giảm giá" */
+        }
+
+        .table th:nth-child(3), .table td:nth-child(3),
+        .table th:nth-child(4), .table td:nth-child(4),
+        .table th:nth-child(5), .table td:nth-child(5) {
+            width: 150px; /* Điều chỉnh chiều rộng của các cột "Ngày bắt đầu", "Ngày kết thúc", và "Mã sản phẩm" */
+        }
+
+        .table th:last-child, .table td:last-child {
+            width: 200px; /* Điều chỉnh chiều rộng của cột "Tuỳ chỉnh" */
+        }
+
+        .btn-edit, .btn-delete {
+            display: inline-block; /* Đảm bảo các nút nằm chung một hàng */
+        }
+    </style>
     <title>Admin</title>
 </head>
 <body>
@@ -110,7 +137,7 @@
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="discount_add.jsp">
+                                    <li><a href="<%= request.getContextPath() %>/Admin/discount_add.jsp">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -170,7 +197,7 @@
                                         <a href="<%= request.getContextPath() %>/updateDiscount?id=${discount.id}" class="btn-edit">Sửa</a>
                                         <form action="<%= request.getContextPath() %>/deleteDiscount" method="post" style="display:inline;">
                                             <input type="hidden" name="id" value="${discount.id}">
-                                            <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa giảm giá này?');">Xóa</button>
+                                            <button type="submit" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa giảm giá này?');">Xóa</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -178,7 +205,7 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

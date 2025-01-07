@@ -16,7 +16,7 @@ public class UpdateUserController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         UserDao userDao = new UserDao();
         User user = userDao.getUserById(id);
-
+        System.out.println(user);
         if (user != null) {
             request.setAttribute("user", user);
             request.getRequestDispatcher("/Admin/user_edit.jsp").forward(request, response);
@@ -42,8 +42,12 @@ public class UpdateUserController extends HttpServlet {
         String sex = request.getParameter("sex");
         String password = request.getParameter("password");
         String address = request.getParameter("address");
+        String created = request.getParameter("created_at");
+        int locked = Integer.parseInt(request.getParameter("status"));
+        int verify = Integer.parseInt(request.getParameter("verify"));
+        int role = Integer.parseInt(request.getParameter("role"));
 
-        User user = new User(id, name, phoneNum, date, sex, password, null, 0, 0, 1, address);
+        User user = new User(id, name, phoneNum, date, sex, password, created, locked, verify, role, address);
         UserDao userDao = new UserDao();
         boolean isUpdated = userDao.updateUserSua(user);
 
@@ -51,8 +55,7 @@ public class UpdateUserController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/userList");
         } else {
             request.setAttribute("error", "Cập nhật thông tin người dùng thất bại.");
-            request.getRequestDispatcher("/admin/user_edit.jsp").forward(request, response);
+            request.getRequestDispatcher("/Admin/user_edit.jsp").forward(request, response);
         }
     }
-
 }

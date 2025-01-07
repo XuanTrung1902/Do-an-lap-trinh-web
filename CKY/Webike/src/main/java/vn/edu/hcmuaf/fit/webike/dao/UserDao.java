@@ -150,18 +150,42 @@ public class UserDao {
                         .orElse(null)
         );
     }
+
     // Sửa thông tin người dùng
     public boolean updateUserSua(User user) {
         return JDBIConnect.get().withHandle(handle ->
-                handle.createUpdate("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, password = :password, address = :address WHERE id = :id")
+                handle.createUpdate("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, password = :password, address = :address, created = :created, locked = :locked, verify = :verify, role = :role WHERE id = :id")
                         .bind("name", user.getName())
                         .bind("phoneNum", user.getPhoneNum())
                         .bind("DOB", user.getDOB())
                         .bind("password", user.getPassword())
                         .bind("address", user.getAddress())
+                        .bind("created", user.getCreated())
+                        .bind("locked", user.getLocked())
+                        .bind("verify", user.getVerify())
+                        .bind("role", user.getRole())
                         .bind("id", user.getId())
                         .execute() > 0
         );
     }
+
+    // Thêm người dùng mới
+    public boolean addUserAdmin(User user) {
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address)")
+                        .bind("name", user.getName())
+                        .bind("phoneNum", user.getPhoneNum())
+                        .bind("DOB", user.getDOB())
+                        .bind("sex", user.getSex())
+                        .bind("password", user.getPassword())
+                        .bind("created", user.getCreated())
+                        .bind("locked", user.getLocked())
+                        .bind("verify", user.getVerify())
+                        .bind("role", user.getRole())
+                        .bind("address", user.getAddress())
+                        .execute() > 0
+        );
+    }
+
 }
 

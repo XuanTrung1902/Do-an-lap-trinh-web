@@ -1,5 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@page import="java.io.Console"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/css/admin.css"> -->
-    <link rel="stylesheet" href="./assets/css/user_edit.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/user_edit.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/base.css">
     <title>Admin</title>
 </head>
 <body>
@@ -20,7 +23,7 @@
         <div class="row__grid">
             <div class="admin__sidebar">
                 <div class="admin__sidebar--top">
-                    <img src="./assets/images/logo.png" alt="">
+                    <img src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
                 </div>
                 <div class="admin__sidebar--content">
                     <ul>
@@ -135,7 +138,7 @@
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
                             <li class="flex-box user__login">
-                                <img style="width: 50px;" src="assets/images/logo.png" alt="">
+                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
                                 <p>Trí Đức</p>
                                 <i class="ri-arrow-down-s-fill"></i>
                                 <ul class="header__navbar--user-menu">
@@ -154,46 +157,52 @@
                     </div>
                     <div class="admin-content-main-container">
                         <form class="edit-user-form" action="<%= request.getContextPath() %>/updateUser" method="post">
+                            <input type="hidden" name="userId" value="${user.id}">
                             <div class="form-group">
                                 <label for="username">Tên đăng nhập:</label>
-                                <input type="text" id="username" name="username" value="${user.name}">
+                                <input type="text" id="username" name="username" value="${user.name}" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">Mật khẩu:</label>
-                                <input type="password" id="password" name="password" value="${user.password}">                            </div>
+                                <input type="password" id="password" name="password" value="${user.password}" required>
+                            </div>
                             <div class="form-group">
                                 <label for="phone">SĐT:</label>
-                                <input type="text" id="phone" name="phone" value="${user.phoneNum}">
+                                <input type="text" id="phone" name="phone" value="${user.phoneNum}" required>
                             </div>
                             <div class="form-group">
                                 <label for="birthday">Ngày sinh:</label>
-                                <input type="date" id="birthday" name="birthday" value="${user.DOB}">
+                                <input type="date" id="birthday" name="birthday" value="${user.DOB}" required>
                             </div>
                             <div class="form-group">
-                                <label for="address">Địa chỉ</label>
-                                <input type="text" id="address" name="address" value="${user.address}">
+                                <label for="address">Địa chỉ:</label>
+                                <input type="text" id="address" name="address" value="${user.address}" required>
                             </div>
                             <div class="form-group-inline">
                                 <label for="sex">Giới tính:</label>
-                                <select id="sex" name="sex" required>
+                                <select class="form-control" id="sex" name="sex" required>
                                     <option value="">Chọn giới tính</option>
-                                    <option value="Nam">Nam</option>
-                                    <option value="Nữ">Nữ</option>
+                                    <option value="Nam" ${user.sex == 'Nam' ? 'selected' : ''}>Nam</option>
+                                    <option value="Nữ" ${user.sex == 'Nữ' ? 'selected' : ''}>Nữ</option>
                                 </select>
                             </div>
                             <div class="form-group-inline">
                                 <label for="created_at">Ngày tạo:</label>
-                                <input type="date" id="created_at" name="created_at" required>
+                                <input type="date" class="form-control" id="created_at" name="created_at" value="${user.created}" required>
                                 <label for="status">Trạng thái:</label>
-                                <select id="status" name="status" required>
-                                    <option value="active">Active</option>
-                                    <option value="locked">Locked</option>
-                                    <option value="verified">Verified</option>
+                                <select class="form-control" id="status" name="status" required>
+                                    <option value="0" ${user.locked == 0 ? 'selected' : ''}>Active</option>
+                                    <option value="1" ${user.locked == 1 ? 'selected' : ''}>Locked</option>
                                 </select>
-                                <label for="role">Role:</label>
-                                <select id="role" name="role" required>
-                                    <option value="user">User</option>
-                                    <option value="admin">Admin</option>
+                                <label for="verify">Xác minh:</label>
+                                <select class="form-control" id="verify" name="verify" required>
+                                    <option value="0" ${user.verify == 0 ? 'selected' : ''}>Chưa xác minh</option>
+                                    <option value="1" ${user.verify == 1 ? 'selected' : ''}>Đã xác minh</option>
+                                </select>
+                                <label for="role">Vai trò:</label>
+                                <select class="form-control" id="role" name="role" required>
+                                    <option value="1" ${user.role == 1 ? 'selected' : ''}>User</option>
+                                    <option value="0" ${user.role == 0 ? 'selected' : ''}>Admin</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn-save">Lưu</button>
@@ -201,10 +210,11 @@
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <script src="assets/js/sidebar.js"></script>
+    <script src="<%= request.getContextPath() %>/Admin/assets/js/sidebar.js"></script>
 </body>
 </html>

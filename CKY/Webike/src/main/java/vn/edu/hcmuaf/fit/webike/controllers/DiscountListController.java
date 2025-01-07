@@ -18,9 +18,10 @@ public class DiscountListController extends HttpServlet {
         for (Discount discount : discountList) {
             System.out.println(discount.toString());
         }
-        if(!discountList.isEmpty())
-        request.setAttribute("discountList", discountList);
-        request.getRequestDispatcher("Admin/discount.jsp").forward(request, response);
+        if (!discountList.isEmpty()) {
+            request.setAttribute("discountList", discountList);
+            request.getRequestDispatcher("Admin/discount.jsp").forward(request, response);
+        }
     }
 
     @Override

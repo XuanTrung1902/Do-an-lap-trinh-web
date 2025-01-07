@@ -58,6 +58,7 @@ public class Discount {
     public void setProductID(int productID) {
         this.productID = productID;
     }
+
     @Override
     public String toString() {
         return "Discount{" +
