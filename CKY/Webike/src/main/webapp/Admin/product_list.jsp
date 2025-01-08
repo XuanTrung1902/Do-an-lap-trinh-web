@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,6 +91,27 @@
                                 </div>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#">
+                                <i class="ri-file-list-line"></i>
+                                Giảm giá
+                                <i class="ri-add-box-line"></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="discount.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Danh sách
+                                        </a>
+                                    </li>
+                                    <li><a href="#">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Thêm
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -154,7 +176,7 @@
                                     <td>49.000.000đ</td>
                                     <td>2024-12-11</td>
                                     <td>
-                                        <a href="#" class="btn-edit">Sửa</a>
+                                        <a href="product_edit.jsp" class="btn-edit">Sửa</a>
                                         <a href="#" class="btn-delete">Xóa</a>
                                     </td>
                                 </tr>
@@ -166,7 +188,7 @@
                                     <td>85.000.000đ</td>
                                     <td>2024-12-11</td>
                                     <td>
-                                        <a href="#" class="btn-edit">Sửa</a>
+                                        <a href="product_edit.jsp" class="btn-edit">Sửa</a>
                                         <a href="#" class="btn-delete">Xóa</a>
                                     </td>
                                 </tr>
@@ -178,7 +200,7 @@
                                     <td>125.000.000đ</td>
                                     <td>2024-12-11</td>
                                     <td>
-                                        <a href="#" class="btn-edit">Sửa</a>
+                                        <a href="product_edit.jsp" class="btn-edit">Sửa</a>
                                         <a href="#" class="btn-delete">Xóa</a>
                                     </td>
                                 </tr>
@@ -190,7 +212,7 @@
                                     <td>62.000.000đ</td>
                                     <td>2024-12-11</td>
                                     <td>
-                                        <a href="#" class="btn-edit">Sửa</a>
+                                        <a href="product_edit.jsp" class="btn-edit">Sửa</a>
                                         <a href="#" class="btn-delete">Xóa</a>
                                     </td>
                                 </tr>

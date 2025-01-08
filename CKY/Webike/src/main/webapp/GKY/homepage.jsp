@@ -1,10 +1,3 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
-<%--<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>--%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +37,9 @@
                             <li class="header__navbar--item">
                                 <a href="news.jsp">Tin tức</a>
                             </li>
+                            <!-- <li class="header__navbar--item">
+                                <a href="#">Đại lí</a>
+                            </li> -->
                             <li class="header__navbar--item">
                                 <a href="contact.jsp">Liên hệ</a>
                             </li>
@@ -72,17 +68,19 @@
 
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
-                                        <a href="trangTTKhachHang.jsp"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>
+<%--                                        ${pageContext.request.contextPath}/Profile--%>
+<%--    trangTTKhachHang.jsp--%>
+                                        <a href="${pageContext.request.contextPath}/Profile"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>
                                     </li>
-                                    <!-- <li class="header__navbar--user-menu-item">
-                                        <a href="#"><i class="fa-solid fa-shopping-cart m-r-8"></i>Lịch sử mua hàng</a>
-                                    </li> -->
+<%--                                    <li class="header__navbar--user-menu-item">--%>
+<%--                                        <a href="${pageContext.request.contextPath}/Profile"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>--%>
+<%--                                    </li>--%>
                                     <li class="header__navbar--user-menu-item">
-                                        <a href="Dangnhap.jsp"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
+                                        <a href="${pageContext.request.contextPath}/Logout"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
                                     </li>
                                 </ul>
                             </li>
-                            
+
                         </ul>
                     </div>
 

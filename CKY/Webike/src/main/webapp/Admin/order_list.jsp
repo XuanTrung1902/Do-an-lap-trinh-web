@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,6 +67,12 @@
                                             Danh sách
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="order_edit.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Sửa    
+                                         </a>
+                                    </li>
                                 </div>
                             </ul>
                         </li>
@@ -83,6 +90,27 @@
                                         </a>
                                     </li>
                                     <li><a href="product_add.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Thêm
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ri-file-list-line"></i>
+                                Giảm giá
+                                <i class="ri-add-box-line"></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="discount.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Danh sách
+                                        </a>
+                                    </li>
+                                    <li><a href="#">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -125,9 +153,9 @@
                             <input type="text" id="searchInput" placeholder="Tìm kiếm người dùng...">
                             <select id="order-status-filter">
                                 <option value="all">Tất cả</option>
-                                <option value="success">Đã xác nhận</option>
-                                <option value="warning">Đang xác nhận</option>
-                                <option value="pending">Chưa xác nhận</option>
+                                <option value="success">Đã thanh toán</option>
+                                <option value="warning">Đã đặt cọc</option>
+                                <!-- <option value="pending">Chưa xác nhận</option> -->
                             </select>
                             <button class="search-button">Tìm kiếm</button>
                         </div>
@@ -139,7 +167,6 @@
                                     <th>Số điện thoại</th>
                                     <th>Email</th>
                                     <th>Địa chỉ</th>
-                                    <th>Ghi chú</th>
                                     <th>Chi tiết</th>
                                     <th>Ngày</th>
                                     <th>Trạng thái</th>
@@ -153,15 +180,15 @@
                                     <td>0862944849</td>
                                     <td>22130049@st.hcmuaf.edu.vn</td>
                                     <td>Cẩm Mỹ, Đồng Nai</td>
-                                    <td>Giao nhanh</td>
                                     <td>
                                         <a href="order_detail.jsp" class="detail-button">Chi tiết</a>
                                     </td>
                                     <td>13/11/2024</td>
                                     <td>
-                                        <a class="coform-order success" href="#">Đã xác nhận</a>
+                                        <a class="coform-order success" href="#">Đã thanh toán</a>
                                     </td>
                                     <td>
+                                        <a href="order_edit.jsp" class="edit-button">Sửa</a>
                                         <a href="#" class="delete-button">Xóa</a>
                                     </td>
                                 </tr>
@@ -171,15 +198,15 @@
                                     <td>0862944849</td>
                                     <td>22130049@st.hcmuaf.edu.vn</td>
                                     <td>Cẩm Mỹ, Đồng Nai</td>
-                                    <td>Giao nhanh</td>
                                     <td>
                                         <a href="order_detail.jsp" class="detail-button">Chi tiết</a>
                                     </td>
                                     <td>13/11/2024</td>
                                     <td>
-                                        <a class="coform-order pending" href="#">Chưa xác nhận</a>
+                                        <a class="coform-order warning" href="#">Đã đặt cọc</a>
                                     </td>
                                     <td>
+                                        <a href="order_edit.jsp" class="edit-button">Sửa</a>
                                         <a href="#" class="delete-button">Xóa</a>
                                     </td>
                                 </tr>
@@ -189,123 +216,15 @@
                                     <td>0862944849</td>
                                     <td>22130049@st.hcmuaf.edu.vn</td>
                                     <td>Cẩm Mỹ, Đồng Nai</td>
-                                    <td>Giao nhanh</td>
                                     <td>
                                         <a href="order_detail.jsp" class="detail-button">Chi tiết</a>
                                     </td>
                                     <td>13/11/2024</td>
                                     <td>
-                                        <a class="coform-order warning" href="#">Đang xác nhận</a>
+                                        <a class="coform-order warning" href="#">Đã đặt cọc</a>
                                     </td>
                                     <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Lê Trí Đức</td>
-                                    <td>0862944849</td>
-                                    <td>22130049@st.hcmuaf.edu.vn</td>
-                                    <td>Cẩm Mỹ, Đồng Nai</td>
-                                    <td>Giao nhanh</td>
-                                    <td>
-                                        <a href="order_detail.jsp" class="detail-button">Chi tiết</a>
-                                    </td>
-                                    <td>13/11/2024</td>
-                                    <td>
-                                        <a class="coform-order success" href="#">Đã xác nhận</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Lê Trí Đức</td>
-                                    <td>0862944849</td>
-                                    <td>22130049@st.hcmuaf.edu.vn</td>
-                                    <td>Cẩm Mỹ, Đồng Nai</td>
-                                    <td>Giao nhanh</td>
-                                    <td>
-                                        <a href="order_detail.jsp" class="detail-button">Chi tiết</a>
-                                    </td>
-                                    <td>13/11/2024</td>
-                                    <td>
-                                        <a class="coform-order pending" href="#">Chưa xác nhận</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Lê Trí Đức</td>
-                                    <td>0862944849</td>
-                                    <td>22130049@st.hcmuaf.edu.vn</td>
-                                    <td>Cẩm Mỹ, Đồng Nai</td>
-                                    <td>Giao nhanh</td>
-                                    <td>
-                                        <a href="order_detail.jsp" class="detail-button">Chi tiết</a>
-                                    </td>
-                                    <td>13/11/2024</td>
-                                    <td>
-                                        <a class="coform-order warning" href="#">Đang xác nhận</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>Lê Trí Đức</td>
-                                    <td>0862944849</td>
-                                    <td>22130049@st.hcmuaf.edu.vn</td>
-                                    <td>Cẩm Mỹ, Đồng Nai</td>
-                                    <td>Giao nhanh</td>
-                                    <td>
-                                        <a href="order_detail.jsp" class="detail-button">Chi tiết</a>
-                                    </td>
-                                    <td>13/11/2024</td>
-                                    <td>
-                                        <a class="coform-order success" href="#">Đã xác nhận</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>Lê Trí Đức</td>
-                                    <td>0862944849</td>
-                                    <td>22130049@st.hcmuaf.edu.vn</td>
-                                    <td>Cẩm Mỹ, Đồng Nai</td>
-                                    <td>Giao nhanh</td>
-                                    <td>
-                                        <a href="order_detail.jsp" class="detail-button">Chi tiết</a>
-                                    </td>
-                                    <td>13/11/2024</td>
-                                    <td>
-                                        <a class="coform-order pending" href="#">Chưa xác nhận</a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>Lê Trí Đức</td>
-                                    <td>0862944849</td>
-                                    <td>22130049@st.hcmuaf.edu.vn</td>
-                                    <td>Cẩm Mỹ, Đồng Nai</td>
-                                    <td>Giao nhanh</td>
-                                    <td>
-                                        <a href="order_detail.jsp" class="detail-button">Chi tiết</a>
-                                    </td>
-                                    <td>13/11/2024</td>
-                                    <td>
-                                        <a class="coform-order warning" href="#">Đang xác nhận</a>
-                                    </td>
-                                    <td>
+                                        <a href="order_edit.jsp" class="edit-button">Sửa</a>
                                         <a href="#" class="delete-button">Xóa</a>
                                     </td>
                                 </tr>

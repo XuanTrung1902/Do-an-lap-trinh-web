@@ -142,6 +142,76 @@ a {
     transition: all 0.3s ease;
 }
 
+.form-group {
+    margin-bottom: 15px;
+}
+
+.gender-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    font-size: 14px;
+    color: #333;
+}
+
+.custom-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-radio .checkmark {
+    height: 20px;
+    width: 20px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+}
+
+.custom-radio input:checked + .checkmark {
+    background-color: #000;
+    border-color: #000;
+}
+
+.custom-radio .checkmark:after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+    display: none;
+}
+
+.custom-radio input:checked + .checkmark:after {
+    display: block;
+}
+
+.birth-date {
+    display: flex;
+    gap: 10px;
+}
+
+select {
+    padding: 8px;
+    width: 100px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
 /*.input_field input:hover {*/
 /*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);*/
 /*    transform: translateY(-2px);*/

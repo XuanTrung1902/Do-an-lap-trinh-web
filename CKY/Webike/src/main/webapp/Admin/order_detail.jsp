@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,6 +68,12 @@
                                             Danh sách
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="order_edit.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Sửa    
+                                         </a>
+                                    </li>
                                 </div>
                             </ul>
                         </li>
@@ -84,6 +91,27 @@
                                         </a>
                                     </li>
                                     <li><a href="product_add.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Thêm
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="ri-file-list-line"></i>
+                                Giảm giá
+                                <i class="ri-add-box-line"></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="discount.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Danh sách
+                                        </a>
+                                    </li>
+                                    <li><a href="#">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>

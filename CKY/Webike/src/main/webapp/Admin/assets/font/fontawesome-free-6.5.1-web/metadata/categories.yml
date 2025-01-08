@@ -1678,7 +1678,7 @@ logistics:
     - bus-simple
     - car
     - car-tunnel
-    - cart-flatbed
+    - vn.edu.hcmuaf.fit.webike.t.services.cart-flatbed
     - chart-simple
     - clipboard-check
     - clipboard-list
@@ -1740,7 +1740,7 @@ maps:
     - building-columns
     - cake-candles
     - car
-    - cart-shopping
+    - vn.edu.hcmuaf.fit.webike.t.services.cart-shopping
     - circle-info
     - crosshairs
     - diamond-turn-right
@@ -2514,9 +2514,9 @@ shopping:
     - bullhorn
     - camera
     - camera-retro
-    - cart-arrow-down
-    - cart-plus
-    - cart-shopping
+    - vn.edu.hcmuaf.fit.webike.t.services.cart-arrow-down
+    - vn.edu.hcmuaf.fit.webike.t.services.cart-plus
+    - vn.edu.hcmuaf.fit.webike.t.services.cart-shopping
     - cash-register
     - cc-amazon-pay
     - cc-amex
@@ -2758,7 +2758,7 @@ transportation:
     - car-rear
     - car-side
     - car-tunnel
-    - cart-shopping
+    - vn.edu.hcmuaf.fit.webike.t.services.cart-shopping
     - ferry
     - helicopter
     - horse
@@ -2813,7 +2813,7 @@ travel-hotel:
     - cable-car
     - car
     - caravan
-    - cart-flatbed-suitcase
+    - vn.edu.hcmuaf.fit.webike.t.services.cart-flatbed-suitcase
     - dice
     - dice-five
     - door-closed

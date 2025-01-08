@@ -16,7 +16,7 @@ function deleteProduct(list ,id) {
 }
 
 function cartItemChecked(){
-    const cart = document.getElementById('cart')
+    const cart = document.getElementById('vn.edu.hcmuaf.fit.webike.t.services.cart')
     const brands = document.getElementsByClassName("brand")
     const items = document.getElementsByClassName("item")
     cart.addEventListener('change', () => {
