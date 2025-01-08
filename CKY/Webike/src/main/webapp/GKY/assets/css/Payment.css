@@ -107,7 +107,7 @@
     background-color: #fff;
 }
 .product{
-
+    height: fit-content;
 }
 .product--header{
     border-bottom: 2px darkcyan solid;

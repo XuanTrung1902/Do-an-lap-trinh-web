@@ -21,7 +21,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-    <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/bootstrap/css/bootstrap.css"/>
 </head>
 <body>
@@ -459,37 +458,16 @@
     </footer>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(document).ready(function () {
+        console.log('jQuery loaded');
+    });
+</script>
 <script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/popper.min.js"></script>
 
-<%--<script>--%>
-<%--    document.addEventListener('DOMContentLoaded', function () {--%>
-<%--        const inputs = document.querySelectorAll('#searchForm input, #searchForm select');--%>
-<%--        const bikeList = document.getElementById('bikeList');--%>
 
-<%--        inputs.forEach(input => {--%>
-<%--            input.addEventListener('keyup', performSearch);--%>
-<%--            input.addEventListener('change', performSearch); // Bắt sự kiện khi chọn dropdown--%>
-<%--        });--%>
-
-<%--        function performSearch() {--%>
-<%--            const formData = new FormData(document.getElementById('searchForm'));--%>
-<%--            const params = new URLSearchParams(formData).toString();--%>
-
-<%--            fetch('products', {--%>
-<%--                method: 'POST',--%>
-<%--                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },--%>
-<%--                body: params,--%>
-<%--            })--%>
-<%--                .then(response => response.text())--%>
-<%--                .then(html => {--%>
-<%--                    bikeList.innerHTML = html; // Cập nhật kết quả tìm kiếm--%>
-<%--                })--%>
-<%--                .catch(error => console.error('Error:', error));--%>
-<%--        }--%>
-<%--    });--%>
-<%--</script>--%>
 </body>
 </html>

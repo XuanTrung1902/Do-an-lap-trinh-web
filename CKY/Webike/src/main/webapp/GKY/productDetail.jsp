@@ -195,7 +195,7 @@
 
             </div>
             <div class="container--button d-flex">
-                <a href="Thanh toan.jsp">
+                <a href="Payment.jsp">
                     <button class="buy">Mua ngay</button>
                 </a>
                 <form action="add-cart?id=${p.id}" method="GET">
