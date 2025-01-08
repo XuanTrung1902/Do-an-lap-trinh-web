@@ -168,10 +168,8 @@
                             <c:forEach var="entry" items="${p.img.entrySet()}">
                             imgColor['${entry.key.name}'] = '${entry.value}';
                             </c:forEach>
-
                             function changeColor(id) {
                                 const imgElement = document.getElementById('img');
-                                // var btn = document.getElementById(id);
                                 imgElement.src = imgColor[id];
                                 const allBtns = document.querySelectorAll('.colorButton');
                                 allBtns.forEach(function (btn) {
@@ -200,14 +198,12 @@
                 <a href="Thanh toan.jsp">
                     <button class="buy">Mua ngay</button>
                 </a>
-                <%--    <a href="add-cart">--%>
                 <form action="add-cart?id=${p.id}" method="GET">
                     <input type="hidden" name="id" id="id" value="${p.id}">
                     <input type="hidden" name="color" id="productColor" value="">
                     <input type="hidden" name="img" id="productImg" value="">
                     <button type="submit" class="addToCart">Thêm vào giỏ hàng</button>
                 </form>
-                <%--    </a>    --%>
             </div>
         </div>
     </div>

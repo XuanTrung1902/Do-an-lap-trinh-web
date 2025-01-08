@@ -6,7 +6,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,8 +43,7 @@
     <div class="product m-5 p-5 mb-0 pb-0 d-flex flex-column">
         <div class="head row p-5 ms-5 me-5 mb-5 pt-4 pb-4 border shadow-sm rounded">
             <div class="col-6 d-flex align-items-center gap-3">
-                <input type="checkbox" id="cart">
-                <label class="text " for="cart">Sản phẩm</label>
+                <div class="text">Sản phẩm</div>
             </div>
             <!-- <div class="col">
                 <div class="text text-center">Đơn giá</div>
@@ -61,86 +59,108 @@
             </div>
         </div>
 
-
         <ul class="list-product" style="padding: 0px; margin: 0px; list-style-type: none;">
             <c:forEach var="p" items="${sessionScope.cart.list}">
-                <li id="list2" class="products mb-5" style="padding: 0px; margin: 0px;">
-                    <div id="" class="item row p-5 ms-5 me-5 border">
-                        <div id="${p.id}" class="item col-6 d-flex align-items-center gap-4">
-                            <input type="checkbox" value="${p.id}" class="item check">
+                <li id="" class="products mb-5" style="padding: 0px; margin: 0px;">
+                    <div id="${p.id}" class="checked item row p-5 ms-5 me-5 border">
+                        <div class="checkItem item col-6 d-flex align-items-center gap-4">
                             <img class="img-modi" src="${p.img.entrySet().iterator().next().getValue()}" alt="">
                             <span class="pName text-1 text-break">${p.name} (${p.img.entrySet().iterator().next().getKey()})</span>
                         </div>
                         <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
                             <!-- Ô này để cái button tăng giảm số lượng -->
                             <div class="number d-flex align-items-center">
-                                <button class="button-modi">
-                                    <i class="fa-solid fa-minus"></i>
-                                </button>
+                                <form action="update-cart?id=${p.id}" method="GET">
+                                    <input type="hidden" name="id" value="${p.id}">
+                                    <input type="hidden" name="quantity" value="-1">
+                                    <button type="submit" class="button-modi">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                </form>
                                 <div class="quantity text-1">${p.quantity}</div>
-                                <button class="button-modi">
-                                    <i class="fa-solid fa-plus"></i>
-                                </button>
+                                <form action="update-cart?id=${p.id}" method="GET">
+                                    <input type="hidden" name="id" value="${p.id}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="button-modi">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <div class="item col d-flex align-items-center">
                             <span class=" text-1 text-center full-width productPrice">
-                                <!-- Giá tiền -->
                                 <f:setLocale value="vi_VN"/>
                                 <f:formatNumber value="${p.price * p.quantity}" type="currency"/>
                             </span>
                         </div>
-                        <form action="remove-cart?id=${p.id}" method="GET">
-                            <input type="hidden" name="id" id="id" value="${p.id}">
-                            <button type="submit" class="item col d-flex align-items-center gap-3">
-                            <span class="text-1 text-center text-danger full-width">
-                                Xóa
-                            </span>
-                            </button>
-                        </form>
+                        <div class="item col d-flex align-items-center justify-content-center">
+                            <form action="remove-cart?id=${p.id}" method="GET"
+                                  style="width: fit-content;height: fit-content;">
+                                <input type="hidden" name="id" id="id" value="${p.id}">
+                                <button type="submit" class="item col d-flex align-items-center gap-3"
+                                        style="border: none;">
+                                <span class="text-1 text-center text-danger full-width">
+                                    Xóa
+                                </span>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </li>
             </c:forEach>
             <script>
                 function totalPrice() {
-                    const checkboxes = document.querySelectorAll('.check input[type="checkbox"]:checked');
-                    let totalPrice = 0;
-                    checkboxes.forEach((checkbox) => {
-                        const parentRow = checkbox.closest('.item');
-                        const price = parseInt(parentRow.querySelector('.productPrice').textContent, 10);
-                        totalPrice += price;
+                    // Lấy tất cả các checkbox được chọn
+                    const checkboxes = document.querySelectorAll('.checked .checkItem input[type="checkbox"]:checked');
+                    let total = 0;
+                    checkboxes.forEach((check) => {
+                        const parentRow = check.closest('.checked');
+                        const priceText = parentRow.querySelector('.productPrice').textContent.trim();
+                        const price = parseInt(priceText.replace(/[^\d]/g, ''), 10);
+                        total += price;
+                        // lay ra tong so sp duoc chon
+                        const length = checkboxes.length;
+                        const checkedLength = document.querySelector('.item-length');
+                        if (checkedLength) {
+                            checkedLength.textContent = length;
+                        }
                     });
-                    document.getElementById('total-price').textContent = totalPrice;
+                    document.getElementById('total-price').textContent =
+                        new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(total);
                 }
-                document.querySelectorAll('.item input[type="checkbox"]').forEach((checkbox) => {
+
+                document.querySelectorAll('.checked input[type="checkbox"]').forEach((checkbox) => {
                     checkbox.addEventListener('change', totalPrice);
                 });
             </script>
 
 
-            <div class="buy-section shadow rounded d-flex align-items-center pe-5 m-5 mb-0 pt-4 pb-4">
+            <c:set var="total" value="${empty sessionScope.cart.totalPrice ? 0 : sessionScope.cart.totalPrice}"/>
+            <c:set var="quantity" value="${empty sessionScope.cart.cartLength ? 0 : sessionScope.cart.cartLength}"/>
+            <div class="buy-section shadow rounded d-flex align-items-center justify-content-between pe-5 m-5 mb-0 pt-4 pb-4">
                 <div class="d-flex gap-3">
-                    <h2 class="fs-1 fw-normal">Tổng thanh toán ( sản phẩm):</h2>
+                    <h2 class="fs-1 fw-normal">Tổng thanh toán: (</h2>
+                    <h2 class="item-length fs-1 fw-normal">${quantity}</h2>
+                    <h2 class="fs-1 fw-normal"> sản phẩm):</h2>
                     <h2 id="total-price" class="fs-1 fw-bold price">
-                        0
+                        <f:formatNumber value="${total}" type="currency"/>
                     </h2>
                     <script>
                         function formatCurrency(value) {
                             return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(value);
                         }
-
                         const total = document.getElementById('total-price');
-                        const value = parseInt(total.textContent, 10); // 10 la he thap phan
+                        const value = parseInt(total.textContent.replace(/\D/g, ''), 10); // 10 la he thap phan
                         total.textContent = formatCurrency(value);
                     </script>
                 </div>
-                <a href="" class="ms-auto me-5">
-                    <button class=" buybtn">
+                <form action="buy" method="GET" class="d-flex">
+                    <input type="hidden" name="id" id="xxxx" value="${p.id}">
+                    <button type="submit" class="buybtn">
                         <span class="buybtn-text">Mua hàng</span>
                     </button>
-                </a>
+                </form>
             </div>
-
         </ul>
     </div>
 </div>

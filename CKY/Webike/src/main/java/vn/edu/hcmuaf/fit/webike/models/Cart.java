@@ -21,8 +21,9 @@ public class Cart implements Serializable {
     }
 
     public boolean update(String id, int quantity) {
-        if (!data.containsKey(id) || quantity < 1) return false;
+        if (!data.containsKey(id) || data.get(id).getQuantity() < 1) return false;
         CartProduct cp = data.get(id);
+        quantity += cp.getQuantity();
         cp.setQuantity(quantity);
         data.put(id, cp);
         return true;
@@ -52,5 +53,17 @@ public class Cart implements Serializable {
         imgColor.put(color, img);
         cp.setImg(imgColor);
         return cp;
+    }
+
+    public double getTotalPrice() {
+        double sum = 0;
+        for (CartProduct cp : data.values()) {
+            sum += cp.getPrice() * cp.getQuantity();
+        }
+        return sum;
+    }
+
+    public int getCartLength() {
+        return data.size();
     }
 }
