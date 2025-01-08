@@ -54,5 +54,53 @@
 //     });
 // });
 
+$(document).ready(function() {
+    $("input[name='brand']").on("change", function() {
+        var selectedBrands = [];
+        $("input[name='brand']:checked").each(function() {
+            selectedBrands.push($(this).val());
+        });
+
+        // Gửi dữ liệu qua AJAX
+        $.ajax({
+            url: "/Webike/filter",
+            type: "POST",
+            data: {
+                brand: selectedBrands
+            },
+            traditional: true,
+            success: function(response) {
+                // Xóa danh sách sản phẩm hiện tại
+                $(".grid__row").empty();
+
+                // Thêm sản phẩm mới từ phản hồi
+                response.forEach(function(product) {
+                    var productHTML = `
+                        <div class="grid__column-2" style="padding: 10px; height: 380px">
+                            <a href="products" class="bike--item">
+                                <div class="bike__img zoom-img">
+                                    <img src="${product.imgUrl}" alt="${product.name}"/>
+                                </div>
+                                <div class="bike__info">
+                                    <h3 class="bike__name" style="display: block; height: 49px;">${product.name}</h3>
+                                    <span class="bike__price">${product.price}đ</span>
+                                    <div class="source">
+                                        <span class="condition">${product.version || ""}</span>
+                                        <span class="time">${product.launch || ""}</span>
+                                    </div>
+                                    <address class="address">${product.status || ""}</address>
+                                </div>
+                            </a>
+                        </div>
+                    `;
+                    $(".grid__row").append(productHTML);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra:", error);
+            }
+        });
+    });
+});
 
 

@@ -1,8 +1,8 @@
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
+// const $ = document.querySelector.bind(document);
+// const $$ = document.querySelectorAll.bind(document);
 
 // slider for product
-const products = $$(".box__bike--item");
+const products = document.querySelectorAll(".box__bike--item");
 let counter = 0;
 
 function sliderToLeft() {
@@ -106,7 +106,7 @@ function nextBtn() {
 // }
 
 // pagination for product
-const productItems = $$(".list-bike .grid__column-2");
+const productItems = document.querySelectorAll(".list-bike .grid__column-2");
 const itemsPerPage = 10;
 let currentProductPage = 1;
 

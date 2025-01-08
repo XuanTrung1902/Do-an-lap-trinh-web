@@ -25,7 +25,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
     <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/bootstrap/css/bootstrap.css"/>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -316,7 +316,7 @@
                         <div  class="grid__row" style="padding: 0 40px;">
 
                             <c:forEach var="p" items="${products}">
-                                <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px; height: 380px">
+                                <div class="grid__column-2" style="padding: 10px; height: 380px">
                                     <a href="products" class="bike--item">
                                         <div class="bike__img zoom-img">
                                             <img src="${p['imgurl']}" alt="${p.name}"/>
@@ -452,15 +452,13 @@
 
 <%--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--%>
 <%--<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>--%>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
+
 <script src="${pageContext.request.contextPath}/GKY/assets/js/testAjax.js"></script>
+<script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/popper.min.js"></script>
 <script>
-    $(document).ready(function() {
-        console.log("Hello, Quoc Tan!");
-    });
+
 </script>
 
 <%--<script>--%>
@@ -513,7 +511,6 @@
 <%--            });--%>
 <%--        });--%>
 <%--    });--%>
-
 <%--</script>--%>
 
 

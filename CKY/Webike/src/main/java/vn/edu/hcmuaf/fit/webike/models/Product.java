@@ -16,6 +16,8 @@ public class Product implements Serializable {
     private String brand;
     private String type;
 
+
+
     public Product() {
     }
 

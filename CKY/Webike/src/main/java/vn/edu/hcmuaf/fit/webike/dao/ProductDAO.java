@@ -11,7 +11,8 @@ import java.util.Optional;
 public class ProductDAO {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        System.out.println(dao.getProduct(1));
+//        System.out.println(dao.getAllProducts());
+//        System.out.println(dao.getProduct(1));
 //        System.out.println(dao.getAll());
 //        System.out.println(dao.getSpec(1, "động cơ"));
 //        System.out.println(dao.getFeature(1));
@@ -25,6 +26,7 @@ public class ProductDAO {
 
 
     }
+
 
     // lay ra 10 thuong hieu
     public List<String> getBrandOfProduct() {
@@ -68,7 +70,7 @@ public class ProductDAO {
 
     public List<Product> getAllProducts() { // lấy ra tca sp
         Jdbi jdbi = JDBIConnect.get();
-        return jdbi.withHandle(handle -> handle.createQuery("select * from products")
+        return jdbi.withHandle(handle -> handle.createQuery("select name from products")
                 .mapToBean(Product.class).list());
     }
 
