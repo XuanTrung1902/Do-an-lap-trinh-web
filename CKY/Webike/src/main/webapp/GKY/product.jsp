@@ -25,6 +25,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
     <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/bootstrap/css/bootstrap.css"/>
+
+
 </head>
 <body>
 <div class="app">
@@ -296,11 +298,11 @@
                 <div class="grid-2-8" style="padding-bottom: 10px;">
                     <div class="checkbox__category">
                         <div id="checkboxes">
-                            <h4>Hãng xe</h4>
-                            <label><input type="checkbox" value="HONDA"> HONDA</label>
-                            <label><input type="checkbox" value="DUCATI"> DUCATI</label>
-                            <label><input type="checkbox" value="SYM"> SYM</label>
-                            <label><input type="checkbox" value="PIAGGIO"> PIAGGIO</label>
+                            <h4 class="filter">Hãng xe</h4>
+                            <label><input type="checkbox" class="filter-checkbox" name="brand" value="HONDA"> HONDA</label>
+                            <label><input type="checkbox" class="filter-checkbox" name="brand" value="DUCATI"> DUCATI</label>
+                            <label><input type="checkbox" class="filter-checkbox" name="brand" value="SYM"> SYM</label>
+                            <label><input type="checkbox" class="filter-checkbox" name="brand" value="PIAGGIO"> PIAGGIO</label>
                         </div>
                         <div id="checkboxes1">
                             <h4>Màu sắc</h4>
@@ -309,8 +311,9 @@
                             <label><input type="checkbox" value="XÁM"> XÁM</label>
                         </div>
                     </div>
+
                     <div class="list-bike">
-                        <div class="grid__row" style="padding: 0 40px;">
+                        <div  class="grid__row" style="padding: 0 40px;">
 
                             <c:forEach var="p" items="${products}">
                                 <div class="grid__column-2" data-attributes="honda, trang" style="padding: 10px; height: 380px">
@@ -328,7 +331,7 @@
                                                 <span class="time">${p.launch}</span>
                                             </div>
                                             <address class="address">${p.status}</address>
-                                                <%--                        <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>--%>
+                                            <%-- <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>--%>
                                         </div>
                                     </a>
                                     <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm
@@ -447,37 +450,72 @@
     </footer>
 </div>
 
+<%--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--%>
+<%--<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>--%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
+<script src="${pageContext.request.contextPath}/GKY/assets/js/testAjax.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/popper.min.js"></script>
+<script>
+    $(document).ready(function() {
+        console.log("Hello, Quoc Tan!");
+    });
+</script>
 
 <%--<script>--%>
-<%--    document.addEventListener('DOMContentLoaded', function () {--%>
-<%--        const inputs = document.querySelectorAll('#searchForm input, #searchForm select');--%>
-<%--        const bikeList = document.getElementById('bikeList');--%>
+<%--    $(document).ready(function () {--%>
+<%--        $("#checkboxes input[type='checkbox']").change(function () {--%>
+<%--            let selectedBrands = [];--%>
+<%--            $("#checkboxes input[type='checkbox']:checked").each(function () {--%>
+<%--                selectedBrands.push($(this).val());--%>
+<%--            });--%>
 
-<%--        inputs.forEach(input => {--%>
-<%--            input.addEventListener('keyup', performSearch);--%>
-<%--            input.addEventListener('change', performSearch); // Bắt sự kiện khi chọn dropdown--%>
+<%--            $.ajax({--%>
+<%--                url: "filter",--%>
+<%--                type: "POST",--%>
+<%--                data: { brands: selectedBrands },--%>
+<%--                dataType: "json",--%>
+<%--                success: function (data) {--%>
+<%--                    let productContainer = $(".grid__row");--%>
+<%--                    productContainer.empty();--%>
+
+<%--                    if (data.length === 0) {--%>
+<%--                        productContainer.append("<p>Không có sản phẩm nào phù hợp.</p>");--%>
+<%--                    } else {--%>
+<%--                        data.forEach(product => {--%>
+<%--                            let productHtml = `--%>
+<%--                            <div class="grid__column-2" style="padding: 10px; height: 380px">--%>
+<%--                                <a href="products" class="bike--item">--%>
+<%--                                    <div class="bike__img zoom-img">--%>
+<%--                                        <img src="${product.imgurl}" alt="${product.name}"/>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="bike__info">--%>
+<%--                                        <h3 class="bike__name" style="display: block; height: 49px;">${product.name}</h3>--%>
+<%--                                        <span class="bike__price">${(product.price)}đ</span>--%>
+<%--                                        <div class="source">--%>
+<%--                                            <span class="condition">${product.version}</span>--%>
+<%--                                            <span class="time">${product.launch}</span>--%>
+<%--                                        </div>--%>
+<%--                                        <address class="address">${product.status}</address>--%>
+<%--                                    </div>--%>
+<%--                                </a>--%>
+<%--                                <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>--%>
+<%--                            </div>--%>
+<%--                        `;--%>
+<%--                            productContainer.append(productHtml);--%>
+<%--                        });--%>
+<%--                    }--%>
+<%--                },--%>
+<%--                error: function () {--%>
+<%--                    alert("Đã xảy ra lỗi khi lọc sản phẩm.");--%>
+<%--                }--%>
+<%--            });--%>
 <%--        });--%>
-
-<%--        function performSearch() {--%>
-<%--            const formData = new FormData(document.getElementById('searchForm'));--%>
-<%--            const params = new URLSearchParams(formData).toString();--%>
-
-<%--            fetch('products', {--%>
-<%--                method: 'POST',--%>
-<%--                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },--%>
-<%--                body: params,--%>
-<%--            })--%>
-<%--                .then(response => response.text())--%>
-<%--                .then(html => {--%>
-<%--                    bikeList.innerHTML = html; // Cập nhật kết quả tìm kiếm--%>
-<%--                })--%>
-<%--                .catch(error => console.error('Error:', error));--%>
-<%--        }--%>
 <%--    });--%>
+
 <%--</script>--%>
+
+
 </body>
 </html>

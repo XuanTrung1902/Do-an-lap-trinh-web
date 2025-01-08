@@ -23,35 +23,8 @@ public class ProductDAO {
 //        System.out.println(dao.getAllProductImg2());
 //        System.out.println(dao.getBrandOfProduct());
 
+
     }
-
-    public List<Map<String, Object>> filterProducts(List<String> brands, List<String> colors) {
-        Jdbi jdbi = JDBIConnect.get();
-        StringBuilder sql = new StringBuilder("""
-                    SELECT p.*, min(i.url) AS imgUrl
-                    FROM products AS p
-                    JOIN imgs AS i ON i.productID = p.id
-                    JOIN brands AS b ON b.id = p.brandID
-                    JOIN colors AS c ON c.id = i.colorID
-                    WHERE 1 = 1
-                """);
-
-        if (!brands.isEmpty()) {
-            sql.append(" AND b.name IN (<brands>)");
-        }
-        if (!colors.isEmpty()) {
-            sql.append(" AND c.name IN (<colors>)");
-        }
-
-        sql.append(" GROUP BY p.id");
-
-        return jdbi.withHandle(handle -> handle.createQuery(sql.toString())
-                .bindList("brands", brands)
-                .bindList("colors", colors)
-                .mapToMap()
-                .list());
-    }
-
 
     // lay ra 10 thuong hieu
     public List<String> getBrandOfProduct() {
@@ -184,6 +157,8 @@ public class ProductDAO {
                 .findOne()
                 .orElse(null));
     }
+
+
 
 
     // tim kiem sp
