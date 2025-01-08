@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.controllers;
+package vn.edu.hcmuaf.fit.webike.controllers.admin;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -6,7 +6,6 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.models.User;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "UserListController", value = "/userList")

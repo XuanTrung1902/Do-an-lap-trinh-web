@@ -34,7 +34,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="admin.html">
+                                    <li><a href="<%= request.getContextPath() %>/admin">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -50,7 +50,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="user_list.html">
+                                    <li><a href="<%= request.getContextPath() %>/userList">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
@@ -108,12 +108,12 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="discount.html">
+                                    <li><a href="<%= request.getContextPath() %>/discountList">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="#">
+                                    <li><a href="<%= request.getContextPath() %>/addDiscount">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -143,7 +143,7 @@
                                 <i class="ri-arrow-down-s-fill"></i>
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
-                                        <a href="#">Đăng xuất</a>
+                                        <a href="${pageContext.request.contextPath}/Logout">Đăng xuất</a>
                                     </li>
                                 </ul>
                             </li>

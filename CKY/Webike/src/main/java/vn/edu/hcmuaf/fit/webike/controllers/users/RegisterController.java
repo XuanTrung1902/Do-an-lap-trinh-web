@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.controllers;
+package vn.edu.hcmuaf.fit.webike.controllers.users;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -9,7 +9,6 @@ import vn.edu.hcmuaf.fit.webike.models.User;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @WebServlet(name = "RegisterController", value = "/Dangky")
 public class RegisterController extends HttpServlet {
@@ -40,11 +39,13 @@ public class RegisterController extends HttpServlet {
 
         if (!password.equals(confirmPassword)) {
             request.setAttribute("error", "Mật khẩu không khớp");
+            setRequestAttributes(request, fullname, phone, address, gender, day, month, year);
             request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
             return;
         }
         if (UserSevice.isPhoneNumExists(phone)) {
             request.setAttribute("error", "Số điện thoại đã tồn tại");
+            setRequestAttributes(request, fullname, phone, address, gender, day, month, year);
             request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
             return;
         }
@@ -67,10 +68,19 @@ public class RegisterController extends HttpServlet {
             response.sendRedirect("GKY/Dangnhap.jsp");
         } else {
             request.setAttribute("error", "Đăng ký thất bại");
+            setRequestAttributes(request, fullname, phone, address, gender, day, month, year);
             request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
         }
     }
-
+    private void setRequestAttributes(HttpServletRequest request, String fullname, String phone, String address, String gender, String day, String month, String year) {
+        request.setAttribute("fullname", fullname);
+        request.setAttribute("phone", phone);
+        request.setAttribute("address", address);
+        request.setAttribute("gender", gender);
+        request.setAttribute("day", day);
+        request.setAttribute("month", month);
+        request.setAttribute("year", year);
+    }
 
 
 }

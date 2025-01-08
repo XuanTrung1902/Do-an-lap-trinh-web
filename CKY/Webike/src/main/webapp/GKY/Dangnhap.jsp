@@ -1,5 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<html>
+<%@page import="java.io.Console"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %><html>
 <head>
     <meta charset="utf-8">
     <title>Webike: Đăng nhập</title>
@@ -93,6 +96,11 @@
                             </div>
                             <input type="password" name="password">
                         </div>
+                        <% if (request.getAttribute("error") != null) { %>
+                        <div class="error-message" style="color: red;">
+                            <%= request.getAttribute("error") %>
+                        </div>
+                        <% } %>
                         <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
                             <label for="checkbox">
                                 <input type="checkbox" name="checkbox"> Lưu mật khẩu?

@@ -138,12 +138,12 @@
 
             <div class="profile-form" id="profile-form">
                 <form action="<%= request.getContextPath()%>/Profile" method="post">
-<%--                    <c:if test="${not empty message}">--%>
-<%--                        <div class="message">${message}</div>--%>
-<%--                    </c:if>--%>
-<%--                    <c:if test="${not empty error}">--%>
-<%--                        <div class="error">${error}</div>--%>
-<%--                    </c:if>--%>
+                    <c:if test="${not empty message}">
+                        <div class="message">${message}</div>
+                    </c:if>
+                    <c:if test="${not empty error}">
+                        <div class="error">${error}</div>
+                    </c:if>
                     <div class="form-group">
                         <label for="username">Tên đăng nhập</label>
                         <input type="text" id="username" value="${sessionScope.auth.name}" disabled>
@@ -202,8 +202,14 @@
                     <form id="password-form" action="<%= request.getContextPath()%>/ChangePassword" method="post">
                     <div class="form-group">
                         <label for="current-password">Mật khẩu cũ</label>
-                        <input type="password" id="current-password" name="current-password" placeholder="Nhập mật khẩu cũ" required>
+<%--                        <input type="password" id="current-password" name="current-password" placeholder="Nhập mật khẩu cũ" required>--%>
+                        <input type="password" id="current-password" name="current-password" placeholder="Nhập mật khẩu cũ" value="<%= request.getAttribute("current-password") != null ? request.getAttribute("current-password") : "" %>" required>
                     </div>
+                        <% if (request.getAttribute("error") != null) { %>
+                        <div class="error-message" style="color: red;">
+                            <%= request.getAttribute("error") %>
+                        </div>
+                        <% } %>
                     <div class="form-group">
                         <label for="new-password">Mật khẩu mới</label>
                         <input type="password" id="new-password" name="new-password" placeholder="Nhập mật khẩu mới" required>

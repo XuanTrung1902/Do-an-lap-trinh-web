@@ -33,7 +33,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="#">
+                                    <li><a href="${pageContext.request.contextPath}/admin">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -42,7 +42,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="Admin/admin.jsp">
                                 <i class="ri-file-list-line"></i>
                                 Người dùng
                                 <i class="ri-add-box-line"></i>
@@ -101,7 +101,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="Admin/admin.jsp">
                                 <i class="ri-file-list-line"></i>
                                 Giảm giá
                                 <i class="ri-add-box-line"></i>

@@ -1,13 +1,11 @@
-package vn.edu.hcmuaf.fit.webike.controllers;
+package vn.edu.hcmuaf.fit.webike.controllers.users;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet(name = "CheckPhoneServlet", value = "/CheckPhone")
 public class CheckPhoneServlet extends HttpServlet {

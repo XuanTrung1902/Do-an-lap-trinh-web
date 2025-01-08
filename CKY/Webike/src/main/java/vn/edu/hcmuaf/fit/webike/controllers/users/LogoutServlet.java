@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.controllers;
+package vn.edu.hcmuaf.fit.webike.controllers.users;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -15,7 +15,7 @@ public class LogoutServlet extends HttpServlet {
         if (session != null) {
             session.invalidate(); // Hủy session
         }
-        response.sendRedirect("GKY/Dangnhap.jsp"); // Chuyển hướng đến trang đăng nhập
+        response.sendRedirect("Dangnhap"); // Chuyển hướng đến trang đăng nhập
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

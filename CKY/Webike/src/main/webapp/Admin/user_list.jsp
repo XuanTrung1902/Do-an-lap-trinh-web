@@ -44,7 +44,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="admin.jsp">
+                                    <li><a href="<%= request.getContextPath() %>/admin">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -53,7 +53,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<%= request.getContextPath() %>/userList">
                                 <i class="ri-file-list-line"></i>
                                 Người dùng
                                 <i class="ri-add-box-line"></i>
@@ -119,12 +119,12 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="discount.jsp">
+                                    <li><a href="<%= request.getContextPath() %>/discountList">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="discount.jsp">
+                                    <li><a href="<%= request.getContextPath() %>/addDiscount">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -222,6 +222,11 @@
             <span class="close-button">&times;</span>
             <h2>Thêm người dùng</h2>
             <form id="add-user-form" action="<%= request.getContextPath() %>/addUser" method="post">
+                <c:if test="${not empty error}">
+                    <div class="alert alert-danger" role="alert">
+                            ${error}
+                    </div>
+                </c:if>
                 <div class="form-group">
                     <label for="username">Tên đăng nhập:</label>
                     <input type="text" id="username" name="username" required>

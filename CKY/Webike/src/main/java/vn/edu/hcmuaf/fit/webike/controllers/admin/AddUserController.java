@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.controllers;
+package vn.edu.hcmuaf.fit.webike.controllers.admin;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -34,7 +34,7 @@ public class AddUserController extends HttpServlet {
 
         if (UserSevice.isPhoneNumExists(phoneNum)) {
             request.setAttribute("error", "Số điện thoại đã tồn tại");
-            request.getRequestDispatcher("/Admin/user_list.jsp").forward(request, response);
+            request.getRequestDispatcher("/addUser").forward(request, response);
             return;
         }
 
@@ -57,7 +57,7 @@ public class AddUserController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/userList");
         } else {
             request.setAttribute("error", "Thêm người dùng thất bại.");
-            request.getRequestDispatcher("/Admin/user_list.jsp").forward(request, response);
+            request.getRequestDispatcher("/addUser").forward(request, response);
         }
     }
 

@@ -57,7 +57,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="admin.jsp">
+                                    <li><a href="<%= request.getContextPath() %>/admin">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -73,7 +73,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="user_list.jsp">
+                                    <li><a href="<%= request.getContextPath() %>/userList">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
@@ -132,12 +132,12 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="#">
+                                    <li><a href="<%= request.getContextPath() %>/discountList">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="<%= request.getContextPath() %>/Admin/discount_add.jsp">
+                                    <li><a href="<%= request.getContextPath() %>/addDiscount">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -162,8 +162,14 @@
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
                             <li class="flex-box">
-                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">                                <p>Trí Đức</p>
+                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
+                                <p>Trí Đức</p>
                                 <i class="ri-arrow-down-s-fill"></i>
+                                <ul class="header__navbar--user-menu">
+                                    <li class="header__navbar--user-menu-item">
+                                        <a href="${pageContext.request.contextPath}/Logout">Đăng xuất</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>

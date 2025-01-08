@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.controllers;
+package vn.edu.hcmuaf.fit.webike.controllers.admin;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -15,6 +15,7 @@ public class AddDiscountController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("Admin/discount_add.jsp").forward(request, response);
     }
 
 

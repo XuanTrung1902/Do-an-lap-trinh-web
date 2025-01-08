@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.controllers;
+package vn.edu.hcmuaf.fit.webike.controllers.users;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -12,6 +12,7 @@ public class ChangePasswordServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
     }
 
     @Override
@@ -30,14 +31,17 @@ public class ChangePasswordServlet extends HttpServlet {
                     request.setAttribute("message", "Đổi mật khẩu thành công!");
                 } else {
                     request.setAttribute("error", "Mật khẩu cũ không đúng!");
+                    request.setAttribute("current-password", currentPassword);
                 }
             } else {
                 request.setAttribute("error", "Mật khẩu mới và xác nhận mật khẩu không khớp!");
+                request.setAttribute("current-password", currentPassword);
+
             }
             response.sendRedirect(request.getContextPath() + "/Profile");
 //            request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
         } else {
-            response.sendRedirect("GKY/Dangnhap.jsp");
+            response.sendRedirect("Dangnhap");
         }
     }
 

@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.controllers;
+package vn.edu.hcmuaf.fit.webike.controllers.users;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -21,7 +21,7 @@ public class ProfileController extends HttpServlet {
             request.setAttribute("user", user);
             request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
         } else {
-            response.sendRedirect("GKY/Dangnhap.jsp");
+            response.sendRedirect("/Dangnhap");
         }
     }
 

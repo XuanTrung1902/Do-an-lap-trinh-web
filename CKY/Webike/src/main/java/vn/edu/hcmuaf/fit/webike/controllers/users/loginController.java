@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.controllers;
+package vn.edu.hcmuaf.fit.webike.controllers.users;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -28,7 +28,7 @@ public class loginController extends HttpServlet {
             session.setAttribute("welcomeMessage", "Xin chào, " + user.getName() + "!");
 
             if (user.getRole() == 0) { // nếu là admin
-                response.sendRedirect("Admin/admin.jsp");
+                response.sendRedirect(" admin");
             } else { // nếu là user
                 response.sendRedirect("GKY/homepage.jsp");
             }

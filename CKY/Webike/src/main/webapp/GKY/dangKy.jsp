@@ -1,8 +1,9 @@
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
+<%@page import="java.io.Console"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -66,34 +67,34 @@
         <a href="Dangnhap.html"><h2>Đăng ký</h2></a>
       </div>
 
-<%--        <c:if test="${not empty error}">--%>
-<%--            <div class="error">${error}</div>--%>
-<%--        </c:if>--%>
-
 <%--        onsubmit="return validateForm()"--%>
 <%--        onsubmit="return validatePhone(event)"--%>
         <form class="form_center" method="post" action="<%= request.getContextPath()%>/Dangky"  >
             <div class="input_field">
-                <input type="text" name="fullname" placeholder="Họ Tên" required>
+=                    <input type="text" name="fullname" placeholder="Họ Tên" value="<%= request.getAttribute("fullname") != null ? request.getAttribute("fullname") : "" %>" required>
+            </div>
+            <% if (request.getAttribute("error") != null) { %>
+            <div class="error-message" style="color: red;">
+                <%= request.getAttribute("error") %>
+            </div>
+            <% } %>
+            <div class="input_field">
+                    <input type="tel" name="phone" placeholder="Số điện thoại" value="<%= request.getAttribute("phone") != null ? request.getAttribute("phone") : "" %>" required>
             </div>
             <div class="input_field">
-                <input type="tel" name="phone" placeholder="Số điện thoại" required>
-<%--                <div id="phone-error" style="display:none;color:red;">Số điện thoại đã tồn tại</div>--%>
-                            <span id="phone-error" style="color: red; display: none;">Số điện thoại đã tồn tại!</span>
-            </div>
-            <div class="input_field">
-                <input type="text" name="address" placeholder="Địa chỉ" required>
+=                    <input type="text" name="address" placeholder="Địa chỉ" value="<%= request.getAttribute("address") != null ? request.getAttribute("address") : "" %>" required>
             </div>
             <div class="form-group">
                 <div class="gender-group">
                     <label class="custom-radio">
-                        <input type="radio" id="male" name="gender" value="Nam">
+                        <input type="radio" id="male" name="gender" value="Nam" <%= "Nam".equals(request.getAttribute("gender")) ? "checked" : "" %>>
                         <span class="checkmark"></span> Nam
                     </label>
                     <label class="custom-radio">
-                        <input type="radio" id="female" name="gender" value="Nữ">
+                        <input type="radio" id="female" name="gender" value="Nữ" <%= "Nữ".equals(request.getAttribute("gender")) ? "checked" : "" %>>
                         <span class="checkmark"></span> Nữ
                     </label>
+
                 </div>
             </div>
             <div class="form-group">

@@ -127,6 +127,48 @@ li {
     height: 60px;
 } */
 
+/* USER MENU */
+.user__login:hover .header__navbar--user-menu {
+    display: block;
+    transition: 0.3s linear ;
+} 
+
+.header__navbar--user-menu {
+    display: none;
+    position: absolute;
+    top: 53px;
+    right: 0;
+    background-color: var(--white-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 10;
+    transition: 0.3s linear;
+}
+
+.header__navbar--user-menu::before {
+    content: "";
+    border-width: 20px 27px;
+    border-style: solid;
+    border-color: transparent transparent var(--white-color) transparent;
+    position: absolute;
+    right: 4px;
+    top: -29px;
+}
+
+.header__navbar--user-menu-item {
+    padding: 10px 20px;
+}
+
+.header__navbar--user-menu-item a {
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+.header__navbar--user-menu-item:hover {
+    background-color: var(--sub-bg-color);
+}
 
 /* content */
 .admin__content {
@@ -441,7 +483,7 @@ li {
 .admin-content-main-container table tbody tr:hover {
     background-color: #f1f1f1;
 }
-
+/* CSS cho các nút "Sửa" và "Xóa" */
 .admin-content-main-container .btn-edit,
 .admin-content-main-container .btn-delete {
     padding: 8px 12px;
@@ -469,7 +511,6 @@ li {
 .admin-content-main-container .btn-delete:hover {
     background-color: #e53935;
 }
-
 /* datatable */
 /* ==== Bảng DataTable ==== */
 table.dataTable thead {
@@ -529,6 +570,24 @@ table.dataTable tbody tr:hover {
 }
 
 .btn-delete:hover {
+    background-color: #c82333; /* Đỏ đậm hơn */
+    transform: scale(1.05);
+}
+
+/* Đảm bảo các nút trong form cũng được áp dụng CSS */
+form .btn-delete {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin: 0 3px;
+    background-color: #dc3545; /* Màu đỏ */
+    color: #fff;
+}
+
+form .btn-delete:hover {
     background-color: #c82333; /* Đỏ đậm hơn */
     transform: scale(1.05);
 }
