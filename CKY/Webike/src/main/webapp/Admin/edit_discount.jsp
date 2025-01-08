@@ -145,12 +145,16 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
                         <h1>Chỉnh sửa giảm giá</h1>
                     </div>
                     <form class="admin-content-main-container" action="<%= request.getContextPath() %>/updateDiscount" method="post">
+                        <c:if test="${not empty error}">
+                            <div class="alert alert-danger" role="alert">
+                                    ${error}
+                            </div>
+                        </c:if>
                         <input type="hidden" name="id" value="${discount.id}">
                         <div class="admin-content-main-container-two-input">
                             <input type="text" name="productID" placeholder="Mã sản phẩm" value="${discount.productID}" required>
@@ -163,6 +167,7 @@
                         <button type="submit">Cập nhật giảm giá</button>
                     </form>
                 </div>
+
 
 
             </div>

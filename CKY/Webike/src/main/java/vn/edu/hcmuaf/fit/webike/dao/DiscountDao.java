@@ -31,5 +31,27 @@ public class DiscountDao {
                         .execute() > 0
         );
     }
+    // Lấy giảm giá theo ID
+    public Discount getDiscountById(int id) {
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createQuery("SELECT * FROM discounts WHERE id = :id")
+                        .bind("id", id)
+                        .mapToBean(Discount.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
+    // Cập nhật giảm giá
+    public boolean updateDiscount(Discount discount) {
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createUpdate("UPDATE discounts SET amount = :amount, start = :start, end = :end, productID = :productID WHERE id = :id")
+                        .bind("amount", discount.getAmount())
+                        .bind("start", discount.getStart())
+                        .bind("end", discount.getEnd())
+                        .bind("productID", discount.getProductID())
+                        .bind("id", discount.getId())
+                        .execute() > 0
+        );
+    }
 
 }
