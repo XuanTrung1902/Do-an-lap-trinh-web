@@ -10,7 +10,7 @@ import java.util.Map;
 public class FilterDAO {
     public static void main(String[] args) {
         FilterDAO dao = new FilterDAO();
-//        System.out.println(dao.getProductsByBrands(new String[]{"HONDA"}));
+        System.out.println(dao.getProductsByBrands(new String[]{"HONDA"}));
 //        System.out.println(dao.getProductsByBrands1(new String[]{"HONDA"}));
     }
 
@@ -20,8 +20,8 @@ public class FilterDAO {
         String sql = """
                     SELECT\s
                                              p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,\s
-                                             p.status, b.name AS brand, min(i.url) AS imgUrl
-                                         FROM products AS p
+                                             p.status, b.name AS brand, i.url 
+                                         FROM products AS p     
                                          JOIN imgs AS i ON i.productID = p.id
                                          JOIN brands AS b ON p.brandID = b.id
                                          WHERE b.name IN (<brands>)

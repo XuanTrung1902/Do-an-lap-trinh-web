@@ -200,7 +200,7 @@ function filterImages() {
     images.forEach((image) => {
       const imageAttributes = image
         .getAttribute("data-attributes")
-        .split(", ")
+        // .split(", ")
         .map((attr) => attr.trim());
       const matchesGroup1 =
         selectedAttributes.length === 0 ||

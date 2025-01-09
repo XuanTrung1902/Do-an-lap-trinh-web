@@ -85,10 +85,10 @@ $(document).ready(function() {
                                     <h3 class="bike__name" style="display: block; height: 49px;">${product.name}</h3>
                                     <span class="bike__price">${product.price}đ</span>
                                     <div class="source">
-                                        <span class="condition">${product.version || ""}</span>
-                                        <span class="time">${product.launch || ""}</span>
+                                        <span class="condition">${product.version}</span>
+                                        <span class="time">${product.launch}</span>
                                     </div>
-                                    <address class="address">${product.status || ""}</address>
+                                    <address class="address">${product.status}</address>
                                 </div>
                             </a>
                         </div>
