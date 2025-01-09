@@ -365,7 +365,6 @@
                 </button>
             </div>
 
-
         </div>
     </div>
 
@@ -453,65 +452,11 @@
 <%--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--%>
 <%--<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>--%>
 
-<script src="${pageContext.request.contextPath}/GKY/assets/js/testAjax.js"></script>
+<script src="${pageContext.request.contextPath}/GKY/assets/js/FilterProductAjax.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/popper.min.js"></script>
-<script>
 
-</script>
-
-<%--<script>--%>
-<%--    $(document).ready(function () {--%>
-<%--        $("#checkboxes input[type='checkbox']").change(function () {--%>
-<%--            let selectedBrands = [];--%>
-<%--            $("#checkboxes input[type='checkbox']:checked").each(function () {--%>
-<%--                selectedBrands.push($(this).val());--%>
-<%--            });--%>
-
-<%--            $.ajax({--%>
-<%--                url: "filter",--%>
-<%--                type: "POST",--%>
-<%--                data: { brands: selectedBrands },--%>
-<%--                dataType: "json",--%>
-<%--                success: function (data) {--%>
-<%--                    let productContainer = $(".grid__row");--%>
-<%--                    productContainer.empty();--%>
-
-<%--                    if (data.length === 0) {--%>
-<%--                        productContainer.append("<p>Không có sản phẩm nào phù hợp.</p>");--%>
-<%--                    } else {--%>
-<%--                        data.forEach(product => {--%>
-<%--                            let productHtml = `--%>
-<%--                            <div class="grid__column-2" style="padding: 10px; height: 380px">--%>
-<%--                                <a href="products" class="bike--item">--%>
-<%--                                    <div class="bike__img zoom-img">--%>
-<%--                                        <img src="${product.imgurl}" alt="${product.name}"/>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="bike__info">--%>
-<%--                                        <h3 class="bike__name" style="display: block; height: 49px;">${product.name}</h3>--%>
-<%--                                        <span class="bike__price">${(product.price)}đ</span>--%>
-<%--                                        <div class="source">--%>
-<%--                                            <span class="condition">${product.version}</span>--%>
-<%--                                            <span class="time">${product.launch}</span>--%>
-<%--                                        </div>--%>
-<%--                                        <address class="address">${product.status}</address>--%>
-<%--                                    </div>--%>
-<%--                                </a>--%>
-<%--                                <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>--%>
-<%--                            </div>--%>
-<%--                        `;--%>
-<%--                            productContainer.append(productHtml);--%>
-<%--                        });--%>
-<%--                    }--%>
-<%--                },--%>
-<%--                error: function () {--%>
-<%--                    alert("Đã xảy ra lỗi khi lọc sản phẩm.");--%>
-<%--                }--%>
-<%--            });--%>
-<%--        });--%>
-<%--    });--%>
-<%--</script>--%>
 
 
 </body>

@@ -4,15 +4,13 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.FilterDAO;
-import vn.edu.hcmuaf.fit.webike.models.Product;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "TestFilter", value = "/filter")
-public class TestFilter extends HttpServlet {
+@WebServlet(name = "FilterProduct", value = "/filter")
+public class FilterProduct extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +25,7 @@ public class TestFilter extends HttpServlet {
         FilterDAO filterDAO = new FilterDAO();
 //        List<Map<String, Object>> products = filterDAO.getProductsByBrands(brands);
         List<Map<String, Object>> products = filterDAO.getProductsByBrands(brands);
-        System.out.println(products.toString());
+//        System.out.println(products.toString());
 
         // Trả kết quả dưới dạng JSON
         response.setContentType("application/json");
@@ -47,21 +45,6 @@ public class TestFilter extends HttpServlet {
         }
         if (json.length() > 1) json.setLength(json.length() - 1); // Xóa dấu phẩy cuối
         json.append("]");
-
-
         response.getWriter().write(json.toString());
-
-
-
-
-
-//        String[] brands = request.getParameterValues("brand");
-//        for(String brand: brands) {
-//            System.out.println(brand);
-//        }
-//
-//        response.setContentType("application/json");
-//        response.setCharacterEncoding("UTF-8");
-//        response.setStatus(200);
     }
 }
