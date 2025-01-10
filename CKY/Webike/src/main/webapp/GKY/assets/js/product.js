@@ -68,9 +68,30 @@ function renderProductItems() {
   });
 }
 
+// function renderProductPagination() {
+//   const paginationContainer = $(".pagination");
+//   paginationContainer.innerHTML = "";
+//   const totalPages = Math.ceil(productItems.length / itemsPerPage);
+//
+//   for (let i = 1; i <= totalPages; i++) {
+//     const li = document.createElement("li");
+//     li.classList.add("pagination__link");
+//     if (i === currentProductPage) {
+//       li.classList.add("pagination__link--active");
+//     }
+//     li.textContent = i;
+//     li.addEventListener("click", () => {
+//       currentProductPage = i;
+//       renderProductItems();
+//       renderProductPagination();
+//     });
+//     paginationContainer.appendChild(li);
+//   }
+// }
+
 function renderProductPagination() {
-  const paginationContainer = $(".pagination");
-  paginationContainer.innerHTML = "";
+  const paginationContainer = $(".pagination ul");
+  paginationContainer.empty(); // Clear existing pagination links
   const totalPages = Math.ceil(productItems.length / itemsPerPage);
 
   for (let i = 1; i <= totalPages; i++) {
@@ -85,7 +106,7 @@ function renderProductPagination() {
       renderProductItems();
       renderProductPagination();
     });
-    paginationContainer.appendChild(li);
+    paginationContainer.append(li); // Use jQuery append method
   }
 }
 
@@ -141,18 +162,19 @@ function filterImages() {
 
   if (selectedAttributes.length === 0 && selectedAttributes1.length === 0) {
     visibleImages = Array.from(images);
-  } else {
+  }
+  else {
     images.forEach((image) => {
       const imageAttributes = image
         .getAttribute("data-attributes")
-        // .split(", ")
-        .map((attr) => attr.trim());
+      //   .split(", ")
+      //   .map((attr) => attr.trim());
       const matchesGroup1 =
-        selectedAttributes.length === 0 ||
-        selectedAttributes.some((attr) => imageAttributes.includes(attr));
+        selectedAttributes.length === 0
+          || selectedAttributes.some((attr) => imageAttributes.includes(attr));
       const matchesGroup2 =
-        selectedAttributes1.length === 0 ||
-        selectedAttributes1.some((attr) => imageAttributes.includes(attr));
+        selectedAttributes1.length === 0
+          || selectedAttributes1.some((attr) => imageAttributes.includes(attr));
 
       if (matchesGroup1 && matchesGroup2) {
         visibleImages.push(image);

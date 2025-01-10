@@ -44,4 +44,46 @@ public class FilterDAO {
         return jdbi.withHandle(handle -> handle.createQuery(sql).mapToMap().list());
     }
 
+    public int getTotalProductsByBrands(String[] brands) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+            SELECT COUNT(*)
+            FROM products AS p
+            JOIN brands AS b ON p.brandID = b.id
+            WHERE b.name IN (<brands>)
+            """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bindList("brands", brands)
+                        .mapTo(int.class)
+                        .one()
+        );
+    }
+
+    public List<Map<String, Object>> getProductsByBrands1(String[] brands, int page, int limit) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+                SELECT p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,
+                       p.status, b.name AS brand, i.url
+                FROM products AS p
+                JOIN imgs AS i ON i.productID = p.id
+                JOIN brands AS b ON p.brandID = b.id
+                WHERE b.name IN (<brands>)
+                GROUP BY p.id
+                LIMIT :limit OFFSET :offset
+            """;
+
+        int offset = (page - 1) * limit;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bindList("brands", brands)
+                        .bind("limit", limit)
+                        .bind("offset", offset)
+                        .mapToMap()
+                        .list()
+        );
+    }
+
 }
