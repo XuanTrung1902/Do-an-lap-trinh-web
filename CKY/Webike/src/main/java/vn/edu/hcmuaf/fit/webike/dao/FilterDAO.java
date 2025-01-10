@@ -8,12 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public class FilterDAO {
-    public static void main(String[] args) {
-        FilterDAO dao = new FilterDAO();
-//        System.out.println(dao.getProductsByBrands(new String[]{"HONDA"}));
-    }
-
-
     public List<Map<String, Object>> getProductsByBrands(String[] brands) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
@@ -35,4 +29,19 @@ public class FilterDAO {
                         .list()
         );
     }
+
+    public List<Map<String, Object>> getAllProducts() {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+                    SELECT p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,
+                           p.status, b.name AS brand, i.url
+                    FROM products AS p
+                    JOIN imgs AS i ON i.productID = p.id
+                    JOIN brands AS b ON p.brandID = b.id
+                    GROUP BY p.id
+                """;
+
+        return jdbi.withHandle(handle -> handle.createQuery(sql).mapToMap().list());
+    }
+
 }

@@ -18,14 +18,18 @@ public class FilterProduct extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
         String[] brands = request.getParameterValues("brand");
 
         FilterDAO filterDAO = new FilterDAO();
-//        List<Map<String, Object>> products = filterDAO.getProductsByBrands(brands);
-        List<Map<String, Object>> products = filterDAO.getProductsByBrands(brands);
-//        System.out.println(products.toString());
+        List<Map<String, Object>> products;
+
+        if (brands == null || brands.length == 0) {
+            // Nếu không có thương hiệu nào được chọn, lấy tất cả sản phẩm
+            products = filterDAO.getAllProducts();
+        } else {
+            // Lọc theo thương hiệu
+            products = filterDAO.getProductsByBrands(brands);
+        }
 
         // Trả kết quả dưới dạng JSON
         response.setContentType("application/json");
@@ -46,5 +50,29 @@ public class FilterProduct extends HttpServlet {
         if (json.length() > 1) json.setLength(json.length() - 1); // Xóa dấu phẩy cuối
         json.append("]");
         response.getWriter().write(json.toString());
+
+//        String[] brands = request.getParameterValues("brand");
+//        FilterDAO filterDAO = new FilterDAO();
+//        List<Map<String, Object>> products = filterDAO.getProductsByBrands(brands);
+//
+//        // Trả kết quả dưới dạng JSON
+//        response.setContentType("application/json");
+//        response.setCharacterEncoding("UTF-8");
+//
+//        StringBuilder json = new StringBuilder("[");
+//        for (Map<String, Object> product : products) {
+//            json.append("{");
+//            json.append("\"id\":\"").append(product.get("id")).append("\",");
+//            json.append("\"name\":\"").append(product.get("name")).append("\",");
+//            json.append("\"price\":\"").append(product.get("price")).append("\",");
+//            json.append("\"imgUrl\":\"").append(product.get("url")).append("\",");
+//            json.append("\"version\":\"").append(product.get("version")).append("\",");
+//            json.append("\"launch\":\"").append(product.get("launch")).append("\",");
+//            json.append("\"status\":\"").append(product.get("status")).append("\"");
+//            json.append("},");
+//        }
+//        if (json.length() > 1) json.setLength(json.length() - 1); // Xóa dấu phẩy cuối
+//        json.append("]");
+//        response.getWriter().write(json.toString());
     }
 }

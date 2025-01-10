@@ -293,14 +293,16 @@
                 <div class="title-second">
                     <h3 class="title-second-name">Xe mới đăng</h3>
                 </div>
-<%--                value="xam" onclick="filterimg()"--%>
+                <%--                value="xam" onclick="filterimg()"--%>
 
                 <div class="grid-2-8" style="padding-bottom: 10px;">
                     <div class="checkbox__category">
                         <div id="checkboxes">
                             <h4 class="filter">Hãng xe</h4>
-                            <label><input type="checkbox" class="filter-checkbox" name="brand" value="HONDA"> HONDA</label>
-                            <label><input type="checkbox" class="filter-checkbox" name="brand" value="DUCATI"> DUCATI</label>
+                            <label><input type="checkbox" class="filter-checkbox" name="brand" value="HONDA">
+                                HONDA</label>
+                            <label><input type="checkbox" class="filter-checkbox" name="brand" value="DUCATI">
+                                DUCATI</label>
                             <label><input type="checkbox" class="filter-checkbox" name="brand" value="SYM"> SYM</label>
                             <label><input type="checkbox" class="filter-checkbox" name="brand" value="PIAGGIO"> PIAGGIO</label>
                         </div>
@@ -313,7 +315,7 @@
                     </div>
 
                     <div class="list-bike">
-                        <div  class="grid__row" style="padding: 0 40px;">
+                        <div class="grid__row" style="padding: 0 40px;">
 
                             <c:forEach var="p" items="${products}">
                                 <div class="grid__column-2" style="padding: 10px; height: 380px">
@@ -322,7 +324,7 @@
                                             <img src="${p['imgurl']}" alt="${p.name}"/>
                                         </div>
                                         <div class="bike__info">
-                                            <h3 class="bike__name" style="display: block; height: 49px;" >${p.name}</h3>
+                                            <h3 class="bike__name" style="display: block; height: 49px;">${p.name}</h3>
                                             <span class="bike__price">
                                                 <f:formatNumber value="${p['price']}" pattern="#,##0.###"/>đ
                                             </span>
@@ -331,11 +333,10 @@
                                                 <span class="time">${p.launch}</span>
                                             </div>
                                             <address class="address">${p.status}</address>
-                                            <%-- <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>--%>
+                                                <%-- <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>--%>
                                         </div>
                                     </a>
-                                    <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm
-                                        vào giỏ</a>
+                                    <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>
                                 </div>
                             </c:forEach>
 
@@ -456,7 +457,6 @@
 <script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/popper.min.js"></script>
-
 
 
 </body>
