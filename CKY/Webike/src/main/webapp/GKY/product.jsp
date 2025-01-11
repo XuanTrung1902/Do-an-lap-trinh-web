@@ -336,7 +336,7 @@
                                                 <%-- <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>--%>
                                         </div>
                                     </a>
-                                    <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>
+<%--                                    <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>--%>
                                 </div>
                             </c:forEach>
 
