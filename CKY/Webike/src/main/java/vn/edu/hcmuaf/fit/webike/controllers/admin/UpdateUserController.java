@@ -35,11 +35,13 @@ public class UpdateUserController extends HttpServlet {
         }
 
         int id = Integer.parseInt(userIdStr);
+        System.out.println(id);
         String name = request.getParameter("username");
         String phoneNum = request.getParameter("phone");
         String DOB = request.getParameter("birthday");
         Date date = Date.valueOf(DOB);
         String sex = request.getParameter("sex");
+        System.out.println(sex);
         String password = request.getParameter("password");
         String address = request.getParameter("address");
         String created = request.getParameter("created_at");
@@ -50,6 +52,7 @@ public class UpdateUserController extends HttpServlet {
         User user = new User(id, name, phoneNum, date, sex, password, created, locked, verify, role, address);
         UserDao userDao = new UserDao();
         boolean isUpdated = userDao.updateUserSua(user);
+        System.out.println(isUpdated);
 
         if (isUpdated) {
             response.sendRedirect(request.getContextPath() + "/userList");

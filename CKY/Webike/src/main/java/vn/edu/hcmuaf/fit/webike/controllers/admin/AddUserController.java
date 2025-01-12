@@ -34,6 +34,14 @@ public class AddUserController extends HttpServlet {
 
         if (UserSevice.isPhoneNumExists(phoneNum)) {
             request.setAttribute("error", "Số điện thoại đã tồn tại");
+            request.setAttribute("username", name);
+            request.setAttribute("phone", phoneNum);
+            request.setAttribute("address", address);
+            request.setAttribute("sex", sex);
+            request.setAttribute("birthday", DOB);
+            request.setAttribute("status", locked);
+            request.setAttribute("verify", verify);
+            request.setAttribute("role", role);
             request.getRequestDispatcher("/addUser").forward(request, response);
             return;
         }

@@ -188,7 +188,7 @@
                             </div>
                             <div class="form-group-inline">
                                 <label for="created_at">Ngày tạo:</label>
-                                <input type="date" class="form-control" id="created_at" name="created_at" value="${user.created}" required>
+                                <input type="datetime-local" class="form-control" id="created_at" name="created_at" value="${user.created}" required>
                                 <label for="status">Trạng thái:</label>
                                 <select class="form-control" id="status" name="status" required>
                                     <option value="0" ${user.locked == 0 ? 'selected' : ''}>Active</option>
@@ -196,8 +196,8 @@
                                 </select>
                                 <label for="verify">Xác minh:</label>
                                 <select class="form-control" id="verify" name="verify" required>
-                                    <option value="0" ${user.verify == 0 ? 'selected' : ''}>Chưa xác minh</option>
-                                    <option value="1" ${user.verify == 1 ? 'selected' : ''}>Đã xác minh</option>
+                                    <option value="0" ${user.verify == 0 ? 'selected' : ''}>Đã xác minh</option>
+                                    <option value="1" ${user.verify == 1 ? 'selected' : ''}>Chưa xác minh</option>
                                 </select>
                                 <label for="role">Vai trò:</label>
                                 <select class="form-control" id="role" name="role" required>

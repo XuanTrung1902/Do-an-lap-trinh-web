@@ -25,7 +25,7 @@ public class loginController extends HttpServlet {
         if (user != null) { // nếu login đúng
             HttpSession session = request.getSession(true);
             session.setAttribute("auth", user); // Đặt user vào session với key "auth"
-            session.setAttribute("welcomeMessage", "Xin chào, " + user.getName() + "!");
+//            session.setAttribute("welcomeMessage", "Xin chào, " + user.getName() + "!");
 
             if (user.getRole() == 0) { // nếu là admin
                 response.sendRedirect(" admin");

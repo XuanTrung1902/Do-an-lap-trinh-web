@@ -36,6 +36,7 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
@@ -60,6 +61,8 @@
             <artifactId>jdbi3-core</artifactId>
             <version>3.47.0</version>
         </dependency>
+
+
     </dependencies>
 
     <build>

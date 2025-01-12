@@ -79,7 +79,7 @@
                             <li class="header__navbar--item"><a href="#">Đăng ký</a></li> -->
 
                             <li class="header__navbar--item header__navbar--user">
-                                <img src="img/avt1.jpg" alt="" class="header__navbar--user-img">
+                                <img src="<%= request.getContextPath()%>/GKY/assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
                                 <span class="header__navbar--user-name">${sessionScope.auth.name}</span>
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
@@ -139,10 +139,10 @@
             <div class="profile-form" id="profile-form">
                 <form action="<%= request.getContextPath()%>/Profile" method="post">
                     <c:if test="${not empty message}">
-                        <div class="message">${message}</div>
+                        <div class="message" style="color: red">${message}</div>
                     </c:if>
                     <c:if test="${not empty error}">
-                        <div class="error">${error}</div>
+                        <div class="error" style="color: red">${error}</div>
                     </c:if>
                     <div class="form-group">
                         <label for="username">Tên đăng nhập</label>

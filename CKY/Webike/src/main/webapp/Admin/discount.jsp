@@ -203,7 +203,7 @@
                                         <a href="<%= request.getContextPath() %>/updateDiscount?id=${discount.id}" class="btn-edit">Sửa</a>
                                         <form action="<%= request.getContextPath() %>/deleteDiscount" method="post" style="display:inline;">
                                             <input type="hidden" name="id" value="${discount.id}">
-                                            <button type="submit" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa giảm giá này?');">Xóa</button>
+                                            <button type="submit" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa giảm giá cho sản phẩm này ${discount.id}?');">Xóa</button>
                                         </form>
                                     </td>
                                 </tr>

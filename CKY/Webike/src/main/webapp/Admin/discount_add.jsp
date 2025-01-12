@@ -157,15 +157,16 @@
                         <h1>Thêm giảm giá/h1>
                     </div>
                     <form class="admin-content-main-container" action="<%= request.getContextPath() %>/addDiscount" method="post">
-                        <c:if test="${not empty error}">
-                            <div class="alert alert-danger" role="alert">
-                                    ${error}
-                            </div>
-                        </c:if>
+
                         <div class="admin-content-main-container-two-input">
                             <input type="text" name="productID" placeholder="Mã sản phẩm" required>
                             <input type="text" name="amount" placeholder="% giảm giá" required>
                         </div>
+                        <c:if test="${not empty error}">
+                            <div class="alert alert-danger" role="alert" style="color: red">
+                                    ${error}
+                            </div>
+                        </c:if>
                         <div class="admin-content-main-container-two-input">
                             <input type="date" name="start" placeholder="Ngày bắt đầu" required>
                             <input type="date" name="end" placeholder="Ngày kết thúc" required>

@@ -34,9 +34,6 @@ public class RegisterController extends HttpServlet {
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirm_password");
 
-        System.out.println("fullname: " + fullname);
-        System.out.println("phone: " + phone);
-
         if (!password.equals(confirmPassword)) {
             request.setAttribute("error", "Mật khẩu không khớp");
             setRequestAttributes(request, fullname, phone, address, gender, day, month, year);
@@ -65,7 +62,7 @@ public class RegisterController extends HttpServlet {
         boolean isRegistered = UserSevice.registerUser(user);
 
         if (isRegistered) {
-            response.sendRedirect("GKY/Dangnhap.jsp");
+            response.sendRedirect("Dangnhap");
         } else {
             request.setAttribute("error", "Đăng ký thất bại");
             setRequestAttributes(request, fullname, phone, address, gender, day, month, year);
