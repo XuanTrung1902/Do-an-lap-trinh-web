@@ -51,7 +51,7 @@ function nextBtn() {
 
 
 // pagination for product
-const productItems = document.querySelectorAll(".list-bike .grid__column-2");
+let productItems = document.querySelectorAll(".list-bike .grid__column-2");
 const itemsPerPage = 10;
 let currentProductPage = 1;
 

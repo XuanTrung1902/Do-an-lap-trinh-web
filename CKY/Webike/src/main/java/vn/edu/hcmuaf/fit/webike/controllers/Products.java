@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
+import vn.edu.hcmuaf.fit.webike.models.Brand;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,10 +20,11 @@ public class Products extends HttpServlet {
         List<Map<String, Object>> products = dao.getAllProductImg(); // Lấy danh sách sản phẩm kèm ảnh
         List<Map<String, Object>> products2 = dao.getAllProductImg2(); // Lấy  9 sản phẩm
         List<String> brands = dao.getBrandOfProduct(); // Lấy 10 thương hiệu
+        List<Brand> allBrand = dao.getAllBrand(); // Lấy tất cả thương hiệu
 
 
 
-
+        request.setAttribute("allBrand", allBrand);                 // Gửi dữ liệu sang JSP
         request.setAttribute("brands", brands);                 // Gửi dữ liệu sang JSP
         request.setAttribute("products2", products2);                 // Gửi dữ liệu sang JSP
         request.setAttribute("products", products);                 // Gửi dữ liệu sang JSP

@@ -47,4 +47,14 @@ public class Brand {
     public void setImg(String img) {
         this.img = img;
     }
+
+    @Override
+    public String toString() {
+        return "Brand{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", des='" + des + '\'' +
+                ", img='" + img + '\'' +
+                '}';
+    }
 }

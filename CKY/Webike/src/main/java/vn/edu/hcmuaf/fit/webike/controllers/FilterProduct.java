@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.FilterDAO;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ public class FilterProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] brands = request.getParameterValues("brand");
+        System.out.println(Arrays.toString(brands));
         int page = Integer.parseInt(request.getParameter("page"));
         int limit = Integer.parseInt(request.getParameter("limit"));
 
@@ -28,7 +30,7 @@ public class FilterProduct extends HttpServlet {
         FilterDAO filterDAO = new FilterDAO();
 
         List<Map<String, Object>> products;
-        int totalProducts;
+        int totalProducts ;
 
         if (brands == null || brands.length == 0) {
             // Nếu không chọn hãng xe nào, lấy tất cả sản phẩm

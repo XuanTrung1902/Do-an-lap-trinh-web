@@ -120,122 +120,122 @@
         <div class="banner">
             <img src="GKY/assets/img/banner.jpg" alt="">
         </div>
-        <div class="search__container">
-            <div class="search__bike">
-                <div class="search--title">
-                    <h2 class="search--title-name">Tìm kiếm xe máy</h2>
-                </div>
-                <form id="searchForm" class="search-initialized" method="post">
-                    <input type="text" id="brand" name="brand" placeholder="Hãng xe">
-                    <input type="text" id="type" name="type" placeholder="Loại xe">
-                    <select id="cubic" name="cubic" class="bike--cubic">
-                        <option value="" selected>Phân khối</option>
-                        <option value="50cc">50cc</option>
-                        <option value="50cc - 125cc">50cc - 125cc</option>
-                        <option value="125cc - 175cc">125cc - 175cc</option>
-                        <option value="175cc - 250cc">175cc - 250cc</option>
-                    </select>
-                    <select id="price" name="price" class="bike--price">
-                        <option value="">Đến giá</option>
-                        <option value="10000000">10.000.000đ</option>
-                        <option value="50000000">50.000.000đ</option>
-                        <option value="100000000">100.000.000đ</option>
-                        <option value="300000000">300.000.000đ</option>
-                    </select>
-                    <button class="bike__search--btn">
-                        <i class="bike__search--btn-icon fa-solid fa-search"></i>
-                        Tìm kiếm
-                    </button>
-                </form>
-            </div>
-            <div class="motor__brand">
-                <div class="motor__brand--heading">
-                    <h3 class="search--title-name">
-                        Thương hiệu nổi bật
-                    </h3>
-                </div>
-                <div class="motor__brand--list">
-                    <c:forEach var="b" items="${brands}">
-                        <div class="brand-item">
-                            <a href="#" class="brand-link">
-                                <img src="${b}" alt="Brand Image">
-                            </a>
-                        </div>
-                    </c:forEach>
+<%--        <div class="search__container">--%>
+<%--            <div class="search__bike">--%>
+<%--                <div class="search--title">--%>
+<%--                    <h2 class="search--title-name">Tìm kiếm xe máy</h2>--%>
+<%--                </div>--%>
+<%--                <form id="searchForm" class="search-initialized" method="post">--%>
+<%--                    <input type="text" id="brand" name="brand" placeholder="Hãng xe">--%>
+<%--                    <input type="text" id="type" name="type" placeholder="Loại xe">--%>
+<%--                    <select id="cubic" name="cubic" class="bike--cubic">--%>
+<%--                        <option value="" selected>Phân khối</option>--%>
+<%--                        <option value="50cc">50cc</option>--%>
+<%--                        <option value="50cc - 125cc">50cc - 125cc</option>--%>
+<%--                        <option value="125cc - 175cc">125cc - 175cc</option>--%>
+<%--                        <option value="175cc - 250cc">175cc - 250cc</option>--%>
+<%--                    </select>--%>
+<%--                    <select id="price" name="price" class="bike--price">--%>
+<%--                        <option value="">Đến giá</option>--%>
+<%--                        <option value="10000000">10.000.000đ</option>--%>
+<%--                        <option value="50000000">50.000.000đ</option>--%>
+<%--                        <option value="100000000">100.000.000đ</option>--%>
+<%--                        <option value="300000000">300.000.000đ</option>--%>
+<%--                    </select>--%>
+<%--                    <button class="bike__search--btn">--%>
+<%--                        <i class="bike__search--btn-icon fa-solid fa-search"></i>--%>
+<%--                        Tìm kiếm--%>
+<%--                    </button>--%>
+<%--                </form>--%>
+<%--            </div>--%>
+<%--            <div class="motor__brand">--%>
+<%--                <div class="motor__brand--heading">--%>
+<%--                    <h3 class="search--title-name">--%>
+<%--                        Thương hiệu nổi bật--%>
+<%--                    </h3>--%>
+<%--                </div>--%>
+<%--                <div class="motor__brand--list">--%>
+<%--                    <c:forEach var="b" items="${brands}">--%>
+<%--                        <div class="brand-item">--%>
+<%--                            <a href="#" class="brand-link">--%>
+<%--                                <img src="${b}" alt="Brand Image">--%>
+<%--                            </a>--%>
+<%--                        </div>--%>
+<%--                    </c:forEach>--%>
 
-                </div>
-            </div>
+<%--                </div>--%>
+<%--            </div>--%>
 
-            <div class="motor__brand">
-                <div class="motor__brand--heading">
-                    <h3 class="search--title-name">
-                        Theo loại xe
-                    </h3>
-                </div>
-                <div class="motor__brand--list">
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type1.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Xe tay ga</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type2.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Xe số</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type3.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Xe côn tay</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type4.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Xe đạp trần</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type5.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Xe thể thao</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type6.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Cruser</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type7.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Chopper</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type8.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Bobber</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type9.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Drag</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type10.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Touring</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+<%--            <div class="motor__brand">--%>
+<%--                <div class="motor__brand--heading">--%>
+<%--                    <h3 class="search--title-name">--%>
+<%--                        Theo loại xe--%>
+<%--                    </h3>--%>
+<%--                </div>--%>
+<%--                <div class="motor__brand--list">--%>
+<%--                    <div class="brand-item">--%>
+<%--                        <a href="#" class="brand-link">--%>
+<%--                            <img src="GKY/assets/img/type1.jpg" alt="">--%>
+<%--                        </a>--%>
+<%--                        <span class="type__bike">Xe tay ga</span>--%>
+<%--                    </div>--%>
+<%--                    <div class="brand-item">--%>
+<%--                        <a href="#" class="brand-link">--%>
+<%--                            <img src="GKY/assets/img/type2.jpg" alt="">--%>
+<%--                        </a>--%>
+<%--                        <span class="type__bike">Xe số</span>--%>
+<%--                    </div>--%>
+<%--                    <div class="brand-item">--%>
+<%--                        <a href="#" class="brand-link">--%>
+<%--                            <img src="GKY/assets/img/type3.jpg" alt="">--%>
+<%--                        </a>--%>
+<%--                        <span class="type__bike">Xe côn tay</span>--%>
+<%--                    </div>--%>
+<%--                    <div class="brand-item">--%>
+<%--                        <a href="#" class="brand-link">--%>
+<%--                            <img src="GKY/assets/img/type4.jpg" alt="">--%>
+<%--                        </a>--%>
+<%--                        <span class="type__bike">Xe đạp trần</span>--%>
+<%--                    </div>--%>
+<%--                    <div class="brand-item">--%>
+<%--                        <a href="#" class="brand-link">--%>
+<%--                            <img src="GKY/assets/img/type5.jpg" alt="">--%>
+<%--                        </a>--%>
+<%--                        <span class="type__bike">Xe thể thao</span>--%>
+<%--                    </div>--%>
+<%--                    <div class="brand-item">--%>
+<%--                        <a href="#" class="brand-link">--%>
+<%--                            <img src="GKY/assets/img/type6.jpg" alt="">--%>
+<%--                        </a>--%>
+<%--                        <span class="type__bike">Cruser</span>--%>
+<%--                    </div>--%>
+<%--                    <div class="brand-item">--%>
+<%--                        <a href="#" class="brand-link">--%>
+<%--                            <img src="GKY/assets/img/type7.jpg" alt="">--%>
+<%--                        </a>--%>
+<%--                        <span class="type__bike">Chopper</span>--%>
+<%--                    </div>--%>
+<%--                    <div class="brand-item">--%>
+<%--                        <a href="#" class="brand-link">--%>
+<%--                            <img src="GKY/assets/img/type8.jpg" alt="">--%>
+<%--                        </a>--%>
+<%--                        <span class="type__bike">Bobber</span>--%>
+<%--                    </div>--%>
+<%--                    <div class="brand-item">--%>
+<%--                        <a href="#" class="brand-link">--%>
+<%--                            <img src="GKY/assets/img/type9.jpg" alt="">--%>
+<%--                        </a>--%>
+<%--                        <span class="type__bike">Drag</span>--%>
+<%--                    </div>--%>
+<%--                    <div class="brand-item">--%>
+<%--                        <a href="#" class="brand-link">--%>
+<%--                            <img src="GKY/assets/img/type10.jpg" alt="">--%>
+<%--                        </a>--%>
+<%--                        <span class="type__bike">Touring</span>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
 
         <div class="motor__market">
@@ -299,12 +299,9 @@
                     <div class="checkbox__category">
                         <div id="checkboxes">
                             <h4 class="filter">Hãng xe</h4>
-                            <label><input type="checkbox" class="filter-checkbox" name="brand" value="HONDA">
-                                HONDA</label>
-                            <label><input type="checkbox" class="filter-checkbox" name="brand" value="DUCATI">
-                                DUCATI</label>
-                            <label><input type="checkbox" class="filter-checkbox" name="brand" value="SYM"> SYM</label>
-                            <label><input type="checkbox" class="filter-checkbox" name="brand" value="PIAGGIO"> PIAGGIO</label>
+                            <c:forEach var="ab" items="${allBrand}">
+                                <label><input type="checkbox" class="filter-checkbox" name="brand" value="${ab.name}"> ${ab.name}</label>
+                            </c:forEach>
                         </div>
                         <div id="checkboxes1">
                             <h4>Màu sắc</h4>

@@ -23,10 +23,17 @@ public class ProductDAO {
 //        System.out.println(dao.chooseColor(2,1));
 //        System.out.println(dao.getAllProductImg2());
 //        System.out.println(dao.getBrandOfProduct());
+//        System.out.println(dao.getAllBrand());
 
 
     }
 
+
+    public List<Brand> getAllBrand() {
+        Jdbi jdbi = JDBIConnect.get();
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM brands")
+                .mapToBean(Brand.class).list());
+    }
 
     // lay ra 10 thuong hieu
     public List<String> getBrandOfProduct() {
@@ -159,53 +166,5 @@ public class ProductDAO {
                 .findOne()
                 .orElse(null));
     }
-
-
-
-
-    // tim kiem sp
-//    public List<Map<String, Object>> searchProducts(String brand, String type, String cubic, String price) {
-//        Jdbi jdbi = JDBIConnect.get();
-//        StringBuilder sql = new StringBuilder("""
-//        SELECT p.*, MIN(i.url) AS imgUrl
-//        FROM products AS p
-//        JOIN imgs AS i ON i.productID = p.id
-//        WHERE 1=1
-//    """);
-//
-//        if (brand != null && !brand.isEmpty()) {
-//            sql.append(" AND p.brandID IN (SELECT id FROM brands WHERE name LIKE :brand) ");
-//        }
-//        if (type != null && !type.isEmpty()) {
-//            sql.append(" AND p.typeID IN (SELECT id FROM biketypes WHERE type LIKE :type) ");
-//        }
-//        if (cubic != null && !cubic.isEmpty()) {
-//            sql.append(" AND p.cubic = :cubic ");
-//        }
-//        if (price != null && !price.isEmpty()) {
-//            sql.append(" AND p.price <= :price ");
-//        }
-//
-//        sql.append(" GROUP BY p.id LIMIT 100");
-//
-//        return jdbi.withHandle(handle -> {
-//            var query = handle.createQuery(sql.toString());
-//
-//            if (brand != null && !brand.isEmpty()) {
-//                query.bind("brand", "%" + brand + "%");
-//            }
-//            if (type != null && !type.isEmpty()) {
-//                query.bind("type", "%" + type + "%");
-//            }
-//            if (cubic != null && !cubic.isEmpty()) {
-//                query.bind("cubic", cubic);
-//            }
-//            if (price != null && !price.isEmpty()) {
-//                query.bind("price", Integer.parseInt(price));
-//            }
-//
-//            return query.mapToMap().list();
-//        });
-//    }
 
 }
