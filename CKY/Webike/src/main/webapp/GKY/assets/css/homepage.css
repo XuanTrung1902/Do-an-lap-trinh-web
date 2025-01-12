@@ -508,6 +508,117 @@
     color: #de0000;
 }
 
+/*Introduce*/
+.bike-introduce {
+    margin: 20px 0;
+    padding: 20px 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.banner-img {
+    position: relative;
+    width: 100%;
+    object-fit: cover;
+}
+
+.banner-img img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.bike-intro__main {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 185px 60px 60px 30px;
+}
+
+.bike__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: space-between;
+    height: 76px;
+    transform: skew(-12deg);
+    margin-left: 8px;
+}
+
+.bike__header::before {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    height: 47%;
+    width: 11px;
+    left: 15px;
+}
+
+.bike__header p {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) skew(-4deg);
+    font-size: 4.4rem;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: left;
+    padding-left: 40px;
+    padding-right: 20px;
+    font-family: BeVietnamPro-BlackItalic;
+
+}
+
+.bike__description {
+    color: #fff;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.bike__button {
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 36px;
+}
+
+.bike__button--link {
+    text-decoration: none;
+}
+
+.btn-container {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-container:hover {
+    background-color: #e65c00;
+}
+
+.btn-container--text {
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-container--icon {
+    font-size: 16px;
+}
+
 /* brand*/
 .motor__brand {
     margin: 40px 0;

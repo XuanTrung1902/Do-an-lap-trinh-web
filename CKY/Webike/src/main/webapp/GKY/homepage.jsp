@@ -160,35 +160,61 @@
             </div>
             </a>
             <!-- Motorbike Category -->
-            <div id="motorSelectionCategory">
-               <div class="motorbike__row">
-                    <c:forEach var="b" items="${bikeTypes}">
-                    <div class="motorbike-item">
-                        <a href="product.jsp" class="motorbike-item-link">
-                            <div class="motorbike__content">
-                                <div class="motorbike__thumb">
-                                    <img class="motorbike-item-img" src="${b.img}" alt="xe">
-                                </div>
-                                <div class="motorbike__body">
-                                    <h3 class="motorbike__title">${b.type}</h3>
-                                    <div class="motorbike__body--bf">
-                                        <div class="motorbike__body-icon"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    </c:forEach>
+<%--            <div id="motorSelectionCategory">--%>
+<%--               <div class="motorbike__row">--%>
+<%--                    <c:forEach var="b" items="${bikeTypes}">--%>
+<%--                    <div class="motorbike-item">--%>
+<%--                        <a href="product.jsp" class="motorbike-item-link">--%>
+<%--                            <div class="motorbike__content">--%>
+<%--                                <div class="motorbike__thumb">--%>
+<%--                                    <img class="motorbike-item-img" src="${b.img}" alt="xe">--%>
+<%--                                </div>--%>
+<%--                                <div class="motorbike__body">--%>
+<%--                                    <h3 class="motorbike__title">${b.type}</h3>--%>
+<%--                                    <div class="motorbike__body--bf">--%>
+<%--                                        <div class="motorbike__body-icon"></div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </a>--%>
+<%--                    </div>--%>
+<%--                    </c:forEach>--%>
 
-                    <div class="motorbike-item">
-                        <a href="products" class="motorbike-item-link motorbike__title d-block ">
-                           <span class="motorbike__body-see-all">
-                                <i class="motorbike__body-see-all-icon fa-solid fa-plus"></i>
-                                 Xem tất cả
-                           </span>
-                        </a>
+<%--                    <div class="motorbike-item">--%>
+<%--                        <a href="products" class="motorbike-item-link motorbike__title d-block ">--%>
+<%--                           <span class="motorbike__body-see-all">--%>
+<%--                                <i class="motorbike__body-see-all-icon fa-solid fa-plus"></i>--%>
+<%--                                 Xem tất cả--%>
+<%--                           </span>--%>
+<%--                        </a>--%>
+<%--                    </div>--%>
+<%--               </div>--%>
+<%--            </div>--%>
+
+            <div class="bike-introduce">
+                <div class="bike-banner">
+                    <div class="banner-img">
+                        <img src="GKY/assets/img/indroduce.jpg" alt="">
+                        <div class="bike-intro__main">
+                            <div class="bike__header">
+                                <p>Webike Việt Nam</p>
+                            </div>
+                            <div class="bike__description">
+                                <p>Webike Việt Nam là cửa hàng trực tuyến hàng đầu chuyên cung cấp các loại xe máy và phụ kiện chất lượng cao. Chúng tôi cam kết mang đến cho khách hàng những sản phẩm tốt nhất với giá cả hợp lý và dịch vụ chăm sóc khách hàng tận tâm.</p>
+                            </div>
+                            <div class="bike__button">
+                                <a href="#" class="bike__button--link">
+                                    <button class="btn-container">
+                                        <span class="btn-container--text">Xem thêm</span>
+                                        <span class="btn-container--icon">
+                                            <i class="fa-solid fa-arrow-right"></i>
+                                        </span>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-               </div>
+                </div>
             </div>
 
             <div class="motor__brand">

@@ -24,8 +24,8 @@ public class FilterProduct extends HttpServlet {
         int page = Integer.parseInt(request.getParameter("page"));
         int limit = Integer.parseInt(request.getParameter("limit"));
 
-        System.out.println("page: " + page);
-        System.out.println("limit: " + limit);
+//        System.out.println("page: " + page);
+//        System.out.println("limit: " + limit);
 
         FilterDAO filterDAO = new FilterDAO();
 
@@ -35,16 +35,16 @@ public class FilterProduct extends HttpServlet {
         if (brands == null || brands.length == 0) {
             // Nếu không chọn hãng xe nào, lấy tất cả sản phẩm
             products = filterDAO.getAllProducts();
-            System.out.println("products: " + products.size());
+//            System.out.println("products: " + products.size());
             totalProducts = products.size();
         } else {
             products = filterDAO.getProductsByBrands1(brands, page, limit);
-            System.out.println("products: " + products.size());
+//            System.out.println("products: " + products.size());
             totalProducts = filterDAO.getTotalProductsByBrands(brands);
         }
 
         int totalPages = (int) Math.ceil((double) totalProducts / limit);
-        System.out.println("totalPages: " + totalPages);
+//        System.out.println("totalPages: " + totalPages);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -66,7 +66,6 @@ public class FilterProduct extends HttpServlet {
         json.append("],");
         json.append("\"totalPages\":").append(totalPages);
         json.append("}");
-        System.out.println(json.toString());
         response.getWriter().write(json.toString());
 
 
