@@ -135,6 +135,60 @@ $(document).ready(function() {
     fetchAllProducts();
 });
 
+///////////////////////
+///// Search Product ////
+///////////////////////
+
+$(document).ready(function () {
+    $('#search-input').on('keyup', function () {
+        let keyword = $(this).val();
+        // console.log(keyword);
+
+        $.ajax({
+            url: '/Webike/search',
+            method: 'GET',
+            data: { keyword: keyword },
+            success: function (response) {
+                console.log('Response:', response);
+                let productGrid = $('#product-grid');
+                productGrid.empty(); // Xóa kết quả cũ
+
+                if (response.length > 0) {
+                    response.forEach(product => {
+                        let productHTML = `
+                            <div class="grid__column-2" style="padding: 10px; height: 380px">
+                                <a href="product-detail?id=${product.id}" class="bike--item">
+                                    <div class="bike__img zoom-img">
+                                        <img src="${product.imgurl}" alt="${product.name}" />
+                                    </div>
+                                    <div class="bike__info">
+                                        <h3 class="bike__name">${product.name}</h3>
+                                        <span class="bike__price">${new Intl.NumberFormat().format(product.price)}₫</span>
+                                        <div class="source">
+                                            <span class="condition">${product.version}</span>
+                                            <span class="time">${product.launch}</span>
+                                        </div>
+                                        <address class="address">${product.status}</address>
+                                    </div>
+                                </a>
+                            </div>`;
+                        productGrid.append(productHTML);
+                    });
+                } else {
+                    productGrid.append('<p>Không tìm thấy sản phẩm nào.</p>');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error status:', xhr.status); // Kiểm tra HTTP status code
+                console.error('Error response:', xhr.responseText); // Log chi tiết lỗi từ server
+            }
+        });
+    });
+});
+
+///////////////////////
+
+
 
 
 

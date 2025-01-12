@@ -24,9 +24,31 @@ public class ProductDAO {
 //        System.out.println(dao.getAllProductImg2());
 //        System.out.println(dao.getBrandOfProduct());
 //        System.out.println(dao.getAllBrand());
+//        System.out.println(dao.searchProducts("Honda"));
 
 
     }
+
+    public List<Map<String, Object>> searchProducts(String keyword) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+            SELECT p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,
+                   p.status, b.name AS brand, MIN(i.url) AS imgUrl
+            FROM products AS p
+            JOIN imgs AS i ON i.productID = p.id
+            JOIN brands AS b ON p.brandID = b.id
+            WHERE p.name LIKE CONCAT('%', :keyword, '%')
+            GROUP BY p.id;
+        """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("keyword", keyword)
+                        .mapToMap()
+                        .list()
+        );
+    }
+
 
 
     public List<Brand> getAllBrand() {

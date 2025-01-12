@@ -94,7 +94,7 @@
 
                 <div class="header__navbar--bot">
                     <div class="header__search">
-                        <input type="text" class="header__search--input" placeholder="Nhập từ khoá tìm kiếm"/>
+                        <input type="text" id="search-input" class="header__search--input" placeholder="Nhập từ khoá tìm kiếm"/>
                         <div class="header__search-select">
                             <span class="header__search-select-label">Tìm xe</span>
                             <i class="header__search-select-icon"></i>
@@ -312,7 +312,8 @@
                     </div>
 
                     <div class="list-bike">
-                        <div class="grid__row" style="padding: 0 40px;">
+<%--                        <div class="grid__row" id="product-grid"></div>--%>
+                        <div id="product-grid"  class="grid__row" style="padding: 0 40px;">
 
                             <c:forEach var="p" items="${products}">
                                 <div class="grid__column-2" style="padding: 10px; height: 380px">

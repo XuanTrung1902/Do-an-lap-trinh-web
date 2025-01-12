@@ -20,7 +20,7 @@ public class FilterProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] brands = request.getParameterValues("brand");
-        System.out.println(Arrays.toString(brands));
+//        System.out.println(Arrays.toString(brands));
         int page = Integer.parseInt(request.getParameter("page"));
         int limit = Integer.parseInt(request.getParameter("limit"));
 
