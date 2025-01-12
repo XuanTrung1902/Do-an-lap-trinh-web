@@ -181,6 +181,8 @@
                                 <th>Vai trò</th> <!-- Thêm cột Vai trò -->
                                 <th>Khóa</th> <!-- Thêm cột Khóa -->
 <%--                                <th>Xác minh</th> <!-- Thêm cột Xác minh -->--%>
+                                <th>Ảnh</th>
+
                                 <th>Tuỳ chỉnh</th>
                             </tr>
                             </thead>
@@ -197,6 +199,7 @@
                                     <td>${user.role}</td> <!-- Hiển thị vai trò -->
                                     <td>${user.locked}</td> <!-- Hiển thị trạng thái khóa -->
 <%--                                    <td>${user.verify}</td> <!-- Hiển thị trạng thái xác minh -->--%>
+                                    <td><img src="<%= request.getContextPath() %>/${user.image}" alt="User Image" width="50" height="50"></td>
                                     <td>
                                         <a href="<%= request.getContextPath() %>/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
                                         <form action="<%= request.getContextPath() %>/deleteUser" method="post" style="display:inline;">
@@ -220,7 +223,7 @@
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h2>Thêm người dùng</h2>
-            <form id="add-user-form" action="<%= request.getContextPath() %>/addUser" method="post">
+            <form id="add-user-form" action="<%= request.getContextPath() %>/addUser" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="username">Tên đăng nhập:</label>
 <%--                    <input type="text" id="username" name="username" required>--%>
@@ -245,6 +248,10 @@
                     <label for="address">Địa chỉ:</label>
 <%--                    <input type="text" id="address" name="address" required>--%>
                     <input type="text" id="address" name="address" value="${address}" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Ảnh:</label>
+                    <input type="file" id="image" name="image" required>
                 </div>
                 <div class="form-group">
                     <label for="birthday">Ngày sinh:</label>

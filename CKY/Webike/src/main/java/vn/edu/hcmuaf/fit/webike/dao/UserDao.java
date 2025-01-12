@@ -170,9 +170,25 @@ public class UserDao {
     }
 
     // Thêm người dùng mới
+//    public boolean addUserAdmin(User user) {
+//        return JDBIConnect.get().withHandle(handle ->
+//                handle.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address)")
+//                        .bind("name", user.getName())
+//                        .bind("phoneNum", user.getPhoneNum())
+//                        .bind("DOB", user.getDOB())
+//                        .bind("sex", user.getSex())
+//                        .bind("password", user.getPassword())
+//                        .bind("created", user.getCreated())
+//                        .bind("locked", user.getLocked())
+//                        .bind("verify", user.getVerify())
+//                        .bind("role", user.getRole())
+//                        .bind("address", user.getAddress())
+//                        .execute() > 0
+//        );
+//    }
     public boolean addUserAdmin(User user) {
         return JDBIConnect.get().withHandle(handle ->
-                handle.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address)")
+                handle.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address, image) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address, :image)")
                         .bind("name", user.getName())
                         .bind("phoneNum", user.getPhoneNum())
                         .bind("DOB", user.getDOB())
@@ -183,6 +199,7 @@ public class UserDao {
                         .bind("verify", user.getVerify())
                         .bind("role", user.getRole())
                         .bind("address", user.getAddress())
+                        .bind("image", user.getImage())
                         .execute() > 0
         );
     }

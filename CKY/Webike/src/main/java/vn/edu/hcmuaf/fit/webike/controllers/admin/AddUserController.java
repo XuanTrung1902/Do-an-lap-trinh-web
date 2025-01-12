@@ -7,12 +7,15 @@ import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.models.User;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.sql.Date;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
 @WebServlet(name = "AddUserController", value = "/addUser")
+@MultipartConfig
 public class AddUserController extends HttpServlet {
 
     @Override
@@ -31,6 +34,18 @@ public class AddUserController extends HttpServlet {
         int locked = Integer.parseInt(request.getParameter("status"));
         int verify = Integer.parseInt(request.getParameter("verify"));
         int role = Integer.parseInt(request.getParameter("role"));
+
+        Part filePart = request.getPart("image");
+        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+//        String uploadPath = getServletContext().getRealPath("") + File.separator + "img/products";
+        String uploadPath = getServletContext().getRealPath("") + File.separator + "img" + File.separator + "products";
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs(); // Tạo thư mục nếu chưa tồn tại
+        }
+        filePart.write(uploadPath + File.separator + fileName);
+        String imagePath = "img/products/" + fileName;
+
 
         if (UserSevice.isPhoneNumExists(phoneNum)) {
             request.setAttribute("error", "Số điện thoại đã tồn tại");
@@ -57,6 +72,8 @@ public class AddUserController extends HttpServlet {
         user.setLocked(locked);
         user.setVerify(verify);
         user.setRole(role);
+        user.setImage(imagePath);
+
 
         UserDao userDao = new UserDao();
         boolean isAdded = userDao.addUserAdmin(user);
