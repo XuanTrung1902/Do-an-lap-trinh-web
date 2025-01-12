@@ -15,13 +15,13 @@ public class RemoveCart extends HttpServlet {
         String id = request.getParameter("id");
 
 
-        HttpSession session = request.getSession(true);
-        Cart cart = (Cart) session.getAttribute("cart");
+        HttpSession cartSession = request.getSession(true);
+        Cart cart = (Cart) cartSession.getAttribute("cart");
 
 
         if (cart == null) cart = new Cart();
         cart.remove(id);
-        session.setAttribute("cart", cart);
+        cartSession.setAttribute("cart", cart);
 
         request.getRequestDispatcher("GKY/cart.jsp").forward(request, response);
     }

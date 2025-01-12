@@ -46,35 +46,37 @@
     <div class="info-container d-flex justify-content-center">
         <div class="left-container shadow">
             <h1 class="m-5 mt-0 left--header">THÔNG TIN KHÁCH HÀNG</h1>
-            <form action="Xac nhan thanh toan.html" class="m-5 mt-0 info">
+
+            <c:set var="u" value="${empty sessionScope.auth ? 0 : sessionScope.auth}"/>
+            <form action="" method="POST" class="m-5 mt-0 info">
                 <div class="row mb-3 me-0 ms-0">
-                    <input type="text" class="form-control form-control-lg p-3" placeholder="Họ tên">
+                    <input type="text" value="${u.name}" class="form-control form-control-lg p-3" placeholder="Họ tên">
                 </div>
                 <div class="row mb-3 me-0 ms-0 gap-3">
-                    <div class="col p-0"><input type="email" class="form-control form-control-lg p-3" placeholder="Email">
-                    </div>
-                    <div class="col p-0"><input type="tel" class="form-control form-control-lg p-3" placeholder="Số điện thoại">
-                    </div>
+                    <input type="tel" value="${u.phoneNum}"  class="form-control form-control-lg p-3" placeholder="Số điện thoại">
                 </div>
                 <div class="row mb-3 me-0 ms-0">
-                    <input type="text" class="form-control form-control-lg p-3" placeholder="Địa chỉ">
+                    <input type="text" value="${u.address}"  class="form-control form-control-lg p-3" placeholder="Địa chỉ">
+                </div>
+                <div class="row mb-3 me-0 ms-0">
+                    <input type="text" value="" class="form-control form-control-lg p-3" placeholder="Chọn ngày hẹn" onfocus="(this.type='date')">
                 </div>
                 <div class="row mb-3 me-0 ms-0 gap-3" id="address">
                     <div class="col p-0">
                         <div class="form-floating">
                             <select class="form-select" style="font-size: 1.25rem; height: 60px;" id="tinh" aria-label="">
                                 <option selected>Chọn chi nhánh</option>
-                                <option id="An Giang">An Giang</option>
-                                <option id="Bà Rịa - Vũng Tàu">Bà Rịa - Vũng Tàu</option>
-                                <option id="Bạc Liêu">Bạc Liêu</option>
-                                <option id="Bắc Giang">Bắc Giang</option>
+                                <c:forEach var="s" items="${shops}">
+                                    <option id="Shop ${s.id}">${s.name} (${s.address})</option>
+                                </c:forEach>
                             </select>
                             <label for="tinh" style="font-size: 14px;">Các chi nhánh</label>
                         </div>
                     </div>
                 </div>
-                <button class="button shadow p-5 pt-0 pb-0"><h3 class="m-0 p-4" style="color: white;">Tiếp tục</h3></button>
+                <button type="submit" class="button shadow p-5 pt-0 pb-0"><h3 class="m-0 p-4" style="color: white;">Tiếp tục</h3></button>
             </form>
+
         </div>
 
         <div class="right-container shadow" >

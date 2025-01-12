@@ -1,3 +1,4 @@
+<%@ page import="vn.edu.hcmuaf.fit.webike.models.Cart" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
@@ -70,18 +71,18 @@
                         <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
                             <!-- Ô này để cái button tăng giảm số lượng -->
                             <div class="number d-flex align-items-center">
-                                <form action="update-cart?id=${p.id}" method="GET">
+                                <form action="update-cart?id=${p.id}" method="GET"  >
                                     <input type="hidden" name="id" value="${p.id}">
                                     <input type="hidden" name="quantity" value="-1">
-                                    <button type="submit" class="button-modi">
+                                    <button type="submit"  class="button-modi">
                                         <i class="fa-solid fa-minus"></i>
                                     </button>
                                 </form>
                                 <div class="quantity text-1">${p.quantity}</div>
-                                <form action="update-cart?id=${p.id}" method="GET">
+                                <form action="update-cart?id=${p.id}"   method="GET" >
                                     <input type="hidden" name="id" value="${p.id}">
                                     <input type="hidden" name="quantity" value="1">
-                                    <button type="submit" class="button-modi">
+                                    <button type="submit"  class="button-modi">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
                                 </form>
@@ -154,8 +155,11 @@
                         total.textContent = formatCurrency(value);
                     </script>
                 </div>
-                <form action="buy" method="GET" class="d-flex">
-                    <input type="hidden" name="id" id="xxxx" value="${p.id}">
+                <form action="pay" method="GET" class="d-flex">
+<%--                    <c:forEach var="p" items="${sessionScope.cart.list}">--%>
+<%--                        <input type="hidden" name="id" value="${p.id}">--%>
+<%--                        <input type="hidden" name="quantity" value="${p.quantity}">--%>
+<%--                    </c:forEach>--%>
                     <button type="submit" class="buybtn">
                         <span class="buybtn-text">Mua hàng</span>
                     </button>
@@ -174,6 +178,7 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <script src="<%= request.getContextPath()%>/GKY/assets/js/Gio hang.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

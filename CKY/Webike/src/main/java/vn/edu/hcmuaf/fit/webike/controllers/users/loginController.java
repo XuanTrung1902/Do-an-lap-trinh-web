@@ -30,7 +30,7 @@ public class loginController extends HttpServlet {
             if (user.getRole() == 0) { // nếu là admin
                 response.sendRedirect(" admin");
             } else { // nếu là user
-                response.sendRedirect("GKY/homepage.jsp");
+                response.sendRedirect("list-products");
             }
         } else { // nếu login sai
             request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu");

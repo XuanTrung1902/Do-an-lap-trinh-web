@@ -168,6 +168,7 @@
                             <c:forEach var="entry" items="${p.img.entrySet()}">
                             imgColor['${entry.key.name}'] = '${entry.value}';
                             </c:forEach>
+
                             function changeColor(id) {
                                 const imgElement = document.getElementById('img');
                                 imgElement.src = imgColor[id];
@@ -184,6 +185,13 @@
                                 color.value = id;
                                 img.value = imgColor[id];
                             }
+
+                            window.onload = function () {
+                                const firstButton = document.querySelector('.colorButton');
+                                if (firstButton) {
+                                    changeColor(firstButton.id);
+                                }
+                            }
                         </script>
                     </div>
                 </div>
@@ -195,7 +203,7 @@
 
             </div>
             <div class="container--button d-flex">
-                <a href="Payment.jsp">
+                <a href="payment.jsp">
                     <button class="buy">Mua ngay</button>
                 </a>
                 <form action="add-cart?id=${p.id}" method="GET">

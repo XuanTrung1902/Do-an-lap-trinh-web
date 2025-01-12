@@ -29,8 +29,7 @@
     <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
 
         <!--animation back ground-->
-        <div class="loginbackground box-background--white padding-top--48" ;
-        ">
+        <div class="loginbackground box-background--white padding-top--48">
         <div class="loginbackground-gridContainer">
             <div class="box-root flex-flex" style="grid-area: top / start / 8 / end;">
                 <div class="box-root" style="background-image: linear-gradient(black 0%, #111111 33%); flex-grow: 1;">
@@ -84,7 +83,7 @@
                     <form id="stripe-login" method="post" action="<%= request.getContextPath()%>/Dangnhap" onsubmit="return validateForm()">
 
                         <div class="field padding-bottom--24">
-                            <label for="Phone">SĐT</label>
+                            <label for="phone">SĐT</label>
                             <input type="phone" name="phone" value="${phone != null ? phone : ''}">
                         </div>
                         <div class="field padding-bottom--24">

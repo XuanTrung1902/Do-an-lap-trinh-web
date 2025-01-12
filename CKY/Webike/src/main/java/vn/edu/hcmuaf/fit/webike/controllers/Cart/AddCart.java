@@ -22,17 +22,16 @@ public class AddCart extends HttpServlet {
         String color = request.getParameter("color"); // lay mau duoc chon
         String img = request.getParameter("img"); // anh theo mau sp
 
-
         ProductDAO dao = new ProductDAO();
         Product p = dao.getProduct(id);
-        HttpSession session = request.getSession(true);
-        Cart cart = (Cart) session.getAttribute("cart");
+        HttpSession cartSession = request.getSession(true);
+        Cart cart = (Cart) cartSession.getAttribute("cart");
 
         if (p == null) response.sendRedirect("list-products?addCart=false"); // neu sp ko ton tai
 
         if (cart == null) cart = new Cart();
         cart.add(p, color, img);
-        session.setAttribute("cart", cart);
+        cartSession.setAttribute("cart", cart);
 
         response.sendRedirect("productDetail?id=" + id);
     }
