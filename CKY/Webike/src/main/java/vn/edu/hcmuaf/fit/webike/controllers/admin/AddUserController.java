@@ -8,7 +8,9 @@ import vn.edu.hcmuaf.fit.webike.models.User;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 
 import java.io.IOException;
@@ -37,13 +39,20 @@ public class AddUserController extends HttpServlet {
 
         Part filePart = request.getPart("image");
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-        String uploadPath = getServletContext().getRealPath("") + File.separator + "img" + File.separator + "products";
+        String uploadPath = getServletContext().getRealPath("") + File.separator + "img" + File.separator + "Users";
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs(); // Tạo thư mục nếu chưa tồn tại
         }
-        filePart.write(uploadPath + File.separator + fileName);
+        // Đường dẫn thực tế tới tệp ảnh nguồn
+        File sourceFile = new File("C:\\Users\\user\\Pictures\\web\\" + fileName);
+        File destFile = new File(uploadPath + File.separator + fileName);
+        Files.copy(sourceFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+//        filePart.write(uploadPath + File.separator + fileName);
         String imagePath = "img/Users/" + fileName;
+        // In ra đường dẫn tuyệt đối để kiểm tra
+        System.out.println("File saved at: " + uploadPath + File.separator + fileName);
 
 
         if (UserSevice.isPhoneNumExists(phoneNum)) {

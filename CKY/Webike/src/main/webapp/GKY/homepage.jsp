@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./assets/css/homepage.css">
-    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/GKY/assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/GKY/assets/css/homepage.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/GKY/assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/GKY/assets/font/themify-icons/themify-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
-     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.css">
+     <link rel="stylesheet" href="<%= request.getContextPath() %>/GKY/assets/bootstrap/css/bootstrap.css">
 
 </head>
 <body>
@@ -93,7 +93,8 @@
 
 
                             <li class="header__navbar--item header__navbar--user">
-                                <img src="assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
+<%--                                <img src="assets/img/avt1.jpg" alt="" class="header__navbar--user-img">--%>
+                                <img src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="" class="header__navbar--user-img">
                                 <span class="header__navbar--user-name">${sessionScope.auth.name}</span>
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
@@ -462,7 +463,7 @@
         </footer>
     </div>
 
-    <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/bootstrap/js/popper.min.js"></script>
+    <script src="<%= request.getContextPath() %>/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<%= request.getContextPath() %>/GKY/assets/bootstrap/js/popper.min.js"></script>
 </body>
 </html>

@@ -138,8 +138,9 @@
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
                             <li class="flex-box user__login">
-                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
-                                <p>Trí Đức</p>
+<%--                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">--%>
+                                <img src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="" class="header__navbar--user-img">
+                                <p>${sessionScope.auth.name}</p>
                                 <i class="ri-arrow-down-s-fill"></i>
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
@@ -156,7 +157,7 @@
                         <h1>Chỉnh sửa thông tin người dùng</h1>
                     </div>
                     <div class="admin-content-main-container">
-                        <form class="edit-user-form" action="<%= request.getContextPath() %>/updateUser" method="post">
+                        <form class="edit-user-form" action="<%= request.getContextPath() %>/updateUser" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="userId" value="${user.id}">
                             <div class="form-group">
                                 <label for="username">Tên đăng nhập:</label>
@@ -177,6 +178,18 @@
                             <div class="form-group">
                                 <label for="address">Địa chỉ:</label>
                                 <input type="text" id="address" name="address" value="${user.address}" required>
+                            </div>
+<%--                            <div class="form-group">--%>
+<%--                                <label for="image">Ảnh:</label>--%>
+<%--                                <input type="file" id="image" name="image">--%>
+<%--                            </div>--%>
+                            <div class="form-group">
+                                <label for="currentImage">Ảnh hiện tại:</label>
+                                <img src="<%= request.getContextPath() %>/${user.image}" alt="User Image" width="100" height="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Ảnh mới:</label>
+                                <input type="file" id="image" name="image">
                             </div>
                             <div class="form-group-inline">
                                 <label for="sex">Giới tính:</label>

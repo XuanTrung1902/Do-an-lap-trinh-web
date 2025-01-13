@@ -312,3 +312,79 @@ select {
 .change-password-form button.save-btn:hover {
     background-color: #d25238;
 }
+
+
+/*avatar*/
+
+.change-avatar-form {
+    width: calc(100% - 270px);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Canh giữa tất cả nội dung trong form */
+}
+
+.change-avatar-form h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.change-avatar-form .form-group {
+    margin-bottom: 15px;
+    text-align: center; /* Canh giữa label và input */
+}
+
+.change-avatar-form label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.change-avatar-form input[type="file"] {
+    display: none; /* Ẩn input file gốc */
+}
+
+.change-avatar-form .avatar-upload-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: darkgray;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.change-avatar-form .avatar-preview {
+    display: block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    object-fit: cover;
+    margin: 20px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.change-avatar-form button.save-btn {
+    background-color: #ee4d2d;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    width: 100%;
+    max-width: 200px; /* Giới hạn chiều rộng của nút để nó không quá rộng */
+    margin-left: auto;
+    margin-right: auto; /* Canh giữa nút */
+}
+
+.change-avatar-form button.save-btn:hover {
+    background-color: #d25238;
+}

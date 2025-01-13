@@ -79,7 +79,8 @@
                             <li class="header__navbar--item"><a href="#">Đăng ký</a></li> -->
 
                             <li class="header__navbar--item header__navbar--user">
-                                <img src="<%= request.getContextPath()%>/GKY/assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
+<%--                                <img src="<%= request.getContextPath()%>/GKY/assets/img/avt1.jpg" alt="" class="header__navbar--user-img">--%>
+                                <img src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="" class="header__navbar--user-img">
                                 <span class="header__navbar--user-name">${sessionScope.auth.name}</span>
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
@@ -133,6 +134,9 @@
                 <ul class="sidebar-menu">
                     <li><a href="<%= request.getContextPath()%>/Profile" id="show-profile">Thông tin tài khoản</a></li>
                     <li><a href="<%= request.getContextPath()%>/ChangePassword" id="change-password"  >Đổi mật khẩu</a></li>
+                    <li><a href="#" id="change-avatar">Đổi ảnh đại diện</a></li>
+
+
                 </ul>
             </div>
 
@@ -222,6 +226,21 @@
                 </form>
             </div>
 
+            <div class="change-avatar-form" style="display:none;">
+                <h3>Đổi ảnh đại diện</h3>
+                <div class="form-group">
+                    <img id="avatar-preview" src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="Ảnh đại diện" class="avatar-preview header__navbar--user-img">
+                </div>
+                <form id="change-avatar-form" action="<%= request.getContextPath() %>/ChangeAvatar" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="avatar-upload">Chọn ảnh:</label>
+                        <input type="file" id="avatar-upload" name="avatar" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="save-btn">Lưu thay đổi</button>
+                </form>
+            </div>
+
+
 
         </div>
         
@@ -302,14 +321,29 @@
 
     %>
 
-    <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/popper.min.js"></script>
-
-
     <script>
         let dob = "<%= formattedDate %>";
         console.log(dob);
     </script>
+
+    <script>
+        document.getElementById('change-avatar').addEventListener('click', function() {
+            document.querySelector('.change-avatar-form').style.display = 'block';
+        });
+
+        document.getElementById('avatar-upload').addEventListener('change', function(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById('avatar-preview').src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    </script>
+
+    <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/popper.min.js"></script>
+
+
 
     <script src="<%= request.getContextPath()%>/GKY/assets/js/trangTTKhachHang.js">
 
