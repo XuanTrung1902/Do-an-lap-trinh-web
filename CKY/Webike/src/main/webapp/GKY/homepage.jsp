@@ -64,10 +64,10 @@
                                 </a>
                             </li>
 
-                            <!-- <li class="header__navbar--item header__navbar--separate">
-                                <a href="#"><i class="fa-solid fa-user m-r-8" ></i>Đăng nhập</a>
-                            </li>
-                            <li class="header__navbar--item"><a href="#">Đăng ký</a></li> -->
+<%--                            <li class="header__navbar--item header__navbar--separate">--%>
+<%--                                <a href="#"><i class="fa-solid fa-user m-r-8" ></i>Đăng nhập</a>--%>
+<%--                            </li>--%>
+<%--                            <li class="header__navbar--item"><a href="#">Đăng ký</a></li>--%>
 
 
 
