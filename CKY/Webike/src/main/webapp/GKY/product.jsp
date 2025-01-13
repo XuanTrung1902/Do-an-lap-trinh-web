@@ -260,9 +260,7 @@
                             </div>
                             <div class="box__bike--price">
                                 <span class="box__bike--price-old">39.200.000đ</span>
-                                <span class="box__bike--price-current">
-                       <f:formatNumber value="${p2['price']}" pattern="#,##0.###"/>đ
-                  </span>
+                                <span class="box__bike--price-current"><f:formatNumber value="${p2['price']}" pattern="#,##0.###"/>đ</span>
                             </div>
                             <div class="box__bike--origin">
                                 <span class="box__bike--origin-text">Hà Nội</span>
@@ -314,7 +312,12 @@
                     <div class="list-bike">
 <%--                        <div class="grid__row" id="product-grid"></div>--%>
                         <div id="product-grid"  class="grid__row" style="padding: 0 40px;">
-
+                            <div class="not__found" style="padding: 0 40px; display: none" >
+                                <div class="not__found--icon">
+                                    <i class="fa-solid fa-face-sad-cry"></i>
+                                    <p class="not__found--desc">không tìm thấy sản phẩm</p>
+                                </div>
+                            </div>
                             <c:forEach var="p" items="${products}">
                                 <div class="grid__column-2" style="padding: 10px; height: 380px">
                                     <a href="products" class="bike--item">
@@ -448,8 +451,6 @@
     </footer>
 </div>
 
-<%--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--%>
-<%--<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>--%>
 
 <script src="${pageContext.request.contextPath}/GKY/assets/js/FilterProductAjax.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
