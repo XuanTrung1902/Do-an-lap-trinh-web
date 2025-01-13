@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
+import vn.edu.hcmuaf.fit.webike.models.Brand;
 import vn.edu.hcmuaf.fit.webike.models.Product;
 
 import java.io.IOException;
