@@ -182,8 +182,14 @@
                                 });
                                 const color = document.getElementById("productColor");
                                 const img = document.getElementById("productImg");
+
+                                const directBuyColor = document.getElementById("directBuyColor");
+                                const directBuyImg = document.getElementById('directBuyImg');
+
                                 color.value = id;
                                 img.value = imgColor[id];
+                                directBuyColor.value = id;
+                                directBuyImg.value = imgColor[id];
                             }
 
                             window.onload = function () {
@@ -203,9 +209,14 @@
 
             </div>
             <div class="container--button d-flex">
-                <a href="payment.jsp">
-                    <button class="buy">Mua ngay</button>
-                </a>
+                <form action="direct-buy" method="POST">
+                    <input type="hidden" id="directBuy" name="method" value="direct">
+                    <input type="hidden" name="id" value="${p.id}">
+                    <input type="hidden" id="directBuyColor" name="color" value="">
+                    <input type="hidden" id="directBuyImg" name="img" value="">
+                    <button type="submit" class="buy">Mua ngay</button>
+                </form>
+
                 <form action="add-cart?id=${p.id}" method="GET">
                     <input type="hidden" name="id" id="id" value="${p.id}">
                     <input type="hidden" name="color" id="productColor" value="">

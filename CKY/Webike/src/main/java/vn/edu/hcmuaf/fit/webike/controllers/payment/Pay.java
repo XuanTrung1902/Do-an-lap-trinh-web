@@ -5,11 +5,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import vn.edu.hcmuaf.fit.webike.models.Cart;
-import vn.edu.hcmuaf.fit.webike.models.CartProduct;
+import vn.edu.hcmuaf.fit.webike.dao.PaymentDAO;
+import vn.edu.hcmuaf.fit.webike.models.Order;
+import vn.edu.hcmuaf.fit.webike.models.OrderItem;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.StringTokenizer;
 
 @WebServlet(name = "Pay", value = "/pay")
 public class Pay extends HttpServlet {
@@ -20,9 +21,39 @@ public class Pay extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Cart cart = (Cart) request.getSession().getAttribute("cart");
-        List<CartProduct> ls = cart.getList();
+        PaymentDAO dao = new PaymentDAO();
+
+        Order order = (Order) request.getSession().getAttribute("order");
+        String method = request.getParameter("method");
+        double deposit = Double.parseDouble(request.getParameter("deposit"));
+        double remain = Double.parseDouble(request.getParameter("remain"));
+        String appointment = request.getParameter("appointment");
+        String address = request.getParameter("address");
+        String status = "Đã cọc";
+        int accountID = Integer.parseInt(request.getParameter("accountID"));
+
+        String branch = request.getParameter("branch");
+        StringTokenizer t = new StringTokenizer(branch, "-");
+        int shopID = Integer.parseInt(t.nextToken());
+
+        order.getData();
+
+        int oid = dao.insertOrder(deposit, remain, address, appointment, null, status, accountID, shopID);
+        System.out.println("Order id:" + oid);
+
+
+        for (OrderItem o : order.getData()) {
+            System.out.println("??? " + o.toString());
+            int quantity = o.getQuantity();
+            String color = o.getColor();
+            int pid = Integer.parseInt(o.getProductID());
+            String img = o.getImg();
+            int insertOrderItem = dao.insertOrderItem(quantity, img, color, oid, pid);
+        }
+
+
+        response.sendRedirect("list-products");
+        request.getSession().removeAttribute("order");
 
     }
-
 }

@@ -1,10 +1,12 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class Order implements Serializable {
-    private List<OrderItem> data = new ArrayList<>();
+    private List<OrderItem> data;
     private double deposit;
     private double remain;
     private String appointment;
@@ -14,11 +16,43 @@ public class Order implements Serializable {
     private Shop shop;
 
     public Order() {
+        this.data = new ArrayList<OrderItem>();
+        this.deposit = deposit;
+        this.remain = remain;
+        this.appointment = appointment;
+        this.payDate = payDate;
+        this.status = status;
+        this.user = user;
+        this.shop = shop;
     }
-    public void add(Cart c){
-        for (CartProduct p : c.getList()){
-            OrderItem i= convert(p);
+
+    public Order(List<OrderItem> data, double deposit, double remain, String appointment, String payDate, String status, User user, Shop shop) {
+        this.data = new ArrayList<OrderItem>();
+        this.deposit = deposit;
+        this.remain = remain;
+        this.appointment = appointment;
+        this.payDate = payDate;
+        this.status = status;
+        this.user = user;
+        this.shop = shop;
+    }
+
+    public void add(Cart c, Product p, String method, String pid, String color, String img) {
+        if (method.equalsIgnoreCase("direct")) {
+            OrderItem i = convertProduct(p, pid, color, img);
             data.add(i);
+        } else if (method.equalsIgnoreCase("from cart")) {
+            for (CartProduct cp : c.getList()) {
+
+                StringTokenizer token = new StringTokenizer(cp.getId(), "/");
+                String itemID = token.nextToken();
+                String itemColor = token.nextToken();
+
+                int quantity = cp.getQuantity();
+                String itemImg = cp.getImg().get(itemColor);
+                OrderItem i = convertCartProduct(cp, quantity, itemImg, itemColor, itemID);
+                    data.add(i);
+            }
         }
     }
 
@@ -33,27 +67,46 @@ public class Order implements Serializable {
         return true;
     }
 
-    public List<OrderItem> getList() {
+    public List<OrderItem> getData() {
         return data;
     }
 
+    public void setData(List<OrderItem> data) {
+        this.data = data;
+    }
 
-    public OrderItem convert(CartProduct c) {
+    public OrderItem convertCartProduct(CartProduct c, int quantity, String img, String color, String pid) {
         OrderItem item = new OrderItem();
-        StringTokenizer cid = new StringTokenizer(c.getId(), "/");
-        String img = c.getImg().entrySet().iterator().next().getValue();
+        item.setQuantity(quantity);
+        item.setImg(img);
+        item.setColor(color);
+        item.setProductID(pid);
 
-        item.setId(Integer.parseInt(cid.nextToken()));
-        item.setColor(cid.nextToken());
+        item.setName(c.getName());
         item.setPrice(c.getPrice());
-        item.setQuantity(c.getQuantity());
         item.setVersion(c.getVersion());
         item.setStatus(c.getStatus());
         item.setBrand(c.getBrand());
         item.setType(c.getType());
-        item.setImg(img);
         return item;
     }
+
+    public OrderItem convertProduct(Product p, String pid, String color, String img) {
+        OrderItem item = new OrderItem();
+        item.setQuantity(1);
+        item.setImg(img);
+        item.setColor(color);
+        item.setProductID(pid);
+
+        item.setName(p.getName());
+        item.setPrice(p.getPrice());
+        item.setVersion(p.getVersion());
+        item.setStatus(p.getStatus());
+        item.setBrand(p.getBrand());
+        item.setType(p.getType());
+        return item;
+    }
+
 
     public double getDeposit() {
         return deposit;

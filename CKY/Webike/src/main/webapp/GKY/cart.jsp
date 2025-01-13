@@ -71,18 +71,18 @@
                         <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
                             <!-- Ô này để cái button tăng giảm số lượng -->
                             <div class="number d-flex align-items-center">
-                                <form action="update-cart?id=${p.id}" method="GET"  >
+                                <form action="update-cart?id=${p.id}" method="GET">
                                     <input type="hidden" name="id" value="${p.id}">
                                     <input type="hidden" name="quantity" value="-1">
-                                    <button type="submit"  class="button-modi">
+                                    <button type="submit" class="button-modi">
                                         <i class="fa-solid fa-minus"></i>
                                     </button>
                                 </form>
                                 <div class="quantity text-1">${p.quantity}</div>
-                                <form action="update-cart?id=${p.id}"   method="GET" >
+                                <form action="update-cart?id=${p.id}" method="GET">
                                     <input type="hidden" name="id" value="${p.id}">
                                     <input type="hidden" name="quantity" value="1">
-                                    <button type="submit"  class="button-modi">
+                                    <button type="submit" class="button-modi">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
                                 </form>
@@ -147,19 +147,27 @@
                         <f:formatNumber value="${total}" type="currency"/>
                     </h2>
                     <script>
-                        function formatCurrency(value) {
-                            return new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(value);
-                        }
-                        const total = document.getElementById('total-price');
-                        const value = parseInt(total.textContent.replace(/\D/g, ''), 10); // 10 la he thap phan
-                        total.textContent = formatCurrency(value);
+                        document.addEventListener('DOMContentLoaded', () => {
+                            function formatCurrency(value) {
+                                return new Intl.NumberFormat('vi-VN', {
+                                    style: 'currency',
+                                    currency: 'VND'
+                                }).format(value);
+                            }
+
+                            const total = document.getElementById('total-price');
+                            const value = parseInt(total.textContent.replace(/\D/g, ''), 10); // 10 la he thap phan
+                            total.textContent = formatCurrency(value);
+
+                            const send_price = document.getElementById('send_price');
+                            console.log(value);
+                            send_price.value = value;
+                        });
                     </script>
                 </div>
-                <form action="pay" method="GET" class="d-flex">
-<%--                    <c:forEach var="p" items="${sessionScope.cart.list}">--%>
-<%--                        <input type="hidden" name="id" value="${p.id}">--%>
-<%--                        <input type="hidden" name="quantity" value="${p.quantity}">--%>
-<%--                    </c:forEach>--%>
+                <form action="cart-buy" method="POST" class="d-flex">
+                    <input type="hidden" name="method" value="from cart">
+                    <input type="hidden" name="total" id="send_price" value="">
                     <button type="submit" class="buybtn">
                         <span class="buybtn-text">Mua hàng</span>
                     </button>

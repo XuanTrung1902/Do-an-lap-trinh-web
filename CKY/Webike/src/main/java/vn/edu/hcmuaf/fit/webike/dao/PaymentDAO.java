@@ -2,8 +2,6 @@ package vn.edu.hcmuaf.fit.webike.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
-import vn.edu.hcmuaf.fit.webike.models.Order;
-import vn.edu.hcmuaf.fit.webike.models.OrderItem;
 import vn.edu.hcmuaf.fit.webike.models.Shop;
 
 import java.util.List;
@@ -11,7 +9,8 @@ import java.util.List;
 public class PaymentDAO {
     public static void main(String[] args) {
         PaymentDAO dao = new PaymentDAO();
-        System.out.println(dao.getShops());
+//        System.out.println(dao.getShops());
+//        dao.insertOrder(12.9,12.8, "Address", "2020-02-01", "2020-02-01","Status", 1,1);
     }
 
     public List<Shop> getShops() {
@@ -20,25 +19,46 @@ public class PaymentDAO {
         return jdbi.withHandle(handle -> handle.createQuery(sql).mapToBean(Shop.class).list());
     }
 
-    public int insertOrder(Order o) {
+    public int insertOrder(double deposit, double remain, String address, String appointment, String payDate, String status, int accountID, int shopID) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                insert into orders (deposit, remain, appointment, payDate, status, accountID, shopID)
-                values (:deposit, :remain, :appointment, :payDate, :status, :accountID, :shopID) 
+                insert into orders (deposit, remain, address, appointment, payDate, status, accountID, shopID)
+                values (:deposit, :remain, :address, :appointment, :payDate, :status, :accountID, :shopID) 
                 """;
         return jdbi.withHandle(handle -> handle.createUpdate(sql)
-                .bind("deposit", o.getDeposit())
-                .bind("remain", o.getDeposit())
-                .bind("appointment", o.getAppointment())
-                .bind("payDate", o.getPayDate())
-                .bind("status", o.getStatus())
-                .bind("accountID", o.getUser().getId())
-                .bind("shopID", o.getShop().getId())
-                .execute());
+                .bind("deposit", deposit)
+                .bind("remain", remain)
+                .bind("address", address)
+                .bind("appointment", appointment)
+                .bind("payDate", payDate)
+                .bind("status", status)
+                .bind("accountID", accountID)
+                .bind("shopID", shopID)
+                .executeAndReturnGeneratedKeys()
+                .mapTo(int.class)
+                .first()
+        );
     }
 
-    public int insertOrderItem(OrderItem i) {
-        return 1;
+
+
+
+
+    public int insertOrderItem(int quantity, String img, String color, int oid, int pid) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+                insert into orderItems (quantity, img, color, orderID, productID)
+                values (:quantity, :img, :color, :orderID, :productID)
+                """;
+        return jdbi.withHandle(handle -> handle.createUpdate(sql)
+                .bind("quantity", quantity)
+                .bind("img", img)
+                .bind("color", color)
+                .bind("orderID", oid)
+                .bind("productID", pid)
+                .execute() > 0 ? 1 : 0
+        );
     }
+
 
 }

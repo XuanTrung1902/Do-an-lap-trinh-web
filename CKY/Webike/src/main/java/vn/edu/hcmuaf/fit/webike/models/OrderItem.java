@@ -1,36 +1,20 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
-import java.util.Map;
-
 public class OrderItem {
-    private int id;
+    //    private int id;
     private String name;
-    private String color;
-    private double price;
     private int quantity;
+    private String img;
+    private String color;
+    private String productID;
+    private String orderID;
+    private double price;
     private String version;
     private String status;
     private String brand;
     private String type;
-    private String img;
 
     public OrderItem() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getColor() {
@@ -41,12 +25,28 @@ public class OrderItem {
         this.color = color;
     }
 
-    public double getPrice() {
-        return price;
+    public String getImg() {
+        return img;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
     }
 
     public int getQuantity() {
@@ -55,6 +55,22 @@ public class OrderItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getVersion() {
@@ -87,29 +103,5 @@ public class OrderItem {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    @Override
-    public String toString() {
-        return "OrderItem{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", color='" + color + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", version='" + version + '\'' +
-                ", status='" + status + '\'' +
-                ", brand='" + brand + '\'' +
-                ", type='" + type + '\'' +
-                ", img='" + img + '\'' +
-                '}';
     }
 }
