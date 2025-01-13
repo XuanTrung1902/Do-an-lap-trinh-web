@@ -8,7 +8,7 @@ import vn.edu.hcmuaf.fit.webike.models.User;
 
 import java.io.IOException;
 
-@WebServlet(name = "loginController", value = "/Dangnhap")
+@WebServlet(name = "loginController", value = "/Login")
 public class loginController extends HttpServlet {
 
     @Override
@@ -35,7 +35,8 @@ public class loginController extends HttpServlet {
         } else { // nếu login sai
             request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu");
             request.setAttribute("phone", phoneNum);
-            request.getRequestDispatcher("GKY/Dangnhap.jsp").forward(request, response);
+//            request.getRequestDispatcher("GKY/Dangnhap.jsp").forward(request, response);
+            response.sendRedirect("Login");
         }
     }
 

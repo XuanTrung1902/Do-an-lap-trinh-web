@@ -15,13 +15,12 @@ public class ProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
-        System.out.println(user.toString());
 
         if (user != null) {
             request.setAttribute("user", user);
             request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
         } else {
-            response.sendRedirect("/Dangnhap");
+            response.sendRedirect("/Login");
         }
     }
 
@@ -40,7 +39,6 @@ public class ProfileController extends HttpServlet {
             String year = request.getParameter("year");
             String dob = year + "-" + month + "-" + day;
             Date date = Date.valueOf(dob);
-            System.out.println(user.toString());
             user.setName(fullname);
             user.setPhoneNum(phone);
             user.setAddress(address);
@@ -61,7 +59,7 @@ public class ProfileController extends HttpServlet {
             request.setAttribute("user", user);
             request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
         } else {
-            response.sendRedirect("GKY/Dangnhap.jsp");
+            response.sendRedirect("/Login");
         }
     }
 

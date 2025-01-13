@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 
-@WebServlet(name = "RegisterController", value = "/Dangky")
+@WebServlet(name = "RegisterController", value = "/register")
 public class RegisterController extends HttpServlet {
 
     @Override
@@ -62,7 +62,7 @@ public class RegisterController extends HttpServlet {
         boolean isRegistered = UserSevice.registerUser(user);
 
         if (isRegistered) {
-            response.sendRedirect("Dangnhap");
+            response.sendRedirect("Login");
         } else {
             request.setAttribute("error", "Đăng ký thất bại");
             setRequestAttributes(request, fullname, phone, address, gender, day, month, year);

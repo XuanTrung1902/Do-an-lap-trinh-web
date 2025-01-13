@@ -37,14 +37,13 @@ public class AddUserController extends HttpServlet {
 
         Part filePart = request.getPart("image");
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-//        String uploadPath = getServletContext().getRealPath("") + File.separator + "img/products";
         String uploadPath = getServletContext().getRealPath("") + File.separator + "img" + File.separator + "products";
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs(); // Tạo thư mục nếu chưa tồn tại
         }
         filePart.write(uploadPath + File.separator + fileName);
-        String imagePath = "img/products/" + fileName;
+        String imagePath = "img/Users/" + fileName;
 
 
         if (UserSevice.isPhoneNumExists(phoneNum)) {

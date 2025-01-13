@@ -69,7 +69,7 @@
 
 <%--        onsubmit="return validateForm()"--%>
 <%--        onsubmit="return validatePhone(event)"--%>
-        <form class="form_center" method="post" action="<%= request.getContextPath()%>/Dangky"  >
+        <form class="form_center" method="post" action="<%= request.getContextPath()%>/register"  >
             <div class="input_field">
 =                    <input type="text" name="fullname" placeholder="Họ Tên" value="<%= request.getAttribute("fullname") != null ? request.getAttribute("fullname") : "" %>" required>
             </div>
@@ -115,7 +115,7 @@
                 <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>
             </div>
             <button type="submit" class="submit_btn"><i class="fa-regular fa-user"></i> ĐĂNG KÝ</button>
-            <p class="login-link">Bạn có sẵn sàng để tạo một tài khoản? <a href="<%= request.getContextPath()%>/Dangnhap" >Đăng nhập</a></p>
+            <p class="login-link">Bạn có sẵn sàng để tạo một tài khoản? <a href="<%= request.getContextPath()%>/Login" >Đăng nhập</a></p>
         </form>
 
 

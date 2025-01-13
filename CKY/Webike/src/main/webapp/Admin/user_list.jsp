@@ -199,7 +199,7 @@
                                     <td>${user.role}</td> <!-- Hiển thị vai trò -->
                                     <td>${user.locked}</td> <!-- Hiển thị trạng thái khóa -->
 <%--                                    <td>${user.verify}</td> <!-- Hiển thị trạng thái xác minh -->--%>
-                                    <td><img src="<%= request.getContextPath() %>/${user.image}" alt="User Image" width="50" height="50"></td>
+                                    <td style="border-radius: 50%; background-color:darkgray "><img src="<%= request.getContextPath() %>/${user.image}" alt="User Image" width="50" height="50"></td>
                                     <td>
                                         <a href="<%= request.getContextPath() %>/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
                                         <form action="<%= request.getContextPath() %>/deleteUser" method="post" style="display:inline;">

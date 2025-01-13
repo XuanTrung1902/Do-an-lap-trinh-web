@@ -81,7 +81,7 @@
 
                     <%--            ${pageContext.request.contextPath}--%>
                     <%--              <form id="stripe-login" method="post" action="${pageContext.request.contextPath}/Dangnhap"  onsubmit="return validateForm()">--%>
-                    <form id="stripe-login" method="post" action="<%= request.getContextPath()%>/Dangnhap" onsubmit="return validateForm()">
+                    <form id="stripe-login" method="post" action="<%= request.getContextPath()%>/Login" onsubmit="return validateForm()">
 
                         <div class="field padding-bottom--24">
                             <label for="Phone">SĐT</label>
@@ -91,7 +91,7 @@
                             <div class="grid--50-50">
                                 <label for="password">Mật khẩu</label>
                                 <div class="reset-pass">
-                                    <a href="<%= request.getContextPath()%>/QuenMatKhau">Quên mật khẩu?</a>
+                                    <a href="<%= request.getContextPath()%>/forgot-password">Quên mật khẩu?</a>
                                 </div>
                             </div>
                             <input type="password" name="password">
@@ -125,7 +125,7 @@
 
             <!--footer-->
             <div class="footer-link " style="padding: 10px;">
-                <span style="color: #fdeded">Chưa có tài khoản? <a href="${pageContext.request.contextPath}/Dangky" style="color: #e31c25">Đăng ký</a></span>
+                <span style="color: #fdeded">Chưa có tài khoản? <a href="${pageContext.request.contextPath}/register" style="color: #e31c25">Đăng ký</a></span>
                 <div class="listing  padding-bottom--24 flex-flex center-center">
                     <span><a href="#">© ByMoto</a></span>
                     <span><a href="#">Liên hệ</a></span>

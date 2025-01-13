@@ -35,7 +35,7 @@
 <div class="form-container">
     <h2>Quên mật khẩu?</h2>
 <%--    onsubmit="return validatePhone()"--%>
-    <form action="<%= request.getContextPath()%>/QuenMatKhau" method="post" >
+    <form action="<%= request.getContextPath()%>/forgot-password" method="post" >
         <label for="phone">SDT:</label>
 <%--        <input type="tel" id="phone" name="phone" required>--%>
         <input type="tel" id="phone" name="phone" value="<%= request.getAttribute("phone") != null ? request.getAttribute("phone") : "" %>" required>
