@@ -28,7 +28,7 @@ public class Products extends HttpServlet {
 
 
 
-
+        request.setAttribute("allBrand", allBrand);                 // Gửi dữ liệu sang JSP
         request.setAttribute("brands", brands);                 // Gửi dữ liệu sang JSP
         request.setAttribute("products2", products2);                 // Gửi dữ liệu sang JSP
         request.setAttribute("products", products);                 // Gửi dữ liệu sang JSP

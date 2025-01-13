@@ -447,6 +447,7 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/GKY/assets/js/FilterProductAjax.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/popper.min.js"></script>
