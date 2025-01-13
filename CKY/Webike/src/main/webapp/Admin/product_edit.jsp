@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,14 +12,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/admin.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/base.css">
     <title>Admin</title>
 </head>
 <body>
     <section class="admin">
         <div class="row__grid">
-            <div class="admin__sidebar">
+            <div class="admin__sidebar" style="height: 100%">
                 <div class="admin__sidebar--top">
                     <img src="./assets/images/logo.png" alt="">
                 </div>
@@ -84,12 +87,12 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="product_list.jsp">
+                                    <li><a href="products">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="product_add.jsp">
+                                    <li><a href="add-product">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -150,26 +153,123 @@
                     <form class="admin-content-main-container" >
                         <div class="admin-content-main-container-two-input">
                             <input type="text" placeholder="Tên sản phẩm">
-                            <input type="text" placeholder="Hãng xe">
+                            <select class="select__option" style="margin: 0 10px;" type="text" placeholder="Mã hãng xe">
+                                <option value="0">-- Chọn hãng xe --</option>
+                                <option value="1">Honda</option>
+                                <option value="2">Yamaha</option>
+                                <option value="3">Suzuki</option>
+                                <option value="4">Kawasaki</option>
+                                <option value="5">Ducati</option>
+                                <option value="6">Harley-Davidson</option>
+                                <option value="7">KTM</option>
+                                <option value="8">BMW</option>
+                                <option value="9">Triumph</option>
+                                <option value="10">MV Agusta</option>
+                                <option value="11">Piaggio</option>
+                                <option value="12">Royal Enfield</option>
+                                <option value="13">Indian</option>
+                                <option value="14">Buell</option>
+                            </select>
+                            <select class="select__option" type="text" placeholder="Mã loại xe">
+                                <option value="0">-- Chọn loại xe --</option>
+                                <option value="1">Xe số</option>
+                                <option value="2">Xe tay ga</option>
+                                <option value="3">Xe côn tay</option>
+                                <option value="4">Xe phân khối lớn</option>
+                            </select>
+
+                        </div>
+                        <div class="admin-content-main-container-one-input">
+                            <select class="select__option width-99"  type="text" placeholder="Tính năng">
+                                <option value="0">-- Chọn tính năng --</option>
+                                <option value="1">Thiết kế khí động học tinh tế, sắc sảo</option>
+                                <option value="2">Động cơ tiên tiến, hiệu suất mạnh mẽ</option>
+                                <option value="3">Hệ thống điện tử tiên tiến, chính xác</option>
+                                <option value="4">Dáng vẻ cổ điển</option>
+                                <option value="5">Kiểu dáng thể thao cao cấp, năng động</option>
+                                <option value="6">Khung xe thế hệ mới</option>
+                            </select>
+                        </div>
+                        <div class="admin-content-main-container-one-input d-flex" >
+                            <select class="select__option width-33" type="text" placeholder="màu sắc">
+                                <option value="0">-- Chọn màu sắc --</option>
+                                <option value="1">Đỏ</option>
+                                <option value="2">Đen</option>
+                                <option value="3">Vàng</option>
+                                <option value="4">Xanh Dương</option>
+                                <option value="5">Xám</option>
+                                <option value="6">Tím</option>
+                                <option value="7">Vàng Gold</option>
+                                <option value="8">Bạc</option>
+                                <option value="9">Hồng</option>
+                                <option value="10">Trắng</option>
+                                <option value="11">Nâu</option>
+                                <option value="12">Cam</option>
+                                <option value="13">Xanh lá</option>
+                                <option value="14">Kem</option>
+                            </select>
+                            <select class="select__option width-33" type="text" placeholder="màu sắc">
+                                <option value="0">-- Chọn thông số --</option>
+                                <option value="1"></option>
+                                <option value="2"></option>
+                                <option value="3"></option>
+                                <option value="4"></option>
+                                <option value="5"></option>
+                                <option value="6"></option>
+                                <option value="7"></option>
+                                <option value="8"></option>
+                                <option value="9"></option>
+                                <option value="10"></option>
+                                <option value="11"></option>
+                                <option value="12"></option>
+                                <option value="13"></option>
+                                <option value="14"></option>
+                            </select>
+                            <select class="select__option width-33" type="text" placeholder="màu sắc">
+                                <option value="0">-- Chọn --</option>
+                                <option value="1"></option>
+                                <option value="2"></option>
+                                <option value="3"></option>
+                                <option value="4"></option>
+                                <option value="5"></option>
+                                <option value="6"></option>
+                                <option value="7"></option>
+                                <option value="8"></option>
+                                <option value="9"></option>
+                                <option value="10"></option>
+                                <option value="11"></option>
+                                <option value="12"></option>
+                                <option value="13"></option>
+                                <option value="14"></option>
+                            </select>
                         </div>
                         <div class="admin-content-main-container-two-input">
-                            <input type="text" placeholder="Phân khối">
-                            <input type="text" placeholder="Giá bán">
+                            <input type="number" placeholder="Số lượng">
+                            <input style="margin: 0 10px;" type="number" placeholder="Giá bán">
+                            <input type="text" placeholder="Phiên bản">
                         </div>
-                        <div class="admin-content-main-container-choose-img">
-                            <input type="file" id="file" style="display: none;">
-                            <label for="file">Thêm hình ảnh</label>
+                        <div class="admin-content-main-container-two-input">
+                            <input type="date" placeholder="Ngày sản xuất">
+                            <div class="admin-content-main-container-choose-img">
+                                <input type="file" id="file" style="display: none;">
+                                <label for="file">Thêm hình ảnh</label>
+                            </div>
                         </div>
+
                         <div class="admin-content-main-container-description">
-                            <textarea name="" id="" cols="30" rows="5" placeholder="Mô tả sản phẩm"></textarea>
+                            <textarea name="" id="editor" cols="30" rows="5" placeholder="Mô tả sản phẩm" required></textarea>
                         </div>
-                        <button>Thêm sản phẩm</button>
+                        <button>Cập nhật sản phẩm</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="assets/js/sidebar.js"></script>
+    <script src="${pageContext.request.contextPath}/Admin/assets/js/sidebar.js"></script>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'editor' );
+    </script>
 </body>
 </html>

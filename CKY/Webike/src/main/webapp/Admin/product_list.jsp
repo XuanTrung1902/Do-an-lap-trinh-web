@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/css/admin.css"> -->
-    <link rel="stylesheet" href="./assets/css/product_list.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/product_list.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/base.css">
     <title>Admin</title>
 </head>
 <body>
@@ -83,7 +86,7 @@
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="product_add.jsp">
+                                    <li><a href="add-product">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -144,78 +147,43 @@
                     <div class="admin-content-main-container">
                         <div class="admin-content-main-search">
                             <input type="text" placeholder="Tên sản phẩm" class="search-input">
-                            <select class="search-select">
-                                <option value="">Phân khối</option>
-                                <option value="150"> &lt; 150</option>
-                                <option value="200"> &lt; 200</option>
-                                <option value="250"> &gt; 200</option>
-                            </select>
+<%--                            <select class="search-select">--%>
+<%--                                <option value="">Phân khối</option>--%>
+<%--                                <option value="150"> &lt; 150</option>--%>
+<%--                                <option value="200"> &lt; 200</option>--%>
+<%--                                <option value="250"> &gt; 200</option>--%>
+<%--                            </select>--%>
                             <input type="number" placeholder="Giá từ" class="search-input">
                             <input type="number" placeholder="Giá đến" class="search-input">
                             
                             <button class="search-button">Tìm kiếm</button>
                         </div>
+                        <%-- <th>Phân khối</th>--%>
                         <table>
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Ảnh</th>
                                     <th>Tên sản phẩm</th>
-                                    <th>Phân khối</th>
                                     <th>Giá bán</th>
                                     <th>Ngày đăng</th>
                                     <th>Tuỳ chỉnh</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            <c:forEach var="p"  items="${p}" >
                                 <tr>
-                                    <td>1</td>
-                                    <td class="img__item"><img src="./assets/images/vario.png" alt=""></td>
-                                    <td>Vario</td>
-                                    <td>150</td>
-                                    <td>49.000.000đ</td>
-                                    <td>2024-12-11</td>
+                                    <td>${p.id}</td>
+                                    <td class="img__item"><img src="<%= request.getContextPath() %>/${p.url}" alt="${p.name}"></td>
+                                    <td>${p.name}</td>
+                                    <td>${p.price}</td>
+                                    <td>${p.lauch}</td>
                                     <td>
-                                        <a href="product_edit.jsp" class="btn-edit">Sửa</a>
+                                        <a href="update-product" class="btn-edit">Sửa</a>
                                         <a href="#" class="btn-delete">Xóa</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td><img src="./assets/images/vario.png" alt=""></td>
-                                    <td>Honda</td>
-                                    <td>125</td>
-                                    <td>85.000.000đ</td>
-                                    <td>2024-12-11</td>
-                                    <td>
-                                        <a href="product_edit.jsp" class="btn-edit">Sửa</a>
-                                        <a href="#" class="btn-delete">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td><img src="./assets/images/vario.png" alt=""></td>
-                                    <td>Ducati</td>
-                                    <td>275</td>
-                                    <td>125.000.000đ</td>
-                                    <td>2024-12-11</td>
-                                    <td>
-                                        <a href="product_edit.jsp" class="btn-edit">Sửa</a>
-                                        <a href="#" class="btn-delete">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td><img src="./assets/images/vario.png" alt=""></td>
-                                    <td>SH Mode</td>
-                                    <td>175</td>
-                                    <td>62.000.000đ</td>
-                                    <td>2024-12-11</td>
-                                    <td>
-                                        <a href="product_edit.jsp" class="btn-edit">Sửa</a>
-                                        <a href="#" class="btn-delete">Xóa</a>
-                                    </td>
-                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -224,6 +192,6 @@
         </div>
     </section>
 
-    <script src="assets/js/product_list.js"></script>
+    <script src="${pageContext.request.contextPath}/Admin/assets/js/product_list.js"></script>
 </body>
 </html>

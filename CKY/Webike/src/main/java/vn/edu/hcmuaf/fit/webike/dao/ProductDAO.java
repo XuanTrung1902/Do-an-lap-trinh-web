@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
 public class ProductDAO {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        System.out.println(dao.getProduct(1));
+
+//        System.out.println(dao.getProduct(1));
 //        System.out.println(dao.getAll());
 //        System.out.println(dao.getSpec(1, "động cơ"));
 //        System.out.println(dao.getFeature(1));
@@ -20,12 +21,66 @@ public class ProductDAO {
 //        System.out.println(dao.getSpecType());
 //        System.out.println(dao.getComment(1));
 //        System.out.println(dao.getAllProductImg2());
-        System.out.println(dao.getAllProductImg());
+//        System.out.println(dao.getAllProductImg());
 //        System.out.println(dao.getBrandOfProduct());
 //        System.out.println(dao.getAllBrand());
 //        System.out.println(dao.searchProducts("Honda"));
+//        System.out.println(dao.getAllProducts()); // hàm này để load sản phẩm lên trang quản lý sản phẩm của admin
 
 
+    }
+
+
+    public boolean addProduct(String name, double price, String launch, String imageUrl, String des) {
+        Jdbi jdbi = JDBIConnect.get();
+
+        String sql = """
+                INSERT INTO products (name, price, launch, des) 
+                VALUES (:name, :price, :launch, :des)
+                """;
+
+        String imageSql = """
+                INSERT INTO imgs (productID, url) 
+                VALUES (:productID, :url)
+                """;
+
+        return jdbi.inTransaction(handle -> {
+            int productId = handle.createUpdate(sql)
+                    .bind("name", name)
+                    .bind("price", price)
+                    .bind("launch", launch)
+                    .bind("des", des)
+                    .executeAndReturnGeneratedKeys("id")
+                    .mapTo(int.class)
+                    .one();
+
+            return handle.createUpdate(imageSql)
+                    .bind("productID", productId)
+                    .bind("url", imageUrl)
+                    .execute() > 0;
+        });
+    }
+
+
+    public List<Map<String, Object>> getAllProducts() {
+        // load product to admin manage product page
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+                SELECT 
+                    p.id ,
+                    p.name ,
+                    p.price ,
+                    p.launch ,
+                    i.url 
+                FROM products AS p
+                JOIN imgs AS i ON p.id = i.productID
+                GROUP BY p.id, i.id
+                """;
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapToMap()
+                        .list()
+        );
     }
 
     public List<Map<String, Object>> searchProducts(String keyword) {
@@ -47,6 +102,7 @@ public class ProductDAO {
                         .list()
         );
     }
+
 
 
 
@@ -95,11 +151,7 @@ public class ProductDAO {
         );
     }
 
-    public List<Product> getAllProducts() { // lấy ra tca sp
-        Jdbi jdbi = JDBIConnect.get();
-        return jdbi.withHandle(handle -> handle.createQuery("select * from products")
-                .mapToBean(Product.class).list());
-    }
+
 
     public Product getProduct(int id) { // lay sp theo id
         Jdbi jdbi = JDBIConnect.get();
@@ -158,4 +210,6 @@ public class ProductDAO {
                 .bind("id", id)
                 .mapToBean(Comment.class).list());
     }
+
+
 }

@@ -441,50 +441,150 @@ li {
 /* product líst */
 
 
+/*.admin-content-main-container table {*/
+/*    width: 100%;*/
+/*    border-collapse: collapse;*/
+/*    margin-top: 20px;*/
+/*}*/
+
+/*.admin-content-main-container table thead,*/
+/*.admin-content-main-container table tbody {*/
+/*    display: block;*/
+/*}*/
+
+/*.admin-content-main-container table thead {*/
+/*    background-color: var(--primary-color);*/
+/*    color: #fff;*/
+/*    position: sticky;*/
+/*    top: 0;*/
+/*    z-index: 1;*/
+/*}*/
+
+/*.admin-content-main-container table th,*/
+/*.admin-content-main-container table td {*/
+/*    font-size: 1.6rem;*/
+/*    padding: 12px 15px;*/
+/*    text-align: left;*/
+/*    border-bottom: 1px solid #ddd;*/
+/*    width: 159px; !* Đặt chiều rộng cố định cho các cột *!*/
+/*}*/
+
+/*.admin-content-main-container table th {*/
+/*    font-size: 1.6rem;*/
+/*    font-weight: 700;*/
+/*    text-transform: uppercase;*/
+/*}*/
+
+/*.admin-content-main-container table tbody {*/
+/*    max-height: 300px; !* Đặt chiều cao tối đa cho tbody *!*/
+/*    overflow-y: auto; !* Thêm thanh cuộn dọc cho tbody *!*/
+/*}*/
+
+/*.admin-content-main-container table tbody tr {*/
+/*    position: relative;*/
+/*    display: table;*/
+/*    width: 100%;*/
+/*    table-layout: fixed;*/
+/*}*/
+
+/*.admin-content-main-container table tbody tr:hover {*/
+/*    background-color: #f1f1f1;*/
+/*}*/
+
+/*.admin-content-main-container table img {*/
+/*    position: relative;*/
+/*    top: 0;*/
+/*    right: 45px;*/
+/*    width: 180px;*/
+/*    height: auto;*/
+/*    border-radius: 4px;*/
+/*    display: block;*/
+/*}*/
+
+/*.admin-content-main-container table th:nth-child(2),*/
+/*.admin-content-main-container table td:nth-child(2) {*/
+/*    text-align: center; !* Căn giữa nội dung cột chứa hình ảnh *!*/
+/*    vertical-align: middle; !* Căn giữa nội dung theo chiều dọc *!*/
+/*    padding-right: 20px;*/
+/*}*/
+
+
+
+/*.admin-content-main-container .btn-edit,*/
+/*.admin-content-main-container .btn-delete {*/
+/*    padding: 8px 12px;*/
+/*    font-size: 1.6rem;*/
+/*    font-weight: 700;*/
+/*    color: #fff;*/
+/*    border-radius: 4px;*/
+/*    text-align: center;*/
+/*    cursor: pointer;*/
+/*    transition: background-color 0.3s ease;*/
+/*}*/
+
+/*.admin-content-main-container .btn-edit {*/
+/*    background-color: #4a87ce;*/
+/*    margin-right: 10px;*/
+/*}*/
+
+/*.admin-content-main-container .btn-edit:hover {*/
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
+/*    opacity: 0.85;*/
+/*}*/
+
+/*.admin-content-main-container .btn-delete {*/
+/*    background-color: #e74c3c;*/
+/*}*/
+
+/*.admin-content-main-container .btn-delete:hover {*/
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
+/*    opacity: 0.85;*/
+/*}*/
+/* Table Styles */
 .admin-content-main-container table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-}
-
-.admin-content-main-container table thead,
-.admin-content-main-container table tbody {
-    display: block;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .admin-content-main-container table thead {
     background-color: var(--primary-color);
     color: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-
-.admin-content-main-container table th,
-.admin-content-main-container table td {
-    font-size: 1.6rem;
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    width: 159px; /* Đặt chiều rộng cố định cho các cột */
-}
-
-.admin-content-main-container table th {
-    font-size: 1.6rem;
-    font-weight: 700;
     text-transform: uppercase;
+    font-weight: 700;
 }
 
 .admin-content-main-container table tbody {
+    display: block;
     max-height: 300px; /* Đặt chiều cao tối đa cho tbody */
     overflow-y: auto; /* Thêm thanh cuộn dọc cho tbody */
 }
 
+.admin-content-main-container table thead,
 .admin-content-main-container table tbody tr {
-    position: relative;
     display: table;
     width: 100%;
-    table-layout: fixed;
+    table-layout: fixed; /* Ensure the table layout is fixed */
+}
+
+.admin-content-main-container table th,
+.admin-content-main-container table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-content-main-container table th {
+    font-size: 1.6rem;
+}
+
+.admin-content-main-container table td {
+    font-size: 1.4rem;
+    color: var(--text-color);
 }
 
 .admin-content-main-container table tbody tr:hover {
@@ -492,28 +592,17 @@ li {
 }
 
 .admin-content-main-container table img {
-    position: relative;
-    top: 0;
-    right: 45px;
-    width: 180px;
+    width: 100px;
     height: auto;
     border-radius: 4px;
     display: block;
+    margin: 0 auto;
 }
-
-.admin-content-main-container table th:nth-child(2),
-.admin-content-main-container table td:nth-child(2) {
-    text-align: center; /* Căn giữa nội dung cột chứa hình ảnh */
-    vertical-align: middle; /* Căn giữa nội dung theo chiều dọc */
-    padding-right: 20px;
-}
-
-
 
 .admin-content-main-container .btn-edit,
 .admin-content-main-container .btn-delete {
     padding: 8px 12px;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: #fff;
     border-radius: 4px;
@@ -528,8 +617,7 @@ li {
 }
 
 .admin-content-main-container .btn-edit:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    opacity: 0.85;
+    background-color: #3a6fb0;
 }
 
 .admin-content-main-container .btn-delete {
@@ -537,8 +625,7 @@ li {
 }
 
 .admin-content-main-container .btn-delete:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    opacity: 0.85;
+    background-color: #c0392b;
 }
 
  
