@@ -67,7 +67,6 @@ li {
 /* side bar */
 .admin__sidebar {
     height: 100vh;
-    /* height: 100%; */
     background-color: var(--black-color);
 }
 
@@ -179,6 +178,9 @@ li {
 .admin__content {
     background-color: var(--sub-bg-color);
 }
+
+
+
 
 .admin__content-top {
     display: flex;
@@ -441,7 +443,7 @@ li {
 
 .admin-content-main-container-two-input {
     display: flex;
-
+    justify-content: space-between;
     margin-bottom: 20px;
 }
 
@@ -453,34 +455,9 @@ li {
     border-radius: 4px;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
-.admin-content-main-container-one-input .width-33 {
-    width: 33.333333%;
-}
-
-.admin-content-main-container-one-input .width-99 {
-    width: 99%;
-}
-
-.admin-content-main-container-one-input {
-    margin-bottom: 20px;
-    display: flex;
-}
-
-.select__option {
-    display: block;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    width: 48%;
-    padding: 10px;
-    font-size: 1.6rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-}
 
 .admin-content-main-container-choose-img {
-    /* margin-bottom: 20px; */
-    margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 .admin-content-main-container-choose-img input[type="file"] {

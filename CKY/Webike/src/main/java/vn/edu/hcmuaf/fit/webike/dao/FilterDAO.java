@@ -39,7 +39,6 @@ public class FilterDAO {
                     JOIN imgs AS i ON i.productID = p.id
                     JOIN brands AS b ON p.brandID = b.id
                     GROUP BY p.id;
-
                 """;
 
         return jdbi.withHandle(handle -> handle.createQuery(sql).mapToMap().list());
@@ -87,7 +86,6 @@ public class FilterDAO {
             } else {
                 query.define("brands", null); // Tránh lỗi bindList
             }
-
 
             return query.mapToMap().list();
         });

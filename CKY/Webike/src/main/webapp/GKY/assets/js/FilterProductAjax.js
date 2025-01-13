@@ -1,11 +1,10 @@
-
-$(document).ready(function () {
+$(document).ready(function() {
     let currentPage = 1;
     const itemsPerPage = 10;
 
     function fetchFilteredProducts() {
         var selectedBrands = [];
-        $("input[name='brand']:checked").each(function () {
+        $("input[name='brand']:checked").each(function() {
             selectedBrands.push($(this).val());
         });
 
@@ -18,10 +17,10 @@ $(document).ready(function () {
                 limit: itemsPerPage
             },
             traditional: true,
-            success: function (response) {
+            success: function(response) {
                 $(".grid__row").empty();
 
-                response.products.forEach(function (product) {
+                response.products.forEach(function(product) {
                     var productHTML = `
                         <div class="grid__column-2" style="padding: 10px; height: 380px">
                             <a href="products" class="bike--item">
@@ -30,7 +29,7 @@ $(document).ready(function () {
                                 </div>
                                 <div class="bike__info">
                                     <h3 class="bike__name" style="display: block; height: 49px;">${product.name}</h3>
-                                    <span class="bike__price">${new Intl.NumberFormat().format(product.price)}₫</span>
+                                    <span class="bike__price">${product.price}đ</span>
                                     <div class="source">
                                         <span class="condition">${product.version}</span>
                                         <span class="time">${product.launch}</span>
@@ -45,7 +44,7 @@ $(document).ready(function () {
 
                 renderPagination(response.totalPages);
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 // console.log("Có lỗi xảy ra:", error);
                 console.error("AJAX Error:", error);
                 console.error("Status:", status);
@@ -62,10 +61,10 @@ $(document).ready(function () {
                 page: currentPage,
                 limit: itemsPerPage
             },
-            success: function (response) {
+            success: function(response) {
                 $(".grid__row").empty();
 
-                response.products.forEach(function (product) {
+                response.products.forEach(function(product) {
                     var productHTML = `
                         <div class="grid__column-2" style="padding: 10px; height: 380px">
                             <a href="products" class="bike--item">
@@ -74,7 +73,7 @@ $(document).ready(function () {
                                 </div>
                                 <div class="bike__info">
                                     <h3 class="bike__name" style="display: block; height: 49px;">${product.name}</h3>
-                                    <span class="bike__price">${new Intl.NumberFormat().format(product.price)}₫</span>
+                                    <span class="bike__price">${product.price}đ</span>
                                     <div class="source">
                                         <span class="condition">${product.version}</span>
                                         <span class="time">${product.launch}</span>
@@ -89,17 +88,17 @@ $(document).ready(function () {
 
                 renderPagination(response.totalPages);
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra:", error);
             }
         });
     }
 
-    $("input[name='brand']").on("change", function () {
+    $("input[name='brand']").on("change", function() {
         currentPage = 1; // Reset to the first page
 
         var selectedBrands = [];
-        $("input[name='brand']:checked").each(function () {
+        $("input[name='brand']:checked").each(function() {
             selectedBrands.push($(this).val());
         });
 
@@ -120,13 +119,13 @@ $(document).ready(function () {
             $(".pagination ul").append(pageItem);
         }
 
-        $(".pagination__link").on("click", function () {
+        $(".pagination__link").on("click", function() {
             currentPage = parseInt($(this).data("page"));
             fetchFilteredProducts();
         });
     }
 
-    $("#resetFilters").on("click", function () {
+    $("#resetFilters").on("click", function() {
         $("input[name='brand']").prop("checked", false);
         currentPage = 1; // Reset to the first page
         fetchAllProducts();
@@ -148,9 +147,9 @@ $(document).ready(function () {
         $.ajax({
             url: '/Webike/search',
             method: 'GET',
-            data: {keyword: keyword},
+            data: { keyword: keyword },
             success: function (response) {
-                // console.log('Response:', response);
+                console.log('Response:', response);
                 let productGrid = $('#product-grid');
                 productGrid.empty(); // Xóa kết quả cũ
 
@@ -176,12 +175,7 @@ $(document).ready(function () {
                         productGrid.append(productHTML);
                     });
                 } else {
-                    productGrid.append('<div class="not__found" style="padding: 0 40px;" >\n' +
-                        '                                <div class="not__found--icon">\n' +
-                        '                                    <i class="fa-solid fa-face-sad-cry"></i>\n' +
-                        '                                    <p class="not__found--desc">không tìm thấy sản phẩm</p>\n' +
-                        '                                </div>\n' +
-                        '                            </div>');
+                    productGrid.append('<p>Không tìm thấy sản phẩm nào.</p>');
                 }
             },
             error: function (xhr, status, error) {
@@ -193,6 +187,9 @@ $(document).ready(function () {
 });
 
 ///////////////////////
+
+
+
 
 
 //giữ nguyên
@@ -277,6 +274,15 @@ $(document).ready(function () {
 //     // Initial fetch
 //     fetchFilteredProducts();
 // });
+
+
+
+
+
+
+
+
+
 
 
 // $(document).ready(function() {

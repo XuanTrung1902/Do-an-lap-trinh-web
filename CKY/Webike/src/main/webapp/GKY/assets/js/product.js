@@ -171,10 +171,10 @@ function filterImages() {
       //   .map((attr) => attr.trim());
       const matchesGroup1 =
         selectedAttributes.length === 0
-          // || selectedAttributes.some((attr) => imageAttributes.includes(attr));
+          || selectedAttributes.some((attr) => imageAttributes.includes(attr));
       const matchesGroup2 =
         selectedAttributes1.length === 0
-          // || selectedAttributes1.some((attr) => imageAttributes.includes(attr));
+          || selectedAttributes1.some((attr) => imageAttributes.includes(attr));
 
       if (matchesGroup1 && matchesGroup2) {
         visibleImages.push(image);

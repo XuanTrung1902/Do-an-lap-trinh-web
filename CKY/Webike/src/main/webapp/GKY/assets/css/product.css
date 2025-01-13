@@ -1043,27 +1043,3 @@
     height: 60.5px;
     margin-top: 10px;
 }
-
-/*NOT FOUND*/
-.not__found {
-    padding: 0 40px;
-    text-align: center;
-    margin-top: 215px;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.not__found--icon {
-    font-size: 20rem;
-    color: #000;
-    margin-bottom: 10px;
-}
-
-.not__found--desc {
-    font-size: 2.6rem;
-    color: #666;
-    font-weight: 500;
-    text-transform: uppercase;
-}
