@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+<<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -95,7 +97,7 @@
                         </div>
 
                         <div class="header__cart">
-                            <a href="Gio hang.jsp" class="header__cart-link" >
+                            <a href="cart.jsp" class="header__cart-link" >
                                 <i class="header__cart-icon ti-shopping-cart"></i>
                                 <span class="header__cart--text">Giỏ Hàng</span>
                             </a>

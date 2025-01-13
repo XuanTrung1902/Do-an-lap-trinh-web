@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
-public class Feature {
+import java.io.Serializable;
+
+public class Feature implements Serializable {
     private int id;
     private String tag;
     private String des;

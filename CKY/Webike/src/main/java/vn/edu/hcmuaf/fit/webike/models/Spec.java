@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
-public class Spec {
+import java.io.Serializable;
+
+public class Spec implements Serializable {
     private int id;
     private String tag;
     private String des;

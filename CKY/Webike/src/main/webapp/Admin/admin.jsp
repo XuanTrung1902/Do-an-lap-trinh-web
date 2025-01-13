@@ -1,3 +1,8 @@
+<%@page import="java.io.Console"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/admin.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/Admin/assets/css/admin.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/Admin/assets/css/base.css">
     <title>Admin</title>
 </head>
 <body>
@@ -28,7 +33,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="#">
+                                    <li><a href="${pageContext.request.contextPath}/admin">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Tổng quan
                                         </a>
@@ -37,14 +42,14 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="Admin/admin.jsp">
                                 <i class="ri-file-list-line"></i>
                                 Người dùng
                                 <i class="ri-add-box-line"></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="user_list.jsp">
+                                    <li><a href="${pageContext.request.contextPath}/userList">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
@@ -64,6 +69,12 @@
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
+                                    </li>
+                                    <li>
+                                        <a href="order_edit.jsp">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Sửa    
+                                         </a>
                                     </li>
                                 </div>
                             </ul>
@@ -89,6 +100,27 @@
                                 </div>
                             </ul>
                         </li>
+                        <li>
+                            <a href="Admin/admin.jsp">
+                                <i class="ri-file-list-line"></i>
+                                Giảm giá
+                                <i class="ri-add-box-line"></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="  ${pageContext.request.contextPath}/discountList">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Danh sách
+                                        </a>
+                                    </li>
+                                    <li><a href="#">
+                                            <i class="ri-arrow-right-s-fill"></i>
+                                            Thêm
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -107,7 +139,7 @@
                             <li><i class="ri-message-2-line" number="5"></i></li>
                             <li class="flex-box">
                                 <img style="width: 50px;" src="assets/images/logo.png" alt="">
-                                <p>Trí Đức</p>
+                                <p>${sessionScope.auth.name}</p>
                                 <i class="ri-arrow-down-s-fill"></i>
                             </li>
                         </ul>
@@ -176,7 +208,7 @@
         </div>
     </section>
 
-    <script src="assets/js/admin.js"></script>
+    <script src="<%= request.getContextPath()%>/Admin/assets/js/admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

@@ -107,7 +107,7 @@
     background-color: #fff;
 }
 .product{
-
+    height: fit-content;
 }
 .product--header{
     border-bottom: 2px darkcyan solid;
@@ -119,7 +119,7 @@
     float: right;
 }
 .product--shipping{
-    border-bottom: 2px darkcyan solid;
+    /*border-bottom: 2px darkcyan solid;*/
 }
 .float-left{
     float: left;

@@ -1,44 +1,43 @@
 package vn.edu.hcmuaf.fit.webike.db;
-
 import java.io.IOException;
 import java.util.Properties;
 
 public class DBProperties {
-    private static Properties prop = new Properties();
+    private static final Properties prop = new Properties();
 
     static {
         try {
             prop.load(DBProperties.class.getClassLoader().getResourceAsStream("db.properties"));
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to load database properties file.", e);
         }
     }
 
     public static String host() {
-        return prop.get("db.host").toString();
+        return prop.getProperty("db.host", "localhost");
     }
 
     public static int port() {
         try {
-            return Integer.parseInt(prop.get("db.port").toString());
+            return Integer.parseInt(prop.getProperty("db.port", "3306"));
         } catch (NumberFormatException e) {
             return 3306;
         }
     }
 
     public static String username() {
-        return prop.get("db.username").toString();
+        return prop.getProperty("db.username", "root");
     }
 
     public static String password() {
-        return prop.get("db.password").toString();
+        return prop.getProperty("db.password", "");
     }
 
     public static String dbname() {
-        return prop.get("db.dbname").toString();
+        return prop.getProperty("db.dbname", "test");
     }
 
     public static String option() {
-        return prop.get("db.option").toString();
+        return prop.getProperty("db.option", "useUnicode=true&characterEncoding=utf-8");
     }
 }

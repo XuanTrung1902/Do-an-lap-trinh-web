@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/homepage.css">
-    <link rel="stylesheet" href="assets/css/Thanh toan 0.css">
+    <link rel="stylesheet" href="assets/css/Payment.css">
     <link rel="stylesheet" href="assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
     <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

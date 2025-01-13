@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
-public class BikeType {
+import java.io.Serializable;
+
+public class BikeType implements Serializable {
     private int id;
     private String type;
     private String img;

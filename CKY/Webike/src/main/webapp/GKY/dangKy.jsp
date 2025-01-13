@@ -1,10 +1,18 @@
+
+<%@page import="java.io.Console"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
   <meta charset="utf-8">
   <title>Webike: Đăng nhập</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="assets/css/dangky.css">
+<%--  <base href="/GKY/assets/">--%>
+  <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/dangky.css">
 
 </head>
 
@@ -56,40 +64,103 @@
 
     <div class="form_container">
       <div class="form_sub_header">
-        <a href="Dangnhap.jsp"><h2>Đăng ký</h2></a>
+        <a href="Dangnhap.html"><h2>Đăng ký</h2></a>
       </div>
-      <form class="form_center">
-        <div class="input_field">
-          <input type="text" placeholder="Họ Tên" required>
-        </div>
-        <div class="input_field">
-          <input type="tel" placeholder="Số điện thoại" required>
-        </div>
-        <div class="input_field">
-          <input type="password" placeholder="Mật khẩu" required>
-        </div>
-        <div class="input_field">
-          <input type="password" placeholder="Nhập lại mật khẩu" required>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" required>
-          <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>
-        </div>
-        <button type="submit" class="submit_btn"><i class="fa-regular fa-user"></i> ĐĂNG KÝ</button>
-        <p class="or-text">hoặc tiếp tục với</p>
-        <div class="social-login">
-          <button class="facebook-btn"><i class="fa-brands fa-facebook"></i> Facebook</button>
-          <button class="google-btn"><i class="fa-brands fa-google"></i> Google</button>
-        </div>
-        <p class="login-link">Bạn có sẵn sàng để tạo một tài khoản? <a href="#">Đăng nhập</a></p>
-      </form>
+
+<%--        onsubmit="return validateForm()"--%>
+<%--        onsubmit="return validatePhone(event)"--%>
+        <form class="form_center" method="post" action="<%= request.getContextPath()%>/Dangky"  >
+            <div class="input_field">
+=                    <input type="text" name="fullname" placeholder="Họ Tên" value="<%= request.getAttribute("fullname") != null ? request.getAttribute("fullname") : "" %>" required>
+            </div>
+            <% if (request.getAttribute("error") != null) { %>
+            <div class="error-message" style="color: red;">
+                <%= request.getAttribute("error") %>
+            </div>
+            <% } %>
+            <div class="input_field">
+                    <input type="tel" name="phone" placeholder="Số điện thoại" value="<%= request.getAttribute("phone") != null ? request.getAttribute("phone") : "" %>" required>
+            </div>
+            <div class="input_field">
+=                    <input type="text" name="address" placeholder="Địa chỉ" value="<%= request.getAttribute("address") != null ? request.getAttribute("address") : "" %>" required>
+            </div>
+            <div class="form-group">
+                <div class="gender-group">
+                    <label class="custom-radio">
+                        <input type="radio" id="male" name="gender" value="Nam" <%= "Nam".equals(request.getAttribute("gender")) ? "checked" : "" %>>
+                        <span class="checkmark"></span> Nam
+                    </label>
+                    <label class="custom-radio">
+                        <input type="radio" id="female" name="gender" value="Nữ" <%= "Nữ".equals(request.getAttribute("gender")) ? "checked" : "" %>>
+                        <span class="checkmark"></span> Nữ
+                    </label>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="birth-date">
+                    <select id="day-select" name="day"></select>
+                    <select id="month-select" name="month"></select>
+                    <select id="year-select" name="year"></select>
+                </div>
+            </div>
+            <div class="input_field">
+                <input type="password" name="password" placeholder="Mật khẩu" required>
+            </div>
+            <div class="input_field">
+                <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" required>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="terms" required>
+                <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>
+            </div>
+            <button type="submit" class="submit_btn"><i class="fa-regular fa-user"></i> ĐĂNG KÝ</button>
+            <p class="login-link">Bạn có sẵn sàng để tạo một tài khoản? <a href="<%= request.getContextPath()%>/Dangnhap" >Đăng nhập</a></p>
+        </form>
+
+
     </div>
 
   </div>
   </div>
 </div>
 </div>
-<script src="assets/js/dangKy.js"></script>
+<%--<script>--%>
+<%--    document.addEventListener("DOMContentLoaded", function () {--%>
+<%--        const phoneInput = document.querySelector("input[name='phone']");--%>
+<%--        const phoneError = document.getElementById("phone-error");--%>
+
+<%--        phoneInput.addEventListener("blur", function () {--%>
+<%--            const phoneNum = phoneInput.value;--%>
+<%--            console.log(phoneNum);--%>
+<%--            if (phoneNum) {--%>
+<%--                &lt;%&ndash;                    ${pageContext.request.contextPath}&ndash;%&gt;--%>
+<%--                let baseUrl = "http://localhost:8080/Webike/CheckPhone?phone=";--%>
+<%--                let fullUrl = new URL(baseUrl + phoneNum, window.location.href);--%>
+<%--                fetch(`baseUrl${encodeURIComponent(phoneNum)}`, {--%>
+<%--                    method: "POST",--%>
+<%--                    headers: {--%>
+<%--                        "Content-Type": "application/json"--%>
+<%--                    },--%>
+<%--                    body: JSON.stringify(phoneNum)--%>
+<%--                }).then(response => {--%>
+<%--                    if (response.ok) {--%>
+<%--                        alert("Đã thêm sản phẩm vào giỏ hàng!");--%>
+<%--                    } else {--%>
+<%--                        alert("Lỗi khi thêm sản phẩm.");--%>
+<%--                    }--%>
+<%--                }).catch(error => {--%>
+<%--                    console.error("Lỗi:", error);--%>
+<%--                    alert("Đã xảy ra lỗi khi thêm sản phẩm.");--%>
+<%--                });--%>
+<%--            }--%>
+<%--        });--%>
+<%--    });--%>
+
+
+
+<%--</script>--%>
+<script src="<%= request.getContextPath()%>/GKY/assets/js/dangKy.js"></script>
 </body>
 
 </html>

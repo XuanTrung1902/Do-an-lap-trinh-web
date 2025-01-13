@@ -4,24 +4,23 @@ import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 import vn.edu.hcmuaf.fit.webike.models.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ProductDAO {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-//        System.out.println(dao.getAllProducts());
-//        System.out.println(dao.getProduct(1));
+        System.out.println(dao.getProduct(1));
 //        System.out.println(dao.getAll());
 //        System.out.println(dao.getSpec(1, "động cơ"));
 //        System.out.println(dao.getFeature(1));
 //        System.out.println(dao.getWarranty(1));
 //        System.out.println(dao.getSpecType());
-//        System.out.println(dao.getImg(2));
-//        System.out.println(dao.getColor(2));
-//        System.out.println(dao.chooseColor(2,1));
+//        System.out.println(dao.getComment(1));
 //        System.out.println(dao.getAllProductImg2());
+        System.out.println(dao.getAllProductImg());
 //        System.out.println(dao.getBrandOfProduct());
 //        System.out.println(dao.getAllBrand());
 //        System.out.println(dao.searchProducts("Honda"));
@@ -81,7 +80,6 @@ public class ProductDAO {
         );
     }
 
-
     // lay ra tat ca sp kem anh
     public List<Map<String, Object>> getAllProductImg() {
         Jdbi jdbi = JDBIConnect.get();
@@ -99,7 +97,7 @@ public class ProductDAO {
 
     public List<Product> getAllProducts() { // lấy ra tca sp
         Jdbi jdbi = JDBIConnect.get();
-        return jdbi.withHandle(handle -> handle.createQuery("select name from products")
+        return jdbi.withHandle(handle -> handle.createQuery("select * from products")
                 .mapToBean(Product.class).list());
     }
 
@@ -152,41 +150,12 @@ public class ProductDAO {
                 .mapToBean(Warranty.class).list());
     }
 
-    public List<String> getImg(int id) {
+    public List<Comment> getComment(int id) {
         Jdbi jdbi = JDBIConnect.get();
-        return jdbi.withHandle(handle -> handle.createQuery("" +
-                        "SELECT i.url, c.code, c.name from products as p \n" +
-                        "join imgs as i on p.id= i.productID\n" +
-                        "join colors as c on i.colorID = c.id \n" +
-                        "WHERE p.id = :id")
+        String sql = "select c.content, c.created, a.name as username from comments as c join accounts as a" +
+                " on c.accountID = a.id where productID = :id";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
                 .bind("id", id)
-                .mapTo(String.class).list());
+                .mapToBean(Comment.class).list());
     }
-
-    public List<Color> getColor(int id) {
-        Jdbi jdbi = JDBIConnect.get();
-        return jdbi.withHandle(handle -> handle.createQuery("" +
-                        "SELECT c.id, c.code, c.name from products as p \n" +
-                        "JOIN imgs as i on p.id= i.productID\n" +
-                        "JOIN colors as c on i.colorID = c.id \n" +
-                        "WHERE p.id = :id")
-                .bind("id", id)
-                .mapToBean(Color.class).list());
-    }
-
-    // lay anh sp dua vao id mau (chon mau sp)
-    public String chooseColor(int id, int colorID) {
-        Jdbi jdbi = JDBIConnect.get();
-        return jdbi.withHandle(handle -> handle.createQuery(
-                        "SELECT i.url FROM products AS p " +
-                                "JOIN imgs AS i ON p.id = i.productID " +
-                                "JOIN colors AS c ON i.colorID = c.id " +
-                                "WHERE p.id = :id AND c.id = :colorID")
-                .bind("id", id)
-                .bind("colorID", colorID)
-                .mapTo(String.class)
-                .findOne()
-                .orElse(null));
-    }
-
 }
