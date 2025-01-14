@@ -139,8 +139,10 @@
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
                             <li class="flex-box">
-                                <img style="width: 50px;" src="assets/images/logo.png" alt="">
-                                <p>Trí Đức</p>
+<%--                                <img style="width: 50px;" src="assets/images/logo.png" alt="">--%>
+<%--                                <p>Trí Đức</p>--%>
+                                <img src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="" class="header__navbar--user-img">
+                                <p>${sessionScope.auth.name}</p>
                                 <i class="ri-arrow-down-s-fill"></i>
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
@@ -157,15 +159,16 @@
                         <h1>Thêm giảm giá/h1>
                     </div>
                     <form class="admin-content-main-container" action="<%= request.getContextPath() %>/addDiscount" method="post">
-                        <c:if test="${not empty error}">
-                            <div class="alert alert-danger" role="alert">
-                                    ${error}
-                            </div>
-                        </c:if>
+
                         <div class="admin-content-main-container-two-input">
                             <input type="text" name="productID" placeholder="Mã sản phẩm" required>
                             <input type="text" name="amount" placeholder="% giảm giá" required>
                         </div>
+                        <c:if test="${not empty error}">
+                            <div class="alert alert-danger" role="alert" style="color: red">
+                                    ${error}
+                            </div>
+                        </c:if>
                         <div class="admin-content-main-container-two-input">
                             <input type="date" name="start" placeholder="Ngày bắt đầu" required>
                             <input type="date" name="end" placeholder="Ngày kết thúc" required>

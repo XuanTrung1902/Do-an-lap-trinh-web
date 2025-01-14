@@ -138,7 +138,8 @@
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
                             <li class="flex-box">
-                                <img style="width: 50px;" src="assets/images/logo.png" alt="">
+<%--                                <img style="width: 50px;" src="<%= request.getContextPath()%>/GKY/assets/images/logo.png" alt="">--%>
+                                <img src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="" class="header__navbar--user-img">
                                 <p>${sessionScope.auth.name}</p>
                                 <i class="ri-arrow-down-s-fill"></i>
                             </li>
@@ -174,19 +175,19 @@
                             <ul>
                                 <li class="dashboard__recent--item">
                                     <div class="avatar">
-                                        <img src="./assets/images/avt1.jpg" alt="">
+                                        <img src="<%= request.getContextPath()%>/Admin/assets/images/avt1.jpg" alt="">
                                     </div>
                                     <span class="customer__name">Lê Trí Đức</span>
                                 </li>
                                 <li class="dashboard__recent--item">
                                     <div class="avatar">
-                                        <img src="./assets/images/vario.png" alt="">
+                                        <img src="<%= request.getContextPath()%>/Admin/assets/images/vario.png" alt="">
                                     </div>
                                     <span class="customer__name">Tống Xuân Trung</span>
                                 </li>
                                 <li class="dashboard__recent--item">
                                     <div class="avatar">
-                                        <img src="./assets/images/avt2.jpg" alt="">
+                                        <img src="<%= request.getContextPath()%>/Admin/assets/images/avt2.jpg" alt="">
                                     </div>
                                     <span class="customer__name">Nguyễn Quốc Tấn</span>
                                 </li>

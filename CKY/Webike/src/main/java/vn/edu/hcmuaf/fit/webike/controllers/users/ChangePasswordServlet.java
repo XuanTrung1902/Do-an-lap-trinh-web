@@ -41,7 +41,7 @@ public class ChangePasswordServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/Profile");
 //            request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
         } else {
-            response.sendRedirect("Dangnhap");
+            response.sendRedirect("Login");
         }
     }
 

@@ -162,8 +162,10 @@
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
                             <li class="flex-box">
-                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
-                                <p>Trí Đức</p>
+<%--                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">--%>
+<%--                                <p>Trí Đức</p>--%>
+                                <img src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="" class="header__navbar--user-img">
+                                <p>${sessionScope.auth.name}</p>
                                 <i class="ri-arrow-down-s-fill"></i>
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
@@ -203,7 +205,7 @@
                                         <a href="<%= request.getContextPath() %>/updateDiscount?id=${discount.id}" class="btn-edit">Sửa</a>
                                         <form action="<%= request.getContextPath() %>/deleteDiscount" method="post" style="display:inline;">
                                             <input type="hidden" name="id" value="${discount.id}">
-                                            <button type="submit" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa giảm giá này?');">Xóa</button>
+                                            <button type="submit" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa giảm giá cho sản phẩm này ${discount.id}?');">Xóa</button>
                                         </form>
                                     </td>
                                 </tr>

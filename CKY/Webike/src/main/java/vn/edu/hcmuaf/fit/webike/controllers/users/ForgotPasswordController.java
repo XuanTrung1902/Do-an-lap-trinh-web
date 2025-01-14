@@ -7,7 +7,7 @@ import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 
 import java.io.IOException;
 
-@WebServlet(name = "ForgotPasswordController", value = "/QuenMatKhau")
+@WebServlet(name = "ForgotPasswordController", value = "/forgot-password")
 public class ForgotPasswordController extends HttpServlet {
 
     @Override
@@ -35,6 +35,7 @@ public class ForgotPasswordController extends HttpServlet {
         if (isUpdated) {
             request.setAttribute("message", "Mật khẩu đã được cập nhật thành công!");
             request.getRequestDispatcher("GKY/Dangnhap.jsp").forward(request, response);
+
         } else {
             request.setAttribute("error", "Không tìm thấy số điện thoại này!");
             request.setAttribute("phone", phone);

@@ -7,12 +7,17 @@ import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.models.User;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
 @WebServlet(name = "AddUserController", value = "/addUser")
+@MultipartConfig
 public class AddUserController extends HttpServlet {
 
     @Override
@@ -32,8 +37,34 @@ public class AddUserController extends HttpServlet {
         int verify = Integer.parseInt(request.getParameter("verify"));
         int role = Integer.parseInt(request.getParameter("role"));
 
+        Part filePart = request.getPart("image");
+        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+        String uploadPath = getServletContext().getRealPath("") + File.separator + "img" + File.separator + "Users";
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs(); // Tạo thư mục nếu chưa tồn tại
+        }
+//        // Đường dẫn thực tế tới tệp ảnh nguồn
+        File sourceFile = new File("C:\\Users\\user\\Pictures\\web\\" + fileName);
+        File destFile = new File(uploadPath + File.separator + fileName);
+        Files.copy(sourceFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+//        filePart.write(uploadPath + File.separator + fileName);
+        String imagePath = "img/Users/" + fileName;
+        // In ra đường dẫn tuyệt đối để kiểm tra
+        System.out.println("File saved at: " + uploadPath + File.separator + fileName);
+
+
         if (UserSevice.isPhoneNumExists(phoneNum)) {
             request.setAttribute("error", "Số điện thoại đã tồn tại");
+            request.setAttribute("username", name);
+            request.setAttribute("phone", phoneNum);
+            request.setAttribute("address", address);
+            request.setAttribute("sex", sex);
+            request.setAttribute("birthday", DOB);
+            request.setAttribute("status", locked);
+            request.setAttribute("verify", verify);
+            request.setAttribute("role", role);
             request.getRequestDispatcher("/addUser").forward(request, response);
             return;
         }
@@ -49,6 +80,8 @@ public class AddUserController extends HttpServlet {
         user.setLocked(locked);
         user.setVerify(verify);
         user.setRole(role);
+        user.setImage(imagePath);
+
 
         UserDao userDao = new UserDao();
         boolean isAdded = userDao.addUserAdmin(user);

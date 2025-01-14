@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/css/admin.css"> -->
-    <link rel="stylesheet" href="./assets/css/product_list.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/product_list.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/base.css">
     <title>Admin</title>
 </head>
 <body>
@@ -224,6 +224,6 @@
         </div>
     </section>
 
-    <script src="assets/js/product_list.js"></script>
+    <script src="<%= request.getContextPath() %>/Admin/assets/js/product_list.js"></script>
 </body>
 </html>
