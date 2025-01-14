@@ -31,7 +31,7 @@ public class ProfileController extends HttpServlet {
 
         if (user != null) {
             String fullname = request.getParameter("fullname");
-            String phone = request.getParameter("phone");
+            String newPhone = request.getParameter("phone");
             String address = request.getParameter("address");
             String gender = request.getParameter("gender");
             String day = request.getParameter("day");
@@ -39,8 +39,17 @@ public class ProfileController extends HttpServlet {
             String year = request.getParameter("year");
             String dob = year + "-" + month + "-" + day;
             Date date = Date.valueOf(dob);
+            if (!newPhone.equals(user.getPhoneNum())) {
+                // Kiểm tra số điện thoại mới đã tồn tại trong cơ sở dữ liệu chưa
+                if (UserSevice.isPhoneNumExists(newPhone)) {
+                    request.setAttribute("error", "Số điện thoại đã tồn tại");
+                    request.setAttribute("user", user);
+                    request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
+                    return;
+                }
+            }
             user.setName(fullname);
-            user.setPhoneNum(phone);
+            user.setPhoneNum(newPhone);
             user.setAddress(address);
             user.setSex(gender);
             user.setDOB(date);

@@ -44,7 +44,7 @@ public class AddUserController extends HttpServlet {
         if (!uploadDir.exists()) {
             uploadDir.mkdirs(); // Tạo thư mục nếu chưa tồn tại
         }
-        // Đường dẫn thực tế tới tệp ảnh nguồn
+//        // Đường dẫn thực tế tới tệp ảnh nguồn
         File sourceFile = new File("C:\\Users\\user\\Pictures\\web\\" + fileName);
         File destFile = new File(uploadPath + File.separator + fileName);
         Files.copy(sourceFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);

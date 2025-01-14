@@ -175,19 +175,19 @@
                             <ul>
                                 <li class="dashboard__recent--item">
                                     <div class="avatar">
-                                        <img src="./assets/images/avt1.jpg" alt="">
+                                        <img src="<%= request.getContextPath()%>/Admin/assets/images/avt1.jpg" alt="">
                                     </div>
                                     <span class="customer__name">Lê Trí Đức</span>
                                 </li>
                                 <li class="dashboard__recent--item">
                                     <div class="avatar">
-                                        <img src="./assets/images/vario.png" alt="">
+                                        <img src="<%= request.getContextPath()%>/Admin/assets/images/vario.png" alt="">
                                     </div>
                                     <span class="customer__name">Tống Xuân Trung</span>
                                 </li>
                                 <li class="dashboard__recent--item">
                                     <div class="avatar">
-                                        <img src="./assets/images/avt2.jpg" alt="">
+                                        <img src="<%= request.getContextPath()%>/Admin/assets/images/avt2.jpg" alt="">
                                     </div>
                                     <span class="customer__name">Nguyễn Quốc Tấn</span>
                                 </li>
