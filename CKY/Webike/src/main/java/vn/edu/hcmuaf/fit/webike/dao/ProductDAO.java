@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class ProductDAO {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-//        System.out.println(dao.getProduct(1));
+        System.out.println(dao.getProduct(1));
 //        System.out.println(dao.getAll());
 //        System.out.println(dao.getSpec(1, "động cơ"));
 //        System.out.println(dao.getFeature(1));
@@ -20,7 +20,7 @@ public class ProductDAO {
 //        System.out.println(dao.getSpecType());
 //        System.out.println(dao.getComment(1));
 //        System.out.println(dao.getAllProductImg2());
-        System.out.println(dao.getAllProductImg());
+//        System.out.println(dao.getAllProductImg());
 //        System.out.println(dao.getBrandOfProduct());
     }
 
@@ -37,11 +37,14 @@ public class ProductDAO {
     public List<Map<String, Object>> getAllProductImg2() {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                    SELECT p.*, min(i.url) AS imgUrl
-                    FROM products AS p
-                    JOIN imgs AS i ON i.productID = p.id
-                    GROUP BY p.id
-                    LIMIT 9;
+
+                    SELECT p.*,
+                             (SELECT d.amount FROM discounts AS d WHERE d.productID = p.id ORDER BY d.id DESC LIMIT 1) AS discount,
+                             MIN(i.url) AS imgUrl
+                      FROM products AS p
+                      LEFT JOIN imgs AS i ON i.productID = p.id
+                      GROUP BY p.id
+                        LIMIT 9;
                 """;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql).mapToMap().list()
@@ -51,12 +54,17 @@ public class ProductDAO {
     // lay ra tat ca sp kem anh
     public List<Map<String, Object>> getAllProductImg() {
         Jdbi jdbi = JDBIConnect.get();
-        String sql = """
-                    SELECT p.*, min(i.url) AS imgUrl
-                    FROM products AS p
-                    JOIN imgs AS i ON i.productID = p.id
-                    GROUP BY p.id
-                    ORDER BY p.id
+        //                    SELECT p.*, min(i.url) AS imgUrl
+//                    FROM products AS p
+//                    JOIN imgs AS i ON i.productID = p.id
+//                    GROUP BY p.id
+        String sql = """    
+                      SELECT p.*,
+                             (SELECT d.amount FROM discounts AS d WHERE d.productID = p.id ORDER BY d.id DESC LIMIT 1) AS discount,
+                             MIN(i.url) AS imgUrl
+                      FROM products AS p
+                      LEFT JOIN imgs AS i ON i.productID = p.id
+                      GROUP BY p.id;
                 """;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql).mapToMap().list()
@@ -123,7 +131,7 @@ public class ProductDAO {
     public Product getProduct(int id) {
         Jdbi jdbi = JDBIConnect.get();
         String sqlProduct = """
-                    SELECT p.*, b.name AS brand, t.type AS type 
+                    SELECT p.*, b.name AS brand, t.type AS type, (SELECT d.amount FROM discounts AS d WHERE d.productID = p.id ORDER BY d.id DESC LIMIT 1) as discount
                     FROM products AS p
                     JOIN brands AS b ON p.brandID = b.id
                     JOIN biketypes AS t ON t.id = p.typeID
@@ -151,6 +159,7 @@ public class ProductDAO {
                         p.setStatus(rs.getString("status"));
                         p.setBrand(rs.getString("brand"));
                         p.setType(rs.getString("type"));
+                        p.setDiscount(rs.getDouble("discount"));
 //                        p.setImg(new HashMap<>());
                         return p;
                     }).findOne().orElse(null);

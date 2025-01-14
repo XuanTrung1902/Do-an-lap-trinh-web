@@ -131,7 +131,7 @@
                     <span class="infoHeader">Giá: </span>
                     <span class="text--description">
                         <f:setLocale value="vi_VN"/>
-                        <f:formatNumber value="${p.price}" type="currency"/>
+                        <f:formatNumber value="${p.price - (p.price * p.discount / 100)}" type="currency"/>
                     </span>
                 </div>
 

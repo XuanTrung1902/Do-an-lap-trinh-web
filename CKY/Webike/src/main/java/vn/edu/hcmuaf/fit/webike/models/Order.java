@@ -51,7 +51,7 @@ public class Order implements Serializable {
                 int quantity = cp.getQuantity();
                 String itemImg = cp.getImg().get(itemColor);
                 OrderItem i = convertCartProduct(cp, quantity, itemImg, itemColor, itemID);
-                    data.add(i);
+                data.add(i);
             }
         }
     }
@@ -99,7 +99,12 @@ public class Order implements Serializable {
         item.setProductID(pid);
 
         item.setName(p.getName());
-        item.setPrice(p.getPrice());
+        if (p.getDiscount() > 0) {
+            item.setPrice(p.getPrice() - (p.getPrice() * p.getDiscount() / 100));
+        } else {
+            item.setPrice(p.getPrice());
+        }
+
         item.setVersion(p.getVersion());
         item.setStatus(p.getStatus());
         item.setBrand(p.getBrand());

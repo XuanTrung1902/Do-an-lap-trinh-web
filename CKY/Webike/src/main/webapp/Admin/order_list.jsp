@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.fmt" %><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,11 +17,12 @@
     <title>Admin</title>
 </head>
 <body>
+<c:set var="u" value="${empty sessionScope.auth ? 0 : sessionScope.auth}"/>
     <section class="admin">
         <div class="row__grid">
             <div class="admin__sidebar">
                 <div class="admin__sidebar--top">
-                    <img src="./assets/images/logo.png" alt="">
+                    <img src="${u.im}" alt="">
                 </div>
                 <div class="admin__sidebar--content">
                     <ul>

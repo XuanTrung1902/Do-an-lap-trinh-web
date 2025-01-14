@@ -104,4 +104,21 @@ public class OrderItem {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", img='" + img + '\'' +
+                ", color='" + color + '\'' +
+                ", productID='" + productID + '\'' +
+                ", orderID='" + orderID + '\'' +
+                ", price=" + price +
+                ", version='" + version + '\'' +
+                ", status='" + status + '\'' +
+                ", brand='" + brand + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

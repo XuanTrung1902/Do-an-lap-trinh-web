@@ -37,17 +37,17 @@
                             <a href="homepage">Trang chủ</a>
                         </li>
                         <li class="header__navbar--item">
-                            <a href="#">Chợ xe máy</a>
+                            <a href="list-products">Chợ xe máy</a>
                         </li>
-                        <li class="header__navbar--item">
-                            <a href="news.jsp">Tin tức</a>
-                        </li>
+<%--                        <li class="header__navbar--item">--%>
+<%--                            <a href="news.jsp">Tin tức</a>--%>
+<%--                        </li>--%>
                         <!-- <li class="header__navbar--item">
                           <a href="#">Đại lí</a>
                         </li> -->
-                        <li class="header__navbar--item">
-                            <a href="contact.jsp">Liên hệ</a>
-                        </li>
+<%--                        <li class="header__navbar--item">--%>
+<%--                            <a href="contact.jsp">Liên hệ</a>--%>
+<%--                        </li>--%>
                     </ul>
 
                     <ul class="header__navbar--top_right">
@@ -115,122 +115,6 @@
         <div class="banner">
             <img src="GKY/assets/img/banner.jpg" alt="">
         </div>
-        <div class="search__container">
-            <div class="search__bike">
-                <div class="search--title">
-                    <h2 class="search--title-name">Tìm kiếm xe máy</h2>
-                </div>
-                <form id="searchForm" class="search-initialized" method="post">
-                    <input type="text" id="brand" name="brand" placeholder="Hãng xe">
-                    <input type="text" id="type" name="type" placeholder="Loại xe">
-                    <select id="cubic" name="cubic" class="bike--cubic">
-                        <option value="" selected>Phân khối</option>
-                        <option value="50cc">50cc</option>
-                        <option value="50cc - 125cc">50cc - 125cc</option>
-                        <option value="125cc - 175cc">125cc - 175cc</option>
-                        <option value="175cc - 250cc">175cc - 250cc</option>
-                    </select>
-                    <select id="price" name="price" class="bike--price">
-                        <option value="">Đến giá</option>
-                        <option value="10000000">10.000.000đ</option>
-                        <option value="50000000">50.000.000đ</option>
-                        <option value="100000000">100.000.000đ</option>
-                        <option value="300000000">300.000.000đ</option>
-                    </select>
-                    <button class="bike__search--btn">
-                        <i class="bike__search--btn-icon fa-solid fa-search"></i>
-                        Tìm kiếm
-                    </button>
-                </form>
-            </div>
-            <div class="motor__brand">
-                <div class="motor__brand--heading">
-                    <h3 class="search--title-name">
-                        Thương hiệu nổi bật
-                    </h3>
-                </div>
-                <div class="motor__brand--list">
-                    <c:forEach var="b" items="${brands}">
-                        <div class="brand-item">
-                            <a href="#" class="brand-link">
-                                <img src="${b}" alt="Brand Image">
-                            </a>
-                        </div>
-                    </c:forEach>
-
-                </div>
-            </div>
-
-            <div class="motor__brand">
-                <div class="motor__brand--heading">
-                    <h3 class="search--title-name">
-                        Theo loại xe
-                    </h3>
-                </div>
-                <div class="motor__brand--list">
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type1.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Xe tay ga</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type2.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Xe số</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type3.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Xe côn tay</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type4.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Xe đạp trần</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type5.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Xe thể thao</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type6.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Cruser</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type7.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Chopper</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type8.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Bobber</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type9.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Drag</span>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#" class="brand-link">
-                            <img src="GKY/assets/img/type10.jpg" alt="">
-                        </a>
-                        <span class="type__bike">Touring</span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
         <div class="motor__market">
@@ -244,29 +128,29 @@
             <div class="motor__list">
 
                 <c:forEach var="p2" items="${products2}">
-                    <a href="#" class="bike__link">
+                    <a href="productDetail?id=${p2.id}" class="bike__link">
                         <div class="box__bike--item">
                             <div class="box__bike-img">
                                 <img src="${p2['imgurl']}" alt="#"/>
                                 <h5 class="box__bike--name">
                                         ${p2['name']}
                                 </h5>
-                                <span class="box__sub--title">${p2['status']}</span>
+<%--                                <span class="box__sub--title">${p2['status']}</span>--%>
                             </div>
                             <div class="box__bike--price">
-                                <span class="box__bike--price-old">39.200.000đ</span>
+                                <span class="box__bike--price-old"><f:formatNumber value="${p2.price}" pattern="#,##0.###"/>đ</span>
                                 <span class="box__bike--price-current">
-                       <f:formatNumber value="${p2['price']}" pattern="#,##0.###"/>đ
+                       <f:formatNumber value="${ p2.price - (p2.price * p2.discount / 100)}" pattern="#,##0.###"/>đ
                   </span>
                             </div>
-                            <div class="box__bike--origin">
-                                <span class="box__bike--origin-text">Hà Nội</span>
-                            </div>
+<%--                            <div class="box__bike--origin">--%>
+<%--                                <span class="box__bike--origin-text">Hà Nội</span>--%>
+<%--                            </div>--%>
                             <div class="box__bike--favourite">
                                 <i class="fa-regular fa-heart"></i>
                             </div>
                             <div class="box__bike--sale-off">
-                                <span class="box__bike--sale-off-percent">10%</span>
+                                <span class="box__bike--sale-off-percent">${p2.discount}%</span>
                                 <span class="box__bike--sale-off-label">Giảm</span>
                             </div>
                         </div>
@@ -286,9 +170,8 @@
             <!-- Detail bike -->
             <div class="motor__detail-list">
                 <div class="title-second">
-                    <h3 class="title-second-name">Xe mới đăng</h3>
+                    <h3 class="title-second-name">Lọc sản phẩm</h3>
                 </div>
-<%--                value="xam" onclick="filterimg()"--%>
 
                 <div class="grid-2-8" style="padding-bottom: 10px;">
                     <div class="checkbox__category">
@@ -306,10 +189,9 @@
                             <label><input type="checkbox" value="XÁM"> XÁM</label>
                         </div>
                     </div>
+
                     <div class="list-bike">
                         <div class="grid__row" style="padding: 0 40px;">
-
-
                             <c:forEach var="p" items="${products}">
                                 <div id="SP${p.id}" class="grid__column-2" data-attributes="honda, trang" style="padding: 10px; height: 380px">
                                     <a href="productDetail?id=${p.id}" class="bike--item">
@@ -321,9 +203,15 @@
                                         </div>
                                         <div class="bike__info">
                                             <h3 class="bike__name" style="display: block; height: 49px;" >${p.name}</h3>
+                                            <div class="d-flex justify-content-between">
+
                                             <span class="bike__price">
                                                 <f:formatNumber value="${p['price']}" pattern="#,##0.###"/>đ
                                             </span>
+                                                <c:if test="${p.discount > 0.0}">
+                                                    <span class="text-danger" style="text-align: center;display: flex;font-size: 1.3rem;">-${p.discount}%</span>
+                                                </c:if>
+                                            </div>
                                             <div class="source">
                                                 <span class="condition">${p.version}</span>
                                                 <span class="time">${p.launch}</span>
@@ -331,19 +219,6 @@
                                             <address class="address">${p.status}</address>
                                         </div>
                                     </a>
-
-<%--                                    <form action="add-cart?id=${p.id}" method="GET">--%>
-<%--                                        <input type="hidden" name="id" value="${p.id}">--%>
-<%--&lt;%&ndash;                                        <input type="hidden" name="color" value="mau anh">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                                        <input type="hidden" name="img" value="src hinh">&ndash;%&gt;--%>
-<%--                                        <button type="submit" style="text-decoration: none; display: block;" class="motor__addToCard--btn">--%>
-<%--                                            Thêm vào giỏ hàng--%>
-<%--                                        </button>--%>
-<%--                                    </form>--%>
-
-<%--                                    <a href="add-cart?id=${p.id}" style="text-decoration: none; display: block;" class="motor__addToCard--btn">--%>
-<%--                                        Thêm vào giỏ hàng--%>
-<%--                                    </a>--%>
                                 </div>
                             </c:forEach>
 

@@ -43,7 +43,11 @@ public class Cart implements Serializable {
         CartProduct cp = new CartProduct();
         cp.setId(p.getId() + "/" + color);
         cp.setName(p.getName());
-        cp.setPrice(p.getPrice());
+        if (p.getDiscount() > 0) {
+            cp.setPrice(p.getPrice() - (p.getPrice() * p.getDiscount() / 100) );
+        }else{
+            cp.setPrice(p.getPrice());
+        }
         cp.setQuantity(1);
         cp.setVersion(p.getVersion());
         cp.setStatus(p.getStatus());
