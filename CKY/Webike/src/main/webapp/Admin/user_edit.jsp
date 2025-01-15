@@ -204,8 +204,8 @@
                                 <input type="datetime-local" class="form-control" id="created_at" name="created_at" value="${user.created}" required>
                                 <label for="status">Trạng thái:</label>
                                 <select class="form-control" id="status" name="status" required>
-                                    <option value="0" ${user.locked == 0 ? 'selected' : ''}>Active</option>
-                                    <option value="1" ${user.locked == 1 ? 'selected' : ''}>Locked</option>
+                                    <option value="0" ${user.locked == 0 ? 'selected' : ''}>Hoạt động</option>
+                                    <option value="1" ${user.locked == 1 ? 'selected' : ''}>Đã khóa</option>
                                 </select>
                                 <label for="verify">Xác minh:</label>
                                 <select class="form-control" id="verify" name="verify" required>
@@ -214,7 +214,7 @@
                                 </select>
                                 <label for="role">Vai trò:</label>
                                 <select class="form-control" id="role" name="role" required>
-                                    <option value="1" ${user.role == 1 ? 'selected' : ''}>User</option>
+                                    <option value="1" ${user.role == 1 ? 'selected' : ''}>Người dùng</option>
                                     <option value="0" ${user.role == 0 ? 'selected' : ''}>Admin</option>
                                 </select>
                             </div>

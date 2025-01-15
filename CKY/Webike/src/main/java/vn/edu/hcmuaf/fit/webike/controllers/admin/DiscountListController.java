@@ -15,9 +15,7 @@ public class DiscountListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DiscountDao discountDao = new DiscountDao();
         List<Discount> discountList = discountDao.getAllDiscounts();
-        for (Discount discount : discountList) {
-            System.out.println(discount.toString());
-        }
+
         if (!discountList.isEmpty()) {
             request.setAttribute("discountList", discountList);
             request.getRequestDispatcher("Admin/discount.jsp").forward(request, response);

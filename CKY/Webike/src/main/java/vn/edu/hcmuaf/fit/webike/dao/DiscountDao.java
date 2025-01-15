@@ -12,6 +12,11 @@ public class DiscountDao {
                         .list()
         );
     }
+
+    public static void main(String[] args) {
+        DiscountDao dao = new DiscountDao();
+        System.out.println(dao.getAllDiscounts());
+    }
     // Xóa giảm giá
     public boolean deleteDiscount(int id) {
         return JDBIConnect.get().withHandle(handle ->

@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
 public class OrderItem {
-    //    private int id;
+        private int id;
     private String name;
     private int quantity;
     private String img;
@@ -105,20 +105,26 @@ public class OrderItem {
         this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "OrderItem{" +
-                "name='" + name + '\'' +
-                ", quantity=" + quantity +
-                ", img='" + img + '\'' +
-                ", color='" + color + '\'' +
-                ", productID='" + productID + '\'' +
-                ", orderID='" + orderID + '\'' +
-                ", price=" + price +
-                ", version='" + version + '\'' +
-                ", status='" + status + '\'' +
-                ", brand='" + brand + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public OrderItem(int id, String name, int quantity, String img, String color, String productID, String orderID, double price, String version, String status, String brand, String type) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.img = img;
+        this.color = color;
+        this.productID = productID;
+        this.orderID = orderID;
+        this.price = price;
+        this.version = version;
+        this.status = status;
+        this.brand = brand;
+        this.type = type;
     }
 }
