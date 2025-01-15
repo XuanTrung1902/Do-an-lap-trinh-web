@@ -168,6 +168,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" value="${sessionScope.auth.email}" placeholder="example@example.com">
+                    </div>
+
+                    <div class="form-group">
                         <label>Giới tính</label>
                         <div class="gender-group">
                             <label class="custom-radio">

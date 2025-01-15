@@ -36,6 +36,7 @@ public class AddUserController extends HttpServlet {
         int locked = Integer.parseInt(request.getParameter("status"));
         int verify = Integer.parseInt(request.getParameter("verify"));
         int role = Integer.parseInt(request.getParameter("role"));
+        String email = request.getParameter("email");
 
         Part filePart = request.getPart("image");
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
@@ -65,6 +66,7 @@ public class AddUserController extends HttpServlet {
             request.setAttribute("status", locked);
             request.setAttribute("verify", verify);
             request.setAttribute("role", role);
+            request.setAttribute("email", email);
             request.getRequestDispatcher("/addUser").forward(request, response);
             return;
         }
@@ -81,6 +83,8 @@ public class AddUserController extends HttpServlet {
         user.setVerify(verify);
         user.setRole(role);
         user.setImage(imagePath);
+        user.setEmail(email);
+
 
 
         UserDao userDao = new UserDao();

@@ -71,7 +71,7 @@
 <%--        onsubmit="return validatePhone(event)"--%>
         <form class="form_center" method="post" action="<%= request.getContextPath()%>/register"  >
             <div class="input_field">
-=                    <input type="text" name="fullname" placeholder="Họ Tên" value="<%= request.getAttribute("fullname") != null ? request.getAttribute("fullname") : "" %>" required>
+                   <input type="text" name="fullname" placeholder="Họ Tên" value="<%= request.getAttribute("fullname") != null ? request.getAttribute("fullname") : "" %>" required>
             </div>
             <% if (request.getAttribute("error") != null) { %>
             <div class="error-message" style="color: red;">
@@ -82,7 +82,10 @@
                     <input type="tel" name="phone" placeholder="Số điện thoại" value="<%= request.getAttribute("phone") != null ? request.getAttribute("phone") : "" %>" required>
             </div>
             <div class="input_field">
-=                    <input type="text" name="address" placeholder="Địa chỉ" value="<%= request.getAttribute("address") != null ? request.getAttribute("address") : "" %>" required>
+                    <input type="text" name="address" placeholder="Địa chỉ" value="<%= request.getAttribute("address") != null ? request.getAttribute("address") : "" %>" required>
+            </div>
+            <div class="input_field">
+                <input type="email" name="email" placeholder="Email" value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>" required>
             </div>
             <div class="form-group">
                 <div class="gender-group">

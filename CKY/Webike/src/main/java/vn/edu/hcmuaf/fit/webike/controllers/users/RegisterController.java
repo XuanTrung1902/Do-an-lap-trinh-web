@@ -32,16 +32,18 @@ public class RegisterController extends HttpServlet {
         Date date = Date.valueOf(dob);
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirm_password");
+        String email = request.getParameter("email");
+
 
         if (!password.equals(confirmPassword)) {
             request.setAttribute("error", "Mật khẩu không khớp");
-            setRequestAttributes(request, fullname, phone, address, gender, day, month, year);
+            setRequestAttributes(request, fullname, phone, address, gender, day, month, year,email);
             request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
             return;
         }
         if (UserSevice.isPhoneNumExists(phone)) {
             request.setAttribute("error", "Số điện thoại đã tồn tại");
-            setRequestAttributes(request, fullname, phone, address, gender, day, month, year);
+            setRequestAttributes(request, fullname, phone, address, gender, day, month, year,email);
             request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
             return;
         }
@@ -57,6 +59,7 @@ public class RegisterController extends HttpServlet {
         user.setLocked(0);
         user.setVerify(0);
         user.setRole(1);
+        user.setEmail(email);
 
         boolean isRegistered = UserSevice.registerUser(user);
 
@@ -64,11 +67,11 @@ public class RegisterController extends HttpServlet {
             response.sendRedirect("Login");
         } else {
             request.setAttribute("error", "Đăng ký thất bại");
-            setRequestAttributes(request, fullname, phone, address, gender, day, month, year);
+            setRequestAttributes(request, fullname, phone, address, gender, day, month, year,email);
             request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
         }
     }
-    private void setRequestAttributes(HttpServletRequest request, String fullname, String phone, String address, String gender, String day, String month, String year) {
+    private void setRequestAttributes(HttpServletRequest request, String fullname, String phone, String address, String gender, String day, String month, String year,String email) {
         request.setAttribute("fullname", fullname);
         request.setAttribute("phone", phone);
         request.setAttribute("address", address);
@@ -76,6 +79,7 @@ public class RegisterController extends HttpServlet {
         request.setAttribute("day", day);
         request.setAttribute("month", month);
         request.setAttribute("year", year);
+        request.setAttribute("email", email);
     }
 
 

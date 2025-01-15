@@ -250,6 +250,10 @@
                     <input type="text" id="address" name="address" value="${address}" required>
                 </div>
                 <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="${email}" required>
+                </div>
+                <div class="form-group">
                     <label for="image">Ảnh:</label>
                     <input type="file" id="image" name="image" required>
                 </div>

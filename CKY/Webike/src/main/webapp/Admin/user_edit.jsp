@@ -179,10 +179,10 @@
                                 <label for="address">Địa chỉ:</label>
                                 <input type="text" id="address" name="address" value="${user.address}" required>
                             </div>
-<%--                            <div class="form-group">--%>
-<%--                                <label for="image">Ảnh:</label>--%>
-<%--                                <input type="file" id="image" name="image">--%>
-<%--                            </div>--%>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" value="${user.email}" required>
+                            </div>
                             <div class="form-group">
                                 <label for="currentImage">Ảnh hiện tại:</label>
                                 <img src="<%= request.getContextPath() %>/${user.image}" alt="User Image" width="100" height="100">
