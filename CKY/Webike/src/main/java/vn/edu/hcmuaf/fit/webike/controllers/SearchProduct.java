@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.webike.controllers;
 
-import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;

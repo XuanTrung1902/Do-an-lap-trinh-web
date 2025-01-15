@@ -25,7 +25,7 @@ public class BuyHistoryDAO {
                 JOIN brands as b on p.brandID = b.id
                 JOIN biketypes as t on p.typeID = t.id
                 WHERE o.accountID = :accountID
-                ORDER BY o.id;
+                ORDER BY o.id DESC;
                 """;
         return jdbi.withHandle(handle -> handle.createQuery(sql)
                 .bind("accountID", accountID)

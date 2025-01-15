@@ -42,7 +42,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="Admin/admin.jsp">
+                            <a href="">
                                 <i class="ri-file-list-line"></i>
                                 Người dùng
                                 <i class="ri-add-box-line"></i>
@@ -58,23 +58,17 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="">
                                 <i class="ri-file-list-line"></i>
                                 Đơn hàng
                                 <i class="ri-add-box-line"></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="order_list.jsp">
+                                    <li><a href="order-list">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
-                                    </li>
-                                    <li>
-                                        <a href="order_edit.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Sửa    
-                                         </a>
                                     </li>
                                 </div>
                             </ul>
@@ -92,7 +86,7 @@
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="product_add.jsp">
+                                    <li><a href="add-product">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -101,19 +95,19 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="Admin/admin.jsp">
+                            <a href="">
                                 <i class="ri-file-list-line"></i>
                                 Giảm giá
                                 <i class="ri-add-box-line"></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="  ${pageContext.request.contextPath}/discountList">
+                                    <li><a href="discountList">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="#">
+                                    <li><a href="addDiscount">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -137,11 +131,15 @@
                         <ul class="flex-box">
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
-                            <li class="flex-box">
-<%--                                <img style="width: 50px;" src="<%= request.getContextPath()%>/GKY/assets/images/logo.png" alt="">--%>
+                            <li class="flex-box user__login">
                                 <img src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="" class="header__navbar--user-img">
                                 <p>${sessionScope.auth.name}</p>
                                 <i class="ri-arrow-down-s-fill"></i>
+                                <ul class="header__navbar--user-menu">
+                                    <li class="header__navbar--user-menu-item">
+                                        <a href="${pageContext.request.contextPath}/Logout">Đăng xuất</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>

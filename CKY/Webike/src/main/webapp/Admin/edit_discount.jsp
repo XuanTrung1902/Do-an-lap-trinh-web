@@ -21,61 +21,60 @@
         <div class="row__grid">
             <div class="admin__sidebar">
                 <div class="admin__sidebar--top">
-                    <img src="./assets/images/logo.png" alt="">
+                    <img src="Admin/assets/images/logo.png" alt="">
                 </div>
                 <div class="admin__sidebar--content">
                     <ul>
-                        <li><a href="admin.jsp">
-                                <i class="ri-dashboard-line"></i>
-                                Dashboard
-                                <i></i>
-                            </a>
+                        <li><a href="#">
+                            <i class="ri-dashboard-line"></i>
+                            Dashboard
+                            <i></i>
+                        </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="admin.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Tổng quan
-                                        </a>
+                                    <li><a href="${pageContext.request.contextPath}/admin">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Tổng quan
+                                    </a>
                                     </li>
                                 </div>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="ri-file-list-line"></i>
-                                Đơn hàng
-                                <i class="ri-add-box-line"></i>
-                            </a>
-                            <ul class="sub-menu">
-                                <div class="sub-menu-items">
-                                    <li><a href="order_list.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Danh sách
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="order_edit.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Sửa    
-                                         </a>
-                                    </li>
-                                </div>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
+                            <a href="">
                                 <i class="ri-file-list-line"></i>
                                 Người dùng
                                 <i class="ri-add-box-line"></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="user_list.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Danh sách
-                                        </a>
+                                    <li><a href="${pageContext.request.contextPath}/userList">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Danh sách
+                                    </a>
                                     </li>
-                                    
+                                </div>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="ri-file-list-line"></i>
+                                Đơn hàng
+                                <i class="ri-add-box-line"></i>
+                            </a>
+                            <ul class="sub-menu">
+                                <div class="sub-menu-items">
+                                    <li><a href="order-list">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Danh sách
+                                    </a>
+                                    </li>
+                                    <%--                                    <li>--%>
+                                    <%--                                        <a href="order_edit.jsp">--%>
+                                    <%--                                            <i class="ri-arrow-right-s-fill"></i>--%>
+                                    <%--                                            Sửa    --%>
+                                    <%--                                         </a>--%>
+                                    <%--                                    </li>--%>
                                 </div>
                             </ul>
                         </li>
@@ -87,36 +86,36 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="product_list.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Danh sách
-                                        </a>
+                                    <li><a href="products">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Danh sách
+                                    </a>
                                     </li>
-                                    <li><a href="#">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Thêm
-                                        </a>
+                                    <li><a href="add-product">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Thêm
+                                    </a>
                                     </li>
                                 </div>
                             </ul>
                         </li>
                         <li>
-                            <a href="discount.jsp">
+                            <a href="">
                                 <i class="ri-file-list-line"></i>
                                 Giảm giá
                                 <i class="ri-add-box-line"></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="discount.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Danh sách
-                                        </a>
+                                    <li><a href="discountList">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Danh sách
+                                    </a>
                                     </li>
-                                    <li><a href="<%= request.getContextPath() %>/Admin/discount_add.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Thêm
-                                        </a>
+                                    <li><a href="addDiscount">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Thêm
+                                    </a>
                                     </li>
                                 </div>
                             </ul>

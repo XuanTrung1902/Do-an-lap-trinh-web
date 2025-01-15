@@ -58,10 +58,10 @@
                             <input type="hidden" name="id" value="${oi.productID}">
                             <button type="submit" class="buy-again">Mua Lần Nữa</button>
                         </form>
-                        <form action="buy-history-cmt" method="post" id="comment${oi.productID}">
+                        <form action="buy-history-cmt" method="post" id="comment${oi.productID}" style="display: flex;align-items: center">
                             <input type="hidden" name="productID" value="${oi.productID}">
                             <textarea name="comment" class="resize" form="comment${oi.productID}" rows="3" cols="50"
-                                      placeholder="Nhập đánh giá của bạn!"></textarea>
+                                      placeholder="Nhập đánh giá của bạn!" style="height: 37px; margin-right: 10px"></textarea>
                             <button type="submit" class="view-details">Đánh Giá</button>
 <%--                            <script>--%>
 <%--                                const form = document.getElementById(`comment${oi.productID}`);--%>

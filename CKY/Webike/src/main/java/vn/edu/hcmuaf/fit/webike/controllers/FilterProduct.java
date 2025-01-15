@@ -35,7 +35,7 @@ public class FilterProduct extends HttpServlet {
         if (brands == null || brands.length == 0) {
             // Nếu không chọn hãng xe nào, lấy tất cả sản phẩm
             products = filterDAO.getAllProducts();
-//            System.out.println("products: " + products.size());
+            System.out.println("products: " + products.size());
             totalProducts = products.size();
         } else {
             products = filterDAO.getProductsByBrands1(brands, page, limit);

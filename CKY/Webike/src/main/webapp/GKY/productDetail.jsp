@@ -32,25 +32,16 @@
 <header class="header">
     <div class="grid__full-width">
         <a href="homepage.jsp" class="logo">
-            <img src="https://www.webike.vn/frontend/moto-v2/pc/img/logo.png?158926651620200827" alt="Webike VN">
+            <img src="https://www.webike.vn/frontend/moto-v2/pc/img/logo.png?158926651620200827" alt="Webike VN"/>
         </a>
         <nav class="header__navbar">
             <div class="header__navbar--top">
                 <ul class="header__navbar--top_left">
                     <li class="header__navbar--item">
-                        <a href="#">Trang chủ</a>
+                        <a href="homepage">Trang chủ</a>
                     </li>
                     <li class="header__navbar--item">
-                        <a href="product.jsp">Chợ xe máy</a>
-                    </li>
-                    <li class="header__navbar--item">
-                        <a href="news.jsp">Tin tức</a>
-                    </li>
-                    <!-- <li class="header__navbar--item">
-                        <a href="#">Đại lí</a>
-                    </li> -->
-                    <li class="header__navbar--item">
-                        <a href="contact.jsp">Liên hệ</a>
+                        <a href="list-products">Chợ xe máy</a>
                     </li>
                 </ul>
 
@@ -67,37 +58,40 @@
                     </li>
 
                     <!-- <li class="header__navbar--item header__navbar--separate">
-                        <a href="#"><i class="fa-solid fa-user m-r-8" ></i>Đăng nhập</a>
+                      <a href="#"><i class="fa-solid fa-user m-r-8"></i>Đăng nhập</a>
                     </li>
-                    <li class="header__navbar--item"><a href="#">Đăng ký</a></li> -->
-
+                    <li class="header__navbar--item">a href="#">Đăng ký</a></li> -->
+                    <c:set var="u" value="${empty sessionScope.auth ? 0 : sessionScope.auth}"/>
                     <li class="header__navbar--item header__navbar--user">
-                        <img src="assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
-                        <span class="header__navbar--user-name">Trí Đức</span>
+                        <img src="${u.image}" alt="" class="header__navbar--user-img">
+                        <span class="header__navbar--user-name">${u.name}</span>
 
                         <ul class="header__navbar--user-menu">
                             <li class="header__navbar--user-menu-item">
-                                <a href="trangTTKhachHang.jsp"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá
+                                <a href="${pageContext.request.contextPath}/Profile"><i
+                                        class="fa-solid fa-user m-r-8"></i>Thông tin cá
                                     nhân</a>
                             </li>
                             <li class="header__navbar--user-menu-item">
-                                <a href="#"><i class="fa-solid fa-shopping-cart m-r-8"></i>Lịch sử mua hàng</a>
+                                <a href="buy-history"><i class="fa-solid fa-shopping-cart m-r-8"></i>Lịch sử mua
+                                    hàng</a>
                             </li>
                             <li class="header__navbar--user-menu-item">
-                                <a href="Dangnhap.jsp"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
+                                <a href="Logout"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
                             </li>
                         </ul>
                     </li>
-
                 </ul>
             </div>
 
             <div class="header__navbar--bot">
                 <div class="header__search">
-                    <input type="text" class="header__search--input" placeholder="Nhập từ khoá tìm kiếm">
+                    <input type="text" id="search-input" class="header__search--input"
+                           placeholder="Nhập từ khoá tìm kiếm"/>
                     <div class="header__search-select">
                         <span class="header__search-select-label">Tìm xe</span>
-                        <i class="header__search-select-icon "></i>
+                        <i class="header__search-select-icon"></i>
+
                     </div>
                     <button class="header__search--btn">
                         <i class="header__search--btn-icon fa-solid fa-search"></i>
@@ -318,9 +312,9 @@
     </div>
 
     <%-- cac sp khac --%>
-    <div class="container d-flex flex-column justify-content-between align-items-center" style="width: 90%;">
-        <h1 class="">CÓ THỂ BẠN QUAN TÂM</h1>
-        <div class="container--card row">
+<%--    <div class="container d-flex flex-column justify-content-between align-items-center" style="width: 90%;">--%>
+<%--        <h1 class="">CÓ THỂ BẠN QUAN TÂM</h1>--%>
+<%--        <div class="container--card row">--%>
             <%--            <a href="#" class="card col m-3 bg-light cursor__pointer shadow" style="width: 300px; padding: 0px;">--%>
             <%--                <img src="assets/img/future blue.png" class="card-img-top img__modi" alt="???">--%>
             <%--                <div class="card--body">--%>
@@ -357,8 +351,8 @@
             <%--                    <span class="card-text padding__5px__8px text__white">3.111.000.000 vnd</span>--%>
             <%--                </div>--%>
             <%--            </a>--%>
-        </div>
-    </div>
+<%--        </div>--%>
+<%--    </div>--%>
 
     <%--  cmt  --%>
     <div class="m-5" style="border: 3px solid #000; width: 80%;"></div>
@@ -397,7 +391,7 @@
         crossorigin="anonymous"></script>
 
 <!-- footer -->
-<footer class="footer">
+<footer class="footer" style="width: 100%;">
     <div class="container">
         <footer class="py-5">
             <div class="row">
@@ -418,7 +412,7 @@
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Quy chế hoạt động</a></li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Chính sách bảo mật</a></li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Hỗ trợ khách hàng</a></li>
-                        <!-- <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Bản quyền</a></li> -->
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Bản quyền</a></li>
                         <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Liên hệ</a></li>
                     </ul>
                 </div>
@@ -439,15 +433,15 @@
                         <h5>Phương thức thanh toán</h5>
                         <!-- <p>Monthly digest of what's new and exciting from us.</p> -->
                         <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                            <img class="footer__banking" src="assets/img/bankcard1.png" alt="">
-                            <img class="footer__banking" src="assets/img/bankcard2.png" alt="">
-                            <img class="footer__banking" src="assets/img/bankcard3.png" alt="">
-                            <img class="footer__banking" src="assets/img/bankcard4.png" alt="">
-                            <img class="footer__banking" src="assets/img/bankcard5.png" alt="">
-                            <img class="footer__banking" src="assets/img/bankcard6.png" alt="">
+                            <img class="footer__banking" src="GKY/assets/img/bankcard1.png" alt="">
+                            <img class="footer__banking" src="GKY/assets/img/bankcard2.png" alt="">
+                            <img class="footer__banking" src="GKY/assets/img/bankcard3.png" alt="">
+                            <img class="footer__banking" src="GKY/assets/img/bankcard4.png" alt="">
+                            <img class="footer__banking" src="GKY/assets/img/bankcard5.png" alt="">
+                            <img class="footer__banking" src="GKY/assets/img/bankcard6.png" alt="">
                         </div>
                         <div class="footer__rectangle">
-                            <img src="assets/img/Rectangle.png" alt="">
+                            <img src="GKY/assets/img/Rectangle.png" alt="">
                         </div>
                     </form>
                 </div>
@@ -476,6 +470,5 @@
         </footer>
     </div>
 </footer>
-
 </body>
 </html>

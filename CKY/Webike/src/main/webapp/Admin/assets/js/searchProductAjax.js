@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#searchInput').on('keyup', function () {
         let keyword = $(this).val();
-        // console.log(keyword);
+        console.log(keyword);
         $.ajax({
             url: '/Webike/search_by_name',
             type: 'POST',

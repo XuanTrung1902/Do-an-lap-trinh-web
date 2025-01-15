@@ -27,137 +27,75 @@
 
 </head>
 <body>
-
-<%--<c:if test="${not empty sessionScope.welcomeMessage}">--%>
-<%--    <div class="welcome-message">${sessionScope.welcomeMessage}</div>--%>
-<%--</c:if>--%>
-
     <div class="app">
         <header class="header">
             <div class="grid__full-width">
-                <a href="#" class="logo">
-                    <img src="https://www.webike.vn/frontend/moto-v2/pc/img/logo.png?158926651620200827" alt="Webike VN">
+                <a href="homepage.jsp" class="logo">
+                    <img src="https://www.webike.vn/frontend/moto-v2/pc/img/logo.png?158926651620200827" alt="Webike VN"/>
                 </a>
                 <nav class="header__navbar">
                     <div class="header__navbar--top">
                         <ul class="header__navbar--top_left">
                             <li class="header__navbar--item">
-                                <a href="#">Trang chủ</a>
+                                <a href="homepage">Trang chủ</a>
                             </li>
                             <li class="header__navbar--item">
                                 <a href="list-products">Chợ xe máy</a>
                             </li>
-                            <li class="header__navbar--item">
-                                <a href="news.jsp">Tin tức</a>
-                            </li>
-                            <!-- <li class="header__navbar--item">
-                                <a href="#">Đại lí</a>
-                            </li> -->
-                            <li class="header__navbar--item">
-                                <a href="contact.jsp">Liên hệ</a>
-                            </li>
                         </ul>
 
-                    <ul class="header__navbar--top_right">
-                        <li class="header__navbar--icon">
-                            <a href="#">
-                                <i class="fa-brands fa-facebook m-r-8"></i>
-                            </a>
-                        </li>
-                        <li class="header__navbar--icon">
-                            <a href="#">
-                                <i class="fa-brands fa-youtube m-r-8"></i>
-                            </a>
-                        </li>
+                        <ul class="header__navbar--top_right">
+                            <li class="header__navbar--icon">
+                                <a href="#">
+                                    <i class="fa-brands fa-facebook m-r-8"></i>
+                                </a>
+                            </li>
+                            <li class="header__navbar--icon">
+                                <a href="#">
+                                    <i class="fa-brands fa-youtube m-r-8"></i>
+                                </a>
+                            </li>
 
-                        <!-- <li class="header__navbar--item header__navbar--separate">
-                            <a href="#"><i class="fa-solid fa-user m-r-8" ></i>Đăng nhập</a>
-                        </li>
-                        <li class="header__navbar--item"><a href="#">Đăng ký</a></li> -->
-<%--                            <li class="header__navbar--item header__navbar--separate">--%>
-<%--                                <a href="#"><i class="fa-solid fa-user m-r-8" ></i>Đăng nhập</a>--%>
-<%--                            </li>--%>
-<%--                            <li class="header__navbar--item"><a href="#">Đăng ký</a></li>--%>
-
-                        <li class="header__navbar--item header__navbar--user">
-                            <img src="GKY/assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
-                            <span class="header__navbar--user-name">Trí Đức</span>
-
-                            <ul class="header__navbar--user-menu">
-                                <li class="header__navbar--user-menu-item">
-                                    <a href="trangTTKhachHang.jsp"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá
-                                        nhân</a>
-                                </li>
-                                <li class="header__navbar--user-menu-item">
-                                    <a href="#"><i class="fa-solid fa-shopping-cart m-r-8"></i>Lịch sử mua hàng</a>
-                                </li>
-                                <li class="header__navbar--user-menu-item">
-                                    <a href="Dangnhap.jsp"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-
-<%--                            <li class="header__navbar--item header__navbar--user">--%>
-<%--                                <img src="./assets/img/avt1.jpg" alt="" class="header__navbar--user-img">--%>
-<%--                                <span class="header__navbar--user-name">Trí Đức</span>--%>
-
-<%--                                <ul class="header__navbar--user-menu">--%>
-<%--                                    <li class="header__navbar--user-menu-item">--%>
-<%--                                        <a href="trangTTKhachHang.jsp"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>--%>
-<%--                                    </li>--%>
-<%--                                    <!-- <li class="header__navbar--user-menu-item">--%>
-<%--                                        <a href="#"><i class="fa-solid fa-shopping-vn.edu.hcmuaf.fit.webike.t.services.cart m-r-8"></i>Lịch sử mua hàng</a>--%>
-<%--                                    </li> -->--%>
-<%--                                    <li class="header__navbar--user-menu-item">--%>
-<%--                                        <a href="Dangnhap.jsp"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>--%>
-<%--                                    </li>--%>
-<%--                                </ul>--%>
-<%--                            </li>--%>
-<%--                            --%>
-
-
-
+                            <!-- <li class="header__navbar--item header__navbar--separate">
+                              <a href="#"><i class="fa-solid fa-user m-r-8"></i>Đăng nhập</a>
+                            </li>
+                            <li class="header__navbar--item">a href="#">Đăng ký</a></li> -->
+                            <c:set var="u" value="${empty sessionScope.auth ? 0 : sessionScope.auth}"/>
                             <li class="header__navbar--item header__navbar--user">
-<%--                                <img src="assets/img/avt1.jpg" alt="" class="header__navbar--user-img">--%>
-                                <img src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="" class="header__navbar--user-img">
-                                <span class="header__navbar--user-name">${sessionScope.auth.name}</span>
+                                <img src="${u.image}" alt="" class="header__navbar--user-img">
+                                <span class="header__navbar--user-name">${u.name}</span>
+
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
-<%--                                        ${pageContext.request.contextPath}/Profile--%>
-<%--    trangTTKhachHang.jsp--%>
-                                        <a href="${pageContext.request.contextPath}/Profile"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá nhân</a>
+                                        <a href="${pageContext.request.contextPath}/Profile"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá
+                                            nhân</a>
                                     </li>
                                     <li class="header__navbar--user-menu-item">
-                                        <a href="${pageContext.request.contextPath}/Logout"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
+                                        <a href="buy-history"><i class="fa-solid fa-shopping-cart m-r-8"></i>Lịch sử mua hàng</a>
+                                    </li>
+                                    <li class="header__navbar--user-menu-item">
+                                        <a href="Logout"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
                                     </li>
                                 </ul>
                             </li>
-
                         </ul>
                     </div>
 
-                <div class="header__navbar--bot">
-                    <div class="header__search">
-                        <input type="text" class="header__search--input" placeholder="Nhập từ khoá tìm kiếm">
-                        <div class="header__search-select">
-                            <span class="header__search-select-label">Tìm xe</span>
-                            <i class="header__search-select-icon "></i>
+                    <div class="header__navbar--bot">
+                        <div class="header__search">
+                            <input type="text" id="search-input" class="header__search--input" placeholder="Nhập từ khoá tìm kiếm"/>
+                            <div class="header__search-select">
+                                <span class="header__search-select-label">Tìm xe</span>
+                                <i class="header__search-select-icon"></i>
 
-                            <!-- <ul class="header__search-option">
-                                <li class="header__search-option-item">
-                                    <span >Tìm phụ tùng</span>
-                                </li>
-                            </ul> -->
+                            </div>
+                            <button class="header__search--btn">
+                                <i class="header__search--btn-icon fa-solid fa-search"></i>
+                            </button>
                         </div>
-                        <button class="header__search--btn">
-                            <i class="header__search--btn-icon fa-solid fa-search"></i>
-                        </button>
-                    </div>
 
                         <div class="header__cart">
-                            <a href="cart.jsp" class="header__cart-link" >
+                            <a href="show-cart" class="header__cart-link">
                                 <i class="header__cart-icon ti-shopping-cart"></i>
                                 <span class="header__cart--text">Giỏ Hàng</span>
                             </a>

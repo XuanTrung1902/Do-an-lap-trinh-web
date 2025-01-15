@@ -16,7 +16,7 @@ import java.io.IOException;
         maxRequestSize = 1024 * 1024 * 50 // 50MB
 )
 public class UpdateProductController extends HttpServlet {
-    private static final String UPLOAD_DIRECTORY = "G:\\testGitHub\\Test\\Test\\CKY\\Webike\\src\\main\\webapp\\img\\products";
+    private static final String UPLOAD_DIRECTORY = "D:\\DO AN LTW\\Do-an-lap-trinh-web\\CKY\\Webike\\src\\main\\webapp\\img\\products";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

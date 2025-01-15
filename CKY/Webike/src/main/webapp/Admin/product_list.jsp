@@ -26,7 +26,7 @@
     <div class="row__grid">
         <div class="admin__sidebar">
             <div class="admin__sidebar--top">
-                <img src="./assets/images/logo.png" alt="">
+                <img src="Admin/assets/images/logo.png" alt="">
             </div>
             <div class="admin__sidebar--content">
                 <ul>
@@ -37,7 +37,7 @@
                     </a>
                         <ul class="sub-menu">
                             <div class="sub-menu-items">
-                                <li><a href="admin.jsp">
+                                <li><a href="${pageContext.request.contextPath}/admin">
                                     <i class="ri-arrow-right-s-fill"></i>
                                     Tổng quan
                                 </a>
@@ -46,14 +46,14 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="">
                             <i class="ri-file-list-line"></i>
                             Người dùng
                             <i class="ri-add-box-line"></i>
                         </a>
                         <ul class="sub-menu">
                             <div class="sub-menu-items">
-                                <li><a href="user_list.jsp">
+                                <li><a href="${pageContext.request.contextPath}/userList">
                                     <i class="ri-arrow-right-s-fill"></i>
                                     Danh sách
                                 </a>
@@ -62,18 +62,24 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="">
                             <i class="ri-file-list-line"></i>
                             Đơn hàng
                             <i class="ri-add-box-line"></i>
                         </a>
                         <ul class="sub-menu">
                             <div class="sub-menu-items">
-                                <li><a href="order_list.jsp">
+                                <li><a href="order-list">
                                     <i class="ri-arrow-right-s-fill"></i>
                                     Danh sách
                                 </a>
                                 </li>
+                                <%--                                    <li>--%>
+                                <%--                                        <a href="order_edit.jsp">--%>
+                                <%--                                            <i class="ri-arrow-right-s-fill"></i>--%>
+                                <%--                                            Sửa    --%>
+                                <%--                                         </a>--%>
+                                <%--                                    </li>--%>
                             </div>
                         </ul>
                     </li>
@@ -85,7 +91,7 @@
                         </a>
                         <ul class="sub-menu">
                             <div class="sub-menu-items">
-                                <li><a href="#">
+                                <li><a href="products">
                                     <i class="ri-arrow-right-s-fill"></i>
                                     Danh sách
                                 </a>
@@ -99,19 +105,19 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="">
                             <i class="ri-file-list-line"></i>
                             Giảm giá
                             <i class="ri-add-box-line"></i>
                         </a>
                         <ul class="sub-menu">
                             <div class="sub-menu-items">
-                                <li><a href="discount.jsp">
+                                <li><a href="discountList">
                                     <i class="ri-arrow-right-s-fill"></i>
                                     Danh sách
                                 </a>
                                 </li>
-                                <li><a href="#">
+                                <li><a href="addDiscount">
                                     <i class="ri-arrow-right-s-fill"></i>
                                     Thêm
                                 </a>
@@ -135,10 +141,15 @@
                     <ul class="flex-box">
                         <li><i class="ri-notification-line" number="3"></i></li>
                         <li><i class="ri-message-2-line" number="5"></i></li>
-                        <li class="flex-box">
-                            <img style="width: 50px;" src="assets/images/logo.png" alt="">
-                            <p>Trí Đức</p>
+                        <li class="flex-box user__login">
+                            <img src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="" class="header__navbar--user-img">
+                            <p>${sessionScope.auth.name}</p>
                             <i class="ri-arrow-down-s-fill"></i>
+                            <ul class="header__navbar--user-menu">
+                                <li class="header__navbar--user-menu-item">
+                                    <a href="${pageContext.request.contextPath}/Logout">Đăng xuất</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -152,15 +163,6 @@
                     <div class="admin-content-main-search">
                         <label style="font-size: 16px">Tìm kiếm</label>
                         <input type="text" id="searchInput" placeholder="Tên sản phẩm" class="search-input">
-                        <%--                            <select class="search-select">--%>
-                        <%--                                <option value="">Phân khối</option>--%>
-                        <%--                                <option value="150"> &lt; 150</option>--%>
-                        <%--                                <option value="200"> &lt; 200</option>--%>
-                        <%--                                <option value="250"> &gt; 200</option>--%>
-                        <%--                            </select>--%>
-                        <%--                            <input type="number" placeholder="Giá từ" class="search-input">--%>
-                        <%--                            <input type="number" placeholder="Giá đến" class="search-input">--%>
-                        <%--                            <button class="search-button">Tìm kiếm</button>--%>
                     </div>
                     <table>
                         <thead>

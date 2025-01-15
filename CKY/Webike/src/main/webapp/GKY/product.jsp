@@ -39,15 +39,6 @@
                         <li class="header__navbar--item">
                             <a href="list-products">Chợ xe máy</a>
                         </li>
-<%--                        <li class="header__navbar--item">--%>
-<%--                            <a href="news.jsp">Tin tức</a>--%>
-<%--                        </li>--%>
-                        <!-- <li class="header__navbar--item">
-                          <a href="#">Đại lí</a>
-                        </li> -->
-<%--                        <li class="header__navbar--item">--%>
-<%--                            <a href="contact.jsp">Liên hệ</a>--%>
-<%--                        </li>--%>
                     </ul>
 
                     <ul class="header__navbar--top_right">
@@ -66,21 +57,21 @@
                           <a href="#"><i class="fa-solid fa-user m-r-8"></i>Đăng nhập</a>
                         </li>
                         <li class="header__navbar--item">a href="#">Đăng ký</a></li> -->
-
+                        <c:set var="u" value="${empty sessionScope.auth ? 0 : sessionScope.auth}"/>
                         <li class="header__navbar--item header__navbar--user">
-                            <img src="GKY/assets/img/avt1.jpg" alt="" class="header__navbar--user-img">
-                            <span class="header__navbar--user-name">Trí Đức</span>
+                            <img src="${u.image}" alt="" class="header__navbar--user-img">
+                            <span class="header__navbar--user-name">${u.name}</span>
 
                             <ul class="header__navbar--user-menu">
                                 <li class="header__navbar--user-menu-item">
-                                    <a href="trangTTKhachHang.jsp"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá
+                                    <a href="${pageContext.request.contextPath}/Profile"><i class="fa-solid fa-user m-r-8"></i>Thông tin cá
                                         nhân</a>
                                 </li>
                                 <li class="header__navbar--user-menu-item">
-                                    <a href="#"><i class="fa-solid fa-shopping-cart m-r-8"></i>Lịch sử mua hàng</a>
+                                    <a href="buy-history"><i class="fa-solid fa-shopping-cart m-r-8"></i>Lịch sử mua hàng</a>
                                 </li>
                                 <li class="header__navbar--user-menu-item">
-                                    <a href="Dangnhap.jsp"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
+                                    <a href="Logout"><i class="fa-solid fa-sign-out m-r-8"></i>Đăng xuất</a>
                                 </li>
                             </ul>
                         </li>
@@ -101,7 +92,7 @@
                     </div>
 
                     <div class="header__cart">
-                        <a href="Gio hang.jsp" class="header__cart-link">
+                        <a href="show-cart" class="header__cart-link">
                             <i class="header__cart-icon ti-shopping-cart"></i>
                             <span class="header__cart--text">Giỏ Hàng</span>
                         </a>
@@ -115,124 +106,6 @@
         <div class="banner">
             <img src="GKY/assets/img/banner.jpg" alt="">
         </div>
-<%--        <div class="search__container">--%>
-<%--            <div class="search__bike">--%>
-<%--                <div class="search--title">--%>
-<%--                    <h2 class="search--title-name">Tìm kiếm xe máy</h2>--%>
-<%--                </div>--%>
-<%--                <form id="searchForm" class="search-initialized" method="post">--%>
-<%--                    <input type="text" id="brand" name="brand" placeholder="Hãng xe">--%>
-<%--                    <input type="text" id="type" name="type" placeholder="Loại xe">--%>
-<%--                    <select id="cubic" name="cubic" class="bike--cubic">--%>
-<%--                        <option value="" selected>Phân khối</option>--%>
-<%--                        <option value="50cc">50cc</option>--%>
-<%--                        <option value="50cc - 125cc">50cc - 125cc</option>--%>
-<%--                        <option value="125cc - 175cc">125cc - 175cc</option>--%>
-<%--                        <option value="175cc - 250cc">175cc - 250cc</option>--%>
-<%--                    </select>--%>
-<%--                    <select id="price" name="price" class="bike--price">--%>
-<%--                        <option value="">Đến giá</option>--%>
-<%--                        <option value="10000000">10.000.000đ</option>--%>
-<%--                        <option value="50000000">50.000.000đ</option>--%>
-<%--                        <option value="100000000">100.000.000đ</option>--%>
-<%--                        <option value="300000000">300.000.000đ</option>--%>
-<%--                    </select>--%>
-<%--                    <button class="bike__search--btn">--%>
-<%--                        <i class="bike__search--btn-icon fa-solid fa-search"></i>--%>
-<%--                        Tìm kiếm--%>
-<%--                    </button>--%>
-<%--                </form>--%>
-<%--            </div>--%>
-<%--            <div class="motor__brand">--%>
-<%--                <div class="motor__brand--heading">--%>
-<%--                    <h3 class="search--title-name">--%>
-<%--                        Thương hiệu nổi bật--%>
-<%--                    </h3>--%>
-<%--                </div>--%>
-<%--                <div class="motor__brand--list">--%>
-<%--                    <c:forEach var="b" items="${brands}">--%>
-<%--                        <div class="brand-item">--%>
-<%--                            <a href="#" class="brand-link">--%>
-<%--                                <img src="${b}" alt="Brand Image">--%>
-<%--                            </a>--%>
-<%--                        </div>--%>
-<%--                    </c:forEach>--%>
-
-<%--                </div>--%>
-<%--            </div>--%>
-
-<%--            <div class="motor__brand">--%>
-<%--                <div class="motor__brand--heading">--%>
-<%--                    <h3 class="search--title-name">--%>
-<%--                        Theo loại xe--%>
-<%--                    </h3>--%>
-<%--                </div>--%>
-<%--                <div class="motor__brand--list">--%>
-<%--                    <div class="brand-item">--%>
-<%--                        <a href="#" class="brand-link">--%>
-<%--                            <img src="GKY/assets/img/type1.jpg" alt="">--%>
-<%--                        </a>--%>
-<%--                        <span class="type__bike">Xe tay ga</span>--%>
-<%--                    </div>--%>
-<%--                    <div class="brand-item">--%>
-<%--                        <a href="#" class="brand-link">--%>
-<%--                            <img src="GKY/assets/img/type2.jpg" alt="">--%>
-<%--                        </a>--%>
-<%--                        <span class="type__bike">Xe số</span>--%>
-<%--                    </div>--%>
-<%--                    <div class="brand-item">--%>
-<%--                        <a href="#" class="brand-link">--%>
-<%--                            <img src="GKY/assets/img/type3.jpg" alt="">--%>
-<%--                        </a>--%>
-<%--                        <span class="type__bike">Xe côn tay</span>--%>
-<%--                    </div>--%>
-<%--                    <div class="brand-item">--%>
-<%--                        <a href="#" class="brand-link">--%>
-<%--                            <img src="GKY/assets/img/type4.jpg" alt="">--%>
-<%--                        </a>--%>
-<%--                        <span class="type__bike">Xe đạp trần</span>--%>
-<%--                    </div>--%>
-<%--                    <div class="brand-item">--%>
-<%--                        <a href="#" class="brand-link">--%>
-<%--                            <img src="GKY/assets/img/type5.jpg" alt="">--%>
-<%--                        </a>--%>
-<%--                        <span class="type__bike">Xe thể thao</span>--%>
-<%--                    </div>--%>
-<%--                    <div class="brand-item">--%>
-<%--                        <a href="#" class="brand-link">--%>
-<%--                            <img src="GKY/assets/img/type6.jpg" alt="">--%>
-<%--                        </a>--%>
-<%--                        <span class="type__bike">Cruser</span>--%>
-<%--                    </div>--%>
-<%--                    <div class="brand-item">--%>
-<%--                        <a href="#" class="brand-link">--%>
-<%--                            <img src="GKY/assets/img/type7.jpg" alt="">--%>
-<%--                        </a>--%>
-<%--                        <span class="type__bike">Chopper</span>--%>
-<%--                    </div>--%>
-<%--                    <div class="brand-item">--%>
-<%--                        <a href="#" class="brand-link">--%>
-<%--                            <img src="GKY/assets/img/type8.jpg" alt="">--%>
-<%--                        </a>--%>
-<%--                        <span class="type__bike">Bobber</span>--%>
-<%--                    </div>--%>
-<%--                    <div class="brand-item">--%>
-<%--                        <a href="#" class="brand-link">--%>
-<%--                            <img src="GKY/assets/img/type9.jpg" alt="">--%>
-<%--                        </a>--%>
-<%--                        <span class="type__bike">Drag</span>--%>
-<%--                    </div>--%>
-<%--                    <div class="brand-item">--%>
-<%--                        <a href="#" class="brand-link">--%>
-<%--                            <img src="GKY/assets/img/type10.jpg" alt="">--%>
-<%--                        </a>--%>
-<%--                        <span class="type__bike">Touring</span>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-
         <div class="motor__market">
             <div class="box__title">
             <span>
@@ -298,26 +171,14 @@
                                 <label><input type="checkbox" class="filter-checkbox" name="brand" value="${ab.name}"> ${ab.name}</label>
                             </c:forEach>
                         </div>
-                        <div id="checkboxes1">
-                            <h4>Màu sắc</h4>
-                            <label><input type="checkbox" value="ĐEN"> ĐEN</label>
-                            <label><input type="checkbox" value="TRẮNG"> TRẮNG</label>
-                            <label><input type="checkbox" value="XÁM"> XÁM</label>
-                        </div>
                     </div>
                     <div class="list-bike">
-<%--                        <div class="grid__row" style="padding: 0 40px;">--%>
-<%--                        <div class="grid__row" id="product-grid"></div>--%>
                         <div id="product-grid"  class="grid__row" style="padding: 0 40px;">
-
                             <c:forEach var="p" items="${products}">
                                 <div id="SP${p.id}" class="grid__column-2" data-attributes="honda, trang" style="padding: 10px; height: 380px">
                                     <a href="productDetail?id=${p.id}" class="bike--item">
                                         <div class="bike__img zoom-img">
                                             <img src="${p['imgurl']}" alt="${p.name}"/>
-<%--                                            <c:set var="color" value="${p.img.entrySet().iterator().next().getKey()}" />--%>
-<%--                                            <c:set var="img" value="${p.img.get(color)}" />--%>
-<%--                                            <img src="${img}" alt="${p.name}"/>--%>
                                         </div>
                                         <div class="bike__info">
                                             <h3 class="bike__name" style="display: block; height: 49px;" >${p.name}</h3>
@@ -338,11 +199,9 @@
                                     </a>
                                 </div>
                             </c:forEach>
-
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- pagination -->
@@ -369,7 +228,7 @@
         </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer" style="width: 100%;">
         <div class="container">
             <footer class="py-5">
                 <div class="row">
@@ -449,6 +308,8 @@
         </div>
     </footer>
 </div>
+
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/js/FilterProductAjax.js"></script>

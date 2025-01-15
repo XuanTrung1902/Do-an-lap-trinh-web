@@ -46,59 +46,53 @@
         <div class="row__grid">
             <div class="admin__sidebar">
                 <div class="admin__sidebar--top">
-                    <img src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
+                    <img src="Admin/assets/images/logo.png" alt="">
                 </div>
                 <div class="admin__sidebar--content">
                     <ul>
                         <li><a href="#">
-                                <i class="ri-dashboard-line"></i>
-                                Dashboard
-                                <i></i>
-                            </a>
+                            <i class="ri-dashboard-line"></i>
+                            Dashboard
+                            <i></i>
+                        </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="<%= request.getContextPath() %>/admin">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Tổng quan
-                                        </a>
+                                    <li><a href="${pageContext.request.contextPath}/admin">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Tổng quan
+                                    </a>
                                     </li>
                                 </div>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="">
                                 <i class="ri-file-list-line"></i>
                                 Người dùng
                                 <i class="ri-add-box-line"></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="<%= request.getContextPath() %>/userList">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Danh sách
-                                        </a>
+                                    <li><a href="userList">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Danh sách
+                                    </a>
                                     </li>
                                 </div>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="">
                                 <i class="ri-file-list-line"></i>
                                 Đơn hàng
                                 <i class="ri-add-box-line"></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="order_list.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Danh sách
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="order_edit.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Sửa    
-                                         </a>
+                                    <li><a href="order-list">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Danh sách
+                                    </a>
                                     </li>
                                 </div>
                             </ul>
@@ -111,36 +105,36 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="product_list.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Danh sách
-                                        </a>
+                                    <li><a href="products">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Danh sách
+                                    </a>
                                     </li>
-                                    <li><a href="product_add.jsp">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Thêm
-                                        </a>
+                                    <li><a href="add-product">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Thêm
+                                    </a>
                                     </li>
                                 </div>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="">
                                 <i class="ri-file-list-line"></i>
                                 Giảm giá
                                 <i class="ri-add-box-line"></i>
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="<%= request.getContextPath() %>/discountList">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Danh sách
-                                        </a>
+                                    <li><a href="discountList">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Danh sách
+                                    </a>
                                     </li>
-                                    <li><a href="<%= request.getContextPath() %>/addDiscount">
-                                            <i class="ri-arrow-right-s-fill"></i>
-                                            Thêm
-                                        </a>
+                                    <li><a href="addDiscount">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Thêm
+                                    </a>
                                     </li>
                                 </div>
                             </ul>
@@ -161,9 +155,7 @@
                         <ul class="flex-box">
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
-                            <li class="flex-box">
-<%--                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">--%>
-<%--                                <p>Trí Đức</p>--%>
+                            <li class="flex-box user__login">
                                 <img src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="" class="header__navbar--user-img">
                                 <p>${sessionScope.auth.name}</p>
                                 <i class="ri-arrow-down-s-fill"></i>
@@ -202,7 +194,8 @@
                                     <td>${discount.end}</td>
                                     <td>${discount.productID}</td>
                                     <td>
-                                        <a href="<%= request.getContextPath() %>/updateDiscount?id=${discount.id}" class="btn-edit">Sửa</a>
+                                        <a href="<%= request.getContextPath() %>/updateDiscount?id=${discount.id}" class="btn-edit" style="width: 100%; margin-bottom: 4px;">
+                                            Sửa</a>
                                         <form action="<%= request.getContextPath() %>/deleteDiscount" method="post" style="display:inline;">
                                             <input type="hidden" name="id" value="${discount.id}">
                                             <button type="submit" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa giảm giá cho sản phẩm này ${discount.id}?');">Xóa</button>
