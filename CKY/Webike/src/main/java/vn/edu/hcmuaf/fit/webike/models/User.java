@@ -1,9 +1,9 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
-import java.sql.Date;
 import java.io.Serializable;
+import java.sql.Date;
 
-public class User implements Serializable  {
+public class User implements Serializable {
     private int id;
     private String name;
     private String phoneNum;
@@ -15,9 +15,12 @@ public class User implements Serializable  {
     private int verify;
     private int role;
     private String address;
+    private String image;
+
 
     // Constructors
-    public User() {}
+    public User() {
+    }
 
     public User(int id, String name, String phoneNum, Date DOB, String sex, String password, String created, int locked, int verify, int role, String address) {
         this.id = id;
@@ -121,6 +124,16 @@ public class User implements Serializable  {
     public void setAddress(String address) {
         this.address = address;
     }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+
+
 
     @Override
     public String toString() {
@@ -138,7 +151,4 @@ public class User implements Serializable  {
                 ", address='" + address + '\'' +
                 '}';
     }
-
 }
-
-

@@ -162,6 +162,7 @@
 
 .product-actions {
     display: flex;
+    align-items: center;
     gap: 10px;
 }
 
@@ -173,7 +174,7 @@
     border-radius: 4px;
 }
 
-.product-actions .buy-again  a {
+.product-actions .buy-again{
     text-decoration: none;
     color: #fff;
 }
@@ -211,4 +212,11 @@
     padding: 10px 15px;
     background-color: #f9f9f9;
     border-top: 1px solid #ddd;
+}
+.resize{
+    resize: none;
+    font-size: 12px;
+}
+.resize::placeholder{
+    text-align: center;
 }

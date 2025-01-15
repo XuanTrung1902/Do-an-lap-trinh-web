@@ -8,7 +8,7 @@ import vn.edu.hcmuaf.fit.webike.models.User;
 
 import java.io.IOException;
 
-@WebServlet(name = "loginController", value = "/Dangnhap")
+@WebServlet(name = "loginController", value = "/Login")
 public class loginController extends HttpServlet {
 
     @Override
@@ -25,12 +25,11 @@ public class loginController extends HttpServlet {
         if (user != null) { // nếu login đúng
             HttpSession session = request.getSession(true);
             session.setAttribute("auth", user); // Đặt user vào session với key "auth"
-            session.setAttribute("welcomeMessage", "Xin chào, " + user.getName() + "!");
 
             if (user.getRole() == 0) { // nếu là admin
-                response.sendRedirect(" admin");
+                response.sendRedirect("admin");
             } else { // nếu là user
-                response.sendRedirect("list-products");
+                response.sendRedirect("homepage");
             }
         } else { // nếu login sai
             request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu");

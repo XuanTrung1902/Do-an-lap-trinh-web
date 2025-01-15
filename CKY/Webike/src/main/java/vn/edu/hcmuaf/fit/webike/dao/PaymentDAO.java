@@ -59,6 +59,4 @@ public class PaymentDAO {
                 .execute() > 0 ? 1 : 0
         );
     }
-
-
 }

@@ -32,7 +32,6 @@ public class CartBuy extends HttpServlet {
         double percent = 0.25;
         List<CartProduct> ls= cart.getList();
         order.add(cart, null, method, null, null, null);
-//        order.getData();
 
         request.getSession().setAttribute("order", order);
 

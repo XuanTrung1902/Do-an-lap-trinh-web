@@ -26,7 +26,7 @@ public class AdminFilter implements Filter {
         HttpSession session = req.getSession(true);
         User auth = (User) session.getAttribute("auth");
         if (auth == null || auth.getRole() >0) { // khong phai admin
-            res.sendRedirect("Dangnhap");
+            res.sendRedirect("Login");
             return;
         }
 

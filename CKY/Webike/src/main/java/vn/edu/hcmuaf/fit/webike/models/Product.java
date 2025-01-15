@@ -19,6 +19,7 @@ public class Product implements Serializable {
     private String brand;
     private String type;
     private Map<Color, String> img;
+    private double discount;
 
 
 
@@ -26,7 +27,7 @@ public class Product implements Serializable {
         this.img = new LinkedHashMap<>();
     }
 
-    public Product(int id, String name, String des, double price, int quantity, String version, String launch, String status, String brand, String type, Map<Color, String> img) {
+    public Product(int id, String name, String des, double price, int quantity, String version, String launch, String status, String brand, String type, Map<Color, String> img, double discount) {
         this.id = id;
         this.name = name;
         this.des = des;
@@ -38,34 +39,35 @@ public class Product implements Serializable {
         this.brand = brand;
         this.type = type;
         this.img = img;
+        this.discount = discount;
     }
 
-    public static void main(String[] args) {
-        Map<Color, String> img = new LinkedHashMap<>();
-        Color c1 = new Color("do", "#111");
-        Color c2 = new Color("do", "#22");
-        img.put(c1, "anh");
-        img.put(c2, "anh1");
-
-        Map<Color, String> img2 = new LinkedHashMap<>();
-        Color c3 = new Color("c3", "#c3");
-        Color c4 = new Color("c4", "#c4");
-        img2.put(c3, "anh2");
-        img2.put(c4, "anh3");
-
-        Product p = new Product(1, "ten", "des", 12.3, 43, "ver", "launch", "status", "brand", "type", img);
-        Product p1 = new Product(2, "ten", "des", 12.3, 43, "ver", "launch", "status", "brand", "type", img2);
-        List<Product> ls = new ArrayList<>();
-        ls.add(p);
-        ls.add(p1);
-
-        for (Product x : ls) {
-            System.out.println("id: "+x.getId()+ "\n+\t"+x.getImg());
-            System.out.println("-----------------------------"+ p.getImg().size());
-            Color key= x.getImg().entrySet().iterator().next().getKey();
-            System.out.println("Key:"+key);
-            System.out.println("Value:"+x.getImg().get(key));
-        }
+//    public static void main(String[] args) {
+//        Map<Color, String> img = new LinkedHashMap<>();
+//        Color c1 = new Color("do", "#111");
+//        Color c2 = new Color("do", "#22");
+//        img.put(c1, "anh");
+//        img.put(c2, "anh1");
+//
+//        Map<Color, String> img2 = new LinkedHashMap<>();
+//        Color c3 = new Color("c3", "#c3");
+//        Color c4 = new Color("c4", "#c4");
+//        img2.put(c3, "anh2");
+//        img2.put(c4, "anh3");
+//
+//        Product p = new Product(1, "ten", "des", 12.3, 43, "ver", "launch", "status", "brand", "type", img);
+//        Product p1 = new Product(2, "ten", "des", 12.3, 43, "ver", "launch", "status", "brand", "type", img2);
+//        List<Product> ls = new ArrayList<>();
+//        ls.add(p);
+//        ls.add(p1);
+//
+//        for (Product x : ls) {
+//            System.out.println("id: "+x.getId()+ "\n+\t"+x.getImg());
+//            System.out.println("-----------------------------"+ p.getImg().size());
+//            Color key= x.getImg().entrySet().iterator().next().getKey();
+//            System.out.println("Key:"+key);
+//            System.out.println("Value:"+x.getImg().get(key));
+//        }
 
 //        System.out.println(p.getImg().keySet().iterator().next());
 //        for (Map.Entry<Color, String> x : p.getImg().entrySet()) {
@@ -78,7 +80,7 @@ public class Product implements Serializable {
 //        for (Map.Entry<String, String> entry : img.entrySet()) {
 //            System.out.println(entry.getKey() + "=" + entry.getValue());
 //        }
-    }
+//    }
 
     public int getId() {
         return id;
@@ -168,6 +170,14 @@ public class Product implements Serializable {
         this.img = img;
     }
 
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -182,7 +192,8 @@ public class Product implements Serializable {
                 ", brand='" + brand + '\'' +
                 ", type='" + type + '\'' +
                 ", img=" + img +
-                '}' + "\n";
+                ", discount=" + discount +
+                '}';
     }
 }
 

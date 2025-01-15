@@ -10,13 +10,12 @@ import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 
-@WebServlet(name = "RegisterController", value = "/Dangky")
+@WebServlet(name = "RegisterController", value = "/register")
 public class RegisterController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
-//                response.sendRedirect("GKY/dangKy.jsp");
     }
 
 
@@ -33,9 +32,6 @@ public class RegisterController extends HttpServlet {
         Date date = Date.valueOf(dob);
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirm_password");
-
-        System.out.println("fullname: " + fullname);
-        System.out.println("phone: " + phone);
 
         if (!password.equals(confirmPassword)) {
             request.setAttribute("error", "Mật khẩu không khớp");
@@ -65,7 +61,7 @@ public class RegisterController extends HttpServlet {
         boolean isRegistered = UserSevice.registerUser(user);
 
         if (isRegistered) {
-            response.sendRedirect("GKY/Dangnhap.jsp");
+            response.sendRedirect("Login");
         } else {
             request.setAttribute("error", "Đăng ký thất bại");
             setRequestAttributes(request, fullname, phone, address, gender, day, month, year);

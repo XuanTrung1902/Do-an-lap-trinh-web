@@ -5,10 +5,14 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.models.User;
+
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.Date;
 
 @WebServlet(name = "UpdateUserController", value = "/updateUser")
+@MultipartConfig
 public class UpdateUserController extends HttpServlet {
 
     @Override
@@ -16,7 +20,6 @@ public class UpdateUserController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         UserDao userDao = new UserDao();
         User user = userDao.getUserById(id);
-        System.out.println(user);
         if (user != null) {
             request.setAttribute("user", user);
             request.getRequestDispatcher("/Admin/user_edit.jsp").forward(request, response);
@@ -47,7 +50,26 @@ public class UpdateUserController extends HttpServlet {
         int verify = Integer.parseInt(request.getParameter("verify"));
         int role = Integer.parseInt(request.getParameter("role"));
 
+        Part filePart = request.getPart("image");
+        String imagePath = null;
+        if (filePart != null && filePart.getSize() > 0) {
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            String uploadPath = getServletContext().getRealPath("") + "img" + File.separator + "Users";
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs(); // Tạo thư mục nếu chưa tồn tại
+            }
+            filePart.write(uploadPath + File.separator + fileName);
+            imagePath = "img/Users/" + fileName;
+        }
+
+
+
         User user = new User(id, name, phoneNum, date, sex, password, created, locked, verify, role, address);
+        if (imagePath != null) {
+            user.setImage(imagePath);
+        }
+
         UserDao userDao = new UserDao();
         boolean isUpdated = userDao.updateUserSua(user);
 

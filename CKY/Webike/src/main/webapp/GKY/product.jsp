@@ -1,9 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
-<%--<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>--%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +21,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
-    <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/bootstrap/css/bootstrap.css"/>
 </head>
 <body>
@@ -40,17 +37,17 @@
                             <a href="homepage">Trang chủ</a>
                         </li>
                         <li class="header__navbar--item">
-                            <a href="#">Chợ xe máy</a>
+                            <a href="list-products">Chợ xe máy</a>
                         </li>
-                        <li class="header__navbar--item">
-                            <a href="news.jsp">Tin tức</a>
-                        </li>
+<%--                        <li class="header__navbar--item">--%>
+<%--                            <a href="news.jsp">Tin tức</a>--%>
+<%--                        </li>--%>
                         <!-- <li class="header__navbar--item">
                           <a href="#">Đại lí</a>
                         </li> -->
-                        <li class="header__navbar--item">
-                            <a href="contact.jsp">Liên hệ</a>
-                        </li>
+<%--                        <li class="header__navbar--item">--%>
+<%--                            <a href="contact.jsp">Liên hệ</a>--%>
+<%--                        </li>--%>
                     </ul>
 
                     <ul class="header__navbar--top_right">
@@ -247,29 +244,29 @@
             <div class="motor__list">
 
                 <c:forEach var="p2" items="${products2}">
-                    <a href="#" class="bike__link">
+                    <a href="productDetail?id=${p2.id}" class="bike__link">
                         <div class="box__bike--item">
                             <div class="box__bike-img">
                                 <img src="${p2['imgurl']}" alt="#"/>
                                 <h5 class="box__bike--name">
                                         ${p2['name']}
                                 </h5>
-                                <span class="box__sub--title">${p2['status']}</span>
+<%--                                <span class="box__sub--title">${p2['status']}</span>--%>
                             </div>
                             <div class="box__bike--price">
-                                <span class="box__bike--price-old">39.200.000đ</span>
+                                <span class="box__bike--price-old"><f:formatNumber value="${p2.price}" pattern="#,##0.###"/>đ</span>
                                 <span class="box__bike--price-current">
-                       <f:formatNumber value="${p2['price']}" pattern="#,##0.###"/>đ
+                       <f:formatNumber value="${ p2.price - (p2.price * p2.discount / 100)}" pattern="#,##0.###"/>đ
                   </span>
                             </div>
-                            <div class="box__bike--origin">
-                                <span class="box__bike--origin-text">Hà Nội</span>
-                            </div>
+<%--                            <div class="box__bike--origin">--%>
+<%--                                <span class="box__bike--origin-text">Hà Nội</span>--%>
+<%--                            </div>--%>
                             <div class="box__bike--favourite">
                                 <i class="fa-regular fa-heart"></i>
                             </div>
                             <div class="box__bike--sale-off">
-                                <span class="box__bike--sale-off-percent">10%</span>
+                                <span class="box__bike--sale-off-percent">${p2.discount}%</span>
                                 <span class="box__bike--sale-off-label">Giảm</span>
                             </div>
                         </div>
@@ -289,9 +286,9 @@
             <!-- Detail bike -->
             <div class="motor__detail-list">
                 <div class="title-second">
-                    <h3 class="title-second-name">Xe mới đăng</h3>
+                    <h3 class="title-second-name">Lọc sản phẩm</h3>
                 </div>
-                <%--                value="xam" onclick="filterimg()"--%>
+<%--                value="xam" onclick="filterimg()"--%>
 
                 <div class="grid-2-8" style="padding-bottom: 10px;">
                     <div class="checkbox__category">
@@ -308,31 +305,37 @@
                             <label><input type="checkbox" value="XÁM"> XÁM</label>
                         </div>
                     </div>
-
                     <div class="list-bike">
+<%--                        <div class="grid__row" style="padding: 0 40px;">--%>
 <%--                        <div class="grid__row" id="product-grid"></div>--%>
                         <div id="product-grid"  class="grid__row" style="padding: 0 40px;">
 
                             <c:forEach var="p" items="${products}">
-                                <div class="grid__column-2" style="padding: 10px; height: 380px">
-                                    <a href="products" class="bike--item">
+                                <div id="SP${p.id}" class="grid__column-2" data-attributes="honda, trang" style="padding: 10px; height: 380px">
+                                    <a href="productDetail?id=${p.id}" class="bike--item">
                                         <div class="bike__img zoom-img">
                                             <img src="${p['imgurl']}" alt="${p.name}"/>
+<%--                                            <c:set var="color" value="${p.img.entrySet().iterator().next().getKey()}" />--%>
+<%--                                            <c:set var="img" value="${p.img.get(color)}" />--%>
+<%--                                            <img src="${img}" alt="${p.name}"/>--%>
                                         </div>
                                         <div class="bike__info">
-                                            <h3 class="bike__name" style="display: block; height: 49px;">${p.name}</h3>
-                                            <span class="bike__price">
+                                            <h3 class="bike__name" style="display: block; height: 49px;" >${p.name}</h3>
+                                            <div class="d-flex justify-content-between">
+                                                <span class="bike__price">
                                                 <f:formatNumber value="${p['price']}" pattern="#,##0.###"/>đ
                                             </span>
+                                                <c:if test="${p.discount > 0.0}">
+                                                    <span class="text-danger" style="text-align: center;display: flex;font-size: 1.3rem;">-${p.discount}%</span>
+                                                </c:if>
+                                            </div>
                                             <div class="source">
                                                 <span class="condition">${p.version}</span>
                                                 <span class="time">${p.launch}</span>
                                             </div>
                                             <address class="address">${p.status}</address>
-                                                <%-- <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>--%>
                                         </div>
                                     </a>
-<%--                                    <a style="text-decoration: none; display: block;" class="motor__addToCard--btn">Thêm vào giỏ</a>--%>
                                 </div>
                             </c:forEach>
 
@@ -361,6 +364,7 @@
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
             </div>
+
 
         </div>
     </div>

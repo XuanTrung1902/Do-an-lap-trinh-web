@@ -27,7 +27,7 @@ public class AddDiscountController extends HttpServlet {
         Date end = Date.valueOf(request.getParameter("end"));
         if (start.after(end)) {
             request.setAttribute("error", "Ngày bắt đầu phải nhỏ hơn ngày kết thúc.");
-            request.getRequestDispatcher("/Admin/add_discount.jsp").forward(request, response);
+            request.getRequestDispatcher("/addDiscount").forward(request, response);
             return;
         }
         Discount discount = new Discount();
@@ -43,7 +43,7 @@ public class AddDiscountController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/discountList");
         } else {
             request.setAttribute("error", "Thêm giảm giá thất bại.");
-            request.getRequestDispatcher("/Admin/discount.jsp").forward(request, response);
+            request.getRequestDispatcher("/addDiscount").forward(request, response);
         }
     }
 

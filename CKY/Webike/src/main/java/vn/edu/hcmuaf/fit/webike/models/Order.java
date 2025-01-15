@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Order implements Serializable {
+    private int id;
     private List<OrderItem> data;
     private double deposit;
     private double remain;
+    private String address;
     private String appointment;
     private String payDate;
     private String status;
@@ -16,9 +18,11 @@ public class Order implements Serializable {
     private Shop shop;
 
     public Order() {
+        this.id = id;
         this.data = new ArrayList<OrderItem>();
         this.deposit = deposit;
         this.remain = remain;
+        this.address = address;
         this.appointment = appointment;
         this.payDate = payDate;
         this.status = status;
@@ -26,10 +30,12 @@ public class Order implements Serializable {
         this.shop = shop;
     }
 
-    public Order(List<OrderItem> data, double deposit, double remain, String appointment, String payDate, String status, User user, Shop shop) {
+    public Order(int id,List<OrderItem> data, double deposit, double remain, String appointment, String payDate, String status, User user, Shop shop) {
+        this.id = id;
         this.data = new ArrayList<OrderItem>();
         this.deposit = deposit;
         this.remain = remain;
+        this.address = address;
         this.appointment = appointment;
         this.payDate = payDate;
         this.status = status;
@@ -51,7 +57,7 @@ public class Order implements Serializable {
                 int quantity = cp.getQuantity();
                 String itemImg = cp.getImg().get(itemColor);
                 OrderItem i = convertCartProduct(cp, quantity, itemImg, itemColor, itemID);
-                    data.add(i);
+                data.add(i);
             }
         }
     }
@@ -99,7 +105,12 @@ public class Order implements Serializable {
         item.setProductID(pid);
 
         item.setName(p.getName());
-        item.setPrice(p.getPrice());
+        if (p.getDiscount() > 0) {
+            item.setPrice(p.getPrice() - (p.getPrice() * p.getDiscount() / 100));
+        } else {
+            item.setPrice(p.getPrice());
+        }
+
         item.setVersion(p.getVersion());
         item.setStatus(p.getStatus());
         item.setBrand(p.getBrand());
@@ -164,11 +175,30 @@ public class Order implements Serializable {
         this.shop = shop;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
-                "deposit=" + deposit +
+                "id=" + id +
+                ", data=" + data +
+                ", deposit=" + deposit +
                 ", remain=" + remain +
+                ", address='" + address + '\'' +
                 ", appointment='" + appointment + '\'' +
                 ", payDate='" + payDate + '\'' +
                 ", status='" + status + '\'' +

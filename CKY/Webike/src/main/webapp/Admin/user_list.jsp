@@ -149,7 +149,8 @@
                             <li><i class="ri-notification-line" number="3"></i></li>
                             <li><i class="ri-message-2-line" number="5"></i></li>
                             <li class="flex-box user__login">
-                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">
+<%--                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">--%>
+                                <img src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="" class="header__navbar--user-img">
                                 <p>${sessionScope.auth.name}</p>
                                 <i class="ri-arrow-down-s-fill"></i>
                                 <ul class="header__navbar--user-menu">
@@ -173,7 +174,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Tên đăng nhập</th>
-                                <th>Mật khẩu</th>
+<%--                                <th>Mật khẩu</th>--%>
                                 <th>Ngày sinh</th>
                                 <th>Giới tính</th> <!-- Thêm cột Giới tính -->
                                 <th>Địa chỉ</th>
@@ -181,6 +182,8 @@
                                 <th>Vai trò</th> <!-- Thêm cột Vai trò -->
                                 <th>Khóa</th> <!-- Thêm cột Khóa -->
 <%--                                <th>Xác minh</th> <!-- Thêm cột Xác minh -->--%>
+                                <th>Ảnh</th>
+
                                 <th>Tuỳ chỉnh</th>
                             </tr>
                             </thead>
@@ -189,7 +192,7 @@
                                 <tr>
                                     <td>${user.id}</td>
                                     <td>${user.name}</td>
-                                    <td>${user.password}</td>
+<%--                                    <td>${user.password}</td>--%>
                                     <td>${user.DOB}</td>
                                     <td>${user.sex}</td> <!-- Hiển thị giới tính -->
                                     <td>${user.address}</td>
@@ -197,12 +200,12 @@
                                     <td>${user.role}</td> <!-- Hiển thị vai trò -->
                                     <td>${user.locked}</td> <!-- Hiển thị trạng thái khóa -->
 <%--                                    <td>${user.verify}</td> <!-- Hiển thị trạng thái xác minh -->--%>
+                                    <td style="border-radius: 50%; background-color:darkgray "><img src="${user.image}" alt="User Image" width="50" height="50"></td>
                                     <td>
                                         <a href="<%= request.getContextPath() %>/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
                                         <form action="<%= request.getContextPath() %>/deleteUser" method="post" style="display:inline;">
                                             <input type="hidden" name="id" value="${user.id}">
-                                            <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">Xóa</button>
-                                        </form>
+                                            <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>                                        </form>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -216,60 +219,75 @@
     </section>
 
     <!-- Modal thêm người dùng -->
-    <!-- Modal thêm người dùng -->
     <div class="modal" id="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h2>Thêm người dùng</h2>
-            <form id="add-user-form" action="<%= request.getContextPath() %>/addUser" method="post">
-                <c:if test="${not empty error}">
-                    <div class="alert alert-danger" role="alert">
-                            ${error}
-                    </div>
-                </c:if>
+            <form id="add-user-form" action="<%= request.getContextPath() %>/addUser" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="username">Tên đăng nhập:</label>
-                    <input type="text" id="username" name="username" required>
+<%--                    <input type="text" id="username" name="username" required>--%>
+                    <input type="text" id="username" name="username" value="${username}" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Mật khẩu:</label>
                     <input type="password" id="password" name="password" required>
                 </div>
+                <c:if test="${not empty error}">
+                    <div class="alert alert-danger" role="alert" style="color: red ">
+                            ${error}
+                    </div>
+                </c:if>
                 <div class="form-group">
                     <label for="phone">SĐT:</label>
-                    <input type="text" id="phone" name="phone" required>
+<%--                    <input type="text" id="phone" name="phone" required>--%>
+                    <input type="text" id="phone" name="phone" value="${phone}" required>
+
                 </div>
                 <div class="form-group">
                     <label for="address">Địa chỉ:</label>
-                    <input type="text" id="address" name="address" required>
+<%--                    <input type="text" id="address" name="address" required>--%>
+                    <input type="text" id="address" name="address" value="${address}" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Ảnh:</label>
+                    <input type="file" id="image" name="image" required>
                 </div>
                 <div class="form-group">
                     <label for="birthday">Ngày sinh:</label>
-                    <input type="date" id="birthday" name="birthday" required>
+<%--                    <input type="date" id="birthday" name="birthday" required>--%>
+                    <input type="date" id="birthday" name="birthday" value="${birthday}" required>
                 </div>
                 <div class="form-group-inline">
                     <label for="sex">Giới tính:</label>
+<%--                    <select id="sex" name="sex" required>--%>
+<%--                        <option value="">Chọn giới tính</option>--%>
+<%--                        <option value="Nam">Nam</option>--%>
+<%--                        <option value="Nữ">Nữ</option>--%>
+<%--                    </select>--%>
                     <select id="sex" name="sex" required>
                         <option value="">Chọn giới tính</option>
-                        <option value="Nam">Nam</option>
-                        <option value="Nữ">Nữ</option>
+                        <option value="Nam" ${sex == 'Nam' ? 'selected' : ''}>Nam</option>
+                        <option value="Nữ" ${sex == 'Nữ' ? 'selected' : ''}>Nữ</option>
                     </select>
                 </div>
                 <div class="form-group-inline">
                     <label for="status">Trạng thái:</label>
                     <select id="status" name="status" required>
-                        <option value="0">Active</option>
-                        <option value="1">Locked</option>
+                        <option value="0" ${status == 0 ? 'selected' : ''}>Active</option>
+                        <option value="1" ${status == 1 ? 'selected' : ''}>Locked</option>
                     </select>
                     <label for="verify">Xác minh:</label>
                     <select id="verify" name="verify" required>
-                        <option value="0">Đã xác minh</option>
-                        <option value="1">Chưa xác minh</option>
+                        <option value="0" ${verify == 0 ? 'selected' : ''}>Đã xác minh</option>
+                        <option value="1" ${verify == 1 ? 'selected' : ''}>Chưa xác minh</option>
                     </select>
                     <label for="role">Role:</label>
                     <select id="role" name="role" required>
-                        <option value="1">User</option>
-                        <option value="0">Admin</option>
+<%--                        <option value="1">User</option>--%>
+<%--                        <option value="0">Admin</option>--%>
+                            <option value="1" ${role == 1 ? 'selected' : ''}>User</option>
+                            <option value="0" ${role == 0 ? 'selected' : ''}>Admin</option>
                     </select>
                 </div>
                 <button type="submit" class="btn-submit">Thêm</button>
