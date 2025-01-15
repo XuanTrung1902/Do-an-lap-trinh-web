@@ -13,7 +13,7 @@ public class UserListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao userDao = new UserDao();
-        List<User> userList = userDao.getVerifiedUsers(0); // Chỉ lấy những tài khoản có verify = 0
+        List<User> userList = userDao.getVerifiedUsers(0);
         if (!userList.isEmpty()) {
             request.setAttribute("userList", userList);
             request.getRequestDispatcher("Admin/user_list.jsp").forward(request, response);

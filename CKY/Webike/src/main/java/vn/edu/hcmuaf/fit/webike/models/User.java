@@ -16,7 +16,7 @@ public class User implements Serializable {
     private int role;
     private String address;
     private String image;
-
+    private String email;
 
     // Constructors
     public User() {
@@ -37,6 +37,15 @@ public class User implements Serializable {
     }
 
     // Getters and Setters
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
     public int getId() {
         return id;
     }
@@ -149,6 +158,7 @@ public class User implements Serializable {
                 ", verify=" + verify +
                 ", role=" + role +
                 ", address='" + address + '\'' +
+                ", mail='" + email + '\'' +
                 '}';
     }
 }

@@ -19,7 +19,7 @@ public class UserDao {
     // Đăng ký
     public boolean saveUser(User user) {
         return JDBIConnect.get().withHandle(h ->
-                h.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address)")
+                h.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address, email) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address, :email)")
                         .bind("name", user.getName())
                         .bind("phoneNum", user.getPhoneNum())
                         .bind("DOB", user.getDOB())
@@ -30,10 +30,12 @@ public class UserDao {
                         .bind("verify", user.getVerify())
                         .bind("role", user.getRole())
                         .bind("address", user.getAddress())
+                        .bind("email", user.getEmail())
                         .execute() > 0
         );
     }
-// Admin
+
+    // Admin
     // Thêm người dùng mới
     public boolean addUser(User user) {
         return JDBIConnect.get().withHandle(handle ->
@@ -67,19 +69,19 @@ public class UserDao {
 
 
 // Cập nhật user cho trang TT kHách hàng
+
     public boolean updateUser(User user) {
-        return JDBIConnect.get().withHandle(h -> h.createUpdate("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, sex = :sex, address = :address, password = :password WHERE id = :id")
+        return JDBIConnect.get().withHandle(h -> h.createUpdate("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, sex = :sex, address = :address, password = :password, email = :email WHERE id = :id")
                 .bind("name", user.getName())
                 .bind("phoneNum", user.getPhoneNum())
                 .bind("DOB", user.getDOB())
                 .bind("sex", user.getSex())
                 .bind("address", user.getAddress())
                 .bind("password", user.getPassword())
+                .bind("email", user.getEmail())
                 .bind("id", user.getId())
                 .execute() > 0);
     }
-
-
 
 
     // Lấy danh sách tất cả người dùng
@@ -154,25 +156,9 @@ public class UserDao {
     }
 
     // Sửa thông tin người dùng
-//    public boolean updateUserSua(User user) {
-//        return JDBIConnect.get().withHandle(handle ->
-//                handle.createUpdate("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, password = :password, address = :address, created = :created, locked = :locked, verify = :verify, role = :role WHERE id = :id")
-//                        .bind("name", user.getName())
-//                        .bind("phoneNum", user.getPhoneNum())
-//                        .bind("DOB", user.getDOB())
-//                        .bind("password", user.getPassword())
-//                        .bind("address", user.getAddress())
-//                        .bind("created", user.getCreated())
-//                        .bind("locked", user.getLocked())
-//                        .bind("verify", user.getVerify())
-//                        .bind("role", user.getRole())
-//                        .bind("id", user.getId())
-//                        .execute() > 0
-//        );
-//    }
     public boolean updateUserSua(User user) {
         return JDBIConnect.get().withHandle(handle -> {
-            StringBuilder query = new StringBuilder("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, password = :password, address = :address, created = :created, locked = :locked, verify = :verify, role = :role");
+            StringBuilder query = new StringBuilder("UPDATE accounts SET name = :name, phoneNum = :phoneNum, DOB = :DOB, password = :password, address = :address, created = :created, locked = :locked, verify = :verify, role = :role, email = :email");
             if (user.getImage() != null) {
                 query.append(", image = :image");
             }
@@ -188,6 +174,7 @@ public class UserDao {
                     .bind("locked", user.getLocked())
                     .bind("verify", user.getVerify())
                     .bind("role", user.getRole())
+                    .bind("email", user.getEmail()) // Bind email
                     .bind("id", user.getId());
 
             if (user.getImage() != null) {
@@ -199,9 +186,10 @@ public class UserDao {
     }
 
 
+
     public boolean addUserAdmin(User user) {
         return JDBIConnect.get().withHandle(handle ->
-                handle.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address, image) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address, :image)")
+                handle.createUpdate("INSERT INTO accounts (name, phoneNum, DOB, sex, password, created, locked, verify, role, address, image, email) VALUES (:name, :phoneNum, :DOB, :sex, :password, :created, :locked, :verify, :role, :address, :image, :email)")
                         .bind("name", user.getName())
                         .bind("phoneNum", user.getPhoneNum())
                         .bind("DOB", user.getDOB())
@@ -213,9 +201,11 @@ public class UserDao {
                         .bind("role", user.getRole())
                         .bind("address", user.getAddress())
                         .bind("image", user.getImage())
+                        .bind("email", user.getEmail())
                         .execute() > 0
         );
     }
+
     // thông tin khách hàng phần avatar
     public boolean updateUserAvatar(User user) {
         return JDBIConnect.get().withHandle(handle ->

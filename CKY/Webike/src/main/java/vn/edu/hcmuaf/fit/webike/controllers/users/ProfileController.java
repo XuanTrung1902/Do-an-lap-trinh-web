@@ -39,8 +39,9 @@ public class ProfileController extends HttpServlet {
             String year = request.getParameter("year");
             String dob = year + "-" + month + "-" + day;
             Date date = Date.valueOf(dob);
+            String email = request.getParameter("email");
+
             if (!newPhone.equals(user.getPhoneNum())) {
-                // Kiểm tra số điện thoại mới đã tồn tại trong cơ sở dữ liệu chưa
                 if (UserSevice.isPhoneNumExists(newPhone)) {
                     request.setAttribute("error", "Số điện thoại đã tồn tại");
                     request.setAttribute("user", user);
@@ -53,6 +54,7 @@ public class ProfileController extends HttpServlet {
             user.setAddress(address);
             user.setSex(gender);
             user.setDOB(date);
+            user.setEmail(email);
             user.setPassword(user.getPassword());
 
 

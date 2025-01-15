@@ -2,9 +2,10 @@
 <%@ page import="vn.edu.hcmuaf.fit.webike.models.User" %>
 <%@page import="java.io.Console" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,19 +13,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WeBike</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-          integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<%--    <base href="${pageContext.request.contextPath}/GKY/assets/">--%>
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/base.css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/headerFooter.css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/trangTTKhachHang.css">
-    <link rel="stylesheet"
-          href="<%= request.getContextPath()%>/GKY/assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
+
+
+
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/font/themify-icons/themify-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/bootstrap/css/bootstrap.css">
+     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/bootstrap/css/bootstrap.css">
 
 </head>
 <body>
@@ -148,21 +154,24 @@
                            placeholder="Tỉnh/Thành Phố, Huyện, Xã">
                 </div>
 
-                <div class="form-group">
-                    <label>Giới tính</label>
-                    <div class="gender-group">
-                        <label class="custom-radio">
-                            <input type="radio" id="male" name="gender"
-                                   value="Nam" ${sessionScope.auth.sex == 'Nam' ? 'checked' : ''}>
-                            <span class="checkmark"></span> Nam
-                        </label>
-                        <label class="custom-radio">
-                            <input type="radio" id="female" name="gender"
-                                   value="Nữ" ${sessionScope.auth.sex == 'Nữ' ? 'checked' : ''}>
-                            <span class="checkmark"></span> Nữ
-                        </label>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" value="${sessionScope.auth.email}" placeholder="example@example.com">
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label>Giới tính</label>
+                        <div class="gender-group">
+                            <label class="custom-radio">
+                                <input type="radio" id="male" name="gender" value="Nam" ${sessionScope.auth.sex == 'Nam' ? 'checked' : ''}>
+                                <span class="checkmark"></span> Nam
+                            </label>
+                            <label class="custom-radio">
+                                <input type="radio" id="female" name="gender" value="Nữ" ${sessionScope.auth.sex == 'Nữ' ? 'checked' : ''}>
+                                <span class="checkmark"></span> Nữ
+                            </label>
+                        </div>
+                    </div>
 
                 <div class="form-group">
                     <label>Ngày sinh</label>

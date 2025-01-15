@@ -49,6 +49,8 @@ public class UpdateUserController extends HttpServlet {
         int locked = Integer.parseInt(request.getParameter("status"));
         int verify = Integer.parseInt(request.getParameter("verify"));
         int role = Integer.parseInt(request.getParameter("role"));
+        String email = request.getParameter("email");
+
 
         Part filePart = request.getPart("image");
         String imagePath = null;
@@ -66,6 +68,7 @@ public class UpdateUserController extends HttpServlet {
 
 
         User user = new User(id, name, phoneNum, date, sex, password, created, locked, verify, role, address);
+        user.setEmail(email);
         if (imagePath != null) {
             user.setImage(imagePath);
         }
