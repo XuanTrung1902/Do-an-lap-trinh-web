@@ -26,6 +26,7 @@ public class AddProductController extends HttpServlet {
         // Lấy dữ liệu từ form
         String name = request.getParameter("name");
         String price = request.getParameter("price");
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         String launch = request.getParameter("launch");
         String description = request.getParameter("description");
 
@@ -51,7 +52,7 @@ public class AddProductController extends HttpServlet {
 
         // Lưu thông tin sản phẩm vào database
         ProductDAO productDAO = new ProductDAO();
-        boolean success = productDAO.addProduct(name, Double.parseDouble(price), launch, "img/products/" + fileName, description);
+        boolean success = productDAO.addProduct(name, Double.parseDouble(price), quantity, launch, "img/products/" + fileName, description);
 
         // Chuyển hướng hoặc thông báo
         if (success) {

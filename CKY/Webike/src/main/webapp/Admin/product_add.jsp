@@ -153,100 +153,12 @@
                     <form class="admin-content-main-container" method="POST" action="add-product" enctype="multipart/form-data">
                         <div class="admin-content-main-container-two-input">
                             <input type="text" name="name" placeholder="Tên sản phẩm">
-                            <select class="select__option" style="margin: 0 10px;" type="text" placeholder="Mã hãng xe">
-                                <option value="0">-- Chọn hãng xe --</option>
-                                <option value="1">Honda</option>
-                                <option value="2">Yamaha</option>
-                                <option value="3">Suzuki</option>
-                                <option value="4">Kawasaki</option>
-                                <option value="5">Ducati</option>
-                                <option value="6">Harley-Davidson</option>
-                                <option value="7">KTM</option>
-                                <option value="8">BMW</option>
-                                <option value="9">Triumph</option>
-                                <option value="10">MV Agusta</option>
-                                <option value="11">Piaggio</option>
-                                <option value="12">Royal Enfield</option>
-                                <option value="13">Indian</option>
-                                <option value="14">Buell</option>
-                            </select>
-                            <select class="select__option" type="text" placeholder="Mã loại xe">
-                                <option value="0">-- Chọn loại xe --</option>
-                                <option value="1">Xe số</option>
-                                <option value="2">Xe tay ga</option>
-                                <option value="3">Xe côn tay</option>
-                                <option value="4">Xe phân khối lớn</option>
-                            </select>
 
                         </div>
-                        <div class="admin-content-main-container-one-input">
-                            <select class="select__option width-99"  type="text" placeholder="Tính năng">
-                                <option value="0">-- Chọn tính năng --</option>
-                                <option value="1">Thiết kế khí động học tinh tế, sắc sảo</option>
-                                <option value="2">Động cơ tiên tiến, hiệu suất mạnh mẽ</option>
-                                <option value="3">Hệ thống điện tử tiên tiến, chính xác</option>
-                                <option value="4">Dáng vẻ cổ điển</option>
-                                <option value="5">Kiểu dáng thể thao cao cấp, năng động</option>
-                                <option value="6">Khung xe thế hệ mới</option>
-                            </select>
-                        </div>
-                        <div class="admin-content-main-container-one-input d-flex" >
-                            <select class="select__option width-33" type="text" placeholder="màu sắc">
-                                <option value="0">-- Chọn màu sắc --</option>
-                                <option value="1">Đỏ</option>
-                                <option value="2">Đen</option>
-                                <option value="3">Vàng</option>
-                                <option value="4">Xanh Dương</option>
-                                <option value="5">Xám</option>
-                                <option value="6">Tím</option>
-                                <option value="7">Vàng Gold</option>
-                                <option value="8">Bạc</option>
-                                <option value="9">Hồng</option>
-                                <option value="10">Trắng</option>
-                                <option value="11">Nâu</option>
-                                <option value="12">Cam</option>
-                                <option value="13">Xanh lá</option>
-                                <option value="14">Kem</option>
-                            </select>
-                            <select class="select__option width-33" type="text" placeholder="màu sắc">
-                                <option value="0">-- Chọn thông số --</option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                                <option value="4"></option>
-                                <option value="5"></option>
-                                <option value="6"></option>
-                                <option value="7"></option>
-                                <option value="8"></option>
-                                <option value="9"></option>
-                                <option value="10"></option>
-                                <option value="11"></option>
-                                <option value="12"></option>
-                                <option value="13"></option>
-                                <option value="14"></option>
-                            </select>
-                            <select class="select__option width-33" type="text" placeholder="màu sắc">
-                                <option value="0">-- Chọn --</option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                                <option value="4"></option>
-                                <option value="5"></option>
-                                <option value="6"></option>
-                                <option value="7"></option>
-                                <option value="8"></option>
-                                <option value="9"></option>
-                                <option value="10"></option>
-                                <option value="11"></option>
-                                <option value="12"></option>
-                                <option value="13"></option>
-                                <option value="14"></option>
-                            </select>
-                        </div>
                         <div class="admin-content-main-container-two-input">
-                            <input type="number" name="quatity" placeholder="Số lượng">
+                            <input type="number" name="quantity" placeholder="Số lượng">
                             <input style="margin: 0 10px;" type="number" name="price" placeholder="Giá bán">
-                            <input type="text" placeholder="Phiên bản">
+<%--                            <input type="text" placeholder="Phiên bản">--%>
                         </div>
                         <div class="admin-content-main-container-two-input">
                             <input type="date" name="launch" placeholder="Ngày sản xuất">
@@ -265,6 +177,28 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function (event) {
+            // Lấy giá trị của các ô input
+            const quantity = document.querySelector('input[name="quantity"]').value;
+            const price = document.querySelector('input[name="price"]').value;
+
+            // Kiểm tra nếu số lượng hoặc giá tiền âm
+            if (quantity < 0) {
+                alert('Số lượng không được âm!');
+                event.preventDefault(); // Ngăn không cho form gửi đi
+                return;
+            }
+
+            if (price < 0) {
+                alert('Giá tiền không được âm!');
+                event.preventDefault(); // Ngăn không cho form gửi đi
+                return;
+            }
+        });
+    </script>
+
 
     <script src="${pageContext.request.contextPath}/Admin/assets/js/product_add.js"></script>
     <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>

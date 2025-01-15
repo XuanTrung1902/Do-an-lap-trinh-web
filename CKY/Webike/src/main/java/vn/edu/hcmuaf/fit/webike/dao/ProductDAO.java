@@ -5,6 +5,7 @@ import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,18 +26,176 @@ public class ProductDAO {
 //        System.out.println(dao.getBrandOfProduct());
 //        System.out.println(dao.getAllBrand());
 //        System.out.println(dao.searchProducts("Honda"));
-//        System.out.println(dao.getAllProducts()); // hàm này để load sản phẩm lên trang quản lý sản phẩm của admin
+        System.out.println(dao.getAllProducts()); // hàm này để load sản phẩm lên trang quản lý sản phẩm của admin
+//        System.out.println(dao.searchProductsbyname("Honda"));
 
 
     }
 
+    public List<Map<String, Object>> searchProductsbyname(String keyword) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+        SELECT id, name, price, launch, 
+               (SELECT url FROM imgs WHERE productID = p.id LIMIT 1) AS imgUrl
+        FROM products p
+        WHERE name LIKE CONCAT('%', :keyword, '%')
+    """;
 
-    public boolean addProduct(String name, double price, String launch, String imageUrl, String des) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("keyword", keyword)
+                        .mapToMap()
+                        .list()
+        );
+    }
+
+
+    public boolean deleteProductById(int productId) {
+        Jdbi jdbi = JDBIConnect.get();
+
+        // SQL xóa sản phẩm
+//        String deleteProductSql = """
+//            DELETE FROM products
+//            WHERE id = :id
+//        """;
+
+        String deleteProductSql = """
+            UPDATE products
+            SET deleted = 1
+            WHERE id = :id
+        """;
+
+        // SQL xóa ảnh liên quan đến sản phẩm
+        String deleteImagesSql = """
+            DELETE FROM imgs
+            WHERE productID = :id
+        """;
+
+        return jdbi.inTransaction(handle -> {
+            // Xóa ảnh liên quan trước
+            handle.createUpdate(deleteImagesSql)
+                    .bind("id", productId)
+                    .execute();
+
+            // Xóa sản phẩm
+            int rowsAffected = handle.createUpdate(deleteProductSql)
+                    .bind("id", productId)
+                    .execute();
+
+            return rowsAffected > 0;
+        });
+    }
+
+
+
+    // Lấy thông tin sản phẩm theo ID chỉnh sửa trong trang quản lý sản phẩm của admin
+    public Product getProductById(int productId) {
+        Jdbi jdbi = JDBIConnect.get();
+
+        // Truy vấn thông tin cơ bản của sản phẩm
+        String productSql = """
+                    SELECT id, name, des, price, quantity, version, launch, status, brandID, typeID
+                    FROM products
+                    WHERE id = :id
+                """;
+
+        // Truy vấn danh sách URL ảnh của sản phẩm
+        String imageSql = """
+                    SELECT url
+                    FROM imgs
+                    WHERE productID = :id
+                """;
+
+        return jdbi.withHandle(handle -> {
+            Product product = handle.createQuery(productSql)
+                    .bind("id", productId)
+                    .map((rs, ctx) -> {
+                        Product p = new Product();
+                        p.setId(rs.getInt("id"));
+                        p.setName(rs.getString("name"));
+                        p.setDes(rs.getString("des"));
+                        p.setPrice(rs.getDouble("price"));
+                        p.setQuantity(rs.getInt("quantity"));
+                        p.setVersion(rs.getString("version"));
+                        p.setLaunch(rs.getString("launch"));
+                        p.setStatus(rs.getString("status"));
+                        p.setBrand(rs.getString("brandID"));
+                        p.setType(rs.getString("typeID"));
+                        return p;
+                    })
+                    .findOne()
+                    .orElse(null);
+
+            if (product == null) {
+                return null; // Không tìm thấy sản phẩm
+            }
+
+            // Lấy danh sách URL ảnh
+            List<String> imageUrls = handle.createQuery(imageSql)
+                    .bind("id", productId)
+                    .mapTo(String.class)
+                    .list();
+
+            // Đưa danh sách URL ảnh vào Map
+            Map<Color, String> images = new LinkedHashMap<>();
+            int index = 0;
+            for (String url : imageUrls) {
+                images.put(new Color("default" + index, ""), url);
+                index++;
+            }
+
+            product.setImg(images);
+
+            return product;
+        });
+    }
+
+
+    public boolean updateProduct(int id, String name, int quantity, double price, String launch, String imageUrl, String description) {
         Jdbi jdbi = JDBIConnect.get();
 
         String sql = """
-                INSERT INTO products (name, price, launch, des) 
-                VALUES (:name, :price, :launch, :des)
+                    UPDATE products
+                    SET name = :name, quantity = :quantity, price = :price, launch = :launch, des = :description
+                    WHERE id = :id
+                """;
+
+        String updateImageSql = """
+                    UPDATE imgs
+                    SET url = :url
+                    WHERE productID = :id
+                """;
+
+        return jdbi.inTransaction(handle -> {
+            // Cập nhật thông tin sản phẩm
+            int rowsUpdated = handle.createUpdate(sql)
+                    .bind("id", id)
+                    .bind("name", name)
+                    .bind("quantity", quantity)
+                    .bind("price", price)
+                    .bind("launch", launch)
+                    .bind("description", description)
+                    .execute();
+
+            // Nếu có ảnh mới, cập nhật URL ảnh
+            if (imageUrl != null) {
+                handle.createUpdate(updateImageSql)
+                        .bind("id", id)
+                        .bind("url", imageUrl)
+                        .execute();
+            }
+
+            return rowsUpdated > 0; // Trả về true nếu cập nhật thành công
+        });
+    }
+
+
+    public boolean addProduct(String name, double price, int quantity, String launch, String imageUrl, String des) {
+        Jdbi jdbi = JDBIConnect.get();
+
+        String sql = """
+                INSERT INTO products (name, price, quantity, launch, des) 
+                VALUES (:name, :price, :quantity, :launch, :des)
                 """;
 
         String imageSql = """
@@ -48,6 +207,7 @@ public class ProductDAO {
             int productId = handle.createUpdate(sql)
                     .bind("name", name)
                     .bind("price", price)
+                    .bind("quantity", quantity)
                     .bind("launch", launch)
                     .bind("des", des)
                     .executeAndReturnGeneratedKeys("id")
@@ -71,10 +231,12 @@ public class ProductDAO {
                     p.name ,
                     p.price ,
                     p.launch ,
+                    p.quantity,
                     i.url 
                 FROM products AS p
                 JOIN imgs AS i ON p.id = i.productID
-                GROUP BY p.id, i.id
+                WHERE p.deleted = 0
+                GROUP BY p.id;
                 """;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)
@@ -86,14 +248,14 @@ public class ProductDAO {
     public List<Map<String, Object>> searchProducts(String keyword) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-            SELECT p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,
-                   p.status, b.name AS brand, MIN(i.url) AS imgUrl
-            FROM products AS p
-            JOIN imgs AS i ON i.productID = p.id
-            JOIN brands AS b ON p.brandID = b.id
-            WHERE p.name LIKE CONCAT('%', :keyword, '%')
-            GROUP BY p.id;
-        """;
+                    SELECT p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,
+                           p.status, b.name AS brand, MIN(i.url) AS imgUrl
+                    FROM products AS p
+                    JOIN imgs AS i ON i.productID = p.id
+                    JOIN brands AS b ON p.brandID = b.id
+                    WHERE p.name LIKE CONCAT('%', :keyword, '%')
+                    GROUP BY p.id;
+                """;
 
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)
@@ -102,8 +264,6 @@ public class ProductDAO {
                         .list()
         );
     }
-
-
 
 
     public List<Brand> getAllBrand() {
@@ -150,7 +310,6 @@ public class ProductDAO {
                 handle.createQuery(sql).mapToMap().list()
         );
     }
-
 
 
     public Product getProduct(int id) { // lay sp theo id
@@ -210,6 +369,5 @@ public class ProductDAO {
                 .bind("id", id)
                 .mapToBean(Comment.class).list());
     }
-
 
 }

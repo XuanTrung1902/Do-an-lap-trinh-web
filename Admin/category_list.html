@@ -8,9 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="./assets/css/admin.css"> -->
- 
-    <link rel="stylesheet" href="./assets/css/order_detail.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="./assets/css/category_list.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <title>Admin</title>
 </head>
@@ -46,7 +45,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <div class="sub-menu-items">
-                                    <li><a href="user_list.html">
+                                    <li><a href="#">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Danh sách
                                         </a>
@@ -110,7 +109,7 @@
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="#">
+                                    <li><a href="discount.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -131,7 +130,7 @@
                                             Danh sách
                                         </a>
                                     </li>
-                                    <li><a href="#">
+                                    <li><a href="category_add.html">
                                             <i class="ri-arrow-right-s-fill"></i>
                                             Thêm
                                         </a>
@@ -158,7 +157,8 @@
                             <li class="flex-box user__login">
                                 <img style="width: 50px;" src="assets/images/logo.png" alt="">
                                 <p>Trí Đức</p>
-                                <i class="ri-arrow-down-s-fill"></i><ul class="header__navbar--user-menu">
+                                <i class="ri-arrow-down-s-fill"></i>
+                                <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
                                         <a href="#">Đăng xuất</a>
                                     </li>
@@ -170,51 +170,38 @@
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
-                        <h1>Chi tiết đơn hàng</h1>
+                        <h1>Danh mục</h1>
+                        <button class="btn-add__user">Thêm danh mục</button>
                     </div>
                     <div class="admin-content-main-container">
-                        <table >
+                        <!-- <div class="admin-content-main-search">
+                            <input type="text" id="searchInput" placeholder="Tìm kiếm người dùng...">
+                            <select id="filterType">
+                                <option value="name">Tên đăng nhập</option>
+                                <option value="address">Địa chỉ</option>
+                                <option value="phone">SĐT</option>
+                            </select>
+                        </div> -->
+                        <table id="list-user" style="background-color: white; font-size: 1.6rem;" >
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Ảnh</th>
-                                    <th>Tên</th>
-                                    <th>Hãng xe</th>
-                                    <th>Số lượng</th>
-                                    <th>Đã cọc</th>
-                                    <th>Còn lại</th>
-                                    <th>Tuỳ chỉnh</th>
+                                    <th>Tên hãng</th>
+                                    <th>Mô tả hãng</th>
+                                    <th>Logo hãng</th>
+                                    <th>Tuỳ chọn</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td><img src="./assets/images/vario.png" alt=""></td>
-                                    <td>Xe Vario</td>
                                     <td>Honda</td>
-                                    <td>1</td>
-                                    <td>49.000.000đ</td>
-                                    <td>49.000.000đ</td>
+                                    <td>alllalalala</td>
+                                    <td>Hình Ảnh logo</td>
                                     <td>
-                                        <a href="#" class="delete-button">Xóa</a>
+                                        <a href="user_edit.html" class="btn-edit">Sửa</a>
+                                        <a href="#" class="delete-button">Xoá</a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td><img src="./assets/images/vario.png" alt=""></td>
-                                    <td>Xe Vario</td>
-                                    <td>Honda</td>
-                                    <td>2</td>
-                                    <td>49.000.000đ</td>
-                                    <td>98.000.000đ</td>
-                                    <td>
-                                        <a href="#" class="delete-button">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6">Tổng cộng</td>
-                                    <td>147.000.000đ</td>
-                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -223,7 +210,112 @@
             </div>
         </div>
     </section>
-    <script src="assets/js/product_list.js"></script>
 
+    <!-- Modal -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Thêm người dùng</h2>
+        <form id="add-user-form">
+            <div class="form-group">
+                <label for="username">Tên đăng nhập:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">SĐT:</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="birthday">Ngày sinh:</label>
+                <input type="date" id="birthday" name="birthday" required>
+            </div>
+            <div class="form-group-inline">
+                <label for="sex">Giới tính:</label>
+                <select id="sex" name="sex" required>
+                    <option value="">Chọn giới tính</option>
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                </select>
+            </div>
+            <div class="form-group-inline">
+                <label for="created_at">Ngày tạo:</label>
+                <input type="date" id="created_at" name="created_at" required>
+                <label for="status">Trạng thái:</label>
+                <select id="status" name="status" required>
+                    <option value="active">Active</option>
+                    <option value="locked">Locked</option>
+                    <option value="verified">Verified</option>
+                </select>
+                <label for="role">Role:</label>
+                <select id="role" name="role" required>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-submit">Thêm</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.btn-add__user').addEventListener('click', function() {
+        document.getElementById('modal').style.display = 'block';
+    });
+
+    document.querySelector('.close-button').addEventListener('click', function() {
+        document.getElementById('modal').style.display = 'none';
+    });
+
+    document.getElementById('add-user-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Add user logic here
+        document.getElementById('modal').style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('modal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+</script>
+
+    <script src="assets/js/user_list.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+        $('#list-user').DataTable({
+            language: {
+                search: "Tìm kiếm:",
+                lengthMenu: "Hiển thị _MENU_ dòng",
+                info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                paginate: {
+                    first: "Đầu",
+                    last: "Cuối",
+                    next: ">",
+                    previous: "<",
+                },
+                infoFiltered: "(Lọc từ _MAX_ dòng)",
+                infoEmpty: "Không có dữ liệu",
+                zeroRecords: "Không tìm thấy dữ liệu phù hợp",
+            },
+            pageLength: 5, // Số dòng mặc định
+            lengthMenu: [5, 10, 20], // Tuỳ chọn số dòng hiển thị
+        });
+        $("#list-user").on({
+            mouseenter: function () {
+                $(this).css("background-color", "white");
+            },
+            mouseleave: function () {
+                $(this).css("background-color", "white");
+            },
+        });
+       });
+    </script>
 </body>
 </html>

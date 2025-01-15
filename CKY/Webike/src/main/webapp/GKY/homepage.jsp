@@ -39,7 +39,7 @@
                                 <a href="#">Trang chủ</a>
                             </li>
                             <li class="header__navbar--item">
-                                <a href="products">Chợ xe máy</a>
+                                <a href="list-products">Chợ xe máy</a>
                             </li>
                             <li class="header__navbar--item">
                                 <a href="news.jsp">Tin tức</a>
