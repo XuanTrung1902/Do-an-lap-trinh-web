@@ -23,31 +23,6 @@
     </h1>
 </div>
 
-<%--<div class="form-container">--%>
-<%--    <a href="<%= request.getContextPath()%>/Login" style="text-decoration: none; color: black; font-size: 24px;">--%>
-<%--        <i class="fa-solid fa-backward"></i>--%>
-<%--    </a>--%>
-<%--    <h2>Quên mật khẩu?</h2>--%>
-<%--&lt;%&ndash;    onsubmit="return validatePhone()"&ndash;%&gt;--%>
-<%--    <form action="<%= request.getContextPath()%>/forgot-password" method="post" >--%>
-<%--        <label for="phone">SDT:</label>--%>
-<%--&lt;%&ndash;        <input type="tel" id="phone" name="phone" required>&ndash;%&gt;--%>
-<%--        <input type="tel" id="phone" name="phone" value="<%= request.getAttribute("phone") != null ? request.getAttribute("phone") : "" %>" required>--%>
-<%--        <% if (request.getAttribute("error") != null) { %>--%>
-<%--        <div class="error-message" style="color: red;">--%>
-<%--            <%= request.getAttribute("error") %>--%>
-<%--        </div>--%>
-<%--        <% } %>--%>
-<%--        <label for="password">Mật khẩu:</label>--%>
-<%--        <input type="password" id="password" name="password" required>--%>
-
-<%--        <label for="confirm_password">Nhập lại mật khẩu:</label>--%>
-<%--        <input type="password" id="confirm_password" name="confirm_password" required>--%>
-
-<%--        <button type="submit">Gửi</button>--%>
-
-<%--    </form>--%>
-<%--</div>--%>
 
         <div class="form-container">
             <a href="<%= request.getContextPath()%>/Login" style="text-decoration: none; color: black; font-size: 24px;">
