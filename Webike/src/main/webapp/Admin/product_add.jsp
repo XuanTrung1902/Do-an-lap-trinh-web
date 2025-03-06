@@ -1,0 +1,296 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+          integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/base.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/detail.css">
+
+    <title>Admin</title>
+</head>
+<body>
+<c:set var="u" value="${empty sessionScope.auth ? 0 : sessionScope.auth}"/>
+<section class="admin">
+    <div class="row__grid">
+        <div class="admin__sidebar" style="height: 100%">
+            <div class="admin__sidebar--top">
+                <img src="Admin/assets/images/logo.png" alt="">
+            </div>
+            <div class="admin__sidebar--content">
+                <ul>
+                    <li><a href="#">
+                        <i class="ri-dashboard-line"></i>
+                        Dashboard
+                        <i></i>
+                    </a>
+                        <ul class="sub-menu">
+                            <div class="sub-menu-items">
+                                <li><a href="${pageContext.request.contextPath}/admin">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Tổng quan
+                                </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="ri-file-list-line"></i>
+                            Người dùng
+                            <i class="ri-add-box-line"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <div class="sub-menu-items">
+                                <li><a href="${pageContext.request.contextPath}/userList">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Danh sách
+                                </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="ri-file-list-line"></i>
+                            Đơn hàng
+                            <i class="ri-add-box-line"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <div class="sub-menu-items">
+                                <li><a href="order-list">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Danh sách
+                                </a>
+                                </li>
+                                <%--                                    <li>--%>
+                                <%--                                        <a href="order_edit.jsp">--%>
+                                <%--                                            <i class="ri-arrow-right-s-fill"></i>--%>
+                                <%--                                            Sửa    --%>
+                                <%--                                         </a>--%>
+                                <%--                                    </li>--%>
+                            </div>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ri-file-list-line"></i>
+                            Sản phẩm
+                            <i class="ri-add-box-line"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <div class="sub-menu-items">
+                                <li><a href="products">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Danh sách
+                                </a>
+                                </li>
+                                <li><a href="add-product">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Thêm
+                                </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="ri-file-list-line"></i>
+                            Giảm giá
+                            <i class="ri-add-box-line"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <div class="sub-menu-items">
+                                <li><a href="discountList">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Danh sách
+                                </a>
+                                </li>
+                                <li><a href="addDiscount">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Thêm
+                                </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="admin__content">
+            <div class="admin__content-top flex-box">
+                <div class="admin__content-top-left">
+                    <ul class="flex-box">
+                        <li><i class="ri-search-line"></i></li>
+                        <li><i class="ri-drag-move-line"></i></li>
+                    </ul>
+                </div>
+                <div class="admin__content-top-right flex-box">
+                    <ul class="flex-box">
+                        <li><i class="ri-notification-line" number="3"></i></li>
+                        <li><i class="ri-message-2-line" number="5"></i></li>
+                        <li class="flex-box">
+                            <img style="width: 50px;" src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="">
+                            <p>${sessionScope.auth.name}</p>
+                            <i class="ri-arrow-down-s-fill"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="admin-content-main">
+                <div class="admin-content-main-title">
+                    <h1>Thêm sản phẩm</h1>
+                </div>
+
+                <form id="specForm" class="admin-content-main-container" method="POST" action="add-product"
+                      enctype="multipart/form-data">
+                    <div class="admin-content-main-container-two-input">
+                        <input type="text" name="name" placeholder="Tên sản phẩm">
+                        <select name="color" style="margin: 0 10px;width: 48%;padding: 10px;font-size: 1.6rem;border: 1px solid #ddd;border-radius: 4px;box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);">
+                            <c:forEach var="color" items="${colorList}">
+                                <option value="${color.id}">${color.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="admin-content-main-container-two-input">
+                        <select name="brand" style="width: 48%;padding: 10px;font-size: 1.6rem;border: 1px solid #ddd;border-radius: 4px;box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);">
+                            <c:forEach var="brand" items="${brandList}">
+                                <option value="${brand.id}">${brand.name}</option>
+                            </c:forEach>
+                        </select>
+                        <select name="type" style="margin: 0 10px;width: 48%;padding: 10px;font-size: 1.6rem;border: 1px solid #ddd;border-radius: 4px;box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);">
+                            <c:forEach var="type" items="${typeList}">
+                                <option value="${type.id}">${type.type}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="admin-content-main-container-two-input">
+                        <input type="number" name="quantity" placeholder="Số lượng">
+                        <input style="margin: 0 10px;" type="number" name="price" placeholder="Giá bán">
+                    </div>
+                    <div class="admin-content-main-container-two-input">
+                        <input type="number" name="duration" placeholder="Số năm bảo hành">
+                        <input style="margin: 0 10px;" type="number" name="km" placeholder="Số km bảo hành">
+                    </div>
+                    <div class="admin-content-main-container-two-input">
+                        <input type="text" name="version" placeholder="Phiên bản">
+                    </div>
+                    <div class="admin-content-main-container-two-input">
+                        <input type="date" name="launch" placeholder="Ngày sản xuất">
+                        <div class="admin-content-main-container-choose-img">
+                            <input type="file" id="file" name="image" style="display: none;">
+                            <label for="file">Thêm hình ảnh</label>
+                        </div>
+                    </div>
+
+                    <div class="admin-content-main-container-description">
+                        <textarea name="description" id="editor" cols="30" rows="5" placeholder="Mô tả sản phẩm"
+                                  required></textarea>
+                    </div>
+
+                    <%-- thong so sp --%>
+                    <div>
+                        <div class="detail">
+                            <h1 style="font-size: 30px;">Thông số chi tiết</h1>
+                            <div class="type">
+                                <c:forEach var="type" items="${specType}">
+                                <div class="dongco">
+                                    <h1 style="text-transform:uppercase ">${type}</h1>
+                                    <c:forEach var="tag" items="${tags[type].keySet()}">
+                                    <fieldset class="dongco_fieldset">
+                                        <legend class="dongco_tilte">${tag}</legend>
+                                        <c:forEach var="spec" items="${tags[type][tag]}">
+                                        <div class="loai_option">
+                                            <input class="loai_input" id="${spec.id}" type="radio" name="${tag}" value="${spec.id}"/>
+                                            <label class="loai_label" for="${spec.id}">${spec.des}</label>
+                                        </div>
+                                        </c:forEach>
+                                    </fieldset>
+                                    </c:forEach>
+                                </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="selectedValues" id="selectedValues"/>
+                    <button type="submit">Thêm sản phẩm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function getCheckedValues() {
+        // Tạo một mảng để lưu trữ giá trị của các radio button đã chọn
+        const checkedValues = [];
+
+        // Lấy tất cả các radio button đã được chọn
+        const radios = document.querySelectorAll('input[type="radio"]:checked');
+
+        // Duyệt qua các radio button đã được chọn và thêm giá trị vào mảng
+        radios.forEach(radio => {
+            checkedValues.push(radio.value);
+        });
+
+        // Trả về mảng chứa các giá trị đã chọn
+        return checkedValues;
+    }
+
+    // Gọi hàm khi cần (ví dụ khi nhấn nút Submit)
+    document.querySelector('button[type="submit"]').addEventListener('click', function(e) {
+        e.preventDefault();  // Ngăn hành động mặc định của form
+
+        // Lấy mảng các giá trị đã chọn
+        const values = getCheckedValues();
+
+        // Cập nhật giá trị vào trường ẩn trong form
+        document.getElementById('selectedValues').value = JSON.stringify(values);
+
+        // Sau khi set giá trị vào trường ẩn, gửi form
+        document.getElementById('specForm').submit();
+    });
+</script>
+<script>
+    document.querySelector('form').addEventListener('submit', function (event) {
+        // Lấy giá trị của các ô input
+        const quantity = document.querySelector('input[name="quantity"]').value;
+        const price = document.querySelector('input[name="price"]').value;
+
+        // Kiểm tra nếu số lượng hoặc giá tiền âm
+        if (quantity < 0) {
+            alert('Số lượng không được âm!');
+            event.preventDefault(); // Ngăn không cho form gửi đi
+            return;
+        }
+
+        if (price < 0) {
+            alert('Giá tiền không được âm!');
+            event.preventDefault(); // Ngăn không cho form gửi đi
+            return;
+        }
+    });
+</script>
+
+
+<script src="${pageContext.request.contextPath}/Admin/assets/js/product_add.js"></script>
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('editor');
+</script>
+</body>
+</html>
