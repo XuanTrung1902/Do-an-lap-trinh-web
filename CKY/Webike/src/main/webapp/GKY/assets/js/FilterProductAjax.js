@@ -1,6 +1,7 @@
 $(document).ready(function() {
     let currentPage = 1;
     const itemsPerPage = 10;
+    var link = "productDetail?id=${p.id}";
 
     function fetchFilteredProducts() {
         var selectedBrands = [];
@@ -23,7 +24,7 @@ $(document).ready(function() {
                 response.products.forEach(function(product) {
                     var productHTML = `
                         <div class="grid__column-2" style="padding: 10px; height: 380px">
-                            <a href="products" class="bike--item">
+                            <a href="productDetail?id=${product.id}" class="bike--item">
                                 <div class="bike__img zoom-img">
                                     <img src="${product.imgUrl}" alt="${product.name}"/>
                                 </div>
