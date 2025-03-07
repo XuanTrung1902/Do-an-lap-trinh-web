@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Webike:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1700774a-8c1f-4a4e-bb4b-7bbc8f72e800" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Admin/order_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Admin/order_edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Admin/product_add.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Admin/product_add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/GKY/assets/js/FilterProductAjax.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/GKY/assets/js/FilterProductAjax.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Filter" />
+        <option value="Class" />
+        <option value="JavaScript File" />
+        <option value="Servlet" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2qCod1WKSFLI0WW0N0RA4fY829P" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.FilterDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FilterProductDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HomepageDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Application.JDBIConnect.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Product.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProductDAO.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Smart Tomcat.Tomcat: Webike.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.33.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;G:/LTW/New 1/Do-an-lap-trinh-web-main/CKY/Webike&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.28833553&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\testGitHub\Test\Test\CKY\Webike\src\main\webapp\GKY\assets\css" />
+      <recent name="G:\testGitHub\Test\Test\CKY\Webike\src\main\webapp\GKY" />
+      <recent name="G:\testGitHub\Test\Test\CKY\Webike\src\main\webapp" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.33">
+    <configuration name="ProductDAO" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="vn.edu.hcmuaf.fit.webike.dao.ProductDAO" />
+      <module name="Webike" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="vn.edu.hcmuaf.fit.webike.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 10.1.33" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.33" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="Webike:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/Webike" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="b595e9fe-779b-4198-b689-2af17a6d6b4e" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50852" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Webike:war" />
+        </option>
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ProductDAO" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1700774a-8c1f-4a4e-bb4b-7bbc8f72e800" name="Changes" comment="" />
+      <created>1734176006123</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734176006123</updated>
+      <workItem from="1734176009002" duration="4000" />
+      <workItem from="1735183948584" duration="617000" />
+      <workItem from="1735184921259" duration="525000" />
+      <workItem from="1735186263464" duration="1255000" />
+      <workItem from="1735189840666" duration="3000" />
+      <workItem from="1735217570931" duration="11530000" />
+      <workItem from="1735285505423" duration="2530000" />
+      <workItem from="1735289425251" duration="14000" />
+      <workItem from="1735301486746" duration="2358000" />
+      <workItem from="1735304212424" duration="1231000" />
+      <workItem from="1735307415053" duration="2059000" />
+      <workItem from="1735388095772" duration="5049000" />
+      <workItem from="1735703066591" duration="1457000" />
+      <workItem from="1735979173758" duration="226000" />
+      <workItem from="1735979609512" duration="2348000" />
+      <workItem from="1735997583385" duration="8901000" />
+      <workItem from="1736007145519" duration="863000" />
+      <workItem from="1736008027952" duration="588000" />
+      <workItem from="1736043276286" duration="1296000" />
+      <workItem from="1736044611567" duration="739000" />
+      <workItem from="1736045440831" duration="37000" />
+      <workItem from="1736045764370" duration="115000" />
+      <workItem from="1736045886935" duration="944000" />
+      <workItem from="1736046901393" duration="1582000" />
+      <workItem from="1736049520796" duration="1179000" />
+      <workItem from="1736168903271" duration="13933000" />
+      <workItem from="1736223618259" duration="5714000" />
+      <workItem from="1736302976085" duration="6559000" />
+      <workItem from="1736309841977" duration="735000" />
+      <workItem from="1736310678006" duration="69000" />
+      <workItem from="1736315619258" duration="2995000" />
+      <workItem from="1736318768685" duration="5379000" />
+      <workItem from="1736340272981" duration="6973000" />
+      <workItem from="1736349075902" duration="4301000" />
+      <workItem from="1736353434643" duration="397000" />
+      <workItem from="1736390947662" duration="2321000" />
+      <workItem from="1736393354381" duration="1000" />
+      <workItem from="1736430854292" duration="5314000" />
+      <workItem from="1736436329716" duration="1668000" />
+      <workItem from="1736481237461" duration="2977000" />
+      <workItem from="1736514926145" duration="5286000" />
+      <workItem from="1736522934358" duration="51000" />
+      <workItem from="1736600602678" duration="8005000" />
+      <workItem from="1736648603979" duration="7293000" />
+      <workItem from="1736660530379" duration="1129000" />
+      <workItem from="1736664035043" duration="1364000" />
+      <workItem from="1736669221464" duration="860000" />
+      <workItem from="1736670735289" duration="88000" />
+      <workItem from="1736670851789" duration="1387000" />
+      <workItem from="1736687611788" duration="5981000" />
+      <workItem from="1736694556920" duration="12000" />
+      <workItem from="1736735523442" duration="2877000" />
+      <workItem from="1736740662245" duration="8783000" />
+      <workItem from="1736754170384" duration="6630000" />
+      <workItem from="1736764587402" duration="593000" />
+      <workItem from="1736765197873" duration="356000" />
+      <workItem from="1736765574277" duration="344000" />
+      <workItem from="1736765938908" duration="33000" />
+      <workItem from="1736766103342" duration="17000" />
+      <workItem from="1736766247552" duration="8000" />
+      <workItem from="1736767234134" duration="208000" />
+      <workItem from="1736767491353" duration="686000" />
+      <workItem from="1736768198938" duration="99000" />
+      <workItem from="1736773807023" duration="13197000" />
+      <workItem from="1736821316444" duration="19005000" />
+      <workItem from="1736841811139" duration="2077000" />
+      <workItem from="1736844413595" duration="465000" />
+      <workItem from="1736845745265" duration="1273000" />
+      <workItem from="1736861221530" duration="11197000" />
+      <workItem from="1736910253662" duration="2690000" />
+      <workItem from="1736915152970" duration="6327000" />
+      <workItem from="1736936130347" duration="558000" />
+      <workItem from="1736936706865" duration="39000" />
+      <workItem from="1736937015721" duration="123000" />
+      <workItem from="1736937433588" duration="209000" />
+      <workItem from="1736938188795" duration="374000" />
+      <workItem from="1736939320132" duration="713000" />
+      <workItem from="1736953611434" duration="30000" />
+      <workItem from="1736954122486" duration="213000" />
+      <workItem from="1736954350232" duration="683000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

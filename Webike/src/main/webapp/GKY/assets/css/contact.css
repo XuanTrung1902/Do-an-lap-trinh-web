@@ -1,0 +1,114 @@
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.contact__title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact__title h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.contact__content {
+    display: flex;
+    width: 100%;
+}
+
+.contact__content--left,
+.contact__content--right {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.contact__content--left {
+    border-right: 1px solid var(--border-color);
+}
+
+.contact__form h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.contact__form .form-group {
+    margin-bottom: 15px;
+}
+
+.contact__form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+    color: var(--text-color);
+}
+
+.contact__form label i {
+    margin-right: 6px;
+}
+
+.contact__form input,
+.contact__form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.contact__form button {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.contact__form button:hover {
+    opacity: 0.85;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.contact__content--right h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.contact__content--right p {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.contact__content--right ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact__content--right ul li {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.contact__content--right ul li strong {
+    color: var(--primary-color);
+}
+
+.contact_map iframe {
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+}
