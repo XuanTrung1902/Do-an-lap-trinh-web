@@ -729,13 +729,14 @@
 }
 
 .title-second {
+    display: flex;
     box-sizing: border-box;
     list-style: none;
     text-transform: uppercase;
     height: 26px;
     border: 0;
     outline: 0;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     padding: 0;
 }
 
@@ -743,6 +744,26 @@
     padding-top: 20px;
     font-size: 2rem;
     padding-left: 62px;
+}
+
+.search__list {
+    margin-left: 155px;
+    margin-top: 20px;
+}
+
+.search__label {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.input_search {
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    padding: 16px 32px 16px 16px;
+    border-radius: 3px;
 }
 
 .bike-item__img {
@@ -830,7 +851,7 @@
     padding: 0px 5px;
     border: 1px solid #f49500;
     color: #f49500;
-    display: -webkit-inline-box;
+    /*display: -webkit-inline-box;*/
     font-size: 1.4rem;
 }
 

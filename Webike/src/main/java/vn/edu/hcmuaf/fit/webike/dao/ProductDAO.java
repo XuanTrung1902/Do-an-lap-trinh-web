@@ -281,14 +281,19 @@ public class ProductDAO {
     public List<Map<String, Object>> searchProducts(String keyword) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                    SELECT p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,
-                           p.status, b.name AS brand, MIN(i.url) AS imgUrl
-                    FROM products AS p
-                    JOIN imgs AS i ON i.productID = p.id
-                    JOIN brands AS b ON p.brandID = b.id
-                    WHERE p.name LIKE CONCAT('%', :keyword, '%')
-                    GROUP BY p.id;
-                """;
+                        SELECT p.id, p.name, 
+                               COALESCE(p.des, '') AS des, 
+                               p.price, p.quantity, 
+                               p.version, p.launch, 
+                               p.status, b.name AS brand, 
+                               COALESCE(MIN(i.url), '') AS imgUrl
+                        FROM products AS p
+                        LEFT JOIN imgs AS i ON i.productID = p.id
+                        JOIN brands AS b ON p.brandID = b.id
+                        WHERE p.name LIKE CONCAT('%', :keyword, '%')
+                        GROUP BY p.id;
+                    """;
+
 
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)

@@ -80,7 +80,7 @@
 
                 <div class="header__navbar--bot">
                     <div class="header__search">
-                        <input type="text" id="search-input" class="header__search--input" placeholder="Nhập từ khoá tìm kiếm"/>
+                        <input type="text"  class="header__search--input" placeholder="Nhập từ khoá tìm kiếm"/>
                         <div class="header__search-select">
                             <span class="header__search-select-label">Tìm xe</span>
                             <i class="header__search-select-icon"></i>
@@ -160,6 +160,11 @@
             <div class="motor__detail-list">
                 <div class="title-second">
                     <h3 class="title-second-name">Lọc sản phẩm</h3>
+                        <div class="search__list">
+                            <label class="search__label">Tìm kiếm: </label>
+                            <input id="search-input" class="input_search" placeholder="Nhập tên xe ">
+                        </div>
+
                 </div>
 <%--                value="xam" onclick="filterimg()"--%>
 

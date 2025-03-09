@@ -142,13 +142,13 @@ $(document).ready(function() {
 $(document).ready(function () {
     $('#search-input').on('keyup', function () {
         let keyword = $(this).val();
-        // console.log(keyword);
+        console.log(keyword);
         $.ajax({
             url: '/Webike/search',
             method: 'GET',
             data: { keyword: keyword },
             success: function (response) {
-                console.log('Response:', response);
+                // console.log('Response:', response);
                 let productGrid = $('#product-grid');
                 productGrid.empty(); // Xóa kết quả cũ
 
@@ -179,7 +179,9 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 console.error('Error status:', xhr.status); // Kiểm tra HTTP status code
-                console.error('Error response:', xhr.responseText); // Log chi tiết lỗi từ server
+                console.error('AJAX Error:', error);
+                // console.error('Status:', status);
+                // console.error('Response:', xhr.responseText);
             }
         });
     });
