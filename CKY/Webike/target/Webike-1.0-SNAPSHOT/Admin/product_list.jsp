@@ -1,0 +1,210 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.fmt" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+          integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./assets/css/admin.css"> -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/product_list.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/base.css">
+
+
+    <title>Admin</title>
+</head>
+<body>
+<section class="admin">
+    <div class="row__grid">
+        <div class="admin__sidebar">
+            <div class="admin__sidebar--top">
+                <img src="./assets/images/logo.png" alt="">
+            </div>
+            <div class="admin__sidebar--content">
+                <ul>
+                    <li><a href="#">
+                        <i class="ri-dashboard-line"></i>
+                        Dashboard
+                        <i></i>
+                    </a>
+                        <ul class="sub-menu">
+                            <div class="sub-menu-items">
+                                <li><a href="admin.jsp">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Tổng quan
+                                </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ri-file-list-line"></i>
+                            Người dùng
+                            <i class="ri-add-box-line"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <div class="sub-menu-items">
+                                <li><a href="user_list.jsp">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Danh sách
+                                </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ri-file-list-line"></i>
+                            Đơn hàng
+                            <i class="ri-add-box-line"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <div class="sub-menu-items">
+                                <li><a href="order_list.jsp">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Danh sách
+                                </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ri-file-list-line"></i>
+                            Sản phẩm
+                            <i class="ri-add-box-line"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <div class="sub-menu-items">
+                                <li><a href="#">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Danh sách
+                                </a>
+                                </li>
+                                <li><a href="add-product">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Thêm
+                                </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ri-file-list-line"></i>
+                            Giảm giá
+                            <i class="ri-add-box-line"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <div class="sub-menu-items">
+                                <li><a href="discount.jsp">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Danh sách
+                                </a>
+                                </li>
+                                <li><a href="#">
+                                    <i class="ri-arrow-right-s-fill"></i>
+                                    Thêm
+                                </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="admin__content">
+            <div class="admin__content-top flex-box">
+                <div class="admin__content-top-left">
+                    <ul class="flex-box">
+                        <li><i class="ri-search-line"></i></li>
+                        <li><i class="ri-drag-move-line"></i></li>
+                    </ul>
+                </div>
+                <div class="admin__content-top-right flex-box">
+                    <ul class="flex-box">
+                        <li><i class="ri-notification-line" number="3"></i></li>
+                        <li><i class="ri-message-2-line" number="5"></i></li>
+                        <li class="flex-box">
+                            <img style="width: 50px;" src="assets/images/logo.png" alt="">
+                            <p>Trí Đức</p>
+                            <i class="ri-arrow-down-s-fill"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="admin-content-main">
+                <div class="admin-content-main-title">
+                    <h1>Danh sách sản phẩm</h1>
+                </div>
+                <div class="admin-content-main-container">
+                    <div class="admin-content-main-search">
+                        <label style="font-size: 16px">Tìm kiếm</label>
+                        <input type="text" id="searchInput" placeholder="Tên sản phẩm" class="search-input">
+                        <%--                            <select class="search-select">--%>
+                        <%--                                <option value="">Phân khối</option>--%>
+                        <%--                                <option value="150"> &lt; 150</option>--%>
+                        <%--                                <option value="200"> &lt; 200</option>--%>
+                        <%--                                <option value="250"> &gt; 200</option>--%>
+                        <%--                            </select>--%>
+                        <%--                            <input type="number" placeholder="Giá từ" class="search-input">--%>
+                        <%--                            <input type="number" placeholder="Giá đến" class="search-input">--%>
+                        <%--                            <button class="search-button">Tìm kiếm</button>--%>
+                    </div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá bán</th>
+                            <th>Số lượng</th>
+                            <th>Tuỳ chỉnh</th>
+                        </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+                        <c:forEach var="p" items="${p}">
+                            <tr>
+                                    <%--<%= request.getContextPath() %>--%>
+                                <td>${p.id}</td>
+                                <td class="img__item"><img src="${p.url}" alt="${p.name}"></td>
+                                <td>${p.name}</td>
+                                <td>
+                                    <f:setLocale value="vi_VN"/>
+                                    <f:formatNumber value="${p.price}" type="currency"/>
+                                </td>
+                                <td>${p.quantity}</td>
+                                <td>
+                                    <a href="update-product?id=${p.id}" class="btn-edit">Sửa</a>
+                                    <a href="delete-product?id=${p.id}" class="btn-delete"
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">Xóa</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script src="${pageContext.request.contextPath}/Admin/assets/js/searchProductAjax.js"></script>
+<script src="${pageContext.request.contextPath}/Admin/assets/js/product_list.js"></script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/homepage.css">
+    <link rel="stylesheet" href="assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+
+    <link rel="stylesheet" href="assets/css/Gio hang.css">
+</head>
+<title>Giỏ hàng</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header d-flex align-items-center">
+            <a href="homepage.jsp">
+                <img class="logo-img" src="https://www.webike.vn/frontend/moto-v2/pc/img/logo.png?158926651620200827"
+                alt="Webike VN"></a>
+            <div class="separator"></div>
+            <h1 class="header__text">Giỏ hàng</h1>
+        </div>
+        <div class="head__line"></div>
+        <div class="product m-5 p-5 mb-0 pb-0 d-flex flex-column">
+            <div class="head row p-5 ms-5 me-5 mb-5 pt-4 pb-4 border shadow-sm rounded">
+                <div class="col-6 d-flex align-items-center gap-3">
+                    <input type="checkbox" id="cart">
+                    <label class="text " for="#cart">Sản phẩm</label>
+                </div>
+                <!-- <div class="col">
+                    <div class="text text-center">Đơn giá</div>
+                </div> -->
+                <div class="col-2">
+                    <div class="text text-center">Số lượng</div>
+                </div>
+                <div class="col">
+                    <div class="text text-center">Giá tiền</div>
+                </div>
+                <div class="col">
+                    <div class="text text-center">Thao tác</div>
+                </div>
+            </div>
+
+            <ul class="list-product" style="padding: 0px; margin: 0px; list-style-type: none;">
+                <li id="list1" class="products mb-5" style="padding: 0px; margin: 0px;">
+                    <!-- hang xe -->
+                    <div class="control row p-5 ms-5 me-5 pt-3 pb-3 border d-flex align-items-center gap-3">
+                        <div class="col-6 d-flex align-items-center gap-3">
+                            <input type="checkbox" class="brand" name="" id="brand1" onchange="brandItemChecked('brand1','item brand1')">
+                            <label class="brand-label text" for="brand1">DUCATI</label>
+                        </div>
+                    </div>
+                    <!-- sp 1 -->
+                    <div id="ducati1"  class="item row p-5 ms-5 me-5 border">
+                        <div class="item col-6 d-flex align-items-center gap-4">
+                            <input type="checkbox" class="item brand1">
+                            <img class="img-modi" src="assets/img/ducati red.png" alt="">
+                            <span class="pName text-1 text-break">DUCATI Panigale V4 (Đỏ)</span>
+                        </div>
+                        <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
+                            <!-- Ô này để cái button tăng giảm số lượng -->
+                            <div class="number d-flex align-items-center">
+                                <button id="d1" class="button-modi" onclick="decrease('sp1')">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <div id="sp1" class="quantity text-1">1</div>
+                                <button id="i1" class="button-modi" onclick="increase('sp1')">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item col d-flex align-items-center">
+                            <span class=" text-1 text-center full-width">
+                                <!-- Giá tiền -->
+                                221.010.000 vnd
+                            </span>
+                        </div>
+                        <div class="item col d-flex align-items-center gap-3">
+                            <span class="text-1 text-center text-danger full-width" onclick="deleteProduct('list1','ducati1')">Xóa</span>
+                        </div>
+                    </div>
+                    <!-- sp 2 -->
+                    <div id="ducati2"  class="item row p-5 ms-5 me-5 border">
+                        <div class="item col-6 d-flex align-items-center gap-4">
+                            <input type="checkbox" class="item brand1">
+                            <img class="img-modi" src="assets/img/ducati black.png" alt="">
+                            <span class="pName text-1 text-break">DUCATI Panigale V4 (Đen)</span>
+                        </div>
+                        <!-- <div class="item col d-flex align-items-center">
+                            <span class=" text-1 text-center full-width">
+                                221.010.000 vnd
+                            </span>
+                        </div> -->
+                        <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
+                            <!-- Ô này để cái button tăng giảm số lượng -->
+                            <div class="number d-flex align-items-center">
+                                <button class="button-modi">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <div class="quantity text-1">1</div>
+                                <button class="button-modi">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item col d-flex align-items-center">
+                            <span class=" text-1 text-center full-width">
+                                <!-- Giá tiền -->
+                                221.010.000 vnd
+                            </span>
+                        </div>
+                        <div class="item col d-flex align-items-center gap-3">
+                            <span class="text-1 text-center text-danger full-width" onclick="deleteProduct('list1','ducati2')">Xóa</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li id="list2" class="products mb-5" style="padding: 0px; margin: 0px;">
+                    <!-- hang xe -->
+                    <div class="control row p-5 ms-5 me-5 pt-3 pb-3 border d-flex align-items-center gap-3">
+                        <div class="col-6 d-flex align-items-center gap-3">
+                            <input type="checkbox" name="" class="brand" id="brand2" onchange="brandItemChecked('brand2','item brand2')">
+                            <label class="brand-label text" for="brand2">YAMAHA</label>
+                        </div>
+                    </div>
+                    <!-- sp 1 -->
+                    <div id="yamaha1" class="item row p-5 ms-5 me-5 border">
+                        <div class="item col-6 d-flex align-items-center gap-4">
+                            <input type="checkbox" class="item brand2">
+                            <img class="img-modi" src="assets/img/yamaha freego black.webp" alt="">
+                            <span class="pName text-1 text-break">YAMAHA FreeGo (Đen)</span>
+                        </div>
+                        <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
+                            <!-- Ô này để cái button tăng giảm số lượng -->
+                            <div class="number d-flex align-items-center">
+                                <button class="button-modi">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <div class="quantity text-1">1</div>
+                                <button class="button-modi">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item col d-flex align-items-center">
+                            <span class=" text-1 text-center full-width">
+                                <!-- Giá tiền -->
+                                56.420.000 vnd
+                            </span>
+                        </div>
+                        <div class="item col d-flex align-items-center gap-3">
+                            <span class="text-1 text-center text-danger full-width" onclick="deleteProduct('list2','yamaha1')">Xóa</span>
+                        </div>
+                    </div>
+                    <!-- sp 2 -->
+                    <div id="yamaha2" class="item row p-5 ms-5 me-5 border">
+                        <div class="item col-6 d-flex align-items-center gap-4">
+                            <input type="checkbox" class="item brand2">
+                            <img class="img-modi" src="assets/img/yamaha lexi black.webp" alt="">
+                            <span class="pName text-1 text-break">YAMAHA Lexi (Đen)</span>
+                        </div>
+                        <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
+                            <!-- Ô này để cái button tăng giảm số lượng -->
+                            <div class="number d-flex align-items-center">
+                                <button class="button-modi">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <div class="quantity text-1">1</div>
+                                <button class="button-modi">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item col d-flex align-items-center">
+                            <span class=" text-1 text-center full-width">
+                                <!-- Giá tiền -->
+                                21.710.000 vnd
+                            </span>
+                        </div>
+                        <div class="item col d-flex align-items-center gap-3">
+                            <span class="text-1 text-center text-danger full-width" onclick="deleteProduct('list2','yamaha2')">Xóa</span>
+                        </div>
+                    </div>
+                </li>
+
+                
+                <div class="buy-section shadow rounded pe-5 m-5 mb-0">
+                    <a href="Thanh toan.jsp">
+                        <button class=" buybtn">
+                            <span class="buybtn-text">Mua hàng</span>
+                        </button>
+                    </a>
+                </div>
+            </ul>
+
+        </div>
+
+    </div>
+
+<!-- noti -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body p-5 pt-3 pb-3 d-flex align-items-center justify-content-between">
+               <span class="toast-text">Đã xóa sản phẩm khỏi giỏ hàng.</span>
+               <button type="button" class="btn-close custom-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/Gio hang.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        cartItemChecked();
+    </script>
+</body>
+</html>
