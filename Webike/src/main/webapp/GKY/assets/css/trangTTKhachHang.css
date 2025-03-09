@@ -388,3 +388,71 @@ select {
 .change-avatar-form button.save-btn:hover {
     background-color: #d25238;
 }
+.change-email-form {
+    width: calc(100% - 270px);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.change-email-form h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.change-email-form .form-group {
+    margin-bottom: 15px;
+}
+
+.change-email-form input[type="email"],
+.change-email-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+/*gmail*/
+
+.change-email-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.change-email-form h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.change-email-form .form-group {
+    margin-bottom: 15px;
+}
+
+.change-email-form input[type="email"],
+.change-email-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.change-email-form .save-btn {
+    background-color: red;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.change-email-form .save-btn:hover {
+    background-color: #0056b3;
+}

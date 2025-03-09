@@ -51,6 +51,7 @@ public class loginController extends HttpServlet {
             }
         } else {
             request.setAttribute("error", "Xác nhận CAPTCHA không thành công");
+            request.setAttribute("phone", phoneNum);
             request.getRequestDispatcher("GKY/Dangnhap.jsp").forward(request, response);
         }
     }
