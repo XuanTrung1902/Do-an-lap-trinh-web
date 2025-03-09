@@ -10,6 +10,7 @@
 <%--    <base href="<%= request.getContextPath()%>/GKY/assets/">--%>
     <%--  <link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/GKY/assets/css/Dangnhap.css">--%>
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/Dang nhap.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <script>
         function validateForm() {
@@ -104,6 +105,7 @@
                                 <input type="checkbox" name="checkbox"> Lưu mật khẩu?
                             </label>
                         </div>
+                        <div class="g-recaptcha" data-sitekey="6LfYyu4qAAAAADQyzw-_afuoVxOh-VJAkfjPvd7N"></div>
                         <div class="field padding-bottom--24">
                             <input type="submit" name="submit" value="Đăng nhập">
                         </div>
