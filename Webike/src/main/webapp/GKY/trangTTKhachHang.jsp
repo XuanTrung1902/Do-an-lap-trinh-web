@@ -239,7 +239,7 @@
 
         <div id="change-email-form" class="change-email-form" style="display: none;">
             <h3>Đổi Email</h3>
-            <form id="send-otp-form" method="post" action="/SendOTPEmail">
+            <form id="send-otp-form" method="post" action="SendOTPEmail">
                 <div class="form-group">
                     <label for="new-email">Email mới:</label>
                     <input type="email" id="new-email" name="newEmail" required>
@@ -247,7 +247,7 @@
                 </div>
             </form>
 
-            <form id="verify-otp-form" method="post" action="/VerifyOTPEmail">
+            <form id="verify-otp-form" method="post" action="VerifyOTPEmail">
                 <div class="form-group">
                     <label for="otp-code">Nhập mã OTP:</label>
                     <input type="text" id="otp-code" name="otpCode" required>

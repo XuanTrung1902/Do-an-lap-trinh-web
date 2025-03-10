@@ -79,4 +79,15 @@ public class UserSevice {
         UserDao userdao = new UserDao();
         return userdao.findUserPhone(phoneNum);
     }
+    //Gmail
+    public static boolean updateEmailByPhone(String phoneNum, String newEmail) {
+        UserDao userdao = new UserDao();
+        User user = userdao.findUserPhone(phoneNum);
+        if (user != null) {
+            user.setEmail(newEmail);
+            return userdao.updateUser(user);
+        }
+        return false;
+    }
+
 }

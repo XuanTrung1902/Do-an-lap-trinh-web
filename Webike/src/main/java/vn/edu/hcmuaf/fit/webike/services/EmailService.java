@@ -6,7 +6,7 @@ import javax.mail.internet.MimeMessage;
 public class EmailService {
     public static void sendEmail(String to, String subject, String content) {
         final String username = "22130248@st.hcmuaf.edu.vn";
-        final String password = "aeem ipir bbjr zpjv";
+        final String password = "zotx mgcu itzq pzlj";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
