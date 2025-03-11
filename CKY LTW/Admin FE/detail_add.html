@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/detail.css" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <section class="admin">
+      <div class="row__grid">
+        <div class="admin__sidebar" style="height: 100%;">
+          <div class="admin__sidebar--top">
+            <img src="./assets/images/logo.png" alt="" />
+          </div>
+          <div class="admin__sidebar--content">
+            <ul>
+              <li>
+                <a href="admin.html">
+                  <i class="ri-dashboard-line"></i>
+                  Dashboard
+                  <i></i>
+                </a>
+                <ul class="sub-menu">
+                  <div class="sub-menu-items">
+                    <li>
+                      <a href="admin.html">
+                        <i class="ri-arrow-right-s-fill"></i>
+                        Tổng quan
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="ri-file-list-line"></i>
+                  Đơn hàng
+                  <i class="ri-add-box-line"></i>
+                </a>
+                <ul class="sub-menu">
+                  <div class="sub-menu-items">
+                    <li>
+                      <a href="order_list.html">
+                        <i class="ri-arrow-right-s-fill"></i>
+                        Danh sách
+                      </a>
+                    </li>
+                    <li>
+                      <a href="order_edit.html">
+                        <i class="ri-arrow-right-s-fill"></i>
+                        Sửa
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="ri-file-list-line"></i>
+                  Người dùng
+                  <i class="ri-add-box-line"></i>
+                </a>
+                <ul class="sub-menu">
+                  <div class="sub-menu-items">
+                    <li>
+                      <a href="user_list.html">
+                        <i class="ri-arrow-right-s-fill"></i>
+                        Danh sách
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="ri-file-list-line"></i>
+                  Sản phẩm
+                  <i class="ri-add-box-line"></i>
+                </a>
+                <ul class="sub-menu">
+                  <div class="sub-menu-items">
+                    <li>
+                      <a href="product_list.html">
+                        <i class="ri-arrow-right-s-fill"></i>
+                        Danh sách
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="ri-arrow-right-s-fill"></i>
+                        Thêm
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+              <li>
+                <a href="discount.html">
+                  <i class="ri-file-list-line"></i>
+                  Giảm giá
+                  <i class="ri-add-box-line"></i>
+                </a>
+                <ul class="sub-menu">
+                  <div class="sub-menu-items">
+                    <li>
+                      <a href="product_list.html">
+                        <i class="ri-arrow-right-s-fill"></i>
+                        Danh sách
+                      </a>
+                    </li>
+                    <li>
+                      <a href="product_add.html">
+                        <i class="ri-arrow-right-s-fill"></i>
+                        Thêm
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="ri-file-list-line"></i>
+                  Danh mục
+                  <i class="ri-add-box-line"></i>
+                </a>
+                <ul class="sub-menu">
+                  <div class="sub-menu-items">
+                    <li>
+                      <a href="category_list.html">
+                        <i class="ri-arrow-right-s-fill"></i>
+                        Danh sách
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="ri-arrow-right-s-fill"></i>
+                        Thêm
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="admin__content">
+          <div class="admin__content-top flex-box">
+            <div class="admin__content-top-left">
+              <ul class="flex-box">
+                <li><i class="ri-search-line"></i></li>
+                <li><i class="ri-drag-move-line"></i></li>
+              </ul>
+            </div>
+            <div class="admin__content-top-right flex-box">
+              <ul class="flex-box">
+                <li><i class="ri-notification-line" number="3"></i></li>
+                <li><i class="ri-message-2-line" number="5"></i></li>
+                <li class="flex-box user__login">
+                  <img
+                    style="width: 50px"
+                    src="assets/images/logo.png"
+                    alt=""
+                  />
+                  <p>Trí Đức</p>
+                  <i class="ri-arrow-down-s-fill"></i>
+                  <ul class="header__navbar--user-menu">
+                    <li class="header__navbar--user-menu-item">
+                      <a href="#">Đăng xuất</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="admin-content-main">
+            <div class="admin-content-main-title">
+              <h1>Thêm chi tiết sản phẩm</h1>
+            </div>
+            <form class="form__detail">
+              <div class="detail">
+                <div class="type">
+                  <div class="dongco">
+                    <h1>Động cơ</h1>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Loại</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ Parallel-Twin</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Bố trí xi lanh</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Dung tích xi-lanh C</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Tỷ số nén</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Công suất tối đa</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Mô men xoắn cực đại</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Hệ thống khởi động</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Hệ thống bôi trơn</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Dung tích bình xăng</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Mức tiêu thụ nhiên l</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Hệ thống đánh lửa</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Tỷ số truyền động</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Loại khung</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Hệ thống giảm xóc tr</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Độ lệch phương trục </legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Hệ thống giảm xóc sa</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Phanh trước</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Phanh sau</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Lốp trước</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Lốp sau</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Kích thước dài x rộng</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Độ cao yên xe</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Độ cao gầm xe</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Khoảng cách giữa 2 t</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Ngăn chứa đồ</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                    <fieldset class="dongco_fieldset">
+                      <legend class="dongco_tilte">Trọng lượng ướt</legend>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                      <div class="loai_option">
+                        <input class="loai_input" id="1" type="radio" name="dongco" value="2" />
+                        <label class="loai_label" for="1">Động cơ 2 xi-lanh</label>
+                      </div>
+                    </fieldset>
+                  </div>
+
+                </div>
+              </div>
+              <button class="btn__submitdetail">Gửi</button>
+
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="assets/js/product_add.js"></script>
+    <!-- ...existing code... -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('.form__detail');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Add your form submission logic here
+        alert('Form submitted successfully!');
+      });
+    });
+  </script>
+<!-- ...existing code... -->
+  </body>
+</html>
