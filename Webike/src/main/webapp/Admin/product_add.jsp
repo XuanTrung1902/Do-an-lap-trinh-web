@@ -195,7 +195,6 @@
                             <label for="file">Thêm hình ảnh</label>
                         </div>
                     </div>
-
                     <div class="admin-content-main-container-description">
                         <textarea name="description" id="editor" cols="30" rows="5" placeholder="Mô tả sản phẩm"
                                   required></textarea>

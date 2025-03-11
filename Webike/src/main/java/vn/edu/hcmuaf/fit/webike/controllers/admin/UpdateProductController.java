@@ -4,14 +4,13 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
-import vn.edu.hcmuaf.fit.webike.models.BikeType;
-import vn.edu.hcmuaf.fit.webike.models.Brand;
-import vn.edu.hcmuaf.fit.webike.models.Color;
-import vn.edu.hcmuaf.fit.webike.models.Product;
+import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "UpdateProductController", value = "/update-product")
 @MultipartConfig(
@@ -37,10 +36,25 @@ public class UpdateProductController extends HttpServlet {
                 List<Brand> brandList = productDAO.getBrands();
                 List<BikeType> typeList = productDAO.getTypes();
 
+                List<String> specType = productDAO.getSpecType();
+
+                Map<String, Map<String, List<Spec>>> tags = new LinkedHashMap<>();
+                for (String s : specType) {
+                    List<String> tag = productDAO.getTag(s);
+                    Map<String, List<Spec>> specMap = new LinkedHashMap<>();
+                    for (String t : tag) {
+                        List<Spec> specs = productDAO.getSpec1(t);
+                        specMap.put(t, specs);
+                    }
+                    tags.put(s, specMap);
+                }
+
                 request.setAttribute("colorList", colorList);
                 request.setAttribute("brandList", brandList);
                 request.setAttribute("typeList", typeList);
                 request.setAttribute("product", product);
+                request.setAttribute("specType", specType);
+                request.setAttribute("tags", tags);
 
                 request.getRequestDispatcher("/Admin/product_edit.jsp").forward(request, response);
                 return;

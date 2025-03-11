@@ -194,6 +194,34 @@
                         <div class="admin-content-main-container-description">
                             <textarea name="description" id="editor" cols="30" rows="5" placeholder="Mô tả sản phẩm" required></textarea>
                         </div>
+
+                        <%-- thong so sp --%>
+                        <div>
+                            <div class="detail">
+                                <h1 style="font-size: 30px;">Thông số chi tiết</h1>
+                                <div class="type">
+                                    <c:forEach var="type" items="${specType}">
+                                        <div class="dongco">
+                                            <h1 style="text-transform:uppercase ">${type}</h1>
+                                            <c:forEach var="tag" items="${tags[type].keySet()}">
+                                                <fieldset class="dongco_fieldset">
+                                                    <legend class="dongco_tilte">${tag}</legend>
+                                                    <c:forEach var="spec" items="${tags[type][tag]}">
+                                                        <div class="loai_option">
+                                                            <input class="loai_input" id="${spec.id}" type="radio" name="${tag}" value="${spec.id}"/>
+                                                            <label class="loai_label" for="${spec.id}">${spec.des}</label>
+                                                        </div>
+                                                    </c:forEach>
+                                                </fieldset>
+                                            </c:forEach>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="selectedValues" id="selectedValues"/>
+
+
                         <button type="submit">Cập nhật sản phẩm</button>
                     </form>
                 </div>
