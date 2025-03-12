@@ -188,4 +188,90 @@ $(document).ready(function () {
 });
 
 
+//////////////////////////////////////////////////////////////
+/////////////////////// gợi ý tìm kiếm ///////////////////////
+//////////////////////////////////////////////////////////////
+$(document).ready(function () {
+    let typingTimer;
+    const doneTypingInterval = 300; // Thời gian chờ (ms) trước khi gọi API
+
+    // Lắng nghe sự kiện khi người dùng nhập vào ô tìm kiếm
+    $('.header__search--input').on('keyup', function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(() => {
+            let keyword = $(this).val().trim();
+
+            // Nếu từ khóa rỗng, ẩn danh sách gợi ý
+            if (keyword === '') {
+                $('.search-suggestions').hide();
+                return;
+            }
+
+            // Gọi API để lấy danh sách gợi ý
+            $.ajax({
+                url: '/Webike/search',
+                method: 'GET',
+                data: { keyword: keyword },
+                success: function (response) {
+                    let suggestionList = $('#suggestion-list');
+                    suggestionList.empty(); // Xóa danh sách gợi ý cũ
+
+                    if (response.length > 0) {
+                        // Duyệt qua danh sách sản phẩm trả về và hiển thị gợi ý
+                        response.forEach(product => {
+                            let suggestionItem = `
+                                <li data-id="${product.id}">
+                                <div>
+                                    <img src="${product.imgurl}" alt="${product.name}"/>
+                                    <span><strong>${product.name}</strong></span>
+                                </div>
+                                    <span>${new Intl.NumberFormat().format(product.price)}₫</span>
+                                </li>`;
+                            suggestionList.append(suggestionItem);
+                        });
+
+                        // Hiển thị danh sách gợi ý
+                        $('.search-suggestions').show();
+                    } else {
+                        // Nếu không có kết quả, hiển thị thông báo
+                        suggestionList.append('<li>Không tìm thấy xe nào.</li>');
+                        $('.search-suggestions').show();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('AJAX Error:', error);
+                    $('.search-suggestions').hide();
+                }
+            });
+        }, doneTypingInterval);
+    });
+
+    // Xử lý khi người dùng nhấp vào một gợi ý
+    $(document).on('click', '#suggestion-list li', function () {
+        let productId = $(this).data('id');
+        if (productId) {
+            // Chuyển hướng đến trang chi tiết sản phẩm
+            window.location.href = `productDetail?id=${productId}`;
+        }
+        $('.search-suggestions').hide(); // Ẩn danh sách gợi ý sau khi chọn
+    });
+
+    // Ẩn danh sách gợi ý khi người dùng nhấp ra ngoài
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.header__search').length) {
+            $('.search-suggestions').hide();
+        }
+    });
+
+    // Xử lý khi nhấn nút tìm kiếm
+    $('.header__search--btn').on('click', function () {
+        let keyword = $('.header__search--input').val().trim();
+        if (keyword) {
+            // Chuyển hướng đến trang kết quả tìm kiếm
+            window.location.href = `/Webike/list-products?keyword=${encodeURIComponent(keyword)}`;
+        }
+    });
+});
+
+
 

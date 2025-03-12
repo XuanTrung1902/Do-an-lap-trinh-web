@@ -89,6 +89,9 @@
                         <button class="header__search--btn">
                             <i class="header__search--btn-icon fa-solid fa-search"></i>
                         </button>
+                        <div class="search-suggestions">
+                            <ul id="suggestion-list" ></ul>
+                        </div>
                     </div>
 
                     <div class="header__cart" style="width: fit-content">
