@@ -50,16 +50,18 @@ function nextBtn() {
 }
 
 
-// pagination for product
+//// pagination for product///
+// Phân trang sản phẩm
 let productItems = document.querySelectorAll(".list-bike .grid__column-2");
-const itemsPerPage = 10;
-let currentProductPage = 1;
+const itemsPerPage = 10; // Số sản phẩm mỗi trang
+let currentProductPage = 1; // Trang hiện tại
 
+// Hàm hiển thị sản phẩm theo trang
 function renderProductItems() {
   productItems.forEach((product, index) => {
     if (
-      index >= (currentProductPage - 1) * itemsPerPage &&
-      index < currentProductPage * itemsPerPage
+        index >= (currentProductPage - 1) * itemsPerPage &&
+        index < currentProductPage * itemsPerPage
     ) {
       product.style.display = "block";
     } else {
@@ -68,30 +70,10 @@ function renderProductItems() {
   });
 }
 
-// function renderProductPagination() {
-//   const paginationContainer = $(".pagination");
-//   paginationContainer.innerHTML = "";
-//   const totalPages = Math.ceil(productItems.length / itemsPerPage);
-//
-//   for (let i = 1; i <= totalPages; i++) {
-//     const li = document.createElement("li");
-//     li.classList.add("pagination__link");
-//     if (i === currentProductPage) {
-//       li.classList.add("pagination__link--active");
-//     }
-//     li.textContent = i;
-//     li.addEventListener("click", () => {
-//       currentProductPage = i;
-//       renderProductItems();
-//       renderProductPagination();
-//     });
-//     paginationContainer.appendChild(li);
-//   }
-// }
-
+// Hàm render phân trang
 function renderProductPagination() {
-  const paginationContainer = $(".pagination ul");
-  paginationContainer.empty(); // Clear existing pagination links
+  const paginationContainer = document.querySelector(".pagination ul");
+  paginationContainer.innerHTML = ""; // Xóa các liên kết phân trang cũ
   const totalPages = Math.ceil(productItems.length / itemsPerPage);
 
   for (let i = 1; i <= totalPages; i++) {
@@ -106,10 +88,11 @@ function renderProductPagination() {
       renderProductItems();
       renderProductPagination();
     });
-    paginationContainer.append(li); // Use jQuery append method
+    paginationContainer.appendChild(li);
   }
 }
 
+// Hàm xử lý nút trái (trước)
 function handleLeftButtonClick() {
   if (currentProductPage > 1) {
     currentProductPage--;
@@ -118,6 +101,7 @@ function handleLeftButtonClick() {
   }
 }
 
+// Hàm xử lý nút phải (tiếp)
 function handleRightButtonClick() {
   const totalPages = Math.ceil(productItems.length / itemsPerPage);
   if (currentProductPage < totalPages) {
@@ -127,19 +111,27 @@ function handleRightButtonClick() {
   }
 }
 
+// Khởi tạo phân trang ngay khi trang được tải
 document.addEventListener("DOMContentLoaded", () => {
+  // Đảm bảo rằng productItems được cập nhật sau khi JSTL render
+  productItems = document.querySelectorAll(".list-bike .grid__column-2");
+
+  // Render sản phẩm và phân trang ngay từ đầu
   renderProductItems();
   renderProductPagination();
 
+  // Gán sự kiện cho các nút điều hướng
   const leftButton = document.querySelector(".btn--left");
   const rightButton = document.querySelector(".btn--right");
-  //   console.log(leftButton, rightButton);
 
   leftButton.addEventListener("click", handleLeftButtonClick);
   rightButton.addEventListener("click", handleRightButtonClick);
 });
 
-// filter: product
+
+////////////////////////////
+// filter: product  //////
+///////////////////////////
 function filterImages() {
   const checkboxes = document.querySelectorAll(
     '#checkboxes input[type="checkbox"]'
@@ -201,7 +193,10 @@ function filterImages() {
   detailList.style.marginBottom = "40px";
 }
 
+
+///////////////////////////
 // render product after filter
+///////////////////////////
 function renderPagination(totalPages) {
   const paginationContainer = document.querySelector(".pagination");
   paginationContainer.innerHTML = "";

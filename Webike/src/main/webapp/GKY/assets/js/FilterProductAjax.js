@@ -42,13 +42,16 @@ $(document).ready(function() {
                     $(".grid__row").append(productHTML);
                 });
 
+                // Gọi hàm render phân trang ngay sau khi tải sản phẩm
                 renderPagination(response.totalPages);
+
+                // Áp dụng phân trang ngay từ đầu (chỉ hiển thị 10 sản phẩm đầu tiên)
+                applyPagination();
             },
             error: function(xhr, status, error) {
-                // console.log("Có lỗi xảy ra:", error);
                 console.error("AJAX Error:", error);
                 console.error("Status:", status);
-                console.error("Response:", xhr.responseText); // Xem lỗi phía server
+                console.error("Response:", xhr.responseText);
             }
         });
     }
@@ -86,7 +89,11 @@ $(document).ready(function() {
                     $(".grid__row").append(productHTML);
                 });
 
+                // Gọi hàm render phân trang ngay sau khi tải sản phẩm
                 renderPagination(response.totalPages);
+
+                // Áp dụng phân trang ngay từ đầu (chỉ hiển thị 10 sản phẩm đầu tiên)
+                applyPagination();
             },
             error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra:", error);
@@ -94,23 +101,22 @@ $(document).ready(function() {
         });
     }
 
-    $("input[name='brand']").on("change", function() {
-        currentPage = 1; // Reset to the first page
-
-        var selectedBrands = [];
-        $("input[name='brand']:checked").each(function() {
-            selectedBrands.push($(this).val());
+    // Hàm áp dụng phân trang (ẩn/hiện sản phẩm dựa trên trang hiện tại)
+    function applyPagination() {
+        let productItems = document.querySelectorAll(".grid__row .grid__column-2");
+        productItems.forEach((product, index) => {
+            if (
+                index >= (currentPage - 1) * itemsPerPage &&
+                index < currentPage * itemsPerPage
+            ) {
+                product.style.display = "block";
+            } else {
+                product.style.display = "none";
+            }
         });
+    }
 
-        if (selectedBrands.length === 0) {
-            // No checkboxes are checked, fetch all products
-            fetchAllProducts();
-        } else {
-            // Fetch filtered products
-            fetchFilteredProducts();
-        }
-    });
-
+    // Hàm render phân trang
     function renderPagination(totalPages) {
         $(".pagination ul").empty();
 
@@ -119,19 +125,47 @@ $(document).ready(function() {
             $(".pagination ul").append(pageItem);
         }
 
+        // Gán sự kiện cho các liên kết phân trang
         $(".pagination__link").on("click", function() {
             currentPage = parseInt($(this).data("page"));
-            fetchFilteredProducts();
+            fetchFilteredProducts(); // Gọi lại API để tải sản phẩm của trang mới
         });
+
+        // Gán sự kiện cho nút trái/phải
+        const leftButton = document.querySelector(".btn--left");
+        const rightButton = document.querySelector(".btn--right");
+
+        leftButton.onclick = function() {
+            if (currentPage > 1) {
+                currentPage--;
+                fetchFilteredProducts();
+            }
+        };
+
+        rightButton.onclick = function() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                fetchFilteredProducts();
+            }
+        };
     }
 
-    $("#resetFilters").on("click", function() {
-        $("input[name='brand']").prop("checked", false);
-        currentPage = 1; // Reset to the first page
-        fetchAllProducts();
+    // Lắng nghe sự kiện thay đổi bộ lọc
+    $("input[name='brand']").on("change", function() {
+        currentPage = 1; // Reset về trang đầu tiên
+        var selectedBrands = [];
+        $("input[name='brand']:checked").each(function() {
+            selectedBrands.push($(this).val());
+        });
+
+        if (selectedBrands.length === 0) {
+            fetchAllProducts();
+        } else {
+            fetchFilteredProducts();
+        }
     });
 
-    // Initial fetch
+    // Khởi tạo lần đầu (tải tất cả sản phẩm)
     fetchAllProducts();
 });
 

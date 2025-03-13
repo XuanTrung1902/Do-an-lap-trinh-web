@@ -74,6 +74,13 @@
             <version>1.1.1</version>
         </dependency>
 
+        <!-- Thêm dependency cho org.json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20231013</version> <!-- Phiên bản mới nhất tại thời điểm hiện tại -->
+        </dependency>
+
         <!--        <dependency>-->
         <!--            <groupId>com.google.code.gson</groupId>-->
         <!--            <artifactId>gson</artifactId>-->
