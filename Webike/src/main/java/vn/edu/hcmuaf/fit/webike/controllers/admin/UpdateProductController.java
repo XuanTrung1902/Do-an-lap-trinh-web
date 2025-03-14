@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
+import vn.edu.hcmuaf.fit.webike.dao.UpdateProductDAO;
 import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.io.File;
@@ -29,6 +30,8 @@ public class UpdateProductController extends HttpServlet {
             // Lấy sản phẩm từ database
             ProductDAO productDAO = new ProductDAO();
             Product product = productDAO.getProductById(Integer.parseInt(productId));
+            UpdateProductDAO updateProductDAO = new UpdateProductDAO();
+            List<Integer> listSpecID = updateProductDAO.getAllSpecID(productId);
 
             if (product != null) {
                 // Gửi sản phẩm sang form sửa
@@ -49,12 +52,14 @@ public class UpdateProductController extends HttpServlet {
                     tags.put(s, specMap);
                 }
 
+                request.setAttribute("productID", productId);
                 request.setAttribute("colorList", colorList);
                 request.setAttribute("brandList", brandList);
                 request.setAttribute("typeList", typeList);
                 request.setAttribute("product", product);
                 request.setAttribute("specType", specType);
                 request.setAttribute("tags", tags);
+                request.setAttribute("listSpecID", listSpecID);
 
                 request.getRequestDispatcher("/Admin/product_edit.jsp").forward(request, response);
                 return;
