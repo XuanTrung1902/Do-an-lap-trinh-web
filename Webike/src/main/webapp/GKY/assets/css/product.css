@@ -978,14 +978,13 @@
 .pagination ul li {
     position: relative;
     display: inline-block;
-    margin: 0 10px;
+    margin: 0 6px;
     width: 45px;
     height: 45px;
-    border-radius: 50%;
     text-align: center;
     font-size: 22px;
     font-weight: 500;
-    line-height: 45px;
+    line-height: 25px;
     cursor: pointer;
     background-position: 0 -45px;
     transition: background-position 0.5s ;

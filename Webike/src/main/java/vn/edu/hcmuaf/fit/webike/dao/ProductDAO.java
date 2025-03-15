@@ -342,7 +342,7 @@ public class ProductDAO {
         //                    SELECT p.*, min(i.url) AS imgUrl
 //                    FROM products AS p
 //                    JOIN imgs AS i ON i.productID = p.id
-//                    GROUP BY p.id
+//                    GROUP BY p.id  offset: currentPage limit 9;
         String sql = """    
                       SELECT p.*,
                              (SELECT d.amount FROM discounts AS d WHERE d.productID = p.id ORDER BY d.id DESC LIMIT 1) AS discount,

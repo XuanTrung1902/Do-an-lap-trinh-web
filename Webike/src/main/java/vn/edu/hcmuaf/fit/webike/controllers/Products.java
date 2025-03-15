@@ -19,6 +19,7 @@ public class Products extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductDAO dao = new ProductDAO();
+//        int currentPage = request.getParameter("page")  == null ? 0: Integer.parseInt(request.getParameter("page")); // Lấy trang hiện tại
         List<Map<String, Object>> products = dao.getAllProductImg(); // Lấy danh sách sản phẩm kèm ảnh
 //        List<Product> products = dao.getAllProductImg(); // Lấy danh sách sản phẩm kèm ảnh
 

@@ -8,29 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class FilterDAO {
-//    public List<Map<String, Object>> getProductsByBrands(String[] brands) {
-//        Jdbi jdbi = JDBIConnect.get();
-//        String sql = """
-//                    SELECT\s
-//                                             p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,\s
-//                                             p.status, b.name AS brand, i.url
-//                                         FROM products AS p
-//                                         JOIN imgs AS i ON i.productID = p.id
-//                                         JOIN brands AS b ON p.brandID = b.id
-//                                         WHERE b.name IN (<brands>)
-//                                         GROUP BY p.id
-//
-//                """;
-//
-//        return jdbi.withHandle(handle ->
-//                handle.createQuery(sql)
-//                        .bindList("brands", brands) // Ràng buộc danh sách các thương hiệu
-//                        .mapToMap()
-//                        .list()
-//        );
-//    }
-
-    public List<Map<String, Object>> getAllProducts() {
+    public List<Map<String, Object>> getAllProducts(int page, int limit) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
                     SELECT p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,
@@ -38,10 +16,34 @@ public class FilterDAO {
                     FROM products AS p
                     JOIN imgs AS i ON i.productID = p.id
                     JOIN brands AS b ON p.brandID = b.id
-                    GROUP BY p.id;
+                    GROUP BY p.id
+                    LIMIT :limit OFFSET :offset
                 """;
 
-        return jdbi.withHandle(handle -> handle.createQuery(sql).mapToMap().list());
+        int offset = (page - 1) * limit;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("limit", limit)
+                        .bind("offset", offset)
+                        .mapToMap()
+                        .list()
+        );
+    }
+
+    public int getTotalProducts() {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+            SELECT COUNT(*)
+            FROM products AS p
+            JOIN brands AS b ON p.brandID = b.id
+            """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapTo(int.class)
+                        .one()
+        );
     }
 
     public int getTotalProductsByBrands(String[] brands) {
@@ -84,7 +86,7 @@ public class FilterDAO {
             if (brands != null && brands.length > 0) {
                 query.bindList("brands", brands);
             } else {
-                query.define("brands", null); // Tránh lỗi bindList
+                query.define("brands", null);
             }
 
             return query.mapToMap().list();

@@ -22,7 +22,7 @@ $(document).ready(function() {
 
                 response.products.forEach(function(product) {
                     var productHTML = `
-                        <div class="grid__column-2" style="padding: 10px; height: 380px">
+                        <div class="grid__column-2" style="padding: 10px; height: 380px" data-attributes="${product.brand || ''}">
                             <a href="productDetail?id=${product.id}" class="bike--item">
                                 <div class="bike__img zoom-img">
                                     <img src="${product.imgUrl}" alt="${product.name}"/>
@@ -42,11 +42,10 @@ $(document).ready(function() {
                     $(".grid__row").append(productHTML);
                 });
 
-                // Gọi hàm render phân trang ngay sau khi tải sản phẩm
+                console.log(response);
                 renderPagination(response.totalPages);
-
-                // Áp dụng phân trang ngay từ đầu (chỉ hiển thị 10 sản phẩm đầu tiên)
-                applyPagination();
+                // Bỏ applyPagination để tránh xung đột
+                // applyPagination();
             },
             error: function(xhr, status, error) {
                 console.error("AJAX Error:", error);
@@ -69,7 +68,7 @@ $(document).ready(function() {
 
                 response.products.forEach(function(product) {
                     var productHTML = `
-                        <div class="grid__column-2" style="padding: 10px; height: 380px">
+                        <div class="grid__column-2" style="padding: 10px; height: 380px" data-attributes="${product.brand || ''}">
                             <a href="productDetail?id=${product.id}" class="bike--item">
                                 <div class="bike__img zoom-img">
                                     <img src="${product.imgUrl}" alt="${product.name}"/>
@@ -89,11 +88,10 @@ $(document).ready(function() {
                     $(".grid__row").append(productHTML);
                 });
 
-                // Gọi hàm render phân trang ngay sau khi tải sản phẩm
+                console.log(response);
                 renderPagination(response.totalPages);
-
-                // Áp dụng phân trang ngay từ đầu (chỉ hiển thị 10 sản phẩm đầu tiên)
-                applyPagination();
+                // Bỏ applyPagination để tránh xung đột
+                // applyPagination();
             },
             error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra:", error);
@@ -101,22 +99,6 @@ $(document).ready(function() {
         });
     }
 
-    // Hàm áp dụng phân trang (ẩn/hiện sản phẩm dựa trên trang hiện tại)
-    function applyPagination() {
-        let productItems = document.querySelectorAll(".grid__row .grid__column-2");
-        productItems.forEach((product, index) => {
-            if (
-                index >= (currentPage - 1) * itemsPerPage &&
-                index < currentPage * itemsPerPage
-            ) {
-                product.style.display = "block";
-            } else {
-                product.style.display = "none";
-            }
-        });
-    }
-
-    // Hàm render phân trang
     function renderPagination(totalPages) {
         $(".pagination ul").empty();
 
@@ -125,34 +107,62 @@ $(document).ready(function() {
             $(".pagination ul").append(pageItem);
         }
 
-        // Gán sự kiện cho các liên kết phân trang
-        $(".pagination__link").on("click", function() {
+        $(".pagination__link").off("click").on("click", function() {
             currentPage = parseInt($(this).data("page"));
-            fetchFilteredProducts(); // Gọi lại API để tải sản phẩm của trang mới
+            var selectedBrands = [];
+            $("input[name='brand']:checked").each(function() {
+                selectedBrands.push($(this).val());
+            });
+
+            if (selectedBrands.length === 0) {
+                fetchAllProducts();
+            } else {
+                fetchFilteredProducts();
+            }
         });
 
-        // Gán sự kiện cho nút trái/phải
         const leftButton = document.querySelector(".btn--left");
         const rightButton = document.querySelector(".btn--right");
 
-        leftButton.onclick = function() {
-            if (currentPage > 1) {
-                currentPage--;
-                fetchFilteredProducts();
-            }
-        };
+        if (leftButton) {
+            leftButton.onclick = function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    var selectedBrands = [];
+                    $("input[name='brand']:checked").each(function() {
+                        selectedBrands.push($(this).val());
+                    });
 
-        rightButton.onclick = function() {
-            if (currentPage < totalPages) {
-                currentPage++;
-                fetchFilteredProducts();
-            }
-        };
+                    if (selectedBrands.length === 0) {
+                        fetchAllProducts();
+                    } else {
+                        fetchFilteredProducts();
+                    }
+                }
+            };
+        }
+
+        if (rightButton) {
+            rightButton.onclick = function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    var selectedBrands = [];
+                    $("input[name='brand']:checked").each(function() {
+                        selectedBrands.push($(this).val());
+                    });
+
+                    if (selectedBrands.length === 0) {
+                        fetchAllProducts();
+                    } else {
+                        fetchFilteredProducts();
+                    }
+                }
+            };
+        }
     }
 
-    // Lắng nghe sự kiện thay đổi bộ lọc
     $("input[name='brand']").on("change", function() {
-        currentPage = 1; // Reset về trang đầu tiên
+        currentPage = 1;
         var selectedBrands = [];
         $("input[name='brand']:checked").each(function() {
             selectedBrands.push($(this).val());
@@ -165,7 +175,6 @@ $(document).ready(function() {
         }
     });
 
-    // Khởi tạo lần đầu (tải tất cả sản phẩm)
     fetchAllProducts();
 });
 
