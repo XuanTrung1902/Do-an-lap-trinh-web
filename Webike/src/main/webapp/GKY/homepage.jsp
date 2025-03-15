@@ -61,8 +61,8 @@
                             <li class="header__navbar--item">a href="#">Đăng ký</a></li> -->
                             <c:set var="u" value="${empty sessionScope.auth ? 0 : sessionScope.auth}"/>
                             <li class="header__navbar--item header__navbar--user">
-                                <img src="${u.image}" alt="" class="header__navbar--user-img">
-                                <span class="header__navbar--user-name">${u.name}</span>
+<%--                                <img src="${u.image}" alt="" class="header__navbar--user-img">--%>
+<%--                                <span class="header__navbar--user-name">${u.name}</span>--%>
 
                                 <ul class="header__navbar--user-menu">
                                     <li class="header__navbar--user-menu-item">
