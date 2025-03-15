@@ -8,6 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 public class FilterDAO {
+    public static void main(String[] args) {
+        FilterDAO filterDAO = new FilterDAO();
+        List<Map<String, Object>> products = filterDAO.getAllProducts(1, 10);
+        System.out.println(products);
+    }
+
     public List<Map<String, Object>> getAllProducts(int page, int limit) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
