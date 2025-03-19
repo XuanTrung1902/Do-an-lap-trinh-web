@@ -87,6 +87,12 @@
             <div class="input_field">
                 <input type="email" name="email" placeholder="Email" value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>" required>
             </div>
+            <button type="button" onclick="sendOtp()" style="width: 100%; padding: 12px; background-color: #e31c25; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease, box-shadow 0.3s ease; margin-bottom: 10px;">
+                Gửi OTP
+            </button>
+            <div class="input_field">
+                <input type="text" name="otp" placeholder="OTP" required>
+            </div>
             <div class="form-group">
                 <div class="gender-group">
                     <label class="custom-radio">
@@ -129,7 +135,28 @@
 </div>
 </div>
 
+
 <script src="<%= request.getContextPath()%>/GKY/assets/js/dangKy.js"></script>
+<script>
+    function sendOtp() {
+        const email = document.querySelector('input[name="email"]').value;
+        if (email) {
+            fetch('<%= request.getContextPath()%>/send-otp?email=' + email, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `email=${email}`
+            }).then(response => response.text()).then(data => {
+                alert(data);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        } else {
+            alert('Vui lòng nhập email.');
+        }
+    }
+</script>
 </body>
 
 </html>

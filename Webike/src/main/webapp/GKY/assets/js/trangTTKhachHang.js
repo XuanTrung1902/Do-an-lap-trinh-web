@@ -46,52 +46,6 @@ window.onload = function () {
     populateYears(parseInt(year));
 };
 
-//
-// document.addEventListener("DOMContentLoaded", function () {
-//     const changeAvatarLink = document.getElementById("change-avatar");
-//     const changeAvatarForm = document.querySelector(".change-avatar-form");
-//     const profileForm = document.querySelector(".profile-form");
-//     const changePasswordForm = document.querySelector(".change-password-form");
-//
-//     // Hiển thị form đổi ảnh đại diện khi nhấn vào "Đổi ảnh đại diện"
-//     changeAvatarLink.addEventListener("click", function (e) {
-//         e.preventDefault();
-//
-//         // Đảm bảo ẩn các form khác và không hiển thị form đổi ảnh đại diện
-//         changeAvatarForm.style.display = "none";  // Ẩn form đổi ảnh
-//         profileForm.style.display = "none"; // Ẩn form thông tin tài khoản
-//         changePasswordForm.style.display = "none"; // Ẩn form đổi mật khẩu
-//     });
-//
-//     // Tiếp tục logic xử lý các menu khác như trước
-//     const menuLinks = document.querySelectorAll(".sidebar-menu li a");
-//
-//     menuLinks.forEach(link => {
-//         link.addEventListener("click", function (e) {
-//             e.preventDefault();
-//
-//             // Loại bỏ lớp active khỏi tất cả các menu links
-//             menuLinks.forEach(link => link.classList.remove("active"));
-//
-//             // Thêm lớp active cho link được nhấn
-//             this.classList.add("active");
-//
-//             const targetId = this.id;
-//             if (targetId === "show-profile") {
-//                 document.getElementById("profile-form").style.display = "block";
-//                 document.getElementById("change-password-form").style.display = "none";
-//                 document.querySelector(".change-avatar-form").style.display = "none"; // Ẩn form đổi ảnh
-//             } else if (targetId === "change-password") {
-//                 document.getElementById("profile-form").style.display = "none";
-//                 document.getElementById("change-password-form").style.display = "block";
-//                 document.querySelector(".change-avatar-form").style.display = "none"; // Ẩn form đổi ảnh
-//             } else if (targetId === "change-avatar") {
-//                 document.querySelector(".change-avatar-form").style.display = "block"; // Không hiển thị form đổi ảnh
-//             }
-//         });
-//     });
-// });
-
 document.addEventListener("DOMContentLoaded", function () {
     const changeAvatarLink = document.getElementById("change-avatar");
     const changeEmailLink = document.getElementById("change-email");

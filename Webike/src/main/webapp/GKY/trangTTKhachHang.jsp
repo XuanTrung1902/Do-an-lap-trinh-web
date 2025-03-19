@@ -255,6 +255,8 @@
                 <button type="submit" class="save-btn">Xác nhận & Đổi Email</button>
             </form>
         </div>
+<%--        <div id="message" style="color: red;"></div>--%>
+
 
     </div>
 
@@ -358,6 +360,36 @@
     console.log(dob);
 </script>
 
+<%--<script >--%>
+<%--    document.addEventListener('DOMContentLoaded', function() {--%>
+<%--        document.getElementById('send-otp-form').addEventListener('submit', function(event) {--%>
+<%--            event.preventDefault();--%>
+<%--            const formData = new FormData(this);--%>
+<%--            fetch('SendOTPEmail', {--%>
+<%--                method: 'POST',--%>
+<%--                body: formData--%>
+<%--            }).then(response => response.text()).then(data => {--%>
+<%--                document.getElementById('message').textContent = data;--%>
+<%--            }).catch(error => {--%>
+<%--                console.error('Error:', error);--%>
+<%--            });--%>
+<%--        });--%>
+
+<%--        document.getElementById('verify-otp-form').addEventListener('submit', function(event) {--%>
+<%--            event.preventDefault();--%>
+<%--            const formData = new FormData(this);--%>
+<%--            fetch('VerifyOTPEmail', {--%>
+<%--                method: 'POST',--%>
+<%--                body: formData--%>
+<%--            }).then(response => response.text()).then(data => {--%>
+<%--                document.getElementById('message').textContent = data;--%>
+<%--            }).catch(error => {--%>
+<%--                console.error('Error:', error);--%>
+<%--            });--%>
+<%--        });--%>
+<%--    });--%>
+
+<%--</script>--%>
 <script>
     document.getElementById('change-avatar').addEventListener('click', function () {
         document.querySelector('.change-avatar-form').style.display = 'block';
@@ -371,6 +403,8 @@
         reader.readAsDataURL(event.target.files[0]);
     });
 </script>
+
+
 
 <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/popper.min.js"></script>

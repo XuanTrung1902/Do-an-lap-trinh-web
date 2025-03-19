@@ -456,3 +456,10 @@ select {
 .change-email-form .save-btn:hover {
     background-color: #0056b3;
 }
+/*chú thích*/
+.result-message {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
