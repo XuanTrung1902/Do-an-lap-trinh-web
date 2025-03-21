@@ -30,35 +30,48 @@ public class FilterProduct extends HttpServlet {
         if (brands == null || brands.length == 0) {
             products = filterDAO.getAllProducts(page, limit);
             totalProducts = filterDAO.getTotalProducts();
+//            System.out.println(" tổng số sảng phẩm: "+totalProducts);
         } else {
             products = filterDAO.getProductsByBrands1(brands, page, limit);
             totalProducts = filterDAO.getTotalProductsByBrands(brands);
+//            System.out.println("số sản phẩm sau khi lọc: " +totalProducts);
         }
 
         int totalPages = (int) Math.ceil((double) totalProducts / limit);
 
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-
+        // Xây dựng JSON
         StringBuilder json = new StringBuilder("{");
         json.append("\"products\":[");
-        for (Map<String, Object> product : products) {
-            json.append("{");
-            json.append("\"id\":\"").append(product.get("id")).append("\",");
-            json.append("\"name\":\"").append(product.get("name")).append("\",");
-            json.append("\"price\":\"").append(product.get("price")).append("\",");
-            json.append("\"imgUrl\":\"").append(product.get("url")).append("\",");
-            json.append("\"version\":\"").append(product.get("version")).append("\",");
-            json.append("\"launch\":\"").append(product.get("launch")).append("\",");
-            json.append("\"status\":\"").append(product.get("status")).append("\",");
-            json.append("\"brand\":\"").append(product.get("brand")).append("\"");
-            json.append("},");
+
+        // Kiểm tra nếu danh sách products không rỗng
+        if (!products.isEmpty()) {
+            for (int i = 0; i < products.size(); i++) {
+                Map<String, Object> product = products.get(i);
+                json.append("{");
+                json.append("\"id\":\"").append(product.get("id") != null ? product.get("id") : "").append("\",");
+                json.append("\"name\":\"").append(product.get("name") != null ? product.get("name") : "").append("\",");
+                json.append("\"price\":\"").append(product.get("price") != null ? product.get("price") : "0").append("\",");
+                json.append("\"imgUrl\":\"").append(product.get("url") != null ? product.get("url") : "").append("\",");
+                json.append("\"version\":\"").append(product.get("version") != null ? product.get("version") : "").append("\",");
+                json.append("\"launch\":\"").append(product.get("launch") != null ? product.get("launch") : "").append("\",");
+                json.append("\"status\":\"").append(product.get("status") != null ? product.get("status") : "").append("\",");
+                json.append("\"brand\":\"").append(product.get("brand") != null ? product.get("brand") : "").append("\"");
+                json.append("}");
+
+                // Chỉ thêm dấu phẩy nếu không phải là phần tử cuối cùng
+                if (i < products.size() - 1) {
+                    json.append(",");
+                }
+
+            }
         }
-        if (json.length() > 1) json.setLength(json.length() - 1);
+
         json.append("],");
         json.append("\"totalPages\":").append(totalPages);
         json.append("}");
-        System.out.println("Fetching page: " + page + ", products: " + products.size() + ", totalProducts: " + totalProducts);
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json.toString());
 
     }

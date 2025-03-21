@@ -42,10 +42,8 @@ $(document).ready(function() {
                     $(".grid__row").append(productHTML);
                 });
 
-                console.log(response);
+                // console.log(response);
                 renderPagination(response.totalPages);
-                // Bỏ applyPagination để tránh xung đột
-                // applyPagination();
             },
             error: function(xhr, status, error) {
                 console.error("AJAX Error:", error);
@@ -88,10 +86,8 @@ $(document).ready(function() {
                     $(".grid__row").append(productHTML);
                 });
 
-                console.log(response);
+                // console.log(response);
                 renderPagination(response.totalPages);
-                // Bỏ applyPagination để tránh xung đột
-                // applyPagination();
             },
             error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra:", error);
