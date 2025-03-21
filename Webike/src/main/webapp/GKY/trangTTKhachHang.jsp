@@ -239,15 +239,16 @@
 
         <div id="change-email-form" class="change-email-form" style="display: none;">
             <h3>Đổi Email</h3>
-            <form id="send-otp-form" method="post" action="SendOTPEmail">
+<%--            method="post" action="SendOTPEmail--%>
+            <form id="send-otp-form">
                 <div class="form-group">
                     <label for="new-email">Email mới:</label>
                     <input type="email" id="new-email" name="newEmail" required>
                     <button type="submit" class="save-btn" style="margin-top: 10px;">Gửi mã OTP</button>
                 </div>
             </form>
-
-            <form id="verify-otp-form" method="post" action="VerifyOTPEmail">
+<%--            method="post" action="VerifyOTPEmail"--%>
+            <form id="verify-otp-form" >
                 <div class="form-group">
                     <label for="otp-code">Nhập mã OTP:</label>
                     <input type="text" id="otp-code" name="otpCode" required>
@@ -255,7 +256,6 @@
                 <button type="submit" class="save-btn">Xác nhận & Đổi Email</button>
             </form>
         </div>
-<%--        <div id="message" style="color: red;"></div>--%>
 
 
     </div>
@@ -360,36 +360,6 @@
     console.log(dob);
 </script>
 
-<%--<script >--%>
-<%--    document.addEventListener('DOMContentLoaded', function() {--%>
-<%--        document.getElementById('send-otp-form').addEventListener('submit', function(event) {--%>
-<%--            event.preventDefault();--%>
-<%--            const formData = new FormData(this);--%>
-<%--            fetch('SendOTPEmail', {--%>
-<%--                method: 'POST',--%>
-<%--                body: formData--%>
-<%--            }).then(response => response.text()).then(data => {--%>
-<%--                document.getElementById('message').textContent = data;--%>
-<%--            }).catch(error => {--%>
-<%--                console.error('Error:', error);--%>
-<%--            });--%>
-<%--        });--%>
-
-<%--        document.getElementById('verify-otp-form').addEventListener('submit', function(event) {--%>
-<%--            event.preventDefault();--%>
-<%--            const formData = new FormData(this);--%>
-<%--            fetch('VerifyOTPEmail', {--%>
-<%--                method: 'POST',--%>
-<%--                body: formData--%>
-<%--            }).then(response => response.text()).then(data => {--%>
-<%--                document.getElementById('message').textContent = data;--%>
-<%--            }).catch(error => {--%>
-<%--                console.error('Error:', error);--%>
-<%--            });--%>
-<%--        });--%>
-<%--    });--%>
-
-<%--</script>--%>
 <script>
     document.getElementById('change-avatar').addEventListener('click', function () {
         document.querySelector('.change-avatar-form').style.display = 'block';
@@ -404,7 +374,56 @@
     });
 </script>
 
+<script >
+    document.getElementById("send-otp-form").addEventListener("submit", function (e) {
+        let emailInput = document.getElementById("new-email").value.trim();
+        if (emailInput === "") {
+            alert("Vui lòng nhập email trước khi gửi mã OTP!");
+            e.preventDefault();
+        }
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        const sendOtpForm = document.getElementById("send-otp-form");
+        const verifyOtpForm = document.getElementById("verify-otp-form");
 
+        // Xử lý gửi OTP
+        sendOtpForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Ngăn form reload trang
+            const formData = new FormData(sendOtpForm);
+
+            fetch("SendOTPEmail", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data); // Hiển thị thông báo trong alert
+                })
+                .catch(error => {
+                    console.error("Lỗi:", error);
+                });
+        });
+
+        // Xử lý xác nhận OTP
+        verifyOtpForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Ngăn form reload trang
+            const formData = new FormData(verifyOtpForm);
+
+            fetch("VerifyOTPEmail", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data); // Hiển thị thông báo trong alert
+                })
+                .catch(error => {
+                    console.error("Lỗi:", error);
+                });
+        });
+    });
+
+</script>
 
 <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/popper.min.js"></script>

@@ -10,7 +10,7 @@ import vn.edu.hcmuaf.fit.webike.services.OTPService;
 
 import java.io.IOException;
 
-@WebServlet(name = "SendOtpController", value = "/send-otp")
+@WebServlet(name = "SendOtpController", value = "/sendotp")
 public class SendOtpController extends HttpServlet {
 
     @Override

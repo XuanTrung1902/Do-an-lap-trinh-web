@@ -35,4 +35,7 @@ public class EmailService {
             throw new RuntimeException(e);
         }
     }
+    public static void sendEmail(String to) {
+        sendEmail(to, "Mã OTP của bạn", "Mã OTP của bạn là: 123456");
+    }
     }

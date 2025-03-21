@@ -85,7 +85,7 @@
                     <input type="text" name="address" placeholder="Địa chỉ" value="<%= request.getAttribute("address") != null ? request.getAttribute("address") : "" %>" required>
             </div>
             <div class="input_field">
-                <input type="email" name="email" placeholder="Email" value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>" required>
+                <input type="email" id="email" name="email" placeholder="Email" value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>" required>
             </div>
             <button type="button" onclick="sendOtp()" style="width: 100%; padding: 12px; background-color: #e31c25; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease, box-shadow 0.3s ease; margin-bottom: 10px;">
                 Gửi OTP
@@ -139,9 +139,10 @@
 <script src="<%= request.getContextPath()%>/GKY/assets/js/dangKy.js"></script>
 <script>
     function sendOtp() {
-        const email = document.querySelector('input[name="email"]').value;
+        // const email = document.querySelector('input[name="email"]').value;
+        const email = document.getElementById('email').value;
         if (email) {
-            fetch('<%= request.getContextPath()%>/send-otp?email=' + email, {
+            fetch('<%= request.getContextPath()%>/sendotp?email=' + email, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
