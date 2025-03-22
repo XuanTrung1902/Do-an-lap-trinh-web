@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/cart.css">
     <script src="<%= request.getContextPath()%>/GKY/assets/js/RemoveCart.js"></script>
+    <script src="<%= request.getContextPath()%>/GKY/assets/js/UpdateCart.js"></script>
+
 </head>
 <title>Giỏ hàng</title>
 </head>
@@ -71,21 +73,17 @@
                         <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
                             <!-- Ô này để cái button tăng giảm số lượng -->
                             <div class="number d-flex align-items-center">
-                                <form action="update-cart" method="post">
                                     <input type="hidden" name="id" value="${p.id}">
                                     <input type="hidden" name="quantity" value="-1">
-                                    <button type="submit" class="button-modi">
+                                    <button type="button" class="button-modi" onclick="updateCart('${p.id}', -1)">
                                         <i class="fa-solid fa-minus"></i>
                                     </button>
-                                </form>
                                 <div class="quantity text-1">${p.quantity}</div>
-                                <form action="update-cart" method="post">
                                     <input type="hidden" name="id" value="${p.id}">
                                     <input type="hidden" name="quantity" value="1">
-                                    <button type="submit" class="button-modi">
+                                    <button type="button" class="button-modi" onclick="updateCart('${p.id}', 1)">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
-                                </form>
                             </div>
                         </div>
                         <div class="item col d-flex align-items-center">
