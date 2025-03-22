@@ -972,7 +972,8 @@
 
 
 .pagination ul {
-    margin: 20px 30px;
+    padding-top: 3px;
+    margin: 20px 0;
 }
 
 .pagination ul li {
@@ -988,6 +989,15 @@
     cursor: pointer;
     background-position: 0 -45px;
     transition: background-position 0.5s ;
+}
+
+.pagination__ellipsis {
+    display: inline-block;
+    padding: 8px 12px;
+    color: #999;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: default;
 }
 
 .pagination ul li.pagination__link--active {

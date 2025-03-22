@@ -98,11 +98,51 @@ $(document).ready(function() {
     function renderPagination(totalPages) {
         $(".pagination ul").empty();
 
-        for (let i = 1; i <= totalPages; i++) {
+        // Số trang tối đa hiển thị xung quanh trang hiện tại (2 trang trước và 2 trang sau)
+        const maxPagesBeforeCurrent = 2;
+        const maxPagesAfterCurrent = 2;
+
+        // Tính toán các trang sẽ hiển thị
+        let startPage = Math.max(2, currentPage - maxPagesBeforeCurrent); // Trang bắt đầu
+        let endPage = Math.min(totalPages - 1, currentPage + maxPagesAfterCurrent); // Trang kết thúc
+
+        // Điều chỉnh startPage và endPage để đảm bảo số lượng trang hiển thị hợp lý
+        const maxVisiblePages = maxPagesBeforeCurrent + maxPagesAfterCurrent + 1; // Tổng số trang hiển thị (không tính trang 1 và totalPages)
+        if (endPage - startPage + 1 < maxVisiblePages) {
+            if (currentPage <= totalPages / 2) {
+                endPage = Math.min(totalPages - 1, startPage + maxVisiblePages - 1);
+            } else {
+                startPage = Math.max(2, endPage - maxVisiblePages + 1);
+            }
+        }
+
+        // Thêm trang 1
+        const pageItem1 = `<li class="pagination__link ${1 === currentPage ? 'pagination__link--active' : ''}" data-page="1">1</li>`;
+        $(".pagination ul").append(pageItem1);
+
+        // Thêm dấu "..." nếu cần (giữa trang 1 và startPage)
+        if (startPage > 2) {
+            $(".pagination ul").append('<li class="pagination__ellipsis">...</li>');
+        }
+
+        // Thêm các trang từ startPage đến endPage
+        for (let i = startPage; i <= endPage; i++) {
             const pageItem = `<li class="pagination__link ${i === currentPage ? 'pagination__link--active' : ''}" data-page="${i}">${i}</li>`;
             $(".pagination ul").append(pageItem);
         }
 
+        // Thêm dấu "..." nếu cần (giữa endPage và totalPages)
+        if (endPage < totalPages - 1) {
+            $(".pagination ul").append('<li class="pagination__ellipsis">...</li>');
+        }
+
+        // Thêm trang cuối (totalPages) nếu totalPages > 1
+        if (totalPages > 1) {
+            const pageItemLast = `<li class="pagination__link ${totalPages === currentPage ? 'pagination__link--active' : ''}" data-page="${totalPages}">${totalPages}</li>`;
+            $(".pagination ul").append(pageItemLast);
+        }
+
+        // Gắn sự kiện click cho các trang
         $(".pagination__link").off("click").on("click", function() {
             currentPage = parseInt($(this).data("page"));
             var selectedBrands = [];
@@ -117,6 +157,7 @@ $(document).ready(function() {
             }
         });
 
+        // Xử lý nút trái/phải
         const leftButton = document.querySelector(".btn--left");
         const rightButton = document.querySelector(".btn--right");
 
