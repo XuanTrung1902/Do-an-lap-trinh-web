@@ -12,7 +12,7 @@ function remove(itemId) {
         })
         .then(response => response.text())
         .then(html => {
-            document.getElementById("cart").innerHTML = html;
+            document.getElementById("main").innerHTML = html;
         })
         .catch(error => console.error(`Lỗi: ${error}`));
 }
