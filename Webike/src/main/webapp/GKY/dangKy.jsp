@@ -13,6 +13,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <%--  <base href="/GKY/assets/">--%>
   <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/dangky.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 
@@ -119,6 +120,7 @@
             <div class="input_field">
                 <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" required>
             </div>
+            <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6LfYyu4qAAAAADQyzw-_afuoVxOh-VJAkfjPvd7N"></div>
             <div class="checkbox">
                 <input type="checkbox" name="terms" required>
                 <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>

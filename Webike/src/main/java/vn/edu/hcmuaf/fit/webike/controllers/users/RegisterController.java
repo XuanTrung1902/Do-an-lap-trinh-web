@@ -7,11 +7,16 @@ import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 import vn.edu.hcmuaf.fit.webike.models.User;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 @WebServlet(name = "RegisterController", value = "/register")
 public class RegisterController extends HttpServlet {
+    private static final String SECRET_KEY = "6LfYyu4qAAAAAC7wHwxKsL8AV4NY3f9vgjA1BZM1";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -82,7 +87,6 @@ public class RegisterController extends HttpServlet {
 //        request.setAttribute("email", email);
 //    }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String fullname = request.getParameter("fullname");
@@ -98,6 +102,16 @@ public class RegisterController extends HttpServlet {
         String confirmPassword = request.getParameter("confirm_password");
         String email = request.getParameter("email");
         String otp = request.getParameter("otp");
+
+        String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
+        boolean isCaptchaValid = verifyRecaptcha(gRecaptchaResponse);
+
+        if (!isCaptchaValid) {
+            request.setAttribute("error", "Xác nhận CAPTCHA không thành công");
+            setRequestAttributes(request, fullname, phone, address, gender, day, month, year, email);
+            request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
+            return;
+        }
 
         HttpSession session = request.getSession();
         String sessionOtp = (String) session.getAttribute("otp");
@@ -146,6 +160,34 @@ public class RegisterController extends HttpServlet {
         }
     }
 
+    private boolean verifyRecaptcha(String gRecaptchaResponse) {
+        try {
+            String url = "https://www.google.com/recaptcha/api/siteverify";
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("POST");
+            con.setDoOutput(true);
+
+            String postParams = "secret=" + SECRET_KEY + "&response=" + gRecaptchaResponse;
+            OutputStream os = con.getOutputStream();
+            os.write(postParams.getBytes());
+            os.flush();
+            os.close();
+
+            int responseCode = con.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                Scanner scanner = new Scanner(con.getInputStream());
+                String responseBody = scanner.useDelimiter("\\A").next();
+                scanner.close();
+
+                return responseBody.contains("\"success\": true");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private void setRequestAttributes(HttpServletRequest request, String fullname, String phone, String address, String gender, String day, String month, String year, String email) {
         request.setAttribute("fullname", fullname);
         request.setAttribute("phone", phone);
@@ -156,6 +198,5 @@ public class RegisterController extends HttpServlet {
         request.setAttribute("year", year);
         request.setAttribute("email", email);
     }
-
 
 }
