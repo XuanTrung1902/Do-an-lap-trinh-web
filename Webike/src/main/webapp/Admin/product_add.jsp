@@ -264,6 +264,7 @@
         document.getElementById('specForm').submit();
     });
 </script>
+
 <script>
     document.querySelector('form').addEventListener('submit', function (event) {
         // Lấy giá trị của các ô input

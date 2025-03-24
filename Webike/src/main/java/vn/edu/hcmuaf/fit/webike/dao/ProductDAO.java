@@ -76,19 +76,11 @@ public class ProductDAO {
 
     public boolean deleteProductById(int productId) {
         Jdbi jdbi = JDBIConnect.get();
-
-        // SQL xóa sản phẩm
-//        String deleteProductSql = """
-//            DELETE FROM products
-//            WHERE id = :id
-//        """;
-
         String deleteProductSql = """
                     UPDATE products
                     SET deleted = 1
                     WHERE id = :id
                 """;
-
         // SQL xóa ảnh liên quan đến sản phẩm
         String deleteImagesSql = """
                     DELETE FROM imgs
@@ -180,12 +172,6 @@ public class ProductDAO {
                     SET name = :name, quantity = :quantity, price = :price, launch = :launch, des = :description, brandID = :brandID, typeID = :typeID, version = :version
                     WHERE id = :id
                 """;
-
-//        String updateImageSql = """
-//                    UPDATE imgs
-//                    SET url = :url
-//                    WHERE productID = :id
-//                """;
         String updateImageSql = """
                     insert into imgs (url, productID, colorID) values (:url, :id, :colorID)
                 """;
@@ -259,17 +245,17 @@ public class ProductDAO {
         // load product to admin manage product page
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                SELECT 
-                    p.id ,
-                    p.name ,
-                    p.price ,
-                    p.launch ,
-                    p.quantity,
-                    i.url 
-                FROM products AS p
-                JOIN imgs AS i ON p.id = i.productID
-                WHERE p.deleted = 0
-                GROUP BY p.id;
+                                SELECT 
+                                    p.id ,
+                                    p.name ,
+                                    p.price ,
+                                    p.launch ,
+                                    p.quantity,
+                                    MIN(i.url) as url
+                                FROM products AS p
+                                JOIN imgs AS i ON p.id = i.productID
+                                WHERE p.deleted = 0
+                                GROUP BY p.id;
                 """;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)
@@ -334,7 +320,7 @@ public class ProductDAO {
     // lay ra tat ca sp kem anh
     public List<Map<String, Object>> getAllProductImg() {
         Jdbi jdbi = JDBIConnect.get();
-        //                    SELECT p.*, min(i.url) AS imgUrl
+//                    SELECT p.*, min(i.url) AS imgUrl
 //                    FROM products AS p
 //                    JOIN imgs AS i ON i.productID = p.id
 //                    GROUP BY p.id

@@ -19,6 +19,9 @@ public class ProductDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        if(request.getParameter("id") == null) {
+            System.out.println("ko nhan dc id");
+        }
         int id = Integer.parseInt(request.getParameter("id"));
 
         ProductDAO dao = new ProductDAO();

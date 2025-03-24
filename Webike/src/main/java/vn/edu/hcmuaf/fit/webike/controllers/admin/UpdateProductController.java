@@ -73,6 +73,7 @@ public class UpdateProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         // Lấy dữ liệu từ form
         String id = request.getParameter("id"); // ID sản phẩm
         String name = request.getParameter("name"); // Tên sản phẩm

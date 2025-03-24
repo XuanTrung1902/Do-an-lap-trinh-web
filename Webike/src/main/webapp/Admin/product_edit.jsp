@@ -254,6 +254,39 @@
         </div>
     </div>
 </section>
+
+<script>
+    function getCheckedValues() {
+        // Tạo một mảng để lưu trữ giá trị của các radio button đã chọn
+        const checkedValues = [];
+
+        // Lấy tất cả các radio button đã được chọn
+        const radios = document.querySelectorAll('input[type="radio"]:checked');
+
+        // Duyệt qua các radio button đã được chọn và thêm giá trị vào mảng
+        radios.forEach(radio => {
+            checkedValues.push(radio.value);
+        });
+
+        // Trả về mảng chứa các giá trị đã chọn
+        return checkedValues;
+    }
+
+    // Gọi hàm khi cần (ví dụ khi nhấn nút Submit)
+    document.querySelector('button[type="submit"]').addEventListener('click', function(e) {
+        e.preventDefault();  // Ngăn hành động mặc định của form
+
+        // Lấy mảng các giá trị đã chọn
+        const values = getCheckedValues();
+
+        // Cập nhật giá trị vào trường ẩn trong form
+        document.getElementById('selectedValues').value = JSON.stringify(values);
+
+        // Sau khi set giá trị vào trường ẩn, gửi form
+        document.getElementById('specForm').submit();
+    });
+</script>
+
 <script>
     document.querySelector('form').addEventListener('submit', function (event) {
         const quantity = document.querySelector('input[name="quantity"]').value;
