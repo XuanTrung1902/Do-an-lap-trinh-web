@@ -224,7 +224,6 @@
                             </div>
                         </div>
                     </div>
-
                     <input type="hidden" name="selectedValues" id="selectedValues"/>
                     <button type="submit">Thêm sản phẩm</button>
                 </form>

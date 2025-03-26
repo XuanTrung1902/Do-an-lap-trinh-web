@@ -169,7 +169,8 @@ public class ProductDAO {
 
         String sql = """
                     UPDATE products
-                    SET name = :name, quantity = :quantity, price = :price, launch = :launch, des = :description, brandID = :brandID, typeID = :typeID, version = :version
+                    SET name = :name, quantity = :quantity, price = :price, launch = :launch,
+                    des = :description, brandID = :brandID, typeID = :typeID, version = :version
                     WHERE id = :id
                 """;
         String updateImageSql = """
@@ -320,10 +321,6 @@ public class ProductDAO {
     // lay ra tat ca sp kem anh
     public List<Map<String, Object>> getAllProductImg() {
         Jdbi jdbi = JDBIConnect.get();
-//                    SELECT p.*, min(i.url) AS imgUrl
-//                    FROM products AS p
-//                    JOIN imgs AS i ON i.productID = p.id
-//                    GROUP BY p.id
         String sql = """    
                       SELECT p.*,
                              (SELECT d.amount FROM discounts AS d WHERE d.productID = p.id ORDER BY d.id DESC LIMIT 1) AS discount,

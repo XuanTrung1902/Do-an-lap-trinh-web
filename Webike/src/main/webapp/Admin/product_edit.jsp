@@ -157,7 +157,7 @@
                 <div class="admin-content-main-title">
                     <h1>Cập nhật sản phẩm</h1>
                 </div>
-                <form class="admin-content-main-container" method="POST" action="update-product"
+                <form id="updateForm" class="admin-content-main-container" method="POST" action="update-product"
                       enctype="multipart/form-data">
                     <div class="admin-content-main-container-two-input">
                         <input type="hidden" name="id" value="${product.id}">
@@ -220,22 +220,16 @@
                                                 <legend class="dongco_tilte">${tag}</legend>
                                                 <c:forEach var="spec" items="${tags[type][tag]}">
                                                     <div class="loai_option">
-                                                        <c:choose>
-                                                            <c:when test="${fn:contains(listSpecID, spec.id)}">
-                                                                <input class="loai_input" checked
-                                                                       id="${spec.id}" type="radio" name="${tag}"
-                                                                       value="${spec.id}"/>
-                                                                <label class="loai_label"
-                                                                       for="${spec.id}">${spec.des}</label>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <input class="loai_input"
-                                                                       id="${spec.id}" type="radio" name="${tag}"
-                                                                       value="${spec.id}"/>
-                                                                <label class="loai_label"
-                                                                       for="${spec.id}">${spec.des}</label>
-                                                            </c:otherwise>
-                                                        </c:choose>
+                                                        <c:set var="isChecked" value="false"/>
+                                                        <c:forEach var="id" items="${listSpecID}">
+                                                            <c:if test="${id eq spec.id}">
+                                                                <c:set var="isChecked" value="true"/>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                        <input class="loai_input" ${isChecked ? 'checked' : ''}
+                                                               id="${spec.id}" type="radio" name="${tag}"
+                                                               value="${spec.id}"/>
+                                                        <label class="loai_label" for="${spec.id}">${spec.des}</label>
                                                     </div>
                                                 </c:forEach>
                                             </fieldset>
@@ -246,8 +240,6 @@
                         </div>
                     </div>
                     <input type="hidden" name="selectedValues" id="selectedValues"/>
-
-
                     <button type="submit">Cập nhật sản phẩm</button>
                 </form>
             </div>
@@ -257,33 +249,20 @@
 
 <script>
     function getCheckedValues() {
-        // Tạo một mảng để lưu trữ giá trị của các radio button đã chọn
         const checkedValues = [];
-
-        // Lấy tất cả các radio button đã được chọn
         const radios = document.querySelectorAll('input[type="radio"]:checked');
-
-        // Duyệt qua các radio button đã được chọn và thêm giá trị vào mảng
         radios.forEach(radio => {
             checkedValues.push(radio.value);
         });
-
-        // Trả về mảng chứa các giá trị đã chọn
         return checkedValues;
     }
 
     // Gọi hàm khi cần (ví dụ khi nhấn nút Submit)
-    document.querySelector('button[type="submit"]').addEventListener('click', function(e) {
+    document.querySelector('button[type="submit"]').addEventListener('click', function (e) {
         e.preventDefault();  // Ngăn hành động mặc định của form
-
-        // Lấy mảng các giá trị đã chọn
         const values = getCheckedValues();
-
-        // Cập nhật giá trị vào trường ẩn trong form
         document.getElementById('selectedValues').value = JSON.stringify(values);
-
-        // Sau khi set giá trị vào trường ẩn, gửi form
-        document.getElementById('specForm').submit();
+        document.getElementById('updateForm').submit();
     });
 </script>
 
