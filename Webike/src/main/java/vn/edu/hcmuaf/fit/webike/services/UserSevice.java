@@ -89,5 +89,12 @@ public class UserSevice {
         }
         return false;
     }
-
+    public User findByEmail(String email) {
+        UserDao userDao = new UserDao();
+        return userDao.findUserByEmail(email);
+    }
+    public void insertUser(String name, String email) {
+        UserDao userDao = new UserDao();
+        userDao.insertUser(name, email);
+    }
 }

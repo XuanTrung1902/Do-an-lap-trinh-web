@@ -215,6 +215,20 @@ public class UserDao {
                         .execute() > 0
         );
     }
+    public User findUserByEmail(String email) {
+        return JDBIConnect.get().withHandle(h -> h.createQuery("SELECT * FROM accounts WHERE email = :email")
+                .bind("email", email)
+                .mapToBean(User.class)
+                .findFirst()
+                .orElse(null));
+    }
+
+    public void insertUser(String name, String email) {
+        JDBIConnect.get().withHandle(h -> h.createUpdate("INSERT INTO accounts (name, email) VALUES (:name, :email)")
+                .bind("name", name)
+                .bind("email", email)
+                .execute());
+    }
 
 
 }
