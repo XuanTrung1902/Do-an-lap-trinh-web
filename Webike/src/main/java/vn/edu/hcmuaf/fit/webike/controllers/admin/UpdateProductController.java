@@ -33,9 +33,6 @@ public class UpdateProductController extends HttpServlet {
             Product product = productDAO.getProductById(Integer.parseInt(productId));
             UpdateProductDAO updateDAO = new UpdateProductDAO();
             List<Integer> listSpecID = updateDAO.getAllSpecID(productId);
-            Set<Integer> pDetailID = updateDAO.getPDetailID(productId);
-
-            System.out.println("Get: " + listSpecID);
 
             if (product != null) {
                 List<Color> colorList = productDAO.getColors();
@@ -61,14 +58,10 @@ public class UpdateProductController extends HttpServlet {
                 request.setAttribute("specType", specType);
                 request.setAttribute("tags", tags);
                 request.setAttribute("listSpecID", listSpecID);
-                request.setAttribute("pDetailID", pDetailID);
-
                 request.getRequestDispatcher("/Admin/product_edit.jsp").forward(request, response);
                 return;
             }
         }
-
-        // Nếu không tìm thấy sản phẩm, chuyển hướng về danh sách sản phẩm
         response.sendRedirect("products");
     }
 
@@ -109,12 +102,17 @@ public class UpdateProductController extends HttpServlet {
         String json = request.getParameter("selectedValues");
         Gson gson = new Gson();
         // đưa từ json về List<String>
-        List<String> specID = gson.fromJson(json, new TypeToken<List<String>>(){}.getType());
-        Set<Integer> pDetailID = updateDAO.getPDetailID(id);
-        List<Integer> listSpecID = updateDAO.getAllSpecID(id);
-        System.out.println(json);
-        System.out.println(pDetailID);
-        System.out.println(listSpecID);
+        List<Integer> specID = gson.fromJson(json, new TypeToken<List<Integer>>() {
+        }.getType());
+        List<Integer> pDetailID = updateDAO.getPDetailID(id);
+//        List<Integer> listSpecID = updateDAO.getAllSpecID(id);
+        Map<Integer, Integer> specUpdate = new LinkedHashMap<>();
+        for (int i = 0; i < pDetailID.size(); i++) {
+            specUpdate.put(pDetailID.get(i), specID.get(i));
+        }
+//        System.out.println("Json data:"+ json);
+//        System.out.println(pDetailID);
+        System.out.println("PDetail and specID: " + specUpdate);
 
         if (isUpdated) {
             response.sendRedirect("products");
