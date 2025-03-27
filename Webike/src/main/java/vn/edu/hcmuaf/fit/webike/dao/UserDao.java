@@ -3,6 +3,10 @@ package vn.edu.hcmuaf.fit.webike.dao;
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 import vn.edu.hcmuaf.fit.webike.models.User;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserDao {
@@ -228,6 +232,22 @@ public class UserDao {
                 .bind("name", name)
                 .bind("email", email)
                 .execute());
+    }
+    public String getPasswordByPhone(String phone) {
+        String query = "SELECT password FROM users WHERE phone = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, phone);
+
+            try (ResultSet rs = stmt.executeQuery()) {  // Đảm bảo ResultSet được đóng sau khi sử dụng
+                if (rs.next()) {
+                    return rs.getString("password");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();  // Có thể thay bằng hệ thống log như Log4j hoặc SLF4J
+        }
+        return null;  // Trả về null nếu không tìm thấy user hoặc có lỗi
     }
 
 

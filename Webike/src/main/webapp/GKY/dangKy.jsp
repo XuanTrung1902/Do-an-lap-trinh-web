@@ -137,14 +137,13 @@
 </div>
 </div>
 
-
-<script src="<%= request.getContextPath()%>/GKY/assets/js/dangKy.js"></script>
 <script>
     function sendOtp() {
         // const email = document.querySelector('input[name="email"]').value;
         const email = document.getElementById('email').value;
+        console.log(email)
         if (email) {
-            fetch('<%= request.getContextPath()%>/sendotp?email=' + email, {
+            fetch('<%= request.getContextPath()%>/send-otpR?email='+email, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -160,6 +159,8 @@
         }
     }
 </script>
+<script src="<%= request.getContextPath()%>/GKY/assets/js/dangKy.js"></script>
+
 </body>
 
 </html>
