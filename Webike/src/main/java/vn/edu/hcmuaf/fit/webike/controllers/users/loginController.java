@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.webike.controllers.users;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 import vn.edu.hcmuaf.fit.webike.models.User;
 
@@ -33,11 +34,15 @@ public class loginController extends HttpServlet {
         String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
         boolean isCaptchaValid = verifyRecaptcha(gRecaptchaResponse);
 
+        final String LEVEL_INFO = LogService.LEVEL_INFO;
+
         if (isCaptchaValid) {
             User user = UserSevice.checklogin(phoneNum, password);  // kiểm tra login
             if (user != null) { // nếu login đúng
                 HttpSession session = request.getSession(true);
                 session.setAttribute("auth", user); // Đặt user vào session với key "auth"
+
+                LogService.log(LEVEL_INFO, "Login", phoneNum, "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
 
                 if (user.getRole() == 0) { // nếu là admin
                     response.sendRedirect("admin");

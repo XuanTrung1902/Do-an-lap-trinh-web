@@ -117,17 +117,29 @@
             <version>6.1.0</version>
             <scope>provided</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.httpcomponents.client5</groupId>-->
+<!--            <artifactId>httpclient5</artifactId>-->
+<!--            <version>5.1</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.httpcomponents.core5</groupId>-->
+<!--            <artifactId>httpcore5</artifactId>-->
+<!--            <version>5.1</version>-->
+<!--        </dependency>-->
+
+
         <dependency>
             <groupId>org.apache.httpcomponents.client5</groupId>
-            <artifactId>httpclient5</artifactId>
-            <version>5.1</version>
+            <artifactId>httpclient5-fluent</artifactId>
+            <version>5.2</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.httpcomponents.core5</groupId>
-            <artifactId>httpcore5</artifactId>
-            <version>5.1</version>
-        </dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.5.13</version>
 
+        </dependency>
     </dependencies>
 
     <build>
