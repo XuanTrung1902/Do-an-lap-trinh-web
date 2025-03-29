@@ -234,22 +234,14 @@ public class UserDao {
                 .execute());
     }
     public String getPasswordByPhone(String phone) {
-        String query = "SELECT password FROM users WHERE phone = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, phone);
-
-            try (ResultSet rs = stmt.executeQuery()) {  // Đảm bảo ResultSet được đóng sau khi sử dụng
-                if (rs.next()) {
-                    return rs.getString("password");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();  // Có thể thay bằng hệ thống log như Log4j hoặc SLF4J
-        }
-        return null;  // Trả về null nếu không tìm thấy user hoặc có lỗi
+        return JDBIConnect.get().withHandle(h ->
+                h.createQuery("SELECT password FROM accounts WHERE phoneNum = :phone")
+                        .bind("phone", phone)
+                        .mapTo(String.class)
+                        .findOne()
+                        .orElse(null)
+        );
     }
-
 
 }
 

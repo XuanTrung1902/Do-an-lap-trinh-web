@@ -5,6 +5,8 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -14,6 +16,16 @@ public class UserListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao userDao = new UserDao();
         List<User> userList = userDao.getVerifiedUsers(0);
+        // Lấy thông tin user hiện tại
+        HttpSession session = request.getSession();
+        User currentUser = (User) session.getAttribute("auth");
+        String userInfo = (currentUser != null) ? currentUser.getPhoneNum() : "Khách";
+
+        final String level = LogService.LEVEL_INFO;
+
+        LogService.log(level, "UserListController", userInfo, "", "");
+
+
         if (!userList.isEmpty()) {
             request.setAttribute("userList", userList);
             request.getRequestDispatcher("Admin/user_list.jsp").forward(request, response);
