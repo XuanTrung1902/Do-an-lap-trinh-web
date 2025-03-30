@@ -90,7 +90,9 @@ $(document).ready(function() {
                 renderPagination(response.totalPages);
             },
             error: function(xhr, status, error) {
-                console.log("Có lỗi xảy ra:", error);
+                console.error("AJAX Error:", error);
+                console.error("Status:", status);
+                console.error("Response:", xhr.responseText);
             }
         });
     }

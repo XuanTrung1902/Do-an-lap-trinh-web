@@ -86,14 +86,12 @@
             <div class="motor__detail-list">
                 <div class="title-second">
                     <h3 class="title-second-name">Lọc sản phẩm</h3>
-                        <div class="search__list">
-                            <label class="search__label">Tìm kiếm: </label>
-                            <input id="search-input" class="input_search" placeholder="Nhập tên xe ">
-                        </div>
+<%--                        <div class="search__list">--%>
+<%--                            <label class="search__label">Tìm kiếm: </label>--%>
+<%--                            <input id="search-input" class="input_search" placeholder="Nhập tên xe ">--%>
+<%--                        </div>--%>
 
                 </div>
-<%--                value="xam" onclick="filterimg()"--%>
-
                 <div class="grid-2-8" style="padding-bottom: 10px;">
                     <div class="checkbox__category">
                         <div id="checkboxes">

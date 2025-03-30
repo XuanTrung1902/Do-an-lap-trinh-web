@@ -26,7 +26,7 @@ public class Products extends HttpServlet {
         List<Brand> allBrand = dao.getAllBrand(); // Lấy tất cả thương hiệu
 
 
-
+//        System.out.println("products: " + products.size());
         request.setAttribute("allBrand", allBrand);                 // Gửi dữ liệu sang JSP
         request.setAttribute("brands", brands);                 // Gửi dữ liệu sang JSP
         request.setAttribute("products2", products2);                 // Gửi dữ liệu sang JSP

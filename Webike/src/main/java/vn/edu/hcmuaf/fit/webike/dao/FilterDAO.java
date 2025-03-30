@@ -18,7 +18,7 @@ public class FilterDAO {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
                     SELECT p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,
-                           p.status, b.name AS brand, i.url
+                           p.status, b.name AS brand, MIN(i.url) AS url
                     FROM products AS p
                     LEFT JOIN imgs AS i ON i.productID = p.id
                     LEFT JOIN brands AS b ON p.brandID = b.id
@@ -73,7 +73,7 @@ public class FilterDAO {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
                 SELECT p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,
-                       p.status, b.name AS brand, i.url
+                       p.status, b.name AS brand, MIN(i.url) AS url
                 FROM products AS p
                 LEFT JOIN imgs AS i ON i.productID = p.id
                 LEFT JOIN brands AS b ON p.brandID = b.id
@@ -98,7 +98,4 @@ public class FilterDAO {
             return query.mapToMap().list();
         });
     }
-
-
-
 }
