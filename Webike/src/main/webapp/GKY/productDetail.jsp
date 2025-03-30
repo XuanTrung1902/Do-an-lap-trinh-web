@@ -36,7 +36,7 @@
     <div class="info">
         <div class="info__img">
             <div class="img__container">
-                <img id="img" src="${p.img.entrySet().iterator().next().getValue()}" alt="anh xe">
+                <img id="img" src="${p.img.entrySet().iterator().next().getValue()}" alt="anh xe" style="width: 750px; height: 450px;"/>
 
             </div>
         </div>

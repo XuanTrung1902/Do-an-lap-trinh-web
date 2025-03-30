@@ -92,7 +92,6 @@
                             <label for="file">Thêm hình ảnh</label>
                         </div>
                     </div>
-
                     <div class="admin-content-main-container-description">
                         <textarea name="description" id="editor" cols="30" rows="5" placeholder="Mô tả sản phẩm"
                                   required></textarea>
@@ -122,7 +121,6 @@
                             </div>
                         </div>
                     </div>
-
                     <input type="hidden" name="selectedValues" id="selectedValues"/>
                     <button type="submit">Thêm sản phẩm</button>
                 </form>
@@ -162,6 +160,7 @@
         document.getElementById('specForm').submit();
     });
 </script>
+
 <script>
     document.querySelector('form').addEventListener('submit', function (event) {
         // Lấy giá trị của các ô input

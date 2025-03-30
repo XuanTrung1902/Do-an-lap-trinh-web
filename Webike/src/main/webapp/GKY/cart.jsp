@@ -25,14 +25,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/bootstrap/css/bootstrap.css">
-
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/cart.css">
+    <script src="<%= request.getContextPath()%>/GKY/assets/js/RemoveCart.js"></script>
+    <script src="<%= request.getContextPath()%>/GKY/assets/js/UpdateCart.js"></script>
+
 </head>
 <title>Giỏ hàng</title>
 </head>
 
 <body>
-<div class="main">
+<div id="main" class="main">
     <div class="header d-flex align-items-center">
         <a href="homepage">
             <img class="logo-img" src="https://www.webike.vn/frontend/moto-v2/pc/img/logo.png?158926651620200827"
@@ -71,71 +73,40 @@
                         <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
                             <!-- Ô này để cái button tăng giảm số lượng -->
                             <div class="number d-flex align-items-center">
-                                    <%-- <form action="update-cart?id=${p.id}" method="GET">--%>
-                                <form action="update-cart" method="post">
                                     <input type="hidden" name="id" value="${p.id}">
                                     <input type="hidden" name="quantity" value="-1">
-                                    <button type="submit" class="button-modi">
+                                    <button type="button" class="button-modi" onclick="updateCart('${p.id}', -1)">
                                         <i class="fa-solid fa-minus"></i>
                                     </button>
-                                </form>
                                 <div class="quantity text-1">${p.quantity}</div>
-                                    <%-- <form action="update-cart?id=${p.id}" method="GET">--%>
-                                <form action="update-cart" method="post">
                                     <input type="hidden" name="id" value="${p.id}">
                                     <input type="hidden" name="quantity" value="1">
-                                    <button type="submit" class="button-modi">
+                                    <button type="button" class="button-modi" onclick="updateCart('${p.id}', 1)">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
-                                </form>
                             </div>
                         </div>
                         <div class="item col d-flex align-items-center">
-                            <span class=" text-1 text-center full-width productPrice">
-                                <f:setLocale value="vi_VN"/>
-                                <f:formatNumber value="${p.price * p.quantity}" type="currency"/>
-                            </span>
+                                <span class=" text-1 text-center full-width productPrice">
+                                    <f:setLocale value="vi_VN"/>
+                                    <f:formatNumber value="${p.price * p.quantity}" type="currency"/>
+                                </span>
                         </div>
                         <div class="item col d-flex align-items-center justify-content-center">
-                            <form action="remove-cart" method="post"
-                                  style="width: fit-content;height: fit-content;">
-                                <input type="hidden" name="id" id="id" value="${p.id}">
-                                <button type="submit" class="item col d-flex align-items-center gap-3"
-                                        style="border: none;">
-                                <span class="text-1 text-center text-danger full-width">
-                                    Xóa
-                                </span>
-                                </button>
-                            </form>
+                                <%--<form action="remove-cart" method="post" style="width: fit-content;height: fit-content;">--%>
+                            <input type="hidden" name="id" id="id" value="${p.id}">
+                            <button onclick="remove('${p.id}')" type="submit"
+                                    class="item col d-flex align-items-center gap-3" style="border: none;">
+                                    <span class="text-1 text-center text-danger full-width">
+                                        Xóa
+                                    </span>
+                            </button>
+                                <%--</form>--%>
                         </div>
                     </div>
                 </li>
             </c:forEach>
-            <script>
-                function totalPrice() {
-                    // Lấy tất cả các checkbox được chọn
-                    const checkboxes = document.querySelectorAll('.checked .checkItem input[type="checkbox"]:checked');
-                    let total = 0;
-                    checkboxes.forEach((check) => {
-                        const parentRow = check.closest('.checked');
-                        const priceText = parentRow.querySelector('.productPrice').textContent.trim();
-                        const price = parseInt(priceText.replace(/[^\d]/g, ''), 10);
-                        total += price;
-                        // lay ra tong so sp duoc chon
-                        const length = checkboxes.length;
-                        const checkedLength = document.querySelector('.item-length');
-                        if (checkedLength) {
-                            checkedLength.textContent = length;
-                        }
-                    });
-                    document.getElementById('total-price').textContent =
-                        new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(total);
-                }
 
-                document.querySelectorAll('.checked input[type="checkbox"]').forEach((checkbox) => {
-                    checkbox.addEventListener('change', totalPrice);
-                });
-            </script>
 
 
             <c:set var="total" value="${empty sessionScope.cart.totalPrice ? 0 : sessionScope.cart.totalPrice}"/>
@@ -188,14 +159,15 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
+<%--<script src="https://code.jquery.com/jquery-3.6.0.js"></script>--%>
+<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"--%>
+<%--        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"--%>
+<%--        crossorigin="anonymous"></script>--%>
 <script src="<%= request.getContextPath()%>/GKY/assets/js/Gio hang.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-<script>
-    cartItemChecked();
-</script>
+
+<%--<script>--%>
+<%--    cartItemChecked();--%>
+<%--</script>--%>
+
 </body>
 </html>

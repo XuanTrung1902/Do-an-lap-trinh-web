@@ -19,7 +19,6 @@ $(document).ready(function() {
             traditional: true,
             success: function(response) {
                 $(".grid__row").empty();
-
                 response.products.forEach(function(product) {
                     var productHTML = `
                         <div class="grid__column-2" style="padding: 10px; height: 380px" data-attributes="${product.brand || ''}">
