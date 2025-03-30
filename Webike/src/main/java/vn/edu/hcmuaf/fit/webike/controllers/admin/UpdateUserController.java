@@ -5,6 +5,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,8 +37,11 @@ public class UpdateUserController extends HttpServlet {
             request.getRequestDispatcher("/Admin/user_edit.jsp").forward(request, response);
             return;
         }
-
         int id = Integer.parseInt(userIdStr);
+        UserDao userDao = new UserDao();
+        User oldUser = userDao.getUserById(id); // Lấy thông tin trước khi cập nhật
+
+//        int id = Integer.parseInt(userIdStr);
         String name = request.getParameter("username");
         String phoneNum = request.getParameter("phone");
         String DOB = request.getParameter("birthday");
@@ -67,16 +71,32 @@ public class UpdateUserController extends HttpServlet {
 
 
 
-        User user = new User(id, name, phoneNum, date, sex, password, created, locked, verify, role, address);
-        user.setEmail(email);
+//        User user = new User(id, name, phoneNum, date, sex, password, created, locked, verify, role, address);
+//        user.setEmail(email);
+//        if (imagePath != null) {
+//            user.setImage(imagePath);
+//        }
+        User newUser = new User(id, name, phoneNum, date, sex, password, created, locked, verify, role, address);
+        newUser.setEmail(email);
         if (imagePath != null) {
-            user.setImage(imagePath);
+            newUser.setImage(imagePath);
         }
 
-        UserDao userDao = new UserDao();
-        boolean isUpdated = userDao.updateUserSua(user);
+
+        userDao = new UserDao();
+        boolean isUpdated = userDao.updateUserSua(newUser);
 
         if (isUpdated) {
+            HttpSession session = request.getSession();
+            User currentUser = (User) session.getAttribute("auth");
+            String adminInfo = (currentUser != null) ? currentUser.getPhoneNum() : "Admin vô danh";
+
+            String beforeData = oldUser.toString();
+            String afterData = newUser.toString();
+            String logLevel = (oldUser.getRole() != newUser.getRole()) ? LogService.LEVEL_WARNING : LogService.LEVEL_ALERT;
+
+            LogService.log(logLevel, "UpdateUserController", adminInfo, beforeData, afterData);
+
             response.sendRedirect(request.getContextPath() + "/userList");
         } else {
             request.setAttribute("error", "Cập nhật thông tin người dùng thất bại.");

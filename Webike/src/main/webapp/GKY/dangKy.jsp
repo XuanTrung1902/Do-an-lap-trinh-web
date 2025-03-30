@@ -13,7 +13,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <%--  <base href="/GKY/assets/">--%>
   <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/dangky.css">
-
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="<%= request.getContextPath()%>/GKY/assets/js/dangKy.js"></script>
 </head>
 
 <body>
@@ -85,7 +86,13 @@
                     <input type="text" name="address" placeholder="Địa chỉ" value="<%= request.getAttribute("address") != null ? request.getAttribute("address") : "" %>" required>
             </div>
             <div class="input_field">
-                <input type="email" name="email" placeholder="Email" value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>" required>
+                <input type="email" id="email" name="email" placeholder="Email" value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>" required>
+            </div>
+            <button type="button" onclick="sendOtp()" style="width: 100%; padding: 12px; background-color: #e31c25; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease, box-shadow 0.3s ease; margin-bottom: 10px;">
+                Gửi OTP
+            </button>
+            <div class="input_field">
+                <input type="text" name="otp" placeholder="OTP" required>
             </div>
             <div class="form-group">
                 <div class="gender-group">
@@ -113,6 +120,7 @@
             <div class="input_field">
                 <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" required>
             </div>
+            <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6LfYyu4qAAAAADQyzw-_afuoVxOh-VJAkfjPvd7N"></div>
             <div class="checkbox">
                 <input type="checkbox" name="terms" required>
                 <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>
@@ -128,8 +136,32 @@
   </div>
 </div>
 </div>
+<script>
+    function sendOtp() {
+         // const email = document.querySelector('input[name="email"]').value;
+         const email = document.getElementById('email').value;
+         console.log(email)
+         if (email) {
+             fetch('<%= request.getContextPath()%>/send-otp?email='+email, {
+                 method: 'POST',
+                 headers: {
+                     'Content-Type': 'application/x-www-form-urlencoded'
+                 },
+                 body: `email=${email}`
+             }).then(response => response.text()).then(data => {
+                 alert(data);
+             }).catch(error => {
+                 console.log(error)
+                 console.error('Error:', error);
+             });
+         } else {
+             alert('Vui lòng nhập email.');
+         }
+    }
+</script>
 
-<script src="<%= request.getContextPath()%>/GKY/assets/js/dangKy.js"></script>
+<%--<script src="<%= request.getContextPath()%>/GKY/assets/js/dangKy.js"></script>--%>
+
 </body>
 
 </html>

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <%--    <base href="${pageContext.request.contextPath}/GKY/assets/">--%>
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/quenMatKhau.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 <body>
@@ -30,8 +31,8 @@
             </a>
             <h2>Quên mật khẩu?</h2>
             <form action="<%= request.getContextPath()%>/forgot-password" method="post">
-                <label for="phone">SDT:</label>
-                <input type="tel" id="phone" name="phone" value="<%= request.getAttribute("phone") != null ? request.getAttribute("phone") : "" %>" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<%= request.getAttribute("phone") != null ? request.getAttribute("phone") : "" %>" required>
 
                 <% if (request.getAttribute("error") != null) { %>
                 <div class="error-message" style="color: red;">
@@ -50,26 +51,28 @@
 
                 <button type="button" onclick="sendOtp()" style="width: 100%; padding: 12px; background-color: #e31c25; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease, box-shadow 0.3s ease; margin-bottom: 10px;">
                     Gửi OTP</button>
+                <div class="g-recaptcha" data-sitekey="6LfYyu4qAAAAADQyzw-_afuoVxOh-VJAkfjPvd7N"></div>
+
                 <button type="submit">Gửi</button>
             </form>
         </div>
     <script>
         function sendOtp() {
-            const phone = document.getElementById('phone').value;
-            if (phone) {
-                fetch('<%= request.getContextPath()%>/send-otp?phone='+phone, {
+            const email = document.getElementById('email').value;
+            if (email) {
+                fetch('<%= request.getContextPath()%>/send-otp?email='+email, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: `phone=${phone}`
+                    body: `email=${email}`
                 }).then(response => response.text()).then(data => {
                     alert(data);
                 }).catch(error => {
                     console.error('Error:', error);
                 });
             } else {
-                alert('Vui lòng nhập số điện thoại.');
+                alert('Vui lòng nhập Email.');
             }
         }
     </script>

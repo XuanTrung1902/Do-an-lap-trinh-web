@@ -29,9 +29,9 @@ public class UserSevice {
         return userdao.saveUser(user);
     }
 // Quên mật Khẩu
-    public static boolean updatePasswordByPhone(String phoneNum, String newPassword) {
+    public static boolean updatePasswordByEmail(String email, String newPassword) {
         UserDao userdao = new UserDao();
-        User user = userdao.findUserPhone(phoneNum);
+        User user = userdao.findUserByEmail(email);
         if (user != null) {
             user.setPassword(hashPassword(newPassword));
             return userdao.updateUser(user);
@@ -78,5 +78,23 @@ public class UserSevice {
     public static User findUserByPhone(String phoneNum) {
         UserDao userdao = new UserDao();
         return userdao.findUserPhone(phoneNum);
+    }
+    //Gmail
+    public static boolean updateEmailByPhone(String phoneNum, String newEmail) {
+        UserDao userdao = new UserDao();
+        User user = userdao.findUserPhone(phoneNum);
+        if (user != null) {
+            user.setEmail(newEmail);
+            return userdao.updateUser(user);
+        }
+        return false;
+    }
+    public User findByEmail(String email) {
+        UserDao userDao = new UserDao();
+        return userDao.findUserByEmail(email);
+    }
+    public void insertUser(String name, String email) {
+        UserDao userDao = new UserDao();
+        userDao.insertUser(name, email);
     }
 }

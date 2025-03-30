@@ -3,6 +3,10 @@ package vn.edu.hcmuaf.fit.webike.dao;
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 import vn.edu.hcmuaf.fit.webike.models.User;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserDao {
@@ -215,5 +219,29 @@ public class UserDao {
                         .execute() > 0
         );
     }
+    public User findUserByEmail(String email) {
+        return JDBIConnect.get().withHandle(h -> h.createQuery("SELECT * FROM accounts WHERE email = :email")
+                .bind("email", email)
+                .mapToBean(User.class)
+                .findFirst()
+                .orElse(null));
+    }
+
+    public void insertUser(String name, String email) {
+        JDBIConnect.get().withHandle(h -> h.createUpdate("INSERT INTO accounts (name, email) VALUES (:name, :email)")
+                .bind("name", name)
+                .bind("email", email)
+                .execute());
+    }
+    public String getPasswordByEmail(String email) {
+        return JDBIConnect.get().withHandle(h ->
+                h.createQuery("SELECT password FROM accounts WHERE email = :email")
+                        .bind("email", email)
+                        .mapTo(String.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
+
 }
 

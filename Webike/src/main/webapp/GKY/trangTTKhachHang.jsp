@@ -119,8 +119,7 @@
                 <li><a href="<%= request.getContextPath()%>/Profile" id="show-profile">Thông tin tài khoản</a></li>
                 <li><a href="<%= request.getContextPath()%>/ChangePassword" id="change-password">Đổi mật khẩu</a></li>
                 <li><a href="#" id="change-avatar">Đổi ảnh đại diện</a></li>
-
-
+                <li><a href="#" id="change-email">Đổi Email</a></li>
             </ul>
         </div>
 
@@ -156,7 +155,7 @@
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" value="${sessionScope.auth.email}" placeholder="example@example.com">
+                        <input type="email" id="email" name="email" value="${sessionScope.auth.email}" placeholder="example@example.com" disabled>
                     </div>
 
                     <div class="form-group">
@@ -238,6 +237,38 @@
             </form>
         </div>
 
+<%--        <div id="change-email-form" class="change-email-form" style="display: none;">--%>
+<%--            <h3>Đổi Email</h3>--%>
+<%--&lt;%&ndash;            method="post" action="SendOTPEmail&ndash;%&gt;--%>
+<%--            <form id="send-otp-form">--%>
+<%--                <div class="form-group">--%>
+<%--                    <label for="new-email">Email mới:</label>--%>
+<%--                    <input type="email" id="new-email" name="newEmail" required>--%>
+<%--                    <button type="submit" onclick="sendOtp()" class="save-btn" style="margin-top: 10px;">Gửi mã OTP</button>--%>
+<%--                </div>--%>
+<%--            </form>--%>
+<%--            <form id="verify-otp-form" method="post" action="VerifyOTPEmail" >--%>
+<%--                <div class="form-group">--%>
+<%--                    <label for="otp-code">Nhập mã OTP:</label>--%>
+<%--                    <input type="text" id="otp-code" name="otpCode" required>--%>
+<%--                </div>--%>
+<%--                <button type="submit" class="save-btn">Xác nhận & Đổi Email</button>--%>
+<%--            </form>--%>
+<%--        </div>--%>
+        <form id="change-email-form" method="post" action="update-email" style="display: none;" class="change-email-form">
+            <h3>Đổi Email</h3>
+            <div class="form-group">
+                <label for="new-email">Email mới:</label>
+                <input type="email" id="new-email" name="newEmail" required>
+                <button type="button" onclick="sendOtp()" class="save-btn" style="margin-top: 10px;">Gửi mã OTP</button>
+            </div>
+            <div class="form-group">
+                <label for="otp-code">Nhập mã OTP:</label>
+                <input type="text" id="otp-code" name="otpCode" required>
+            </div>
+            <button type="submit" class="save-btn">Xác nhận & Đổi Email</button>
+            <div id="result-message" class="result-message" style="display: none;"></div>
+        </form>
 
     </div>
 
@@ -354,6 +385,27 @@
         reader.readAsDataURL(event.target.files[0]);
     });
 </script>
+<script>
+    function sendOtp() {
+        const email = document.getElementById('new-email').value;
+        if (email) {
+            fetch('<%= request.getContextPath()%>/send-otp?email='+email, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `email=${email}`
+            }).then(response => response.text()).then(data => {
+                alert(data);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        } else {
+            alert('Vui lòng nhập Email.');
+        }
+    }
+</script>
+
 
 <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/popper.min.js"></script>
