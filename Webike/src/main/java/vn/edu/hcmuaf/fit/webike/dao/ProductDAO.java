@@ -76,19 +76,11 @@ public class ProductDAO {
 
     public boolean deleteProductById(int productId) {
         Jdbi jdbi = JDBIConnect.get();
-
-        // SQL xóa sản phẩm
-//        String deleteProductSql = """
-//            DELETE FROM products
-//            WHERE id = :id
-//        """;
-
         String deleteProductSql = """
                     UPDATE products
                     SET deleted = 1
                     WHERE id = :id
                 """;
-
         // SQL xóa ảnh liên quan đến sản phẩm
         String deleteImagesSql = """
                     DELETE FROM imgs
@@ -177,15 +169,10 @@ public class ProductDAO {
 
         String sql = """
                     UPDATE products
-                    SET name = :name, quantity = :quantity, price = :price, launch = :launch, des = :description, brandID = :brandID, typeID = :typeID, version = :version
+                    SET name = :name, quantity = :quantity, price = :price, launch = :launch,
+                    des = :description, brandID = :brandID, typeID = :typeID, version = :version
                     WHERE id = :id
                 """;
-
-//        String updateImageSql = """
-//                    UPDATE imgs
-//                    SET url = :url
-//                    WHERE productID = :id
-//                """;
         String updateImageSql = """
                     insert into imgs (url, productID, colorID) values (:url, :id, :colorID)
                 """;
@@ -259,17 +246,17 @@ public class ProductDAO {
         // load product to admin manage product page
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                SELECT 
-                    p.id ,
-                    p.name ,
-                    p.price ,
-                    p.launch ,
-                    p.quantity,
-                    i.url 
-                FROM products AS p
-                JOIN imgs AS i ON p.id = i.productID
-                WHERE p.deleted = 0
-                GROUP BY p.id;
+                                SELECT 
+                                    p.id ,
+                                    p.name ,
+                                    p.price ,
+                                    p.launch ,
+                                    p.quantity,
+                                    MIN(i.url) as url
+                                FROM products AS p
+                                JOIN imgs AS i ON p.id = i.productID
+                                WHERE p.deleted = 0
+                                GROUP BY p.id;
                 """;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)
@@ -281,14 +268,18 @@ public class ProductDAO {
     public List<Map<String, Object>> searchProducts(String keyword) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                    SELECT p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,
-                           p.status, b.name AS brand, MIN(i.url) AS imgUrl
-                    FROM products AS p
-                    JOIN imgs AS i ON i.productID = p.id
-                    JOIN brands AS b ON p.brandID = b.id
-                    WHERE p.name LIKE CONCAT('%', :keyword, '%')
-                    GROUP BY p.id;
-                """;
+                        SELECT p.id, p.name, 
+                               COALESCE(p.des, '') AS des, 
+                               p.price, p.quantity, 
+                               p.version, p.launch, 
+                               p.status, b.name AS brand, 
+                               COALESCE(MIN(i.url), '') AS imgUrl
+                        FROM products AS p
+                        LEFT JOIN imgs AS i ON i.productID = p.id
+                        JOIN brands AS b ON p.brandID = b.id
+                        WHERE p.name LIKE CONCAT('%', :keyword, '%')
+                        GROUP BY p.id;
+                    """;
 
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)
@@ -337,7 +328,7 @@ public class ProductDAO {
         //                    SELECT p.*, min(i.url) AS imgUrl
 //                    FROM products AS p
 //                    JOIN imgs AS i ON i.productID = p.id
-//                    GROUP BY p.id
+//                    GROUP BY p.id  offset: currentPage limit 9;
         String sql = """    
                       SELECT p.*,
                              (SELECT d.amount FROM discounts AS d WHERE d.productID = p.id ORDER BY d.id DESC LIMIT 1) AS discount,

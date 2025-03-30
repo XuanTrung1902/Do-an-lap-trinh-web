@@ -19,10 +19,9 @@ $(document).ready(function() {
             traditional: true,
             success: function(response) {
                 $(".grid__row").empty();
-
                 response.products.forEach(function(product) {
                     var productHTML = `
-                        <div class="grid__column-2" style="padding: 10px; height: 380px">
+                        <div class="grid__column-2" style="padding: 10px; height: 380px" data-attributes="${product.brand || ''}">
                             <a href="productDetail?id=${product.id}" class="bike--item">
                                 <div class="bike__img zoom-img">
                                     <img src="${product.imgUrl}" alt="${product.name}"/>
@@ -42,13 +41,13 @@ $(document).ready(function() {
                     $(".grid__row").append(productHTML);
                 });
 
+                // console.log(response);
                 renderPagination(response.totalPages);
             },
             error: function(xhr, status, error) {
-                // console.log("Có lỗi xảy ra:", error);
                 console.error("AJAX Error:", error);
                 console.error("Status:", status);
-                console.error("Response:", xhr.responseText); // Xem lỗi phía server
+                console.error("Response:", xhr.responseText);
             }
         });
     }
@@ -66,7 +65,7 @@ $(document).ready(function() {
 
                 response.products.forEach(function(product) {
                     var productHTML = `
-                        <div class="grid__column-2" style="padding: 10px; height: 380px">
+                        <div class="grid__column-2" style="padding: 10px; height: 380px" data-attributes="${product.brand || ''}">
                             <a href="productDetail?id=${product.id}" class="bike--item">
                                 <div class="bike__img zoom-img">
                                     <img src="${product.imgUrl}" alt="${product.name}"/>
@@ -86,52 +85,134 @@ $(document).ready(function() {
                     $(".grid__row").append(productHTML);
                 });
 
+                // console.log(response);
                 renderPagination(response.totalPages);
             },
             error: function(xhr, status, error) {
-                console.log("Có lỗi xảy ra:", error);
+                console.error("AJAX Error:", error);
+                console.error("Status:", status);
+                console.error("Response:", xhr.responseText);
             }
         });
     }
 
-    $("input[name='brand']").on("change", function() {
-        currentPage = 1; // Reset to the first page
+    function renderPagination(totalPages) {
+        $(".pagination ul").empty();
 
+        // Số trang tối đa hiển thị xung quanh trang hiện tại (2 trang trước và 2 trang sau)
+        const maxPagesBeforeCurrent = 2;
+        const maxPagesAfterCurrent = 2;
+
+        // Tính toán các trang sẽ hiển thị
+        let startPage = Math.max(2, currentPage - maxPagesBeforeCurrent); // Trang bắt đầu
+        let endPage = Math.min(totalPages - 1, currentPage + maxPagesAfterCurrent); // Trang kết thúc
+
+        // Điều chỉnh startPage và endPage để đảm bảo số lượng trang hiển thị hợp lý
+        const maxVisiblePages = maxPagesBeforeCurrent + maxPagesAfterCurrent + 1; // Tổng số trang hiển thị (không tính trang 1 và totalPages)
+        if (endPage - startPage + 1 < maxVisiblePages) {
+            if (currentPage <= totalPages / 2) {
+                endPage = Math.min(totalPages - 1, startPage + maxVisiblePages - 1);
+            } else {
+                startPage = Math.max(2, endPage - maxVisiblePages + 1);
+            }
+        }
+
+        // Thêm trang 1
+        const pageItem1 = `<li class="pagination__link ${1 === currentPage ? 'pagination__link--active' : ''}" data-page="1">1</li>`;
+        $(".pagination ul").append(pageItem1);
+
+        // Thêm dấu "..." nếu cần (giữa trang 1 và startPage)
+        if (startPage > 2) {
+            $(".pagination ul").append('<li class="pagination__ellipsis">...</li>');
+        }
+
+        // Thêm các trang từ startPage đến endPage
+        for (let i = startPage; i <= endPage; i++) {
+            const pageItem = `<li class="pagination__link ${i === currentPage ? 'pagination__link--active' : ''}" data-page="${i}">${i}</li>`;
+            $(".pagination ul").append(pageItem);
+        }
+
+        // Thêm dấu "..." nếu cần (giữa endPage và totalPages)
+        if (endPage < totalPages - 1) {
+            $(".pagination ul").append('<li class="pagination__ellipsis">...</li>');
+        }
+
+        // Thêm trang cuối (totalPages) nếu totalPages > 1
+        if (totalPages > 1) {
+            const pageItemLast = `<li class="pagination__link ${totalPages === currentPage ? 'pagination__link--active' : ''}" data-page="${totalPages}">${totalPages}</li>`;
+            $(".pagination ul").append(pageItemLast);
+        }
+
+        // Gắn sự kiện click cho các trang
+        $(".pagination__link").off("click").on("click", function() {
+            currentPage = parseInt($(this).data("page"));
+            var selectedBrands = [];
+            $("input[name='brand']:checked").each(function() {
+                selectedBrands.push($(this).val());
+            });
+
+            if (selectedBrands.length === 0) {
+                fetchAllProducts();
+            } else {
+                fetchFilteredProducts();
+            }
+        });
+
+        // Xử lý nút trái/phải
+        const leftButton = document.querySelector(".btn--left");
+        const rightButton = document.querySelector(".btn--right");
+
+        if (leftButton) {
+            leftButton.onclick = function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    var selectedBrands = [];
+                    $("input[name='brand']:checked").each(function() {
+                        selectedBrands.push($(this).val());
+                    });
+
+                    if (selectedBrands.length === 0) {
+                        fetchAllProducts();
+                    } else {
+                        fetchFilteredProducts();
+                    }
+                }
+            };
+        }
+
+        if (rightButton) {
+            rightButton.onclick = function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    var selectedBrands = [];
+                    $("input[name='brand']:checked").each(function() {
+                        selectedBrands.push($(this).val());
+                    });
+
+                    if (selectedBrands.length === 0) {
+                        fetchAllProducts();
+                    } else {
+                        fetchFilteredProducts();
+                    }
+                }
+            };
+        }
+    }
+
+    $("input[name='brand']").on("change", function() {
+        currentPage = 1;
         var selectedBrands = [];
         $("input[name='brand']:checked").each(function() {
             selectedBrands.push($(this).val());
         });
 
         if (selectedBrands.length === 0) {
-            // No checkboxes are checked, fetch all products
             fetchAllProducts();
         } else {
-            // Fetch filtered products
             fetchFilteredProducts();
         }
     });
 
-    function renderPagination(totalPages) {
-        $(".pagination ul").empty();
-
-        for (let i = 1; i <= totalPages; i++) {
-            const pageItem = `<li class="pagination__link ${i === currentPage ? 'pagination__link--active' : ''}" data-page="${i}">${i}</li>`;
-            $(".pagination ul").append(pageItem);
-        }
-
-        $(".pagination__link").on("click", function() {
-            currentPage = parseInt($(this).data("page"));
-            fetchFilteredProducts();
-        });
-    }
-
-    $("#resetFilters").on("click", function() {
-        $("input[name='brand']").prop("checked", false);
-        currentPage = 1; // Reset to the first page
-        fetchAllProducts();
-    });
-
-    // Initial fetch
     fetchAllProducts();
 });
 
@@ -142,13 +223,13 @@ $(document).ready(function() {
 $(document).ready(function () {
     $('#search-input').on('keyup', function () {
         let keyword = $(this).val();
-        // console.log(keyword);
+        console.log(keyword);
         $.ajax({
             url: '/Webike/search',
             method: 'GET',
             data: { keyword: keyword },
             success: function (response) {
-                console.log('Response:', response);
+                // console.log('Response:', response);
                 let productGrid = $('#product-grid');
                 productGrid.empty(); // Xóa kết quả cũ
 
@@ -179,9 +260,97 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 console.error('Error status:', xhr.status); // Kiểm tra HTTP status code
-                console.error('Error response:', xhr.responseText); // Log chi tiết lỗi từ server
+                console.error('AJAX Error:', error);
+                // console.error('Status:', status);
+                // console.error('Response:', xhr.responseText);
             }
         });
+    });
+});
+
+
+//////////////////////////////////////////////////////////////
+/////////////////////// gợi ý tìm kiếm ///////////////////////
+//////////////////////////////////////////////////////////////
+$(document).ready(function () {
+    let typingTimer;
+    const doneTypingInterval = 300; // Thời gian chờ (ms) trước khi gọi API
+
+    // Lắng nghe sự kiện khi người dùng nhập vào ô tìm kiếm
+    $('.header__search--input').on('keyup', function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(() => {
+            let keyword = $(this).val().trim();
+
+            // Nếu từ khóa rỗng, ẩn danh sách gợi ý
+            if (keyword === '') {
+                $('.search-suggestions').hide();
+                return;
+            }
+
+            // Gọi API để lấy danh sách gợi ý
+            $.ajax({
+                url: '/Webike/search',
+                method: 'GET',
+                data: { keyword: keyword },
+                success: function (response) {
+                    let suggestionList = $('#suggestion-list');
+                    suggestionList.empty(); // Xóa danh sách gợi ý cũ
+
+                    if (response.length > 0) {
+                        // Duyệt qua danh sách sản phẩm trả về và hiển thị gợi ý
+                        response.forEach(product => {
+                            let suggestionItem = `
+                                <li data-id="${product.id}">
+                                <div>
+                                    <img src="${product.imgurl}" alt="${product.name}"/>
+                                    <span><strong>${product.name}</strong></span>
+                                </div>
+                                    <span>${new Intl.NumberFormat().format(product.price)}₫</span>
+                                </li>`;
+                            suggestionList.append(suggestionItem);
+                        });
+
+                        // Hiển thị danh sách gợi ý
+                        $('.search-suggestions').show();
+                    } else {
+                        // Nếu không có kết quả, hiển thị thông báo
+                        suggestionList.append('<li>Không tìm thấy xe nào.</li>');
+                        $('.search-suggestions').show();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('AJAX Error:', error);
+                    $('.search-suggestions').hide();
+                }
+            });
+        }, doneTypingInterval);
+    });
+
+    // Xử lý khi người dùng nhấp vào một gợi ý
+    $(document).on('click', '#suggestion-list li', function () {
+        let productId = $(this).data('id');
+        if (productId) {
+            // Chuyển hướng đến trang chi tiết sản phẩm
+            window.location.href = `productDetail?id=${productId}`;
+        }
+        $('.search-suggestions').hide(); // Ẩn danh sách gợi ý sau khi chọn
+    });
+
+    // Ẩn danh sách gợi ý khi người dùng nhấp ra ngoài
+    $(document).on('click', function (e) {
+        if (!$(e.target).closest('.header__search').length) {
+            $('.search-suggestions').hide();
+        }
+    });
+
+    // Xử lý khi nhấn nút tìm kiếm
+    $('.header__search--btn').on('click', function () {
+        let keyword = $('.header__search--input').val().trim();
+        if (keyword) {
+            // Chuyển hướng đến trang kết quả tìm kiếm
+            window.location.href = `/Webike/list-products?keyword=${encodeURIComponent(keyword)}`;
+        }
     });
 });
 

@@ -24,110 +24,7 @@
 <c:set var="u" value="${empty sessionScope.auth ? 0 : sessionScope.auth}"/>
 <section class="admin">
     <div class="row__grid">
-        <div class="admin__sidebar" style="height: 100%">
-            <div class="admin__sidebar--top">
-                <img src="Admin/assets/images/logo.png" alt="">
-            </div>
-            <div class="admin__sidebar--content">
-                <ul>
-                    <li><a href="#">
-                        <i class="ri-dashboard-line"></i>
-                        Dashboard
-                        <i></i>
-                    </a>
-                        <ul class="sub-menu">
-                            <div class="sub-menu-items">
-                                <li><a href="${pageContext.request.contextPath}/admin">
-                                    <i class="ri-arrow-right-s-fill"></i>
-                                    Tổng quan
-                                </a>
-                                </li>
-                            </div>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="ri-file-list-line"></i>
-                            Người dùng
-                            <i class="ri-add-box-line"></i>
-                        </a>
-                        <ul class="sub-menu">
-                            <div class="sub-menu-items">
-                                <li><a href="${pageContext.request.contextPath}/userList">
-                                    <i class="ri-arrow-right-s-fill"></i>
-                                    Danh sách
-                                </a>
-                                </li>
-                            </div>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="ri-file-list-line"></i>
-                            Đơn hàng
-                            <i class="ri-add-box-line"></i>
-                        </a>
-                        <ul class="sub-menu">
-                            <div class="sub-menu-items">
-                                <li><a href="order-list">
-                                    <i class="ri-arrow-right-s-fill"></i>
-                                    Danh sách
-                                </a>
-                                </li>
-                                <%--                                    <li>--%>
-                                <%--                                        <a href="order_edit.jsp">--%>
-                                <%--                                            <i class="ri-arrow-right-s-fill"></i>--%>
-                                <%--                                            Sửa    --%>
-                                <%--                                         </a>--%>
-                                <%--                                    </li>--%>
-                            </div>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="ri-file-list-line"></i>
-                            Sản phẩm
-                            <i class="ri-add-box-line"></i>
-                        </a>
-                        <ul class="sub-menu">
-                            <div class="sub-menu-items">
-                                <li><a href="products">
-                                    <i class="ri-arrow-right-s-fill"></i>
-                                    Danh sách
-                                </a>
-                                </li>
-                                <li><a href="add-product">
-                                    <i class="ri-arrow-right-s-fill"></i>
-                                    Thêm
-                                </a>
-                                </li>
-                            </div>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="ri-file-list-line"></i>
-                            Giảm giá
-                            <i class="ri-add-box-line"></i>
-                        </a>
-                        <ul class="sub-menu">
-                            <div class="sub-menu-items">
-                                <li><a href="discountList">
-                                    <i class="ri-arrow-right-s-fill"></i>
-                                    Danh sách
-                                </a>
-                                </li>
-                                <li><a href="addDiscount">
-                                    <i class="ri-arrow-right-s-fill"></i>
-                                    Thêm
-                                </a>
-                                </li>
-                            </div>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <jsp:include page="/Admin/sidebar.jsp"/>
 
         <div class="admin__content">
             <div class="admin__content-top flex-box">
@@ -195,7 +92,6 @@
                             <label for="file">Thêm hình ảnh</label>
                         </div>
                     </div>
-
                     <div class="admin-content-main-container-description">
                         <textarea name="description" id="editor" cols="30" rows="5" placeholder="Mô tả sản phẩm"
                                   required></textarea>
@@ -225,7 +121,6 @@
                             </div>
                         </div>
                     </div>
-
                     <input type="hidden" name="selectedValues" id="selectedValues"/>
                     <button type="submit">Thêm sản phẩm</button>
                 </form>
@@ -265,6 +160,7 @@
         document.getElementById('specForm').submit();
     });
 </script>
+
 <script>
     document.querySelector('form').addEventListener('submit', function (event) {
         // Lấy giá trị của các ô input
