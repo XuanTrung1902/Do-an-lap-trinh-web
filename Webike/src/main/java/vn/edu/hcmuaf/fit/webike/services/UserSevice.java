@@ -29,9 +29,9 @@ public class UserSevice {
         return userdao.saveUser(user);
     }
 // Quên mật Khẩu
-    public static boolean updatePasswordByPhone(String phoneNum, String newPassword) {
+    public static boolean updatePasswordByEmail(String email, String newPassword) {
         UserDao userdao = new UserDao();
-        User user = userdao.findUserPhone(phoneNum);
+        User user = userdao.findUserByEmail(email);
         if (user != null) {
             user.setPassword(hashPassword(newPassword));
             return userdao.updateUser(user);

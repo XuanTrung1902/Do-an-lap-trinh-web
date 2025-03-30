@@ -1,4 +1,24 @@
-
+// function sendOtp() {
+//     // const email = document.querySelector('input[name="email"]').value;
+//     const email = document.getElementById('email').value;
+//     console.log(email)
+//     if (email) {
+//         fetch('<%= request.getContextPath()%>/OTP?email='+email, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/x-www-form-urlencoded'
+//             },
+//             body: `email=${email}`
+//         }).then(response => response.text()).then(data => {
+//             alert(data);
+//         }).catch(error => {
+//             console.log(error)
+//             console.error('Error:', error);
+//         });
+//     } else {
+//         alert('Vui lòng nhập email.');
+//     }
+// }
 document.addEventListener("DOMContentLoaded", function () {
     const submitBtn = document.querySelector(".submit_btn");
     if (submitBtn) {

@@ -233,10 +233,10 @@ public class UserDao {
                 .bind("email", email)
                 .execute());
     }
-    public String getPasswordByPhone(String phone) {
+    public String getPasswordByEmail(String email) {
         return JDBIConnect.get().withHandle(h ->
-                h.createQuery("SELECT password FROM accounts WHERE phoneNum = :phone")
-                        .bind("phone", phone)
+                h.createQuery("SELECT password FROM accounts WHERE email = :email")
+                        .bind("email", email)
                         .mapTo(String.class)
                         .findOne()
                         .orElse(null)

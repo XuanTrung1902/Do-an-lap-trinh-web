@@ -27,68 +27,10 @@ public class ForgotPasswordController extends HttpServlet {
         request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
     }
 
-//
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String phone = request.getParameter("phone");
-//        String password = request.getParameter("password");
-//        String confirmPassword = request.getParameter("confirm_password");
-//        String otp = request.getParameter("otp");
-//        String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-//
-//        HttpSession session = request.getSession();
-//        String sessionOtp = (String) session.getAttribute("otp");
-//
-//        if (!verifyRecaptcha(gRecaptchaResponse)) {
-//            request.setAttribute("error", "Xác nhận CAPTCHA không thành công");
-//            request.setAttribute("phone", phone);
-//            request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
-//            return;
-//        }
-//
-//        if (otp == null || otp.isEmpty()) {
-//            request.setAttribute("error", "Vui lòng nhập OTP.");
-//            request.setAttribute("phone", phone);
-//            request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
-//            return;
-//        }
-//
-//        Long otpTimestamp = (Long) session.getAttribute("otpTimestamp");
-//        if (otpTimestamp == null || System.currentTimeMillis() - otpTimestamp > 120000) {
-//            request.setAttribute("error", "OTP đã hết hạn!");
-//            request.setAttribute("phone", phone);
-//            request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
-//            return;
-//        }
-//
-//        if (!otp.equals(sessionOtp)) {
-//            request.setAttribute("error", "OTP không đúng!");
-//            request.setAttribute("phone", phone);
-//            request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
-//            return;
-//        }
-//
-//        if (!password.equals(confirmPassword)) {
-//            request.setAttribute("error", "Mật khẩu và Nhập lại mật khẩu không khớp!");
-//            request.setAttribute("phone", phone);
-//            request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
-//            return;
-//        }
-//
-//        boolean isUpdated = UserSevice.updatePasswordByPhone(phone, password);
-//
-//        if (isUpdated) {
-//            request.setAttribute("message", "Mật khẩu đã được cập nhật thành công!");
-//            request.getRequestDispatcher("GKY/Dangnhap.jsp").forward(request, response);
-//        } else {
-//            request.setAttribute("error", "Không tìm thấy số điện thoại này!");
-//            request.setAttribute("phone", phone);
-//            request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
-//        }
-//    }
-@Override
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirm_password");
         String otp = request.getParameter("otp");
@@ -97,16 +39,18 @@ public class ForgotPasswordController extends HttpServlet {
         HttpSession session = request.getSession();
         String sessionOtp = (String) session.getAttribute("otp");
 
+        session.removeAttribute("otp");
+
         if (!verifyRecaptcha(gRecaptchaResponse)) {
             request.setAttribute("error", "Xác nhận CAPTCHA không thành công");
-            request.setAttribute("phone", phone);
+            request.setAttribute("email", email);
             request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
             return;
         }
 
         if (otp == null || otp.isEmpty()) {
             request.setAttribute("error", "Vui lòng nhập OTP.");
-            request.setAttribute("phone", phone);
+            request.setAttribute("email", email);
             request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
             return;
         }
@@ -114,46 +58,48 @@ public class ForgotPasswordController extends HttpServlet {
         Long otpTimestamp = (Long) session.getAttribute("otpTimestamp");
         if (otpTimestamp == null || System.currentTimeMillis() - otpTimestamp > 120000) {
             request.setAttribute("error", "OTP đã hết hạn!");
-            request.setAttribute("phone", phone);
+            request.setAttribute("email", email);
             request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
             return;
         }
 
         if (!otp.equals(sessionOtp)) {
             request.setAttribute("error", "OTP không đúng!");
-            request.setAttribute("phone", phone);
+            request.setAttribute("email", email);
             request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
             return;
         }
 
+
         if (!password.equals(confirmPassword)) {
             request.setAttribute("error", "Mật khẩu và Nhập lại mật khẩu không khớp!");
-            request.setAttribute("phone", phone);
+            request.setAttribute("email", email);
             request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
             return;
         }
 
         // Lấy mật khẩu cũ đã mã hóa từ database
         UserDao userDao = new UserDao();
-        String oldHashedPassword = userDao.getPasswordByPhone(phone);
+        String oldHashedPassword = userDao.getPasswordByEmail(email);
 
         // Mã hóa mật khẩu mới
         String newHashedPassword = PasswordUtils.hashPassword(password);
 
-        boolean isUpdated = UserSevice.updatePasswordByPhone(phone, newHashedPassword);
+        boolean isUpdated = UserSevice.updatePasswordByEmail(email, password);
 
         if (isUpdated) {
             // Ghi log quên mật khẩu (INFO)
-            LogService.log(LogService.LEVEL_INFO, "ForgotPassword", phone, oldHashedPassword, newHashedPassword);
+            LogService.log(LogService.LEVEL_INFO, "ForgotPassword", email, oldHashedPassword, newHashedPassword);
 
             request.setAttribute("message", "Mật khẩu đã được cập nhật thành công!");
             request.getRequestDispatcher("GKY/Dangnhap.jsp").forward(request, response);
         } else {
             request.setAttribute("error", "Không tìm thấy số điện thoại này!");
-            request.setAttribute("phone", phone);
+            request.setAttribute("email", email);
             request.getRequestDispatcher("GKY/trangQuenMatKhau.jsp").forward(request, response);
         }
     }
+
     private boolean verifyRecaptcha(String gRecaptchaResponse) {
         try {
             String url = "https://www.google.com/recaptcha/api/siteverify";
@@ -185,13 +131,14 @@ public class ForgotPasswordController extends HttpServlet {
     public static class SendOtpController extends HttpServlet {
         @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            String phone = request.getParameter("phone");
-
+            String email = request.getParameter("email");
+            System.out.println(email);
 
             UserDao userDao = new UserDao();
-            User user = userDao.findUserPhone(phone);
+            User user = userDao.findUserByEmail(email);
+            System.out.println("User forget pass: " + user.toString());
             if (user == null) {
-                response.getWriter().write("Không tìm thấy số điện thoại này!");
+                response.getWriter().write("Không tìm thấy số email này!");
                 return;
             }
 

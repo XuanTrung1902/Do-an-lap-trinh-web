@@ -14,7 +14,7 @@
 <%--  <base href="/GKY/assets/">--%>
   <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/dangky.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+    <script src="<%= request.getContextPath()%>/GKY/assets/js/dangKy.js"></script>
 </head>
 
 <body>
@@ -136,30 +136,31 @@
   </div>
 </div>
 </div>
-
 <script>
     function sendOtp() {
-        // const email = document.querySelector('input[name="email"]').value;
-        const email = document.getElementById('email').value;
-        console.log(email)
-        if (email) {
-            fetch('<%= request.getContextPath()%>/send-otpR?email='+email, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `email=${email}`
-            }).then(response => response.text()).then(data => {
-                alert(data);
-            }).catch(error => {
-                console.error('Error:', error);
-            });
-        } else {
-            alert('Vui lòng nhập email.');
-        }
+         // const email = document.querySelector('input[name="email"]').value;
+         const email = document.getElementById('email').value;
+         console.log(email)
+         if (email) {
+             fetch('<%= request.getContextPath()%>/send-otp?email='+email, {
+                 method: 'POST',
+                 headers: {
+                     'Content-Type': 'application/x-www-form-urlencoded'
+                 },
+                 body: `email=${email}`
+             }).then(response => response.text()).then(data => {
+                 alert(data);
+             }).catch(error => {
+                 console.log(error)
+                 console.error('Error:', error);
+             });
+         } else {
+             alert('Vui lòng nhập email.');
+         }
     }
 </script>
-<script src="<%= request.getContextPath()%>/GKY/assets/js/dangKy.js"></script>
+
+<%--<script src="<%= request.getContextPath()%>/GKY/assets/js/dangKy.js"></script>--%>
 
 </body>
 

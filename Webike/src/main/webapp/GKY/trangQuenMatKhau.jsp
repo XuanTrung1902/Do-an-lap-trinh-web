@@ -31,8 +31,8 @@
             </a>
             <h2>Quên mật khẩu?</h2>
             <form action="<%= request.getContextPath()%>/forgot-password" method="post">
-                <label for="phone">SDT:</label>
-                <input type="tel" id="phone" name="phone" value="<%= request.getAttribute("phone") != null ? request.getAttribute("phone") : "" %>" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<%= request.getAttribute("phone") != null ? request.getAttribute("phone") : "" %>" required>
 
                 <% if (request.getAttribute("error") != null) { %>
                 <div class="error-message" style="color: red;">
@@ -58,21 +58,21 @@
         </div>
     <script>
         function sendOtp() {
-            const phone = document.getElementById('phone').value;
-            if (phone) {
-                fetch('<%= request.getContextPath()%>/send-otp?phone='+phone, {
+            const email = document.getElementById('email').value;
+            if (email) {
+                fetch('<%= request.getContextPath()%>/send-otp?email='+email, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: `phone=${phone}`
+                    body: `email=${email}`
                 }).then(response => response.text()).then(data => {
                     alert(data);
                 }).catch(error => {
                     console.error('Error:', error);
                 });
             } else {
-                alert('Vui lòng nhập số điện thoại.');
+                alert('Vui lòng nhập Email.');
             }
         }
     </script>
