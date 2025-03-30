@@ -24,14 +24,13 @@ public class Products extends HttpServlet {
 
         List<Map<String, Object>> products2 = dao.getAllProductImg2(); // Lấy  9 sản phẩm
         List<String> brands = dao.getBrandOfProduct(); // Lấy 10 thương hiệu
-        List<Brand> allBrand = dao.getAllBrand(); // Lấy tất cả thương hiệu
+        List<Brand> allBrand = dao.getAllBrand();
 
 
-
-        request.setAttribute("allBrand", allBrand);                 // Gửi dữ liệu sang JSP
-        request.setAttribute("brands", brands);                 // Gửi dữ liệu sang JSP
-        request.setAttribute("products2", products2);                 // Gửi dữ liệu sang JSP
-        request.setAttribute("products", products);                 // Gửi dữ liệu sang JSP
+        request.setAttribute("allBrand", allBrand);
+        request.setAttribute("brands", brands);
+        request.setAttribute("products2", products2);
+        request.setAttribute("products", products);
         request.getRequestDispatcher("GKY/product.jsp").forward(request, response);
     }
 

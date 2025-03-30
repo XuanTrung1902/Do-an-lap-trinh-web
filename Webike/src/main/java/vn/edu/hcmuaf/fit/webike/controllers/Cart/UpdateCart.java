@@ -6,8 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.json.JSONObject;
 import vn.edu.hcmuaf.fit.webike.models.Cart;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 @WebServlet(name = "UpdateCart", value = "/update-cart")
@@ -15,23 +17,13 @@ public class UpdateCart extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        HttpSession cartSession = request.getSession(true);
-        Cart cart = (Cart) cartSession.getAttribute("cart");
-
-        if (cart == null) cart = new Cart();
-        cart.update(id, quantity);
-        cartSession.setAttribute("cart", cart);
-
-
-
-        request.getRequestDispatcher("GKY/cart.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
+
+
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         HttpSession cartSession = request.getSession(true);
         Cart cart = (Cart) cartSession.getAttribute("cart");
@@ -39,7 +31,6 @@ public class UpdateCart extends HttpServlet {
         if (cart == null) cart = new Cart();
         cart.update(id, quantity);
         cartSession.setAttribute("cart", cart);
-
 
 
         request.getRequestDispatcher("GKY/cart.jsp").forward(request, response);
