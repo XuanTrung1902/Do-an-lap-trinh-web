@@ -28,7 +28,7 @@ public class VnPayConfig extends HttpServlet {
         String vnp_TxnRef = Config.getRandomNumber(8);
         String vnp_IpAddr = Config.getIpAddress(req);
         String vnp_TmnCode = Config.vnp_TmnCode;
-        String vnp_HashSecret = Config.secretKey;
+        String vnp_HashSecret = Config.vnp_HashSecret;
         int amount = Integer.parseInt(req.getParameter("deposit")) * 100;
         Map vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", vnp_Version);
@@ -113,7 +113,7 @@ public class VnPayConfig extends HttpServlet {
             }
         }
         String queryUrl = query.toString();
-        String vnp_SecureHash = Config.hmacSHA512(Config.secretKey, hashData.toString());
+        String vnp_SecureHash = Config.hmacSHA512(Config.vnp_HashSecret, hashData.toString());
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
         com.google.gson.JsonObject job = new JsonObject();
@@ -123,6 +123,4 @@ public class VnPayConfig extends HttpServlet {
         Gson gson = new Gson();
         resp.getWriter().write(gson.toJson(job));
     }
-    //vui lòng tham khảo thêm tại code demo
-
 }

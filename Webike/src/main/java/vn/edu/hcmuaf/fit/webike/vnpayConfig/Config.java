@@ -12,10 +12,10 @@ import java.util.Map;
 import java.util.Random;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
- *
  * @author CTT VNPAY
  */
 public class Config {
@@ -23,8 +23,11 @@ public class Config {
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     public static String vnp_ReturnUrl = "http://localhost:8080/Webike/GKY/vnpay_return.jsp";
     public static String vnp_TmnCode = "QUQKJ72Q";
-    public static String secretKey  = "0DBOHJ677YA5SBX53AKIHPK5SO45G7N7";
-    public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
+    public static String vnp_HashSecret = "0DBOHJ677YA5SBX53AKIHPK5SO45G7N7";
+    public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
+    public static String vnp_Version = "2.1.0";
+    public static String vnp_Command = "pay";
+    public static String orderType = "other";
 
     public static String md5(String message) {
         String digest = null;
@@ -80,7 +83,7 @@ public class Config {
                 sb.append("&");
             }
         }
-        return hmacSHA512(secretKey,sb.toString());
+        return hmacSHA512(vnp_HashSecret, sb.toString());
     }
 
     public static String hmacSHA512(final String key, final String data) {

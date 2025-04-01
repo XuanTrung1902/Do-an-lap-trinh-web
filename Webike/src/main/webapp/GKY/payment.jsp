@@ -55,7 +55,7 @@
 
             <c:set var="u" value="${empty sessionScope.auth ? 0 : sessionScope.auth}"/>
 <%--            <form action="pay" method="POST" class="m-5 mt-0 info">--%>
-            <form action="AjaxServlet" method="POST" class="m-5 mt-0 info">
+            <form action="/Webike/vnpayment" method="POST" class="m-5 mt-0 info">
 
                 <div class="row mb-3 me-0 ms-0">
                     <input type="text" value="${u.name}" class="form-control form-control-lg p-3" placeholder="Họ tên">
