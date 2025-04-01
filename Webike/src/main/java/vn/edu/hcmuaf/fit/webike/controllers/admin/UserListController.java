@@ -23,7 +23,7 @@ public class UserListController extends HttpServlet {
 
         final String level = LogService.LEVEL_INFO;
 
-        LogService.log(level, "UserListController", userInfo, "", "");
+//        LogService.log(level, "UserListController", userInfo, "", "");
 
 
         if (!userList.isEmpty()) {

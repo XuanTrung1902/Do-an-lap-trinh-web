@@ -11,7 +11,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import vn.edu.hcmuaf.fit.webike.vnpayConfig.Config;
 
 @WebServlet(name = "VnPayConfig", value = "/VnPayConfig")
 public class VnPayConfig extends HttpServlet {
@@ -29,7 +28,8 @@ public class VnPayConfig extends HttpServlet {
         String vnp_TxnRef = Config.getRandomNumber(8);
         String vnp_IpAddr = Config.getIpAddress(req);
         String vnp_TmnCode = Config.vnp_TmnCode;
-        int amount = Integer.parseInt(req.getParameter("amount")) * 100;
+        String vnp_HashSecret = Config.secretKey;
+        int amount = Integer.parseInt(req.getParameter("deposit")) * 100;
         Map vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", vnp_Version);
         vnp_Params.put("vnp_Command", vnp_Command);
@@ -113,7 +113,7 @@ public class VnPayConfig extends HttpServlet {
             }
         }
         String queryUrl = query.toString();
-        String vnp_SecureHash = Config.hmacSHA512(Config.vnp_HashSecret, hashData.toString());
+        String vnp_SecureHash = Config.hmacSHA512(Config.secretKey, hashData.toString());
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
         com.google.gson.JsonObject job = new JsonObject();

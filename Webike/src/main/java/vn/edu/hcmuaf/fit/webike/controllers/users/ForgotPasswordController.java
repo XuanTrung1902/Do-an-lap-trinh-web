@@ -89,7 +89,7 @@ public class ForgotPasswordController extends HttpServlet {
 
         if (isUpdated) {
             // Ghi log quên mật khẩu (INFO)
-            LogService.log(LogService.LEVEL_INFO, "ForgotPassword", email, oldHashedPassword, newHashedPassword);
+//            LogService.log(LogService.LEVEL_INFO, "ForgotPassword", email, oldHashedPassword, newHashedPassword);
 
             request.setAttribute("message", "Mật khẩu đã được cập nhật thành công!");
             request.getRequestDispatcher("GKY/Dangnhap.jsp").forward(request, response);

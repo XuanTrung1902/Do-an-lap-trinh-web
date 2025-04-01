@@ -54,7 +54,9 @@
             <h1 class="m-5 mt-0 left--header">THÔNG TIN KHÁCH HÀNG</h1>
 
             <c:set var="u" value="${empty sessionScope.auth ? 0 : sessionScope.auth}"/>
-            <form action="pay" method="POST" class="m-5 mt-0 info">
+<%--            <form action="pay" method="POST" class="m-5 mt-0 info">--%>
+            <form action="AjaxServlet" method="POST" class="m-5 mt-0 info">
+
                 <div class="row mb-3 me-0 ms-0">
                     <input type="text" value="${u.name}" class="form-control form-control-lg p-3" placeholder="Họ tên">
                 </div>
@@ -114,9 +116,7 @@
                                 </div>
                                 <div class="">
                                     <h3 class="pColor d-inline">Số lượng: </h3>
-                                    <h3 class="pColor d-inline">
-                                            ${o.quantity}
-                                    </h3>
+                                    <h3 class="pColor d-inline">${o.quantity}</h3>
                                 </div>
                             </div>
                             <div class="product--price">

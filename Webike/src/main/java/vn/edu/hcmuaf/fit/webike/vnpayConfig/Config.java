@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.Random;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-//import javax.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
@@ -22,9 +21,9 @@ import jakarta.servlet.http.HttpServletRequest;
 public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_ReturnUrl = "http://localhost:8080/vnpay_jsp/vnpay_return.jsp";
-    public static String vnp_TmnCode = "CGXZLS0Z";
-    public static String secretKey = "XNBCJFAKAZQSGTARRLGCHVZWCIOIGSHN";
+    public static String vnp_ReturnUrl = "http://localhost:8080/Webike/GKY/vnpay_return.jsp";
+    public static String vnp_TmnCode = "QUQKJ72Q";
+    public static String secretKey  = "0DBOHJ677YA5SBX53AKIHPK5SO45G7N7";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
 
     public static String md5(String message) {
