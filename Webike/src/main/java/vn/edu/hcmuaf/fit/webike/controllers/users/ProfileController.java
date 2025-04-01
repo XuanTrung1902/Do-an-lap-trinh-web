@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.webike.controllers.users;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 import vn.edu.hcmuaf.fit.webike.models.User;
 import java.io.IOException;
@@ -10,6 +11,8 @@ import java.sql.Date;
 
 @WebServlet(name = "ProfileController", value = "/Profile")
 public class ProfileController extends HttpServlet {
+    final String levelInfo = LogService.LEVEL_INFO;
+    final String levelAlert = LogService.LEVEL_ALERT;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -17,6 +20,7 @@ public class ProfileController extends HttpServlet {
         User user = (User) session.getAttribute("auth");
 
         if (user != null) {
+            LogService.log(levelInfo, "Xem thông tin cá nhân", "User: " + user.getPhoneNum(), user.toString(), "");
             request.setAttribute("user", user);
             request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
         } else {
@@ -49,6 +53,8 @@ public class ProfileController extends HttpServlet {
                     return;
                 }
             }
+            String before = user.toString();
+
             user.setName(fullname);
             user.setPhoneNum(newPhone);
             user.setAddress(address);
@@ -61,6 +67,9 @@ public class ProfileController extends HttpServlet {
             boolean isUpdated = UserSevice.updateUser(user);
 
             if (isUpdated) {
+                String after = user.toString();
+                LogService.log(levelAlert, "Sữa thông tin cá nhân", user.getPhoneNum(), before, after);
+
                 session.setAttribute("auth", user);
                 request.setAttribute("message", "Cập nhật thông tin thành công!");
             } else {
