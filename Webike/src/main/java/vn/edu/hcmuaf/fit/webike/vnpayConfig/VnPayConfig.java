@@ -113,7 +113,7 @@ public class VnPayConfig extends HttpServlet {
             }
         }
         String queryUrl = query.toString();
-        String vnp_SecureHash = Config.hmacSHA512(Config.vnp_HashSecret, hashData.toString());
+        String vnp_SecureHash = Config.hmacSHA512(Config.secretKey, hashData.toString());
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
         com.google.gson.JsonObject job = new JsonObject();

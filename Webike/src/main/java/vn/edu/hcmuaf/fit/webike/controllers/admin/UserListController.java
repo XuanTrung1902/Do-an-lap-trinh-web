@@ -12,6 +12,8 @@ import java.util.List;
 
 @WebServlet(name = "UserListController", value = "/userList")
 public class UserListController extends HttpServlet {
+    final String level = LogService.LEVEL_INFO;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao userDao = new UserDao();
@@ -21,9 +23,7 @@ public class UserListController extends HttpServlet {
         User currentUser = (User) session.getAttribute("auth");
         String userInfo = (currentUser != null) ? currentUser.getPhoneNum() : "Khách";
 
-        final String level = LogService.LEVEL_INFO;
-
-        LogService.log(level, "UserListController", userInfo, "", "");
+        LogService.log(level, "Xem danh sách users", userInfo, "", "");
 
 
         if (!userList.isEmpty()) {

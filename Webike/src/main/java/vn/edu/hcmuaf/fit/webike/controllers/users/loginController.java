@@ -42,7 +42,7 @@ public class loginController extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("auth", user); // Đặt user vào session với key "auth"
 
-                LogService.log(LEVEL_INFO, "Login", phoneNum, "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
+                LogService.log(LEVEL_INFO, "Đăng nhập", phoneNum, "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
 
                 if (user.getRole() == 0) { // nếu là admin
                     response.sendRedirect("admin");

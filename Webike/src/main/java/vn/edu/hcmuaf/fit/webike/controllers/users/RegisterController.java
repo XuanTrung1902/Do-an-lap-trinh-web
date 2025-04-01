@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.services.EmailService;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 import vn.edu.hcmuaf.fit.webike.services.OTPService;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 import vn.edu.hcmuaf.fit.webike.models.User;
@@ -19,75 +20,12 @@ import java.util.Scanner;
 @WebServlet(name = "RegisterController", value = "/register")
 public class RegisterController extends HttpServlet {
     private static final String SECRET_KEY = "6LfYyu4qAAAAAC7wHwxKsL8AV4NY3f9vgjA1BZM1";
-
+    final String level = LogService.LEVEL_INFO;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
     }
 
-//
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String fullname = request.getParameter("fullname");
-//        String phone = request.getParameter("phone");
-//        String address = request.getParameter("address");
-//        String gender = request.getParameter("gender");
-//        String day = request.getParameter("day");
-//        String month = request.getParameter("month");
-//        String year = request.getParameter("year");
-//        String dob = year + "-" + month + "-" + day;
-//        Date date = Date.valueOf(dob);
-//        String password = request.getParameter("password");
-//        String confirmPassword = request.getParameter("confirm_password");
-//        String email = request.getParameter("email");
-//
-//
-//        if (!password.equals(confirmPassword)) {
-//            request.setAttribute("error", "Mật khẩu không khớp");
-//            setRequestAttributes(request, fullname, phone, address, gender, day, month, year,email);
-//            request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
-//            return;
-//        }
-//        if (UserSevice.isPhoneNumExists(phone)) {
-//            request.setAttribute("error", "Số điện thoại đã tồn tại");
-//            setRequestAttributes(request, fullname, phone, address, gender, day, month, year,email);
-//            request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
-//            return;
-//        }
-//
-//        User user = new User();
-//        user.setName(fullname);
-//        user.setPhoneNum(phone);
-//        user.setAddress(address);
-//        user.setSex(gender);
-//        user.setDOB(date);
-//        user.setPassword(UserSevice.hashPassword(password));
-//        user.setCreated(LocalDate.now().toString());
-//        user.setLocked(0);
-//        user.setVerify(0);
-//        user.setRole(1);
-//        user.setEmail(email);
-//
-//        boolean isRegistered = UserSevice.registerUser(user);
-//
-//        if (isRegistered) {
-//            response.sendRedirect("Login");
-//        } else {
-//            request.setAttribute("error", "Đăng ký thất bại");
-//            setRequestAttributes(request, fullname, phone, address, gender, day, month, year,email);
-//            request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
-//        }
-//    }
-//    private void setRequestAttributes(HttpServletRequest request, String fullname, String phone, String address, String gender, String day, String month, String year,String email) {
-//        request.setAttribute("fullname", fullname);
-//        request.setAttribute("phone", phone);
-//        request.setAttribute("address", address);
-//        request.setAttribute("gender", gender);
-//        request.setAttribute("day", day);
-//        request.setAttribute("month", month);
-//        request.setAttribute("year", year);
-//        request.setAttribute("email", email);
-//    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -154,6 +92,7 @@ public class RegisterController extends HttpServlet {
         boolean isRegistered = UserSevice.registerUser(user);
 
         if (isRegistered) {
+            LogService.log(level, "Đăng ký", "User: " + phone, "", user.toString());
             response.sendRedirect("Login");
         } else {
             request.setAttribute("error", "Đăng ký thất bại");
@@ -201,20 +140,4 @@ public class RegisterController extends HttpServlet {
         request.setAttribute("email", email);
     }
 
-//    @WebServlet(name = "SendOtpController", value = "/OTP")
-//    public static class SendOtpController extends HttpServlet {
-//
-//        @Override
-//        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//            String email = request.getParameter("email");
-//            System.out.println(email);
-//            String generatedOtp = OTPService.generateOTP();
-//            HttpSession session = request.getSession();
-//            session.setAttribute("otp", generatedOtp);
-//            session.setAttribute("otpTimestamp", System.currentTimeMillis());
-//            EmailService.sendEmail(email, "OTP Verification", "Your OTP is: " + generatedOtp);
-//            response.getWriter().write("OTP đã được gửi đến email của bạn.");
-//        }
-//
-//    }
 }
