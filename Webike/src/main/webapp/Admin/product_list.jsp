@@ -79,6 +79,19 @@
                         </div>
                         <div class="admin-content-main-filter">
                             <label style="font-size: 16px">Loại sản phẩm</label>
+                            <select class="filter-select">
+                                <option value="0">Tất cả</option>
+                                <option value="1">Sản phẩm mới</option>
+                                <option value="2">Sản phẩm cũ</option>
+                            </select>
+                        </div>
+                    <div class="admin-content-main-header">
+                        <div class="admin-content-main-search">
+                            <label style="font-size: 16px">Tìm kiếm</label>
+                            <input type="text" id="searchInput" placeholder="Tên sản phẩm" class="search-input">
+                        </div>
+                        <div class="admin-content-main-filter">
+                            <label style="font-size: 16px">Loại sản phẩm</label>
                             <select class="filter-select" id="typeFilter">
                                 <option value="0" >Tất cả</option>
                                 <c:forEach var="bt" items="${bt}">
