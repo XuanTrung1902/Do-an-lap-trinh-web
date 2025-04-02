@@ -233,13 +233,18 @@ public class UserDao {
 //                .bind("email", email)
 //                .execute());
 //    }
+
     public void insertUser(String name, String email) {
         JDBIConnect.get().withHandle(h -> h.createUpdate(
-                        "INSERT INTO accounts (name, email, phoneNum, password) VALUES (:name, :email, :phoneNum, :password)")
+                        "INSERT INTO accounts (name, email, phoneNum, password, image, DOB, sex, address) VALUES (:name, :email, :phoneNum, :password, :image, :dob, :sex, :address)")
                 .bind("name", name)
                 .bind("email", email)
-                .bind("phoneNum", "0000000000") // Giá trị mặc định cho phoneNum
-                .bind("password", "google") // Mật khẩu mặc định
+                .bind("phoneNum", "0000000000")
+                .bind("password", "google")
+                .bind("image", "img/Users/def.png")
+                .bind("dob", "2000-01-01")
+                .bind("sex", "Khác")
+                .bind("address", "Chưa cập nhật")
                 .execute());
     }
 

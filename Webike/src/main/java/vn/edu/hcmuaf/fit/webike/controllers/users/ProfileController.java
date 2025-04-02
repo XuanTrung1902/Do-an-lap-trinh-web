@@ -20,6 +20,12 @@ public class ProfileController extends HttpServlet {
         User user = (User) session.getAttribute("auth");
 
         if (user != null) {
+            System.out.println("User found in session: " + user.toString());
+        } else {
+            System.out.println("No user found in session, redirecting to Login.");
+        }
+
+        if (user != null) {
             LogService.log(levelInfo, "Xem thông tin cá nhân", "User: " + user.getPhoneNum(), user.toString(), "");
             request.setAttribute("user", user);
             request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);

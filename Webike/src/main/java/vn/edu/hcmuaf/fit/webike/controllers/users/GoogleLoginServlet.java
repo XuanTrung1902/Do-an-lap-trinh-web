@@ -120,7 +120,7 @@ public class GoogleLoginServlet extends HttpServlet {
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String code = request.getParameter("code");
     if (code == null || code.isEmpty()) {
-        System.out.println("❌ Debug: Không nhận được mã code từ Google!");
+        System.out.println("Debug: Không nhận được mã code từ Google!");
         response.sendRedirect("/login.jsp?error=Google login failed");
         return;
     } else {
