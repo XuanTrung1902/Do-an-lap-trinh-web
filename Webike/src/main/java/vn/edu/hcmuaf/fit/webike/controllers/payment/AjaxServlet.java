@@ -1,10 +1,9 @@
 package vn.edu.hcmuaf.fit.webike.controllers.payment;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.webike.dao.PaymentDAO;
 import vn.edu.hcmuaf.fit.webike.models.PaymentResponse;
 import vn.edu.hcmuaf.fit.webike.vnpayConfig.Config;
 
@@ -24,31 +23,47 @@ public class AjaxServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        PaymentDAO dao = new PaymentDAO();
+        // lay data tu form payment.jsp
         double deposit = Double.parseDouble(req.getParameter("deposit"));
-//        double deposit = 1000000000;
-//        long amount = (long) (deposit * 100);
-        long amount = 100000 * 100;
+        double remain = Double.parseDouble(req.getParameter("remain"));
+        String appointment = req.getParameter("appointment");
+        String address = req.getParameter("address");
+//        String status = "Đã cọc";
+        int accountID = Integer.parseInt(req.getParameter("accountID"));
 
+        String branch = req.getParameter("branch"); // branch là chi nhánh =))
+        StringTokenizer t = new StringTokenizer(branch, "-");
+        int shopID = Integer.parseInt(t.nextToken());
+
+        int oid = dao.creatOrderID();
+        req.getSession().setAttribute("remain", remain);
+        req.getSession().setAttribute("appointment", appointment);
+        req.getSession().setAttribute("address", address);
+        req.getSession().setAttribute("accountID", accountID);
+        req.getSession().setAttribute("shopID", shopID);
+
+
+//        double deposit = Double.parseDouble(req.getParameter("deposit"));
+        long amount = (long) (deposit * 100);
 
         String bankCode = req.getParameter("bankCode");
-
         String vnp_TxnRef = Config.getRandomNumber(8);
         String vnp_IpAddr = Config.getIpAddress(req);
         String vnp_TmnCode = Config.vnp_TmnCode;
 
         Map<String, String> vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", Config.vnp_Version);
-        vnp_Params.put("vnp_Command",  Config.vnp_Command);
+        vnp_Params.put("vnp_Command", Config.vnp_Command);
         vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
         vnp_Params.put("vnp_Amount", String.valueOf(amount));
         vnp_Params.put("vnp_CurrCode", "VND");
         vnp_Params.put("vnp_BankCode", "NCB");
-        vnp_Params.put("vnp_TxnRef", vnp_TxnRef); // thay bằng id đơn hàng
-        vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + vnp_TxnRef);
+//        vnp_Params.put("vnp_TxnRef", vnp_TxnRef); // thay bằng id đơn hàng
+        vnp_Params.put("vnp_TxnRef", String.valueOf(oid)); // thay bằng id đơn hàng
+        vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + oid);
         vnp_Params.put("vnp_Locale", "vn");
-
-//        String locate = req.getParameter("language");
-        vnp_Params.put("vnp_OrderType",  Config.orderType);
+        vnp_Params.put("vnp_OrderType", Config.orderType);
         vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
@@ -88,22 +103,14 @@ public class AjaxServlet extends HttpServlet {
         String vnp_SecureHash = Config.hmacSHA512(Config.vnp_HashSecret, hashData.toString());
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
+
         PaymentResponse payment = new PaymentResponse();
         // TH thanh toan thanh cong
         payment.setStatus("Success");
         payment.setMessage("Payment Successful");
         payment.setUrl(paymentUrl);
 
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        Gson gson = new Gson();
-        String jsonResponse = gson.toJson(payment);
-        resp.getWriter().write(jsonResponse);
-
-        System.out.println("URL: "+payment.getUrl());
-        System.out.println("Chuỗi hashData: " + hashData.toString());
-        System.out.println("vnp_SecureHash tạo ra: " + vnp_SecureHash);
-
+        resp.sendRedirect(payment.getUrl());
 
     }
 }

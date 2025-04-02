@@ -48,7 +48,6 @@
                 fields.remove("vnp_SecureHash");
             }
             String signValue = Config.hashAllFields(fields);
-
         %>
         <!--Begin display -->
         <div class="container">
@@ -108,7 +107,6 @@
                 </div>
             </div>
             <p>
-                &nbsp;
             </p>
             <footer class="footer">
                 <p>&copy; VNPAY 2020</p>

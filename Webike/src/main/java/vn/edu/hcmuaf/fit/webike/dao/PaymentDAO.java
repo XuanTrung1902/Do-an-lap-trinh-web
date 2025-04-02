@@ -19,29 +19,47 @@ public class PaymentDAO {
         return jdbi.withHandle(handle -> handle.createQuery(sql).mapToBean(Shop.class).list());
     }
 
-    public int insertOrder(double deposit, double remain, String address, String appointment, String payDate, String status, int accountID, int shopID) {
+    public int creatOrderID() {
         Jdbi jdbi = JDBIConnect.get();
-        String sql = """
-                insert into orders (deposit, remain, address, appointment, payDate, status, accountID, shopID)
-                values (:deposit, :remain, :address, :appointment, :payDate, :status, :accountID, :shopID) 
-                """;
+        String sql = "insert into orders values()";
         return jdbi.withHandle(handle -> handle.createUpdate(sql)
-                .bind("deposit", deposit)
-                .bind("remain", remain)
-                .bind("address", address)
-                .bind("appointment", appointment)
-                .bind("payDate", payDate)
-                .bind("status", status)
-                .bind("accountID", accountID)
-                .bind("shopID", shopID)
                 .executeAndReturnGeneratedKeys()
                 .mapTo(int.class)
-                .first()
-        );
+                .first());
     }
 
-
-
+    //    public int insertOrder(double deposit, double remain, String address, String appointment, String payDate, String status, int accountID, int shopID) {
+    public int insertOrder(int oid, double deposit, double remain, String address, String appointment, String payDate, String status, int accountID, int shopID) {
+        Jdbi jdbi = JDBIConnect.get();
+//        String sql = """
+//                insert into orders (deposit, remain, address, appointment, payDate, status, accountID, shopID)
+//                values (:deposit, :remain, :address, :appointment, :payDate, :status, :accountID, :shopID)
+//                """;
+        String sql = """
+                update orders
+                set deposit = :deposit, remain = :remain, address = :address,
+                appointment = :appointment, payDate = :payDate,
+                status = :status, accountID = :accountID,
+                shopID = :shopID
+                where id = :oid
+                """;
+        return jdbi.withHandle(handle -> handle.createUpdate(sql)
+                        .bind("deposit", deposit)
+                        .bind("remain", remain)
+                        .bind("address", address)
+                        .bind("appointment", appointment)
+                        .bind("payDate", payDate)
+                        .bind("status", status)
+                        .bind("accountID", accountID)
+                        .bind("shopID", shopID)
+                        .bind("oid", oid)
+//                        .executeAndReturnGeneratedKeys()
+                        .execute()
+//                        .mapTo(int.class)
+//                        .first()
+//                        .execute() > 0 ? 1 : 0
+        );
+    }
 
 
     public int insertOrderItem(int quantity, String img, String color, int oid, int pid) {
