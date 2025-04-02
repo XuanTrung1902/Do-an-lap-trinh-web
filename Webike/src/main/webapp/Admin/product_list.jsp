@@ -58,9 +58,19 @@
                     <h1>Danh sách sản phẩm</h1>
                 </div>
                 <div class="admin-content-main-container">
-                    <div class="admin-content-main-search">
-                        <label style="font-size: 16px">Tìm kiếm</label>
-                        <input type="text" id="searchInput" placeholder="Tên sản phẩm" class="search-input">
+                    <div class="admin-content-main-header">
+                        <div class="admin-content-main-search">
+                            <label style="font-size: 16px">Tìm kiếm</label>
+                            <input type="text" id="searchInput" placeholder="Tên sản phẩm" class="search-input">
+                        </div>
+                        <div class="admin-content-main-filter">
+                            <label style="font-size: 16px">Loại sản phẩm</label>
+                            <select class="filter-select">
+                                <option value="0">Tất cả</option>
+                                <option value="1">Sản phẩm mới</option>
+                                <option value="2">Sản phẩm cũ</option>
+                            </select>
+                        </div>
                     </div>
                     <table>
                         <thead>
