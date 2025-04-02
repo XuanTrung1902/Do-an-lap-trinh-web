@@ -52,18 +52,7 @@
                     </ul>
                 </div>
             </div>
-            <c:set var="canWritetProdcut" value="false" />
-            <c:set var="canDeletetProduct" value="false" />
 
-            <c:forEach var="p" items="${sessionScope.permissions}">
-                <c:if test="${p.resource eq 'product' and p.action eq 'write'}">
-                    <c:set var="canWritetProdcut" value="true" />
-                </c:if>
-                <c:if test="${p.resource eq 'product' and p.action eq 'delete'}">
-                    <c:set var="canDeletetProduct" value="true" />
-                </c:if>
-
-            </c:forEach>
             <div class="admin-content-main">
                 <div class="admin-content-main-title">
                     <h1>Danh sách sản phẩm</h1>
@@ -76,11 +65,10 @@
                         </div>
                         <div class="admin-content-main-filter">
                             <label style="font-size: 16px">Loại sản phẩm</label>
-                            <select class="filter-select" id="typeFilter">
-                                <option value="0" >Tất cả</option>
-                                <c:forEach var="bt" items="${bt}">
-                                    <option value="${bt.id}">${bt.type}</option>
-                                </c:forEach>
+                            <select class="filter-select">
+                                <option value="0">Tất cả</option>
+                                <option value="1">Sản phẩm mới</option>
+                                <option value="2">Sản phẩm cũ</option>
                             </select>
                         </div>
                     <div class="admin-content-main-header">
@@ -123,13 +111,9 @@
                                 </td>
                                 <td>${p.quantity}</td>
                                 <td>
-                                    <c:if test="${canWritetProdcut}">
                                     <a href="update-product?id=${p.id}" class="btn-edit">Sửa</a>
-                                    </c:if>
-                                    <c:if test="${canDeletetProduct}">
                                     <a href="delete-product?id=${p.id}" class="btn-delete"
                                        onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">Xóa</a>
-                                    </c:if>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -145,7 +129,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-<script src="${pageContext.request.contextPath}/Admin/assets/js/filterProduct.js"></script>
 <script src="${pageContext.request.contextPath}/Admin/assets/js/searchProductAjax.js"></script>
 <script src="${pageContext.request.contextPath}/Admin/assets/js/product_list.js"></script>
 </body>
