@@ -27,7 +27,7 @@ import java.io.IOException;
 
 
 
-@WebServlet(name = "GoogleLoginServlet", value = "/login-google")
+@WebServlet(name = "GoogleLoginServlet", value = "/googlelogin")
 public class GoogleLoginServlet extends HttpServlet {
 //    private static final String CLIENT_ID = "101282606498-ogsnp108d3sk4f25rbc8pjrq6ad9m4b8.apps.googleusercontent.com";
 //

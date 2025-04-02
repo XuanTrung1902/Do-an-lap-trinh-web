@@ -226,13 +226,23 @@ public class UserDao {
                 .findFirst()
                 .orElse(null));
     }
-
+    // sữa gg
+//    public void insertUser(String name, String email) {
+//        JDBIConnect.get().withHandle(h -> h.createUpdate("INSERT INTO accounts (name, email) VALUES (:name, :email)")
+//                .bind("name", name)
+//                .bind("email", email)
+//                .execute());
+//    }
     public void insertUser(String name, String email) {
-        JDBIConnect.get().withHandle(h -> h.createUpdate("INSERT INTO accounts (name, email) VALUES (:name, :email)")
+        JDBIConnect.get().withHandle(h -> h.createUpdate(
+                        "INSERT INTO accounts (name, email, phoneNum, password) VALUES (:name, :email, :phoneNum, :password)")
                 .bind("name", name)
                 .bind("email", email)
+                .bind("phoneNum", "0000000000") // Giá trị mặc định cho phoneNum
+                .bind("password", "google") // Mật khẩu mặc định
                 .execute());
     }
+
     public String getPasswordByEmail(String email) {
         return JDBIConnect.get().withHandle(h ->
                 h.createQuery("SELECT password FROM accounts WHERE email = :email")
