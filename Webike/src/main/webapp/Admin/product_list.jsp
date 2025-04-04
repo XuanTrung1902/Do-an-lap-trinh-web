@@ -79,10 +79,11 @@
                         </div>
                         <div class="admin-content-main-filter">
                             <label style="font-size: 16px">Loại sản phẩm</label>
-                            <select class="filter-select">
-                                <option value="0">Tất cả</option>
-                                <option value="1">Sản phẩm mới</option>
-                                <option value="2">Sản phẩm cũ</option>
+                            <select class="filter-select" id="typeFilter">
+                                <option value="0" >Tất cả</option>
+                                <c:forEach var="bt" items="${bt}">
+                                    <option value="${bt.id}">${bt.type}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     <div class="admin-content-main-header">
