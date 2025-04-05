@@ -64,6 +64,7 @@
                     <div class="admin-content-main-title">
                         <h1>Người dùng</h1>
                         <button class="btn-add__user">Thêm người dùng</button>
+                        <button class="btn-import__user">Nhập từ file</button>
                     </div>
                     <div class="admin-content-main-container">
                         <table id="list-user" class="table table-striped">
@@ -196,6 +197,20 @@
         </div>
     </div>
 
+    <div class="modal" id="import-modal">
+        <div class="modal-content">
+            <span class="close-import-button">&times;</span>
+            <h2>Nhập người dùng từ file Excel</h2>
+            <form id="import-user-form" action="<%= request.getContextPath() %>/importUser" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="userFile">Chọn file Excel:</label>
+                    <input type="file" id="userFile" name="userFile" accept=".xls,.xlsx" required>
+                </div>
+                <button type="submit" class="btn-submit">Nhập</button>
+            </form>
+        </div>
+    </div>
+
 
     <script>
         document.querySelector('.btn-add__user').addEventListener('click', function() {
@@ -213,6 +228,21 @@
 
         window.addEventListener('click', function(event) {
             const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        document.querySelector('.btn-import__user').addEventListener('click', function() {
+            document.getElementById('import-modal').style.display = 'block';
+        });
+
+        document.querySelector('.close-import-button').addEventListener('click', function() {
+            document.getElementById('import-modal').style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('import-modal');
             if (event.target === modal) {
                 modal.style.display = 'none';
             }

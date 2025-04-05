@@ -29,6 +29,7 @@ public class AddUserController extends HttpServlet {
         String name = request.getParameter("username");
         String phoneNum = request.getParameter("phone");
         String DOB = request.getParameter("birthday");
+        System.out.println(DOB);
         Date date = Date.valueOf(DOB);
         String sex = request.getParameter("sex");
         String password = request.getParameter("password");
