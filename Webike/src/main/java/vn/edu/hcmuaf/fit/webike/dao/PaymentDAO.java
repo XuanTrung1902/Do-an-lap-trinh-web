@@ -11,6 +11,7 @@ public class PaymentDAO {
         PaymentDAO dao = new PaymentDAO();
 //        System.out.println(dao.getShops());
 //        dao.insertOrder(12.9,12.8, "Address", "2020-02-01", "2020-02-01","Status", 1,1);
+//        System.out.println(dao.creatOrderID());
     }
 
     public List<Shop> getShops() {
@@ -21,27 +22,18 @@ public class PaymentDAO {
 
     public int creatOrderID() {
         Jdbi jdbi = JDBIConnect.get();
-        String sql = "insert into orders values()";
-        return jdbi.withHandle(handle -> handle.createUpdate(sql)
-                .executeAndReturnGeneratedKeys()
-                .mapTo(int.class)
-                .first());
+        String sql = "SELECT max(id) from orders";
+        int rs = jdbi.withHandle(handle -> handle.createQuery(sql)
+                .mapTo(Integer.class)
+                .one() + 1);
+        return rs;
     }
 
-    //    public int insertOrder(double deposit, double remain, String address, String appointment, String payDate, String status, int accountID, int shopID) {
-    public int insertOrder(int oid, double deposit, double remain, String address, String appointment, String payDate, String status, int accountID, int shopID) {
+    public int insertOrder(double deposit, double remain, String address, String appointment, String payDate, String status, int accountID, int shopID) {
         Jdbi jdbi = JDBIConnect.get();
-//        String sql = """
-//                insert into orders (deposit, remain, address, appointment, payDate, status, accountID, shopID)
-//                values (:deposit, :remain, :address, :appointment, :payDate, :status, :accountID, :shopID)
-//                """;
         String sql = """
-                update orders
-                set deposit = :deposit, remain = :remain, address = :address,
-                appointment = :appointment, payDate = :payDate,
-                status = :status, accountID = :accountID,
-                shopID = :shopID
-                where id = :oid
+                insert into orders (deposit, remain, address, appointment, payDate, status, accountID, shopID)
+                values (:deposit, :remain, :address, :appointment, :payDate, :status, :accountID, :shopID)
                 """;
         return jdbi.withHandle(handle -> handle.createUpdate(sql)
                         .bind("deposit", deposit)
@@ -52,11 +44,9 @@ public class PaymentDAO {
                         .bind("status", status)
                         .bind("accountID", accountID)
                         .bind("shopID", shopID)
-                        .bind("oid", oid)
-//                        .executeAndReturnGeneratedKeys()
-                        .execute()
-//                        .mapTo(int.class)
-//                        .first()
+                        .executeAndReturnGeneratedKeys()
+                        .mapTo(int.class)
+                        .first()
 //                        .execute() > 0 ? 1 : 0
         );
     }

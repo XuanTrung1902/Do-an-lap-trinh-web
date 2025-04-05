@@ -1,34 +1,22 @@
 package vn.edu.hcmuaf.fit.webike.vnpayConfig;
 
+import jakarta.servlet.http.HttpServletRequest;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
+import java.util.*;
 
-import jakarta.servlet.http.HttpServletRequest;
-
-/**
- * @author CTT VNPAY
- */
 public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-//        public static String vnp_ReturnUrl = "http://localhost:8080/Webike/GKY/billing.jsp";
     public static String vnp_ReturnUrl = "http://localhost:8080/Webike/pay";
     public static String vnp_TmnCode = "QUQKJ72Q";
     public static String vnp_HashSecret = "0DBOHJ677YA5SBX53AKIHPK5SO45G7N7";
-    public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
-    public static String vnp_Version = "2.1.0";
-    public static String vnp_Command = "pay";
-    public static String orderType = "other";
+    public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
 
     public static String md5(String message) {
         String digest = null;
@@ -84,15 +72,13 @@ public class Config {
                 sb.append("&");
             }
         }
-        return hmacSHA512(vnp_HashSecret, sb.toString());
+        return hmacSHA512(vnp_HashSecret,sb.toString());
     }
 
     public static String hmacSHA512(final String key, final String data) {
-        try {
-
-            if (key == null || data == null) {
-                throw new NullPointerException();
-            }
+        try {if (key == null || data == null) {
+            throw new NullPointerException();
+        }
             final Mac hmac512 = Mac.getInstance("HmacSHA512");
             byte[] hmacKeyBytes = key.getBytes();
             final SecretKeySpec secretKey = new SecretKeySpec(hmacKeyBytes, "HmacSHA512");
