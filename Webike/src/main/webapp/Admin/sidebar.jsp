@@ -15,7 +15,7 @@
             </a>
                 <ul class="sub-menu">
                     <div class="sub-menu-items">
-                        <li><a href="${pageContext.request.contextPath}/admin">
+                        <li><a href="${pageContext.request.contextPath}/dashboard">
                             <i class="ri-arrow-right-s-fill"></i>
                             Tổng quan
                         </a>
