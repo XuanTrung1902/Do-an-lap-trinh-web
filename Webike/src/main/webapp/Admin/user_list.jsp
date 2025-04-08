@@ -198,7 +198,7 @@
     </div>
 
     <div class="modal" id="import-modal">
-        <div class="modal-content">
+        <div class="modal-content" style="max-width: 700px">
             <span class="close-import-button">&times;</span>
             <h2>Nhập người dùng từ file Excel</h2>
             <form id="import-user-form" action="<%= request.getContextPath() %>/importUser" method="post" enctype="multipart/form-data">

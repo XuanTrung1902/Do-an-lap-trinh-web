@@ -637,15 +637,29 @@ li {
 }
 
 /*model file*/
+/*.btn-import__user {*/
+/*    background-color: #17a2b8;*/
+/*    color: white;*/
+/*    padding: 10px 15px;*/
+/*    border: none;*/
+/*    border-radius: 4px;*/
+/*    cursor: pointer;*/
+/*    transition: 0.3s;*/
+/*    margin-left: 10px;*/
+/*}*/
+
 .btn-import__user {
-    background-color: #17a2b8;
-    color: white;
-    padding: 10px 15px;
+    margin-left: 20px;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: var(--primary-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: 0.3s;
-    margin-left: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-import__user:hover {

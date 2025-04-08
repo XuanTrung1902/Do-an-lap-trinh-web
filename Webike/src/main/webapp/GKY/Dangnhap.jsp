@@ -112,10 +112,8 @@
                         <div class="field">
                             <div class="ssolink">
                                 <span style="margin-right: 10px;text-align: center; font-weight: 600; color: #e31c25;">Đăng nhập bằng</span>
-                                <a href="#" class=""><img src="<%= request.getContextPath()%>/GKY/assets/img/facebook.png" alt=""
-                                                          style="width: 30px; margin-right: 10px;"></a>
-                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/Webike/googlelogin&response_type=code&client_id=972007866215-3koe9d0fsifej7pijjiqign771j5glrm.apps.googleusercontent.com&approval_prompt=force">"<img src="<%= request.getContextPath()%>/GKY/assets/img/google.png" alt=""
-                                                          style="width: 30px; border: 0.2px #ebd3d3 solid; border-radius: 100px;"></a>
+                                <a href="#" class=""><img src="<%= request.getContextPath()%>/GKY/assets/img/facebook.png" alt="" style="width: 30px; margin-right: 10px;"></a>
+                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/Webike/googlelogin&response_type=code&client_id=972007866215-3koe9d0fsifej7pijjiqign771j5glrm.apps.googleusercontent.com&approval_prompt=force"><img src="<%= request.getContextPath()%>/GKY/assets/img/google.png" alt="" style="width: 30px; border: 0.2px #ebd3d3 solid; border-radius: 100px;"></a>
                             </div>
                         </div>
                     </form>
