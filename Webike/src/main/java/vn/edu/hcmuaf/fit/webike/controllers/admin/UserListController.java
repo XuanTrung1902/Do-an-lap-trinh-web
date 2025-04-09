@@ -29,6 +29,9 @@ public class UserListController extends HttpServlet {
         if (!userList.isEmpty()) {
             request.setAttribute("userList", userList);
             request.getRequestDispatcher("Admin/user_list.jsp").forward(request, response);
+        } else {
+            request.setAttribute("message", "Không có người dùng nào.");
+            request.getRequestDispatcher("Admin/user_list.jsp").forward(request, response);
         }
     }
 

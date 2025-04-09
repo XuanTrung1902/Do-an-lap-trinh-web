@@ -213,6 +213,7 @@
 
 
     <script>
+
         document.querySelector('.btn-add__user').addEventListener('click', function() {
             document.getElementById('modal').style.display = 'block';
         });
@@ -251,9 +252,11 @@
 
 
 
-    <script src="<%= request.getContextPath()%>/Admin/assets/js/user_list.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="<%= request.getContextPath()%>/Admin/assets/js/user_list.js"></script>
+
     <script>
         $(document).ready(function () {
         $('#list-user').DataTable({
@@ -284,7 +287,42 @@
         });
        });
     </script>
+
+<%--    <script>--%>
+<%--        function loadUserList() {--%>
+<%--            if ($.fn.DataTable.isDataTable('#list-user')) {--%>
+<%--                $('#list-user').DataTable().destroy(); // Hủy bỏ--%>
+<%--            }--%>
+
+<%--            $('#list-user').DataTable({--%>
+<%--                language: {--%>
+<%--                    search: "Tìm kiếm:",--%>
+<%--                    lengthMenu: "Hiển thị _MENU_ dòng",--%>
+<%--                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",--%>
+<%--                    paginate: {--%>
+<%--                        first: "Đầu",--%>
+<%--                        last: "Cuối",--%>
+<%--                        next: ">",--%>
+<%--                        previous: "<",--%>
+<%--                    },--%>
+<%--                    infoFiltered: "(Lọc từ _MAX_ dòng)",--%>
+<%--                    infoEmpty: "Không có dữ liệu",--%>
+<%--                    zeroRecords: "Không tìm thấy dữ liệu phù hợp",--%>
+<%--                },--%>
+<%--                pageLength: 5,--%>
+<%--                lengthMenu: [5, 10, 20],--%>
+<%--            });--%>
+<%--        }--%>
+
+<%--        $(document).ready(function () {--%>
+<%--            loadUserList(); // Gọi hàm này khi trang load lần đầu--%>
+<%--        });--%>
+<%--    </script>--%>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script>
+        dataTable = $('#list-user').DataTable();
+    </script>
 </body>
 </html>
