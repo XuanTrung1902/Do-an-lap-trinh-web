@@ -288,41 +288,43 @@
        });
     </script>
 
-<%--    <script>--%>
-<%--        function loadUserList() {--%>
-<%--            if ($.fn.DataTable.isDataTable('#list-user')) {--%>
-<%--                $('#list-user').DataTable().destroy(); // Hủy bỏ--%>
-<%--            }--%>
+    <script>
+        var dataTable;
 
-<%--            $('#list-user').DataTable({--%>
-<%--                language: {--%>
-<%--                    search: "Tìm kiếm:",--%>
-<%--                    lengthMenu: "Hiển thị _MENU_ dòng",--%>
-<%--                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",--%>
-<%--                    paginate: {--%>
-<%--                        first: "Đầu",--%>
-<%--                        last: "Cuối",--%>
-<%--                        next: ">",--%>
-<%--                        previous: "<",--%>
-<%--                    },--%>
-<%--                    infoFiltered: "(Lọc từ _MAX_ dòng)",--%>
-<%--                    infoEmpty: "Không có dữ liệu",--%>
-<%--                    zeroRecords: "Không tìm thấy dữ liệu phù hợp",--%>
-<%--                },--%>
-<%--                pageLength: 5,--%>
-<%--                lengthMenu: [5, 10, 20],--%>
-<%--            });--%>
-<%--        }--%>
+        function loadUserList() {
+            if ($.fn.DataTable.isDataTable('#list-user')) {
+                $('#list-user').DataTable().destroy(); // Hủy nếu đã tồn tại
+            }
 
-<%--        $(document).ready(function () {--%>
-<%--            loadUserList(); // Gọi hàm này khi trang load lần đầu--%>
-<%--        });--%>
-<%--    </script>--%>
+            dataTable = $('#list-user').DataTable({
+                language: {
+                    search: "Tìm kiếm:",
+                    lengthMenu: "Hiển thị _MENU_ dòng",
+                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                    paginate: {
+                        first: "Đầu",
+                        last: "Cuối",
+                        next: ">",
+                        previous: "<",
+                    },
+                    infoFiltered: "(Lọc từ _MAX_ dòng)",
+                    infoEmpty: "Không có dữ liệu",
+                    zeroRecords: "Không tìm thấy dữ liệu phù hợp",
+                },
+                pageLength: 5,
+                lengthMenu: [5, 10, 20],
+            });
+        }
+
+        $(document).ready(function () {
+            loadUserList(); // Khởi tạo bảng đúng cách
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        dataTable = $('#list-user').DataTable();
-    </script>
+<%--    <script>--%>
+<%--        dataTable = $('#list-user').DataTable();--%>
+<%--    </script>--%>
 </body>
 </html>

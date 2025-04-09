@@ -60,6 +60,52 @@ function initTableData() {
     },
   });
 }
+// document.getElementById('add-user-form').addEventListener('submit', function(e) {
+//   e.preventDefault();
+//   const form = e.target;
+//   const formData = new FormData(form);
+//
+//   fetch(form.action, {
+//     method: 'POST',
+//     body: formData,
+//     headers: {
+//       'X-Requested-With': 'XMLHttpRequest'
+//     }
+//   })
+//       .then(response => response.json())
+//       .then(data => {
+//         if (data.success) {
+//           const user = data.user;
+//
+//           // ✅ Dùng DataTables API
+//           dataTable.row.add([
+//             user.id,
+//             user.name,
+//             user.DOB,
+//             user.sex,
+//             user.address,
+//             user.phoneNum,
+//             user.role,
+//             user.locked,
+//             `<img src="${user.image}" style="width: 50px; height: 50px; border-radius: 50%;">`,
+//             `<a href="${data.contextPath}/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
+//          <form action="${data.contextPath}/deleteUser" method="post" style="display:inline;">
+//              <input type="hidden" name="id" value="${user.id}">
+//              <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>
+//          </form>`
+//           ]).draw(false);
+//
+//           document.getElementById('modal').style.display = 'none';
+//           form.reset();
+//         } else {
+//           alert(data.message || 'Thêm người dùng thất bại');
+//         }
+//       })
+//       .catch(error => {
+//         console.error('Lỗi:', error);
+//       });
+// });
+
 document.getElementById('add-user-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const form = e.target;
@@ -77,7 +123,7 @@ document.getElementById('add-user-form').addEventListener('submit', function(e) 
         if (data.success) {
           const user = data.user;
 
-          // ✅ Dùng DataTables API
+          // ✅ Chèn hàng mới vào bảng
           dataTable.row.add([
             user.id,
             user.name,
@@ -89,10 +135,10 @@ document.getElementById('add-user-form').addEventListener('submit', function(e) 
             user.locked,
             `<img src="${user.image}" style="width: 50px; height: 50px; border-radius: 50%;">`,
             `<a href="${data.contextPath}/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
-         <form action="${data.contextPath}/deleteUser" method="post" style="display:inline;">
-             <input type="hidden" name="id" value="${user.id}">
-             <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>
-         </form>`
+                 <form action="${data.contextPath}/deleteUser" method="post" style="display:inline;">
+                     <input type="hidden" name="id" value="${user.id}">
+                     <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>
+                 </form>`
           ]).draw(false);
 
           document.getElementById('modal').style.display = 'none';
@@ -105,5 +151,3 @@ document.getElementById('add-user-form').addEventListener('submit', function(e) 
         console.error('Lỗi:', error);
       });
 });
-
-
