@@ -6,6 +6,12 @@
     <div class="admin__sidebar--top">
         <img src="Admin/assets/images/logo.png" alt="">
     </div>
+    <c:set var="showUserList" value="false" />
+    <c:forEach var="p" items="${sessionScope.permissions}">
+        <c:if test="${p.resource eq 'user_page' and p.action eq 'read'}">
+            <c:set var="showUserList" value="true" />
+        </c:if>
+    </c:forEach>
     <div class="admin__sidebar--content">
         <ul>
             <li><a href="#">
@@ -23,6 +29,7 @@
                     </div>
                 </ul>
             </li>
+            <c:if test="${showUserList}">
             <li>
                 <a href="">
                     <i class="ri-file-list-line"></i>
@@ -40,6 +47,7 @@
                     </div>
                 </ul>
             </li>
+            </c:if>
             <li>
                 <a href="">
                     <i class="ri-file-list-line"></i>

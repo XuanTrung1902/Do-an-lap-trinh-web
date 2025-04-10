@@ -78,8 +78,6 @@
             <div class="formbg">
                 <div class="formbg-inner padding-horizontal--48">
                     <span class="padding-bottom--15">Đăng nhập tài khoản</span>
-
-                    <%--          <%= request.getContextPath()%>--%>
                     <form id="stripe-login" method="post" action="<%= request.getContextPath()%>/Login" onsubmit="return validateForm()">
 
                         <div class="field padding-bottom--24">

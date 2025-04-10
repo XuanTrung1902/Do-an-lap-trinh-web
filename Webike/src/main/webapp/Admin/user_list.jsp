@@ -59,7 +59,12 @@
                         </ul>
                     </div>
                 </div>
-
+                <c:set var="canEditUser" value="false" />
+                <c:forEach var="p" items="${sessionScope.permissions}">
+                    <c:if test="${p.resource eq 'user_page' and p.action eq 'write'}">
+                        <c:set var="canEditUser" value="true" />
+                    </c:if>
+                </c:forEach>
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
                         <h1>Người dùng</h1>
@@ -117,6 +122,8 @@
     </section>
 
     <!-- Modal thêm người dùng -->
+    <c:if test="${canEditUser}">
+
     <div class="modal" id="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -196,6 +203,7 @@
             </form>
         </div>
     </div>
+    </c:if>
 
     <div class="modal" id="import-modal">
         <div class="modal-content" style="max-width: 700px">
@@ -323,8 +331,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<%--    <script>--%>
-<%--        dataTable = $('#list-user').DataTable();--%>
-<%--    </script>--%>
 </body>
 </html>
