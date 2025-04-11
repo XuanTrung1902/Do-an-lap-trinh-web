@@ -24,7 +24,6 @@ public class Pay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PaymentDAO dao = new PaymentDAO();
-
         Order order = (Order) request.getSession().getAttribute("order");
         String method = request.getParameter("method");
         double deposit = Double.parseDouble(request.getParameter("deposit"));
