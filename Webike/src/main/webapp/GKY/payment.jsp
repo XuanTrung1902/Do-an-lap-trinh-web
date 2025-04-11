@@ -31,7 +31,7 @@
 <!-- chua toan bo noi dung trang -->
 <div class="main">
     <div class="header d-flex align-items-center">
-        <a href="${pageContext.request.contextPath}/homepage">
+        <a href="homepage.html">
             <img class="logo-img" src="https://www.webike.vn/frontend/moto-v2/pc/img/logo.png?158926651620200827"
                  alt="Webike VN">
         </a>
@@ -54,9 +54,7 @@
             <h1 class="m-5 mt-0 left--header">THÔNG TIN KHÁCH HÀNG</h1>
 
             <c:set var="u" value="${empty sessionScope.auth ? 0 : sessionScope.auth}"/>
-<%--            <form action="pay" method="POST" class="m-5 mt-0 info">--%>
-            <form action="vnpayment" method="POST" class="m-5 mt-0 info">
-
+            <form action="pay" method="POST" class="m-5 mt-0 info">
                 <div class="row mb-3 me-0 ms-0">
                     <input type="text" value="${u.name}" class="form-control form-control-lg p-3" placeholder="Họ tên">
                 </div>
@@ -71,7 +69,8 @@
                 </div>
                 <div class="row mb-3 me-0 ms-0">
                     <input type="text" name="appointment" id="appointment"  class="form-control form-control-lg p-3"
-                           placeholder="Chọn ngày hẹn" onfocus="(this.type='date')">
+                           placeholder="Chọn ngày hẹn"
+                           onfocus="(this.type='date')">
                 </div>
                 <div class="row mb-3 me-0 ms-0 gap-3" id="address">
                     <div class="col p-0">
@@ -99,6 +98,7 @@
                     </h3>
                 </button>
             </form>
+
         </div>
 
         <div class="right-container shadow">
@@ -114,7 +114,9 @@
                                 </div>
                                 <div class="">
                                     <h3 class="pColor d-inline">Số lượng: </h3>
-                                    <h3 class="pColor d-inline">${o.quantity}</h3>
+                                    <h3 class="pColor d-inline">
+                                            ${o.quantity}
+                                    </h3>
                                 </div>
                             </div>
                             <div class="product--price">
@@ -152,7 +154,7 @@
 
     <jsp:include page="/GKY/footer.jsp" />
 </div>
-<script src="<%= request.getContextPath()%>/GKY/assets/js/Thanh toan.js"></script>
+<script src="<%= request.getContextPath()%>/GKYassets/js/Thanh toan.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
@@ -176,6 +178,9 @@
         const sent_remain = document.getElementById('sent-remain');
         sent_deposit.value =  ${price * percent};
         sent_remain.value =  ${price - price * percent};
+
+
+
     });
 </script>
 </body>

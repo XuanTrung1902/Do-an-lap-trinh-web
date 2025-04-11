@@ -43,16 +43,18 @@ public class DirectBuy extends HttpServlet {
 
         order.add(null, p, method, id, color, img);
 
+
+        request.getSession().setAttribute("order", order);
+
+        request.setAttribute("method", method);
         request.setAttribute("id", id);
         request.setAttribute("color", color);
         request.setAttribute("img", img);
-
-        request.getSession().setAttribute("order", order);
-        request.setAttribute("method", method);
         request.setAttribute("order", order);
         request.setAttribute("percent", percent);
         request.setAttribute("total", total);
         request.setAttribute("shops", shops);
+
         request.getRequestDispatcher("GKY/payment.jsp").forward(request, response);
 
     }

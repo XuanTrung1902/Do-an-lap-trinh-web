@@ -10,7 +10,6 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/GKY/Dangnhap.jsp" value="file://$PROJECT_DIR$/src/main/webapp/GKY" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/GKY/Payment.jsp" value="file://$PROJECT_DIR$/src/main/webapp/GKY" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/GKY/ProductDetail.jsp" value="file://$PROJECT_DIR$/src/main/webapp/GKY" />
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/GKY/billing.jsp" value="file://$PROJECT_DIR$/src/main/webapp/GKY" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/GKY/buyHistory.jsp" value="file://$PROJECT_DIR$/src/main/webapp/GKY" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/GKY/cart.jsp" value="file://$PROJECT_DIR$/src/main/webapp/GKY" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/GKY/dangKy.jsp" value="file://$PROJECT_DIR$/src/main/webapp/GKY" />
@@ -21,7 +20,6 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/GKY/productDetail.jsp" value="file://$PROJECT_DIR$/src/main/webapp/GKY" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/GKY/trangQuenMatKhau.jsp" value="file://$PROJECT_DIR$/src/main/webapp/GKY" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/GKY/trangTTKhachHang.jsp" value="file://$PROJECT_DIR$/src/main/webapp/GKY" />
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/GKY/vnpay_pay.jsp" value="file://$PROJECT_DIR$/src/main/webapp/GKY" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>
     </option>
