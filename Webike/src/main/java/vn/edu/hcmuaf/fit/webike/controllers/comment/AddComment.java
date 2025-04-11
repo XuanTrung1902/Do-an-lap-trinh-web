@@ -33,7 +33,6 @@ public class AddComment extends HttpServlet {
 
         if (!content.equals("")) {
             int insert = dao.insertComment(content, created, productID, accountID);
-            System.out.println(insert);
         }
 
         BuyHistoryDAO bdao = new BuyHistoryDAO();
