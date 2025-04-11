@@ -55,25 +55,18 @@
                         <f:formatNumber value="${oi.price}" type="currency"/>
                     </div>
                     <div class="product-actions">
+                        <form action="buy-history" method="post" id="comment${oi.productID}" style="display: flex;align-items: center">
+                            <input type="hidden" name="productID" value="${oi.productID}">
+                            <c:if test="${oi.status == 'Đã thanh toán'}">
+                            <textarea name="comment" class="resize" form="comment${oi.productID}" rows="3" cols="50"
+                                      placeholder="Nhập đánh giá của bạn!" style="height: 37px; margin-right: 10px"></textarea>
+                                <button type="submit" class="view-details">Đánh Giá</button>
+                            </c:if>
+                        </form>
                         <form action="productDetail" method="get">
                             <input type="hidden" name="id" value="${oi.productID}">
                             <button type="submit" class="buy-again">Mua Lần Nữa</button>
                         </form>
-                        <form action="buy-history" method="post" id="comment${oi.productID}" style="display: flex;align-items: center">
-                            <input type="hidden" name="productID" value="${oi.productID}">
-                            <textarea name="comment" class="resize" form="comment${oi.productID}" rows="3" cols="50"
-                                      placeholder="Nhập đánh giá của bạn!" style="height: 37px; margin-right: 10px"></textarea>
-                            <button type="submit" class="view-details">Đánh Giá</button>
-<%--                            <script>--%>
-<%--                                const form = document.getElementById(`comment${oi.productID}`);--%>
-<%--                                const button = form.querySelector('.view-details');--%>
-<%--                                const textarea = form.querySelector('.resize');--%>
-<%--                                form.addEventListener('submit', function(event) {--%>
-<%--                                    textarea.disabled = true;--%>
-<%--                                });--%>
-<%--                            </script>--%>
-                        </form>
-
                     </div>
                 </div>
             </div>
