@@ -17,8 +17,7 @@ import java.util.StringTokenizer;
 
 @WebServlet(name = "Pay", value = "/pay")
 public class Pay extends HttpServlet {
-
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
