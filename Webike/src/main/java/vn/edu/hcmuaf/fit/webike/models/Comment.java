@@ -7,14 +7,16 @@ public class Comment implements Serializable {
     private String content;
     private String created;
     private String username;
+    private String color;
 
     public Comment() {
     }
 
-    public Comment(String content, String created, String username) {
+    public Comment(String content, String created, String username, String color) {
         this.content = content;
         this.created = created;
         this.username = username;
+        this.color = color;
     }
 
     public String getContent() {
@@ -46,12 +48,21 @@ public class Comment implements Serializable {
         this.username = username;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
                 "content='" + content + '\'' +
                 ", created='" + created + '\'' +
                 ", username='" + username + '\'' +
+                ", color='" + color + '\'' +
                 '}';
     }
 }

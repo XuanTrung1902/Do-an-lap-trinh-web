@@ -498,7 +498,7 @@ public class ProductDAO {
 
     public List<Comment> getComment(int id) {
         Jdbi jdbi = JDBIConnect.get();
-        String sql = "select c.content, c.created, a.name as username from comments as c join accounts as a" +
+        String sql = "select c.content, c.created, c.color, a.name as username from comments as c join accounts as a" +
                 " on c.accountID = a.id where productID = :id";
         return jdbi.withHandle(handle -> handle.createQuery(sql)
                 .bind("id", id)

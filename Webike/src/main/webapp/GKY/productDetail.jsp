@@ -298,6 +298,7 @@
                     <div class="d-flex align-items-center" style="width: 100%;">
                         <h3 class="username text-start">@ ${c.username}</h3>
                         <h3 class="ms-5" style="font-weight: 400;">${c.created}</h3>
+                        <h3>Phân loại: ${c.color}</h3>
                     </div>
                     <h4 class="cmt">
                             ${c.content}
@@ -320,6 +321,8 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-
+<!-- footer -->
+    <jsp:include page="/GKY/footer.jsp" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/css/footer.css">
 </body>
 </html>

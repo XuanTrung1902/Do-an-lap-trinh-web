@@ -30,9 +30,9 @@ public class AddComment extends HttpServlet {
         int productID = Integer.parseInt(request.getParameter("productID"));
         LocalDate today = LocalDate.now();
         String created = String.valueOf(today);
-
+        String color = request.getParameter("color");
         if (!content.equals("")) {
-            int insert = dao.insertComment(content, created, productID, accountID);
+            int insert = dao.insertComment(content, created, color,productID, accountID);
         }
 
         BuyHistoryDAO bdao = new BuyHistoryDAO();
