@@ -31,7 +31,7 @@
 <!-- chua toan bo noi dung trang -->
 <div class="main">
     <div class="header d-flex align-items-center">
-        <a href="homepage">
+        <a href="list-products">
             <img class="logo-img" src="https://www.webike.vn/frontend/moto-v2/pc/img/logo.png?158926651620200827"
                  alt="Webike VN">
         </a>
@@ -58,9 +58,13 @@
                         <form action="buy-history" method="post" id="comment${oi.productID}" style="display: flex;align-items: center">
                             <input type="hidden" name="productID" value="${oi.productID}">
                             <c:if test="${oi.status == 'Đã thanh toán'}">
-                            <textarea name="comment" class="resize" form="comment${oi.productID}" rows="3" cols="50"
-                                      placeholder="Nhập đánh giá của bạn!" style="height: 37px; margin-right: 10px"></textarea>
-                                <button type="submit" class="view-details">Đánh Giá</button>
+                                <c:if test="${oi.commented == 0}">
+                                    <textarea name="comment" class="resize" form="comment${oi.productID}" rows="3"
+                                              cols="50" placeholder="Nhập đánh giá của bạn!"
+                                              style="height: 37px; margin-right: 10px"></textarea>
+                                    <input type="hidden" name="color" value="${oi.color}">
+                                    <button type="submit" class="view-details">Đánh Giá</button>
+                                </c:if>
                             </c:if>
                         </form>
                         <form action="productDetail" method="get">
@@ -74,7 +78,7 @@
     </div>
 
 
-    <jsp:include page="/GKY/footer.jsp" />
+    <jsp:include page="/GKY/footer.jsp"/>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
