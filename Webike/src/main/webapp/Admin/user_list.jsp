@@ -60,9 +60,14 @@
                     </div>
                 </div>
                 <c:set var="canEditUser" value="false" />
+                <c:set var="canDeleteUser" value="false" />
+
                 <c:forEach var="p" items="${sessionScope.permissions}">
-                    <c:if test="${p.resource eq 'user_page' and p.action eq 'write'}">
+                    <c:if test="${p.resource eq 'userlist' and p.action eq 'write'}">
                         <c:set var="canEditUser" value="true" />
+                    </c:if>
+                    <c:if test="${p.resource eq 'userlist' and p.action eq 'delete'}">
+                        <c:set var="canDeleteUser" value="true" />
                     </c:if>
                 </c:forEach>
                 <div class="admin-content-main">
@@ -105,10 +110,15 @@
 <%--                                    <td>${user.verify}</td> <!-- Hiển thị trạng thái xác minh -->--%>
                                     <td><img src="${user.image}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;"></td>
                                     <td>
+                                        <c:if test="${canEditUser}">
                                         <a href="<%= request.getContextPath() %>/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
+                                        </c:if>
+                                        <c:if test="${canDeleteUser}">
                                         <form action="<%= request.getContextPath() %>/deleteUser" method="post" style="display:inline;">
                                             <input type="hidden" name="id" value="${user.id}">
-                                            <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>                                        </form>
+                                            <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>
+                                        </form>
+                                        </c:if>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -123,7 +133,6 @@
 
     <!-- Modal thêm người dùng -->
     <c:if test="${canEditUser}">
-
     <div class="modal" id="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>

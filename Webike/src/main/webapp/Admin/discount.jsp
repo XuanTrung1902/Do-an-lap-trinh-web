@@ -72,6 +72,18 @@
                         </ul>
                     </div>
                 </div>
+                <c:set var="canWritetDiscount" value="false" />
+                <c:set var="canDeletetDiscount" value="false" />
+
+                <c:forEach var="p" items="${sessionScope.permissions}">
+                    <c:if test="${p.resource eq 'discount' and p.action eq 'write'}">
+                        <c:set var="canWritetDiscount" value="true" />
+                    </c:if>
+                    <c:if test="${p.resource eq 'discount' and p.action eq 'delete'}">
+                        <c:set var="canDeletetDiscount" value="true" />
+                    </c:if>
+
+                </c:forEach>
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
@@ -98,12 +110,16 @@
                                     <td>${discount.end}</td>
                                     <td>${discount.productID}</td>
                                     <td>
+                                        <c:if test="${canWritetDiscount}">
                                         <a href="<%= request.getContextPath() %>/updateDiscount?id=${discount.id}" class="btn-edit" style="width: 100%; margin-bottom: 4px;">
                                             Sửa</a>
+                                        </c:if>
+                                        <c:if test="${canDeletetDiscount}">
                                         <form action="<%= request.getContextPath() %>/deleteDiscount" method="post" style="display:inline;">
                                             <input type="hidden" name="id" value="${discount.id}">
                                             <button type="submit" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa giảm giá cho sản phẩm này ${discount.id}?');">Xóa</button>
                                         </form>
+                                        </c:if>
                                     </td>
                                 </tr>
                             </c:forEach>
