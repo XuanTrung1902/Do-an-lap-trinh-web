@@ -31,7 +31,6 @@ public class AddUserController extends HttpServlet {
         String name = request.getParameter("username");
         String phoneNum = request.getParameter("phone");
         String DOB = request.getParameter("birthday");
-        System.out.println(DOB);
         Date date = Date.valueOf(DOB);
         String sex = request.getParameter("sex");
         String password = request.getParameter("password");
@@ -48,15 +47,11 @@ public class AddUserController extends HttpServlet {
         if (!uploadDir.exists()) {
             uploadDir.mkdirs(); // Tạo thư mục nếu chưa tồn tại
         }
-//        // Đường dẫn thực tế tới tệp ảnh nguồn
         File sourceFile = new File("C:\\Users\\user\\Pictures\\web\\" + fileName);
         File destFile = new File(uploadPath + File.separator + fileName);
         Files.copy(sourceFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-//        filePart.write(uploadPath + File.separator + fileName);
         String imagePath = "img/Users/" + fileName;
-        // In ra đường dẫn tuyệt đối để kiểm tra
-        System.out.println("File saved at: " + uploadPath + File.separator + fileName);
 
 
         if (UserSevice.isPhoneNumExists(phoneNum)) {
@@ -94,17 +89,12 @@ public class AddUserController extends HttpServlet {
         boolean isAdded = userDao.addUserAdmin(user);
 
         if (isAdded) {
-//            response.sendRedirect(request.getContextPath() + "/userList");
 
             if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
-
                 // Lấy ID mới thêm từ DB
                 User addedUser = userDao.findUserPhone(phoneNum); // hoặc dùng cách khác nếu cần
-
-                System.out.println(addedUser);
-
                 // Trả về user JSON
                 String userJson = new Gson().toJson(addedUser);
                 String contextPath = request.getContextPath();
@@ -114,8 +104,6 @@ public class AddUserController extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/userList");
             }
         } else {
-//            request.setAttribute("error", "Thêm người dùng thất bại.");
-//            request.getRequestDispatcher("/addUser").forward(request, response);
             if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");

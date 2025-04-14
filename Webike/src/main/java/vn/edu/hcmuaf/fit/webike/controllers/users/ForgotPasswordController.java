@@ -21,7 +21,7 @@ import java.util.Scanner;
 public class ForgotPasswordController extends HttpServlet {
 
     private static final String SECRET_KEY = "6LfYyu4qAAAAAC7wHwxKsL8AV4NY3f9vgjA1BZM1";
-    final String level = LogService.LEVEL_INFO;
+    final String level = LogService.LEVEL_ALERT;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

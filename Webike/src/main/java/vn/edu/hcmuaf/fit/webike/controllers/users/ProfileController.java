@@ -18,13 +18,6 @@ public class ProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
-
-        if (user != null) {
-            System.out.println("User found in session: " + user.toString());
-        } else {
-            System.out.println("No user found in session, redirecting to Login.");
-        }
-
         if (user != null) {
             LogService.log(levelInfo, "Xem thông tin cá nhân", "User: " + user.getPhoneNum(), user.toString(), "");
             request.setAttribute("user", user);
@@ -68,7 +61,6 @@ public class ProfileController extends HttpServlet {
             user.setDOB(date);
             user.setEmail(email);
             user.setPassword(user.getPassword());
-
 
             boolean isUpdated = UserSevice.updateUser(user);
 
