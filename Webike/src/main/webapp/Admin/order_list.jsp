@@ -47,6 +47,14 @@
                 </div>
             </div>
 
+            <c:set var="canWritetOrder" value="false" />
+
+            <c:forEach var="p" items="${sessionScope.permissions}">
+                <c:if test="${p.resource eq 'order' and p.action eq 'write'}">
+                    <c:set var="canWritetOrder" value="true" />
+                </c:if>
+            </c:forEach>
+
             <div class="admin-content-main">
                 <div class="admin-content-main-title">
                     <h1>Danh sách đơn hàng</h1>
@@ -87,18 +95,22 @@
                                     <f:formatNumber value="${o.deposit + o.remain}" type="currency"/>
                                 </td>
                                 <td>
+                                    <c:if test="${canWritetOrder}">
                                     <form action="order-detail" method="get" style="width: 100%;">
                                         <input type="hidden" name="oid" value="${o.id}">
                                         <button type="submit" class="edit-button" style="width: 100%">Chi tiết</button>
                                     </form>
+                                    </c:if>
                                 </td>
                                 <td>${o.payDate}</td>
                                 <td>${o.status}</td>
                                 <td>
+                                    <c:if test="${canWritetOrder}">
                                     <form action="order-edit" method="get" style="width: 100%;">
                                         <input type="hidden" name="oid" value="${o.id}">
                                         <button type="submit" class="edit-button" style="width: 100%">Sửa</button>
                                     </form>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:forEach>

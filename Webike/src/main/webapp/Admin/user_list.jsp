@@ -59,11 +59,22 @@
                         </ul>
                     </div>
                 </div>
+                <c:set var="canEditUser" value="false" />
+                <c:set var="canDeleteUser" value="false" />
 
+                <c:forEach var="p" items="${sessionScope.permissions}">
+                    <c:if test="${p.resource eq 'userlist' and p.action eq 'write'}">
+                        <c:set var="canEditUser" value="true" />
+                    </c:if>
+                    <c:if test="${p.resource eq 'userlist' and p.action eq 'delete'}">
+                        <c:set var="canDeleteUser" value="true" />
+                    </c:if>
+                </c:forEach>
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
                         <h1>Người dùng</h1>
                         <button class="btn-add__user">Thêm người dùng</button>
+                        <button class="btn-import__user">Nhập từ file</button>
                     </div>
                     <div class="admin-content-main-container">
                         <table id="list-user" class="table table-striped">
@@ -99,10 +110,15 @@
 <%--                                    <td>${user.verify}</td> <!-- Hiển thị trạng thái xác minh -->--%>
                                     <td><img src="${user.image}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;"></td>
                                     <td>
+                                        <c:if test="${canEditUser}">
                                         <a href="<%= request.getContextPath() %>/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
+                                        </c:if>
+                                        <c:if test="${canDeleteUser}">
                                         <form action="<%= request.getContextPath() %>/deleteUser" method="post" style="display:inline;">
                                             <input type="hidden" name="id" value="${user.id}">
-                                            <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>                                        </form>
+                                            <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>
+                                        </form>
+                                        </c:if>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -116,6 +132,7 @@
     </section>
 
     <!-- Modal thêm người dùng -->
+    <c:if test="${canEditUser}">
     <div class="modal" id="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -195,9 +212,25 @@
             </form>
         </div>
     </div>
+    </c:if>
+
+    <div class="modal" id="import-modal">
+        <div class="modal-content" style="max-width: 700px">
+            <span class="close-import-button">&times;</span>
+            <h2>Nhập người dùng từ file Excel</h2>
+            <form id="import-user-form" action="<%= request.getContextPath() %>/importUser" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="userFile">Chọn file Excel:</label>
+                    <input type="file" id="userFile" name="userFile" accept=".xls,.xlsx" required>
+                </div>
+                <button type="submit" class="btn-submit">Nhập</button>
+            </form>
+        </div>
+    </div>
 
 
     <script>
+
         document.querySelector('.btn-add__user').addEventListener('click', function() {
             document.getElementById('modal').style.display = 'block';
         });
@@ -217,13 +250,30 @@
                 modal.style.display = 'none';
             }
         });
+
+        document.querySelector('.btn-import__user').addEventListener('click', function() {
+            document.getElementById('import-modal').style.display = 'block';
+        });
+
+        document.querySelector('.close-import-button').addEventListener('click', function() {
+            document.getElementById('import-modal').style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('import-modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
     </script>
 
 
 
-    <script src="<%= request.getContextPath()%>/Admin/assets/js/user_list.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="<%= request.getContextPath()%>/Admin/assets/js/user_list.js"></script>
+
     <script>
         $(document).ready(function () {
         $('#list-user').DataTable({
@@ -254,6 +304,40 @@
         });
        });
     </script>
+
+    <script>
+        var dataTable;
+
+        function loadUserList() {
+            if ($.fn.DataTable.isDataTable('#list-user')) {
+                $('#list-user').DataTable().destroy(); // Hủy nếu đã tồn tại
+            }
+
+            dataTable = $('#list-user').DataTable({
+                language: {
+                    search: "Tìm kiếm:",
+                    lengthMenu: "Hiển thị _MENU_ dòng",
+                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                    paginate: {
+                        first: "Đầu",
+                        last: "Cuối",
+                        next: ">",
+                        previous: "<",
+                    },
+                    infoFiltered: "(Lọc từ _MAX_ dòng)",
+                    infoEmpty: "Không có dữ liệu",
+                    zeroRecords: "Không tìm thấy dữ liệu phù hợp",
+                },
+                pageLength: 5,
+                lengthMenu: [5, 10, 20],
+            });
+        }
+
+        $(document).ready(function () {
+            loadUserList(); // Khởi tạo bảng đúng cách
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

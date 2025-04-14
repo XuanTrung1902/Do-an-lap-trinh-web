@@ -21,6 +21,7 @@ import java.util.Scanner;
 public class ForgotPasswordController extends HttpServlet {
 
     private static final String SECRET_KEY = "6LfYyu4qAAAAAC7wHwxKsL8AV4NY3f9vgjA1BZM1";
+    final String level = LogService.LEVEL_ALERT;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -88,8 +89,7 @@ public class ForgotPasswordController extends HttpServlet {
         boolean isUpdated = UserSevice.updatePasswordByEmail(email, password);
 
         if (isUpdated) {
-            // Ghi log quên mật khẩu (INFO)
-//            LogService.log(LogService.LEVEL_INFO, "ForgotPassword", email, oldHashedPassword, newHashedPassword);
+            LogService.log(level, "Quên mật khẩu", email, oldHashedPassword, newHashedPassword);
 
             request.setAttribute("message", "Mật khẩu đã được cập nhật thành công!");
             request.getRequestDispatcher("GKY/Dangnhap.jsp").forward(request, response);

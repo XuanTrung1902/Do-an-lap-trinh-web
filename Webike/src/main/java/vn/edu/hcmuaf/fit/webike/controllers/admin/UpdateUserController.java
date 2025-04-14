@@ -94,8 +94,8 @@ public class UpdateUserController extends HttpServlet {
             String beforeData = oldUser.toString();
             String afterData = newUser.toString();
             String logLevel = (oldUser.getRole() != newUser.getRole()) ? LogService.LEVEL_WARNING : LogService.LEVEL_ALERT;
-
-//            LogService.log(logLevel, "UpdateUserController", adminInfo, beforeData, afterData);
+          
+//            LogService.log(logLevel, "Sữa user admin", adminInfo, beforeData, afterData);
 
             response.sendRedirect(request.getContextPath() + "/userList");
         } else {

@@ -3,7 +3,9 @@ package vn.edu.hcmuaf.fit.webike.controllers.users;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.webike.models.Permission;
 import vn.edu.hcmuaf.fit.webike.services.LogService;
+import vn.edu.hcmuaf.fit.webike.services.PermissionService;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 import vn.edu.hcmuaf.fit.webike.models.User;
 
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.HttpURLConnection;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -42,7 +45,10 @@ public class loginController extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("auth", user); // Đặt user vào session với key "auth"
 
-//                LogService.log(LEVEL_INFO, "Login", phoneNum, "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
+                LogService.log(LEVEL_INFO, "Đăng nhập", phoneNum, "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
+
+                List<Permission> permissions = PermissionService.getPermissionsForUser(user.getId());
+                session.setAttribute("permissions", permissions);
 
                 if (user.getRole() == 0) { // nếu là admin
                     response.sendRedirect("admin");
