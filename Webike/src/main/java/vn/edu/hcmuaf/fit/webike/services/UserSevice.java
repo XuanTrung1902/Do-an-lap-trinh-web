@@ -93,6 +93,7 @@ public class UserSevice {
         UserDao userDao = new UserDao();
         return userDao.findUserByEmail(email);
     }
+    // sửa gg
     public void insertUser(String name, String email) {
         UserDao userDao = new UserDao();
         userDao.insertUser(name, email);
