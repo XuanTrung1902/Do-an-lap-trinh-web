@@ -7,6 +7,17 @@ public class GoogleAccount {
     public GoogleAccount() {
     }
 
+    public GoogleAccount(String id, String email, String name, String first_name, String given_name, String family_name, String avatar, boolean verified_email) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.first_name = first_name;
+        this.given_name = given_name;
+        this.family_name = family_name;
+        this.avatar = avatar;
+        this.verified_email = verified_email;
+    }
+
     public String getId() {
         return id;
     }
