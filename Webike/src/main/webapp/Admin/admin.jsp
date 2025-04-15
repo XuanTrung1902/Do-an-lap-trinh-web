@@ -58,42 +58,33 @@
                         <div class="dashboard">
                             <div class="dashboard__item">
                                 <h2>Tổng số sản phẩm</h2>
-                                <p>150</p>
+                                <p>${totalProducts}</p>
                             </div>
                             <div class="dashboard__item">
                                 <h2>Đơn hàng mới</h2>
-                                <p>25</p>
+                                <p>${newOrders}</p>
                             </div>
                             <div class="dashboard__item">
                                 <h2>Khách hàng mới</h2>
-                                <p>10</p>
+                                <p>${newCustomers}</p>
                             </div>
                             <div class="dashboard__item">
                                 <h2>Doanh thu hôm nay</h2>
-                                <p>5,000,000 VND</p>
+                                <p><f:formatNumber value="${todayRevenue}" type="currency" currencySymbol="VND"/></p>
+                            </div>
                             </div>
                         </div>
                         <div class="dashboard__recent--customer">
                             <h2>Khách hàng gần đây</h2>
                             <ul>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="<%= request.getContextPath()%>/Admin/assets/images/avt1.jpg" alt="">
-                                    </div>
-                                    <span class="customer__name">Lê Trí Đức</span>
-                                </li>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="<%= request.getContextPath()%>/Admin/assets/images/vario.png" alt="">
-                                    </div>
-                                    <span class="customer__name">Tống Xuân Trung</span>
-                                </li>
-                                <li class="dashboard__recent--item">
-                                    <div class="avatar">
-                                        <img src="<%= request.getContextPath()%>/Admin/assets/images/avt2.jpg" alt="">
-                                    </div>
-                                    <span class="customer__name">Nguyễn Quốc Tấn</span>
-                                </li>
+                                <c:forEach var="customer" items="${recentCustomers}">
+                                    <li class="dashboard__recent--item">
+                                        <div class="avatar">
+                                            <img src="<%= request.getContextPath()%>/${customer.image}" alt="">
+                                        </div>
+                                        <span class="customer__name">${customer.name}</span>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </div>
                         <div class="charts">
@@ -112,7 +103,14 @@
         </div>
     </section>
 
-    <script src="<%= request.getContextPath()%>/Admin/assets/js/admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Truyền dữ liệu từ JSP sang JavaScript
+        window.revenueData = ${revenueDataJson != null ? revenueDataJson : "[]"};
+        window.ordersData = ${ordersDataJson != null ? ordersDataJson : "[]"};
+    </script>
+    <script src="<%= request.getContextPath()%>/Admin/assets/js/admin.js"></script>
+    <script src="<%= request.getContextPath()%>/Admin/assets/js/dashboard.js"></script>
+
 </body>
 </html>

@@ -53,7 +53,7 @@ public class loginController extends HttpServlet {
 
 
                 if (user.getRole() == 0) { // nếu là admin
-                    response.sendRedirect("admin");
+                    response.sendRedirect("dashboard");
                 } else { // nếu là user
                     response.sendRedirect("homepage");
                 }
