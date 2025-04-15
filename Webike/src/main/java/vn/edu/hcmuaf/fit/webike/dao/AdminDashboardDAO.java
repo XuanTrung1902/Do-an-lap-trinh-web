@@ -6,17 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AdminDashboardDAO {
-
-    public static void main(String[] args) {
-        AdminDashboardDAO dao = new AdminDashboardDAO();
-//        System.out.println("Số khách hàng mới: " + dao.getNewCustomers());
-//        System.out.println("Số đơn hàng mới hôm nay: " + dao.getNewOrdersToday());
-//        System.out.println("Doanh thu hôm nay: " + dao.getTodayRevenue());
-//        System.out.println("Doanh thu theo tháng: " + dao.getMonthlyRevenue());
-//        System.out.println("Đơn hàng theo tháng: " + dao.getMonthlyOrders());
-//        System.out.println("Khách hàng gần đây: " + dao.getRecentCustomers());
-    }
-
+    
     // Lấy số khách hàng mới (giả sử trong 30 ngày gần nhất)
     public int getNewCustomers() {
         Jdbi jdbi = JDBIConnect.get();
