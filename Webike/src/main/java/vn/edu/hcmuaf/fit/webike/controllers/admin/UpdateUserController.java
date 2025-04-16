@@ -39,7 +39,7 @@ public class UpdateUserController extends HttpServlet {
         }
         int id = Integer.parseInt(userIdStr);
         UserDao userDao = new UserDao();
-        User oldUser = userDao.getUserById(id); // Lấy thông tin trước khi cập nhật
+        User oldUser = userDao.getUserById(id);
 
 //        int id = Integer.parseInt(userIdStr);
         String name = request.getParameter("username");
@@ -71,11 +71,6 @@ public class UpdateUserController extends HttpServlet {
 
 
 
-//        User user = new User(id, name, phoneNum, date, sex, password, created, locked, verify, role, address);
-//        user.setEmail(email);
-//        if (imagePath != null) {
-//            user.setImage(imagePath);
-//        }
         User newUser = new User(id, name, phoneNum, date, sex, password, created, locked, verify, role, address);
         newUser.setEmail(email);
         if (imagePath != null) {

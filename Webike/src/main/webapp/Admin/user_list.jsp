@@ -84,12 +84,11 @@
                                 <th>Tên đăng nhập</th>
 <%--                                <th>Mật khẩu</th>--%>
                                 <th>Ngày sinh</th>
-                                <th>Giới tính</th> <!-- Thêm cột Giới tính -->
+                                <th>Giới tính</th>
                                 <th>Địa chỉ</th>
                                 <th>SĐT</th>
-                                <th>Vai trò</th> <!-- Thêm cột Vai trò -->
-                                <th>Khóa</th> <!-- Thêm cột Khóa -->
-<%--                                <th>Xác minh</th> <!-- Thêm cột Xác minh -->--%>
+                                <th>Vai trò</th>
+                                <th>Khóa</th>
                                 <th>Ảnh</th>
 
                                 <th>Tuỳ chỉnh</th>
@@ -100,14 +99,12 @@
                                 <tr>
                                     <td>${user.id}</td>
                                     <td>${user.name}</td>
-<%--                                    <td>${user.password}</td>--%>
                                     <td>${user.DOB}</td>
-                                    <td>${user.sex}</td> <!-- Hiển thị giới tính -->
+                                    <td>${user.sex}</td>
                                     <td>${user.address}</td>
                                     <td>${user.phoneNum}</td>
-                                    <td>${user.role}</td> <!-- Hiển thị vai trò -->
-                                    <td>${user.locked}</td> <!-- Hiển thị trạng thái khóa -->
-<%--                                    <td>${user.verify}</td> <!-- Hiển thị trạng thái xác minh -->--%>
+                                    <td>${user.role}</td>
+                                    <td>${user.locked}</td>
                                     <td><img src="${user.image}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;"></td>
                                     <td>
                                         <c:if test="${canEditUser}">
@@ -119,6 +116,7 @@
                                             <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>
                                         </form>
                                         </c:if>
+                                        <button type="button" class="btn-assign-permission" onclick="openPermissionModal(${user.id})">Phân quyền</button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -154,13 +152,11 @@
                 </c:if>
                 <div class="form-group">
                     <label for="phone">SĐT:</label>
-<%--                    <input type="text" id="phone" name="phone" required>--%>
                     <input type="text" id="phone" name="phone" value="${phone}" required>
 
                 </div>
                 <div class="form-group">
                     <label for="address">Địa chỉ:</label>
-<%--                    <input type="text" id="address" name="address" required>--%>
                     <input type="text" id="address" name="address" value="${address}" required>
                 </div>
                 <div class="form-group">
@@ -173,16 +169,10 @@
                 </div>
                 <div class="form-group">
                     <label for="birthday">Ngày sinh:</label>
-<%--                    <input type="date" id="birthday" name="birthday" required>--%>
                     <input type="date" id="birthday" name="birthday" value="${birthday}" required>
                 </div>
                 <div class="form-group-inline">
                     <label for="sex">Giới tính:</label>
-<%--                    <select id="sex" name="sex" required>--%>
-<%--                        <option value="">Chọn giới tính</option>--%>
-<%--                        <option value="Nam">Nam</option>--%>
-<%--                        <option value="Nữ">Nữ</option>--%>
-<%--                    </select>--%>
                     <select id="sex" name="sex" required>
                         <option value="">Chọn giới tính</option>
                         <option value="Nam" ${sex == 'Nam' ? 'selected' : ''}>Nam</option>
@@ -202,8 +192,6 @@
                     </select>
                     <label for="role">Role:</label>
                     <select id="role" name="role" required>
-<%--                        <option value="1">User</option>--%>
-<%--                        <option value="0">Admin</option>--%>
                             <option value="1" ${role == 1 ? 'selected' : ''}>User</option>
                             <option value="0" ${role == 0 ? 'selected' : ''}>Admin</option>
                     </select>
@@ -225,6 +213,59 @@
                 </div>
                 <button type="submit" class="btn-submit">Nhập</button>
             </form>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="permissionModal" tabindex="-1" aria-labelledby="permissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Phân quyền tài nguyên</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Chọn Resource -->
+                    <div class="mb-3">
+                        <label for="resourceSelect" class="form-label">Chọn trang (Resource):</label>
+                        <select class="form-select" id="resourceSelect">
+                            <option value="6">discount</option>
+                            <option value="5">order</option>
+                            <option value="4">product</option>
+                            <option value="2">product_page</option>
+                            <option value="3">user_management</option>
+                            <option value="1">userlist</option>
+                        </select>
+                    </div>
+
+                    <!-- Chọn Permission -->
+                    <div class="mb-3">
+                        <label class="form-label">Chọn quyền:</label><br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" id="permRead">
+                            <label class="form-check-label" for="permRead">Read</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="2" id="permWrite">
+                            <label class="form-check-label" for="permWrite">Write</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="3" id="permExecute">
+                            <label class="form-check-label" for="permExecute">Execute</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="4" id="permDelete">
+                            <label class="form-check-label" for="permDelete">Delete</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <input type="hidden" id="selectedUserId" />
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button class="btn btn-success" onclick="submitPermission()">OK</button>
+                </div>
+            </div>
         </div>
     </div>
 
