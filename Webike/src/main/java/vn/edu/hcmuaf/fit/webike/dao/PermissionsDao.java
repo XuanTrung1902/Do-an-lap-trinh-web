@@ -10,6 +10,9 @@ public class PermissionsDao {
         return JDBIConnect.get().withHandle(handle ->
                 handle.createQuery("SELECT * FROM permission")
                         .mapToBean(Permissions.class)
+                handle.createQuery("SELECT r.name AS resource, p.name AS action " +
+                                "FROM permission p JOIN resource r ON p.resource_id = r.id")
+                        .map((rs, ctx) -> new Permissions(rs.getString("resource"), rs.getString("action")))
                         .list()
         );
     }
