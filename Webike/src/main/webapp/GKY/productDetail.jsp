@@ -29,14 +29,15 @@
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/js/productDetail.js">
 </head>
 <body>
-    <jsp:include page="/GKY/header.jsp" />
+<jsp:include page="/GKY/header.jsp"/>
 
 <div class="main">
     <!-- chua hinh anh va thong tin sp: gia, mau... -->
     <div class="info">
         <div class="info__img">
             <div class="img__container">
-                <img id="img" src="${p.img.entrySet().iterator().next().getValue()}" alt="anh xe" style="width: 750px; height: 450px;"/>
+                <img id="img" src="${p.img.entrySet().iterator().next().getValue()}" alt="anh xe"
+                     style="width: 750px; height: 450px;"/>
 
             </div>
         </div>
@@ -284,18 +285,19 @@
 
     <%--  cmt  --%>
     <div class="m-5" style="border: 3px solid #000; width: 80%;"></div>
-
     <div class="commentSection d-flex flex-column align-items-center ">
         <h1 class="text-center">BÌNH LUẬN</h1>
         <div class="comment_container d-flex flex-column align-items-center gap-2">
+            <c:choose>
+            <c:when test="${not empty c}">
             <c:forEach var="c" items="${c}">
             <div class="p-3 d-flex align-items-center justify-content-center gap-4" style="width: 1500px">
                 <div class="user-avt d-flex flex-row">
-                    <img id="" class="" src="img/userAvt/user.png" alt="default avt">
+                    <img id="" class="user_avt" src="${c.avt}" alt="user avt">
                 </div>
                 <div class="comment_content d-flex flex-column align-items-center">
                     <div class="d-flex align-items-center" style="width: 100%;">
-                        <h3 class="username text-start">@ ${c.username}</h3>
+                        <h3 class="username text-start">@${c.username}</h3>
                         <h3 class="ms-5" style="font-weight: 400;">${c.created}</h3>
                         <h3>Phân loại: ${c.color}</h3>
                     </div>
@@ -309,10 +311,12 @@
             </div>
         </div>
         </c:forEach>
-
+        </c:when>
+        <c:otherwise>
+            <div>Chưa có bình luận nào</div>
+        </c:otherwise>
+        </c:choose>
     </div>
-
-
 </div>
 <script src="assets/js/productDetail.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -320,7 +324,7 @@
         crossorigin="anonymous"></script>
 
 <!-- footer -->
-    <jsp:include page="/GKY/footer.jsp" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/css/footer.css">
+<jsp:include page="/GKY/footer.jsp"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/css/footer.css">
 </body>
 </html>

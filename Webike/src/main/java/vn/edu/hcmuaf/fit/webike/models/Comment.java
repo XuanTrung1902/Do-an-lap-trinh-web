@@ -8,15 +8,17 @@ public class Comment implements Serializable {
     private String created;
     private String username;
     private String color;
+    private String avt;
 
     public Comment() {
     }
 
-    public Comment(String content, String created, String username, String color) {
-        this.content = content;
-        this.created = created;
-        this.username = username;
-        this.color = color;
+    public String getAvt() {
+        return avt;
+    }
+
+    public void setAvt(String avt) {
+        this.avt = avt;
     }
 
     public String getContent() {
@@ -63,6 +65,7 @@ public class Comment implements Serializable {
                 ", created='" + created + '\'' +
                 ", username='" + username + '\'' +
                 ", color='" + color + '\'' +
+                ", avt='" + avt + '\'' +
                 '}';
     }
 }
