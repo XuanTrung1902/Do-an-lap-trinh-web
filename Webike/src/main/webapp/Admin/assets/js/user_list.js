@@ -1,5 +1,5 @@
 const menuLi = document.querySelectorAll(
-  ".admin__sidebar--content ul > li > a"
+    ".admin__sidebar--content ul > li > a"
 );
 const subMenu = document.querySelectorAll(".sub-menu");
 menuLi.forEach((item, index) => {
@@ -10,25 +10,26 @@ menuLi.forEach((item, index) => {
       subMenu[i].setAttribute("style", `height: 0px`);
     }
     const subMenuHeight =
-      menuLi[index].parentNode.querySelector("ul .sub-menu-items").offsetHeight;
+        menuLi[index].parentNode.querySelector("ul .sub-menu-items").offsetHeight;
     menuLi[index].parentNode
-      .querySelector("ul")
-      .setAttribute("style", `height: ${subMenuHeight}px`);
+        .querySelector("ul")
+        .setAttribute("style", `height: ${subMenuHeight}px`);
   };
 });
 
 var table;
+
 function initTableData() {
   table = $("#list-user").DataTable({
     processing: true,
     data,
     columns: [
-      { data: "id" },
-      { data: "name" },
-      { data: "password" },
-      { data: "birthday" },
-      { data: "address" },
-      { data: "phone" },
+      {data: "id"},
+      {data: "name"},
+      {data: "password"},
+      {data: "birthday"},
+      {data: "address"},
+      {data: "phone"},
       {
         data: null,
         render: function (data, type, row) {
@@ -60,7 +61,24 @@ function initTableData() {
     },
   });
 }
-document.getElementById('add-user-form').addEventListener('submit', function(e) {
+
+  function openAssignPermissionModal(userId) {
+  document.getElementById("assignUserId").value = userId;
+  document.getElementById("assignPermissionModal").style.display = "block";
+}
+
+  function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+  window.onclick = function(event) {
+  const modal = document.getElementById("assignPermissionModal");
+  if (event.target == modal) {
+  modal.style.display = "none";
+}
+}
+
+document.getElementById('add-user-form').addEventListener('submit', function (e) {
   e.preventDefault();
   const form = e.target;
   const formData = new FormData(form);

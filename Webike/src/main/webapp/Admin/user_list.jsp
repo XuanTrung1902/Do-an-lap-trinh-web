@@ -20,11 +20,83 @@
     <link rel="stylesheet" href="<%= request.getContextPath()%>/Admin/assets/css/base.css">
     <style>
         .table {
-            font-size: 1.2rem; /* Tăng kích thước chữ */
+            font-size: 1.2rem;
         }
 
         .table th, .table td {
-            padding: 10px; /* Tăng khoảng cách giữa các ô */
+            padding: 10px;
+        }
+    </style>
+    <style>
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .close-button {
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .form-group-inline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .form-group-inline label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 15px;
+            background-color: #f2f2f2;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .form-group-inline input[type="radio"] {
+            accent-color: #ff4d4d; /* đỏ đỏ giống với btn */
+        }
+
+        .form-group-inline label:hover {
+            background-color: #e0e0e0;
+        }
+
+        .btn-submit {
+            background-color: red;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #cc0000;
         }
     </style>
     <title>Admin</title>
@@ -116,7 +188,9 @@
                                             <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>
                                         </form>
                                         </c:if>
-                                        <button type="button" class="btn-assign-permission" onclick="openPermissionModal(${user.id})">Phân quyền</button>
+                                        <button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(${user.id})">
+                                            Phân quyền
+                                        </button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -138,7 +212,6 @@
             <form id="add-user-form" action="<%= request.getContextPath() %>/addUser" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="username">Tên đăng nhập:</label>
-<%--                    <input type="text" id="username" name="username" required>--%>
                     <input type="text" id="username" name="username" value="${username}" required>
                 </div>
                 <div class="form-group">
@@ -217,57 +290,45 @@
     </div>
 
 
-    <div class="modal fade" id="permissionModal" tabindex="-1" aria-labelledby="permissionModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Phân quyền tài nguyên</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Chọn Resource -->
-                    <div class="mb-3">
-                        <label for="resourceSelect" class="form-label">Chọn trang (Resource):</label>
-                        <select class="form-select" id="resourceSelect">
-                            <option value="6">discount</option>
-                            <option value="5">order</option>
-                            <option value="4">product</option>
-                            <option value="2">product_page</option>
-                            <option value="3">user_management</option>
-                            <option value="1">userlist</option>
-                        </select>
-                    </div>
+    <!-- Modal phân quyền -->
+    <div class="modal" id="assignPermissionModal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('assignPermissionModal')">&times;</span>
+            <h2>Phân quyền cho người dùng</h2>
+            <form id="assign-permission-form" action="#" method="post">
+                <input type="hidden" name="userId" id="assignUserId">
 
-                    <!-- Chọn Permission -->
-                    <div class="mb-3">
-                        <label class="form-label">Chọn quyền:</label><br>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="1" id="permRead">
-                            <label class="form-check-label" for="permRead">Read</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="2" id="permWrite">
-                            <label class="form-check-label" for="permWrite">Write</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="3" id="permExecute">
-                            <label class="form-check-label" for="permExecute">Execute</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="4" id="permDelete">
-                            <label class="form-check-label" for="permDelete">Delete</label>
-                        </div>
+                <!-- Resource radio -->
+                <div class="form-group">
+                    <label>Trang:</label>
+                    <div class="form-group-inline">
+                        <label><input type="radio" name="resource" value="6" required> discount</label>
+                        <label><input type="radio" name="resource" value="5"> order</label>
+                        <label><input type="radio" name="resource" value="4"> product</label>
+                        <label><input type="radio" name="resource" value="2"> product_page</label>
+                        <label><input type="radio" name="resource" value="3"> user_management</label>
+                        <label><input type="radio" name="resource" value="1"> userlist</label>
                     </div>
                 </div>
 
-                <div class="modal-footer">
-                    <input type="hidden" id="selectedUserId" />
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <button class="btn btn-success" onclick="submitPermission()">OK</button>
+                <!-- Permission radio -->
+                <div class="form-group">
+                    <label>Quyền:</label>
+                    <div class="form-group-inline">
+                        <label><input type="radio" name="permission" value="4" required> delete</label>
+                        <label><input type="radio" name="permission" value="3"> execute</label>
+                        <label><input type="radio" name="permission" value="1"> read</label>
+                        <label><input type="radio" name="permission" value="2"> write</label>
+                    </div>
                 </div>
-            </div>
+
+                <button type="submit" class="btn-submit">Lưu phân quyền</button>
+            </form>
         </div>
     </div>
+
+
+
 
 
     <script>
@@ -281,7 +342,6 @@
         });
 
         document.getElementById('add-user-form').addEventListener('submit', function(e) {
-            // Không ngăn chặn việc gửi form
             document.getElementById('modal').style.display = 'none';
         });
 
