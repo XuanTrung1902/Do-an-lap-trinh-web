@@ -13,22 +13,32 @@ function changeBikeColor(id) {
     }
 }
 
-function changeBikeColor(id) {
-    fetch(`/Webike/remove-cart`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({id: itemId})
+function changeColor(id) {
+    const productId = '${p.id}';
+
+    fetch('/change-color', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'color=' + encodeURIComponent(id) + '&id=' + encodeURIComponent(productId)
     })
         .then(response => response.json())
         .then(data => {
-            if (data.isSuccess) {
-                return fetch(`/Webike/show-cart`);
+            if (data.imgUrl) {
+                document.getElementById('img').src = data.imgUrl;
+
+                document.querySelectorAll('.colorButton').forEach(btn => {
+                    btn.style.background = (btn.id === id) ? "rgb(147, 157, 163)" : "none";
+                });
+
+                // Cập nhật hidden input để form gửi đúng ảnh & màu
+                document.getElementById("productColor").value = id;
+                document.getElementById("productImg").value = data.imgUrl;
+                document.getElementById("directBuyColor").value = id;
+                document.getElementById("directBuyImg").value = data.imgUrl;
             }
         })
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById("main").innerHTML = html;
-        })
-        .catch(error => console.error(`Lỗi: ${error}`));
+        .catch(error => console.error("Lỗi đổi màu:", error));
 }
 
