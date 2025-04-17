@@ -18,7 +18,6 @@ menuLi.forEach((item, index) => {
 });
 
 var table;
-
 function initTableData() {
   table = $("#list-user").DataTable({
     processing: true,
@@ -71,6 +70,24 @@ window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
+}
+
+document.getElementById('add-user-form').addEventListener('submit', function (e) {
+
+  function openAssignPermissionModal(userId) {
+  document.getElementById("assignUserId").value = userId;
+  document.getElementById("assignPermissionModal").style.display = "block";
+}
+
+  function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+  window.onclick = function(event) {
+  const modal = document.getElementById("assignPermissionModal");
+  if (event.target == modal) {
+  modal.style.display = "none";
+}
 }
 
 document.getElementById('add-user-form').addEventListener('submit', function (e) {
