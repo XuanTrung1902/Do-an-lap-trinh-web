@@ -27,7 +27,7 @@ import java.io.IOException;
 
 
 
-@WebServlet(name = "GoogleLoginServlet", value = "/login-google")
+@WebServlet(name = "GoogleLoginServlet", value = "/googlelogin")
 public class GoogleLoginServlet extends HttpServlet {
 //    private static final String CLIENT_ID = "101282606498-ogsnp108d3sk4f25rbc8pjrq6ad9m4b8.apps.googleusercontent.com";
 //
@@ -120,11 +120,8 @@ public class GoogleLoginServlet extends HttpServlet {
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String code = request.getParameter("code");
     if (code == null || code.isEmpty()) {
-        System.out.println("❌ Debug: Không nhận được mã code từ Google!");
         response.sendRedirect("/login.jsp?error=Google login failed");
         return;
-    } else {
-        System.out.println("✅ Debug: Nhận được mã code từ Google: " + code);
     }
     GoogleLogin gg = new GoogleLogin();
     String accessToken = gg.getToken(code);

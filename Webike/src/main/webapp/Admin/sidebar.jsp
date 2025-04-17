@@ -6,6 +6,38 @@
     <div class="admin__sidebar--top">
         <img src="Admin/assets/images/logo.png" alt="">
     </div>
+    <c:set var="showUserList" value="false" />
+    <c:set var="showOrderlist" value="false" />
+    <c:set var="showProductlist" value="false" />
+    <c:set var="showDiscountlist" value="false" />
+    <c:set var="canWritetDiscount" value="false" />
+    <c:set var="canWritetProduct" value="false" />
+
+    <c:forEach var="p" items="${sessionScope.permissions}">
+        <c:if test="${p.resource eq 'userlist' and p.action eq 'read'}">
+            <c:set var="showUserList" value="true" />
+        </c:if>
+
+        <c:if test="${p.resource eq 'product' and p.action eq 'read'}">
+            <c:set var="showProductlist" value="true" />
+        </c:if>
+
+        <c:if test="${p.resource eq 'order' and p.action eq 'read'}">
+            <c:set var="showOrderlist" value="true" />
+        </c:if>
+
+        <c:if test="${p.resource eq 'discount' and p.action eq 'read'}">
+            <c:set var="showDiscountlist" value="true" />
+        </c:if>
+        <c:if test="${p.resource eq 'discount' and p.action eq 'write'}">
+            <c:set var="canWritetDiscount" value="true" />
+        </c:if>
+        <c:if test="${p.resource eq 'product' and p.action eq 'write'}">
+            <c:set var="canWritetProduct" value="true" />
+        </c:if>
+    </c:forEach>
+
+
     <div class="admin__sidebar--content">
         <ul>
             <li><a href="#">
@@ -23,6 +55,7 @@
                     </div>
                 </ul>
             </li>
+            <c:if test="${showUserList}">
             <li>
                 <a href="">
                     <i class="ri-file-list-line"></i>
@@ -40,6 +73,8 @@
                     </div>
                 </ul>
             </li>
+            </c:if>
+            <c:if test="${showOrderlist}">
             <li>
                 <a href="">
                     <i class="ri-file-list-line"></i>
@@ -63,6 +98,8 @@
                     </div>
                 </ul>
             </li>
+            </c:if>
+            <c:if test="${showProductlist}">
             <li>
                 <a href="#">
                     <i class="ri-file-list-line"></i>
@@ -77,14 +114,19 @@
                             Danh sách
                         </a>
                         </li>
-                        <li><a href="add-product">
+                        <li>
+                <c:if test="${canWritetProduct}">
+                            <a href="add-product">
                             <i class="ri-arrow-right-s-fill"></i>
                             Thêm
                         </a>
+                </c:if>
                         </li>
                     </div>
                 </ul>
             </li>
+            </c:if>
+            <c:if test="${showDiscountlist}">
             <li>
                 <a href="#">
                     <i class="ri-file-list-line"></i>
@@ -99,14 +141,18 @@
                             Danh sách
                         </a>
                         </li>
-                        <li><a href="addDiscount">
+                        <li>
+                            <c:if test="${canWritetDiscount}">
+                            <a href="addDiscount">
                             <i class="ri-arrow-right-s-fill"></i>
                             Thêm
                         </a>
+                            </c:if>
                         </li>
                     </div>
                 </ul>
             </li>
+            </c:if>
         </ul>
     </div>
 </div>

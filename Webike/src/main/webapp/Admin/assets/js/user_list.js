@@ -19,50 +19,6 @@ menuLi.forEach((item, index) => {
 
 var table;
 function initTableData() {
-  // var data = [
-  //   {
-  //     id: 1,
-  //     name: "LeTriDuc",
-  //     password: "123456",
-  //     birthday: "11/6/2004",
-  //     address: "Đồng Nai",
-  //     phone: "0123456789",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "TongXuanTrung",
-  //     password: "147258",
-  //     birthday: "11/6/2004",
-  //     address: "Đà Nẵng",
-  //     phone: "0123456789",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "NguyenQuocTan",
-  //     password: "258369",
-  //     birthday: "11/6/2004",
-  //     address: "Hà Nội",
-  //     phone: "0123456789",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "TranNhutAnh",
-  //     password: "145678",
-  //     birthday: "11/6/2004",
-  //     address: "Long An",
-  //     phone: "0123456789",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "DoDucDuong",
-  //     password: "145789",
-  //     birthday: "11/6/2004",
-  //     address: "Đồng Tháp",
-  //     phone: "0123456789",
-  //   },
-  // ];
-  // var jsonData = JSON.stringify(data);
-  // console.log(jsonData);
   table = $("#list-user").DataTable({
     processing: true,
     data,
@@ -104,39 +60,48 @@ function initTableData() {
     },
   });
 }
+document.getElementById('add-user-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
 
-// Search logic
-// document.getElementById('searchInput').addEventListener('keyup', function() {
-//     var searchValue = this.value.toLowerCase();
-//     var filterType = document.getElementById('filterType').value;
-//     var tableRows = document.querySelectorAll('.admin-content-main-container table tbody tr');
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          const user = data.user;
 
-//     tableRows.forEach(function(row) {
-//         var cells = row.getElementsByTagName('td');
-//         var match = false;
+          // ✅ Chèn hàng mới vào bảng
+          dataTable.row.add([
+            user.id,
+            user.name,
+            user.DOB,
+            user.sex,
+            user.address,
+            user.phoneNum,
+            user.role,
+            user.locked,
+            `<img src="${user.image}" style="width: 50px; height: 50px; border-radius: 50%;">`,
+            `<a href="${data.contextPath}/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
+                 <form action="${data.contextPath}/deleteUser" method="post" style="display:inline;">
+                     <input type="hidden" name="id" value="${user.id}">
+                     <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>
+                 </form>`
+          ]).draw(false);
 
-//         switch (filterType) {
-//             case 'name':
-//                 if (cells[1].innerText.toLowerCase().includes(searchValue)) {
-//                     match = true;
-//                 }
-//                 break;
-//             case 'address':
-//                 if (cells[4].innerText.toLowerCase().includes(searchValue)) {
-//                     match = true;
-//                 }
-//                 break;
-//             case 'phone':
-//                 if (cells[5].innerText.toLowerCase().includes(searchValue)) {
-//                     match = true;
-//                 }
-//                 break;
-//         }
-
-//         if (match) {
-//             row.style.display = '';
-//         } else {
-//             row.style.display = 'none';
-//         }
-//     });
-// });
+          document.getElementById('modal').style.display = 'none';
+          form.reset();
+        } else {
+          alert(data.message || 'Thêm người dùng thất bại');
+        }
+      })
+      .catch(error => {
+        console.error('Lỗi:', error);
+      });
+});
