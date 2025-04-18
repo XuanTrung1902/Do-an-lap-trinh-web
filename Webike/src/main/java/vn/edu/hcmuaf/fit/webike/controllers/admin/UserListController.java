@@ -3,7 +3,12 @@ package vn.edu.hcmuaf.fit.webike.controllers.admin;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.webike.dao.PermissionsDao;
 import vn.edu.hcmuaf.fit.webike.dao.UserDao;
+import vn.edu.hcmuaf.fit.webike.dao.ResourceDao;
+
+import vn.edu.hcmuaf.fit.webike.models.Permissions;
+import vn.edu.hcmuaf.fit.webike.models.Resource;
 import vn.edu.hcmuaf.fit.webike.models.User;
 import vn.edu.hcmuaf.fit.webike.services.LogService;
 
@@ -25,7 +30,13 @@ public class UserListController extends HttpServlet {
 
         LogService.log(level, "Xem danh sách users", userInfo, "", "");
 
+        ResourceDao r = new ResourceDao();
+        List<Resource> allResources = r.getAllResources();
+        PermissionsDao p = new PermissionsDao();
+        List<Permissions> allPermissions = p.getAllPermissions();
 
+        request.setAttribute("allResources", allResources);
+        request.setAttribute("allPermissions", allPermissions);
         if (!userList.isEmpty()) {
             request.setAttribute("userList", userList);
             request.getRequestDispatcher("Admin/user_list.jsp").forward(request, response);

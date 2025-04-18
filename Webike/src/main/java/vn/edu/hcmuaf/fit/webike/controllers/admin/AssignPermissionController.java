@@ -1,43 +1,120 @@
-package vn.edu.hcmuaf.fit.webike.controllers.admin;
+    package vn.edu.hcmuaf.fit.webike.controllers.admin;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
-import org.jdbi.v3.core.Handle;
-import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
+    import jakarta.servlet.*;
+    import jakarta.servlet.http.*;
+    import jakarta.servlet.annotation.*;
+    import org.jdbi.v3.core.Handle;
+    import vn.edu.hcmuaf.fit.webike.dao.PermissionsDao;
+    import vn.edu.hcmuaf.fit.webike.dao.RoleDao;
+    import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 
-import java.io.IOException;
+    import java.io.IOException;
+    import java.util.Arrays;
 
-@WebServlet(name = "AssignPermissionController", value = "/assignPermission")
-public class AssignPermissionController extends HttpServlet {
+    @WebServlet(name = "AssignPermissionController", value = "/assignPermission")
+    public class AssignPermissionController extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    }
-
+        @Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        }
+    //    @Override
+    //    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    //        request.setCharacterEncoding("UTF-8");
+    //
+    //        try {
+    //            String userIdStr = request.getParameter("userId");
+    //            if (userIdStr == null || userIdStr.trim().isEmpty()) {
+    //                throw new IllegalArgumentException("userId không hợp lệ.");
+    //            }
+    //
+    //            int userId = Integer.parseInt(request.getParameter("userId"));
+    //
+    //            String[] permissionValues = request.getParameterValues("permissions");
+    //            if (permissionValues == null || permissionValues.length == 0) {
+    //                throw new IllegalArgumentException("Permissions không hợp lệ.");
+    //            }
+    //
+    //
+    //            RoleDao roleDao = new RoleDao();
+    //            int roleId = roleDao.getOrCreateCustomRoleForUser(userId); // Tạo hoặc lấy role riêng của user
+    //
+    //            roleDao.clearPermissionsForRole(roleId); // Xoá quyền cũ của role
+    //
+    //            System.out.println("userId: " + userId);
+    //            System.out.println("permissions: " + Arrays.toString(permissionValues));
+    //
+    //            if (permissionValues != null) {
+    //                for (String value : permissionValues) {
+    //                    String[] parts = value.split("-");
+    //                    if (parts.length == 2) {
+    //                        int resId = Integer.parseInt(parts[0]);
+    //                        int permId = Integer.parseInt(parts[1]);
+    //                        roleDao.addPermissionForRole(roleId, resId, permId); // Gán quyền mới
+    //                    }
+    //                }
+    //            }
+    //
+    //            roleDao.assignRoleToUser(userId, roleId);
+    //
+    //            response.setContentType("application/json");
+    //            response.getWriter().write("{\"status\": \"success\"}");
+    //
+    //        } catch (Exception e) {
+    //            e.printStackTrace(); // In lỗi ra console để debug
+    //            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    //            response.setContentType("application/json");
+    //            response.getWriter().write("{\"status\": \"error\", \"message\": \"" + e.getMessage().replace("\"", "") + "\"}");
+    //        }
+    //    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        int roleId = Integer.parseInt(request.getParameter("roleId"));
+        request.setCharacterEncoding("UTF-8");
 
-        try (Handle handle = JDBIConnect.get().open()) {
-            // 1. Xóa hết vai trò cũ
-            handle.createUpdate("DELETE FROM user_role WHERE user_id = :uid")
-                    .bind("uid", userId)
-                    .execute();
+        try {
+            // Kiểm tra xem userId có hợp lệ không
+            String userIdStr = request.getParameter("userId");
+            if (userIdStr == null || userIdStr.trim().isEmpty()) {
+                throw new IllegalArgumentException("userId không hợp lệ.");
+            }
 
-            // 2. Gán vai trò mới
-            handle.createUpdate("INSERT INTO user_role (user_id, role_id) VALUES (:uid, :rid)")
-                    .bind("uid", userId)
-                    .bind("rid", roleId)
-                    .execute();
+            int userId = Integer.parseInt(userIdStr);
 
-            // 3. Chuyển về danh sách người dùng
+            String[] permissionValues = request.getParameterValues("permissions");
+            if (permissionValues == null || permissionValues.length == 0) {
+                throw new IllegalArgumentException("Permissions không hợp lệ.");
+            }
+
+            RoleDao roleDao = new RoleDao();
+            int roleId = roleDao.getOrCreateCustomRoleForUser(userId);
+
+            roleDao.clearPermissionsForRole(roleId);
+
+            if (permissionValues != null) {
+                for (String value : permissionValues) {
+                    String[] parts = value.split("-");
+                    if (parts.length == 2) {
+                        int resId = Integer.parseInt(parts[0]);
+                        int permId = Integer.parseInt(parts[1]);
+                        roleDao.addPermissionForRole(roleId, resId, permId);
+                    }
+                }
+            }
+
+            roleDao.assignRoleToUser(userId, roleId);
+
             response.sendRedirect(request.getContextPath() + "/userList");
+
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.setContentType("application/json");
+            response.getWriter().write("{\"status\": \"error\", \"message\": \"" + e.getMessage() + "\"}");
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Có lỗi xảy ra khi phân quyền.");
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.setContentType("application/json");
+            response.getWriter().write("{\"status\": \"error\", \"message\": \"Lỗi khi xử lý yêu cầu. Vui lòng thử lại sau.\"}");
         }
     }
 
-}
+    }

@@ -680,3 +680,79 @@ li {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     opacity: 0.85;
 }
+ .modal-content {
+     background-color: #fff;
+     margin: 60px auto;
+     padding: 30px;
+     border: 1px solid #ccc;
+     width: 600px;
+     max-width: 90%;
+     border-radius: 12px;
+     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+     font-family: 'Segoe UI', sans-serif;
+     font-size: 16px;
+ }
+
+.close-button {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.permission-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.permission-table th,
+.permission-table td {
+    border: 1px solid red;
+    padding: 12px 14px;
+    text-align: center;
+}
+
+.permission-table th {
+    background-color: red;
+    font-weight: bold;
+    color: #444;
+    font-size: 16px;
+}
+
+.permission-table td {
+    font-size: 15px;
+    color: #333;
+}
+
+.perm-checkbox {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.btn-submit {
+    background-color: red;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+.table {
+    font-size: 1.2rem;
+}
+
+.table th, .table td {
+    padding: 10px;
+}
