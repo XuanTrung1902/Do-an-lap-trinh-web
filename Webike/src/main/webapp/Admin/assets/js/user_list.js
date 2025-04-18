@@ -80,14 +80,15 @@ document.getElementById('add-user-form').addEventListener('submit', function (e)
 }
 
   function closeModal(id) {
+function closeModal(id) {
   document.getElementById(id).style.display = "none";
 }
 
-  window.onclick = function(event) {
+window.onclick = function (event) {
   const modal = document.getElementById("assignPermissionModal");
   if (event.target == modal) {
-  modal.style.display = "none";
-}
+    modal.style.display = "none";
+  }
 }
 
 document.getElementById('add-user-form').addEventListener('submit', function (e) {

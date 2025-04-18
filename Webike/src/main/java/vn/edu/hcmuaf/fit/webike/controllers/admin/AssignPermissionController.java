@@ -1,22 +1,20 @@
-    package vn.edu.hcmuaf.fit.webike.controllers.admin;
+package vn.edu.hcmuaf.fit.webike.controllers.admin;
 
-    import jakarta.servlet.*;
-    import jakarta.servlet.http.*;
-    import jakarta.servlet.annotation.*;
-    import org.jdbi.v3.core.Handle;
-    import vn.edu.hcmuaf.fit.webike.dao.PermissionsDao;
-    import vn.edu.hcmuaf.fit.webike.dao.RoleDao;
-    import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+import org.jdbi.v3.core.Handle;
+import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 
-    import java.io.IOException;
-    import java.util.Arrays;
+import java.io.IOException;
 
-    @WebServlet(name = "AssignPermissionController", value = "/assignPermission")
-    public class AssignPermissionController extends HttpServlet {
+@WebServlet(name = "AssignPermissionController", value = "/assignPermission")
+public class AssignPermissionController extends HttpServlet {
 
-        @Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
@@ -68,4 +66,4 @@
         }
     }
 
-    }
+}
