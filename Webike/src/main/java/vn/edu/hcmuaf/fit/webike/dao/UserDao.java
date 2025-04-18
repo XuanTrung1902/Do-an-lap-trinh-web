@@ -226,13 +226,28 @@ public class UserDao {
                 .findFirst()
                 .orElse(null));
     }
+    // sữa gg
+//    public void insertUser(String name, String email) {
+//        JDBIConnect.get().withHandle(h -> h.createUpdate("INSERT INTO accounts (name, email) VALUES (:name, :email)")
+//                .bind("name", name)
+//                .bind("email", email)
+//                .execute());
+//    }
 
     public void insertUser(String name, String email) {
-        JDBIConnect.get().withHandle(h -> h.createUpdate("INSERT INTO accounts (name, email) VALUES (:name, :email)")
+        JDBIConnect.get().withHandle(h -> h.createUpdate(
+                        "INSERT INTO accounts (name, email, phoneNum, password, image, DOB, sex, address) VALUES (:name, :email, :phoneNum, :password, :image, :dob, :sex, :address)")
                 .bind("name", name)
                 .bind("email", email)
+                .bind("phoneNum", "0000000000")
+                .bind("password", "google")
+                .bind("image", "img/Users/def.png")
+                .bind("dob", "2000-01-01")
+                .bind("sex", "Khác")
+                .bind("address", "Chưa cập nhật")
                 .execute());
     }
+
     public String getPasswordByEmail(String email) {
         return JDBIConnect.get().withHandle(h ->
                 h.createQuery("SELECT password FROM accounts WHERE email = :email")
@@ -241,6 +256,46 @@ public class UserDao {
                         .findOne()
                         .orElse(null)
         );
+    }
+
+//    public void insertUsers(List<User> users) {
+//        JDBIConnect.get().useHandle(handle -> {
+//            String sql = "INSERT INTO users (name, password, DOB, sex, address, phoneNum, role, locked) VALUES (:name, :password, :DOB, :sex, :address, :phoneNum, :role, :locked)";
+//            handle.prepareBatch(sql)
+//                    .bindList("name", users.stream().map(User::getName).toList())
+//                    .bindList("password", users.stream().map(User::getPassword).toList())
+//                    .bindList("DOB", users.stream().map(u -> u.getDOB() != null ? u.getDOB().toString() : null).toList())
+//                    .bindList("sex", users.stream().map(User::getSex).toList())
+//                    .bindList("address", users.stream().map(User::getAddress).toList())
+//                    .bindList("phoneNum", users.stream().map(User::getPhoneNum).toList())
+//                    .bindList("role", users.stream().map(User::getRole).toList())
+//                    .bindList("locked", users.stream().map(User::getLocked).toList())
+//                    .execute();
+//        });
+//    }
+
+    public void insertUsers(List<User> users) {
+        JDBIConnect.get().useHandle(handle -> {
+            String sql = "INSERT INTO accounts (name, phoneNum, DOB, sex, password, address, role, locked, verify, email) " +
+                    "VALUES (:name, :phoneNum, :DOB, :sex, :password, :address, :role, :locked, :verify, :email)";
+
+            var batch = handle.prepareBatch(sql);
+
+            for (User user : users) {
+                batch.bind("name", user.getName())
+                        .bind("phoneNum", user.getPhoneNum())
+                        .bind("DOB", user.getDOB() != null ? user.getDOB().toString() : null)
+                        .bind("sex", user.getSex())
+                        .bind("password", user.getPassword())
+                        .bind("address", user.getAddress())
+                        .bind("role", user.getRole())
+                        .bind("locked", user.getLocked())
+                        .bind("verify", user.getVerify())
+                        .bind("email", user.getEmail())
+                        .add();
+            }
+            batch.execute();
+        });
     }
 
 }
