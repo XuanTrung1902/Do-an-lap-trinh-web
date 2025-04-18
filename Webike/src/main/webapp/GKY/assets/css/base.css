@@ -108,6 +108,13 @@ html {
     width: 83.3333333334%;
   }
 
+  /*toast message*/
+.toastify {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 12px 20px;
+}
 
   /* Animation */
 @keyframes fadeIn {
