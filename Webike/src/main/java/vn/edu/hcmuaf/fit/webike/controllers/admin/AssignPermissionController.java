@@ -17,55 +17,6 @@
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         }
-    //    @Override
-    //    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //        request.setCharacterEncoding("UTF-8");
-    //
-    //        try {
-    //            String userIdStr = request.getParameter("userId");
-    //            if (userIdStr == null || userIdStr.trim().isEmpty()) {
-    //                throw new IllegalArgumentException("userId không hợp lệ.");
-    //            }
-    //
-    //            int userId = Integer.parseInt(request.getParameter("userId"));
-    //
-    //            String[] permissionValues = request.getParameterValues("permissions");
-    //            if (permissionValues == null || permissionValues.length == 0) {
-    //                throw new IllegalArgumentException("Permissions không hợp lệ.");
-    //            }
-    //
-    //
-    //            RoleDao roleDao = new RoleDao();
-    //            int roleId = roleDao.getOrCreateCustomRoleForUser(userId); // Tạo hoặc lấy role riêng của user
-    //
-    //            roleDao.clearPermissionsForRole(roleId); // Xoá quyền cũ của role
-    //
-    //            System.out.println("userId: " + userId);
-    //            System.out.println("permissions: " + Arrays.toString(permissionValues));
-    //
-    //            if (permissionValues != null) {
-    //                for (String value : permissionValues) {
-    //                    String[] parts = value.split("-");
-    //                    if (parts.length == 2) {
-    //                        int resId = Integer.parseInt(parts[0]);
-    //                        int permId = Integer.parseInt(parts[1]);
-    //                        roleDao.addPermissionForRole(roleId, resId, permId); // Gán quyền mới
-    //                    }
-    //                }
-    //            }
-    //
-    //            roleDao.assignRoleToUser(userId, roleId);
-    //
-    //            response.setContentType("application/json");
-    //            response.getWriter().write("{\"status\": \"success\"}");
-    //
-    //        } catch (Exception e) {
-    //            e.printStackTrace(); // In lỗi ra console để debug
-    //            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-    //            response.setContentType("application/json");
-    //            response.getWriter().write("{\"status\": \"error\", \"message\": \"" + e.getMessage().replace("\"", "") + "\"}");
-    //        }
-    //    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");

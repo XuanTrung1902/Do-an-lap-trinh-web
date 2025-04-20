@@ -52,6 +52,7 @@
                 </div>
                 <c:set var="canEditUser" value="false" />
                 <c:set var="canDeleteUser" value="false" />
+                <c:set var="canReadPQ" value="false" />
 
                 <c:forEach var="p" items="${sessionScope.permissions}">
                     <c:if test="${p.resource eq 'userlist' and p.action eq 'write'}">
@@ -60,6 +61,10 @@
                     <c:if test="${p.resource eq 'userlist' and p.action eq 'delete'}">
                         <c:set var="canDeleteUser" value="true" />
                     </c:if>
+                    <c:if test="${p.resource eq 'Phân Quyền' and p.action eq 'read'}">
+                        <c:set var="canReadPQ" value="true" />
+                    </c:if>
+
                 </c:forEach>
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
@@ -107,9 +112,11 @@
                                             <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>
                                         </form>
                                         </c:if>
+                                        <c:if test="${canReadPQ}">
                                         <button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(${user.id})">
                                             Phân quyền
                                         </button>
+                                        </c:if>
                                     </td>
                                 </tr>
                             </c:forEach>
