@@ -24,6 +24,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
+    <script> var isLoggedIn = ${not empty sessionScope.auth}; </script>
 </head>
 <body>
 <div class="app">
@@ -43,7 +45,7 @@
             <!-- List bike -->
             <div class="motor__list">
                 <c:forEach var="p2" items="${products2}">
-                    <a href="productDetail?id=${p2.id}" class="bike__link">
+                    <a href="#" onclick="checkLoginForProducts(event, ${p2.id})" class="bike__link" >
                         <div class="box__bike--item">
                             <div class="box__bike-img">
                                 <img src="${p2['imgurl']}" alt="#"/>
@@ -102,10 +104,10 @@
                         </div>
                     </div>
                     <div class="list-bike">
-                        <div id="product-grid"  class="grid__row" style="padding: 0 40px;">
+                        <div id="product-grid" onclick="checkLoginForProducts(event)"  class="grid__row" style="padding: 0 40px;">
                             <c:forEach var="p" items="${products}">
                                 <div id="SP${p.id}" class="grid__column-2" data-attributes="honda, trang" style="padding: 10px; height: 380px">
-                                    <a href="productDetail?id=${p.id}" class="bike--item">
+                                    <a href="#" onclick="checkLoginForProduct(event, ${p.id})" class="bike--item">
                                         <div class="bike__img zoom-img">
                                             <img src="${p['imgurl']}" alt="${p.name}"/>
                                         </div>
@@ -164,6 +166,30 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+    function checkLoginForProducts(event) {
+        <c:if test="${empty sessionScope.auth}">
+        event.preventDefault();
+        showToast("Bạn cần phải đăng nhập trước!");
+        return false;
+        </c:if>
+        window.location.href = "${pageContext.request.contextPath}/list-products";
+        return true;
+    }
+
+    function showToast(message) {
+        Toastify({
+            text: message,
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "#e74c3c",
+            stopOnFocus: true,
+        }).showToast();
+    }
+</script>
 <%-- comment lại thì chạy được, mà mở ra thì lại lỗi ?  --%>
 <script src="${pageContext.request.contextPath}/GKY/assets/js/FilterProductAjax.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>

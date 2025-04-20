@@ -2,6 +2,7 @@ $(document).ready(function() {
     let currentPage = 1;
     const itemsPerPage = 10;
 
+
     function fetchFilteredProducts() {
         var selectedBrands = [];
         $("input[name='brand']:checked").each(function() {
@@ -223,7 +224,6 @@ $(document).ready(function() {
 $(document).ready(function () {
     $('#search-input').on('keyup', function () {
         let keyword = $(this).val();
-        console.log(keyword);
         $.ajax({
             url: '/Webike/search',
             method: 'GET',
