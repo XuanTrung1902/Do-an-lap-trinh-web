@@ -50,8 +50,6 @@ public class loginController extends HttpServlet {
                 List<Permission> permissions = PermissionService.getPermissionsForUser(user.getId());
                 session.setAttribute("permissions", permissions);
 
-
-
                 if (user.getRole() == 0) { // nếu là admin
                     response.sendRedirect("dashboard");
                 } else { // nếu là user
