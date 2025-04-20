@@ -18,7 +18,7 @@ menuLi.forEach((item, index) => {
 
 // loading animation for table rows
 const adminContentMainContainer = document.querySelector('.admin-content-main-container');
-const tableRows = $$('.admin-content-main-container table tbody tr');
+const tableRows = document.querySelectorAll('.admin-content-main-container table tbody tr');
 
 window.addEventListener('load', () => {
     adminContentMainContainer.classList.add('fade-in');

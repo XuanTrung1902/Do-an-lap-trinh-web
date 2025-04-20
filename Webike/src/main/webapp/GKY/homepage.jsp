@@ -25,6 +25,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/bootstrap/css/bootstrap.css">
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
 
 </head>
 <body>
@@ -191,5 +193,21 @@
 
     <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/popper.min.js"></script>
+
+    <!-- Toastify JS -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        function showToast(message, type = 'error') {
+            Toastify({
+                text: message,
+                duration: 3000,
+                close: true,
+                gravity: "top", // Hiển thị ở trên cùng
+                position: "right", // Hiển thị ở bên phải
+                backgroundColor: type === 'error' ? "#e74c3c" : "#2ecc71",
+                stopOnFocus: true,
+            }).showToast();
+        }
+    </script>
 </body>
 </html>

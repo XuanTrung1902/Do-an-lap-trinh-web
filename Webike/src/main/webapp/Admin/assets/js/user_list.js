@@ -60,6 +60,10 @@ function initTableData() {
     },
   });
 }
+document.getElementById('add-user-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
 
 function closeModal(id) {
   document.getElementById(id).style.display = "none";

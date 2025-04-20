@@ -30,6 +30,55 @@ public class ProductDAO {
 
     }
 
+    //lọc sản phẩm theo loại (Admin: quản lý sản phẩm)
+    public List<Map<String, Object>> getProductsByType(int typeID) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql;
+        List<Map<String, Object>> result;
+
+        if (typeID == 0) { // Nếu chọn "Tất cả"
+            sql = """
+            SELECT 
+                p.id,
+                p.name,
+                p.price,
+                p.launch,
+                p.quantity,
+                MIN(i.url) as url
+            FROM products AS p
+            JOIN imgs AS i ON p.id = i.productID
+            WHERE p.deleted = 0
+            GROUP BY p.id;
+        """;
+            result = jdbi.withHandle(handle ->
+                    handle.createQuery(sql)
+                            .mapToMap()
+                            .list()
+            );
+        } else { // Lọc theo typeID cụ thể
+            sql = """
+            SELECT 
+                p.id,
+                p.name,
+                p.price,
+                p.launch,
+                p.quantity,
+                MIN(i.url) as url
+            FROM products AS p
+            JOIN imgs AS i ON p.id = i.productID
+            WHERE p.deleted = 0 AND p.typeID = :typeID
+            GROUP BY p.id;
+        """;
+            result = jdbi.withHandle(handle ->
+                    handle.createQuery(sql)
+                            .bind("typeID", typeID)
+                            .mapToMap()
+                            .list()
+            );
+        }
+        return result;
+    }
+
     public List<Color> getColors() {
         Jdbi jdbi = JDBIConnect.get();
         return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM colors")
@@ -449,7 +498,8 @@ public class ProductDAO {
 
     public List<Comment> getComment(int id) {
         Jdbi jdbi = JDBIConnect.get();
-        String sql = "select c.content, c.created, a.name as username from comments as c join accounts as a" +
+        String sql = "select c.content, c.created, c.color, a.name as username, a.image as avt " +
+                "from comments as c join accounts as a" +
                 " on c.accountID = a.id where productID = :id";
         return jdbi.withHandle(handle -> handle.createQuery(sql)
                 .bind("id", id)

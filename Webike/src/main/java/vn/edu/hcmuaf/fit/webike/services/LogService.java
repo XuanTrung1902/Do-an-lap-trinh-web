@@ -1,6 +1,9 @@
 package vn.edu.hcmuaf.fit.webike.services;
 
-import vn.edu.hcmuaf.fit.webike.dao.LogDao;
+//import vn.edu.hcmuaf.fit.webike.dao.LogDao;
+//import vn.edu.hcmuaf.fit.webike.models.LogModel;
+//import java.time.LocalDateTime;
+import vn.edu.hcmuaf.fit.webike.dao.LogDAO;
 
 import java.time.LocalDateTime;
 
@@ -12,9 +15,14 @@ public class LogService {
 
 
     public static void log(String level, String location, String userInfo, String before, String after) {
-        LogDao logDao = new LogDao();
-        logDao.insertLog(level, LocalDateTime.now(), location, userInfo, before, after);
-//        System.out.println(level + ": " + location + ": " + userInfo + ": " + before + ": " + after);
+//        LogDao logDao = new LogDao();
+//        logDao.insertLog(level, LocalDateTime.now(), location, userInfo, before, after);
+////        System.out.println(level + ": " + location + ": " + userInfo + ": " + before + ": " + after);
     }
+//    public static void log(String level, String location, String userInfo, String before, String after) {
+//        LogDao logDao = new LogDao();
+//        logDao.insertLog(level, LocalDateTime.now(), location, userInfo, before, after);
+////        System.out.println(level + ": " + location + ": " + userInfo + ": " + before + ": " + after);
+//    }
 
 }

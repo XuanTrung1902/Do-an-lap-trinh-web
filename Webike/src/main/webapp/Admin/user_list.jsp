@@ -262,7 +262,6 @@
 
 
     <script>
-
         document.querySelector('.btn-add__user').addEventListener('click', function() {
             document.getElementById('modal').style.display = 'block';
         });
