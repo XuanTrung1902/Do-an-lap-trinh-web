@@ -364,7 +364,7 @@
         }
 
         $(document).ready(function () {
-            loadUserList(); // Khởi tạo bảng đúng cách
+            loadUserList(); // Khởi tạo bảng
         });
     </script>
 

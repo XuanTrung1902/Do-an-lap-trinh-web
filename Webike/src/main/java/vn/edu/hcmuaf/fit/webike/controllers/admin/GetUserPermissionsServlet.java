@@ -5,7 +5,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.PermissionDao;
-import vn.edu.hcmuaf.fit.webike.models.PermissionPair;
+import vn.edu.hcmuaf.fit.webike.models.PermissionDTO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +18,7 @@ public class GetUserPermissionsServlet extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("userId"));
 
         PermissionDao permissionDAO = new PermissionDao(); // bạn tự cấu trúc DAO này theo project bạn
-        List<PermissionPair> permissions = permissionDAO.getUserPermissions(userId);
+        List<PermissionDTO> permissions = permissionDAO.getUserPermissions(userId);
 
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
