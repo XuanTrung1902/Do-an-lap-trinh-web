@@ -16,7 +16,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/admin.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/base.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/sidebar.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/detail.css">
+
 
     <title>Admin</title>
 </head>

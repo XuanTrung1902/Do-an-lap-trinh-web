@@ -3,7 +3,7 @@ package vn.edu.hcmuaf.fit.webike.controllers.users;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.hcmuaf.fit.webike.models.Permission;
+import vn.edu.hcmuaf.fit.webike.models.PermissionDTO;
 import vn.edu.hcmuaf.fit.webike.services.LogService;
 import vn.edu.hcmuaf.fit.webike.services.PermissionService;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
@@ -47,7 +47,7 @@ public class loginController extends HttpServlet {
 
                 LogService.log(LEVEL_INFO, "Đăng nhập", phoneNum, "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
 
-                List<Permission> permissions = PermissionService.getPermissionsForUser(user.getId());
+                List<PermissionDTO> permissions = PermissionService.getPermissionsForUser(user.getId());
                 session.setAttribute("permissions", permissions);
 
                 if (user.getRole() == 0) { // nếu là admin
