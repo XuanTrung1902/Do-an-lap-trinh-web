@@ -401,7 +401,7 @@ public class ProductDAO {
                     WHERE p.id = :id
                 """;
         String sqlImg = """
-                    SELECT c.name, c.code, i.url 
+                    SELECT c.id, c.name, c.code, i.url 
                     FROM imgs AS i
                     JOIN colors AS c ON c.id = i.colorID
                     WHERE i.productID = :id
@@ -433,6 +433,7 @@ public class ProductDAO {
                     .mapToMap()
                     .forEach(rs -> {
                         Color c = new Color();
+                        c.setId((int) rs.get("id"));
                         c.setName((String) rs.get("name"));
                         c.setCode((String) rs.get("code"));
                         String url = (String) rs.get("url");
@@ -525,5 +526,16 @@ public class ProductDAO {
                 .execute());
     }
 
-
+    public String getImgByColor(int pid, int colorID) {
+        Jdbi jdbi = JDBIConnect.get();  // đảm bảo jdbi được tạo từ DataSource
+        String sql = "SELECT i.url FROM imgs AS i WHERE productID = :pid AND colorID = :colorID";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("pid", pid)
+                        .bind("colorID", colorID)
+                        .mapTo(String.class)
+                        .findFirst()
+                        .orElse(null)
+        );
+    }
 }

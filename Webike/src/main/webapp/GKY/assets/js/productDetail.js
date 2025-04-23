@@ -14,10 +14,8 @@ function changeBikeColor(id) {
 }
 
 function changeColor(id) {
-    const productId = '${p.id}';
-
-    fetch('/change-color', {
-        method: 'POST',
+    fetch('/Webike/productDetail', {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
