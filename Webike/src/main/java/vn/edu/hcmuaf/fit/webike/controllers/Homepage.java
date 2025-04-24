@@ -9,6 +9,7 @@ import vn.edu.hcmuaf.fit.webike.dao.HomepageDAO;
 import vn.edu.hcmuaf.fit.webike.dao.PaymentDAO;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
 import vn.edu.hcmuaf.fit.webike.models.BikeType;
+import vn.edu.hcmuaf.fit.webike.models.Product;
 import vn.edu.hcmuaf.fit.webike.models.Shop;
 
 import java.io.IOException;
@@ -25,7 +26,8 @@ public class Homepage extends HttpServlet {
         List<String> brands = dao.getBrandOfProduct();  // Lấy 10 thương hiệu
 
         ProductDAO productdao = new ProductDAO();
-        List<Map<String, Object>> get3 = productdao.getAllProductImg();
+//        List<Map<String, Object>> get3 = productdao.getAllProductImg();
+        List<Product> get3 = productdao.getAllProductImg();
 
         PaymentDAO pdao = new PaymentDAO();
         List<Shop> shops = pdao.getShops();

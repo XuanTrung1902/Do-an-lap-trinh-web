@@ -21,7 +21,7 @@ public class ProductDAO {
 //        System.out.println(dao.getSpecType());
 //        System.out.println(dao.getComment(1));
 //        System.out.println(dao.getAllProductImg2());
-//        System.out.println(dao.getAllProductImg());
+        System.out.println(dao.getAllProductImg());
 //        System.out.println(dao.getBrandOfProduct());
 //        System.out.println(dao.getAllBrand());
 //        System.out.println(dao.searchProducts("Honda"));
@@ -38,18 +38,18 @@ public class ProductDAO {
 
         if (typeID == 0) { // Nếu chọn "Tất cả"
             sql = """
-            SELECT 
-                p.id,
-                p.name,
-                p.price,
-                p.launch,
-                p.quantity,
-                MIN(i.url) as url
-            FROM products AS p
-            JOIN imgs AS i ON p.id = i.productID
-            WHERE p.deleted = 0
-            GROUP BY p.id;
-        """;
+                        SELECT 
+                            p.id,
+                            p.name,
+                            p.price,
+                            p.launch,
+                            p.quantity,
+                            MIN(i.url) as url
+                        FROM products AS p
+                        JOIN imgs AS i ON p.id = i.productID
+                        WHERE p.deleted = 0
+                        GROUP BY p.id;
+                    """;
             result = jdbi.withHandle(handle ->
                     handle.createQuery(sql)
                             .mapToMap()
@@ -57,18 +57,18 @@ public class ProductDAO {
             );
         } else { // Lọc theo typeID cụ thể
             sql = """
-            SELECT 
-                p.id,
-                p.name,
-                p.price,
-                p.launch,
-                p.quantity,
-                MIN(i.url) as url
-            FROM products AS p
-            JOIN imgs AS i ON p.id = i.productID
-            WHERE p.deleted = 0 AND p.typeID = :typeID
-            GROUP BY p.id;
-        """;
+                        SELECT 
+                            p.id,
+                            p.name,
+                            p.price,
+                            p.launch,
+                            p.quantity,
+                            MIN(i.url) as url
+                        FROM products AS p
+                        JOIN imgs AS i ON p.id = i.productID
+                        WHERE p.deleted = 0 AND p.typeID = :typeID
+                        GROUP BY p.id;
+                    """;
             result = jdbi.withHandle(handle ->
                     handle.createQuery(sql)
                             .bind("typeID", typeID)
@@ -317,18 +317,18 @@ public class ProductDAO {
     public List<Map<String, Object>> searchProducts(String keyword) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                        SELECT p.id, p.name, 
-                               COALESCE(p.des, '') AS des, 
-                               p.price, p.quantity, 
-                               p.version, p.launch, 
-                               p.status, b.name AS brand, 
-                               COALESCE(MIN(i.url), '') AS imgUrl
-                        FROM products AS p
-                        LEFT JOIN imgs AS i ON i.productID = p.id
-                        JOIN brands AS b ON p.brandID = b.id
-                        WHERE p.name LIKE CONCAT('%', :keyword, '%')
-                        GROUP BY p.id;
-                    """;
+                    SELECT p.id, p.name, 
+                           COALESCE(p.des, '') AS des, 
+                           p.price, p.quantity, 
+                           p.version, p.launch, 
+                           p.status, b.name AS brand, 
+                           COALESCE(MIN(i.url), '') AS imgUrl
+                    FROM products AS p
+                    LEFT JOIN imgs AS i ON i.productID = p.id
+                    JOIN brands AS b ON p.brandID = b.id
+                    WHERE p.name LIKE CONCAT('%', :keyword, '%')
+                    GROUP BY p.id;
+                """;
 
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)
@@ -372,22 +372,47 @@ public class ProductDAO {
     }
 
     // lay ra tat ca sp kem anh
-    public List<Map<String, Object>> getAllProductImg() {
+    public List<Product> getAllProductImg() {
         Jdbi jdbi = JDBIConnect.get();
-        //                    SELECT p.*, min(i.url) AS imgUrl
-//                    FROM products AS p
-//                    JOIN imgs AS i ON i.productID = p.id
-//                    GROUP BY p.id  offset: currentPage limit 9;
-        String sql = """    
-                      SELECT p.*,
-                             (SELECT d.amount FROM discounts AS d WHERE d.productID = p.id ORDER BY d.id DESC LIMIT 1) AS discount,
-                             MIN(i.url) AS imgUrl
-                      FROM products AS p
-                      LEFT JOIN imgs AS i ON i.productID = p.id
-                      GROUP BY p.id;
+        String sql = """ 
+                SELECT p.*, b.name as brand, t.type, d.amount, i.url, i.colorID, c.code, c.name AS colorName
+                FROM products p
+                JOIN (
+                SELECT * FROM imgs
+                WHERE (productID, id) IN (
+                SELECT productID, MIN(id) FROM imgs
+                GROUP BY productID)) 
+                i ON p.id = i.productID
+                JOIN colors c ON i.colorID = c.id
+                JOIN brands b ON b.id = p.brandID
+                JOIN biketypes t ON t.id = p.typeID
+                JOIN discounts d on d.productID = p.id
                 """;
         return jdbi.withHandle(handle ->
-                handle.createQuery(sql).mapToMap().list()
+                handle.createQuery(sql)
+                        .map((rs, ctx) -> {
+                            int id = rs.getInt("id");
+                            String name = rs.getString("name");
+                            String des = rs.getString("des");
+                            double price = rs.getDouble("price");
+                            int quantity = rs.getInt("quantity");
+                            String version = rs.getString("version");
+                            String launch = rs.getString("launch");
+                            String status = rs.getString("status");
+                            String brand = rs.getString("brand");
+                            String type = rs.getString("type");
+                            double discount = rs.getDouble("amount");
+
+                            int colorID = rs.getInt("colorID");
+                            String code = rs.getString("code");
+                            String colorName = rs.getString("colorName");
+                            Color color = new Color(colorID, code, colorName);
+                            String url = rs.getString("url");
+                            Map<Color, String> img = new LinkedHashMap<>();
+                            img.put(color, url);
+                            return new Product(id, name, des, price, quantity, version, launch, status, brand, type, img, discount);
+                        })
+                        .list()
         );
     }
 
