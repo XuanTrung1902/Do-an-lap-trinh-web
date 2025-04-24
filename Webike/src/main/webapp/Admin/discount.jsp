@@ -168,7 +168,8 @@
             });
         });
      </script>
-     
+
+    <script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>
 
 </body>
 </html>

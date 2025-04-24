@@ -123,5 +123,7 @@
 </section>
 
 <script src="${pageContext.request.contextPath}/Admin/assets/js/order_list.js"></script>
+<script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>
+
 </body>
 </html>

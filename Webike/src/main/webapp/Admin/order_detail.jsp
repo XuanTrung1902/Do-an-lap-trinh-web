@@ -86,6 +86,7 @@
     </div>
 </section>
 <script src="${pageContext.request.contextPath}/Admin/assets/js/product_list.js"></script>
+<script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>
 
 </body>
 </html>

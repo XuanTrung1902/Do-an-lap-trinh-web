@@ -111,6 +111,7 @@
     </script>
     <script src="<%= request.getContextPath()%>/Admin/assets/js/admin.js"></script>
     <script src="<%= request.getContextPath()%>/Admin/assets/js/dashboard.js"></script>
+    <script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>
 
 </body>
 </html>
