@@ -373,7 +373,7 @@ public class ProductDAO {
     }
 
     // lay ra tat ca sp kem anh
-    public List<Product> getAllProductImg() {
+    public List<Product> getAllProduct() {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """ 
                 SELECT DISTINCT p.*, b.name AS brand, t.type,
@@ -392,18 +392,9 @@ public class ProductDAO {
                 JOIN colors c ON i.colorID = c.id
                 JOIN brands b ON b.id = p.brandID
                 JOIN biketypes t ON t.id = p.typeID
-                LEFT JOIN (
-                    SELECT d1.* FROM discounts d1
-                    INNER JOIN (
-                        SELECT productID, MAX(active) AS max_active, MIN(id) AS min_id FROM discounts
-                        GROUP BY productID
-                    ) d2 ON d1.productID = d2.productID
-                         AND d1.active = d2.max_active
-                         AND d1.id = d2.min_id
-                ) d ON d.productID = p.id
-                WHERE p.deleted = 0
+                JOIN discounts d on d.productID = p.id
                 ORDER BY p.id
-                LIMIT 10 OFFSET 0
+                LIMIT 10
                 """;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)
