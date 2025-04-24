@@ -21,7 +21,7 @@ public class ProductDAO {
 //        System.out.println(dao.getSpecType());
 //        System.out.println(dao.getComment(1));
 //        System.out.println(dao.getAllProductImg2());
-        System.out.println(dao.getAllProductImg());
+//        System.out.println(dao.getAllProduct());
 //        System.out.println(dao.getBrandOfProduct());
 //        System.out.println(dao.getAllBrand());
 //        System.out.println(dao.searchProducts("Honda"));
@@ -372,7 +372,7 @@ public class ProductDAO {
     }
 
     // lay ra tat ca sp kem anh
-    public List<Product> getAllProductImg() {
+    public List<Product> getAllProduct() {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """ 
                 SELECT p.*, b.name as brand, t.type, d.amount, i.url, i.colorID, c.code, c.name AS colorName
@@ -387,6 +387,8 @@ public class ProductDAO {
                 JOIN brands b ON b.id = p.brandID
                 JOIN biketypes t ON t.id = p.typeID
                 JOIN discounts d on d.productID = p.id
+                ORDER BY p.id
+                LIMIT 10
                 """;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)
