@@ -372,7 +372,8 @@ public class ProductDAO {
         );
     }
 
-    public List<Product> getAllProduct() {
+    // lay ra tat ca sp kem anh
+    public List<Product> getAllProductImg() {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """ 
                 SELECT DISTINCT p.*, b.name AS brand, t.type,

@@ -44,11 +44,14 @@
             <!-- List bike -->
             <div class="motor__list">
                 <c:forEach var="p2" items="${products2}">
-                    <a href="#" onclick="checkLoginForProducts(event, ${p2.id})" class="bike__link">
+                    <a href="#" onclick="checkLoginForProducts(event, ${p2.id})" class="bike__link" >
                         <div class="box__bike--item">
                             <div class="box__bike-img">
                                 <img src="${p2['imgurl']}" alt="#"/>
-                                <h5 class="box__bike--name">${p2['name']}</h5>
+                                <h5 class="box__bike--name">
+                                        ${p2['name']}
+                                </h5>
+<%--                                <span class="box__sub--title">${p2['status']}</span>--%>
                             </div>
                             <div class="box__bike--price">
                                 <span class="box__bike--price-old">
@@ -82,10 +85,11 @@
             <div class="motor__detail-list">
                 <div class="title-second">
                     <h3 class="title-second-name">Lọc sản phẩm</h3>
-                    <%--                        <div class="search__list">--%>
-                    <%--                            <label class="search__label">Tìm kiếm: </label>--%>
-                    <%--                            <input id="search-input" class="input_search" placeholder="Nhập tên xe ">--%>
-                    <%--                        </div>--%>
+<%--                        <div class="search__list">--%>
+<%--                            <label class="search__label">Tìm kiếm: </label>--%>
+<%--                            <input id="search-input" class="input_search" placeholder="Nhập tên xe ">--%>
+<%--                        </div>--%>
+
                 </div>
                 <div class="grid-2-8" style="padding-bottom: 10px;">
                     <div class="checkbox__category">
@@ -120,8 +124,7 @@
                                                 <f:formatNumber value="${p['price']}" pattern="#,##0.###"/>đ
                                             </span>
                                                 <c:if test="${p.discount > 0.0}">
-                                                    <span class="text-danger"
-                                                          style="text-align: center;display: flex;font-size: 1.3rem;">-${p.discount}%</span>
+                                                    <span class="text-danger" style="text-align: center;display: flex;font-size: 1.3rem;">-${p.discount}%</span>
                                                 </c:if>
                                             </div>
                                             <div class="source">
@@ -162,7 +165,7 @@
         </div>
     </div>
 
-    <jsp:include page="/GKY/footer.jsp"/>
+    <jsp:include page="/GKY/footer.jsp" />
 </div>
 
 
