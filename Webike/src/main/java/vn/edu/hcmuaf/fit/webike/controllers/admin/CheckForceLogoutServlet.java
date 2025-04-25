@@ -13,20 +13,42 @@ import java.util.List;
 
 @WebServlet(name = "CheckForceLogoutServlet", value = "/checkForceLogout")
 public class CheckForceLogoutServlet extends HttpServlet {
+@Override
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    HttpSession session = request.getSession(false);
+    response.setContentType("application/json");
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        HttpSession session = req.getSession(false);
-        boolean result = false;
-        if (session != null && session.getAttribute("auth") != null) {
-            User user = (User) session.getAttribute("auth");
-            System.out.println("🔍 Check force logout servlet gọi");
-            System.out.println("User ID: " + user.getId() + " - Force Logout: " + result);
-            UserDao dao = new UserDao();
-            result = dao.checkForceLogout(user.getId());
-        }
-
-        resp.setContentType("application/json");
-        resp.getWriter().write("{\"forceLogout\": " + result + "}");
+    if (session == null || session.getAttribute("auth") == null) {
+        response.getWriter().write("{\"forceLogout\": true}");
+        return;
     }
+
+    User user = (User) session.getAttribute("auth");
+    int userId = user.getId();
+
+    List<PermissionDTO> sessionPermissions = (List<PermissionDTO>) session.getAttribute("permissions");
+    List<PermissionDTO> dbPermissions = PermissionService.getPermissionsForUser(userId);
+
+    boolean isPermissionChanged = !comparePermissions(sessionPermissions, dbPermissions);
+
+    if (isPermissionChanged) {
+        session.invalidate(); // Xoá session để logout user
+        response.getWriter().write("{\"forceLogout\": true}");
+    } else {
+        response.getWriter().write("{\"forceLogout\": false}");
+    }
+}
+
+    private boolean comparePermissions(List<PermissionDTO> sessionList, List<PermissionDTO> dbList) {
+        if (sessionList == null || dbList == null || sessionList.size() != dbList.size()) return false;
+
+        for (PermissionDTO p : sessionList) {
+            boolean match = dbList.stream().anyMatch(d ->
+                    d.getResource().equals(p.getResource()) &&
+                            d.getAction().equals(p.getAction()));
+            if (!match) return false;
+        }
+        return true;
+    }
+
 }

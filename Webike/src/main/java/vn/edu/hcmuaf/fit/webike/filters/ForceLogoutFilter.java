@@ -20,18 +20,14 @@ public class ForceLogoutFilter implements Filter {
 
     @Override
 
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
-            throws IOException, ServletException {
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
-        System.out.println("✅ Filter chạy");
-        System.out.println("Session user: " + session.getAttribute("auth"));
         if (session != null && session.getAttribute("auth") != null) {
             User user = (User) session.getAttribute("auth");
            UserDao dao = new UserDao();
             boolean needLogout = dao.checkForceLogout(user.getId());
-            System.out.println("Cần logout: " + needLogout);
             if (needLogout) {
                 session.invalidate();
                 response.sendRedirect("login.jsp?forced=true");
