@@ -298,5 +298,22 @@ public class UserDao {
         });
     }
 
+    public boolean checkForceLogout(int userId) {
+        return JDBIConnect.get().withHandle(h ->
+                h.createQuery("SELECT force_logout FROM accounts WHERE id = :id")
+                        .bind("id", userId)
+                        .mapTo(Boolean.class)
+                        .findOne()
+                        .orElse(false)
+        );
+    }
+    public void forceLogoutUser(int userId) {
+        JDBIConnect.get().withHandle(h ->
+                h.createUpdate("UPDATE accounts SET force_logout = 1 WHERE id = :id")
+                        .bind("id", userId)
+                        .execute()
+        );
+    }
+
 }
 

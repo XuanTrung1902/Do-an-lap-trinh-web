@@ -74,5 +74,7 @@
     </section>
 
     <script src="/<%= request.getContextPath() %>/Admin/assets/js/product_add.js"></script>
+    <script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>
+
 </body>
 </html>

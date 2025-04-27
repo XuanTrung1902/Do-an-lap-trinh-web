@@ -128,5 +128,7 @@
     </section>
 
     <script src="<%= request.getContextPath() %>/Admin/assets/js/sidebar.js"></script>
+    <script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>
+
 </body>
 </html>
