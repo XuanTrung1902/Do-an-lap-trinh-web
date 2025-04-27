@@ -12,6 +12,7 @@ import vn.edu.hcmuaf.fit.webike.models.Product;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -21,13 +22,11 @@ public class Products extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductDAO dao = new ProductDAO();
-        List<Product> products = dao.getAllProduct(); // Lấy danh sách sản phẩm kèm ảnh
-        List<Map<String, Object>> products2 = dao.getAllProductImg2(); // Lấy  9 sản phẩm
-        List<String> brands = dao.getBrandOfProduct(); // Lấy 10 thương hiệu
+        List<Product> products = dao.getAllProduct();
+        List<Map<String, Object>> products2 = dao.getAllProductImg2();
         List<Brand> allBrand = dao.getAllBrand();
 
         request.setAttribute("allBrand", allBrand);
-        request.setAttribute("brands", brands);
         request.setAttribute("products2", products2);
         request.setAttribute("products", products);
         request.getRequestDispatcher("GKY/product.jsp").forward(request, response);
@@ -35,9 +34,24 @@ public class Products extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String [] brands = request.getParameterValues("brands");
-
+        String[] brands = request.getParameterValues("brands");
+//        int page = Integer.parseInt(request.getParameter("page"));
         FilterDAO dao = new FilterDAO();
-//        List<Product> products = dao.getTotalProductsByBrands(brands);
+        ProductDAO pdao = new ProductDAO();
+
+        List<Brand> allBrand = pdao.getAllBrand();
+        List<Product> products = new ArrayList<>();
+        if (brands != null) {
+            products = dao.getProductsByBrands(brands, 1, 10);
+        } else {
+            products = pdao.getAllProduct();
+        }
+        List<String> brandList = (brands == null) ? new ArrayList<>() : Arrays.asList(brands);
+
+        request.setAttribute("checkedBrands", brandList);
+        request.setAttribute("allBrand", allBrand);
+        request.setAttribute("products", products);
+
+        request.getRequestDispatcher("GKY/product.jsp").forward(request, response);
     }
 }

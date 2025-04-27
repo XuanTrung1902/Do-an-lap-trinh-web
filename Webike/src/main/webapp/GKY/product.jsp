@@ -28,9 +28,8 @@
     <script> var isLoggedIn = ${not empty sessionScope.auth}; </script>
 </head>
 <body>
-<div class="app">
+<div id="app" class="app">
     <jsp:include page="/GKY/header.jsp"/>
-
     <div class="container" style="padding: 0">
         <div class="banner">
             <img src="GKY/assets/img/banner.jpg" alt="">
@@ -49,13 +48,11 @@
                         <div class="box__bike--item">
                             <div class="box__bike-img">
                                 <img src="${p2['imgurl']}" alt="#"/>
-                                <h5 class="box__bike--name">
-                                        ${p2['name']}
-                                </h5>
+                                <h5 class="box__bike--name">${p2['name']}</h5>
                             </div>
                             <div class="box__bike--price">
-                                <span class="box__bike--price-old"><f:formatNumber value="${p2.price}"
-                                                                                   pattern="#,##0.###"/>đ</span>
+                                <span class="box__bike--price-old">
+                                    <f:formatNumber value="${p2.price}" pattern="#,##0.###"/>đ</span>
                                 <span class="box__bike--price-current">
                        <f:formatNumber value="${ p2.price - (p2.price * p2.discount / 100)}" pattern="#,##0.###"/>đ
                   </span>
@@ -89,15 +86,18 @@
                     <%--                            <label class="search__label">Tìm kiếm: </label>--%>
                     <%--                            <input id="search-input" class="input_search" placeholder="Nhập tên xe ">--%>
                     <%--                        </div>--%>
-
                 </div>
                 <div class="grid-2-8" style="padding-bottom: 10px;">
                     <div class="checkbox__category">
                         <div id="checkboxes">
-                            <h4 class="filter">Hãng xe</h4>
+                            <h2 class="filter mb-0 me-5">Hãng xe</h2>
                             <c:forEach var="ab" items="${allBrand}">
-                                <label><input type="checkbox" class="filter-checkbox" name="brand"
-                                              value="${ab.name}"> ${ab.name}</label>
+                                <label>
+                                    <input onclick="sort()" type="checkbox" class="filter-checkbox" name="brand"
+                                           value="${ab.name}"
+                                           <c:if test="${checkedBrands != null && checkedBrands.contains(ab.name)}">checked</c:if>
+                                    >${ab.name}
+                                </label>
                             </c:forEach>
                         </div>
                     </div>
@@ -107,33 +107,30 @@
                             <c:forEach var="p" items="${products}">
                                 <div id="SP${p.id}" class="grid__column-2" style="padding: 10px; height: 380px">
                                     <c:forEach var="color" items="${p.img.entrySet()}">
-                                        <div>color key: ${color.key}</div>
-                                        <div>cid: ${color.getKey().getId()}</div>
-                                        <a href="productDetail?id=${p.id}&cid=${color.getKey().getId()}"
-                                           onclick="checkLoginForProduct(event, ${p.id})" class="bike--item">
-                                            <div class="bike__img zoom-img">
-                                                <img src="${color.value}" alt="${p.name}"/>
-                                            </div>
-                                            <div class="bike__info">
-                                                <h3 class="bike__name"
-                                                    style="display: block; height: 49px;">${p.name}</h3>
-                                                <div class="d-flex justify-content-between">
+                                    <a href="productDetail?id=${p.id}&cid=${color.getKey().getId()}"
+                                       onclick="checkLoginForProduct(event, ${p.id})" class="bike--item">
+                                        <div class="bike__img zoom-img">
+                                            <img src="${color.value}" alt="${p.name}"/>
+                                        </div>
+                                        </c:forEach>
+                                        <div class="bike__info">
+                                            <h3 class="bike__name" style="display: block; height: 49px;">${p.name}</h3>
+                                            <div class="d-flex justify-content-between">
                                                 <span class="bike__price">
                                                 <f:formatNumber value="${p['price']}" pattern="#,##0.###"/>đ
                                             </span>
-                                                    <c:if test="${p.discount > 0.0}">
-                                                        <span class="text-danger"
-                                                              style="text-align: center;display: flex;font-size: 1.3rem;">-${p.discount}%</span>
-                                                    </c:if>
-                                                </div>
-                                                <div class="source">
-                                                    <span class="condition">${p.version}</span>
-                                                    <span class="time">${p.launch}</span>
-                                                </div>
-                                                <address class="address">${p.status}</address>
+                                                <c:if test="${p.discount > 0.0}">
+                                                    <span class="text-danger"
+                                                          style="text-align: center;display: flex;font-size: 1.3rem;">-${p.discount}%</span>
+                                                </c:if>
                                             </div>
-                                        </a>
-                                    </c:forEach>
+                                            <div class="source">
+                                                <span class="condition">${p.version}</span>
+                                                <span class="time">${p.launch}</span>
+                                            </div>
+                                            <address class="address">${p.status}</address>
+                                        </div>
+                                    </a>
                                 </div>
                             </c:forEach>
                         </div>
@@ -170,7 +167,6 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script>
     function checkLoginForProducts(event) {
@@ -195,8 +191,8 @@
         }).showToast();
     }
 </script>
-<%-- comment lại thì chạy được, mà mở ra thì lại lỗi ?  --%>
-<script src="${pageContext.request.contextPath}/GKY/assets/js/FilterProductAjax.js"></script>
+<script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
+<%--<script src="${pageContext.request.contextPath}/GKY/assets/js/FilterProductAjax.js"></script>--%>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/popper.min.js"></script>
 
