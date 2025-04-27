@@ -8,11 +8,12 @@ if (!sessionStorage.getItem("loggedOut")) {
             .then(data => {
                 if (data.forceLogout) {
                     alert("Bạn đã bị đăng xuất do thay đổi quyền. Vui lòng đăng nhập lại.");
-                    window.location.href = '/Webike/Logout'; // đừng quên thêm context path ở đây nữa
+                    window.location.href = '/Webike/Logout';
                 }
             })
             .catch(err => {
-                console.error("❌ Lỗi khi gọi checkForceLogout:", err);
+                console.error(" Lỗi khi gọi checkForceLogout:", err);
             });
-    }, 20000);
+    }, 20000)
+    ;
 }
