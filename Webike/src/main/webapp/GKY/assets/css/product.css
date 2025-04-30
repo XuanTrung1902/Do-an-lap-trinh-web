@@ -200,7 +200,7 @@
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
 }
 
-.bike__link:hover 
+.bike__link:hover
 .box__bike--name{
     color: var(--primary-color);
 }
@@ -314,7 +314,7 @@
     bottom: -5px;
     border-width: 0 20px 6px;
     border-style: solid;
-    border-color: transparent rgba(255, 216, 64,0.94) transparent rgba(255, 216, 64,0.94) ;    
+    border-color: transparent rgba(255, 216, 64,0.94) transparent rgba(255, 216, 64,0.94) ;
 }
 
 .box__bike--sale-off-percent {
@@ -337,7 +337,7 @@
     display: flex;
     justify-content: space-between;
     top: 35%;
-    
+
 }
 
 .arrow-left,
@@ -429,7 +429,7 @@
 }
 
 .bike-item__img {
-    width: 200px; 
+    width: 200px;
     height: 150px;
     object-fit: cover;
 }
@@ -461,7 +461,7 @@
     text-align: center;
     position: relative;
     background-color: #f6f6f6;
-    
+
 }
 
 .bike__img:hover img {
@@ -475,7 +475,7 @@
     display: inline-block;
     vertical-align: middle;
     object-fit: cover;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .bike__info {
@@ -579,7 +579,7 @@
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
   }
-  
+
   .pagination__link:hover {
     background-color: var(--primary-color);
     color: var(--white-color);
@@ -657,7 +657,7 @@
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
   }
-  
+
   .pagination__btn:hover {
     background-color: #d25238;
   }
@@ -705,3 +705,13 @@
 }
 
 /* footer */
+
+/* sort section */
+.sort__button{
+    background-color: #d25238;
+    border-radius: 3px;
+    padding: 3px 10px;
+}
+.sort__button__text, .sort__icon{
+    color: white;
+}
