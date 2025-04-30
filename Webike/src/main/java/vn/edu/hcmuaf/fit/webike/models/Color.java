@@ -10,6 +10,12 @@ public class Color implements Serializable {
     public Color() {
     }
 
+    public Color(int id, String name, String code) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+    }
+
     public Color(String name, String code) {
         this.name = name;
         this.code = code;
