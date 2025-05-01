@@ -27,7 +27,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/bootstrap/css/bootstrap.css">
-    <script src="<%= request.getContextPath()%>/GKY/assets/js/productDetail.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
 </head>
 <body>
@@ -105,10 +104,10 @@
                     <button type="submit" class="buy">Mua ngay</button>
                 </form>
 
-                <form action="add-cart?id=${p.id}" method="GET">
+                <form id="addCartForm" action="add-cart" method="GET">
                     <input type="hidden" name="id" id="id" value="${p.id}">
-                    <input type="hidden" name="color" id="productColor" value="">
-                    <input type="hidden" name="img" id="productImg" value="">
+                    <input type="hidden" name="colorID" id="productColor" value="">
+                    <input type="hidden" name="imgURL" id="productImg" value="">
                     <button type="submit" class="addToCart">Thêm vào giỏ hàng</button>
                 </form>
             </div>
@@ -283,7 +282,7 @@
         </c:choose>
     </div>
 </div>
-<script src="assets/js/productDetail.js"></script>
+<script src="<%=request.getContextPath()%>/GKY/assets/js/productDetail.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
@@ -291,5 +290,6 @@
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <!-- footer -->
 <jsp:include page="/GKY/footer.jsp"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/</body>
+<%--<link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/--%>
+</body>
 </html>
