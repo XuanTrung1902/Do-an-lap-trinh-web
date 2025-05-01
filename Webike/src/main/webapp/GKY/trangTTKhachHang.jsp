@@ -120,6 +120,8 @@
                 <li><a href="<%= request.getContextPath()%>/ChangePassword" id="change-password">Đổi mật khẩu</a></li>
                 <li><a href="#" id="change-avatar">Đổi ảnh đại diện</a></li>
                 <li><a href="#" id="change-email">Đổi Email</a></li>
+                <li><a href="" id="enable-2fa">Bật xác thực 2 bước</a></li>
+
             </ul>
         </div>
 
@@ -269,6 +271,29 @@
             <button type="submit" class="save-btn">Xác nhận & Đổi Email</button>
             <div id="result-message" class="result-message" style="display: none;"></div>
         </form>
+
+                <div class="enable-2fa-form" id="enable-2fa-form" style="display: none">
+                    <h3>Bật xác thực 2 bước</h3>
+                    <p>Quét mã QR bằng ứng dụng Google Authenticator:</p>
+        <%--            <img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=<%= request.getAttribute("otpURL") %>" />--%>
+        <%--            <img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=<%= session.getAttribute("otpURL") %>" />--%>
+                    <img src="/img/Users/avt.jpg" alt="">
+        <%--            action="<%= request.getContextPath()%>/Enable2FA" method="post"--%>
+                    <form >
+                        <label>Nhập mã OTP:</label>
+                        <input type="text" name="otpCode" required />
+                        <button type="submit" class="save-btn">Xác nhận</button>
+                    </form>
+
+        <%--&lt;%&ndash;            <% if (request.getAttribute("error2FA") != null) { %>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;            <div style="color:red;"><%= request.getAttribute("error2FA") %></div>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;            <% } %>&ndash;%&gt;--%>
+                </div>
+        <%--        <%--%>
+        <%--            }--%>
+        <%--        %>--%>
+
+
 
     </div>
 

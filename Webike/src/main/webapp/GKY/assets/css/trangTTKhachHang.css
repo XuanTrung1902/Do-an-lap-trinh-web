@@ -463,3 +463,73 @@ select {
     border-radius: 5px;
     font-weight: bold;
 }
+/* Xác thực buước 2*/
+.enable-2fa-form {
+    width: calc(100% - 270px);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: center;
+    min-height: 80vh;
+}
+.enable-2fa-form h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.enable-2fa-form p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.enable-2fa-form img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.enable-2fa-form form {
+    margin-top: 10px;
+}
+
+.enable-2fa-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.enable-2fa-form input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin: 0 auto 15px;
+}
+
+.enable-2fa-form button.save-btn {
+    background-color: #ee4d2d;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.enable-2fa-form button.save-btn:hover {
+    background-color: #d25238;
+}
