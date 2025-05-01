@@ -1,42 +1,28 @@
-// thay doi mau xe dua theo lua chon
-function changeBikeColor(id) {
-    var imgscr = document.getElementById("img");
-    var btnid = document.getElementById(id);
-    if (btnid.id == "red") {
-        imgscr.src = "assets/img/ducati red.png";
-        btnid.style.background = "rgb(147, 157, 163)";
-        document.getElementById("black").style.background = "none"
-    } else if (btnid.id) {
-        imgscr.src = "assets/img/ducati black.png";
-        btnid.style.background = "rgb(147, 157, 163)";
-        document.getElementById("red").style.background = "none"
-    }
-}
-
-function changeColor(id) {
-    fetch('/Webike/productDetail', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'color=' + encodeURIComponent(id) + '&id=' + encodeURIComponent(productId)
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.imgUrl) {
-                document.getElementById('img').src = data.imgUrl;
-
-                document.querySelectorAll('.colorButton').forEach(btn => {
-                    btn.style.background = (btn.id === id) ? "rgb(147, 157, 163)" : "none";
+function changeColor(pid, cid) {
+    fetch('/Webike/changeColor?id=' + encodeURIComponent(pid) + '&cid=' + encodeURIComponent(cid))
+        .then(response => response.text())
+        .then(imgURL => {
+            document.getElementById('img').src = imgURL;
+            document.querySelectorAll('.colorButton.cursor__pointer')
+                .forEach(btn => {btn.style.background = 'none';
                 });
-
-                // Cập nhật hidden input để form gửi đúng ảnh & màu
-                document.getElementById("productColor").value = id;
-                document.getElementById("productImg").value = data.imgUrl;
-                document.getElementById("directBuyColor").value = id;
-                document.getElementById("directBuyImg").value = data.imgUrl;
-            }
+            document.getElementById(cid+ '-ColorID').style.background = "rgb(147, 157, 163)";
+            document.getElementById("productColor").value = cid;
+            document.getElementById("productImg").value = imgURL;
         })
         .catch(error => console.error("Lỗi đổi màu:", error));
 }
 
+// AJAX thêm SP và Cart
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById('addCartForm');
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const params = new URLSearchParams(new FormData(form)).toString();
+        fetch(form.action + '?' + params)
+            .then(res => res.json())
+            .catch(err => {
+                console.error("Thêm vào giỏ hàng ko thành công:", err);
+            });
+    });
+});
