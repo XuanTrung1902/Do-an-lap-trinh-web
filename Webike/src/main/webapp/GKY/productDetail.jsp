@@ -38,8 +38,6 @@
     <div class="info">
         <div class="info__img">
             <div class="img__container">
-<%--                <img id="img" src="${p.img.entrySet().iterator().next().getValue()}" alt="anh xe"--%>
-<%--                     style="width: 750px; height: 450px;"/>--%>
                 <img id="img" src="${img}" alt="anh xe"
                      style="width: 750px; height: 450px;"/>
 
@@ -84,48 +82,11 @@
                     <div class="btnCointainer">
                         <c:forEach var="color" items="${p.img.entrySet()}">
                             <div class="colorButton cursor__pointer" id="${color.getKey().getId()}-ColorID"
-                                 onclick="changeColor(this.id)">
+                                 onclick="changeColor(${p.id},${color.getKey().getId()})">
                                 <div class="colorbtn" style="background-color: ${color.getKey().getCode()};"></div>
                                 <span class="color--text text--description">${color.getKey().getName()}</span>
                             </div>
                         </c:forEach>
-<%--                        <script>--%>
-<%--                            var imgColor = {};--%>
-<%--                            // truyen gia tri tu servlet vao map cua js--%>
-<%--                            <c:forEach var="entry" items="${p.img.entrySet()}">--%>
-<%--                            imgColor['${entry.key.name}'] = '${entry.value}';--%>
-<%--                            </c:forEach>--%>
-
-<%--                            function changeColor(id) {--%>
-<%--                                const imgElement = document.getElementById('img');--%>
-<%--                                imgElement.src = imgColor[id];--%>
-<%--                                const allBtns = document.querySelectorAll('.colorButton');--%>
-<%--                                allBtns.forEach(function (btn) {--%>
-<%--                                    if (btn.id !== id.toString()) {--%>
-<%--                                        btn.style.background = "none";--%>
-<%--                                    } else {--%>
-<%--                                        btn.style.background = "rgb(147, 157, 163)";--%>
-<%--                                    }--%>
-<%--                                });--%>
-<%--                                const color = document.getElementById("productColor");--%>
-<%--                                const img = document.getElementById("productImg");--%>
-
-<%--                                const directBuyColor = document.getElementById("directBuyColor");--%>
-<%--                                const directBuyImg = document.getElementById('directBuyImg');--%>
-
-<%--                                color.value = id;--%>
-<%--                                img.value = imgColor[id];--%>
-<%--                                directBuyColor.value = id;--%>
-<%--                                directBuyImg.value = imgColor[id];--%>
-<%--                            }--%>
-
-<%--                            window.onload = function () {--%>
-<%--                                const firstButton = document.querySelector('.colorButton');--%>
-<%--                                if (firstButton) {--%>
-<%--                                    changeColor(firstButton.id);--%>
-<%--                                }--%>
-<%--                            }--%>
-<%--                        </script>--%>
                     </div>
                 </div>
 
