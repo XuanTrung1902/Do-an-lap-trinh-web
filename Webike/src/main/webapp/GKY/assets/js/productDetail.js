@@ -1,5 +1,5 @@
-function changeColor(pid, cid) {
-    fetch('/Webike/changeColor?id=' + encodeURIComponent(pid) + '&cid=' + encodeURIComponent(cid))
+function changeColor(pid, cid, colorName) {
+    fetch('/Webike/changeColor?id=' + encodeURIComponent(pid) + '&cid=' + encodeURIComponent(cid) + '&colorName=' + encodeURIComponent(colorName))
         .then(response => response.text())
         .then(imgURL => {
             document.getElementById('img').src = imgURL;
@@ -8,6 +8,7 @@ function changeColor(pid, cid) {
                 });
             document.getElementById(cid+ '-ColorID').style.background = "rgb(147, 157, 163)";
             document.getElementById("productColor").value = cid;
+            document.getElementById("colorName").value = colorName;
             document.getElementById("productImg").value = imgURL;
         })
         .catch(error => console.error("Lỗi đổi màu:", error));
