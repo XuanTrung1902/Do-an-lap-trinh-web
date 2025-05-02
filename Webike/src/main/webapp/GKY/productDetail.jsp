@@ -49,14 +49,14 @@
                 <div class="price padding--bottom--8">
                     <span class="infoHeader">Giá: </span>
                     <span class="text--description">
-                        <f:setLocale value="vi_VN"/>
-                        <f:formatNumber value="${p.price - (p.price * p.discount/100)}" type="currency"/>
-                    </span>
-                    <c:if test="${p.discount > 0}">
-                        <span class="ms-3 text--description" style="text-decoration: line-through;">
                             <f:setLocale value="vi_VN"/>
-                            <f:formatNumber value="${p.price}" type="currency"/>
+                            <f:formatNumber value="${p.price - (p.price * p.discount/100)}" type="currency"/>
                         </span>
+                    <c:if test="${p.discount > 0}">
+                            <span class="ms-3 text--description" style="text-decoration: line-through;">
+                                <f:setLocale value="vi_VN"/>
+                                <f:formatNumber value="${p.price}" type="currency"/>
+                            </span>
                     </c:if>
                 </div>
 
@@ -315,21 +315,22 @@
         </c:forEach>
         </c:when>
         <c:otherwise>
-            <div>Chưa có bình luận nào</div>
+            <div class="no-comment__container">
+                <span class="no-comment">Chưa có bình luận nào</span>
+            </div>
         </c:otherwise>
         </c:choose>
     </div>
-    <!-- footer -->
-    <jsp:include page="/GKY/footer.jsp" />
+    </div>
 
 </div>
+<!-- footer -->
+<jsp:include page="/GKY/footer.jsp"/>
 <script src="assets/js/productDetail.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<!-- footer -->
-<jsp:include page="/GKY/footer.jsp"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/</body>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
 </html>
