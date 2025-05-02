@@ -2,9 +2,10 @@ package vn.edu.hcmuaf.fit.webike.models;
 
 import java.io.Serializable;
 import java.util.Map;
+import java.util.Objects;
 
 public class CartItem implements Serializable {
-    private int id;
+    private String id;
     private int pid;
     private String name;
     private double price;
@@ -14,13 +15,14 @@ public class CartItem implements Serializable {
     private String brand;
     private String type;
     private int cid;
+    private String colorName;
     private String img;
     private int uid;
 
     public CartItem() {
     }
 
-    public CartItem(int id, int pid, String name, double price, int quantity, String status, String version, String brand, String type, int cid, String img, int uid) {
+    public CartItem(String id, int pid, String name, double price, int quantity, String status, String version, String brand, String type, int cid, String colorName, String img, int uid) {
         this.id = id;
         this.pid = pid;
         this.name = name;
@@ -31,15 +33,16 @@ public class CartItem implements Serializable {
         this.brand = brand;
         this.type = type;
         this.cid = cid;
+        this.colorName = colorName;
         this.img = img;
         this.uid = uid;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -115,6 +118,14 @@ public class CartItem implements Serializable {
         this.cid = cid;
     }
 
+    public String getColorName() {
+        return colorName;
+    }
+
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
+    }
+
     public String getImg() {
         return img;
     }
@@ -144,8 +155,34 @@ public class CartItem implements Serializable {
                 ", brand='" + brand + '\'' +
                 ", type='" + type + '\'' +
                 ", cid=" + cid +
+                ", colorName='" + colorName + '\'' +
                 ", img='" + img + '\'' +
                 ", uid=" + uid +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CartItem)) return false;
+        CartItem item = (CartItem) o;
+        return pid == item.pid &&
+                cid == item.cid &&
+                uid == item.uid &&
+                Objects.equals(id, item.id) &&
+                Objects.equals(name, item.name) &&
+                Objects.equals(status, item.status) &&
+                Objects.equals(version, item.version) &&
+                Objects.equals(brand, item.brand) &&
+                Objects.equals(type, item.type) &&
+                Objects.equals(colorName, item.colorName) &&
+                Objects.equals(img, item.img);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pid, name, price, quantity, status, version, brand, type, cid, colorName, img, uid);
+    }
 }
+
+

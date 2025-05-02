@@ -1,4 +1,3 @@
-<%@ page import="vn.edu.hcmuaf.fit.webike.models.Cart" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
@@ -29,7 +28,6 @@
     <script src="<%= request.getContextPath()%>/GKY/assets/js/RemoveCart.js"></script>
     <script src="<%= request.getContextPath()%>/GKY/assets/js/UpdateCart.js"></script>
 
-</head>
 <title>Giỏ hàng</title>
 </head>
 
@@ -67,20 +65,18 @@
                 <li id="" class="products mb-5" style="padding: 0px; margin: 0px;">
                     <div id="${p.id}" class="checked item row p-5 ms-5 me-5 border">
                         <div class="checkItem item col-6 d-flex align-items-center gap-4">
-                            <img class="img-modi" src="${p.img.entrySet().iterator().next().getValue()}" alt="">
-                            <span class="pName text-1 text-break">${p.name} (${p.img.entrySet().iterator().next().getKey()})</span>
+                            <a href="productDetail?id=${p.pid}&cid=${p.cid}" style="text-decoration: none; color: black">
+                                <img class="img-modi me-2" src="${p.img}" alt="">
+                                <span class="pName text-1">${p.name} (${p.colorName})</span>
+                            </a>
                         </div>
                         <div class="item col-2 d-flex align-items-center justify-content-center gap-3">
                             <!-- Ô này để cái button tăng giảm số lượng -->
                             <div class="number d-flex align-items-center">
-                                    <input type="hidden" name="id" value="${p.id}">
-                                    <input type="hidden" name="quantity" value="-1">
                                     <button type="button" class="button-modi" onclick="updateCart('${p.id}', -1)">
                                         <i class="fa-solid fa-minus"></i>
                                     </button>
                                 <div class="quantity text-1">${p.quantity}</div>
-                                    <input type="hidden" name="id" value="${p.id}">
-                                    <input type="hidden" name="quantity" value="1">
                                     <button type="button" class="button-modi" onclick="updateCart('${p.id}', 1)">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
@@ -93,15 +89,12 @@
                                 </span>
                         </div>
                         <div class="item col d-flex align-items-center justify-content-center">
-                                <%--<form action="remove-cart" method="post" style="width: fit-content;height: fit-content;">--%>
-                            <input type="hidden" name="id" id="id" value="${p.id}">
-                            <button onclick="remove('${p.id}')" type="submit"
+                            <button onclick="remove('${p.id}')" type="button"
                                     class="item col d-flex align-items-center gap-3" style="border: none;">
                                     <span class="text-1 text-center text-danger full-width">
                                         Xóa
                                     </span>
                             </button>
-                                <%--</form>--%>
                         </div>
                     </div>
                 </li>
@@ -113,9 +106,7 @@
             <c:set var="quantity" value="${empty sessionScope.cart.cartLength ? 0 : sessionScope.cart.cartLength}"/>
             <div class="buy-section shadow rounded d-flex align-items-center justify-content-between pe-5 m-5 mb-0 pt-4 pb-4">
                 <div class="d-flex gap-3">
-                    <h2 class="fs-1 fw-normal">Tổng thanh toán: (</h2>
-                    <h2 class="item-length fs-1 fw-normal">${quantity}</h2>
-                    <h2 class="fs-1 fw-normal"> sản phẩm):</h2>
+                    <h2 class="fs-1 fw-normal">Tổng thanh toán: (${quantity} sản phẩm)</h2>
                     <h2 id="total-price" class="fs-1 fw-bold price">
                         <f:formatNumber value="${total}" type="currency"/>
                     </h2>

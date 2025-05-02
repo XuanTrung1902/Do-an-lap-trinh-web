@@ -21,6 +21,7 @@ public class AddCart extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         int cid = Integer.parseInt(request.getParameter("colorID")); // lay mau duoc chon
+        String colorName = request.getParameter("colorName");
         String img = request.getParameter("imgURL"); // anh theo mau sp
         User user = (User) request.getSession().getAttribute("auth");
         int uid = user.getId();
@@ -29,6 +30,7 @@ public class AddCart extends HttpServlet {
         Product p = dao.getProduct(id);
 
         CartItem item = new CartItem();
+        item.setId(p.getId() + "-" + cid + "-" + uid);
         item.setPid(p.getId());
         item.setName(p.getName());
         item.setPrice(p.getPrice() + item.getPrice());
@@ -38,18 +40,13 @@ public class AddCart extends HttpServlet {
         item.setBrand(p.getBrand());
         item.setType(p.getType());
         item.setCid(cid);
+        item.setColorName(colorName);
         item.setImg(img);
         item.setUid(uid);
 
-        HttpSession cartSession = request.getSession(true);
-        Cart cart = (Cart) cartSession.getAttribute("cart");
-        if (cart == null) {
-            cart = new Cart();
-            cart.setData(uid);
-        }
-        System.out.println(cart.add(item));
-        System.out.println("Cart data: " + cart.getData());
-        cartSession.setAttribute("cart", cart);
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        cart.add(item);
+        cart.setData(uid);
 
         response.setContentType("application/json");
         response.getWriter().write("{\"status\": \"success\", \"message\": \"Đã thêm vào giỏ hàng\"}");

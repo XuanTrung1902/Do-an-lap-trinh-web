@@ -81,7 +81,7 @@
                     <div class="btnCointainer">
                         <c:forEach var="color" items="${p.img.entrySet()}">
                             <div class="colorButton cursor__pointer" id="${color.getKey().getId()}-ColorID"
-                                 onclick="changeColor(${p.id},${color.getKey().getId()})">
+                                 onclick="changeColor(${p.id}, ${color.getKey().getId()}, '${color.getKey().getName()}')">
                                 <div class="colorbtn" style="background-color: ${color.getKey().getCode()};"></div>
                                 <span class="color--text text--description">${color.getKey().getName()}</span>
                             </div>
@@ -107,6 +107,7 @@
                 <form id="addCartForm" action="add-cart" method="GET">
                     <input type="hidden" name="id" id="id" value="${p.id}">
                     <input type="hidden" name="colorID" id="productColor" value="">
+                    <input type="hidden" name="colorName" id="colorName" value="">
                     <input type="hidden" name="imgURL" id="productImg" value="">
                     <button type="submit" class="addToCart">Thêm vào giỏ hàng</button>
                 </form>
