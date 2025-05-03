@@ -30,7 +30,6 @@
 <body>
 <div id="app" class="app">
     <jsp:include page="/GKY/header.jsp"/>
-
     <div class="container" style="padding: 0">
         <div class="banner">
             <img src="GKY/assets/img/banner.jpg" alt="">
