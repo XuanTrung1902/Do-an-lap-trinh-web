@@ -17,12 +17,10 @@ public class QRCodeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String otpUrl = req.getParameter("data");
-
         if (otpUrl == null || otpUrl.isEmpty()) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thiếu dữ liệu QR");
             return;
         }
-
         try {
             int width = 200;
             int height = 200;

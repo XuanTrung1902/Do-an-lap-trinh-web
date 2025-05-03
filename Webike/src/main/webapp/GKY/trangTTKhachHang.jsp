@@ -31,20 +31,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
      <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/bootstrap/css/bootstrap.css">
-    <style>
-        .disable-2fa-btn {
-            background-color: #dc3545;
-            color: white;
-            padding: 6px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .disable-2fa-btn:hover {
-            background-color: #c82333;
-        }
-    </style>
 </head>
 <body>
 <div class="app">
@@ -222,6 +208,12 @@
         <!--            form đổi mật khẩu-->
         <div class="change-password-form" id="change-password-form" style="display: none;">
             <form id="password-form" action="<%= request.getContextPath()%>/ChangePassword" method="post">
+                    <% if (is2FAEnabled) { %>
+                <div class="form-group">
+                    <label for="otp-code">Mã xác thực 2 bước</label>
+                    <input type="text" id="otp-code" name="otp-code" placeholder="Nhập mã xác thực" required>
+                </div>
+                    <% } %>
                 <div class="form-group">
                     <label for="current-password">Mật khẩu cũ</label>
                     <%--                        <input type="password" id="current-password" name="current-password" placeholder="Nhập mật khẩu cũ" required>--%>
@@ -263,25 +255,6 @@
                 <button type="submit" class="save-btn">Lưu thay đổi</button>
             </form>
         </div>
-
-<%--        <div id="change-email-form" class="change-email-form" style="display: none;">--%>
-<%--            <h3>Đổi Email</h3>--%>
-<%--&lt;%&ndash;            method="post" action="SendOTPEmail&ndash;%&gt;--%>
-<%--            <form id="send-otp-form">--%>
-<%--                <div class="form-group">--%>
-<%--                    <label for="new-email">Email mới:</label>--%>
-<%--                    <input type="email" id="new-email" name="newEmail" required>--%>
-<%--                    <button type="submit" onclick="sendOtp()" class="save-btn" style="margin-top: 10px;">Gửi mã OTP</button>--%>
-<%--                </div>--%>
-<%--            </form>--%>
-<%--            <form id="verify-otp-form" method="post" action="VerifyOTPEmail" >--%>
-<%--                <div class="form-group">--%>
-<%--                    <label for="otp-code">Nhập mã OTP:</label>--%>
-<%--                    <input type="text" id="otp-code" name="otpCode" required>--%>
-<%--                </div>--%>
-<%--                <button type="submit" class="save-btn">Xác nhận & Đổi Email</button>--%>
-<%--            </form>--%>
-<%--        </div>--%>
         <form id="change-email-form" method="post" action="update-email" style="display: none;" class="change-email-form">
             <h3>Đổi Email</h3>
             <div class="form-group">

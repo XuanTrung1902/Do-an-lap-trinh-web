@@ -27,7 +27,7 @@ public class Disable2FAController extends HttpServlet {
 
         // Tắt 2FA
         user.setOtpEnabled(false);
-        user.setOtpSecret(null); // nếu bạn muốn reset cả mã QR
+        user.setOtpSecret(null);
         new UserDao().updateOtpEnabled(user.getId(), false);
         new UserDao().updateOtpSecret(user.getId(), null);
 

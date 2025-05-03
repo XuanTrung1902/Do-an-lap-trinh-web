@@ -64,7 +64,6 @@ public class UserSevice {
             String hashedNewPassword = hashPassword(newPassword);
             user.setPassword(hashedNewPassword);
             boolean isUpdated = userDao.updateUser(user);
-            System.out.println("Password updated: " + isUpdated); // In ra log để kiểm tra
             return isUpdated;
         }
         return false;
