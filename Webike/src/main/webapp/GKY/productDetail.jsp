@@ -106,9 +106,9 @@
 
                 <form id="addCartForm" action="add-cart" method="GET">
                     <input type="hidden" name="id" id="id" value="${p.id}">
-                    <input type="hidden" name="colorID" id="productColor" value="">
-                    <input type="hidden" name="colorName" id="colorName" value="">
-                    <input type="hidden" name="imgURL" id="productImg" value="">
+                    <input type="hidden" name="colorID" id="productColor" value="${color.id}">
+                    <input type="hidden" name="colorName" id="colorName" value="${color.name}">
+                    <input type="hidden" name="imgURL" id="productImg" value="${img}">
                     <button type="submit" class="addToCart">Thêm vào giỏ hàng</button>
                 </form>
             </div>

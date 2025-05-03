@@ -41,6 +41,7 @@ public class ProductDetail extends HttpServlet {
 
         request.setAttribute("p", p);
         request.setAttribute("img", imgURL);
+        request.setAttribute("color", dao.getColorByID(cid));
         request.setAttribute("specType", specType);
         request.setAttribute("specMap", specMap);
         request.setAttribute("f", features);

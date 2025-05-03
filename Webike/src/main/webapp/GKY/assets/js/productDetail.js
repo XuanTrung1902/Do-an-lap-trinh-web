@@ -16,6 +16,10 @@ function changeColor(pid, cid, colorName) {
 
 // AJAX thêm SP và Cart
 document.addEventListener("DOMContentLoaded", function () {
+    // lấy gtri cid từ URL (khi vào trang productDetail, màu sắc mặc định được chọn là màu của cid)
+    const cid = new URLSearchParams(window.location.search).get('cid');
+    document.getElementById(cid + '-ColorID').style.background = "rgb(147, 157, 163)";
+
     const form = document.getElementById('addCartForm');
     form.addEventListener('submit', function (e) {
         e.preventDefault();

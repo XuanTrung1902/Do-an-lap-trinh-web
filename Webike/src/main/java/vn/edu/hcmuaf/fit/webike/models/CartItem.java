@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Objects;
 
@@ -18,11 +20,12 @@ public class CartItem implements Serializable {
     private String colorName;
     private String img;
     private int uid;
+    private LocalDateTime added;
 
     public CartItem() {
     }
 
-    public CartItem(String id, int pid, String name, double price, int quantity, String status, String version, String brand, String type, int cid, String colorName, String img, int uid) {
+    public CartItem(String id, int pid, String name, double price, int quantity, String status, String version, String brand, String type, int cid, String colorName, String img, int uid, LocalDateTime added) {
         this.id = id;
         this.pid = pid;
         this.name = name;
@@ -36,6 +39,7 @@ public class CartItem implements Serializable {
         this.colorName = colorName;
         this.img = img;
         this.uid = uid;
+        this.added = added;
     }
 
     public String getId() {
@@ -142,6 +146,14 @@ public class CartItem implements Serializable {
         this.uid = uid;
     }
 
+    public LocalDateTime getAdded() {
+        return added;
+    }
+
+    public void setAdded(LocalDateTime added) {
+        this.added = added;
+    }
+
     @Override
     public String toString() {
         return "CartItem{" +
@@ -158,6 +170,7 @@ public class CartItem implements Serializable {
                 ", colorName='" + colorName + '\'' +
                 ", img='" + img + '\'' +
                 ", uid=" + uid +
+                ", added=" + added +
                 '}';
     }
 
