@@ -31,7 +31,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"> -->
      <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/bootstrap/css/bootstrap.css">
+    <style>
+        .disable-2fa-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
+        .disable-2fa-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 <body>
 <div class="app">
@@ -111,7 +124,10 @@
             </nav>
         </div>
     </header>
-
+    <%
+        User user1 = (User) session.getAttribute("auth");
+        boolean is2FAEnabled = user1 != null && user1.isOtpEnabled();
+    %>
     <div class="container-center">
         <div class="sidebar">
             <h3>TÀI KHOẢN</h3>
@@ -120,8 +136,17 @@
                 <li><a href="<%= request.getContextPath()%>/ChangePassword" id="change-password">Đổi mật khẩu</a></li>
                 <li><a href="#" id="change-avatar">Đổi ảnh đại diện</a></li>
                 <li><a href="#" id="change-email">Đổi Email</a></li>
-                <li><a href="" id="enable-2fa">Bật xác thực 2 bước</a></li>
-
+                <li>
+                    <% if (is2FAEnabled) { %>
+                    <!-- Nếu đã bật: hiện nút "Tắt 2FA" -->
+                    <form method="post" action="<%= request.getContextPath() %>/disable-2fa" onsubmit="return confirm('Bạn chắc chắn muốn tắt xác thực 2 bước?');" style="display:inline;">
+                        <button type="submit" class="disable-2fa-btn">Tắt xác thực 2 bước</button>
+                    </form>
+                    <% } else { %>
+                    <!-- Nếu chưa bật: hiện nút "Bật 2FA" -->
+                    <a href="<%= request.getContextPath() %>/enable-2fa" id="enable-2fa">Bật xác thực 2 bước</a>
+                    <% } %>
+                </li>
             </ul>
         </div>
 
@@ -271,30 +296,20 @@
             <button type="submit" class="save-btn">Xác nhận & Đổi Email</button>
             <div id="result-message" class="result-message" style="display: none;"></div>
         </form>
+        <form method="post" action="<%= request.getContextPath() %>/enable-2fa"
+              class="enable-2fa-form" id="enable-2fa-form" style="display: none;">
+            <h3>Bật xác thực 2 bước</h3>
+            <p>Quét mã QR bằng ứng dụng Google Authenticator:</p>
 
-                <div class="enable-2fa-form" id="enable-2fa-form" style="display: none">
-                    <h3>Bật xác thực 2 bước</h3>
-                    <p>Quét mã QR bằng ứng dụng Google Authenticator:</p>
-        <%--            <img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=<%= request.getAttribute("otpURL") %>" />--%>
-        <%--            <img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=<%= session.getAttribute("otpURL") %>" />--%>
-                    <img src="/img/Users/avt.jpg" alt="">
-        <%--            action="<%= request.getContextPath()%>/Enable2FA" method="post"--%>
-                    <form >
-                        <label>Nhập mã OTP:</label>
-                        <input type="text" name="otpCode" required />
-                        <button type="submit" class="save-btn">Xác nhận</button>
-                    </form>
-
-        <%--&lt;%&ndash;            <% if (request.getAttribute("error2FA") != null) { %>&ndash;%&gt;--%>
-        <%--&lt;%&ndash;            <div style="color:red;"><%= request.getAttribute("error2FA") %></div>&ndash;%&gt;--%>
-        <%--&lt;%&ndash;            <% } %>&ndash;%&gt;--%>
-                </div>
-        <%--        <%--%>
-        <%--            }--%>
-        <%--        %>--%>
+            <!-- Cập nhật: thêm id="qr-img" để JS có thể thay đổi src -->
+            <img id="qr-img" src="" alt="Mã QR" style="margin: 10px 0;" />
 
 
+            <label for="otp">Nhập mã OTP:</label>
+            <input type="text" name="otp" id="otp" required />
 
+            <button type="submit" class="save-btn">Xác nhận</button>
+        </form>
     </div>
 
 
@@ -429,7 +444,36 @@
     }
 </script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const contextPath = '<%= request.getContextPath() %>';
 
+        document.getElementById("enable-2fa").addEventListener("click", function (e) {
+            e.preventDefault(); // Ngăn chuyển trang
+
+            fetch(contextPath + "/enable-2fa")
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => {
+                            throw new Error(err.error || "Không thể lấy mã QR");
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const qrImg = document.getElementById("qr-img");
+                    // qrImg.src = "https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=" + encodeURIComponent(data.qrUrl);
+                    qrImg.src = contextPath + "/qr-code?data=" + encodeURIComponent(data.qrUrl);
+
+                    document.getElementById("enable-2fa-form").style.display = "block";
+                })
+                .catch(err => {
+                    alert("Lỗi khi lấy mã QR: " + err.message);
+                    console.error(err);
+                });
+        });
+    });
+</script>
 <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<%= request.getContextPath()%>/GKY/assets/bootstrap/js/popper.min.js"></script>
 

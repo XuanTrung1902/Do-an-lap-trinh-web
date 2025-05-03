@@ -66,12 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
     menuLinks.forEach(link => {
         link.addEventListener("click", function (e) {
             e.preventDefault();
-
             // Ẩn tất cả các form
             profileForm.style.display = "none";
             changePasswordForm.style.display = "none";
             changeAvatarForm.style.display = "none";
             if (changeEmailForm) changeEmailForm.style.display = "none";
+            if (enable2FAForm) enable2FAForm.style.display = "none";
 
             // Reset active
             menuLinks.forEach(link => link.classList.remove("active"));
@@ -87,9 +87,9 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (targetId === "change-email") {
                 if (changeEmailForm) changeEmailForm.style.display = "block";
             }else if (targetId === "enable-2fa") {
-                if (enable2FAForm) enable2FAForm.style.display = "block";
             }
         });
     });
 });
+
 
