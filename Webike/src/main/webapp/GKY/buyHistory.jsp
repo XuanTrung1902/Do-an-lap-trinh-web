@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/css/homepage.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/css/footer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/css/buyHistory.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/css/header_buyHistory.css">
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/GKY/assets/font/fontawesome-free-6.5.1-web/css/all.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/font/themify-icons/themify-icons.css">
@@ -42,6 +43,7 @@
     <div class="head__line"></div>
 
     <div class="order-container container">
+        <jsp:include page="/GKY/header_buyHistory.jsp" />
 
         <c:forEach var="oi" items="${ls}">
             <div class="order-item d-flex align-items-center">
@@ -83,5 +85,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/GKY/assets/js/buyHistory.js"></script>
 </body>
 </html>

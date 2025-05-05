@@ -126,6 +126,15 @@ html {
   }
 }
 
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 @keyframes growth {
   from {
     transform: scale(var(--growth-from));
@@ -133,6 +142,40 @@ html {
   to {
     transform: scale(var(--growth-to));
   }
+}
+
+@keyframes glow {
+  0% {
+    opacity: 0.75;
+    text-shadow: none;
+    transform: scale(0.9);
+  }
+  30% {
+    opacity: 1;
+    text-shadow: 0 0 10px var(--color),
+    0 0 20px var(--color),
+    0 0 40px var(--color);
+    transform: scale(1.1);
+  }
+  70% {
+    opacity: 1;
+    text-shadow: 0 0 5px var(--color),
+    0 0 10px var(--color);
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.75;
+    text-shadow: none;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes autoRun{
+  from{
+    left: 100%;
+  }to{
+     left: calc(var(--width) * -1);
+   }
 }
   
 /* Modal */
