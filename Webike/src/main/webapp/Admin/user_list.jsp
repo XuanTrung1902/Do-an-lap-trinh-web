@@ -18,15 +18,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath()%>/Admin/assets/css/user_list.css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/Admin/assets/css/sidebar.css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/Admin/assets/css/base.css">
-    <style>
-        .table {
-            font-size: 1.2rem; /* Tăng kích thước chữ */
-        }
-
-        .table th, .table td {
-            padding: 10px; /* Tăng khoảng cách giữa các ô */
-        }
-    </style>
     <title>Admin</title>
 </head>
 <body>
@@ -61,6 +52,7 @@
                 </div>
                 <c:set var="canEditUser" value="false" />
                 <c:set var="canDeleteUser" value="false" />
+                <c:set var="canReadPQ" value="false" />
 
                 <c:forEach var="p" items="${sessionScope.permissions}">
                     <c:if test="${p.resource eq 'userlist' and p.action eq 'write'}">
@@ -69,6 +61,10 @@
                     <c:if test="${p.resource eq 'userlist' and p.action eq 'delete'}">
                         <c:set var="canDeleteUser" value="true" />
                     </c:if>
+                    <c:if test="${p.resource eq 'Phân Quyền' and p.action eq 'read'}">
+                        <c:set var="canReadPQ" value="true" />
+                    </c:if>
+
                 </c:forEach>
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
@@ -84,12 +80,11 @@
                                 <th>Tên đăng nhập</th>
 <%--                                <th>Mật khẩu</th>--%>
                                 <th>Ngày sinh</th>
-                                <th>Giới tính</th> <!-- Thêm cột Giới tính -->
+                                <th>Giới tính</th>
                                 <th>Địa chỉ</th>
                                 <th>SĐT</th>
-                                <th>Vai trò</th> <!-- Thêm cột Vai trò -->
-                                <th>Khóa</th> <!-- Thêm cột Khóa -->
-<%--                                <th>Xác minh</th> <!-- Thêm cột Xác minh -->--%>
+                                <th>Vai trò</th>
+                                <th>Khóa</th>
                                 <th>Ảnh</th>
 
                                 <th>Tuỳ chỉnh</th>
@@ -100,14 +95,12 @@
                                 <tr>
                                     <td>${user.id}</td>
                                     <td>${user.name}</td>
-<%--                                    <td>${user.password}</td>--%>
                                     <td>${user.DOB}</td>
-                                    <td>${user.sex}</td> <!-- Hiển thị giới tính -->
+                                    <td>${user.sex}</td>
                                     <td>${user.address}</td>
                                     <td>${user.phoneNum}</td>
-                                    <td>${user.role}</td> <!-- Hiển thị vai trò -->
-                                    <td>${user.locked}</td> <!-- Hiển thị trạng thái khóa -->
-<%--                                    <td>${user.verify}</td> <!-- Hiển thị trạng thái xác minh -->--%>
+                                    <td>${user.role}</td>
+                                    <td>${user.locked}</td>
                                     <td><img src="${user.image}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;"></td>
                                     <td>
                                         <c:if test="${canEditUser}">
@@ -118,6 +111,11 @@
                                             <input type="hidden" name="id" value="${user.id}">
                                             <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>
                                         </form>
+                                        </c:if>
+                                        <c:if test="${canReadPQ}">
+                                        <button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(${user.id})">
+                                            Phân quyền
+                                        </button>
                                         </c:if>
                                     </td>
                                 </tr>
@@ -140,7 +138,6 @@
             <form id="add-user-form" action="<%= request.getContextPath() %>/addUser" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="username">Tên đăng nhập:</label>
-<%--                    <input type="text" id="username" name="username" required>--%>
                     <input type="text" id="username" name="username" value="${username}" required>
                 </div>
                 <div class="form-group">
@@ -154,13 +151,11 @@
                 </c:if>
                 <div class="form-group">
                     <label for="phone">SĐT:</label>
-<%--                    <input type="text" id="phone" name="phone" required>--%>
                     <input type="text" id="phone" name="phone" value="${phone}" required>
 
                 </div>
                 <div class="form-group">
                     <label for="address">Địa chỉ:</label>
-<%--                    <input type="text" id="address" name="address" required>--%>
                     <input type="text" id="address" name="address" value="${address}" required>
                 </div>
                 <div class="form-group">
@@ -173,16 +168,10 @@
                 </div>
                 <div class="form-group">
                     <label for="birthday">Ngày sinh:</label>
-<%--                    <input type="date" id="birthday" name="birthday" required>--%>
                     <input type="date" id="birthday" name="birthday" value="${birthday}" required>
                 </div>
                 <div class="form-group-inline">
                     <label for="sex">Giới tính:</label>
-<%--                    <select id="sex" name="sex" required>--%>
-<%--                        <option value="">Chọn giới tính</option>--%>
-<%--                        <option value="Nam">Nam</option>--%>
-<%--                        <option value="Nữ">Nữ</option>--%>
-<%--                    </select>--%>
                     <select id="sex" name="sex" required>
                         <option value="">Chọn giới tính</option>
                         <option value="Nam" ${sex == 'Nam' ? 'selected' : ''}>Nam</option>
@@ -202,8 +191,6 @@
                     </select>
                     <label for="role">Role:</label>
                     <select id="role" name="role" required>
-<%--                        <option value="1">User</option>--%>
-<%--                        <option value="0">Admin</option>--%>
                             <option value="1" ${role == 1 ? 'selected' : ''}>User</option>
                             <option value="0" ${role == 0 ? 'selected' : ''}>Admin</option>
                     </select>
@@ -229,8 +216,52 @@
     </div>
 
 
-    <script>
+    <!-- Modal phân quyền -->
+    <div class="modal" id="assignPermissionModal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('assignPermissionModal')">&times;</span>
+            <h2>Phân quyền cho người dùng</h2>
+            <form id="assign-permission-form" action="assignPermission" method="post">
+                <input type="hidden" name="userId" id="assignUserId" style="background-color: #0dcaf0">
 
+                <table class="permission-table">
+                    <thead>
+                    <tr>
+                        <th>Trang</th>
+                        <th>Quyền</th>
+                        <th>Chọn</th>
+                    </tr>
+                    </thead>
+                    <tbody id="permissionTableBody">
+                    <c:forEach var="res" items="${allResources}">
+                        <c:forEach var="perm" items="${allPermissions}">
+                            <tr>
+                                <td>${res.name}</td>
+                                <td>${perm.name}</td>
+                                <td>
+                                    <input type="checkbox"
+                                           class="perm-checkbox"
+                                           name="permissions"
+                                           data-resource="${res.id}"
+                                           data-permission="${perm.id}"
+                                           value="${res.id}-${perm.id}" />
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:forEach>
+                    </tbody>
+                </table>
+
+                <button type="submit" class="btn-submit">Lưu phân quyền</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
         document.querySelector('.btn-add__user').addEventListener('click', function() {
             document.getElementById('modal').style.display = 'block';
         });
@@ -240,7 +271,6 @@
         });
 
         document.getElementById('add-user-form').addEventListener('submit', function(e) {
-            // Không ngăn chặn việc gửi form
             document.getElementById('modal').style.display = 'none';
         });
 
@@ -334,11 +364,11 @@
         }
 
         $(document).ready(function () {
-            loadUserList(); // Khởi tạo bảng đúng cách
+            loadUserList(); // Khởi tạo bảng
         });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>
 </body>
 </html>

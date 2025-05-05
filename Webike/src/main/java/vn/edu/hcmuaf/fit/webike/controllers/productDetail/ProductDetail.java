@@ -19,7 +19,7 @@ public class ProductDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(request.getParameter("id") == null) {
+        if (request.getParameter("id") == null) {
             System.out.println("ko nhan dc id");
         }
         int id = Integer.parseInt(request.getParameter("id"));
@@ -33,11 +33,24 @@ public class ProductDetail extends HttpServlet {
             specMap.put(s, specs);
         }
 
+        String colorParam = request.getParameter("colorID");
+        int colorID = p.getImg().keySet().iterator().next().getId();
+        if (colorParam != null && !colorParam.isEmpty()) {
+            try {
+                colorID = Integer.parseInt(colorParam.split("-")[0]);
+            } catch (NumberFormatException e) {
+
+            }
+        }
+
+        String img = dao.getImgByColor(id, colorID);
+
         List<Feature> features = dao.getFeature(p.getId());
         List<Warranty> warranties = dao.getWarranty(p.getId());
         List<Comment> comments = dao.getComment(p.getId());
 
         request.setAttribute("p", p);
+        request.setAttribute("img", img);
         request.setAttribute("specType", specType);
         request.setAttribute("specMap", specMap);
         request.setAttribute("f", features);
@@ -49,5 +62,6 @@ public class ProductDetail extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

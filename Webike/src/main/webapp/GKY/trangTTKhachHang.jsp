@@ -363,8 +363,6 @@
     User user = (User) request.getAttribute("user");
     Date date = user.getDOB();
     String formattedDate = new java.text.SimpleDateFormat("yyyy-MM-dd").format(date);
-    System.out.println(formattedDate);
-
 %>
 
 <script>
