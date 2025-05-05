@@ -579,4 +579,14 @@ public class ProductDAO {
                         .orElse(null)
         );
     }
+
+    public Color getColorByID(int id) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "SELECT * FROM colors WHERE id = :id";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("id", id)
+                .mapToBean(Color.class)
+                .first()
+        );
+    }
 }

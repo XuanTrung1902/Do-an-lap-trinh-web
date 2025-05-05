@@ -4,6 +4,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.models.PermissionDTO;
+import vn.edu.hcmuaf.fit.webike.models.Cart;
+import vn.edu.hcmuaf.fit.webike.models.Permission;
 import vn.edu.hcmuaf.fit.webike.services.LogService;
 import vn.edu.hcmuaf.fit.webike.services.PermissionService;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
@@ -44,6 +46,10 @@ public class loginController extends HttpServlet {
             if (user != null) { // nếu login đúng
                 HttpSession session = request.getSession(true);
                 session.setAttribute("auth", user); // Đặt user vào session với key "auth"
+
+                Cart cart = new Cart(); // tạo session chứa cart khi đăng nhập thành công
+                session.setAttribute("cart", cart);
+                cart.setData(user.getId()); // lấy dữ liệu từ DB và lưu vào cart
 
                 LogService.log(LEVEL_INFO, "Đăng nhập", phoneNum, "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
 

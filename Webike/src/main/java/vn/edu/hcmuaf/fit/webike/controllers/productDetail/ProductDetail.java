@@ -23,6 +23,7 @@ public class ProductDetail extends HttpServlet {
             System.out.println("ko nhan dc id");
         }
         int id = Integer.parseInt(request.getParameter("id"));
+        int cid = Integer.parseInt(request.getParameter("cid"));
 
         ProductDAO dao = new ProductDAO();
         Product p = dao.getProduct(id);
@@ -33,24 +34,14 @@ public class ProductDetail extends HttpServlet {
             specMap.put(s, specs);
         }
 
-        String colorParam = request.getParameter("colorID");
-        int colorID = p.getImg().keySet().iterator().next().getId();
-        if (colorParam != null && !colorParam.isEmpty()) {
-            try {
-                colorID = Integer.parseInt(colorParam.split("-")[0]);
-            } catch (NumberFormatException e) {
-
-            }
-        }
-
-        String img = dao.getImgByColor(id, colorID);
-
+        String imgURL = dao.getImgByColor(id, cid);
         List<Feature> features = dao.getFeature(p.getId());
         List<Warranty> warranties = dao.getWarranty(p.getId());
         List<Comment> comments = dao.getComment(p.getId());
 
         request.setAttribute("p", p);
-        request.setAttribute("img", img);
+        request.setAttribute("img", imgURL);
+        request.setAttribute("color", dao.getColorByID(cid));
         request.setAttribute("specType", specType);
         request.setAttribute("specMap", specMap);
         request.setAttribute("f", features);

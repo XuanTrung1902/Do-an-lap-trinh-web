@@ -22,16 +22,9 @@ public class UpdateCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-
-
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        HttpSession cartSession = request.getSession(true);
-        Cart cart = (Cart) cartSession.getAttribute("cart");
-
-        if (cart == null) cart = new Cart();
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
         cart.update(id, quantity);
-        cartSession.setAttribute("cart", cart);
-
 
         request.getRequestDispatcher("GKY/cart.jsp").forward(request, response);
     }

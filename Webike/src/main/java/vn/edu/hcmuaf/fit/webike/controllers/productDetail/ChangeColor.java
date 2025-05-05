@@ -15,31 +15,17 @@ public class ChangeColor extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int pid = Integer.parseInt(request.getParameter("id"));
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        ProductDAO dao = new ProductDAO();
+        String imgURL = dao.getImgByColor(pid, cid);
 
+        response.setContentType("text/plain");
+        response.getWriter().write(imgURL);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String colorName = req.getParameter("color");
-        String productIdStr = req.getParameter("id");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int productId = Integer.parseInt(productIdStr);
-        Product p = new ProductDAO().getProduct(productId);
-
-        String imgUrl = null;
-        for (Map.Entry<Color, String> entry : p.getImg().entrySet()) {
-            if (entry.getKey().getName().equalsIgnoreCase(colorName)) {
-                imgUrl = entry.getValue();
-                break;
-            }
-        }
-
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        if (imgUrl != null) {
-            resp.getWriter().write("{\"imgUrl\":\"" + imgUrl + "\"}");
-        } else {
-            resp.getWriter().write("{\"error\":\"Image not found for color\"}");
-        }
     }
 }

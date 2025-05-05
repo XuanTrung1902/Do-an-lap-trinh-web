@@ -80,10 +80,10 @@
                 </div>
 
                 <div class="header__cart" style="width: fit-content">
-                    <a href="#" onclick="checkLoginForCart(event)" class="header__cart-link">
+                    <a href="show-cart" onclick="checkLoginForCart(event)" class="header__cart-link">
                         <i class="header__cart-icon ti-shopping-cart"></i>
-                        <c:set var="xxx" value="${empty sessionScope.cart.cartLength ? 0 : sessionScope.cart.cartLength}"></c:set>
-                        <span class="header__cart--text">Giỏ Hàng (${xxx}) </span>
+                        <c:set var="cartSize" value="${empty sessionScope.cart.cartLength ? 0 : sessionScope.cart.cartLength}"></c:set>
+                        <span class="header__cart--text">Giỏ Hàng (${cartSize}) </span>
                     </a>
                 </div>
             </div>

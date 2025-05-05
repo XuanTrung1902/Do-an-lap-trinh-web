@@ -27,7 +27,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/bootstrap/css/bootstrap.css">
-    <script src="<%= request.getContextPath()%>/GKY/assets/js/productDetail.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
 </head>
 <body>
@@ -38,8 +37,6 @@
     <div class="info">
         <div class="info__img">
             <div class="img__container">
-<%--                <img id="img" src="${p.img.entrySet().iterator().next().getValue()}" alt="anh xe"--%>
-<%--                     style="width: 750px; height: 450px;"/>--%>
                 <img id="img" src="${img}" alt="anh xe"
                      style="width: 750px; height: 450px;"/>
 
@@ -84,48 +81,11 @@
                     <div class="btnCointainer">
                         <c:forEach var="color" items="${p.img.entrySet()}">
                             <div class="colorButton cursor__pointer" id="${color.getKey().getId()}-ColorID"
-                                 onclick="changeColor(this.id)">
+                                 onclick="changeColor(${p.id}, ${color.getKey().getId()}, '${color.getKey().getName()}')">
                                 <div class="colorbtn" style="background-color: ${color.getKey().getCode()};"></div>
                                 <span class="color--text text--description">${color.getKey().getName()}</span>
                             </div>
                         </c:forEach>
-<%--                        <script>--%>
-<%--                            var imgColor = {};--%>
-<%--                            // truyen gia tri tu servlet vao map cua js--%>
-<%--                            <c:forEach var="entry" items="${p.img.entrySet()}">--%>
-<%--                            imgColor['${entry.key.name}'] = '${entry.value}';--%>
-<%--                            </c:forEach>--%>
-
-<%--                            function changeColor(id) {--%>
-<%--                                const imgElement = document.getElementById('img');--%>
-<%--                                imgElement.src = imgColor[id];--%>
-<%--                                const allBtns = document.querySelectorAll('.colorButton');--%>
-<%--                                allBtns.forEach(function (btn) {--%>
-<%--                                    if (btn.id !== id.toString()) {--%>
-<%--                                        btn.style.background = "none";--%>
-<%--                                    } else {--%>
-<%--                                        btn.style.background = "rgb(147, 157, 163)";--%>
-<%--                                    }--%>
-<%--                                });--%>
-<%--                                const color = document.getElementById("productColor");--%>
-<%--                                const img = document.getElementById("productImg");--%>
-
-<%--                                const directBuyColor = document.getElementById("directBuyColor");--%>
-<%--                                const directBuyImg = document.getElementById('directBuyImg');--%>
-
-<%--                                color.value = id;--%>
-<%--                                img.value = imgColor[id];--%>
-<%--                                directBuyColor.value = id;--%>
-<%--                                directBuyImg.value = imgColor[id];--%>
-<%--                            }--%>
-
-<%--                            window.onload = function () {--%>
-<%--                                const firstButton = document.querySelector('.colorButton');--%>
-<%--                                if (firstButton) {--%>
-<%--                                    changeColor(firstButton.id);--%>
-<%--                                }--%>
-<%--                            }--%>
-<%--                        </script>--%>
                     </div>
                 </div>
 
@@ -144,10 +104,11 @@
                     <button type="submit" class="buy">Mua ngay</button>
                 </form>
 
-                <form action="add-cart?id=${p.id}" method="GET">
+                <form id="addCartForm" action="add-cart" method="GET">
                     <input type="hidden" name="id" id="id" value="${p.id}">
-                    <input type="hidden" name="color" id="productColor" value="">
-                    <input type="hidden" name="img" id="productImg" value="">
+                    <input type="hidden" name="colorID" id="productColor" value="${color.id}">
+                    <input type="hidden" name="colorName" id="colorName" value="${color.name}">
+                    <input type="hidden" name="imgURL" id="productImg" value="${img}">
                     <button type="submit" class="addToCart">Thêm vào giỏ hàng</button>
                 </form>
             </div>
@@ -327,13 +288,12 @@
 
 
 </div>
-<!-- footer -->
-<jsp:include page="/GKY/footer.jsp"/>
-<script src="assets/js/productDetail.js"></script>
+<script src="<%=request.getContextPath()%>/GKY/assets/js/productDetail.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<!-- footer -->
+<jsp:include page="/GKY/footer.jsp"/>
 </body>
 </html>

@@ -5,7 +5,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.PaymentDAO;
 import vn.edu.hcmuaf.fit.webike.models.Cart;
-import vn.edu.hcmuaf.fit.webike.models.CartProduct;
+import vn.edu.hcmuaf.fit.webike.models.CartItem;
 import vn.edu.hcmuaf.fit.webike.models.Order;
 import vn.edu.hcmuaf.fit.webike.models.Shop;
 
@@ -30,7 +30,7 @@ public class CartBuy extends HttpServlet {
         Cart cart= (Cart) request.getSession().getAttribute("cart");
         Order order = new Order();
         double percent = 0.25;
-        List<CartProduct> ls= cart.getList();
+        List<CartItem> ls= cart.getList();
         order.add(cart, null, method, null, null, null);
 
         request.getSession().setAttribute("order", order);
