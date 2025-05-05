@@ -48,10 +48,7 @@
                         <div class="box__bike--item">
                             <div class="box__bike-img">
                                 <img src="${p2['imgurl']}" alt="#"/>
-                                <h5 class="box__bike--name">
-                                        ${p2['name']}
-                                </h5>
-<%--                                <span class="box__sub--title">${p2['status']}</span>--%>
+                                <h5 class="box__bike--name">${p2['name']}</h5>
                             </div>
                             <div class="box__bike--price">
                                 <span class="box__bike--price-old">
@@ -89,7 +86,6 @@
                     <%--                            <label class="search__label">Tìm kiếm: </label>--%>
                     <%--                            <input id="search-input" class="input_search" placeholder="Nhập tên xe ">--%>
                     <%--                        </div>--%>
-
                 </div>
                 <div class="grid-2-8" style="padding-bottom: 10px;">
                     <div class="checkbox__category">
