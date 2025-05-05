@@ -31,8 +31,19 @@
 <div id="app" class="app">
     <jsp:include page="/GKY/header.jsp"/>
     <div class="container" style="padding: 0">
-        <div class="banner">
-            <img src="GKY/assets/img/banner.jpg" alt="">
+        <div class="banner" style=" --height: 200px; --width: 10%; --quantity: 10;">`
+            <div class="list-banner">
+                <div class="banner-item" style="--position: 1"><img src="GKY/assets/img/product1.png" alt=""></div>
+                <div class="banner-item" style="--position: 2"><img src="GKY/assets/img/product2.png" alt=""></div>
+                <div class="banner-item" style="--position: 3"><img src="GKY/assets/img/product3.png" alt=""></div>
+                <div class="banner-item" style="--position: 4"><img src="GKY/assets/img/product4.png" alt=""></div>
+                <div class="banner-item" style="--position: 5"><img src="GKY/assets/img/product5.png" alt=""></div>
+                <div class="banner-item" style="--position: 6"><img src="GKY/assets/img/product1.png" alt=""></div>
+                <div class="banner-item" style="--position: 7"><img src="GKY/assets/img/product2.png" alt=""></div>
+                <div class="banner-item" style="--position: 8"><img src="GKY/assets/img/product3.png" alt=""></div>
+                <div class="banner-item" style="--position: 9"><img src="GKY/assets/img/product4.png" alt=""></div>
+                <div class="banner-item" style="--position: 10"><img src="GKY/assets/img/product5.png" alt=""></div>
+            </div>
         </div>
         <div class="motor__market">
             <div class="box__title">
@@ -81,11 +92,45 @@
             <!-- Detail bike -->
             <div class="motor__detail-list">
                 <div class="title-second">
-                    <h3 class="title-second-name">Lọc sản phẩm</h3>
-                    <%--                        <div class="search__list">--%>
-                    <%--                            <label class="search__label">Tìm kiếm: </label>--%>
-                    <%--                            <input id="search-input" class="input_search" placeholder="Nhập tên xe ">--%>
-                    <%--                        </div>--%>
+                    <div>
+                        <h3 class="title-second-name">Lọc sản phẩm</h3>
+                    </div>
+                        <div class="title__animation">
+                            <span class="title__text" style="--color : #0077b6; --delay: 0s">W</span>
+                            <span class="title__text" style="--color : #0096c7; --delay: 0.5s">E</span>
+                            <span class="title__text" style="--color : #09b2d5; --delay: 1s">B</span>
+                            <span class="title__text" style="--color : #089bbb; --delay: 1.5s">I</span>
+                            <span class="title__text" style="--color : #90be6d; --delay: 2s">K</span>
+                            <span class="title__text" style="--color : #bc6c25; --delay: 2.5s">E</span>
+                            <span>&nbsp;</span>
+                            <span class="title__text" style="--color : #ef476f; --delay: 3s">L</span>
+                            <span class="title__text" style="--color : #f94144; --delay: 3.5s">O</span>
+                            <span class="title__text" style="--color : #f3722c; --delay: 4s">V</span>
+                            <span class="title__text" style="--color : #f8961e; --delay: 4.5s">E</span>
+                            <span>&nbsp;</span>
+                            <span class="title__text" style="--color : #f9844a; --delay: 5s">M</span>
+                            <span class="title__text" style="--color : #f9c74f; --delay: 5.5s">O</span>
+                            <span class="title__text" style="--color : #90be6d; --delay: 6s">T</span>
+                            <span class="title__text" style="--color : #43aa8b; --delay: 6.5s">O</span>
+                            <span class="title__text" style="--color : #577590; --delay: 7s">R</span>
+                            <span class="title__text" style="--color : #4d908e; --delay: 7.5s">C</span>
+                            <span class="title__text" style="--color : #277da1; --delay: 8s">Y</span>
+                            <span class="title__text" style="--color : #0077b6; --delay: 8.5s">C</span>
+                            <span class="title__text" style="--color : #0096c7; --delay: 9s">L</span>
+                            <span class="title__text" style="--color : #00b4d8; --delay: 9.5s">E</span>
+                            <span>&nbsp;</span>
+                            <span class="title__text" style="--color : #264653; --delay: 10s">A</span>
+                            <span class="title__text" style="--color : #2a9d8f; --delay: 10.5s">N</span>
+                            <span class="title__text" style="--color : #e9c46a; --delay: 11s">D</span>
+                            <span>&nbsp;</span>
+                            <span class="title__text" style="--color : #f4a261; --delay: 11.5s">R</span>
+                            <span class="title__text" style="--color : #e76f51; --delay: 12s">I</span>
+                            <span class="title__text" style="--color : #d62828; --delay: 12.5s">D</span>
+                            <span class="title__text" style="--color : #9d0208; --delay: 13s">E</span>
+                            <span class="title__text" style="--color : #6a040f; --delay: 13.5s">R</span>
+                            <span class="title__text" style="--color : #370617; --delay: 14s">S</span>
+                        </div>
+
                 </div>
                 <div class="grid-2-8" style="padding-bottom: 10px;">
                     <div class="checkbox__category">
