@@ -82,10 +82,10 @@
                                     </div>
                                     <% } %>
 
-                        <form action="verify-otp" method="post">
-                            <div class="field padding-bottom--24">
+                        <form action="${pageContext.request.contextPath}/verify-otp" method="post">
+                        <div class="field padding-bottom--24">
                                 <label for="otp">Nhập mã OTP</label>
-                                <input type="text" name="otp" id="otp" maxlength="6" required pattern="\\d{6}" placeholder="Nhập 6 số OTP">
+                                <input type="number" name="otp" id="otp" maxlength="6" required placeholder="Nhập 6 số OTP">
                             </div>
 
                             <div class="field padding-bottom--24">
