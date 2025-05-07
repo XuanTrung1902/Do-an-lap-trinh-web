@@ -17,6 +17,9 @@ public class User implements Serializable {
     private String address;
     private String image;
     private String email;
+    private boolean otpEnabled;
+    private String otpSecret;
+
 
     // Constructors
     public User() {
@@ -141,8 +144,21 @@ public class User implements Serializable {
         this.image = image;
     }
 
+    public boolean isOtpEnabled() {
+        return otpEnabled;
+    }
 
+    public void setOtpEnabled(boolean otpEnabled) {
+        this.otpEnabled = otpEnabled;
+    }
 
+    public String getOtpSecret() {
+        return otpSecret;
+    }
+
+    public void setOtpSecret(String otpSecret) {
+        this.otpSecret = otpSecret;
+    }
 
     @Override
     public String toString() {
@@ -150,7 +166,7 @@ public class User implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
-                ", DOB='" + DOB + '\'' +
+                ", DOB=" + DOB +
                 ", sex='" + sex + '\'' +
                 ", password='" + password + '\'' +
                 ", created='" + created + '\'' +
@@ -158,7 +174,10 @@ public class User implements Serializable {
                 ", verify=" + verify +
                 ", role=" + role +
                 ", address='" + address + '\'' +
-                ", mail='" + email + '\'' +
+                ", image='" + image + '\'' +
+                ", email='" + email + '\'' +
+                ", otpEnabled=" + otpEnabled +
+                ", otpSecret='" + otpSecret + '\'' +
                 '}';
     }
 }

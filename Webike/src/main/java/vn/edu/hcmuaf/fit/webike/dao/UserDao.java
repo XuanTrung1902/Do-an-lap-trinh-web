@@ -314,6 +314,23 @@ public class UserDao {
                         .execute()
         );
     }
+    public void updateOtpSecret(int userId, String secret) {
+        JDBIConnect.get().useHandle(handle ->
+                handle.createUpdate("UPDATE accounts SET otp_secret = :secret WHERE id = :id")
+                        .bind("secret", secret)
+                        .bind("id", userId)
+                        .execute()
+        );
+    }
+
+    public void updateOtpEnabled(int userId, boolean enabled) {
+        JDBIConnect.get().useHandle(handle ->
+                handle.createUpdate("UPDATE accounts SET otp_enabled = :enabled WHERE id = :id")
+                        .bind("enabled", enabled ? 1 : 0)
+                        .bind("id", userId)
+                        .execute()
+        );
+    }
 
 }
 

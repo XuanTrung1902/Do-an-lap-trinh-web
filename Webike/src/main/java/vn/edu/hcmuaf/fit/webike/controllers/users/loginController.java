@@ -41,9 +41,19 @@ public class loginController extends HttpServlet {
 
         final String LEVEL_INFO = LogService.LEVEL_INFO;
 
+
         if (isCaptchaValid) {
             User user = UserSevice.checklogin(phoneNum, password);  // kiểm tra login
             if (user != null) { // nếu login đúng
+                if (user.isOtpEnabled()) {
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("pending2fa", user);
+//                    response.sendRedirect("verify-login-otp.jsp");
+                    session.setAttribute("auth", user); // Đặt user vào session với key "auth"
+                    response.sendRedirect("homepage");
+                    return;
+                }
+
                 HttpSession session = request.getSession(true);
                 session.setAttribute("auth", user); // Đặt user vào session với key "auth"
 

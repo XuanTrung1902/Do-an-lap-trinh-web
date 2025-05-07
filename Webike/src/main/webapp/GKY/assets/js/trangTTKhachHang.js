@@ -51,23 +51,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const changeEmailLink = document.getElementById("change-email");
     const showProfileLink = document.getElementById("show-profile");
     const changePasswordLink = document.getElementById("change-password");
+    const enable2FALink = document.getElementById("enable-2fa");
+
 
     const changeAvatarForm = document.querySelector(".change-avatar-form");
     const changeEmailForm = document.getElementById("change-email-form");
     const profileForm = document.getElementById("profile-form");
     const changePasswordForm = document.getElementById("change-password-form");
+    const enable2FAForm = document.getElementById("enable-2fa-form");
+
 
     const menuLinks = document.querySelectorAll(".sidebar-menu li a");
 
     menuLinks.forEach(link => {
         link.addEventListener("click", function (e) {
             e.preventDefault();
-
             // Ẩn tất cả các form
             profileForm.style.display = "none";
             changePasswordForm.style.display = "none";
             changeAvatarForm.style.display = "none";
             if (changeEmailForm) changeEmailForm.style.display = "none";
+            if (enable2FAForm) enable2FAForm.style.display = "none";
 
             // Reset active
             menuLinks.forEach(link => link.classList.remove("active"));
@@ -82,8 +86,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 changeAvatarForm.style.display = "block";
             } else if (targetId === "change-email") {
                 if (changeEmailForm) changeEmailForm.style.display = "block";
+            }else if (targetId === "enable-2fa") {
             }
         });
     });
 });
+
 
