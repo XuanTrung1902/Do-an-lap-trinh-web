@@ -5,7 +5,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.models.PermissionDTO;
 import vn.edu.hcmuaf.fit.webike.models.Cart;
-import vn.edu.hcmuaf.fit.webike.models.Permission;
 import vn.edu.hcmuaf.fit.webike.services.LogService;
 import vn.edu.hcmuaf.fit.webike.services.PermissionService;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
@@ -48,9 +47,9 @@ public class loginController extends HttpServlet {
                 if (user.isOtpEnabled()) {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("pending2fa", user);
-//                    response.sendRedirect("verify-login-otp.jsp");
-                    session.setAttribute("auth", user); // Đặt user vào session với key "auth"
-                    response.sendRedirect("homepage");
+                    response.sendRedirect("GKY/verify-login-otp.jsp");
+//                    session.setAttribute("auth", user); // Đặt user vào session với key "auth"
+//                    response.sendRedirect("homepage");
                     return;
                 }
 

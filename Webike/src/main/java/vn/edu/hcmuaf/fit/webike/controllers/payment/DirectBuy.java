@@ -41,7 +41,7 @@ public class DirectBuy extends HttpServlet {
         double percent = 0.25;
         double total = p.getPrice();
 
-        order.add(null, p, method, id, color, img);
+//        order.add(null, p, method, id, color, img);
 
         request.setAttribute("id", id);
         request.setAttribute("color", color);
