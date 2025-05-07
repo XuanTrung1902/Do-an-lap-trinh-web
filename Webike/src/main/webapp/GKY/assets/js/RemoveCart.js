@@ -1,18 +1,18 @@
-function remove(itemId) {
+function remove(id) {
     fetch(`/Webike/remove-cart`, {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({id: itemId})
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `id=${encodeURIComponent(id)}`
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.isSuccess) {
-                return fetch(`/Webike/show-cart`);
-            }
+        .then(response => response.text())
+        .then(() => {
+            return fetch(`/Webike/show-cart`);
         })
         .then(response => response.text())
-        .then(html => {
-            document.getElementById("main").innerHTML = html;
+        .then(data => {
+            document.getElementById("main").innerHTML = data;
         })
         .catch(error => console.error(`Lỗi: ${error}`));
 }

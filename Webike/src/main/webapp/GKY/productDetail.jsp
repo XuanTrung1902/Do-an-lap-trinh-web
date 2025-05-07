@@ -27,7 +27,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/js/productDetail.js">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
 </head>
 <body>
@@ -38,7 +37,7 @@
     <div class="info">
         <div class="info__img">
             <div class="img__container">
-                <img id="img" src="${p.img.entrySet().iterator().next().getValue()}" alt="anh xe"
+                <img id="img" src="${img}" alt="anh xe"
                      style="width: 750px; height: 450px;"/>
 
             </div>
@@ -49,14 +48,14 @@
                 <div class="price padding--bottom--8">
                     <span class="infoHeader">Giá: </span>
                     <span class="text--description">
-                        <f:setLocale value="vi_VN"/>
-                        <f:formatNumber value="${p.price - (p.price * p.discount/100)}" type="currency"/>
-                    </span>
-                    <c:if test="${p.discount > 0}">
-                        <span class="ms-3 text--description" style="text-decoration: line-through;">
                             <f:setLocale value="vi_VN"/>
-                            <f:formatNumber value="${p.price}" type="currency"/>
+                            <f:formatNumber value="${p.price - (p.price * p.discount/100)}" type="currency"/>
                         </span>
+                    <c:if test="${p.discount > 0}">
+                            <span class="ms-3 text--description" style="text-decoration: line-through;">
+                                <f:setLocale value="vi_VN"/>
+                                <f:formatNumber value="${p.price}" type="currency"/>
+                            </span>
                     </c:if>
                 </div>
 
@@ -80,50 +79,13 @@
                 <div class="color padding--bottom--8">
                     <span class="infoHeader">Màu sắc: </span>
                     <div class="btnCointainer">
-                        <c:forEach var="c" items="${p.img.entrySet()}">
-                            <div class="colorButton cursor__pointer" id="${c.getKey().getName()}"
-                                 onclick="changeColor(this.id)">
-                                <div class="colorbtn" style="background-color: ${c.getKey().getCode()};"></div>
-                                <span class="color--text text--description">${c.getKey().getName()}</span>
+                        <c:forEach var="color" items="${p.img.entrySet()}">
+                            <div class="colorButton cursor__pointer" id="${color.getKey().getId()}-ColorID"
+                                 onclick="changeColor(${p.id}, ${color.getKey().getId()}, '${color.getKey().getName()}')">
+                                <div class="colorbtn" style="background-color: ${color.getKey().getCode()};"></div>
+                                <span class="color--text text--description">${color.getKey().getName()}</span>
                             </div>
                         </c:forEach>
-                        <script>
-                            var imgColor = {};
-                            // truyen gia tri tu servlet vao map cua js
-                            <c:forEach var="entry" items="${p.img.entrySet()}">
-                            imgColor['${entry.key.name}'] = '${entry.value}';
-                            </c:forEach>
-
-                            function changeColor(id) {
-                                const imgElement = document.getElementById('img');
-                                imgElement.src = imgColor[id];
-                                const allBtns = document.querySelectorAll('.colorButton');
-                                allBtns.forEach(function (btn) {
-                                    if (btn.id !== id.toString()) {
-                                        btn.style.background = "none";
-                                    } else {
-                                        btn.style.background = "rgb(147, 157, 163)";
-                                    }
-                                });
-                                const color = document.getElementById("productColor");
-                                const img = document.getElementById("productImg");
-
-                                const directBuyColor = document.getElementById("directBuyColor");
-                                const directBuyImg = document.getElementById('directBuyImg');
-
-                                color.value = id;
-                                img.value = imgColor[id];
-                                directBuyColor.value = id;
-                                directBuyImg.value = imgColor[id];
-                            }
-
-                            window.onload = function () {
-                                const firstButton = document.querySelector('.colorButton');
-                                if (firstButton) {
-                                    changeColor(firstButton.id);
-                                }
-                            }
-                        </script>
                     </div>
                 </div>
 
@@ -142,10 +104,11 @@
                     <button type="submit" class="buy">Mua ngay</button>
                 </form>
 
-                <form action="add-cart?id=${p.id}" method="GET">
+                <form id="addCartForm" action="add-cart" method="GET">
                     <input type="hidden" name="id" id="id" value="${p.id}">
-                    <input type="hidden" name="color" id="productColor" value="">
-                    <input type="hidden" name="img" id="productImg" value="">
+                    <input type="hidden" name="colorID" id="productColor" value="${color.id}">
+                    <input type="hidden" name="colorName" id="colorName" value="${color.name}">
+                    <input type="hidden" name="imgURL" id="productImg" value="${img}">
                     <button type="submit" class="addToCart">Thêm vào giỏ hàng</button>
                 </form>
             </div>
@@ -315,21 +278,22 @@
         </c:forEach>
         </c:when>
         <c:otherwise>
-            <div>Chưa có bình luận nào</div>
+            <div class="no-comment__container">
+                <span class="no-comment">Chưa có bình luận nào</span>
+            </div>
         </c:otherwise>
         </c:choose>
     </div>
-    <!-- footer -->
-    <jsp:include page="/GKY/footer.jsp" />
+    </div>
+
 
 </div>
-<script src="assets/js/productDetail.js"></script>
+<script src="<%=request.getContextPath()%>/GKY/assets/js/productDetail.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <!-- footer -->
 <jsp:include page="/GKY/footer.jsp"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/GKY/assets/</body>
+</body>
 </html>

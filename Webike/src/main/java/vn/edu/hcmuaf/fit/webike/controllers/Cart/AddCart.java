@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
 import vn.edu.hcmuaf.fit.webike.models.Cart;
+import vn.edu.hcmuaf.fit.webike.models.CartItem;
 import vn.edu.hcmuaf.fit.webike.models.Product;
+import vn.edu.hcmuaf.fit.webike.models.User;
 
 import java.io.IOException;
 
@@ -17,23 +19,37 @@ public class AddCart extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         int id = Integer.parseInt(request.getParameter("id"));
-        String color = request.getParameter("color"); // lay mau duoc chon
-        String img = request.getParameter("img"); // anh theo mau sp
+        int cid = Integer.parseInt(request.getParameter("colorID")); // lay mau duoc chon
+        String colorName = request.getParameter("colorName");
+        String img = request.getParameter("imgURL"); // anh theo mau sp
+        User user = (User) request.getSession().getAttribute("auth");
+        int uid = user.getId();
 
         ProductDAO dao = new ProductDAO();
         Product p = dao.getProduct(id);
-        HttpSession cartSession = request.getSession(true);
-        Cart cart = (Cart) cartSession.getAttribute("cart");
 
-        if (p == null) response.sendRedirect("list-products?addCart=false"); // neu sp ko ton tai
+        CartItem item = new CartItem();
+        item.setId(p.getId() + "-" + cid + "-" + uid);
+        item.setPid(p.getId());
+        item.setName(p.getName());
+        item.setPrice(p.getPrice() + item.getPrice());
+        item.setQuantity(item.getQuantity() + 1);
+        item.setStatus(p.getStatus());
+        item.setVersion(p.getVersion());
+        item.setBrand(p.getBrand());
+        item.setType(p.getType());
+        item.setCid(cid);
+        item.setColorName(colorName);
+        item.setImg(img);
+        item.setUid(uid);
 
-        if (cart == null) cart = new Cart();
-        cart.add(p, color, img);
-        cartSession.setAttribute("cart", cart);
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
+        cart.add(item);
+        cart.setData(uid);
 
-        response.sendRedirect("productDetail?id=" + id);
+        response.setContentType("application/json");
+        response.getWriter().write("{\"status\": \"success\", \"message\": \"Đã thêm vào giỏ hàng\"}");
     }
 
     @Override

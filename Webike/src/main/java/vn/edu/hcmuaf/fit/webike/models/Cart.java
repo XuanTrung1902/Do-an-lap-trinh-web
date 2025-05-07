@@ -1,68 +1,53 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
+import vn.edu.hcmuaf.fit.webike.dao.CartDAO;
+
 import java.io.Serializable;
 import java.util.*;
 
 public class Cart implements Serializable {
-    Map<String, CartProduct> data = new LinkedHashMap<>();
+    CartDAO dao = new CartDAO();
+    List<CartItem> data = new ArrayList<>();
 
-    public boolean add(Product p, String color, String img) {
-        CartProduct cp = convert(p, color, img);
-        String id = cp.getId();
-        if (data.containsKey(id)) {
-            int quantity = data.get(id).getQuantity();
-            quantity += 1;
-            cp.setQuantity(quantity);
-            data.put(id, cp);
-            return true;
+    public List<CartItem> getData() {
+        return data;
+    }
+
+    public void setData(int uid) {
+        this.data = dao.getCartItemByUID(uid);
+    }
+
+    public boolean add(CartItem item) {
+        if (data.contains(item)) {
+            item = dao.getCartItemByID(item.getId()); // cập nhật lại item vì item truyền vào khác với item lưu trong DB
+            int update = dao.updateCartItem(item.getId(), item.getQuantity() + 1);
+            return update > 0;
+        } else {
+            int insert = dao.insertCartItem(item);
+            return insert > 0;
         }
-        data.put(id, cp);
-        return true;
     }
 
     public boolean update(String id, int quantity) {
-        if (!data.containsKey(id) || data.get(id).getQuantity() < 1) return false;
-        CartProduct cp = data.get(id);
-        quantity += cp.getQuantity();
-        cp.setQuantity(quantity);
-        data.put(id, cp);
-        return true;
+        CartItem item = dao.getCartItemByID(id);
+        quantity += item.getQuantity();
+        int insert = dao.updateCartItem(id, quantity);
+        return insert > 0;
     }
 
     public boolean remove(String id) {
-        if (!data.containsKey(id)) return false;
-        data.remove(id);
-        return true;
+        int remove = dao.removeCartItem(id);
+        return remove > 0;
     }
 
-    public List<CartProduct> getList() {
-        return new ArrayList<>(data.values());
-    }
-
-    private CartProduct convert(Product p, String color, String img) {
-        CartProduct cp = new CartProduct();
-        cp.setId(p.getId() + "/" + color);
-        cp.setName(p.getName());
-        if (p.getDiscount() > 0) {
-            cp.setPrice(p.getPrice() - (p.getPrice() * p.getDiscount() / 100) );
-        }else{
-            cp.setPrice(p.getPrice());
-        }
-        cp.setQuantity(1);
-        cp.setVersion(p.getVersion());
-        cp.setStatus(p.getStatus());
-        cp.setBrand(p.getBrand());
-        cp.setType(p.getType());
-        Map<String, String> imgColor = new HashMap<>();
-        imgColor.put(color, img);
-        cp.setImg(imgColor);
-        return cp;
+    public List<CartItem> getList() {
+        return data;
     }
 
     public double getTotalPrice() {
         double sum = 0;
-        for (CartProduct cp : data.values()) {
-            sum += cp.getPrice() * cp.getQuantity();
+        for (CartItem item : data) {
+            sum += item.getPrice() * item.getQuantity();
         }
         return sum;
     }

@@ -19,10 +19,11 @@ public class ProductDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(request.getParameter("id") == null) {
+        if (request.getParameter("id") == null) {
             System.out.println("ko nhan dc id");
         }
         int id = Integer.parseInt(request.getParameter("id"));
+        int cid = Integer.parseInt(request.getParameter("cid"));
 
         ProductDAO dao = new ProductDAO();
         Product p = dao.getProduct(id);
@@ -33,11 +34,14 @@ public class ProductDetail extends HttpServlet {
             specMap.put(s, specs);
         }
 
+        String imgURL = dao.getImgByColor(id, cid);
         List<Feature> features = dao.getFeature(p.getId());
         List<Warranty> warranties = dao.getWarranty(p.getId());
         List<Comment> comments = dao.getComment(p.getId());
 
         request.setAttribute("p", p);
+        request.setAttribute("img", imgURL);
+        request.setAttribute("color", dao.getColorByID(cid));
         request.setAttribute("specType", specType);
         request.setAttribute("specMap", specMap);
         request.setAttribute("f", features);
@@ -49,5 +53,6 @@ public class ProductDetail extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

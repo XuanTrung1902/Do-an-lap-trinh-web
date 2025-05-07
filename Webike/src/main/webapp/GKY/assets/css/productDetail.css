@@ -309,3 +309,14 @@ html, body, p, ul {
 .user_avt{
     border-radius: 50%;
 }
+
+.no-comment__container {
+    margin-top: 20px;
+}
+
+.no-comment {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.6rem;
+    color: #898383;
+}
