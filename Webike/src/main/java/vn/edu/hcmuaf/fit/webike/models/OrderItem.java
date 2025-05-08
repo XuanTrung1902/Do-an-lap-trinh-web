@@ -6,11 +6,10 @@ public class OrderItem {
     private int quantity;
     private String img;
     private String color;
-    private String productID;
+    private int productID;
     private String orderID;
     private double price;
     private String version;
-    private String status;
     private String brand;
     private String type;
     private int commented;
@@ -18,7 +17,7 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(int id, String name, int quantity, String img, String color, String productID, String orderID, double price, String version, String status, String brand, String type, int commented) {
+    public OrderItem(int id, String name, int quantity, String img, String color, int productID, String orderID, double price, String version, String brand, String type, int commented) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -28,7 +27,6 @@ public class OrderItem {
         this.orderID = orderID;
         this.price = price;
         this.version = version;
-        this.status = status;
         this.brand = brand;
         this.type = type;
         this.commented = commented;
@@ -50,11 +48,11 @@ public class OrderItem {
         this.img = img;
     }
 
-    public String getProductID() {
+    public int getProductID() {
         return productID;
     }
 
-    public void setProductID(String productID) {
+    public void setProductID(int productID) {
         this.productID = productID;
     }
 
@@ -96,14 +94,6 @@ public class OrderItem {
 
     public void setVersion(String version) {
         this.version = version;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getBrand() {

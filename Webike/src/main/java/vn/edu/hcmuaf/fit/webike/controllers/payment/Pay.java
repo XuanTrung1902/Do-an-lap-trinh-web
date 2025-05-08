@@ -40,17 +40,14 @@ public class Pay extends HttpServlet {
         }
 
         int oid = dao.insertOrder(deposit, remain, address, appointment, payDate, status, accountID, shopID);
-        System.out.println("Order insert (ID):" + oid);
-        System.out.println("Pay date: " + payDate);
-
         request.setAttribute("orderItem", order.getData());
-        System.out.println("Order item size: " + order.getData().size());
         for (OrderItem o : order.getData()) {
             ProductDAO productDAO = new ProductDAO();
             int quantity = o.getQuantity();
             String color = o.getColor();
-            int pid = Integer.parseInt(o.getProductID());
+            int pid = o.getProductID();
             String img = o.getImg();
+
             Product p = productDAO.getProduct(pid);
             int productQuantity = p.getQuantity() - quantity;
             int updateProductQuantity = productDAO.updateQuantity(pid, productQuantity);
