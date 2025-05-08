@@ -8,11 +8,18 @@ import java.util.List;
 public class BuyHistoryDAO {
     public static void main(String[] args) {
         BuyHistoryDAO dao = new BuyHistoryDAO();
-        System.out.println(dao.getOrderItems(13).size());
-        for (OrderItem o: dao.getOrderItems(13)){
-            System.out.println(o.toString());
-        }
+//        int accountID = 13;
+//        int page = 1;
+//        int itemsPerPage = 5;
+//        List<OrderItem> items = dao.getPaginatedOrderItems(accountID, page, itemsPerPage);
+//        System.out.println("Items on page " + page + ": " + items.size());
+//        for (OrderItem o : items) {
+//            System.out.println(o.toString());
+//        }
+//        int totalItems = dao.getTotalOrderItems(accountID);
+//        System.out.println("Total items: " + totalItems);
     }
+
 
     public List<OrderItem> getOrderItems(int accountID) {
         Jdbi jdbi = JDBIConnect.get();

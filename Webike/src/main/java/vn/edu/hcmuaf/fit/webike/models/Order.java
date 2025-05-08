@@ -43,29 +43,29 @@ public class Order implements Serializable {
         this.shop = shop;
     }
 
-    public void add(Cart c, Product p, String method, String pid, String color, String img) {
-        if (method.equalsIgnoreCase("direct")) {
-            OrderItem i = convertProduct(p, pid, color, img);
-            data.add(i);
-        } else if (method.equalsIgnoreCase("from cart")) {
-            for (CartProduct cp : c.getList()) {
+//    public void add(Cart c, Product p, String method, String pid, String color, String img) {
+//        if (method.equalsIgnoreCase("direct")) {
+//            OrderItem i = convertProduct(p, pid, color, img);
+//            data.add(i);
+//        } else if (method.equalsIgnoreCase("from cart")) {
+//            for (CartProduct cp : c.getList()) {
+//
+//                StringTokenizer token = new StringTokenizer(cp.getId(), "/");
+//                String itemID = token.nextToken();
+//                String itemColor = token.nextToken();
+//
+//                int quantity = cp.getQuantity();
+//                String itemImg = cp.getImg().get(itemColor);
+//                OrderItem i = convertCartProduct(cp, quantity, itemImg, itemColor, itemID);
+//                data.add(i);
+//            }
+//        }
+//    }
 
-                StringTokenizer token = new StringTokenizer(cp.getId(), "/");
-                String itemID = token.nextToken();
-                String itemColor = token.nextToken();
-
-                int quantity = cp.getQuantity();
-                String itemImg = cp.getImg().get(itemColor);
-                OrderItem i = convertCartProduct(cp, quantity, itemImg, itemColor, itemID);
-                data.add(i);
-            }
-        }
-    }
-
-    public boolean update(Cart cart, CartProduct c, int quantity) {
-        cart.update(c.getId(), quantity);
-        return true;
-    }
+//    public boolean update(Cart cart, CartProduct c, int quantity) {
+//        cart.update(c.getId(), quantity);
+//        return true;
+//    }
 
     public boolean remove(String id) {
         if (!data.contains(id)) return false;
@@ -81,21 +81,21 @@ public class Order implements Serializable {
         this.data = data;
     }
 
-    public OrderItem convertCartProduct(CartProduct c, int quantity, String img, String color, String pid) {
-        OrderItem item = new OrderItem();
-        item.setQuantity(quantity);
-        item.setImg(img);
-        item.setColor(color);
-        item.setProductID(pid);
-
-        item.setName(c.getName());
-        item.setPrice(c.getPrice());
-        item.setVersion(c.getVersion());
-        item.setStatus(c.getStatus());
-        item.setBrand(c.getBrand());
-        item.setType(c.getType());
-        return item;
-    }
+//    public OrderItem convertCartProduct(CartProduct c, int quantity, String img, String color, String pid) {
+//        OrderItem item = new OrderItem();
+//        item.setQuantity(quantity);
+//        item.setImg(img);
+//        item.setColor(color);
+//        item.setProductID(pid);
+//
+//        item.setName(c.getName());
+//        item.setPrice(c.getPrice());
+//        item.setVersion(c.getVersion());
+//        item.setStatus(c.getStatus());
+//        item.setBrand(c.getBrand());
+//        item.setType(c.getType());
+//        return item;
+//    }
 
     public OrderItem convertProduct(Product p, String pid, String color, String img) {
         OrderItem item = new OrderItem();
