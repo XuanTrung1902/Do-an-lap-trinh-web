@@ -77,13 +77,26 @@
                 </div>
             </div>
         </c:forEach>
-
+        <c:if test="${totalPages > 1}">
             <div class="pagination d-flex justify-content-center mt-4 mb-4">
+                <c:if test="${currentPage > 1}">
                     <a href="buy-history?page=${currentPage - 1}" class="page__link">Trang trước</a>
-                    <span class="page__link active">${i}</span>
-                    <a href="buy-history?page=${i}" class="page__link">${i}</a>
+                </c:if>
+                <c:forEach begin="1" end="${totalPages}" var="i">
+                    <c:choose>
+                        <c:when test="${i == currentPage}">
+                            <span class="page__link active">${i}</span>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="buy-history?page=${i}" class="page__link">${i}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:if test="${currentPage < totalPages}">
                     <a href="buy-history?page=${currentPage + 1}" class="page__link">Trang sau</a>
+                </c:if>
             </div>
+        </c:if>
     </div>
 
 

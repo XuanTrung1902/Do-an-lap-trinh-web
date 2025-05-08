@@ -20,6 +20,42 @@ public class BuyHistoryDAO {
 //        System.out.println("Total items: " + totalItems);
     }
 
+    public List<OrderItem> getPaginatedOrderItems(int accountID, int page, int itemsPerPage) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+                SELECT oi.*, p.name, p.version, (oi.quantity * p.price) AS price, o.status, b.name as brand, t.type as type
+                FROM orderitems AS oi
+                JOIN orders AS o ON oi.orderID = o.id
+                JOIN products AS p ON oi.productID = p.id
+                JOIN brands AS b ON p.brandID = b.id
+                JOIN biketypes AS t ON p.typeID = t.id
+                WHERE o.accountID = :accountID
+                ORDER BY o.id DESC
+                LIMIT :limit OFFSET :offset
+                """;
+        int offset = (page - 1) * itemsPerPage;
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("accountID", accountID)
+                .bind("limit", itemsPerPage)
+                .bind("offset", offset)
+                .mapToBean(OrderItem.class)
+                .list());
+    }
+
+    public int getTotalOrderItems(int accountID) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+                SELECT COUNT(*) 
+                FROM orderitems AS oi
+                JOIN orders AS o ON oi.orderID = o.id
+                WHERE o.accountID = :accountID
+                """;
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("accountID", accountID)
+                .mapTo(Integer.class)
+                .one());
+    }
+
 
     public List<OrderItem> getOrderItems(int accountID) {
         Jdbi jdbi = JDBIConnect.get();
