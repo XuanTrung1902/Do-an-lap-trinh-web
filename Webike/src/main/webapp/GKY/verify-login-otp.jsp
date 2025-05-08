@@ -16,11 +16,7 @@
 <head>
     <meta charset="utf-8">
     <title>Webike: Đăng nhập</title>
-    <%--  <base href="${pageContext.request.contextPath}/GKY/assets/">--%>
-    <%--    <base href="<%= request.getContextPath()%>/GKY/assets/">--%>
-    <%--  <link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/GKY/assets/css/Dangnhap.css">--%>
     <link rel="stylesheet" href="<%= request.getContextPath()%>/GKY/assets/css/Dang nhap.css">
-    <%--  <script src="https://www.google.com/recaptcha/api.js" async defer></script>--%>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 </head>
 
