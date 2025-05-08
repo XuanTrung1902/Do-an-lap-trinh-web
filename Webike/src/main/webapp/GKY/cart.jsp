@@ -131,7 +131,7 @@
                 </div>
                 <form action="cart-buy" method="POST" class="d-flex">
                     <input type="hidden" name="method" value="from cart">
-                    <input type="hidden" name="total" id="send_price" value="">
+                    <input type="hidden" name="total" id="send_price" value="${total}">
                     <button type="submit" class="buybtn">
                         <span class="buybtn-text">Mua hàng</span>
                     </button>

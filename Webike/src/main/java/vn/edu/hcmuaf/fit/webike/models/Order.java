@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.webike.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Order implements Serializable {
@@ -30,7 +31,7 @@ public class Order implements Serializable {
         this.shop = shop;
     }
 
-    public Order(int id,List<OrderItem> data, double deposit, double remain, String appointment, String payDate, String status, User user, Shop shop) {
+    public Order(int id, List<OrderItem> data, double deposit, double remain, String address, String appointment, String payDate, String status, User user, Shop shop) {
         this.id = id;
         this.data = new ArrayList<OrderItem>();
         this.deposit = deposit;
@@ -43,76 +44,65 @@ public class Order implements Serializable {
         this.shop = shop;
     }
 
-//    public void add(Cart c, Product p, String method, String pid, String color, String img) {
-//        if (method.equalsIgnoreCase("direct")) {
-//            OrderItem i = convertProduct(p, pid, color, img);
-//            data.add(i);
-//        } else if (method.equalsIgnoreCase("from cart")) {
-//            for (CartProduct cp : c.getList()) {
-//
-//                StringTokenizer token = new StringTokenizer(cp.getId(), "/");
-//                String itemID = token.nextToken();
-//                String itemColor = token.nextToken();
-//
-//                int quantity = cp.getQuantity();
-//                String itemImg = cp.getImg().get(itemColor);
-//                OrderItem i = convertCartProduct(cp, quantity, itemImg, itemColor, itemID);
-//                data.add(i);
-//            }
-//        }
-//    }
-//
-//    public boolean update(Cart cart, CartProduct c, int quantity) {
-//        cart.update(c.getId(), quantity);
-//        return true;
-//    }
-//
-//    public boolean remove(String id) {
-//        if (!data.contains(id)) return false;
-//        data.remove(id);
-//        return true;
-//    }
-//
-//    public List<OrderItem> getData() {
-//        return data;
-//    }
-//
-//    public void setData(List<OrderItem> data) {
-//        this.data = data;
-//    }
-//
-//    public OrderItem convertCartProduct(CartProduct c, int quantity, String img, String color, String pid) {
-//        OrderItem item = new OrderItem();
-//        item.setQuantity(quantity);
-//        item.setImg(img);
-//        item.setColor(color);
-//        item.setProductID(pid);
-//
-//        item.setName(c.getName());
-//        item.setPrice(c.getPrice());
-//        item.setVersion(c.getVersion());
-//        item.setStatus(c.getStatus());
-//        item.setBrand(c.getBrand());
-//        item.setType(c.getType());
-//        return item;
-//    }
+    public void add(Cart c, Product p, String method) {
+        if (method.equalsIgnoreCase("direct")) {
+            OrderItem i = convertProduct(p);
+            data.add(i);
+        } else if (method.equalsIgnoreCase("from cart")) {
+            for (CartItem cp : c.getList()) {
+                OrderItem i = convertCartProduct(cp);
+                data.add(i);
+            }
+        }
+    }
 
-    public OrderItem convertProduct(Product p, String pid, String color, String img) {
+    public boolean update(Cart cart, CartItem c, int quantity) {
+        cart.update(c.getId(), quantity);
+        return true;
+    }
+
+    public boolean remove(String id) {
+        if (!data.contains(id)) return false;
+        data.remove(id);
+        return true;
+    }
+
+    public List<OrderItem> getData() {
+        return data;
+    }
+
+    public void setData(List<OrderItem> data) {
+        this.data = data;
+    }
+
+    public OrderItem convertCartProduct(CartItem c) {
         OrderItem item = new OrderItem();
-        item.setQuantity(1);
-        item.setImg(img);
-        item.setColor(color);
-        item.setProductID(pid);
+        item.setQuantity(c.getQuantity());
+        item.setImg(c.getImg());
+        item.setColor(c.getColorName());
+        item.setProductID(c.getPid());
+        item.setName(c.getName());
+        item.setPrice(c.getPrice());
+        item.setVersion(c.getVersion());
+        item.setBrand(c.getBrand());
+        item.setType(c.getType());
+        return item;
+    }
 
+    public OrderItem convertProduct(Product p) {
+        OrderItem item = new OrderItem();
         item.setName(p.getName());
+        item.setQuantity(1);
+        Map.Entry<Color, String> entry = p.getImg().entrySet().iterator().next(); // map ở direct buy chỉ còn 1 cặp key-value mà theo màu mà người dùng đã chọn
+        item.setImg(entry.getValue());
+        item.setColor(entry.getKey().getName());
+        item.setProductID(p.getId());
         if (p.getDiscount() > 0) {
-            item.setPrice(p.getPrice() - (p.getPrice() * p.getDiscount() / 100));
+            item.setPrice(p.getPrice() * (1 - p.getDiscount()));
         } else {
             item.setPrice(p.getPrice());
         }
-
         item.setVersion(p.getVersion());
-        item.setStatus(p.getStatus());
         item.setBrand(p.getBrand());
         item.setType(p.getType());
         return item;
