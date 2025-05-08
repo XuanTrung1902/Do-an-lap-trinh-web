@@ -31,7 +31,8 @@ public class Order implements Serializable {
         this.shop = shop;
     }
 
-    public Order(List<OrderItem> data, double deposit, double remain, String appointment, String payDate, String status, User user, Shop shop) {
+    public Order(int id, List<OrderItem> data, double deposit, double remain, String address, String appointment, String payDate, String status, User user, Shop shop) {
+        this.id = id;
         this.data = new ArrayList<OrderItem>();
         this.deposit = deposit;
         this.remain = remain;
@@ -49,20 +50,13 @@ public class Order implements Serializable {
             data.add(i);
         } else if (method.equalsIgnoreCase("from cart")) {
             for (CartItem cp : c.getList()) {
-
-                StringTokenizer token = new StringTokenizer(cp.getId(), "/");
-                String itemID = token.nextToken();
-                String itemColor = token.nextToken();
-
-                int quantity = cp.getQuantity();
-                String itemImg = cp.getImg().get(itemColor);
-                OrderItem i = convertCartProduct(cp, quantity, itemImg, itemColor, itemID);
+                OrderItem i = convertCartProduct(cp);
                 data.add(i);
             }
         }
     }
 
-    public boolean update(Cart cart, CartProduct c, int quantity) {
+    public boolean update(Cart cart, CartItem c, int quantity) {
         cart.update(c.getId(), quantity);
         return true;
     }
@@ -81,13 +75,12 @@ public class Order implements Serializable {
         this.data = data;
     }
 
-    public OrderItem convertCartProduct(CartItem c, int quantity, String img, String color, String pid) {
+    public OrderItem convertCartProduct(CartItem c) {
         OrderItem item = new OrderItem();
-        item.setQuantity(quantity);
-        item.setImg(img);
-        item.setColor(color);
-        item.setProductID(pid);
-
+        item.setQuantity(c.getQuantity());
+        item.setImg(c.getImg());
+        item.setColor(c.getColorName());
+        item.setProductID(c.getPid());
         item.setName(c.getName());
         item.setPrice(c.getPrice());
         item.setVersion(c.getVersion());

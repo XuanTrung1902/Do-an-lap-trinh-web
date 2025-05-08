@@ -31,7 +31,12 @@ public class CartBuy extends HttpServlet {
         Order order = new Order();
         double percent = 0.25;
         List<CartItem> ls= cart.getList();
-//        order.add(cart, null, method, null, null, null);
+        order.add(cart, null, method);
+
+        // sau khi mua thì xóa item khỏi cart
+        for (CartItem i : ls){
+            cart.remove(i.getId());
+        }
 
         request.getSession().setAttribute("order", order);
         request.setAttribute("method", method);
