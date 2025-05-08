@@ -7,9 +7,17 @@ function changeColor(pid, cid, colorName) {
                 .forEach(btn => {btn.style.background = 'none';
                 });
             document.getElementById(cid+ '-ColorID').style.background = "rgb(147, 157, 163)";
+
+            // add cart form
             document.getElementById("productColor").value = cid;
             document.getElementById("colorName").value = colorName;
             document.getElementById("productImg").value = imgURL;
+
+            // direct buy form
+            document.getElementById("directBuyColor").value = cid;
+            document.getElementById("directBuyImg").value = imgURL;
+
+
         })
         .catch(error => console.error("Lỗi đổi màu:", error));
 }

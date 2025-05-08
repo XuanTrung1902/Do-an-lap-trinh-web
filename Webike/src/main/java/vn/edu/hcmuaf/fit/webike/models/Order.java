@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.webike.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Order implements Serializable {
@@ -30,8 +31,7 @@ public class Order implements Serializable {
         this.shop = shop;
     }
 
-    public Order(int id,List<OrderItem> data, double deposit, double remain, String appointment, String payDate, String status, User user, Shop shop) {
-        this.id = id;
+    public Order(List<OrderItem> data, double deposit, double remain, String appointment, String payDate, String status, User user, Shop shop) {
         this.data = new ArrayList<OrderItem>();
         this.deposit = deposit;
         this.remain = remain;
@@ -43,12 +43,12 @@ public class Order implements Serializable {
         this.shop = shop;
     }
 
-    public void add(Cart c, Product p, String method, String pid, String color, String img) {
+    public void add(Cart c, Product p, String method) {
         if (method.equalsIgnoreCase("direct")) {
-            OrderItem i = convertProduct(p, pid, color, img);
+            OrderItem i = convertProduct(p);
             data.add(i);
         } else if (method.equalsIgnoreCase("from cart")) {
-            for (CartProduct cp : c.getList()) {
+            for (CartItem cp : c.getList()) {
 
                 StringTokenizer token = new StringTokenizer(cp.getId(), "/");
                 String itemID = token.nextToken();
@@ -81,7 +81,7 @@ public class Order implements Serializable {
         this.data = data;
     }
 
-    public OrderItem convertCartProduct(CartProduct c, int quantity, String img, String color, String pid) {
+    public OrderItem convertCartProduct(CartItem c, int quantity, String img, String color, String pid) {
         OrderItem item = new OrderItem();
         item.setQuantity(quantity);
         item.setImg(img);
@@ -91,28 +91,25 @@ public class Order implements Serializable {
         item.setName(c.getName());
         item.setPrice(c.getPrice());
         item.setVersion(c.getVersion());
-        item.setStatus(c.getStatus());
         item.setBrand(c.getBrand());
         item.setType(c.getType());
         return item;
     }
 
-    public OrderItem convertProduct(Product p, String pid, String color, String img) {
+    public OrderItem convertProduct(Product p) {
         OrderItem item = new OrderItem();
-        item.setQuantity(1);
-        item.setImg(img);
-        item.setColor(color);
-        item.setProductID(pid);
-
         item.setName(p.getName());
+        item.setQuantity(1);
+        Map.Entry<Color, String> entry = p.getImg().entrySet().iterator().next(); // map ở direct buy chỉ còn 1 cặp key-value mà theo màu mà người dùng đã chọn
+        item.setImg(entry.getValue());
+        item.setColor(entry.getKey().getName());
+        item.setProductID(p.getId());
         if (p.getDiscount() > 0) {
-            item.setPrice(p.getPrice() - (p.getPrice() * p.getDiscount() / 100));
+            item.setPrice(p.getPrice() * (1 - p.getDiscount()));
         } else {
             item.setPrice(p.getPrice());
         }
-
         item.setVersion(p.getVersion());
-        item.setStatus(p.getStatus());
         item.setBrand(p.getBrand());
         item.setType(p.getType());
         return item;

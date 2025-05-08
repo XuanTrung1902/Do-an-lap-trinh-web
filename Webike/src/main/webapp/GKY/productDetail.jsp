@@ -99,8 +99,8 @@
                 <form action="direct-buy" method="POST">
                     <input type="hidden" id="directBuy" name="method" value="direct">
                     <input type="hidden" name="id" value="${p.id}">
-                    <input type="hidden" id="directBuyColor" name="color" value="">
-                    <input type="hidden" id="directBuyImg" name="img" value="">
+                    <input type="hidden" id="directBuyColor" name="color" value="${color.id}">
+                    <input type="hidden" id="directBuyImg" name="img" value="${img}">
                     <button type="submit" class="buy">Mua ngay</button>
                 </form>
 
