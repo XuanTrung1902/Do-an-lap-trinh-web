@@ -60,17 +60,29 @@
                         <div class="form-group">
                             <label for="order-status">Trạng thái</label>
                             <select id="order-status" name="status">
-                                <option selected value="Đã đặt cọc">Đã cọc</option>
-                                <option value="Đã thanh toán">Đã thanh toán</option>
+                                <c:forEach var="s" items="${status}">
+                                    <c:choose>
+                                        <c:when test="${order.status.equalsIgnoreCase(s.valueString)}">
+                                            <option selected value="${s.valueString}">${s.valueString}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="${s.valueString}">${s.valueString}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="order-date">Ngày hẹn lấy hàng</label>
+                            <label for="order-date">Ngày hẹn làm giấy tờ</label>
                             <input type="date" id="order-date" name="appointment" value="${order.appointment}">
                         </div>
                         <div class="form-group">
+                            <label for="order-date">Ngày đặt cọc</label>
+                            <input type="text" readonly id="deposit-date" name="depositDate" value="${order.depositDate}">
+                        </div>
+                        <div class="form-group">
                             <label for="order-date">Ngày thanh toán</label>
-                            <input type="date" id="pay-date" name="payDate" value="${order.payDate}">
+                            <input type="datetime-local" id="pay-date" name="payDate" value="${order.payDate}">
                         </div>
                         <div class="form-group">
                             <label for="order-status">Chi nhánh</label>

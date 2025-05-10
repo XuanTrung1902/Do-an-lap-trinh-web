@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.webike.dao.OrderDAO;
 import vn.edu.hcmuaf.fit.webike.dao.PaymentDAO;
 import vn.edu.hcmuaf.fit.webike.models.Order;
+import vn.edu.hcmuaf.fit.webike.models.OrderStatus;
 import vn.edu.hcmuaf.fit.webike.models.Shop;
 
 import java.io.IOException;
@@ -23,12 +24,15 @@ public class OrderEdit extends HttpServlet {
         Order o = dao.getOrdersByID(oid);
 
         PaymentDAO pdao = new PaymentDAO();
+        OrderDAO odao = new OrderDAO();
         List<Shop> shops = pdao.getShops();
         int branch = o.getShop().getId();
+        List<OrderStatus> status = odao.getOrderStatus();
 
         request.setAttribute("order", o);
         request.setAttribute("shops", shops);
         request.setAttribute("branch", branch);
+        request.setAttribute("status", status);
 
         request.getRequestDispatcher("Admin/order_edit.jsp").forward(request, response);
     }

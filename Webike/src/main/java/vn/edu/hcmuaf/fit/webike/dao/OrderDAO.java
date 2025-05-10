@@ -2,10 +2,7 @@ package vn.edu.hcmuaf.fit.webike.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
-import vn.edu.hcmuaf.fit.webike.models.Order;
-import vn.edu.hcmuaf.fit.webike.models.OrderItem;
-import vn.edu.hcmuaf.fit.webike.models.Shop;
-import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.util.List;
 
@@ -47,6 +44,7 @@ public class OrderDAO {
                     o.setRemain(rs.getLong("remain"));
                     o.setAddress(rs.getString("address"));
                     o.setAppointment(rs.getString("appointment"));
+                    o.setDepositDate(rs.getString("depositDate"));
                     o.setPayDate(rs.getString("payDate"));
                     o.setStatus(rs.getString("status"));
 
@@ -135,6 +133,7 @@ public class OrderDAO {
                     o.setRemain(rs.getLong("remain"));
                     o.setAddress(rs.getString("address"));
                     o.setAppointment(rs.getString("appointment"));
+                    o.setDepositDate(rs.getString("depositDate"));
                     o.setPayDate(rs.getString("payDate"));
                     o.setStatus(rs.getString("status"));
 
@@ -160,6 +159,15 @@ public class OrderDAO {
                     o.setShop(s);
                     return o;
                 }).one()
+        );
+    }
+
+    public List<OrderStatus> getOrderStatus() {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "SELECT * FROM orderstatus";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .mapToBean(OrderStatus.class)
+                .list()
         );
     }
 }
