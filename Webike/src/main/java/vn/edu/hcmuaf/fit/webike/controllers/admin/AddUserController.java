@@ -28,6 +28,9 @@ public class AddUserController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         String name = request.getParameter("username");
         String phoneNum = request.getParameter("phone");
         String DOB = request.getParameter("birthday");
@@ -42,17 +45,16 @@ public class AddUserController extends HttpServlet {
 
         Part filePart = request.getPart("image");
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+
         String uploadPath = getServletContext().getRealPath("") + File.separator + "img" + File.separator + "Users";
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
-            uploadDir.mkdirs(); // Tạo thư mục nếu chưa tồn tại
+            uploadDir.mkdirs();
         }
-        File sourceFile = new File("C:\\Users\\user\\Pictures\\web\\" + fileName);
         File destFile = new File(uploadPath + File.separator + fileName);
-        Files.copy(sourceFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        filePart.write(destFile.getAbsolutePath()); // Lưu file ảnh đúng cách
 
         String imagePath = "img/Users/" + fileName;
-
 
         if (UserSevice.isPhoneNumExists(phoneNum)) {
             request.setAttribute("error", "Số điện thoại đã tồn tại");
@@ -65,7 +67,13 @@ public class AddUserController extends HttpServlet {
             request.setAttribute("verify", verify);
             request.setAttribute("role", role);
             request.setAttribute("email", email);
-            request.getRequestDispatcher("/addUser").forward(request, response);
+
+            if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+                response.setContentType("application/json");
+                response.getWriter().write("{\"success\": false, \"message\": \"Số điện thoại đã tồn tại\"}");
+            } else {
+                request.getRequestDispatcher("/addUser").forward(request, response);
+            }
             return;
         }
 
@@ -83,22 +91,16 @@ public class AddUserController extends HttpServlet {
         user.setImage(imagePath);
         user.setEmail(email);
 
-
-
         UserDao userDao = new UserDao();
         boolean isAdded = userDao.addUserAdmin(user);
 
         if (isAdded) {
-
             if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
-                // Lấy ID mới thêm từ DB
-                User addedUser = userDao.findUserPhone(phoneNum); // hoặc dùng cách khác nếu cần
-                // Trả về user JSON
+                User addedUser = userDao.findUserPhone(phoneNum);
                 String userJson = new Gson().toJson(addedUser);
                 String contextPath = request.getContextPath();
-
                 response.getWriter().write("{\"success\": true, \"user\": " + userJson + ", \"contextPath\": \"" + contextPath + "\"}");
             } else {
                 response.sendRedirect(request.getContextPath() + "/userList");

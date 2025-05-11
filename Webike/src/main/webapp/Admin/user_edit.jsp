@@ -56,8 +56,9 @@
                         <h1>Chỉnh sửa thông tin người dùng</h1>
                     </div>
                     <div class="admin-content-main-container">
-                        <form class="edit-user-form" action="<%= request.getContextPath() %>/updateUser" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="userId" value="${user.id}">
+<%--                        <form class="edit-user-form" action="<%= request.getContextPath() %>/updateUser" method="post" enctype="multipart/form-data">--%>
+    <form class="edit-user-form" action="<%= request.getContextPath() %>/updateUser" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="userId" value="${user.id}">
                             <div class="form-group">
                                 <label for="username">Tên đăng nhập:</label>
                                 <input type="text" id="username" name="username" value="${user.name}" required>

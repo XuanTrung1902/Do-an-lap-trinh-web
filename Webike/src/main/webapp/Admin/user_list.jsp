@@ -67,7 +67,7 @@
 
                 </c:forEach>
                 <div class="admin-content-main">
-                    <div class="admin-content-main-title">
+                    <div class="admin-c ontent-main-title">
                         <h1>Người dùng</h1>
                         <button class="btn-add__user">Thêm người dùng</button>
                         <button class="btn-import__user">Nhập từ file</button>
@@ -78,7 +78,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Tên đăng nhập</th>
-<%--                                <th>Mật khẩu</th>--%>
                                 <th>Ngày sinh</th>
                                 <th>Giới tính</th>
                                 <th>Địa chỉ</th>
@@ -101,10 +100,16 @@
                                     <td>${user.phoneNum}</td>
                                     <td>${user.role}</td>
                                     <td>${user.locked}</td>
-                                    <td><img src="${user.image}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;"></td>
+                                    <td>
+                                        <img src="${pageContext.request.contextPath}/${user.image}"
+                                             alt="User Image"
+                                             onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/img/Users/default.png';"
+                                             style="width: 50px; height: 50px; border-radius: 50%;">
+                                    </td>
                                     <td>
                                         <c:if test="${canEditUser}">
                                         <a href="<%= request.getContextPath() %>/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
+<%--                                            <button class="btn-edit" data-id="${user.id}">Sửa</button>--%>
                                         </c:if>
                                         <c:if test="${canDeleteUser}">
                                         <form action="<%= request.getContextPath() %>/deleteUser" method="post" style="display:inline;">
@@ -214,8 +219,6 @@
             </form>
         </div>
     </div>
-
-
     <!-- Modal phân quyền -->
     <div class="modal" id="assignPermissionModal">
         <div class="modal-content">
@@ -257,10 +260,6 @@
         </div>
     </div>
 
-
-
-
-
     <script>
         document.querySelector('.btn-add__user').addEventListener('click', function() {
             document.getElementById('modal').style.display = 'block';
@@ -269,11 +268,6 @@
         document.querySelector('.close-button').addEventListener('click', function() {
             document.getElementById('modal').style.display = 'none';
         });
-
-        document.getElementById('add-user-form').addEventListener('submit', function(e) {
-            document.getElementById('modal').style.display = 'none';
-        });
-
         window.addEventListener('click', function(event) {
             const modal = document.getElementById('modal');
             if (event.target === modal) {
@@ -296,13 +290,10 @@
             }
         });
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-
-    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-    <script src="<%= request.getContextPath()%>/Admin/assets/js/user_list.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -367,8 +358,102 @@
             loadUserList(); // Khởi tạo bảng
         });
     </script>
+    <script>
+         document.getElementById("add-user-form").addEventListener("submit", function (e) {
+         e.preventDefault();
+         const form = e.target;
+         const formData = new FormData(form);
 
+         fetch(form.action, {
+             method: "POST",
+             body: formData,
+             headers: {
+                 "X-Requested-With": "XMLHttpRequest"
+             }
+         })
+             .then(res => {
+                 if (!res.ok) {
+                     throw new Error("Server trả về lỗi: " + res.status);
+                 }
+                 return res.text();
+             })
+             .then(text => {
+                 console.log("Phản hồi từ server (raw):", text);
+
+                 const data = JSON.parse(text);
+
+                 if (data.success) {
+                     const user = data.user;
+                     const contextPath = data.contextPath;
+
+                     console.log("user:", user);
+
+                     const tableBody = document.querySelector("#list-user tbody");
+                     const newRow = document.createElement("tr");
+
+                                     newRow.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.DOB}</td>
+                    <td>${user.sex}</td>
+                    <td>${user.address}</td>
+                    <td>${user.phoneNum}</td>
+                    <td>${user.role}</td>
+                    <td>${user.locked}</td>
+                    <td>
+                        <img src="${contextPath}/${user.image.startsWith('/') ? user.image.substring(1) : user.image}"
+                             onerror="this.onerror=null; this.src='${contextPath}/Webike/img/Users/default.png';"
+                             style="width:50px;height:50px;border-radius:50%;">
+                    </td>
+                    <td>
+                        <a href="${contextPath}/Webike/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
+                        <form action="${contextPath}/Webike/deleteUser" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="${user.id}">
+                            <button type="submit" class="delete-button">Xóa</button>
+                        </form>
+                        <button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(${user.id})">
+                            Phân quyền
+                        </button>
+                    </td>
+                `;
+                     dataTable.row.add([
+                         user.id,
+                         user.name,
+                         user.DOB,
+                         user.sex,
+                         user.address,
+                         user.phoneNum,
+                         user.role,
+                         user.locked,
+                         `<img src="${contextPath}/Webike/${user.image.startsWith('/') ? user.image.substring(1) : user.image}"
+         onerror="this.onerror=null; this.src='${contextPath}/Webike/img/Users/default.png';"
+         style="width:50px;height:50px;border-radius:50%;">`,
+                         `<a href="${contextPath}/Webike/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
+     <form action="${contextPath}/Webike/deleteUser" method="post" style="display:inline;">
+         <input type="hidden" name="id" value="${user.id}">
+         <button type="submit" class="delete-button">Xóa</button>
+     </form>
+     <button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(${user.id})">
+         Phân quyền
+     </button>`
+                     ]).draw(false);
+
+
+                     form.reset();
+                     document.getElementById("modal").style.display = "none";
+                     alert("Thêm người dùng thành công!");
+                 } else {
+                     alert("Thêm thất bại: " + data.message);
+                 }
+             })
+             .catch(error => {
+                 console.error("Lỗi khi gửi yêu cầu:", error);
+                 alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+             });
+     });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<%= request.getContextPath()%>/Admin/assets/js/user_list.js"></script>
     <script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>
 </body>
 </html>

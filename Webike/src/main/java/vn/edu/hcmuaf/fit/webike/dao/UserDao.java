@@ -241,7 +241,7 @@ public class UserDao {
                 .bind("email", email)
                 .bind("phoneNum", "0000000000")
                 .bind("password", "google")
-                .bind("image", "img/Users/def.png")
+                .bind("image", "img/Users/default.png")
                 .bind("dob", "2000-01-01")
                 .bind("sex", "Khác")
                 .bind("address", "Chưa cập nhật")
