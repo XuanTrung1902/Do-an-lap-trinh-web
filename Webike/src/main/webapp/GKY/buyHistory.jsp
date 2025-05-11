@@ -77,11 +77,45 @@
                 </div>
             </div>
         </c:forEach>
+        <c:if test="${totalPages > 1}">
+            <div class="pagination d-flex justify-content-center mt-4 mb-4">
+                <c:if test="${currentPage > 1}">
+                    <a href="buy-history?page=${currentPage - 1}" class="page__link">Trang trước</a>
+                </c:if>
+                <c:forEach begin="1" end="${totalPages}" var="i">
+                    <c:choose>
+                        <c:when test="${i == currentPage}">
+                            <span class="page__link active">${i}</span>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="buy-history?page=${i}" class="page__link">${i}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:if test="${currentPage < totalPages}">
+                    <a href="buy-history?page=${currentPage + 1}" class="page__link">Trang sau</a>
+                </c:if>
+            </div>
+        </c:if>
     </div>
 
 
     <jsp:include page="/GKY/footer.jsp"/>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('.tab-item');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => t.classList.remove('tab-item--active'));
+                this.classList.add('tab-item--active');
+            });
+        });
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

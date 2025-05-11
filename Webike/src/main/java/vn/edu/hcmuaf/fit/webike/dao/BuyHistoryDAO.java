@@ -8,11 +8,54 @@ import java.util.List;
 public class BuyHistoryDAO {
     public static void main(String[] args) {
         BuyHistoryDAO dao = new BuyHistoryDAO();
-        System.out.println(dao.getOrderItems(13).size());
-        for (OrderItem o: dao.getOrderItems(13)){
-            System.out.println(o.toString());
-        }
+//        int accountID = 13;
+//        int page = 1;
+//        int itemsPerPage = 5;
+//        List<OrderItem> items = dao.getPaginatedOrderItems(accountID, page, itemsPerPage);
+//        System.out.println("Items on page " + page + ": " + items.size());
+//        for (OrderItem o : items) {
+//            System.out.println(o.toString());
+//        }
+//        int totalItems = dao.getTotalOrderItems(accountID);
+//        System.out.println("Total items: " + totalItems);
     }
+
+    public List<OrderItem> getPaginatedOrderItems(int accountID, int page, int itemsPerPage) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+                SELECT oi.*, p.name, p.version, (oi.quantity * p.price) AS price, o.status, b.name as brand, t.type as type
+                FROM orderitems AS oi
+                JOIN orders AS o ON oi.orderID = o.id
+                JOIN products AS p ON oi.productID = p.id
+                JOIN brands AS b ON p.brandID = b.id
+                JOIN biketypes AS t ON p.typeID = t.id
+                WHERE o.accountID = :accountID
+                ORDER BY o.id DESC
+                LIMIT :limit OFFSET :offset
+                """;
+        int offset = (page - 1) * itemsPerPage;
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("accountID", accountID)
+                .bind("limit", itemsPerPage)
+                .bind("offset", offset)
+                .mapToBean(OrderItem.class)
+                .list());
+    }
+
+    public int getTotalOrderItems(int accountID) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+                SELECT COUNT(*) 
+                FROM orderitems AS oi
+                JOIN orders AS o ON oi.orderID = o.id
+                WHERE o.accountID = :accountID
+                """;
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("accountID", accountID)
+                .mapTo(Integer.class)
+                .one());
+    }
+
 
     public List<OrderItem> getOrderItems(int accountID) {
         Jdbi jdbi = JDBIConnect.get();
