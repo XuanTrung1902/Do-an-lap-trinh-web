@@ -27,6 +27,7 @@ public class Pay extends HttpServlet {
 
         double deposit = Double.parseDouble(request.getParameter("vnp_Amount")) / 100; // chia 100k vì mặc định vnp_Amount sẽ nhân thêm 100 đồng
         double remain = (double) request.getSession().getAttribute("remain");
+        String phoneNum = (String) request.getSession().getAttribute("phoneNum");
         String appointment = (String) request.getSession().getAttribute("appointment");
         String depositDate = request.getParameter("vnp_PayDate");
         String address = (String) request.getSession().getAttribute("address");
@@ -38,10 +39,10 @@ public class Pay extends HttpServlet {
         int oid = 0;
         if (responseCode.equalsIgnoreCase("00")) {
             status = "Đã cọc";
-            oid = dao.insertOrder(deposit, remain, address, appointment, depositDate, null, status, accountID, shopID);
+            oid = dao.insertOrder(phoneNum, deposit, remain, address, appointment, depositDate, null, status, accountID, shopID);
         }else if (responseCode.equalsIgnoreCase("09") || responseCode.equalsIgnoreCase("24")) {
             status = "Đã hủy";
-            oid = dao.insertOrder(0, 0, "", null, null,null, status, accountID, shopID);
+            oid = dao.insertOrder(phoneNum,0, 0, "", null, null,null, status, accountID, shopID);
         }
 
         request.setAttribute("orderItem", order.getData());

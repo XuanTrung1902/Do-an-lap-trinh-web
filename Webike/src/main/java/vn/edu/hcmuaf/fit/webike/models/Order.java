@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 public class Order implements Serializable {
     private int id;
     private List<OrderItem> data;
+    private String phoneNum;
     private double deposit;
     private double remain;
     private String address;
@@ -22,6 +23,7 @@ public class Order implements Serializable {
     public Order() {
         this.id = id;
         this.data = new ArrayList<OrderItem>();
+        this.phoneNum = phoneNum;
         this.deposit = deposit;
         this.remain = remain;
         this.address = address;
@@ -33,9 +35,10 @@ public class Order implements Serializable {
         this.shop = shop;
     }
 
-    public Order(int id, List<OrderItem> data, double deposit, double remain, String address, String appointment, String depositDate, String payDate, String status, User user, Shop shop) {
+    public Order(int id, List<OrderItem> data, String phoneNum, double deposit, double remain, String address, String appointment, String depositDate, String payDate, String status, User user, Shop shop) {
         this.id = id;
         this.data = new ArrayList<OrderItem>();
+        this.phoneNum = phoneNum;
         this.deposit = deposit;
         this.remain = remain;
         this.address = address;
@@ -111,6 +114,13 @@ public class Order implements Serializable {
         return item;
     }
 
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
 
     public double getDeposit() {
         return deposit;
@@ -197,6 +207,7 @@ public class Order implements Serializable {
         return "Order{" +
                 "id=" + id +
                 ", data=" + data +
+                ", phoneNum=" + phoneNum +
                 ", deposit=" + deposit +
                 ", remain=" + remain +
                 ", address='" + address + '\'' +

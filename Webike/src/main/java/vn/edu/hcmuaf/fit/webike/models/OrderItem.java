@@ -127,4 +127,22 @@ public class OrderItem {
     public void setCommented(int commented) {
         this.commented = commented;
     }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", img='" + img + '\'' +
+                ", color='" + color + '\'' +
+                ", productID=" + productID +
+                ", orderID='" + orderID + '\'' +
+                ", price=" + price +
+                ", version='" + version + '\'' +
+                ", brand='" + brand + '\'' +
+                ", type='" + type + '\'' +
+                ", commented=" + commented +
+                '}';
+    }
 }

@@ -7,11 +7,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.webike.dao.OrderDAO;
 import vn.edu.hcmuaf.fit.webike.dao.PaymentDAO;
-import vn.edu.hcmuaf.fit.webike.models.Order;
-import vn.edu.hcmuaf.fit.webike.models.OrderStatus;
-import vn.edu.hcmuaf.fit.webike.models.Shop;
+import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @WebServlet(name = "OrderEdit", value = "/order-edit")
@@ -28,11 +27,19 @@ public class OrderEdit extends HttpServlet {
         List<Shop> shops = pdao.getShops();
         int branch = o.getShop().getId();
         List<OrderStatus> status = odao.getOrderStatus();
+        List<OrderItem> itemList = dao.getOrderItems(oid);
+
+        LinkedHashMap<Integer, List<Color>> colorMap = new LinkedHashMap<>();
+        for (OrderItem item : itemList) {
+            colorMap.put(item.getProductID(), dao.mapOfColorsAndProductID(item.getProductID()));
+        }
 
         request.setAttribute("order", o);
         request.setAttribute("shops", shops);
         request.setAttribute("branch", branch);
         request.setAttribute("status", status);
+        request.setAttribute("itemList", itemList);
+        request.setAttribute("colorMap", colorMap);
 
         request.getRequestDispatcher("Admin/order_edit.jsp").forward(request, response);
     }
@@ -42,13 +49,13 @@ public class OrderEdit extends HttpServlet {
         OrderDAO dao = new OrderDAO();
 
         int oid = Integer.parseInt(request.getParameter("oid"));
+        String phoneNum = request.getParameter("phoneNum");
         String address = request.getParameter("address");
         String status = request.getParameter("status");
         String appointment = request.getParameter("appointment");
         String payDate = request.getParameter("payDate");
-        int shopID = Integer.parseInt(request.getParameter("branch"));
-        int update = dao.updateOrder(oid, address, status, appointment, payDate, shopID);
-        System.out.println(update);
+        int shopID = Integer.parseInt(request.getParameter("branch")); // chi nhánh
+        int update = dao.updateOrder(oid, phoneNum, address,status, appointment, payDate, shopID);
         response.sendRedirect("order-list");
 
     }

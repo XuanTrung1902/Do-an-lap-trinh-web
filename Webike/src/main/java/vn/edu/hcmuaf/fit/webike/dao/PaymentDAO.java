@@ -29,13 +29,14 @@ public class PaymentDAO {
         return rs;
     }
 
-    public int insertOrder(double deposit, double remain, String address, String appointment, String depositDate, String payDate, String status, int accountID, int shopID) {
+    public int insertOrder(String phoneNum, double deposit, double remain, String address, String appointment, String depositDate, String payDate, String status, int accountID, int shopID) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                insert into orders (deposit, remain, address, appointment, depositDate, payDate, status, accountID, shopID)
-                values (:deposit, :remain, :address, :appointment, :depositDate, :payDate, :status, :accountID, :shopID)
+                insert into orders (phoneNum, deposit, remain, address, appointment, depositDate, payDate, status, accountID, shopID)
+                values (:phoneNum, :deposit, :remain, :address, :appointment, :depositDate, :payDate, :status, :accountID, :shopID)
                 """;
         return jdbi.withHandle(handle -> handle.createUpdate(sql)
+                        .bind("phoneNum", phoneNum)
                         .bind("deposit", deposit)
                         .bind("remain", remain)
                         .bind("address", address)
