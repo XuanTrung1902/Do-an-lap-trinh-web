@@ -15,20 +15,28 @@ import java.sql.Date;
 @WebServlet(name = "UpdateUserController", value = "/updateUser")
 @MultipartConfig
 public class UpdateUserController extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        UserDao userDao = new UserDao();
-        User user = userDao.getUserById(id);
-        if (user != null) {
-            request.setAttribute("user", user);
-            request.getRequestDispatcher("/Admin/user_edit.jsp").forward(request, response);
-        } else {
+        String idParam = request.getParameter("id");
+        if (idParam == null || idParam.isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/userList");
+            return;
+        }
+
+        try {
+            int id = Integer.parseInt(idParam);
+            UserDao userDao = new UserDao();
+            User user = userDao.getUserById(id);
+            if (user != null) {
+                request.setAttribute("user", user);
+                request.getRequestDispatcher("/Admin/user_edit.jsp").forward(request, response);
+            } else {
+                response.sendRedirect(request.getContextPath() + "/userList");
+            }
+        } catch (NumberFormatException e) {
             response.sendRedirect(request.getContextPath() + "/userList");
         }
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userIdStr = request.getParameter("userId");

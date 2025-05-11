@@ -109,13 +109,9 @@
                                     <td>
                                         <c:if test="${canEditUser}">
                                         <a href="<%= request.getContextPath() %>/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
-<%--                                            <button class="btn-edit" data-id="${user.id}">Sửa</button>--%>
                                         </c:if>
                                         <c:if test="${canDeleteUser}">
-                                        <form action="<%= request.getContextPath() %>/deleteUser" method="post" style="display:inline;">
-                                            <input type="hidden" name="id" value="${user.id}">
-                                            <button type="submit" class="delete-button" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng ${user.name}?');">Xóa</button>
-                                        </form>
+                                            <button class="delete-button" onclick="confirmDeleteUser(${user.id}, '${user.name}')">Xóa</button>
                                         </c:if>
                                         <c:if test="${canReadPQ}">
                                         <button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(${user.id})">
@@ -407,38 +403,14 @@
                     </td>
                     <td>
                         <a href="${contextPath}/Webike/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
-                        <form action="${contextPath}/Webike/deleteUser" method="post" style="display:inline;">
-                            <input type="hidden" name="id" value="${user.id}">
-                            <button type="submit" class="delete-button">Xóa</button>
-                        </form>
+                        <button type="button" class="delete-button" onclick="confirmDeleteUser(${user.id}, '${user.name}')">Xóa</button>
                         <button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(${user.id})">
                             Phân quyền
                         </button>
                     </td>
                 `;
-                     dataTable.row.add([
-                         user.id,
-                         user.name,
-                         user.DOB,
-                         user.sex,
-                         user.address,
-                         user.phoneNum,
-                         user.role,
-                         user.locked,
-                         `<img src="${contextPath}/Webike/${user.image.startsWith('/') ? user.image.substring(1) : user.image}"
-         onerror="this.onerror=null; this.src='${contextPath}/Webike/img/Users/default.png';"
-         style="width:50px;height:50px;border-radius:50%;">`,
-                         `<a href="${contextPath}/Webike/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
-     <form action="${contextPath}/Webike/deleteUser" method="post" style="display:inline;">
-         <input type="hidden" name="id" value="${user.id}">
-         <button type="submit" class="delete-button">Xóa</button>
-     </form>
-     <button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(${user.id})">
-         Phân quyền
-     </button>`
-                     ]).draw(false);
-
-
+                     console.log("User ID:", user.id);
+                     dataTable.row.add(newRow).draw(false);
                      form.reset();
                      document.getElementById("modal").style.display = "none";
                      alert("Thêm người dùng thành công!");
