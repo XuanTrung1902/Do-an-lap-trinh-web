@@ -58,7 +58,6 @@
                     <div class="admin-content-main-container">
 <%--                        <form class="edit-user-form" action="<%= request.getContextPath() %>/updateUser" method="post" enctype="multipart/form-data">--%>
     <form class="edit-user-form" action="<%= request.getContextPath() %>/updateUser" method="post" enctype="multipart/form-data">
-
     <input type="hidden" name="userId" value="${user.id}">
                             <div class="form-group">
                                 <label for="username">Tên đăng nhập:</label>

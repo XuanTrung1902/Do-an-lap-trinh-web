@@ -78,7 +78,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Tên đăng nhập</th>
-<%--                                <th>Mật khẩu</th>--%>
                                 <th>Ngày sinh</th>
                                 <th>Giới tính</th>
                                 <th>Địa chỉ</th>
@@ -102,7 +101,6 @@
                                     <td>${user.role}</td>
                                     <td>${user.locked}</td>
                                     <td>
-<%--                                        <img src="${user.image}" alt="User Image" style="width: 50px; height: 50px; border-radius: 50%;">--%>
                                         <img src="${pageContext.request.contextPath}/${user.image}"
                                              alt="User Image"
                                              onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/img/Users/default.png';"
@@ -221,8 +219,6 @@
             </form>
         </div>
     </div>
-
-
     <!-- Modal phân quyền -->
     <div class="modal" id="assignPermissionModal">
         <div class="modal-content">
@@ -264,10 +260,6 @@
         </div>
     </div>
 
-
-
-
-
     <script>
         document.querySelector('.btn-add__user').addEventListener('click', function() {
             document.getElementById('modal').style.display = 'block';
@@ -298,14 +290,8 @@
             }
         });
     </script>
-
-
-
-<%--    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>--%>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-<%--    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>--%>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
@@ -466,8 +452,6 @@
              });
      });
     </script>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<%= request.getContextPath()%>/Admin/assets/js/user_list.js"></script>
     <script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>
