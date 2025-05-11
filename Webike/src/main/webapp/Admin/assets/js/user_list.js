@@ -131,3 +131,26 @@ function initTableData() {
     },
   });
 }
+
+function confirmDeleteUser(userId, userName) {
+  if (!confirm(`Bạn có chắc chắn muốn xóa người dùng ${userName}?`)) {
+    return;
+  }
+
+  fetch('deleteUser', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `id=${userId}`
+  })
+      .then(response => {
+        if (!response.ok) throw new Error("Xóa thất bại");
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error("Lỗi khi xóa:", error);
+        alert("Xóa người dùng thất bại. Vui lòng thử lại.");
+      });
+}
+

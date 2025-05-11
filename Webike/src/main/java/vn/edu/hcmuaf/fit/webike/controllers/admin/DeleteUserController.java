@@ -16,7 +16,8 @@ public class DeleteUserController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
         UserDao userDao = new UserDao();
         boolean isUpdated = userDao.updateUserVerify(id, 1); // Cập nhật verify thành 1
 
@@ -26,6 +27,8 @@ public class DeleteUserController extends HttpServlet {
             request.setAttribute("error", "Cập nhật trạng thái người dùng thất bại.");
             request.getRequestDispatcher("Admin/user_list.jsp").forward(request, response);
         }
+        } catch (Exception e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Lỗi dữ liệu đầu vào");
+        }
     }
-
 }
