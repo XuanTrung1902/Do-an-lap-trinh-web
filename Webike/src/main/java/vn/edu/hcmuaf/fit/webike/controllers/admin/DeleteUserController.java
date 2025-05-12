@@ -18,17 +18,22 @@ public class DeleteUserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
-        UserDao userDao = new UserDao();
-        boolean isUpdated = userDao.updateUserVerify(id, 1); // Cập nhật verify thành 1
+            UserDao userDao = new UserDao();
+            boolean isUpdated = userDao.updateUserVerify(id, 1); // Soft delete
 
-        if (isUpdated) {
-            response.sendRedirect(request.getContextPath() + "/userList");
-        } else {
-            request.setAttribute("error", "Cập nhật trạng thái người dùng thất bại.");
-            request.getRequestDispatcher("Admin/user_list.jsp").forward(request, response);
-        }
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+
+            if (isUpdated) {
+                response.getWriter().write("{\"success\": true}");
+            } else {
+                response.getWriter().write("{\"success\": false, \"message\": \"Không thể cập nhật trạng thái người dùng.\"}");
+            }
         } catch (Exception e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Lỗi dữ liệu đầu vào");
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.setContentType("application/json");
+            response.getWriter().write("{\"success\": false, \"message\": \"Dữ liệu đầu vào không hợp lệ.\"}");
         }
     }
+
 }
