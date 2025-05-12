@@ -131,7 +131,6 @@ function initTableData() {
     },
   });
 }
-
 function confirmDeleteUser(userId, userName) {
   if (!confirm(`Bạn có chắc chắn muốn xóa người dùng ${userName}?`)) {
     return;
@@ -141,16 +140,31 @@ function confirmDeleteUser(userId, userName) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
+      'X-Requested-With': 'XMLHttpRequest'
     },
     body: `id=${userId}`
   })
       .then(response => {
         if (!response.ok) throw new Error("Xóa thất bại");
-        window.location.reload();
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
+          const table = $('#list-user').DataTable(); // Lấy DataTable instance
+          const row = table.row(`tr[data-id="${userId}"]`);
+
+          if (row.node()) {
+            row.remove().draw(false); // Xóa dòng và cập nhật bảng
+            alert("Xóa người dùng thành công!");
+          } else {
+            console.warn("Không tìm thấy dòng có ID:", userId);
+          }
+        } else {
+          alert("Xóa thất bại: " + data.message);
+        }
       })
       .catch(error => {
         console.error("Lỗi khi xóa:", error);
         alert("Xóa người dùng thất bại. Vui lòng thử lại.");
       });
 }
-
