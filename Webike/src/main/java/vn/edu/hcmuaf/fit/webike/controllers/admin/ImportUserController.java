@@ -32,8 +32,12 @@ public class ImportUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<String> errorMessages = new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
 
         try {
             Part filePart = request.getPart("userFile");
@@ -43,7 +47,6 @@ public class ImportUserController extends HttpServlet {
                      Workbook workbook = new XSSFWorkbook(fileStream)) {
 
                     Sheet sheet = workbook.getSheetAt(0);
-                    List<User> users = new ArrayList<>();
 
                     for (Row row : sheet) {
                         if (row.getRowNum() == 0) continue;
@@ -54,89 +57,70 @@ public class ImportUserController extends HttpServlet {
                             user.setName(getCellValue(row.getCell(0)).trim());
                             user.setAddress(getCellValue(row.getCell(5)).trim());
                             user.setEmail(getCellValue(row.getCell(6)).trim());
-                            user.setPassword(UserSevice.hashPassword( getCellValue(row.getCell(4))));
+                            user.setPassword(UserSevice.hashPassword(getCellValue(row.getCell(4))));
 
-                            // Xử lý ngày sinh
+                            // Ngày sinh
                             Cell dobCell = row.getCell(2);
                             if (dobCell != null) {
-                                try {
-                                    if (dobCell.getCellType() == CellType.NUMERIC) {
-                                        // Nếu là số, Excel lưu ngày tháng theo dạng số serial
-                                        user.setDOB(new java.sql.Date(dobCell.getDateCellValue().getTime()));
-                                    } else if (dobCell.getCellType() == CellType.STRING) {
-                                        // Nếu là chuỗi, kiểm tra và chuyển đổi
-                                        String dobStr = dobCell.getStringCellValue().trim();
-                                        if (!dobStr.isEmpty()) {
-                                            try {
-                                                SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
-                                                SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd"); // Chuyển sang định dạng Java yêu cầu
-                                                java.util.Date parsedDate = inputFormat.parse(dobStr);
-                                                String formattedDate = outputFormat.format(parsedDate);
-                                                user.setDOB(java.sql.Date.valueOf(formattedDate)); // Chuyển thành SQL Date
-                                            } catch (Exception e) {
-                                                System.out.println("Lỗi khi chuyển đổi DOB: " + e.getMessage());
-                                                user.setDOB(null);
-                                            }
-                                        }
-                                    } else {
+                                if (dobCell.getCellType() == CellType.NUMERIC) {
+                                    user.setDOB(new java.sql.Date(dobCell.getDateCellValue().getTime()));
+                                } else {
+                                    String dobStr = dobCell.getStringCellValue().trim();
+                                    try {
+                                        SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
+                                        java.util.Date parsedDate = inputFormat.parse(dobStr);
+                                        user.setDOB(new java.sql.Date(parsedDate.getTime()));
+                                    } catch (Exception e) {
                                         user.setDOB(null);
                                     }
-                                } catch (Exception e) {
-                                    System.out.println("Lỗi khi xử lý ngày sinh: " + e.getMessage());
-                                    user.setDOB(null);
                                 }
                             }
 
-                            // Xử lý số điện thoại
+                            // SĐT
                             Cell phoneCell = row.getCell(1);
-                            String phoneNumber = "";
-                            if (phoneCell != null) {
-                                if (phoneCell.getCellType() == CellType.NUMERIC) {
-                                    phoneNumber = String.format("%.0f", phoneCell.getNumericCellValue());
-                                } else {
-                                    phoneNumber = getCellValue(phoneCell);
-                                }
-                            }
+                            String phoneNumber = (phoneCell != null && phoneCell.getCellType() == CellType.NUMERIC)
+                                    ? String.format("%.0f", phoneCell.getNumericCellValue())
+                                    : getCellValue(phoneCell);
                             user.setPhoneNum(phoneNumber);
 
-                            // Xử lý giới tính
-                            Cell genderCell = row.getCell(3);
-                            String gender = getCellValue(genderCell).trim();
+                            // Giới tính
+                            String gender = getCellValue(row.getCell(3)).trim();
                             user.setSex(gender.equalsIgnoreCase("Nam") ? "Male" : "Female");
 
-                            // Xử lý các cột số nguyên
+                            // Các trường số
                             user.setLocked((int) row.getCell(7).getNumericCellValue());
                             user.setVerify((int) row.getCell(8).getNumericCellValue());
                             user.setRole((int) row.getCell(9).getNumericCellValue());
 
                             users.add(user);
-
                         } catch (Exception e) {
-                            errorMessages.add("Lỗi tại dòng " + row.getRowNum() + ": " + e.getMessage());
+                            errorMessages.add("Lỗi tại dòng " + (row.getRowNum() + 1) + ": " + e.getMessage());
                         }
                     }
 
-                    // Lưu danh sách user vào DB
-                    UserDao userDAO = new UserDao();
-                    try {
-                        userDAO.insertUsers(users);
-                        request.setAttribute("message", "Nhập dữ liệu thành công!");
-                    } catch (Exception e) {
-                        errorMessages.add("Lỗi khi lưu vào DB: " + e.getMessage());
+                    if (errorMessages.isEmpty()) {
+                        UserDao userDAO = new UserDao();
+                        userDAO.insertUsers(users); // Giả sử hàm này không trả lại danh sách có ID
+
+                        // Sau khi insert, lấy lại danh sách có ID để trả về
+                        List<User> insertedUsers = userDAO.getLatestInsertedUsers(users.size()); // Bạn phải có hàm này
+
+                        // Trả về JSON
+                        String json = buildSuccessJson(insertedUsers, request.getContextPath(), "Nhập dữ liệu thành công!");
+                        response.getWriter().write(json);
+                        return;
                     }
                 }
+            } else {
+                errorMessages.add("Không có file được chọn.");
             }
         } catch (Exception e) {
             errorMessages.add("Lỗi khi xử lý file: " + e.getMessage());
         }
 
-        // Gửi lỗi về giao diện nếu có
-        if (!errorMessages.isEmpty()) {
-            request.setAttribute("error", String.join("<br>", errorMessages));
-        }
-
-        response.sendRedirect(request.getContextPath() + "/userList");
-
+        // Trả về lỗi
+        String jsonError = "{\"success\": false, \"message\": \"" + String.join("<br>", errorMessages).replace("\"", "\\\"") + "\"}";
+        response.getWriter().write(jsonError);
     }
 
     private String getCellValue(Cell cell) {
@@ -147,6 +131,34 @@ public class ImportUserController extends HttpServlet {
             case BOOLEAN -> String.valueOf(cell.getBooleanCellValue());
             default -> "";
         };
+    }
+    private String buildSuccessJson(List<User> users, String contextPath, String message) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        sb.append("\"success\": true,");
+        sb.append("\"message\": \"" + message + "\",");
+        sb.append("\"contextPath\": \"" + contextPath + "\",");
+        sb.append("\"users\": [");
+
+        for (int i = 0; i < users.size(); i++) {
+            User user = users.get(i);
+            sb.append("{")
+                    .append("\"id\": ").append(user.getId()).append(",")
+                    .append("\"name\": \"").append(user.getName()).append("\",")
+                    .append("\"DOB\": \"").append(user.getDOB()).append("\",")
+                    .append("\"sex\": \"").append(user.getSex()).append("\",")
+                    .append("\"address\": \"").append(user.getAddress()).append("\",")
+                    .append("\"phoneNum\": \"").append(user.getPhoneNum()).append("\",")
+                    .append("\"role\": ").append(user.getRole()).append(",")
+                    .append("\"locked\": ").append(user.getLocked()).append(",")
+                    .append("\"image\": \"").append(user.getImage() != null ? user.getImage() : "").append("\"")
+                    .append("}");
+
+            if (i < users.size() - 1) sb.append(",");
+        }
+
+        sb.append("]}");
+        return sb.toString();
     }
 
 
