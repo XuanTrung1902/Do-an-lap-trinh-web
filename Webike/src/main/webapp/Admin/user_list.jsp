@@ -211,6 +211,7 @@
                     <label for="userFile">Chọn file Excel:</label>
                     <input type="file" id="userFile" name="userFile" accept=".xls,.xlsx" required>
                 </div>
+                <div id="import-feedback" style="margin-top: 10px; font-weight: bold;"></div>
                 <button type="submit" class="btn-submit">Nhập</button>
             </form>
         </div>
@@ -385,32 +386,28 @@
                      console.log("user:", user);
 
                      const tableBody = document.querySelector("#list-user tbody");
-                     const newRow = document.createElement("tr");
+                     dataTable.row.add([
+                         user.id,
+                         user.name,
+                         user.DOB,
+                         user.sex,
+                         user.address,
+                         user.phoneNum,
+                         user.role,
+                         user.locked,
+                         `<img src="${contextPath}/Webike/${user.image.startsWith('/') ? user.image.substring(1) : user.image}"
+          onerror="this.onerror=null; this.src='${contextPath}/Webike/img/Users/default.png';"
+          style="width:50px;height:50px;border-radius:50%;">`,
+                         `<a href="${contextPath}/Webike/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
+     <form action="${contextPath}/Webike/deleteUser" method="post" style="display:inline;">
+         <input type="hidden" name="id" value="${user.id}">
+         <button type="submit" class="delete-button">Xóa</button>
+     </form>
+     <button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(${user.id})">
+         Phân quyền
+     </button>`
+                     ]).draw(false);
 
-                                     newRow.innerHTML = `
-                    <td>${user.id}</td>
-                    <td>${user.name}</td>
-                    <td>${user.DOB}</td>
-                    <td>${user.sex}</td>
-                    <td>${user.address}</td>
-                    <td>${user.phoneNum}</td>
-                    <td>${user.role}</td>
-                    <td>${user.locked}</td>
-                    <td>
-                        <img src="${contextPath}/${user.image.startsWith('/') ? user.image.substring(1) : user.image}"
-                             onerror="this.onerror=null; this.src='${contextPath}/Webike/img/Users/default.png';"
-                             style="width:50px;height:50px;border-radius:50%;">
-                    </td>
-                    <td>
-                        <a href="${contextPath}/Webike/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
-                        <button type="button" class="delete-button" onclick="confirmDeleteUser(${user.id}, '${user.name}')">Xóa</button>
-                        <button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(${user.id})">
-                            Phân quyền
-                        </button>
-                    </td>
-                `;
-                     console.log("User ID:", user.id);
-                     dataTable.row.add(newRow).draw(false);
                      form.reset();
                      document.getElementById("modal").style.display = "none";
                      alert("Thêm người dùng thành công!");
@@ -424,6 +421,82 @@
              });
      });
     </script>
+    <script>
+        document.getElementById('import-user-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            console.log("Đang gửi dữ liệu...");
+
+            const contextPath = '<%= request.getContextPath() %>';
+            const form = e.target;
+            const formData = new FormData(form);
+            const feedback = document.getElementById('import-feedback');
+
+            fetch(contextPath + '/importUser', {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.text())
+                .then(text => {
+                    console.log("Phản hồi từ server:", text);
+
+                    let data;
+                    try {
+                        data = JSON.parse(text);
+                    } catch (e) {
+                        feedback.style.color = 'red';
+                        feedback.innerText = "Phản hồi không hợp lệ. Có thể server trả về HTML.";
+                        return;
+                    }
+
+                    if (data.success && Array.isArray(data.users)) {
+                        const dataTable = $('#list-user').DataTable();
+
+                        data.users.forEach(user => {
+                            // Xử lý hình ảnh an toàn
+                            let imagePath = 'img/Users/default.png';
+                            if (user.image && user.image.trim() !== '') {
+                                imagePath = user.image.startsWith('/') ? user.image.substring(1) : user.image;
+                            }
+                            const fullImagePath = `${contextPath}/${imagePath}`;
+
+                            dataTable.row.add([
+                                user.id,
+                                user.name,
+                                user.DOB,
+                                user.sex,
+                                user.address,
+                                user.phoneNum,
+                                user.role,
+                                user.locked,
+                                `<img src="${fullImagePath}"
+                          onerror="this.onerror=null; this.src='${contextPath}/Webike/img/Users/default.png';"
+                          style="width:50px;height:50px;border-radius:50%;">`,
+                                `<a href="${contextPath}/Webike/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
+                     <button type="button" class="delete-button" onclick="confirmDeleteUser(${user.id}, '${user.name}')">Xóa</button>
+                     <button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(${user.id})">
+                         Phân quyền
+                     </button>`
+                            ]).draw(false);
+                        });
+
+                        feedback.style.color = 'green';
+                        feedback.innerText = data.message;
+                        form.reset();
+                        document.getElementById('import-modal').style.display = 'none';
+
+                    } else {
+                        feedback.style.color = 'red';
+                        feedback.innerText = data.message || 'Không thể nhập dữ liệu.';
+                    }
+                })
+                .catch(error => {
+                    console.error("Lỗi kết nối:", error);
+                    feedback.style.color = 'red';
+                    feedback.innerText = "Không thể kết nối server.";
+                });
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<%= request.getContextPath()%>/Admin/assets/js/user_list.js"></script>
     <script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>

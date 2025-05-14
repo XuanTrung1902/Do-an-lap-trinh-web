@@ -331,6 +331,14 @@ public class UserDao {
                         .execute()
         );
     }
+    public List<User> getLatestInsertedUsers(int count) {
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createQuery("SELECT * FROM accounts ORDER BY id DESC LIMIT :limit")
+                        .bind("limit", count)
+                        .mapToBean(User.class)
+                        .list()
+        );
+    }
 
 }
 
