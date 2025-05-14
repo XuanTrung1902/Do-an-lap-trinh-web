@@ -62,6 +62,7 @@
                             <th>Địa chỉ</th>
                             <th>Tổng tiền</th>
                             <th>Chi tiết</th>
+                            <th>Ngày đặt cọc</th>
                             <th>Ngày thanh toán</th>
                             <th>Trạng thái</th>
                             <th>Tuỳ chỉnh</th>
@@ -85,6 +86,7 @@
                                     </form>
                                     </c:if>
                                 </td>
+                                <td>${o.depositDate}</td>
                                 <td>${o.payDate}</td>
                                 <td>${o.status}</td>
                                 <td>

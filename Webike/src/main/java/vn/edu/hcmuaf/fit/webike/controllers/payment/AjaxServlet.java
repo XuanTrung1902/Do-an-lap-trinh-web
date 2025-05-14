@@ -41,6 +41,7 @@ public class AjaxServlet extends HttpServlet {
         //lay data tu payment form
         double deposit = Double.parseDouble(req.getParameter("deposit"));
         double remain = Double.parseDouble(req.getParameter("remain"));
+        String phoneNum = req.getParameter("phoneNum");
         String address  = req.getParameter("address");
         String appointment = req.getParameter("appointment");
         int accountID = Integer.parseInt(req.getParameter("accountID"));
@@ -50,6 +51,7 @@ public class AjaxServlet extends HttpServlet {
 
         req.getSession().setAttribute("deposit", deposit);
         req.getSession().setAttribute("remain", remain);
+        req.getSession().setAttribute("phoneNum", phoneNum);
         req.getSession().setAttribute("address", address);
         req.getSession().setAttribute("appointment", appointment);
         req.getSession().setAttribute("accountID", accountID);

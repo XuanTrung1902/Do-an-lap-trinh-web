@@ -9,10 +9,12 @@ import java.util.StringTokenizer;
 public class Order implements Serializable {
     private int id;
     private List<OrderItem> data;
+    private String phoneNum;
     private double deposit;
     private double remain;
     private String address;
     private String appointment;
+    private String depositDate;
     private String payDate;
     private String status;
     private User user;
@@ -21,23 +23,27 @@ public class Order implements Serializable {
     public Order() {
         this.id = id;
         this.data = new ArrayList<OrderItem>();
+        this.phoneNum = phoneNum;
         this.deposit = deposit;
         this.remain = remain;
         this.address = address;
         this.appointment = appointment;
+        this.depositDate = depositDate;
         this.payDate = payDate;
         this.status = status;
         this.user = user;
         this.shop = shop;
     }
 
-    public Order(int id, List<OrderItem> data, double deposit, double remain, String address, String appointment, String payDate, String status, User user, Shop shop) {
+    public Order(int id, List<OrderItem> data, String phoneNum, double deposit, double remain, String address, String appointment, String depositDate, String payDate, String status, User user, Shop shop) {
         this.id = id;
         this.data = new ArrayList<OrderItem>();
+        this.phoneNum = phoneNum;
         this.deposit = deposit;
         this.remain = remain;
         this.address = address;
         this.appointment = appointment;
+        this.depositDate = depositDate;
         this.payDate = payDate;
         this.status = status;
         this.user = user;
@@ -99,7 +105,7 @@ public class Order implements Serializable {
         item.setColor(entry.getKey().getName());
         item.setProductID(p.getId());
         if (p.getDiscount() > 0) {
-            item.setPrice(p.getPrice() * (1 - p.getDiscount()));
+            item.setPrice(p.getPrice() - (p.getPrice() * p.getDiscount()) / 100);
         } else {
             item.setPrice(p.getPrice());
         }
@@ -109,6 +115,13 @@ public class Order implements Serializable {
         return item;
     }
 
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
 
     public double getDeposit() {
         return deposit;
@@ -132,6 +145,14 @@ public class Order implements Serializable {
 
     public void setAppointment(String appointment) {
         this.appointment = appointment;
+    }
+
+    public String getDepositDate() {
+        return depositDate;
+    }
+
+    public void setDepositDate(String depositDate) {
+        this.depositDate = depositDate;
     }
 
     public String getPayDate() {
@@ -187,10 +208,12 @@ public class Order implements Serializable {
         return "Order{" +
                 "id=" + id +
                 ", data=" + data +
+                ", phoneNum=" + phoneNum +
                 ", deposit=" + deposit +
                 ", remain=" + remain +
                 ", address='" + address + '\'' +
                 ", appointment='" + appointment + '\'' +
+                ", depositDate='" + depositDate + '\'' +
                 ", payDate='" + payDate + '\'' +
                 ", status='" + status + '\'' +
                 ", user=" + user +
