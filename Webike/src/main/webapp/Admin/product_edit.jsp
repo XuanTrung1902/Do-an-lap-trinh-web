@@ -30,25 +30,15 @@
             <jsp:include page="/Admin/sidebar.jsp"/>
     
             <div class="admin__content">
-                <div class="admin__content-top flex-box">
-                    <div class="admin__content-top-left">
-                        <ul class="flex-box">
-                            <li><i class="ri-search-line"></i></li>
-                            <li> <i class="ri-drag-move-line"></i></li>
-                        </ul>
-                    </div>
-                    <div class="admin__content-top-right flex-box">
-                        <ul class="flex-box">
-                            <li><i class="ri-notification-line" number="3"></i></li>
-                            <li><i class="ri-message-2-line" number="5"></i></li>
-                            <li class="flex-box">
-                                <img style="width: 50px;" src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="">
-                                <p>${sessionScope.auth.name}</p>
-                                <i class="ri-arrow-down-s-fill"></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <jsp:include page="/Admin/header.jsp"/>
+
+<%--                <c:set var="canWritetOrder" value="false" />--%>
+
+<%--                <c:forEach var="p" items="${sessionScope.permissions}">--%>
+<%--                    <c:if test="${p.resource eq 'order' and p.action eq 'write'}">--%>
+<%--                        <c:set var="canWritetOrder" value="true" />--%>
+<%--                    </c:if>--%>
+<%--                </c:forEach>--%>
 
             <div class="admin-content-main">
                 <div class="admin-content-main-title">

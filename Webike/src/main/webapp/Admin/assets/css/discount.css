@@ -71,7 +71,7 @@ li {
 .user__login:hover .header__navbar--user-menu {
     display: block;
     transition: 0.3s linear ;
-} 
+}
 
 .header__navbar--user-menu {
     display: none;

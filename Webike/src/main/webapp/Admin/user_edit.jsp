@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/user_edit.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/sidebar.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/base.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/header.css">
     <title>Admin</title>
 </head>
 <body>
@@ -25,31 +26,7 @@
             <jsp:include page="/Admin/sidebar.jsp"/>
 
             <div class="admin__content">
-                <div class="admin__content-top flex-box">
-                    <div class="admin__content-top-left">
-                        <ul class="flex-box">
-                            <li><i class="ri-search-line"></i></li>
-                            <li> <i class="ri-drag-move-line"></i></li>
-                        </ul>
-                    </div>
-                    <div class="admin__content-top-right flex-box">
-                        <ul class="flex-box">
-                            <li><i class="ri-notification-line" number="3"></i></li>
-                            <li><i class="ri-message-2-line" number="5"></i></li>
-                            <li class="flex-box user__login">
-<%--                                <img style="width: 50px;" src="<%= request.getContextPath() %>/Admin/assets/images/logo.png" alt="">--%>
-                                <img src="<%= request.getContextPath() %>/${sessionScope.auth.image}" alt="" class="header__navbar--user-img">
-                                <p>${sessionScope.auth.name}</p>
-                                <i class="ri-arrow-down-s-fill"></i>
-                                <ul class="header__navbar--user-menu">
-                                    <li class="header__navbar--user-menu-item">
-                                        <a href="${pageContext.request.contextPath}/Logout">Đăng xuất</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <jsp:include page="/Admin/header.jsp"/>
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">

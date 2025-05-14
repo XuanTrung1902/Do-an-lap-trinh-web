@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const revenueData = window.revenueData;
     const ordersData = window.ordersData;
 
-    console.log('Revenue Data:', revenueData);
-    console.log('Orders Data:', ordersData);
+    // console.log('Revenue Data:', revenueData);
+    // console.log('Orders Data:', ordersData);
 
     // Sắp xếp dữ liệu theo thời gian
     revenueData.sort((a, b) => new Date(a.month) - new Date(b.month));
