@@ -56,16 +56,19 @@
                     <span class="billing-info__value"><%=request.getSession().getAttribute("appointment")%></span>
                 </div>
                 <div class="billing-info__item">
+                    <span class="billing-info__label">Chi nhánh:</span>
+                    <span class="billing-info__value">${shopAddress}</span>
+                </div>                <div class="billing-info__item">
                     <span class="billing-info__label">Địa chỉ:</span>
                     <span class="billing-info__value"><%=request.getSession().getAttribute("address")%></span>
                 </div>
                 <div class="billing-info__item">
-                    <span class="billing-info__label">Account ID:</span>
-                    <span class="billing-info__value"><%=request.getSession().getAttribute("accountID")%></span>
+                    <span class="billing-info__label">Tên khách hàng:</span>
+                    <span class="billing-info__value">${userName}</span>
                 </div>
                 <div class="billing-info__item">
-                    <span class="billing-info__label">Shop ID:</span>
-                    <span class="billing-info__value"><%=request.getSession().getAttribute("shopID")%></span>
+                    <span class="billing-info__label">Số điện thoai:</span>
+                    <span class="billing-info__value">${phoneNum}</span>
                 </div>
             </div>
             <div class="order-items">
