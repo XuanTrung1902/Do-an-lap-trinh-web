@@ -11,7 +11,10 @@ import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -31,6 +34,7 @@ public class Pay extends HttpServlet {
         String phoneNum = (String) request.getSession().getAttribute("phoneNum");
         String appointment = (String) request.getSession().getAttribute("appointment");
         String depositDate = request.getParameter("vnp_PayDate");
+
         String address = (String) request.getSession().getAttribute("address");
 
         // lấy thông tin người dùng
@@ -61,6 +65,16 @@ public class Pay extends HttpServlet {
         int oid = 0;
         if (responseCode.equalsIgnoreCase("00")) {
             status = "Đã cọc";
+            try {
+                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                Date date = inputFormat.parse(depositDate);
+                String formattedDate = outputFormat.format(date);
+                order.setDepositDate(formattedDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             oid = dao.insertOrder(phoneNum, deposit, remain, address, appointment, depositDate, null, status, accountID, shopID);
         }else if (responseCode.equalsIgnoreCase("09") || responseCode.equalsIgnoreCase("24")) {
             status = "Đã hủy";
@@ -71,7 +85,7 @@ public class Pay extends HttpServlet {
         for (OrderItem o : order.getData()) {
             ProductDAO productDAO = new ProductDAO();
             int quantity = o.getQuantity();
-            String color = o.getColor();
+            Color color = o.getColor();
             int pid = o.getProductID();
             String img = o.getImg();
 
@@ -93,57 +107,4 @@ public class Pay extends HttpServlet {
                 break;
         }
     }
-//
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
-//        PaymentDAO dao = new PaymentDAO();
-//        Order order = (Order) request.getSession().getAttribute("order");
-//
-////        double deposit = Double.parseDouble(request.getParameter("deposit"));
-////        double remain = Double.parseDouble(request.getParameter("remain"));
-////        String appointment = request.getParameter("appointment");
-////        String address = request.getParameter("address");
-////        String status = "Đã cọc";
-////        int accountID = Integer.parseInt(request.getParameter("accountID"));
-////
-////        // branch là chi nhánh =))
-////        String branch = request.getParameter("branch");
-////        StringTokenizer t = new StringTokenizer(branch, "-");
-////        int shopID = Integer.parseInt(t.nextToken());
-//
-//        int oid = Integer.parseInt(request.getParameter("vnp_TxnRef"));
-//        double deposit = (double) request.getAttribute("vnp_Amount");
-//        double remain = (double) request.getSession().getAttribute("remain");
-//        String appointment = (String) request.getSession().getAttribute("appointment");
-//        String payDate = request.getParameter("vnp_CreateDate");
-//        String address = (String) request.getSession().getAttribute("address");
-//        String status = request.getParameter("vnp_ResponseCode");
-//        int accountID = (int) request.getSession().getAttribute("accountID");
-//        int shopID= (int) request.getSession().getAttribute("shopID");
-//
-//
-//        int insertOrder = dao.insertOrder(oid, deposit, remain, address, appointment, null, status, accountID, shopID);
-//        System.out.println("Order id:" + oid);
-//        System.out.println("Order insert:" + insertOrder);
-//        System.out.println("Pay date: " + payDate);
-//
-//        request.getSession().setAttribute("oid", oid);
-//        request.getSession().setAttribute("deposit", deposit);
-//
-//
-////        for (OrderItem o : order.getData()) {
-////            ProductDAO productDAO = new ProductDAO();
-////            int quantity = o.getQuantity();
-////            String color = o.getColor();
-////            int pid = Integer.parseInt(o.getProductID());
-////            String img = o.getImg();
-////            Product p = productDAO.getProduct(pid);
-////            int productQuantity= p.getQuantity() - quantity;
-////            int updateProductQuantity = productDAO.updateQuantity(pid, productQuantity);
-////            int insertOrderItem = dao.insertOrderItem(quantity, img, color, oid, pid);
-////        }
-//        response.sendRedirect("/Webike/GKY/billing.jsp");
-//        request.getSession().removeAttribute("order");
-//    }
 }
