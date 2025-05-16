@@ -5,7 +5,7 @@ public class OrderItem {
     private String name;
     private int quantity;
     private String img;
-    private String color;
+    private Color color;
     private int productID;
     private String orderID;
     private double price;
@@ -13,12 +13,12 @@ public class OrderItem {
     private String brand;
     private String type;
     private int commented;
-    private String status; // phải có cái này mới vào được trang buyHistory.jsp ?
+    private String status;
 
     public OrderItem() {
     }
 
-    public OrderItem(int id, String name, int quantity, String img, String color, int productID, String orderID, double price, String version, String brand, String type, int commented, String status) {
+    public OrderItem(int id, String name, int quantity, String img, Color color, int productID, String orderID, double price, String version, String brand, String type, int commented, String status) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -34,11 +34,11 @@ public class OrderItem {
         this.status = status;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
@@ -134,8 +134,10 @@ public class OrderItem {
     public String getStatus() {
         return status;
     }
-    public void setStatus(String status) {
-        this.status = status;
+
+public void setStatus(String status) {
+    this.status = status;
+}
 
     @Override
     public String toString() {
@@ -152,6 +154,8 @@ public class OrderItem {
                 ", brand='" + brand + '\'' +
                 ", type='" + type + '\'' +
                 ", commented=" + commented +
+                ", status='" + status + '\'' +
                 '}';
     }
 }
+
