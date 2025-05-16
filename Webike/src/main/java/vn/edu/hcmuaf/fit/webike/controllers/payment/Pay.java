@@ -7,12 +7,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.webike.dao.PaymentDAO;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
-import vn.edu.hcmuaf.fit.webike.models.Order;
-import vn.edu.hcmuaf.fit.webike.models.OrderItem;
-import vn.edu.hcmuaf.fit.webike.models.Product;
+import vn.edu.hcmuaf.fit.webike.dao.UserDao;
+import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.StringTokenizer;
 
 @WebServlet(name = "Pay", value = "/pay")
@@ -23,6 +23,7 @@ public class Pay extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         PaymentDAO dao = new PaymentDAO();
+        UserDao userDao = new UserDao();
         Order order = (Order) request.getSession().getAttribute("order");
 
         double deposit = Double.parseDouble(request.getParameter("vnp_Amount")) / 100; // chia 100k vì mặc định vnp_Amount sẽ nhân thêm 100 đồng
@@ -31,8 +32,29 @@ public class Pay extends HttpServlet {
         String appointment = (String) request.getSession().getAttribute("appointment");
         String depositDate = request.getParameter("vnp_PayDate");
         String address = (String) request.getSession().getAttribute("address");
+
+        // lấy thông tin người dùng
         int accountID = (int) request.getSession().getAttribute("accountID");
+        User user = userDao.getUserById(accountID);
+        if (user != null) {
+            request.setAttribute("userName", user.getName());
+            request.setAttribute("phoneNum", user.getPhoneNum());
+        } else {
+            request.setAttribute("userName", "Không tìm thấy thông tin");
+            request.setAttribute("phoneNum", "");
+        }
+
+        // lấy thông tin chi nhánh
         int shopID = (int) request.getSession().getAttribute("shopID");
+        List<Shop> shops = dao.getShops();
+        String shopAddress = "Không tìm thấy chi nhánh";
+        for (Shop shop : shops) {
+            if (shop.getId() == shopID) {
+                shopAddress = shop.getAddress();
+                break;
+            }
+        }
+        request.setAttribute("shopAddress", shopAddress);
         String responseCode = request.getParameter("vnp_ResponseCode");
 
         String status = "";

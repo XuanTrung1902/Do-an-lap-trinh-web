@@ -13,11 +13,12 @@ public class OrderItem {
     private String brand;
     private String type;
     private int commented;
+    private String status; // phải có cái này mới vào được trang buyHistory.jsp ?
 
     public OrderItem() {
     }
 
-    public OrderItem(int id, String name, int quantity, String img, String color, int productID, String orderID, double price, String version, String brand, String type, int commented) {
+    public OrderItem(int id, String name, int quantity, String img, String color, int productID, String orderID, double price, String version, String brand, String type, int commented, String status) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -30,6 +31,7 @@ public class OrderItem {
         this.brand = brand;
         this.type = type;
         this.commented = commented;
+        this.status = status;
     }
 
     public String getColor() {
@@ -127,6 +129,13 @@ public class OrderItem {
     public void setCommented(int commented) {
         this.commented = commented;
     }
+
+
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
 
     @Override
     public String toString() {

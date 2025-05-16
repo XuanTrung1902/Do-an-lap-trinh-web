@@ -5,7 +5,7 @@
 
 <header class="header">
     <div class="grid__full-width">
-        <a href="homepage.jsp" class="logo">
+        <a href="homepage" class="logo">
             <img src="https://www.webike.vn/frontend/moto-v2/pc/img/logo.png?158926651620200827" alt="Webike VN"/>
         </a>
         <nav class="header__navbar">
