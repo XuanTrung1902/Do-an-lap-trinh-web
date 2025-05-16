@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.fit.webike.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
+import vn.edu.hcmuaf.fit.webike.models.Color;
 import vn.edu.hcmuaf.fit.webike.models.Shop;
 
 import java.util.List;
@@ -53,7 +54,7 @@ public class PaymentDAO {
     }
 
 
-    public int insertOrderItem(int quantity, String img, String color, int oid, int pid) {
+    public int insertOrderItem(int quantity, String img, Color color, int oid, int pid) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
                 insert into orderItems (quantity, img, color, orderID, productID)
@@ -62,7 +63,7 @@ public class PaymentDAO {
         return jdbi.withHandle(handle -> handle.createUpdate(sql)
                 .bind("quantity", quantity)
                 .bind("img", img)
-                .bind("color", color)
+                .bind("color", color.getId())
                 .bind("orderID", oid)
                 .bind("productID", pid)
                 .execute() > 0 ? 1 : 0

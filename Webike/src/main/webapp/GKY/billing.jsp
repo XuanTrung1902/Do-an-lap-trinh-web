@@ -32,7 +32,7 @@
         <div class="billing-card">
             <div class="billing-header">
                 <h1>Hóa đơn thanh toán</h1>
-                <p>Mã đơn hàng: <%=request.getParameter("vnp_TxnRef")%></p>
+                <p>Số hoá đơn: <%=request.getParameter("vnp_TxnRef")%></p>
             </div>
             <div class="billing-info">
                 <div class="billing-info__item">
@@ -48,8 +48,8 @@
                     </span>
                 </div>
                 <div class="billing-info__item">
-                    <span class="billing-info__label">Ngày thanh toán:</span>
-                    <span class="billing-info__value"><%=request.getSession().getAttribute("payDate")%></span>
+                    <span class="billing-info__label">Ngày cọc:</span>
+                    <span class="billing-info__value">${sessionScope.order.depositDate}</span>
                 </div>
                 <div class="billing-info__item">
                     <span class="billing-info__label">Ngày hẹn:</span>
@@ -87,7 +87,7 @@
                             </div>
                             <div class="order-item__detail">
                                 <span class="order-item__label">Màu sản phẩm:</span>
-                                <span class="order-item__value">${o.color}</span>
+                                <span class="order-item__value">${o.color.name}</span>
                             </div>
                             <div class="order-item__detail">
                                 <span class="order-item__label">Giá sản phẩm:</span>
