@@ -255,20 +255,33 @@
                 <button type="submit" class="save-btn">Lưu thay đổi</button>
             </form>
         </div>
+
         <form id="change-email-form" method="post" action="update-email" style="display: none;" class="change-email-form">
             <h3>Đổi Email</h3>
+
             <div class="form-group">
                 <label for="new-email">Email mới:</label>
                 <input type="email" id="new-email" name="newEmail" required>
                 <button type="button" onclick="sendOtp()" class="save-btn" style="margin-top: 10px;">Gửi mã OTP</button>
             </div>
+
             <div class="form-group">
-                <label for="otp-code">Nhập mã OTP:</label>
+                <label for="otp-code">Nhập mã OTP gửi qua Email:</label>
                 <input type="text" id="otp-code" name="otpCode" required>
             </div>
+
+            <% if (user1 != null && user1.isOtpEnabled()) { %>
+            <div class="form-group">
+                <label for="authenticator-code">Mã xác thực 2FA:</label>
+                <input type="text" id="authenticator-code" name="authenticatorCode" placeholder="Nhập mã từ Authenticator" required>
+            </div>
+            <% } %>
+
             <button type="submit" class="save-btn">Xác nhận & Đổi Email</button>
+
             <div id="result-message" class="result-message" style="display: none;"></div>
         </form>
+
         <form method="post" action="<%= request.getContextPath() %>/enable-2fa"
               class="enable-2fa-form" id="enable-2fa-form" style="display: none;">
             <h3>Bật xác thực 2 bước</h3>
