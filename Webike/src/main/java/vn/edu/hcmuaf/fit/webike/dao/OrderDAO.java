@@ -2,10 +2,7 @@ package vn.edu.hcmuaf.fit.webike.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
-import vn.edu.hcmuaf.fit.webike.models.Order;
-import vn.edu.hcmuaf.fit.webike.models.OrderItem;
-import vn.edu.hcmuaf.fit.webike.models.Shop;
-import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.models.*;
 
 import java.util.List;
 
@@ -23,14 +20,14 @@ public class OrderDAO {
 //            System.out.println(i);
 //        }
 //        System.out.println(dao.getOrdersByID(18));
-        System.out.println(dao.updateOrder(2, "ĐH NLU", "Đã thanh toán", "2022-12-12", "2023-02-12", 9));
+//        System.out.println(dao.updateOrder(2, "ĐH NLU", "Đã thanh toán", "2022-12-12", "2023-02-12", 9));
     }
 
     public List<Order> getOrders() {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
                 select o.*,
-                a.name as uname, a.phoneNum as phoneNum, a.DOB as DOB, a.created as created,
+                a.name as uname, a.phoneNum as uPhoneNum, a.DOB as DOB, a.created as created,
                     a.locked as locked, a.verify as verify, a.role as role, a.address as uaddress,
                     a.sex, a.password,
                 s.name as sname, s.address as saddress
@@ -43,17 +40,19 @@ public class OrderDAO {
                 .map((rs, ctx) -> {
                     Order o = new Order();
                     o.setId(rs.getInt("id"));
+                    o.setPhoneNum(rs.getString("phoneNum"));
                     o.setDeposit(rs.getLong("deposit"));
                     o.setRemain(rs.getLong("remain"));
                     o.setAddress(rs.getString("address"));
                     o.setAppointment(rs.getString("appointment"));
+                    o.setDepositDate(rs.getString("depositDate"));
                     o.setPayDate(rs.getString("payDate"));
                     o.setStatus(rs.getString("status"));
 
                     User u = new User();
                     u.setId(rs.getInt("accountID"));
                     u.setName(rs.getString("uname"));
-                    u.setPhoneNum(rs.getString("phoneNum"));
+                    u.setPhoneNum(rs.getString("uPhoneNum"));
                     u.setDOB(rs.getDate("DOB"));
                     u.setSex(rs.getString("sex"));
                     u.setPassword(rs.getString("password"));
@@ -92,11 +91,12 @@ public class OrderDAO {
                 .list());
     }
 
-    public int updateOrder(int oid, String address, String status, String appointment, String payDate, int shopID) {
+    public int updateOrder(int oid ,String phoneNum, String address, String status, String appointment, String payDate, int shopID) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
                 update orders
                 set address = :address,
+                phoneNum = :phoneNum,
                 status = :status,
                 appointment = :appointment,
                 payDate = :payDate,
@@ -106,6 +106,7 @@ public class OrderDAO {
         return jdbi.withHandle(handle -> handle.createUpdate(sql)
                 .bind("oid", oid)
                 .bind("address", address)
+                .bind("phoneNum", phoneNum)
                 .bind("status", status)
                 .bind("appointment", appointment)
                 .bind("payDate", payDate)
@@ -117,7 +118,7 @@ public class OrderDAO {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
                 select o.*,
-                a.name as uname, a.phoneNum as phoneNum, a.DOB as DOB, a.created as created,
+                a.name as uname, a.phoneNum as uPhoneNum, a.DOB as DOB, a.created as created,
                 a.locked as locked, a.verify as verify, a.role as role, a.address as uaddress,
                 a.sex, a.password,
                 s.name as sname, s.address as saddress
@@ -131,17 +132,19 @@ public class OrderDAO {
                 .map((rs, ctx) -> {
                     Order o = new Order();
                     o.setId(rs.getInt("id"));
+                    o.setPhoneNum(rs.getString("phoneNum"));
                     o.setDeposit(rs.getLong("deposit"));
                     o.setRemain(rs.getLong("remain"));
                     o.setAddress(rs.getString("address"));
                     o.setAppointment(rs.getString("appointment"));
+                    o.setDepositDate(rs.getString("depositDate"));
                     o.setPayDate(rs.getString("payDate"));
                     o.setStatus(rs.getString("status"));
 
                     User u = new User();
                     u.setId(rs.getInt("accountID"));
                     u.setName(rs.getString("uname"));
-                    u.setPhoneNum(rs.getString("phoneNum"));
+                    u.setPhoneNum(rs.getString("uPhoneNum"));
                     u.setDOB(rs.getDate("DOB"));
                     u.setSex(rs.getString("sex"));
                     u.setPassword(rs.getString("password"));
@@ -160,6 +163,25 @@ public class OrderDAO {
                     o.setShop(s);
                     return o;
                 }).one()
+        );
+    }
+
+    public List<OrderStatus> getOrderStatus() {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "SELECT * FROM orderstatus";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .mapToBean(OrderStatus.class)
+                .list()
+        );
+    }
+
+    public List<Color> mapOfColorsAndProductID(int id){
+        Jdbi jdbi = JDBIConnect.get();
+        String sql= "SELECT c.* FROM colors c JOIN productdetails p ON p.colorID = c.id WHERE p.productID = :id";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("id", id)
+                .mapToBean(Color.class)
+                .list()
         );
     }
 }

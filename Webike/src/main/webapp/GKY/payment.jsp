@@ -58,19 +58,19 @@
             <form action="vnpayment" method="POST" class="m-5 mt-0 info">
 
                 <div class="row mb-3 me-0 ms-0">
-                    <input type="text" value="${u.name}" class="form-control form-control-lg p-3" placeholder="Họ tên">
+                    <input type="text" value="${u.name}" readonly class="form-control form-control-lg p-3" placeholder="Họ tên">
                 </div>
                 <div class="row mb-3 me-0 ms-0 gap-3">
-                    <input type="tel" value="${u.phoneNum}" class="form-control form-control-lg p-3"
+                    <input type="tel" name="phoneNum" value="${u.phoneNum}" required class="form-control form-control-lg p-3"
                            placeholder="Số điện thoại">
                 </div>
                 <div class="row mb-3 me-0 ms-0">
-                    <input type="text" name="address" id="adress" value="${u.address}"
+                    <input type="text" name="address" id="adress" value="${u.address}" required
                            class="form-control form-control-lg p-3"
                            placeholder="Địa chỉ">
                 </div>
                 <div class="row mb-3 me-0 ms-0">
-                    <input type="text" name="appointment" id="appointment"  class="form-control form-control-lg p-3"
+                    <input type="text" name="appointment" id="appointment" required class="form-control form-control-lg p-3"
                            placeholder="Chọn ngày hẹn" onfocus="(this.type='date')">
                 </div>
                 <div class="row mb-3 me-0 ms-0 gap-3" id="address">

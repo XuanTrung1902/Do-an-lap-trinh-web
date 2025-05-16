@@ -26,10 +26,11 @@ public class Pay extends HttpServlet {
         UserDao userDao = new UserDao();
         Order order = (Order) request.getSession().getAttribute("order");
 
-        double deposit = Double.parseDouble(request.getParameter("vnp_Amount"));
+        double deposit = Double.parseDouble(request.getParameter("vnp_Amount")) / 100; // chia 100k vì mặc định vnp_Amount sẽ nhân thêm 100 đồng
         double remain = (double) request.getSession().getAttribute("remain");
+        String phoneNum = (String) request.getSession().getAttribute("phoneNum");
         String appointment = (String) request.getSession().getAttribute("appointment");
-        String payDate = request.getParameter("vnp_PayDate");
+        String depositDate = request.getParameter("vnp_PayDate");
         String address = (String) request.getSession().getAttribute("address");
 
         // lấy thông tin người dùng
@@ -57,11 +58,15 @@ public class Pay extends HttpServlet {
         String responseCode = request.getParameter("vnp_ResponseCode");
 
         String status = "";
+        int oid = 0;
         if (responseCode.equalsIgnoreCase("00")) {
             status = "Đã cọc";
+            oid = dao.insertOrder(phoneNum, deposit, remain, address, appointment, depositDate, null, status, accountID, shopID);
+        }else if (responseCode.equalsIgnoreCase("09") || responseCode.equalsIgnoreCase("24")) {
+            status = "Đã hủy";
+            oid = dao.insertOrder(phoneNum,0, 0, "", null, null,null, status, accountID, shopID);
         }
 
-        int oid = dao.insertOrder(deposit, remain, address, appointment, payDate, status, accountID, shopID);
         request.setAttribute("orderItem", order.getData());
         for (OrderItem o : order.getData()) {
             ProductDAO productDAO = new ProductDAO();
@@ -75,7 +80,18 @@ public class Pay extends HttpServlet {
             int updateProductQuantity = productDAO.updateQuantity(pid, productQuantity);
             int insertOrderItem = dao.insertOrderItem(quantity, img, color, oid, pid);
         }
-        request.getRequestDispatcher("GKY/billing.jsp").forward(request, response);
+        // chuyển hướng trang dựa theo trạng thái giao dịch
+        switch (responseCode){
+            case "00":
+                request.getRequestDispatcher("GKY/billing.jsp").forward(request, response);
+                break;
+            case "09":
+                request.getRequestDispatcher("GKY/paymentCanceled.jsp").forward(request, response);
+                break;
+            case "24":
+                request.getRequestDispatcher("GKY/paymentCanceled.jsp").forward(request, response);
+                break;
+        }
     }
 //
 //    @Override
