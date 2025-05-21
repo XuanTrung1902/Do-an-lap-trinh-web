@@ -48,8 +48,6 @@ public class loginController extends HttpServlet {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("pending2fa", user);
                     response.sendRedirect("GKY/verify-login-otp.jsp");
-//                    session.setAttribute("auth", user); // Đặt user vào session với key "auth"
-//                    response.sendRedirect("homepage");
                     return;
                 }
 
