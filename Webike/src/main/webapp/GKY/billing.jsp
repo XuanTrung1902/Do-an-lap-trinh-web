@@ -116,17 +116,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="printFormat" id="pngFormat" value="png" checked>
+                        <input class="form-check-input" type="radio" name="format" id="pngFormat" value="png" checked>
                         <label class="form-check-label" for="pngFormat">PNG</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="printFormat" id="pdfFormat" value="pdf">
+                        <input class="form-check-input" type="radio" name="format" id="pdfFormat" value="pdf">
                         <label class="form-check-label" for="pdfFormat">PDF</label>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-primary" id="confirmPrint">Xác nhận</button>
+                    <button type="button" class="btn btn-primary" id="confirmDownload">Xác nhận</button>
                 </div>
             </div>
         </div>
@@ -138,8 +138,159 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
+<%--<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>--%>
+<script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@2.8/dist/dom-to-image-more.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+<%--<script>--%>
+<%--    document.getElementById('confirmPrint').addEventListener('click', function () {--%>
+<%--        const format = document.querySelector('input[name="printFormat"]:checked').value;--%>
+<%--        const billingCard = document.querySelector('.billing-card');--%>
 
+<%--        // Thêm kiểm tra xem html2canvas và jsPDF có được tải không--%>
+<%--        if (typeof html2canvas === 'undefined') {--%>
+<%--            alert('Lỗi: Thư viện html2canvas không được tải. Vui lòng kiểm tra kết nối hoặc thử lại.');--%>
+<%--            return;--%>
+<%--        }--%>
+<%--        if (typeof window.jspdf === 'undefined') {--%>
+<%--            alert('Lỗi: Thư viện jsPDF không được tải. Vui lòng kiểm tra kết nối hoặc thử lại.');--%>
+<%--            return;--%>
+<%--        }--%>
+
+<%--        // Fix tạm thời: tránh lỗi `oklch` nếu có--%>
+<%--        billingCard.querySelectorAll("*").forEach(el => {--%>
+<%--            const style = getComputedStyle(el);--%>
+<%--            if (style.color.includes("oklch")) {--%>
+<%--                el.style.color = "#000"; // fallback--%>
+<%--            }--%>
+<%--            if (style.backgroundColor.includes("oklch")) {--%>
+<%--                el.style.backgroundColor = "#fff"; // fallback--%>
+<%--            }--%>
+<%--        });--%>
+
+<%--        // Đảm bảo nội dung hiển thị đầy đủ trước khi chụp--%>
+<%--        billingCard.style.height = 'auto';--%>
+<%--        billingCard.style.overflow = 'visible';--%>
+
+<%--        // Tùy chọn cho html2canvas--%>
+<%--        const options = {--%>
+<%--            scale: 2, // Tăng độ phân giải--%>
+<%--            useCORS: true, // Cho phép tải hình ảnh từ URL khác--%>
+<%--            allowTaint: true, // Cho phép xử lý hình ảnh bị tainted--%>
+<%--            logging: true // Bật logging để debug--%>
+<%--        };--%>
+
+<%--        // Chụp .billing-card cho cả hai định dạng--%>
+<%--        html2canvas(billingCard, options).then(canvas => {--%>
+<%--            console.log('Canvas được tạo thành công:', canvas);--%>
+
+<%--            if (format === 'png') {--%>
+<%--                const imgData = canvas.toDataURL('image/png');--%>
+<%--                const link = document.createElement('a');--%>
+<%--                link.download = 'hoa_don_' + Date.now() + '.png';--%>
+<%--                link.href = imgData;--%>
+<%--                link.click();--%>
+<%--            } else if (format === 'pdf') {--%>
+<%--                const { jsPDF } = window.jspdf;--%>
+<%--                const doc = new jsPDF({--%>
+<%--                    orientation: 'portrait',--%>
+<%--                    unit: 'mm',--%>
+<%--                    format: 'a4'--%>
+<%--                });--%>
+
+<%--                const imgData = canvas.toDataURL('image/png');--%>
+<%--                const imgProps = doc.getImageProperties(imgData);--%>
+<%--                const pdfWidth = doc.internal.pageSize.getWidth();--%>
+<%--                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;--%>
+<%--                doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);--%>
+<%--                doc.save('hoa_don_' + Date.now() + '.pdf');--%>
+<%--            }--%>
+<%--        }).catch(err => {--%>
+<%--            console.error('Lỗi khi tạo file:', err);--%>
+<%--            alert('Có lỗi xảy ra khi tạo file. Vui lòng thử lại. Chi tiết lỗi: ' + err.message);--%>
+<%--        });--%>
+
+<%--        // Đóng modal--%>
+<%--        bootstrap.Modal.getInstance(document.getElementById('printModal')).hide();--%>
+<%--    });--%>
+<%--</script>--%>
+<script>
+    window.onload = function () {
+        const confirmBtn = document.getElementById("confirmDownload");
+        if (confirmBtn) {
+            confirmBtn.addEventListener("click", async function () {
+                try {
+                    // Kiểm tra xem domtoimage có tồn tại không
+                    if (typeof domtoimage === 'undefined') {
+                        alert("Lỗi: Thư viện domtoimage không được tải. Vui lòng kiểm tra kết nối hoặc thử lại.");
+                        return;
+                    }
+
+                    const selectedInput = document.querySelector('input[name="format"]:checked');
+                    if (!selectedInput) {
+                        alert("Vui lòng chọn định dạng trước khi xác nhận.");
+                        return;
+                    }
+                    const selectedFormat = selectedInput.value;
+                    const billingCard = document.querySelector(".billing-card");
+
+                    if (!billingCard) {
+                        alert("Không tìm thấy thông tin hóa đơn.");
+                        return;
+                    }
+
+                    // Đảm bảo nội dung hiển thị đầy đủ trước khi chụp
+                    const originalHeight = billingCard.style.height;
+                    const originalOverflow = billingCard.style.overflow;
+                    billingCard.style.height = 'auto'; // Bỏ giới hạn chiều cao
+                    billingCard.style.overflow = 'visible'; // Hiển thị toàn bộ nội dung
+
+                    if (selectedFormat === "png" || selectedFormat === "jpg") {
+                        const dataUrl = await domtoimage.toJpeg(billingCard, {
+                            quality: 1, // Chất lượng tối đa (0-1)
+                            scale: 2 // Tăng độ phân giải gấp 2 lần
+                        });
+                        const link = document.createElement("a");
+                        link.download = `hoa_don_${Date.now()}.${selectedFormat}`;
+                        link.href = dataUrl;
+                        link.click();
+                    } else if (selectedFormat === "pdf") {
+                        const dataUrl = await domtoimage.toPng(billingCard, {
+                            quality: 1, // Chất lượng tối đa
+                            scale: 2 // Tăng độ phân giải
+                        });
+                        const { jsPDF } = window.jspdf;
+                        const pdf = new jsPDF({
+                            orientation: 'portrait',
+                            unit: 'mm',
+                            format: 'a4'
+                        });
+                        const imgProps = pdf.getImageProperties(dataUrl);
+                        const pdfWidth = pdf.internal.pageSize.getWidth();
+                        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                        // Nếu nội dung quá dài, chia thành nhiều trang
+                        if (pdfHeight > pdf.internal.pageSize.getHeight()) {
+                            const ratio = pdf.internal.pageSize.getHeight() / pdfHeight;
+                            const adjustedHeight = pdfHeight * ratio;
+                            pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, adjustedHeight);
+                        } else {
+                            pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                        }
+                        pdf.save(`hoa_don_${Date.now()}.pdf`);
+                    }
+
+                    // Khôi phục lại style ban đầu
+                    billingCard.style.height = originalHeight;
+                    billingCard.style.overflow = originalOverflow;
+                } catch (error) {
+                    alert("Có lỗi xảy ra khi tạo file. Vui lòng thử lại.\nChi tiết lỗi: " + error.message);
+                    console.error(error);
+                }
+            });
+        }
+    };
+</script>
 
 
 </body>
