@@ -110,7 +110,7 @@
                                 <h3 class="display-6">${o.name}</h3>
                                 <div class="">
                                     <h3 class="pColor d-inline">Màu: </h3>
-                                    <h3 class="pColor d-inline">${o.color}</h3>
+                                    <h3 class="pColor d-inline">${o.color.name}</h3>
                                 </div>
                                 <div class="">
                                     <h3 class="pColor d-inline">Số lượng: </h3>

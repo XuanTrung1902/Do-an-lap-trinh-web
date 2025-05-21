@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
+import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,9 +86,11 @@ public class Order implements Serializable {
 
     public OrderItem convertCartProduct(CartItem c) {
         OrderItem item = new OrderItem();
+        ProductDAO dao = new ProductDAO();
+        Color color = dao.getColorByID(c.getCid());
         item.setQuantity(c.getQuantity());
         item.setImg(c.getImg());
-        item.setColor(c.getColorName());
+        item.setColor(color);
         item.setProductID(c.getPid());
         item.setName(c.getName());
         item.setPrice(c.getPrice());
@@ -102,7 +106,7 @@ public class Order implements Serializable {
         item.setQuantity(1);
         Map.Entry<Color, String> entry = p.getImg().entrySet().iterator().next(); // map ở direct buy chỉ còn 1 cặp key-value mà theo màu mà người dùng đã chọn
         item.setImg(entry.getValue());
-        item.setColor(entry.getKey().getName());
+        item.setColor(entry.getKey());
         item.setProductID(p.getId());
         if (p.getDiscount() > 0) {
             item.setPrice(p.getPrice() - (p.getPrice() * p.getDiscount()) / 100);

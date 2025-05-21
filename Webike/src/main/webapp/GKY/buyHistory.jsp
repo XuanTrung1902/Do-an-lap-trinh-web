@@ -48,9 +48,10 @@
         <c:forEach var="oi" items="${ls}">
             <div class="order-item d-flex align-items-center">
                 <img src="${oi.img}" alt="Product Image" class="product-image">
+                <div>ID: ${oi.id}</div>
                 <div class="product-details">
                     <div class="product-name">${oi.name}</div>
-                    <div class="product-meta">Phân loại hàng: ${oi.color} x ${oi.quantity}</div>
+                    <div class="product-meta">Phân loại hàng: ${oi.color.name} x ${oi.quantity}</div>
                     <div class="product-status">${oi.status}</div>
                     <div class="product-price">Tổng số tiền:
                         <f:setLocale value="vi_VN"/>
@@ -71,6 +72,7 @@
                         </form>
                         <form action="productDetail" method="get">
                             <input type="hidden" name="id" value="${oi.productID}">
+                            <input type="hidden" name="cid" value="${oi.color.id}">
                             <button type="submit" class="buy-again">Mua Lần Nữa</button>
                         </form>
                     </div>
