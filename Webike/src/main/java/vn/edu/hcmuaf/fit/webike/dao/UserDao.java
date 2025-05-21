@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.fit.webike.dao;
 
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -226,21 +227,17 @@ public class UserDao {
                 .findFirst()
                 .orElse(null));
     }
-    // sữa gg
-//    public void insertUser(String name, String email) {
-//        JDBIConnect.get().withHandle(h -> h.createUpdate("INSERT INTO accounts (name, email) VALUES (:name, :email)")
-//                .bind("name", name)
-//                .bind("email", email)
-//                .execute());
-//    }
 
     public void insertUser(String name, String email) {
+        String hashedPassword = UserSevice.hashPassword("123");
+
         JDBIConnect.get().withHandle(h -> h.createUpdate(
-                        "INSERT INTO accounts (name, email, phoneNum, password, image, DOB, sex, address) VALUES (:name, :email, :phoneNum, :password, :image, :dob, :sex, :address)")
+                        "INSERT INTO accounts (name, email, phoneNum, password, image, DOB, sex, address) " +
+                                "VALUES (:name, :email, :phoneNum, :password, :image, :dob, :sex, :address)")
                 .bind("name", name)
                 .bind("email", email)
                 .bind("phoneNum", "0000000000")
-                .bind("password", "google")
+                .bind("password", hashedPassword)
                 .bind("image", "img/Users/default.png")
                 .bind("dob", "2000-01-01")
                 .bind("sex", "Khác")
@@ -257,22 +254,6 @@ public class UserDao {
                         .orElse(null)
         );
     }
-
-//    public void insertUsers(List<User> users) {
-//        JDBIConnect.get().useHandle(handle -> {
-//            String sql = "INSERT INTO users (name, password, DOB, sex, address, phoneNum, role, locked) VALUES (:name, :password, :DOB, :sex, :address, :phoneNum, :role, :locked)";
-//            handle.prepareBatch(sql)
-//                    .bindList("name", users.stream().map(User::getName).toList())
-//                    .bindList("password", users.stream().map(User::getPassword).toList())
-//                    .bindList("DOB", users.stream().map(u -> u.getDOB() != null ? u.getDOB().toString() : null).toList())
-//                    .bindList("sex", users.stream().map(User::getSex).toList())
-//                    .bindList("address", users.stream().map(User::getAddress).toList())
-//                    .bindList("phoneNum", users.stream().map(User::getPhoneNum).toList())
-//                    .bindList("role", users.stream().map(User::getRole).toList())
-//                    .bindList("locked", users.stream().map(User::getLocked).toList())
-//                    .execute();
-//        });
-//    }
 
     public void insertUsers(List<User> users) {
         JDBIConnect.get().useHandle(handle -> {
