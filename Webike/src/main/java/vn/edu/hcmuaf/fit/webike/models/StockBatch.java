@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.webike.dao;
+package vn.edu.hcmuaf.fit.webike.models;
 
 public class StockBatch {
     private int id;
@@ -11,17 +11,6 @@ public class StockBatch {
     private int importID;
 
     public StockBatch() {
-    }
-
-    public StockBatch(int id, int stockID, int productID, int quantity, double unitPrice, double totalPrice, String batch, int importID) {
-        this.id = id;
-        this.stockID = stockID;
-        this.productID = productID;
-        this.quantity = quantity;
-        this.unitPrice = unitPrice;
-        this.totalPrice = totalPrice;
-        this.batch = batch;
-        this.importID = importID;
     }
 
     public int getId() {

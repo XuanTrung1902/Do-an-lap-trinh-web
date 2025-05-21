@@ -1,20 +1,16 @@
 package vn.edu.hcmuaf.fit.webike.models;
 
+import java.util.List;
+
 public class StockIn {
     private int id;
     private Supplier supplier;
     private int employeeID;
     private String receiptDate;
     private String note;
+    private List<StockBatch> batches;
 
     public StockIn() {
-    }
-
-    public StockIn(int id, Supplier supplier, String receiptDate, String note) {
-        this.id = id;
-        this.supplier = supplier;
-        this.receiptDate = receiptDate;
-        this.note = note;
     }
 
     public int getId() {
@@ -57,6 +53,14 @@ public class StockIn {
         this.note = note;
     }
 
+    public List<StockBatch> getBatches() {
+        return batches;
+    }
+
+    public void setBatches(List<StockBatch> batches) {
+        this.batches = batches;
+    }
+
     @Override
     public String toString() {
         return "StockIn{" +
@@ -65,6 +69,7 @@ public class StockIn {
                 ", employeeID=" + employeeID +
                 ", receiptDate='" + receiptDate + '\'' +
                 ", note='" + note + '\'' +
+                ", batches=" + batches +
                 '}';
     }
 }
