@@ -5,13 +5,11 @@
 }
 
 .billing-card {
-    /*height: auto !important;*/
-    /*overflow: visible !important;*/
     background-color: var(--white-color);
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -80,8 +78,9 @@
 
 .order-item__img {
     width: 125px;
-    height: 80px;
-    object-fit: cover;
+    height: auto;
+    max-height: 100px;
+    object-fit: contain;
     border-radius: 4px;
     margin-right: 20px;
 }
@@ -215,8 +214,6 @@
     background-color: #cfcfcf;
     border-color: #c2c2c2;
 }
-
-
 
 @media (max-width: 768px) {
     .billing-info {
