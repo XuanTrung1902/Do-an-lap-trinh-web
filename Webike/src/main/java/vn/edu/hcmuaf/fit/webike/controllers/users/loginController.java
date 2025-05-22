@@ -23,7 +23,7 @@ import java.util.Scanner;
 @WebServlet(name = "loginController", value = "/Login")
 public class loginController extends HttpServlet {
 
-    private static final String SECRET_KEY = "6LfYyu4qAAAAAC7wHwxKsL8AV4NY3f9vgjA1BZM1";
+    private static final String SECRET_KEY = "6LfJJ0UrAAAAAFQje295yNzwRcCZkkIgfHsMJvj-";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
