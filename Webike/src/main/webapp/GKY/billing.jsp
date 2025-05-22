@@ -23,6 +23,24 @@
           integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
     <title>Thông tin đơn thanh toán</title>
+    <style media="print">
+        body * {
+            visibility: hidden;
+        }
+
+        .billing-card, .billing-card * {
+            visibility: visible;
+        }
+
+        .billing-card {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: none;
+        }
+    </style>
 </head>
 <body>
 <div class="app">
@@ -100,6 +118,36 @@
                 </c:forEach>
             </div>
         </div>
+        <%-- Button in hoa don --%>
+        <div class="billing-button">
+            <button class="print-invoice" data-bs-toggle="modal" data-bs-target="#printModal">In hóa đơn</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="printModal" tabindex="-1" aria-labelledby="printModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="printModalLabel">Chọn định dạng in</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="format" id="pngFormat" value="png" checked>
+                        <label class="form-check-label" for="pngFormat">PNG</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="format" id="pdfFormat" value="pdf">
+                        <label class="form-check-label" for="pdfFormat">PDF</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="confirmDownload">Xác nhận</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <jsp:include page="/GKY/footer.jsp"/>
@@ -108,5 +156,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
+<%--<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>--%>
+<script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@2.8/dist/dom-to-image-more.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="${pageContext.request.contextPath}/GKY/assets/js/printBill.js"></script>
+<script>
+    window.billingData = {
+        deposit: "${sessionScope.deposit}",
+        remain: "${sessionScope.remain}",
+        depositDate: "${sessionScope.order.depositDate}",
+        appointment: "<%=request.getSession().getAttribute("appointment")%>",
+        shopAddress: "${shopAddress}",
+        userName: "${userName}",
+        phoneNum: "${phoneNum}"
+    };
+</script>
 </body>
 </html>

@@ -236,6 +236,20 @@
         }).showToast();
     }
 </script>
+<script>
+    <c:if test="${not empty sessionScope.cancelMessage}">
+    Toastify({
+        text: "${sessionScope.cancelMessage}",
+        duration: 2000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff4444",
+        stopOnFocus: true
+    }).showToast();
+    // Xóa thông báo khỏi session để không hiển thị lại khi tải lại trang
+    <% session.removeAttribute("cancelMessage"); %>
+    </c:if>
+</script>
 <script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
 <%--<script src="${pageContext.request.contextPath}/GKY/assets/js/FilterProductAjax.js"></script>--%>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
