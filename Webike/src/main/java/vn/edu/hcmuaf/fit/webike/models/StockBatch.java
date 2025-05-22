@@ -9,6 +9,7 @@ public class StockBatch {
     private double totalPrice;
     private String batch;
     private int importID;
+    private int deleted;
 
     public StockBatch() {
     }
@@ -77,6 +78,14 @@ public class StockBatch {
         this.importID = importID;
     }
 
+    public int getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
+    }
+
     @Override
     public String toString() {
         return "StockBatch{" +
@@ -88,6 +97,7 @@ public class StockBatch {
                 ", totalPrice=" + totalPrice +
                 ", batch='" + batch + '\'' +
                 ", importID=" + importID +
+                ", deleted=" + deleted +
                 '}';
     }
 }
