@@ -11,6 +11,8 @@ public class StockDAO {
     public static void main(String[] args) {
         StockDAO dao = new StockDAO();
 //        System.out.println(dao.getStockIn());
+//        System.out.println(dao.getStockInByID(1));
+//        System.out.println(dao.getStockItemByBatchID(1));
 //        System.out.println(dao.getStockBatchByStockId(1));
 //        System.out.println(dao.getStockBatch());
 //        String batch = dao.getStockBatch().get(0).getBatch();
@@ -71,12 +73,15 @@ public class StockDAO {
                     s.setStatus(rs.getInt("status"));
                     s.setCreated(rs.getString("created"));
 
+                    List<StockBatch> batches = getStockBatchByStockId(rs.getInt("id"));
+
                     StockIn si = new StockIn();
                     si.setId(rs.getInt("id"));
                     si.setSupplier(s);
                     si.setEmployeeID(rs.getInt("employeeID"));
                     si.setReceiptDate(rs.getString("receiptDate"));
                     si.setNote(rs.getString("note"));
+                    si.setBatches(batches);
                     return si;
                 })
                 .findOne()
@@ -125,7 +130,7 @@ public class StockDAO {
         );
     }
 
-    private List<StockItem> getStockItem() {
+    public List<StockItem> getStockItem() {
         Jdbi jdbi = JDBIConnect.get();
         String sql = "select * from stockitems";
         return jdbi.withHandle(handle -> handle.createQuery(sql)
@@ -147,7 +152,30 @@ public class StockDAO {
         );
     }
 
-    private StockItem getStockItemByID(int id) {
+    public List<StockItem> getStockItemByBatchID(int id) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "select * from stockitems where batchID = :id";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("id", id)
+                .map((rs, ctx) -> {
+                    StockItem si = new StockItem();
+                    ProductDAO pdao = new ProductDAO();
+                    Color c = pdao.getColorByID(rs.getInt("colorID"));
+                    StockBatch batch = getStockBatchById(rs.getInt("batchID"));
+                    Product product = pdao.getProduct(rs.getInt("productID"));
+                    String status = rs.getString("status");
+                    si.setId(rs.getInt("id"));
+                    si.setColor(c);
+                    si.setProduct(product);
+                    si.setBatch(batch);
+                    si.setStatus(status);
+                    return si;
+                })
+                .list()
+        );
+    }
+
+    public StockItem getStockItemByID(int id) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = "select * from stockitems where id = :id";
         return jdbi.withHandle(handle -> handle.createQuery(sql)

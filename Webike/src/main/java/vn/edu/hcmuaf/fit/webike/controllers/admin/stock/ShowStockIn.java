@@ -10,17 +10,15 @@ import vn.edu.hcmuaf.fit.webike.models.StockIn;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ShowStockIn", value = "/stock")
+@WebServlet(name = "ShowStockIn", value = "/stock-in-list")
 public class ShowStockIn extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StockDAO dao = new StockDAO();
         List<StockIn> stock = dao.getStockIn();
-        System.out.println(stock);
-
         request.setAttribute("stock", stock);
-        request.getRequestDispatcher("Admin/stock.jsp").forward(request, response);
+        request.getRequestDispatcher("Admin/stockIn.jsp").forward(request, response);
 
     }
 

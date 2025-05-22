@@ -4,22 +4,21 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.StockDAO;
-import vn.edu.hcmuaf.fit.webike.models.StockBatch;
-import vn.edu.hcmuaf.fit.webike.models.StockIn;
+import vn.edu.hcmuaf.fit.webike.models.StockItem;
 
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "StockBatchDetail", value = "/stock-batch-list")
-public class StockBatchDetail extends HttpServlet {
+@WebServlet(name = "ShowStockItem", value = "/stock-item-list")
+public class ShowStockItem extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int stockID = Integer.parseInt(request.getParameter("stockID"));
-        System.out.println(stockID);
+        int batchID = Integer.parseInt(request.getParameter("batchID"));
         StockDAO dao = new StockDAO();
-        StockIn s = dao.getStockInByID(stockID);
-        request.setAttribute("s", s);
-        request.getRequestDispatcher("Admin/stockBatchDetail.jsp").forward(request, response);
+        List<StockItem> ls = dao.getStockItemByBatchID(batchID);
+        request.setAttribute("ls", ls);
+        request.getRequestDispatcher("Admin/stockItem.jsp").forward(request, response);
     }
 
     @Override
