@@ -9,6 +9,7 @@ import vn.edu.hcmuaf.fit.webike.dao.BuyHistoryDAO;
 import vn.edu.hcmuaf.fit.webike.dao.CommentDAO;
 import vn.edu.hcmuaf.fit.webike.models.OrderItem;
 import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ import java.util.List;
 @WebServlet(name = "AddComment", value = "/buy-history-cmt")
 public class AddComment extends HttpServlet {
 
+    final String levelInfo = LogService.LEVEL_INFO;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
@@ -33,6 +35,9 @@ public class AddComment extends HttpServlet {
         String color = request.getParameter("color");
         if (!content.equals("")) {
             int insert = dao.insertComment(content, created, color,productID, accountID);
+            String after = String.format("Bình luận sản phẩm ID %d: \"%s\", màu: %s, ngày: %s",
+                    productID, content, color, created);
+            LogService.log(levelInfo, "Người dùng bình luận sản phẩm", user.getPhoneNum(), "", after);
         }
 
         BuyHistoryDAO bdao = new BuyHistoryDAO();

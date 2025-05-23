@@ -13,6 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "UpdateEmailController", value = "/update-email")
 public class UpdateEmailController extends HttpServlet {
 
+    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
