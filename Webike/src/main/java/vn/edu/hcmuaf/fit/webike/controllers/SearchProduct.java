@@ -4,6 +4,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
+import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,9 +13,12 @@ import java.util.Map;
 
 @WebServlet(name = "SearchProduct", value = "/search")
 public class SearchProduct extends HttpServlet {
+    final String LEVEL_INFO = LogService.LEVEL_INFO;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("auth");
         String keyword = request.getParameter("keyword");
 //        System.out.println("keyword: " + keyword);
 
@@ -47,6 +52,7 @@ public class SearchProduct extends HttpServlet {
             }
         }
         jsonResponse.append("]");
+        LogService.log(LEVEL_INFO, "Tìm sản phẩm", user.getPhoneNum(), "", keyword);
 
         // Trả về JSON response
         response.setContentType("application/json");

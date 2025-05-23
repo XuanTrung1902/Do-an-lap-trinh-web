@@ -5,10 +5,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.webike.dao.FilterDAO;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
 import vn.edu.hcmuaf.fit.webike.models.Brand;
 import vn.edu.hcmuaf.fit.webike.models.Product;
+import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +22,7 @@ import java.util.Map;
 @WebServlet(name = "Products", value = "/list-products")
 public class Products extends HttpServlet {
 
+    final String LEVEL_INFO = LogService.LEVEL_INFO;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductDAO dao = new ProductDAO();
@@ -34,6 +38,8 @@ public class Products extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("auth");
         String[] brands = request.getParameterValues("brands");
 //        int page = Integer.parseInt(request.getParameter("page"));
         FilterDAO dao = new FilterDAO();
@@ -48,6 +54,7 @@ public class Products extends HttpServlet {
         }
         List<String> brandList = (brands == null) ? new ArrayList<>() : Arrays.asList(brands);
 
+        LogService.log(LEVEL_INFO, "Xem danh sách sản phẩm", user.getPhoneNum(), "", "");
         request.setAttribute("checkedBrands", brandList);
         request.setAttribute("allBrand", allBrand);
         request.setAttribute("products", products);

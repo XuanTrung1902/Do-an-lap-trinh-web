@@ -5,8 +5,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
 import vn.edu.hcmuaf.fit.webike.models.*;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,10 +17,13 @@ import java.util.Map;
 
 @WebServlet(name = "productDetail", value = "/productDetail")
 public class ProductDetail extends HttpServlet {
+    final String LEVEL_INFO = LogService.LEVEL_INFO;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("auth");
         if (request.getParameter("id") == null) {
             System.out.println("ko nhan dc id");
         }
@@ -47,6 +52,7 @@ public class ProductDetail extends HttpServlet {
         request.setAttribute("f", features);
         request.setAttribute("warranties", warranties);
         request.setAttribute("c", comments);
+        LogService.log(LEVEL_INFO, "Xem sản phẩm"+p.getName(), user.getPhoneNum(), p.toString(), "");
 
         request.getRequestDispatcher("GKY/productDetail.jsp").forward(request, response);
     }
