@@ -5,6 +5,9 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.DiscountDao;
 import vn.edu.hcmuaf.fit.webike.models.Discount;
+import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
+
 import java.io.IOException;
 import java.sql.Date;
 
@@ -41,9 +44,19 @@ public class UpdateDiscountController extends HttpServlet {
 
         Discount discount = new Discount(id, amount, start, end, productID);
         DiscountDao discountDao = new DiscountDao();
+        Discount oldDiscount = discountDao.getDiscountById(id);
         boolean isUpdated = discountDao.updateDiscount(discount);
 
         if (isUpdated) {
+            HttpSession session = request.getSession();
+            User currentUser = (User) session.getAttribute("auth");
+            String adminInfo = (currentUser != null) ? currentUser.getPhoneNum() : "Admin vô danh";
+
+            LogService.log(LogService.LEVEL_ALERT,
+                    "Sửa mã giảm giá",
+                    adminInfo,
+                    oldDiscount.toString(),
+                    discountDao.toString());
             response.sendRedirect(request.getContextPath() + "/discountList");
         } else {
             request.setAttribute("error", "Cập nhật giảm giá thất bại.");
