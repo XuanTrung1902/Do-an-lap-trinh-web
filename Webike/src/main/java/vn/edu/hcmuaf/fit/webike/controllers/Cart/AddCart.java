@@ -11,11 +11,13 @@ import vn.edu.hcmuaf.fit.webike.models.Cart;
 import vn.edu.hcmuaf.fit.webike.models.CartItem;
 import vn.edu.hcmuaf.fit.webike.models.Product;
 import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.IOException;
 
 @WebServlet(name = "AddCart", value = "/add-cart")
 public class AddCart extends HttpServlet {
+    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,8 +47,10 @@ public class AddCart extends HttpServlet {
         item.setUid(uid);
 
         Cart cart = (Cart) request.getSession().getAttribute("cart");
+        String cartOld = cart.toString();
         cart.add(item);
         cart.setData(uid);
+        LogService.log(LEVEL_ALERT, "Thêm sản phẩm vào giỏ hàng", user.getId()+"",cartOld , cart.toString());
 
         response.setContentType("application/json");
         response.getWriter().write("{\"status\": \"success\", \"message\": \"Đã thêm vào giỏ hàng\"}");

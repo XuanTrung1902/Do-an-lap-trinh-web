@@ -4,14 +4,12 @@ package vn.edu.hcmuaf.fit.webike.controllers.admin;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+import jakarta.servlet.http.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 
 import java.io.IOException;
@@ -28,6 +26,7 @@ import java.util.regex.Pattern;
 @WebServlet(name = "ImportUserController", value = "/importUser")
 @MultipartConfig
 public class ImportUserController extends HttpServlet {
+    final String LEVEL_WARNING = LogService.LEVEL_WARNING;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,6 +38,9 @@ public class ImportUserController extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
+        HttpSession session = request.getSession(false);
+        User currentUser = (session != null) ? (User) session.getAttribute("auth") : null;
+        String userName = (currentUser != null) ? currentUser.getId()+"" : "Unknown";
         try {
             Part filePart = request.getPart("userFile");
 
@@ -104,6 +106,7 @@ public class ImportUserController extends HttpServlet {
 
                         // Sau khi insert, lấy lại danh sách có ID để trả về
                         List<User> insertedUsers = userDAO.getLatestInsertedUsers(users.size()); // Bạn phải có hàm này
+                        LogService.log(LEVEL_WARNING, "Import user bằng file ", userName, "", users.toString());
 
                         // Trả về JSON
                         String json = buildSuccessJson(insertedUsers, request.getContextPath(), "Nhập dữ liệu thành công!");

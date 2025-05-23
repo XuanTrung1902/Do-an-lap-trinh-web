@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.webike.controllers.users;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.services.EmailService;
 import vn.edu.hcmuaf.fit.webike.services.LogService;
 import vn.edu.hcmuaf.fit.webike.services.OTPService;
@@ -20,7 +21,7 @@ import java.util.Scanner;
 @WebServlet(name = "RegisterController", value = "/register")
 public class RegisterController extends HttpServlet {
     private static final String SECRET_KEY = "6LfYyu4qAAAAAC7wHwxKsL8AV4NY3f9vgjA1BZM1";
-    final String level = LogService.LEVEL_INFO;
+    final String LEVEL_INFO = LogService.LEVEL_INFO;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("GKY/dangKy.jsp").forward(request, response);
@@ -91,8 +92,10 @@ public class RegisterController extends HttpServlet {
 
         boolean isRegistered = UserSevice.registerUser(user);
 
+        UserDao userDao = new UserDao();
+        User u = userDao.findUserPhone(phone);
         if (isRegistered) {
-            LogService.log(level, "Đăng ký", "User: " + phone, "", user.toString());
+            LogService.log(LEVEL_INFO, "Đăng ký", u.getId()+"", "", user.toString());
             response.sendRedirect("Login");
         } else {
             request.setAttribute("error", "Đăng ký thất bại");

@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
 import vn.edu.hcmuaf.fit.webike.dao.UpdateProductDAO;
 import vn.edu.hcmuaf.fit.webike.models.*;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +25,7 @@ import java.util.Set;
 )
 public class UpdateProductController extends HttpServlet {
     private static final String UPLOAD_DIRECTORY = "D:\\DO AN LTW\\Do-an-lap-trinh-web\\CKY\\Webike\\src\\main\\webapp\\img\\products";
+    private static final String LEVEL_WARNING = LogService.LEVEL_WARNING;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -83,6 +85,7 @@ public class UpdateProductController extends HttpServlet {
 
         ProductDAO productDAO = new ProductDAO();
         UpdateProductDAO updateDAO = new UpdateProductDAO();
+        Product oldProduct = productDAO.getProductById(Integer.parseInt(id));
 
         // Đường dẫn ảnh mới (nếu được upload)
         String imageUrl = null;
@@ -115,6 +118,12 @@ public class UpdateProductController extends HttpServlet {
         System.out.println("PDetail and specID: " + specUpdate);
 
         if (isUpdated) {
+            HttpSession session = request.getSession();
+            User currentUser = (User) session.getAttribute("auth");
+            String adminInfo = (currentUser != null) ? currentUser.getId()+"" : "Admin vô danh";
+            Product newProduct = productDAO.getProductById(Integer.parseInt(id));
+            LogService.log(LEVEL_WARNING, "Sửa thông tin sản phẩm", adminInfo,
+                    oldProduct.toString(), newProduct.toString());
             response.sendRedirect("products");
         } else {
             request.setAttribute("errorMessage", "Cập nhật sản phẩm thất bại!");

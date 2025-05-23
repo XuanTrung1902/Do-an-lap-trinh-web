@@ -23,6 +23,8 @@ import java.util.Scanner;
 @WebServlet(name = "loginController", value = "/Login")
 public class loginController extends HttpServlet {
 
+    final String LEVEL_INFO = LogService.LEVEL_INFO;
+    final String LEVEL_WARNING = LogService.LEVEL_WARNING;
     private static final String SECRET_KEY = "6LfJJ0UrAAAAAFQje295yNzwRcCZkkIgfHsMJvj-";
 
     @Override
@@ -37,10 +39,6 @@ public class loginController extends HttpServlet {
 
         String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
         boolean isCaptchaValid = verifyRecaptcha(gRecaptchaResponse);
-
-        final String LEVEL_INFO = LogService.LEVEL_INFO;
-
-
         if (isCaptchaValid) {
             User user = UserSevice.checklogin(phoneNum, password);  // kiểm tra login
             if (user != null) { // nếu login đúng
@@ -58,7 +56,7 @@ public class loginController extends HttpServlet {
                 session.setAttribute("cart", cart);
                 cart.setData(user.getId()); // lấy dữ liệu từ DB và lưu vào cart
 
-                LogService.log(LEVEL_INFO, "Đăng nhập", phoneNum, "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
+                LogService.log(LEVEL_INFO, "Đăng nhập",user.getId()+"" , "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
 
                 List<PermissionDTO> permissions = PermissionService.getPermissionsForUser(user.getId());
                 session.setAttribute("permissions", permissions);
@@ -69,6 +67,7 @@ public class loginController extends HttpServlet {
                     response.sendRedirect("homepage");
                 }
             } else { // nếu login sai
+                LogService.log(LEVEL_WARNING, "Đăng nhập", phoneNum, "Trạng thái: Chưa đăng nhập", "Trạng thái: Dăng nhập sai");
                 request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu");
                 request.setAttribute("phone", phoneNum);
                 request.getRequestDispatcher("GKY/Dangnhap.jsp").forward(request, response);
