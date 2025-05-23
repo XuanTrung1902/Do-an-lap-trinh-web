@@ -5,6 +5,8 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.DiscountDao;
 import vn.edu.hcmuaf.fit.webike.models.Discount;
+import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.sql.Date;
 
@@ -12,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "AddDiscountController", value = "/addDiscount")
 public class AddDiscountController extends HttpServlet {
+    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,6 +24,8 @@ public class AddDiscountController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        User u = (User) session.getAttribute("auth");
         int productID = Integer.parseInt(request.getParameter("productID"));
         double amount = Double.parseDouble(request.getParameter("amount"));
         Date start = Date.valueOf(request.getParameter("start"));
@@ -40,6 +45,7 @@ public class AddDiscountController extends HttpServlet {
         boolean isAdded = discountDao.addDiscount(discount);
 
         if (isAdded) {
+            LogService.log(LEVEL_ALERT, "Thêm Giảm giá", u.getPhoneNum(),"" ,discount.toString());
             response.sendRedirect(request.getContextPath() + "/discountList");
         } else {
             request.setAttribute("error", "Thêm giảm giá thất bại.");

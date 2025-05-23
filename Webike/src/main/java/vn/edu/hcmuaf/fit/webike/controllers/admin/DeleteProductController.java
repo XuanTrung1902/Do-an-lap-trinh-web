@@ -4,15 +4,21 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
+import vn.edu.hcmuaf.fit.webike.models.Product;
+import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.IOException;
 
 @WebServlet(name = "DeleteProductController", value = "/delete-product")
 public class DeleteProductController extends HttpServlet {
 
+    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Lấy ID sản phẩm từ tham số yêu cầu
+        HttpSession session = req.getSession(false);
+        User user = (User) session.getAttribute("auth");
         String idParam = req.getParameter("id");
         if (idParam != null) {
             try {
@@ -20,10 +26,13 @@ public class DeleteProductController extends HttpServlet {
 
                 // Gọi hàm xóa sản phẩm trong ProductDAO
                 ProductDAO productDAO = new ProductDAO();
+                Product productOld = productDAO.getProduct(productId);
                 boolean isDeleted = productDAO.deleteProductById(productId);
+                Product productNew = productDAO.getProduct(productId);
 
                 if (isDeleted) {
                     // Xóa thành công, chuyển hướng về trang quản lý sản phẩm
+                    LogService.log(LEVEL_ALERT, "Xóa Product", user.getPhoneNum(),productOld.toString() ,productNew.toString());
                     resp.sendRedirect(req.getContextPath() + "/products");
                 } else {
                     // Xóa thất bại, gửi thông báo lỗi

@@ -5,6 +5,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 
 import java.io.File;
@@ -21,6 +22,7 @@ import com.google.gson.Gson;
 @WebServlet(name = "AddUserController", value = "/addUser")
 @MultipartConfig
 public class AddUserController extends HttpServlet {
+    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,6 +33,8 @@ public class AddUserController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
+        HttpSession session = request.getSession(false);
+        User u = (User) session.getAttribute("auth");
         String name = request.getParameter("username");
         String phoneNum = request.getParameter("phone");
         String DOB = request.getParameter("birthday");
@@ -95,6 +99,7 @@ public class AddUserController extends HttpServlet {
         boolean isAdded = userDao.addUserAdmin(user);
 
         if (isAdded) {
+            LogService.log(LEVEL_ALERT, "Thêm user", u.getPhoneNum(),"" ,user.toString());
             if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");

@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.AdminDashboardDAO;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
 import com.fasterxml.jackson.databind.ObjectMapper; // Thêm import cho Jackson
+import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.Map;
 public class loadData extends HttpServlet {
     private AdminDashboardDAO adminDashboaDAO;
     private ProductDAO productDAO;
+    final String LEVEL_INFO = LogService.LEVEL_INFO;
 
     @Override
     public void init() throws ServletException {
@@ -24,6 +27,8 @@ public class loadData extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        User u = (User) session.getAttribute("auth");
         // Tổng số sản phẩm
         int totalProducts = productDAO.getAllProducts().size();
 
@@ -49,6 +54,7 @@ public class loadData extends HttpServlet {
         ObjectMapper objectMapper = new ObjectMapper();
         String revenueDataJson = objectMapper.writeValueAsString(revenueData);
         String ordersDataJson = objectMapper.writeValueAsString(ordersData);
+        LogService.log(LEVEL_INFO, "Xem trang Dashboard", u.getPhoneNum(), "Trạng thái: Chưa đăng nhập", "Trạng thái: Dăng nhập");
 
         // Đặt dữ liệu vào request attributes
         request.setAttribute("totalProducts", totalProducts);
