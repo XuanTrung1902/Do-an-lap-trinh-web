@@ -79,6 +79,7 @@ public class Pay extends HttpServlet {
         }else if (responseCode.equalsIgnoreCase("09") || responseCode.equalsIgnoreCase("24")) {
             status = "Đã hủy";
             oid = dao.insertOrder(phoneNum,0, 0, "", null, null,null, status, accountID, shopID);
+            request.getSession().setAttribute("cancelMessage", "Bạn đã hủy thanh toán!");
         }
 
         request.setAttribute("orderItem", order.getData());
@@ -100,10 +101,8 @@ public class Pay extends HttpServlet {
                 request.getRequestDispatcher("GKY/billing.jsp").forward(request, response);
                 break;
             case "09":
-                request.getRequestDispatcher("GKY/paymentCanceled.jsp").forward(request, response);
-                break;
             case "24":
-                request.getRequestDispatcher("GKY/paymentCanceled.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/list-products");
                 break;
         }
     }

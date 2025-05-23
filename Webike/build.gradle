@@ -1,0 +1,139 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id "org.hidetake.ssh" version "2.11.2"
+    id 'war'
+    id 'java'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+}
+
+dependencies {
+    api libs.jakarta.servlet.jsp.jstl.jakarta.servlet.jsp.jstl.api
+    api libs.org.glassfish.web.jakarta.servlet.jsp.jstl
+    api libs.com.mysql.mysql.connector.j
+    api libs.org.jdbi.jdbi3.core
+    api libs.com.sun.mail.javax.mail
+    api libs.javax.activation.activation
+    api libs.com.google.code.gson.gson
+    api libs.org.json.json
+    api libs.com.google.api.client.google.api.client
+    api libs.com.google.oauth.client.google.oauth.client.jetty
+    api libs.com.google.apis.google.api.services.oauth2
+    api libs.com.google.api.client.google.api.client.gson
+    api libs.org.apache.httpcomponents.client5.httpclient5.fluent
+    api libs.org.apache.httpcomponents.httpmime
+    api libs.org.apache.poi.poi.ooxml
+    api libs.org.apache.logging.log4j.log4j.api
+    api libs.org.apache.logging.log4j.log4j.core
+    api libs.ch.qos.logback.logback.classic
+    api libs.com.fasterxml.jackson.core.jackson.databind
+    api libs.com.warrenstrange.googleauth
+    api libs.com.google.zxing.core
+    api libs.com.google.zxing.javase
+    api libs.com.squareup.okhttp3.okhttp
+    testImplementation libs.org.junit.jupiter.junit.jupiter.api
+    testImplementation libs.org.junit.jupiter.junit.jupiter.engine
+    compileOnly libs.jakarta.servlet.jakarta.servlet.api
+}
+
+group = 'vn.edu.hcmuaf.fit'
+version = '1.0-SNAPSHOT'
+description = 'Webike'
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.11.0'
+}
+
+sourceCompatibility = '21'
+targetCompatibility = '21'
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    compileOnly('jakarta.servlet:jakarta.servlet-api:6.1.0')
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+apply plugin: 'org.hidetake.ssh'
+remotes {
+    host {
+        host = '192.168.254.136'
+        user = 'root'
+        password = 'centos'
+    }
+}
+ssh.settings {
+    knownHosts = allowAnyHosts
+}
+task docker_app_start {
+    doLast {
+        println 'begin docker_app_start'
+        ssh.run {
+            session(remotes.host) {
+                execute 'docker stop tomcat10', ignoreError: true
+                execute 'docker run -it --rm -d ' +
+                        '--name tomcat10 ' +
+                        '-v /usr/deploy:/usr/local/tomcat/webapps ' +
+                        '-p 80:8080 ' +
+                        'tomcat:10.1.31'
+                execute 'docker start mysql'
+            }
+        }
+    }
+}
+
+task docker_upload_file_to_server {
+    doLast {
+        println 'Uploading file to Linux server...'
+        ssh.run {
+            session(remotes.host) {
+                // Tạo thư mục nếu chưa có
+                execute 'mkdir -p /usr/deploy'
+
+                // Xóa file cũ nếu có
+                remove '/usr/deploy/Webike.war'
+                remove '/usr/deploy/Webike'
+                // Upload file
+                put from: "${project.projectDir}/build/libs/Webike-1.0-SNAPSHOT.war",
+                        into: "/usr/deploy/Webike.war"
+            }
+        }
+    }
+}
+
+task docker_deploy {
+    docker_deploy.dependsOn docker_app_start
+    docker_deploy.dependsOn docker_upload_file_to_server
+    docker_deploy.dependsOn build
+    tasks.getByName('docker_app_start').mustRunAfter docker_upload_file_to_server
+}
