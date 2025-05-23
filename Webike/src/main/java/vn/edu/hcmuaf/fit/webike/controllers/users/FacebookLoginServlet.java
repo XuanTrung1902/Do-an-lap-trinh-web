@@ -8,6 +8,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONObject;
 import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 import vn.edu.hcmuaf.fit.webike.services.UserSevice;
 
 import java.io.IOException;
@@ -18,6 +19,8 @@ public class FacebookLoginServlet extends HttpServlet {
     private static final String CLIENT_ID = "1418575426075396";
     private static final String CLIENT_SECRET = "6ce550295abab520ba3a9fd2f6427982";
     private static final String REDIRECT_URI = "http://localhost:8080/Webike/login?action=facebook";
+    final String LEVEL_INFO = LogService.LEVEL_INFO;
+    final String LEVEL_WARNING = LogService.LEVEL_WARNING;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -56,6 +59,7 @@ public class FacebookLoginServlet extends HttpServlet {
                 user = userService.findByEmail(email); // lấy lại user vừa tạo
             }
 
+            LogService.log(LEVEL_INFO, "Đăng nhập Facebook", user.getPhoneNum(), "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
             // 4. Lưu user vào session
             HttpSession session = request.getSession();
             session.setAttribute("auth", user);
