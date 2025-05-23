@@ -7,6 +7,7 @@ import vn.edu.hcmuaf.fit.webike.dao.BuyHistoryDAO;
 import vn.edu.hcmuaf.fit.webike.dao.CommentDAO;
 import vn.edu.hcmuaf.fit.webike.models.OrderItem;
 import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ import java.util.List;
 @WebServlet(name = "ShowBuyHistory", value = "/buy-history")
 public class ShowBuyHistory extends HttpServlet {
     private static final int ITEMS_PER_PAGE = 5;
+    final String levelInfo = LogService.LEVEL_INFO;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,11 +46,13 @@ public class ShowBuyHistory extends HttpServlet {
         // Lấy danh sách phân trang từ cơ sở dữ liệu
         List<OrderItem> paginatedItems = dao.getPaginatedOrderItems(accountID, page, ITEMS_PER_PAGE);
 
+        LogService.log(levelInfo, "Xem lịch sử mua hàng", user.getPhoneNum(),paginatedItems.toString() , "");
         request.setAttribute("ls", paginatedItems);
         request.setAttribute("currentPage", page);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("totalItems", totalItems);
 
+        LogService.log(levelInfo, "Xem lịch sử mua hàng", user.getPhoneNum(), "", "Xem trang " + page);
         request.getRequestDispatcher("GKY/buyHistory.jsp").forward(request, response);
 
     }
@@ -66,6 +70,7 @@ public class ShowBuyHistory extends HttpServlet {
 
         if (!content.equals("")) {
             int insert = dao.insertComment(content, created, color, productID, accountID);
+            String after = "Gửi bình luận cho sản phẩm ID: " + productID + ", nội dung: \"" + content + "\", màu: " + color;
         }
 
         // Xử lý phân trang sau khi gửi bình luận
