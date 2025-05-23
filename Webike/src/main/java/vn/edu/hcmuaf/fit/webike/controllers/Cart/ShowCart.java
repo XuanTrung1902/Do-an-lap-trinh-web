@@ -22,7 +22,7 @@ public class ShowCart extends HttpServlet {
         Cart cart = (Cart) request.getSession().getAttribute("cart");
         cart.setData(user.getId());
 
-        LogService.log(LEVEL_INFO, "Xem giỏ hàng", user.getPhoneNum(),cart.toString() , "");
+        LogService.log(LEVEL_INFO, "Xem giỏ hàng", user.getId()+"",cart.toString() , "");
         request.getRequestDispatcher("GKY/cart.jsp").forward(request, response);
 
     }

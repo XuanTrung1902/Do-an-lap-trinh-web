@@ -31,7 +31,7 @@ public class UpdateCart extends HttpServlet {
         String cartOld = cart.toString();
         cart.update(id, quantity);
 
-        LogService.log(LEVEL_ALERT, "Câập nhật sản phẩm trong giỏ hàng", user.getPhoneNum(),cartOld , cart.toString());
+        LogService.log(LEVEL_ALERT, "Câập nhật sản phẩm trong giỏ hàng", user.getId()+"",cartOld , cart.toString());
         request.getRequestDispatcher("GKY/cart.jsp").forward(request, response);
     }
 }

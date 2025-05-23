@@ -12,7 +12,7 @@ import java.io.IOException;
 @WebServlet(name = "DeleteUserController", value = "/deleteUser")
 public class DeleteUserController extends HttpServlet {
 
-    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
+    final String LEVEL_DENGER = LogService.LEVEL_DENGER;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
@@ -32,7 +32,7 @@ public class DeleteUserController extends HttpServlet {
             User userNew = userDao.getUserById(id);
 
             if (isUpdated) {
-                LogService.log(LEVEL_ALERT, "Xóa user", user.getPhoneNum(),userOld.toString() , userNew.toString());
+                LogService.log(LEVEL_DENGER, "Xóa user", user.getId()+"",userOld.toString() , userNew.toString());
                 response.getWriter().write("{\"success\": true}");
             } else {
                 response.getWriter().write("{\"success\": false, \"message\": \"Không thể cập nhật trạng thái người dùng.\"}");

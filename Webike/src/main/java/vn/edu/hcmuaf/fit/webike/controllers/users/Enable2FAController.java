@@ -84,7 +84,7 @@ public class Enable2FAController extends HttpServlet {
                 boolean isCodeValid = gAuth.authorize(user.getOtpSecret(), Integer.parseInt(otp));
 
                 if (isCodeValid) {
-                    LogService.log(LEVEL_ALERT, "Bật xác thực bước 2", user.getPhoneNum(), "", "");
+                    LogService.log(LEVEL_ALERT, "Bật xác thực bước 2", user.getId()+"", "", "");
                     user.setOtpEnabled(true);
                     new UserDao().updateOtpEnabled(user.getId(), true);
                     session.setAttribute("auth", user);

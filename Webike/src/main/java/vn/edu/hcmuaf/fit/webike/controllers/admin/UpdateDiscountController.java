@@ -50,7 +50,7 @@ public class UpdateDiscountController extends HttpServlet {
         if (isUpdated) {
             HttpSession session = request.getSession();
             User currentUser = (User) session.getAttribute("auth");
-            String adminInfo = (currentUser != null) ? currentUser.getPhoneNum() : "Admin vô danh";
+            String adminInfo = (currentUser != null) ? currentUser.getId()+"" : "Admin vô danh";
 
             LogService.log(LogService.LEVEL_ALERT,
                     "Sửa mã giảm giá",

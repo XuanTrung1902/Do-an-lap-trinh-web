@@ -13,7 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "DeleteDiscountController", value = "/deleteDiscount")
 public class DeleteDiscountController extends HttpServlet {
 
-    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
+    final String LEVEL_WARNING = LogService.LEVEL_WARNING;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
@@ -29,7 +29,7 @@ public class DeleteDiscountController extends HttpServlet {
         Discount discountNew = discountDao.getDiscountById(id);
 
         if (isDeleted) {
-            LogService.log(LEVEL_ALERT, "Xóa Discount", user.getPhoneNum(),discountOld.toString() ,discountNew.toString());
+            LogService.log(LEVEL_WARNING, "Xóa Discount", user.getId()+"",discountOld.toString() ,discountNew.toString());
             response.sendRedirect(request.getContextPath() + "/discountList");
         } else {
             request.setAttribute("error", "Xóa giảm giá thất bại.");

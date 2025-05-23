@@ -16,7 +16,6 @@ import java.io.IOException;
 @WebServlet(name = "GoogleLoginServlet", value = "/googlelogin")
 public class GoogleLoginServlet extends HttpServlet {
     final String LEVEL_INFO = LogService.LEVEL_INFO;
-    final String LEVEL_WARNING = LogService.LEVEL_WARNING;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

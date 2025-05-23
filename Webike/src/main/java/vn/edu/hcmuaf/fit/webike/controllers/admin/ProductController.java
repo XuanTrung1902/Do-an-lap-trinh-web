@@ -33,7 +33,7 @@ public class ProductController extends HttpServlet {
         // Lấy thông tin user hiện tại từ session để ghi log
         HttpSession session = request.getSession(false);
         User currentUser = (session != null) ? (User) session.getAttribute("auth") : null;
-        String userInfo = (currentUser != null) ? currentUser.getPhoneNum() : "Khách";
+        String userInfo = (currentUser != null) ? currentUser.getId()+"" : "Khách";
 
         // Ghi log hành động xem danh sách sản phẩm
         LogService.log(level, "Xem danh sách sản phẩm", userInfo, loadProducts.toString(), "");

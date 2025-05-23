@@ -26,7 +26,8 @@ public class RemoveCart extends HttpServlet {
         String cartOld = cart.toString();
         User user = (User) request.getSession().getAttribute("auth");
         cart.remove(id);
-        LogService.log(LEVEL_ALERT, "Xóa sản phẩm trong giỏ hàng", user.getPhoneNum(),cartOld , cart.toString());
+        LogService.log(LEVEL_ALERT, "Xóa sản phẩm trong giỏ hàng", user.getId()+"",cartOld , cart.toString());
+
 
         request.getRequestDispatcher("GKY/cart.jsp").forward(request, response);
     }

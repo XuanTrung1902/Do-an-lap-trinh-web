@@ -99,7 +99,7 @@ public class AddUserController extends HttpServlet {
         boolean isAdded = userDao.addUserAdmin(user);
 
         if (isAdded) {
-            LogService.log(LEVEL_ALERT, "Thêm user", u.getPhoneNum(),"" ,user.toString());
+            LogService.log(LEVEL_ALERT, "Thêm user", u.getId()+"","" ,user.toString());
             if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");

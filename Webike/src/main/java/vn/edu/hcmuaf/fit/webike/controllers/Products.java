@@ -54,7 +54,7 @@ public class Products extends HttpServlet {
         }
         List<String> brandList = (brands == null) ? new ArrayList<>() : Arrays.asList(brands);
 
-        LogService.log(LEVEL_INFO, "Xem danh sách sản phẩm", user.getPhoneNum(), "", "");
+        LogService.log(LEVEL_INFO, "Xem danh sách sản phẩm", user.getId()+"", "", "");
         request.setAttribute("checkedBrands", brandList);
         request.setAttribute("allBrand", allBrand);
         request.setAttribute("products", products);

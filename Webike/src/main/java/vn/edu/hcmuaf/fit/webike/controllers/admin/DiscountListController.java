@@ -22,7 +22,7 @@ public class DiscountListController extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         User currentUser = (session != null) ? (User) session.getAttribute("auth") : null;
-        String userName = (currentUser != null) ? currentUser.getPhoneNum() : "Unknown";
+        String userName = (currentUser != null) ? currentUser.getId()+"" : "Unknown";
         if (!discountList.isEmpty()) {
             LogService.log(level, "lấy danh sách giảm giá", userName,discountList.toString() , "");
             request.setAttribute("discountList", discountList);

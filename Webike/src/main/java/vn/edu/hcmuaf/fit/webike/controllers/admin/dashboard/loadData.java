@@ -54,7 +54,7 @@ public class loadData extends HttpServlet {
         ObjectMapper objectMapper = new ObjectMapper();
         String revenueDataJson = objectMapper.writeValueAsString(revenueData);
         String ordersDataJson = objectMapper.writeValueAsString(ordersData);
-        LogService.log(LEVEL_INFO, "Xem trang Dashboard", u.getPhoneNum(), "Trạng thái: Chưa đăng nhập", "Trạng thái: Dăng nhập");
+        LogService.log(LEVEL_INFO, "Xem trang Dashboard", u.getId()+"", "Trạng thái: Chưa đăng nhập", "Trạng thái: Dăng nhập");
 
         // Đặt dữ liệu vào request attributes
         request.setAttribute("totalProducts", totalProducts);

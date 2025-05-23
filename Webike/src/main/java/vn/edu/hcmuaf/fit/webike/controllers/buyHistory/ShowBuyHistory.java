@@ -52,7 +52,7 @@ public class ShowBuyHistory extends HttpServlet {
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("totalItems", totalItems);
 
-        LogService.log(levelInfo, "Xem lịch sử mua hàng", user.getPhoneNum(), "", "Xem trang " + page);
+        LogService.log(levelInfo, "Xem lịch sử mua hàng", user.getId()+"", "", "Xem trang " + page);
         request.getRequestDispatcher("GKY/buyHistory.jsp").forward(request, response);
 
     }

@@ -56,7 +56,7 @@ public class loginController extends HttpServlet {
                 session.setAttribute("cart", cart);
                 cart.setData(user.getId()); // lấy dữ liệu từ DB và lưu vào cart
 
-                LogService.log(LEVEL_INFO, "Đăng nhập", phoneNum, "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
+                LogService.log(LEVEL_INFO, "Đăng nhập",user.getId()+"" , "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
 
                 List<PermissionDTO> permissions = PermissionService.getPermissionsForUser(user.getId());
                 session.setAttribute("permissions", permissions);

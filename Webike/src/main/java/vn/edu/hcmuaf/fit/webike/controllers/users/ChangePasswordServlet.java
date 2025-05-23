@@ -12,7 +12,7 @@ import java.io.IOException;
 @WebServlet(name = "ChangePasswordServlet", value = "/ChangePassword")
 public class ChangePasswordServlet extends HttpServlet {
 
-    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
+    final String LEVEL_WARNING = LogService.LEVEL_WARNING;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
@@ -45,7 +45,7 @@ public class ChangePasswordServlet extends HttpServlet {
                 boolean isUpdated = UserSevice.updatePassword(user, currentPassword, newPassword);
                 if (isUpdated) {
                     request.setAttribute("message", "Đổi mật khẩu thành công!");
-                    LogService.log(LEVEL_ALERT, "Đổi mật khẩu", user.getPhoneNum(), passOld, UserSevice.hashPassword(newPassword));
+                    LogService.log(LEVEL_WARNING, "Đổi mật khẩu", user.getId()+"", passOld, UserSevice.hashPassword(newPassword));
                 } else {
                     request.setAttribute("error", "Mật khẩu cũ không đúng!");
                     request.setAttribute("current-password", currentPassword);

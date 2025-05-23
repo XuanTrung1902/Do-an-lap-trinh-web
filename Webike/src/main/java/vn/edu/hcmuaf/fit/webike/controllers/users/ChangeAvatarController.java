@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 @MultipartConfig
 public class ChangeAvatarController extends HttpServlet {
 
-    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
+    final String LEVEL_WARNING = LogService.LEVEL_WARNING;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
@@ -47,7 +47,7 @@ public class ChangeAvatarController extends HttpServlet {
         if (isUpdated) {
             session.setAttribute("auth", user);
             response.sendRedirect("Profile");
-            LogService.log(LEVEL_ALERT, "Dổi ảnh", user.getPhoneNum(), imgold, user.getImage());
+            LogService.log(LEVEL_WARNING, "Dổi ảnh", user.getId()+"", imgold, user.getImage());
         } else {
             request.setAttribute("error", "Cập nhật ảnh đại diện thất bại.");
             request.getRequestDispatcher("Profile").forward(request, response);

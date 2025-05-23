@@ -50,7 +50,7 @@ public class AddCart extends HttpServlet {
         String cartOld = cart.toString();
         cart.add(item);
         cart.setData(uid);
-        LogService.log(LEVEL_ALERT, "Thêm sản phẩm vào giỏ hàng", user.getPhoneNum(),cartOld , cart.toString());
+        LogService.log(LEVEL_ALERT, "Thêm sản phẩm vào giỏ hàng", user.getId()+"",cartOld , cart.toString());
 
         response.setContentType("application/json");
         response.getWriter().write("{\"status\": \"success\", \"message\": \"Đã thêm vào giỏ hàng\"}");

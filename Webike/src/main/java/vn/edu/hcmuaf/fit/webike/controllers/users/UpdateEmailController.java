@@ -13,7 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "UpdateEmailController", value = "/update-email")
 public class UpdateEmailController extends HttpServlet {
 
-    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
+    final String LEVEL_WARNING = LogService.LEVEL_WARNING;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
@@ -64,7 +64,7 @@ public class UpdateEmailController extends HttpServlet {
             session.removeAttribute("otpTimestamp");
             request.setAttribute("message", "Email đã được cập nhật thành công!");
         }
-        LogService.log(LEVEL_ALERT, "Đổi email", user.getPhoneNum(),emailOld , user.getEmail());
+        LogService.log(LEVEL_WARNING, "Đổi email", user.getId()+"",emailOld , user.getEmail());
         response.sendRedirect(request.getContextPath() + "/Profile");
     }
 

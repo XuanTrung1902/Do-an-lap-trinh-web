@@ -115,7 +115,7 @@ public class AddProductController extends HttpServlet {
 
         // Chuyển hướng hoặc thông báo
         if (success > 0) {
-            LogService.log(LEVEL_ALERT, "Thêm sản phầm", u.getPhoneNum(),"" ,success+"");
+            LogService.log(LEVEL_ALERT, "Thêm sản phầm", u.getId()+"","" ,success+"");
             request.setAttribute("successMessage", "Thêm sản phẩm thành công!");
             response.sendRedirect("products"); // Quay lại trang danh sách sản phẩm
         } else {

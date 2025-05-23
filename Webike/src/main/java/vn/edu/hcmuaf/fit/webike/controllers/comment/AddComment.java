@@ -35,9 +35,7 @@ public class AddComment extends HttpServlet {
         String color = request.getParameter("color");
         if (!content.equals("")) {
             int insert = dao.insertComment(content, created, color,productID, accountID);
-            String after = String.format("Bình luận sản phẩm ID %d: \"%s\", màu: %s, ngày: %s",
-                    productID, content, color, created);
-            LogService.log(levelInfo, "Người dùng bình luận sản phẩm", user.getPhoneNum(), "", after);
+            LogService.log(levelInfo, "Người dùng bình luận sản phẩm", user.getId()+"", "", content);
         }
 
         BuyHistoryDAO bdao = new BuyHistoryDAO();

@@ -19,7 +19,7 @@ public class ProfileController extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
         if (user != null) {
-            LogService.log(levelInfo, "Xem thông tin cá nhân", user.getPhoneNum(), user.toString(), "");
+            LogService.log(levelInfo, "Xem thông tin cá nhân", user.getId()+"", user.toString(), "");
             request.setAttribute("user", user);
             request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
         } else {

@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 @WebServlet(name = "ImportUserController", value = "/importUser")
 @MultipartConfig
 public class ImportUserController extends HttpServlet {
-    final String level = LogService.LEVEL_INFO;
+    final String LEVEL_WARNING = LogService.LEVEL_WARNING;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,7 +40,7 @@ public class ImportUserController extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         User currentUser = (session != null) ? (User) session.getAttribute("auth") : null;
-        String userName = (currentUser != null) ? currentUser.getPhoneNum() : "Unknown";
+        String userName = (currentUser != null) ? currentUser.getId()+"" : "Unknown";
         try {
             Part filePart = request.getPart("userFile");
 
@@ -106,7 +106,7 @@ public class ImportUserController extends HttpServlet {
 
                         // Sau khi insert, lấy lại danh sách có ID để trả về
                         List<User> insertedUsers = userDAO.getLatestInsertedUsers(users.size()); // Bạn phải có hàm này
-                        LogService.log(level, "Import user bằng file ", userName, "", users.toString());
+                        LogService.log(LEVEL_WARNING, "Import user bằng file ", userName, "", users.toString());
 
                         // Trả về JSON
                         String json = buildSuccessJson(insertedUsers, request.getContextPath(), "Nhập dữ liệu thành công!");

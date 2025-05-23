@@ -33,7 +33,7 @@ public class Homepage extends HttpServlet {
         List<String> brands = dao.getBrandOfProduct();
         List<Shop> shops = pdao.getShops();
 
-        LogService.log(LEVEL_INFO, "Trang chủ",user.getPhoneNum() , "", "");
+        LogService.log(LEVEL_INFO, "Trang chủ",user.getId()+"" , "", "");
         request.setAttribute("brands", brands);
         request.setAttribute("bikeTypes", bikeTypes);
         request.setAttribute("shops", shops);

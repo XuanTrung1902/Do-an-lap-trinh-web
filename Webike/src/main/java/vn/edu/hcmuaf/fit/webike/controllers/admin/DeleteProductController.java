@@ -13,7 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "DeleteProductController", value = "/delete-product")
 public class DeleteProductController extends HttpServlet {
 
-    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
+    final String LEVEL_DENGER = LogService.LEVEL_DENGER;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Lấy ID sản phẩm từ tham số yêu cầu
@@ -32,7 +32,7 @@ public class DeleteProductController extends HttpServlet {
 
                 if (isDeleted) {
                     // Xóa thành công, chuyển hướng về trang quản lý sản phẩm
-                    LogService.log(LEVEL_ALERT, "Xóa Product", user.getPhoneNum(),productOld.toString() ,productNew.toString());
+                    LogService.log(LEVEL_DENGER, "Xóa Product", user.getId()+"",productOld.toString() ,productNew.toString());
                     resp.sendRedirect(req.getContextPath() + "/products");
                 } else {
                     // Xóa thất bại, gửi thông báo lỗi

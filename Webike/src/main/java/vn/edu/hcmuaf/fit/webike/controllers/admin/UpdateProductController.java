@@ -25,7 +25,7 @@ import java.util.Set;
 )
 public class UpdateProductController extends HttpServlet {
     private static final String UPLOAD_DIRECTORY = "D:\\DO AN LTW\\Do-an-lap-trinh-web\\CKY\\Webike\\src\\main\\webapp\\img\\products";
-    private static final String LEVEL_ALERT = LogService.LEVEL_ALERT;
+    private static final String LEVEL_WARNING = LogService.LEVEL_WARNING;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -120,9 +120,9 @@ public class UpdateProductController extends HttpServlet {
         if (isUpdated) {
             HttpSession session = request.getSession();
             User currentUser = (User) session.getAttribute("auth");
-            String adminInfo = (currentUser != null) ? currentUser.getPhoneNum() : "Admin vô danh";
+            String adminInfo = (currentUser != null) ? currentUser.getId()+"" : "Admin vô danh";
             Product newProduct = productDAO.getProductById(Integer.parseInt(id));
-            LogService.log(LEVEL_ALERT, "Sửa thông tin sản phẩm", adminInfo,
+            LogService.log(LEVEL_WARNING, "Sửa thông tin sản phẩm", adminInfo,
                     oldProduct.toString(), newProduct.toString());
             response.sendRedirect("products");
         } else {

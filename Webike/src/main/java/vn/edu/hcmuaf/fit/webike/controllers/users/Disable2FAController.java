@@ -29,7 +29,7 @@ public class Disable2FAController extends HttpServlet {
         }
 
         // Tắt 2FA
-        LogService.log(LEVEL_ALERT, "Tắt xác thực bước 2", user.getPhoneNum(), "", "");
+        LogService.log(LEVEL_ALERT, "Tắt xác thực bước 2", user.getId()+"", "", "");
         user.setOtpEnabled(false);
         user.setOtpSecret(null);
         new UserDao().updateOtpEnabled(user.getId(), false);

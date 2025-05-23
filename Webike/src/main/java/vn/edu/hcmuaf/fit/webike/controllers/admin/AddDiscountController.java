@@ -45,7 +45,7 @@ public class AddDiscountController extends HttpServlet {
         boolean isAdded = discountDao.addDiscount(discount);
 
         if (isAdded) {
-            LogService.log(LEVEL_ALERT, "Thêm Giảm giá", u.getPhoneNum(),"" ,discount.toString());
+            LogService.log(LEVEL_ALERT, "Thêm Giảm giá", u.getId()+"","" ,discount.toString());
             response.sendRedirect(request.getContextPath() + "/discountList");
         } else {
             request.setAttribute("error", "Thêm giảm giá thất bại.");

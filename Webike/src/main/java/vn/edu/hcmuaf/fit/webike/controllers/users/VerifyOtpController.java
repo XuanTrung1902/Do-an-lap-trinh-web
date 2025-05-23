@@ -46,7 +46,7 @@ public class VerifyOtpController extends HttpServlet {
             cart.setData(user.getId());
 
             // Ghi log
-            LogService.log(LEVEL_INFO, "Xác thực OTP thành công", user.getPhoneNum(), "Trạng thái: Chờ OTP", "Trạng thái: Đã xác minh");
+            LogService.log(LEVEL_INFO, "Xác thực OTP thành công", user.getId()+"", "Trạng thái: Chờ OTP", "Trạng thái: Đã xác minh");
 
             // Phân quyền
             List<PermissionDTO> permissions = PermissionService.getPermissionsForUser(user.getId());

@@ -52,7 +52,7 @@ public class ProductDetail extends HttpServlet {
         request.setAttribute("f", features);
         request.setAttribute("warranties", warranties);
         request.setAttribute("c", comments);
-        LogService.log(LEVEL_INFO, "Xem sản phẩm"+p.getName(), user.getPhoneNum(), p.toString(), "");
+        LogService.log(LEVEL_INFO, "Xem sản phẩm"+p.getName(), user.getId()+"", p.getId()+"", "");
 
         request.getRequestDispatcher("GKY/productDetail.jsp").forward(request, response);
     }
