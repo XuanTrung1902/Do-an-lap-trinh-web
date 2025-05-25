@@ -61,14 +61,6 @@ li {
     grid-template-columns: 20% 80%;
 }
 
-
-
-
-/* side bar */
-
-
-/* USER MENU */
-
 /* content */
 .admin__content {
     background-color: var(--sub-bg-color);
@@ -582,9 +574,3 @@ form .btn-delete:hover {
     margin-top: 10px;
     color: #666;
 }
-
-
-
- 
-
-

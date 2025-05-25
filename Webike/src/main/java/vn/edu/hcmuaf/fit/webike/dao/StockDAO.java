@@ -10,7 +10,7 @@ import java.util.List;
 public class StockDAO {
     public static void main(String[] args) {
         StockDAO dao = new StockDAO();
-//        System.out.println(dao.getStockIn());
+        System.out.println(dao.getStockIn());
 //        System.out.println(dao.getStockInByID(1));
 //        System.out.println(dao.getStockItemByBatchID(1));
 //        System.out.println(dao.getStockBatchByStockId(1));
