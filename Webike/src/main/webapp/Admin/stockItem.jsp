@@ -35,6 +35,7 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Hình ảnh</th>
                                 <th>Sản phẩm</th>
                                 <th>Màu sắc</th>
                                 <th>Trạng thái</th>
@@ -45,6 +46,9 @@
                                 <c:forEach  var="x" items="${ls}">
                                     <tr>
                                         <td>${x.id}</td>
+                                        <td>
+                                            <img src="${pageContext.request.contextPath}/${x.imagePath}" alt="Ảnh" style="width: 100px;" />
+                                        </td>
                                         <td>${x.product.name}</td>
                                         <td>${x.color.name}</td>
                                         <td>${x.status}</td>
@@ -57,15 +61,7 @@
             </div>
         </div>
     </section>
-<%--<c:forEach var="x" items="${ls}">--%>
-<%--    <div>--%>
-<%--        <p>ID: ${x.id}</p>--%>
-<%--        <p>Sản phẩm (có thể lấy ra các thuộc tính khác của sản phẩm): ${x.product.id}</p>--%>
-<%--        <p>Màu: ${x.color}</p>--%>
-<%--        <p>Trạng thái: ${x.status}</p>--%>
-<%--    </div>--%>
-<%--    <span>++++++++++++++++++++++++++++++++++++</span>--%>
-<%--</c:forEach>--%>
+
     <script src="<%= request.getContextPath()%>/Admin/assets/js/admin.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>

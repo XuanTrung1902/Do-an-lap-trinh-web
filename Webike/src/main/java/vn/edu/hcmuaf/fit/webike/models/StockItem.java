@@ -6,6 +6,7 @@ public class StockItem {
     private StockBatch batch;
     private Product product;
     private String status;
+    private String imagePath;
 
     public StockItem() {
     }
@@ -48,6 +49,14 @@ public class StockItem {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     @Override

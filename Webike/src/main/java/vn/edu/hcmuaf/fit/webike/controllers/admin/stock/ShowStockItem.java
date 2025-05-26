@@ -4,6 +4,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.StockDAO;
+import vn.edu.hcmuaf.fit.webike.models.Color;
+import vn.edu.hcmuaf.fit.webike.models.Product;
 import vn.edu.hcmuaf.fit.webike.models.StockItem;
 
 import java.io.IOException;
@@ -17,6 +19,14 @@ public class ShowStockItem extends HttpServlet {
         int batchID = Integer.parseInt(request.getParameter("batchID"));
         StockDAO dao = new StockDAO();
         List<StockItem> ls = dao.getStockItemByBatchID(batchID);
+
+        for (StockItem item : ls) {
+            Product product = item.getProduct();
+            Color color = item.getColor();
+
+            String imagePath = product.getImageByColorName(color.getName());
+            item.setImagePath(imagePath);
+        }
         request.setAttribute("ls", ls);
         request.getRequestDispatcher("Admin/stockItem.jsp").forward(request, response);
     }
