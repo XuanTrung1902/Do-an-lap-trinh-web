@@ -29,9 +29,11 @@ dependencies {
     api libs.org.apache.httpcomponents.client5.httpclient5.fluent
     api libs.org.apache.httpcomponents.httpmime
     api libs.org.apache.poi.poi.ooxml
-    api libs.org.apache.logging.log4j.log4j.api
-    api libs.org.apache.logging.log4j.log4j.core
-    api libs.ch.qos.logback.logback.classic
+//    api libs.org.apache.logging.log4j.log4j.api
+//    api libs.org.apache.logging.log4j.log4j.core
+    api 'org.apache.logging.log4j:log4j-api:2.20.0'
+    api 'org.apache.logging.log4j:log4j-core:2.20.0'
+//    api libs.ch.qos.logback.logback.classic // dong nay gay xung dot
     api libs.com.fasterxml.jackson.core.jackson.databind
     api libs.com.warrenstrange.googleauth
     api libs.com.google.zxing.core
