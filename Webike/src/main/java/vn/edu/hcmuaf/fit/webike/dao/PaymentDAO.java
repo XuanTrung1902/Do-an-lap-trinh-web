@@ -57,7 +57,7 @@ public class PaymentDAO {
     public int insertOrderItem(int quantity, String img, Color color, int oid, int pid) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                insert into orderItems (quantity, img, color, orderID, productID)
+                insert into orderitems (quantity, img, color, orderID, productID)
                 values (:quantity, :img, :color, :orderID, :productID)
                 """;
         return jdbi.withHandle(handle -> handle.createUpdate(sql)
