@@ -9,6 +9,7 @@ public class StockIn {
     private String receiptDate;
     private String note;
     private List<StockBatch> batches;
+    private int deleted;
 
     public StockIn() {
     }
@@ -61,6 +62,14 @@ public class StockIn {
         this.batches = batches;
     }
 
+    public int getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
+    }
+
     @Override
     public String toString() {
         return "StockIn{" +
@@ -70,6 +79,7 @@ public class StockIn {
                 ", receiptDate='" + receiptDate + '\'' +
                 ", note='" + note + '\'' +
                 ", batches=" + batches +
+                ", deleted=" + deleted +
                 '}';
     }
 }

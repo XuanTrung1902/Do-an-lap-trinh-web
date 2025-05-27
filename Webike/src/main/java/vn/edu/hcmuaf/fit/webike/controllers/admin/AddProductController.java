@@ -3,15 +3,10 @@ package vn.edu.hcmuaf.fit.webike.controllers.admin;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+import jakarta.servlet.http.*;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
-import vn.edu.hcmuaf.fit.webike.models.BikeType;
-import vn.edu.hcmuaf.fit.webike.models.Brand;
-import vn.edu.hcmuaf.fit.webike.models.Color;
-import vn.edu.hcmuaf.fit.webike.models.Spec;
+import vn.edu.hcmuaf.fit.webike.models.*;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +23,7 @@ import java.util.Map;
 )
 public class AddProductController extends HttpServlet {
     private static final String UPLOAD_DIRECTORY = "D:\\DO AN LTW\\Do-an-lap-trinh-web\\CKY\\Webike\\src\\main\\webapp\\img\\products";
+    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -63,6 +59,8 @@ public class AddProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Lấy dữ liệu từ form
+        HttpSession session = request.getSession(false);
+        User u = (User) session.getAttribute("auth");
         String name = request.getParameter("name");
         String price = request.getParameter("price");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -117,6 +115,7 @@ public class AddProductController extends HttpServlet {
 
         // Chuyển hướng hoặc thông báo
         if (success > 0) {
+            LogService.log(LEVEL_ALERT, "Thêm sản phầm", u.getId()+"","" ,success+"");
             request.setAttribute("successMessage", "Thêm sản phẩm thành công!");
             response.sendRedirect("products"); // Quay lại trang danh sách sản phẩm
         } else {

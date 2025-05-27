@@ -19,7 +19,7 @@ public class ProfileController extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
         if (user != null) {
-            LogService.log(levelInfo, "Xem thông tin cá nhân", "User: " + user.getPhoneNum(), user.toString(), "");
+            LogService.log(levelInfo, "Xem thông tin cá nhân", user.getId()+"", user.toString(), "");
             request.setAttribute("user", user);
             request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
         } else {
@@ -31,7 +31,6 @@ public class ProfileController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
-
         if (user != null) {
             String fullname = request.getParameter("fullname");
             String newPhone = request.getParameter("phone");

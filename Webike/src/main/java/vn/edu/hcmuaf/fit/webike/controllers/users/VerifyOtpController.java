@@ -15,6 +15,7 @@ import java.util.List;
 import vn.edu.hcmuaf.fit.webike.models.PermissionDTO;
 @WebServlet(name = "VerifyOtpController", value = "/verify-otp")
 public class VerifyOtpController extends HttpServlet {
+    final String LEVEL_INFO = LogService.LEVEL_INFO;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,7 +46,7 @@ public class VerifyOtpController extends HttpServlet {
             cart.setData(user.getId());
 
             // Ghi log
-//            LogService.log(LEVEL_INFO, "Xác thực OTP thành công", user.getPhoneNum(), "Trạng thái: Chờ OTP", "Trạng thái: Đã xác minh");
+            LogService.log(LEVEL_INFO, "Xác thực OTP thành công", user.getId()+"", "Trạng thái: Chờ OTP", "Trạng thái: Đã xác minh");
 
             // Phân quyền
             List<PermissionDTO> permissions = PermissionService.getPermissionsForUser(user.getId());

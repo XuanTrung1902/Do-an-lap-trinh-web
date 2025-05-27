@@ -7,6 +7,7 @@ public class StockItem {
     private Product product;
     private String status;
     private String imagePath;
+    private int deleted;
 
     public StockItem() {
     }
@@ -57,6 +58,13 @@ public class StockItem {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+      
+    public int getDeleted() {
+        return deleted;
+    }
+      
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 
     @Override
@@ -67,6 +75,7 @@ public class StockItem {
                 ", batch=" + batch +
                 ", product=" + product +
                 ", status='" + status +
+                ", deleted=" + deleted +
                 '}';
     }
 }
