@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/stockIn.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/sidebar.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/base.css">
@@ -31,7 +31,7 @@
                         <h1>Nhập kho</h1>
                     </div>
                     <div class="admin-content-main-container">
-                        <table style="background-color: white; font-size: 1.6rem;" >
+                        <table id="stockIn" style="background-color: white; font-size: 1.6rem;" >
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -66,6 +66,17 @@
 
     <script src="<%= request.getContextPath()%>/Admin/assets/js/admin.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#stockIn').DataTable({
+                pageLength: 5,
+                lengthChange: false,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/vi.json'
+                }
+            });
+        });
+    </script>
 </body>
 </html>
