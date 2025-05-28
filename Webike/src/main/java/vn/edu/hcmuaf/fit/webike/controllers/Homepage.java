@@ -26,6 +26,21 @@ public class Homepage extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
+        if(user == null){
+            HomepageDAO dao = new HomepageDAO();
+            PaymentDAO pdao = new PaymentDAO();
+
+            List<BikeType> bikeTypes = dao.getAllBikeType();
+            List<String> brands = dao.getBrandOfProduct();
+            List<Shop> shops = pdao.getShops();
+
+            request.setAttribute("brands", brands);
+            request.setAttribute("bikeTypes", bikeTypes);
+            request.setAttribute("shops", shops);
+            request.getRequestDispatcher("GKY/homepage.jsp").forward(request, response);
+            LogService.log(LEVEL_INFO, "Trang chủ","Chưa đăng nhâp" , "", "");
+            return;
+        }
         HomepageDAO dao = new HomepageDAO();
         PaymentDAO pdao = new PaymentDAO();
 
