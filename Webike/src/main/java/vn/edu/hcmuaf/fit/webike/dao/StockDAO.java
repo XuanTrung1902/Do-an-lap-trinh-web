@@ -26,6 +26,15 @@ public class StockDAO {
 //        }
     }
 
+    public List<Supplier> getAllSuppliers() {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "select * from suppliers";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .mapToBean(Supplier.class)
+                .list()
+        );
+    }
+
     public List<StockIn> getStockIn() {
         Jdbi jdbi = JDBIConnect.get();
         String sql = "select * from stockin as si join suppliers as s on si.supplierID = s.id";
@@ -196,6 +205,69 @@ public class StockDAO {
                 })
                 .findOne()
                 .orElse(null)
+        );
+    }
+
+    public int insertStockIn(int supplierID, int employeeID, String receiptDate, String note) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "INSERT INTO stockIn (supplierID, employeeID, receiptDate, note) VALUES (:supplierID, :employeeID, :receiptDate, :note)";
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("supplierID", supplierID)
+                        .bind("employeeID", employeeID)
+                        .bind("receiptDate", receiptDate)
+                        .bind("note", note)
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+    public int insertStockBatch(int stockID, int pid, int quantity, double unitPrice, double totalPrice, String batch, int importID) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "insert into stockBatches (stockID, productID, quantity, unitPrice, totalPrice, batch, importID)" +
+                "values (:stockID, :productID, :quantity, :unitPrice, :totalPrice, :batch, :importID)";
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("stockID", stockID)
+                        .bind("productID", pid)
+                        .bind("quantity", quantity)
+                        .bind("unitPrice", unitPrice)
+                        .bind("totalPrice", totalPrice)
+                        .bind("batch", batch)
+                        .bind("importID", importID)
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+    public int insertStockItem(int colorID, int productID, String status) {
+        Jdbi jdbi = JDBIConnect.get();
+//        String sql = "insert into stockItems (colorID, batchID, productID, status) VALUES (:colorID, :batchID, :productID, :status)";
+        String sql = "insert into stockItems (colorID, productID, status) VALUES (:colorID, :productID, :status)";
+
+        return jdbi.withHandle(handle ->
+                        handle.createUpdate(sql)
+                                .bind("colorID", colorID)
+//                        .bind("batchID", batchID)
+                                .bind("productID", productID)
+                                .bind("status", status)
+                                .executeAndReturnGeneratedKeys("id")
+                                .mapTo(Integer.class)
+                                .one()
+        );
+    }
+
+
+    public int updateBatchID(int stockItemID, int batchID) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "update stockItems set batchID = :batchID where id = :stockItemID";
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("stockItemID", stockItemID)
+                        .bind("batchID", batchID)
+                        .execute()
         );
     }
 }
