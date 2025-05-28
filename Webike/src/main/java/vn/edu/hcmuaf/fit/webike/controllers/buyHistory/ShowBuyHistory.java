@@ -72,7 +72,7 @@ public class ShowBuyHistory extends HttpServlet {
             int orderItemID = Integer.parseInt(request.getParameter("orderItemID"));
             int insert = dao.insertComment(content, created, color, productID, accountID);
             int updateCommented = dao.updateCommented(orderItemID);
-            String after = "Gửi bình luận cho sản phẩm ID: " + productID + ", nội dung: \"" + content + "\", màu: " + color;
+            LogService.log(levelInfo, "Bình luận", user.getId()+"","" , content);
         }
 
         // Xử lý phân trang sau khi gửi bình luận
