@@ -5,6 +5,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.models.User;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 import vn.edu.hcmuaf.fit.webike.services.TwoFAService;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "UpdateEmailController", value = "/update-email")
 public class UpdateEmailController extends HttpServlet {
 
+    final String LEVEL_WARNING = LogService.LEVEL_WARNING;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
@@ -20,6 +22,7 @@ public class UpdateEmailController extends HttpServlet {
         HttpSession session = request.getSession();
         UserDao userDao = new UserDao();
         User user = (User) session.getAttribute("auth");
+        String emailOld = request.getParameter("email");
 
         if (user == null) {
             request.setAttribute("error", "Bạn chưa đăng nhập!");
@@ -61,6 +64,7 @@ public class UpdateEmailController extends HttpServlet {
             session.removeAttribute("otpTimestamp");
             request.setAttribute("message", "Email đã được cập nhật thành công!");
         }
+        LogService.log(LEVEL_WARNING, "Đổi email", user.getId()+"",emailOld , user.getEmail());
         response.sendRedirect(request.getContextPath() + "/Profile");
     }
 

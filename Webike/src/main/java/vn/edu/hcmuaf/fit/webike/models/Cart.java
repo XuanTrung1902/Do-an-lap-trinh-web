@@ -55,4 +55,11 @@ public class Cart implements Serializable {
     public int getCartLength() {
         return data.size();
     }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                ", data=" + data +
+                '}';
+    }
 }

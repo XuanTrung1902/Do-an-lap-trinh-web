@@ -18,7 +18,7 @@ public class LogoutServlet extends HttpServlet {
             User user = (User) session.getAttribute("auth");
             if (user != null) {
                 // Ghi log đăng xuất với level INFO
-                LogService.log(level, "Đăng xuất", "User: " + user.getPhoneNum(), "", "");
+                LogService.log(level, "Đăng xuất",user.getId()+"", "", "");
             }
             session.invalidate(); // Hủy session
         }
