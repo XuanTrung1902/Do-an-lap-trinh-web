@@ -12,7 +12,7 @@ public class StockDAO {
         StockDAO dao = new StockDAO();
 //        System.out.println(dao.getStockIn());
 //        System.out.println(dao.getStockInByID(1));
-//        System.out.println(dao.getStockItemByBatchID(1));
+        System.out.println(dao.getStockItemByBatchID(1));
 //        System.out.println(dao.getStockBatchByStockId(1));
 //        System.out.println(dao.getStockBatch());
 //        String batch = dao.getStockBatch().get(0).getBatch();

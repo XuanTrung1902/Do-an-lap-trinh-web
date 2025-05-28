@@ -103,7 +103,9 @@
                                 <input type="checkbox" name="checkbox"> Lưu mật khẩu?
                             </label>
                         </div>
-                        <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6LfJJ0UrAAAAAGg6Egsy-pezktCxeqs6iH6hD5b4"></div>
+<%--                        Key localhost--%>
+                        <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6LfYyu4qAAAAADQyzw-_afuoVxOh-VJAkfjPvd7N"></div>
+<%--                        <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6LfJJ0UrAAAAAGg6Egsy-pezktCxeqs6iH6hD5b4"></div>--%>
                         <div class="field padding-bottom--24">
                             <input type="submit" name="submit" value="Đăng nhập">
                         </div>
