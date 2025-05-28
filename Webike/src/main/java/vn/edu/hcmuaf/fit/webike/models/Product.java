@@ -195,16 +195,6 @@ public class Product implements Serializable {
                 ", discount=" + discount +
                 '}';
     }
-
-    // hàm lấy đường dẫn ảnh theo tên màu
-    public String getImageByColorName(String colorName) {
-        for (Map.Entry<Color, String> entry : img.entrySet()) {
-            if (entry.getKey().getName().equalsIgnoreCase(colorName)) {
-                return entry.getValue();
-            }
-        }
-        return "img/default.png";
-    }
 }
 
 

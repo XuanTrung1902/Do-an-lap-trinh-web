@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.webike.controllers.admin.stock;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
 import vn.edu.hcmuaf.fit.webike.dao.StockDAO;
 import vn.edu.hcmuaf.fit.webike.models.Color;
 import vn.edu.hcmuaf.fit.webike.models.Product;
@@ -18,13 +19,14 @@ public class ShowStockItem extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int batchID = Integer.parseInt(request.getParameter("batchID"));
         StockDAO dao = new StockDAO();
+        ProductDAO productDAO = new ProductDAO();
         List<StockItem> ls = dao.getStockItemByBatchID(batchID);
 
         for (StockItem item : ls) {
             Product product = item.getProduct();
             Color color = item.getColor();
 
-            String imagePath = product.getImageByColorName(color.getName());
+            String imagePath = productDAO.getImgByColor(product.getId(), color.getId());
             item.setImagePath(imagePath);
         }
         request.setAttribute("ls", ls);
