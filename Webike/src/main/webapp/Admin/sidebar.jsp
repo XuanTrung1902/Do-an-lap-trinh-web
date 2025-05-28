@@ -110,17 +110,23 @@
                     <div class="sub-menu-items">
                         <li>
                             <a href="products">
-                            <i class="ri-arrow-right-s-fill"></i>
-                            Danh sách
-                        </a>
+                                <i class="ri-arrow-right-s-fill"></i>
+                                Danh sách
+                            </a>
                         </li>
                         <li>
-                <c:if test="${canWritetProduct}">
-                            <a href="add-product">
-                            <i class="ri-arrow-right-s-fill"></i>
-                            Thêm
-                        </a>
-                </c:if>
+                            <c:if test="${canWritetProduct}">
+                                        <a href="add-product">
+                                        <i class="ri-arrow-right-s-fill"></i>
+                                        Thêm
+                                    </a>
+                            </c:if>
+                        </li>
+                        <li>
+                            <a href="stock-in-list">
+                                <i class="ri-arrow-right-s-fill"></i>
+                                Nhập kho
+                            </a>
                         </li>
                     </div>
                 </ul>

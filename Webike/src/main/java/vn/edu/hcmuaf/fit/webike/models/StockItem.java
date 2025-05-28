@@ -6,6 +6,7 @@ public class StockItem {
     private StockBatch batch;
     private Product product;
     private String status;
+    private String imagePath;
     private int deleted;
 
     public StockItem() {
@@ -51,10 +52,17 @@ public class StockItem {
         this.status = status;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+      
     public int getDeleted() {
         return deleted;
     }
-
+      
     public void setDeleted(int deleted) {
         this.deleted = deleted;
     }
