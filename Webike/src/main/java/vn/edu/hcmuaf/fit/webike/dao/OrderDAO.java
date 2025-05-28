@@ -78,20 +78,44 @@ public class OrderDAO {
     public List<OrderItem> getOrderItems(int oid) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                SELECT i.*, p.name, p.price, p.version, p.status, b.name as brand, t.type as type
+                SELECT i.*, p.name, p.price, p.version, p.status, b.name as brand, t.type as type, c.name as colorName, c.code as colorCode
                 from orderitems as i
                 join products as p on i.productID = p.id
                 JOIN brands as b on p.brandID = b.id
                 JOIN biketypes as t on p.typeID = t.id
+                JOIN colors as c on c.id = i.color
                 where i.orderID = :oid;
                 """;
-        return jdbi.withHandle(handle -> handle.createQuery(sql)
-                .bind("oid", oid)
-                .mapToBean(OrderItem.class)
-                .list());
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("oid", oid)
+                        .map((rs, ctx) -> {
+                            OrderItem oi = new OrderItem();
+
+                            Color c = new Color();
+                            c.setId(rs.getInt("color"));
+                            c.setName(rs.getString("colorName"));
+                            c.setCode(rs.getString("colorCode"));
+
+                            oi.setId(rs.getInt("id"));
+                            oi.setName(rs.getString("name"));
+                            oi.setQuantity(rs.getInt("quantity"));
+                            oi.setImg(rs.getString("img"));
+                            oi.setColor(c);
+                            oi.setProductID(rs.getInt("productID"));
+                            oi.setOrderID(rs.getString("orderID"));
+                            oi.setPrice(rs.getDouble("price"));
+                            oi.setVersion(rs.getString("version"));
+                            oi.setStatus(rs.getString("status"));
+                            oi.setBrand(rs.getString("brand"));
+                            oi.setType(rs.getString("type"));
+                            return oi;
+                        })
+                        .list()
+        );
     }
 
-    public int updateOrder(int oid ,String phoneNum, String address, String status, String appointment, String payDate, int shopID) {
+    public int updateOrder(int oid, String phoneNum, String address, String status, String appointment, String payDate, int shopID) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
                 update orders
@@ -175,9 +199,9 @@ public class OrderDAO {
         );
     }
 
-    public List<Color> mapOfColorsAndProductID(int id){
+    public List<Color> mapOfColorsAndProductID(int id) {
         Jdbi jdbi = JDBIConnect.get();
-        String sql= "SELECT c.* FROM colors c JOIN productdetails p ON p.colorID = c.id WHERE p.productID = :id";
+        String sql = "SELECT c.* FROM colors c JOIN productdetails p ON p.colorID = c.id WHERE p.productID = :id";
         return jdbi.withHandle(handle -> handle.createQuery(sql)
                 .bind("id", id)
                 .mapToBean(Color.class)
