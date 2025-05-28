@@ -58,7 +58,7 @@ public class StockItem {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
-      
+    }
     public int getDeleted() {
         return deleted;
     }
