@@ -46,7 +46,7 @@ public class ShowBuyHistory extends HttpServlet {
         // Lấy danh sách phân trang từ cơ sở dữ liệu
         List<OrderItem> paginatedItems = dao.getPaginatedOrderItems(accountID, page, ITEMS_PER_PAGE);
 
-        LogService.log(levelInfo, "Xem lịch sử mua hàng", user.getPhoneNum(),paginatedItems.toString() , "");
+        LogService.log(levelInfo, "Xem lịch sử mua hàng", user.getId()+"",paginatedItems.toString() , "");
         request.setAttribute("ls", paginatedItems);
         request.setAttribute("currentPage", page);
         request.setAttribute("totalPages", totalPages);
