@@ -69,7 +69,9 @@ public class ShowBuyHistory extends HttpServlet {
         String color = request.getParameter("color");
 
         if (!content.equals("")) {
+            int orderItemID = Integer.parseInt(request.getParameter("orderItemID"));
             int insert = dao.insertComment(content, created, color, productID, accountID);
+            int updateCommented = dao.updateCommented(orderItemID);
             String after = "Gửi bình luận cho sản phẩm ID: " + productID + ", nội dung: \"" + content + "\", màu: " + color;
         }
 
