@@ -65,7 +65,8 @@
                                     <textarea name="comment" class="resize" form="comment${oi.productID}" rows="3"
                                               cols="50" placeholder="Nhập đánh giá của bạn!"
                                               style="height: 37px; margin-right: 10px"></textarea>
-                                    <input type="hidden" name="color" value="${oi.color}">
+                                    <input type="hidden" name="color" value="${oi.color.name}">
+                                    <input type="hidden" name="orderItemID" value="${oi.id}">
                                     <button type="submit" class="view-details">Đánh Giá</button>
                                 </c:if>
                             </c:if>
