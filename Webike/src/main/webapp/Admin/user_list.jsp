@@ -363,9 +363,11 @@
                      const contextPath = data.contextPath;
 
                      console.log("user:", user);
+                     console.log("ContextPath:", contextPath);
+                     console.log("Update link:", `${contextPath}/updateUser?id=${user.id}`);
 
                      const tableBody = document.querySelector("#list-user tbody");
-                     dataTable.row.add([
+                     const newRow = dataTable.row.add([
                          user.id,
                          user.name,
                          user.DOB,
@@ -373,19 +375,19 @@
                          user.address,
                          user.phoneNum,
                          user.role,
-                         user.locked,
-                         `<img src="${contextPath}/Webike/${user.image.startsWith('/') ? user.image.substring(1) : user.image}"
-          onerror="this.onerror=null; this.src='${contextPath}/Webike/img/Users/default.png';"
-          style="width:50px;height:50px;border-radius:50%;">`,
-                         `<a href="${contextPath}/Webike/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
-     <form action="${contextPath}/Webike/deleteUser" method="post" style="display:inline;">
-         <input type="hidden" name="id" value="${user.id}">
-         <button type="submit" class="delete-button">Xóa</button>
-     </form>
-     <button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(${user.id})">
-         Phân quyền
-     </button>`
+                         user.locked === 1 ? "Locked" : "Active",
+                         '<img src="' + contextPath + '/' + (user.image.startsWith('/') ? user.image.substring(1) : user.image) + '" ' +
+                         'onerror="this.onerror=null; this.src=\'' + contextPath + '/img/Users/default.png\';" ' +
+                         'style="width:50px;height:50px;border-radius:50%;">',
+                         '<a href="' + contextPath + '/updateUser?id=' + user.id + '" class="btn-edit">Sửa</a>' +
+                         '<button class="delete-button" onclick="confirmDeleteUser(' + user.id + ', \'' + user.name + '\')">Xóa</button>' +
+                         '<button type="button" class="btn btn-secondary btn-sm btn-assign" onclick="openAssignPermissionModal(' + user.id + ')">' +
+                         'Phân quyền' +
+                         '</button>'
                      ]).draw(false);
+
+// Gắn attribute data-id cho dòng vừa thêm
+                     $(newRow.node()).attr('data-id', user.id);
 
                      form.reset();
                      document.getElementById("modal").style.display = "none";
