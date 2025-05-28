@@ -19,4 +19,13 @@ public class CommentDAO {
                 .execute() > 0 ? 1 : 0
         );
     }
+    public int updateCommented(int orderItemID){
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "update orderItems set commented = 1 where id = :orderItemID";
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("orderItemID", orderItemID)
+                        .execute()
+        );
+    }
 }
