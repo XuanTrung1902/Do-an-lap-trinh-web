@@ -144,95 +144,7 @@ li {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     opacity: 0.85;
 }
-/* .admin-content-main-container table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    border: 1px solid #ddd;
-}
 
-.admin-content-main-container table thead,
-.admin-content-main-container table tbody {
-    display: block;
-}
-
-.admin-content-main-container table thead {
-    background-color: var(--primary-color);
-    color: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-
-.admin-content-main-container table th,
-.admin-content-main-container table td {
-    font-size: 1.6rem;
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    width: 166px; 
-}
-
-.admin-content-main-container table th {
-    font-size: 1.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.admin-content-main-container table tbody {
-    max-height: 290px;
-    overflow-y: auto; 
-}
-
-.admin-content-main-container table tbody tr {
-    position: relative;
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-}
-
-.admin-content-main-container table tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-.admin-content-main-container table img {
-    position: relative;
-    top: 0;
-    right: 45px;
-    width: 180px;
-    height: auto;
-    border-radius: 4px;
-    display: block;
-}
-
-.admin-content-main-container table th:nth-child(2),
-.admin-content-main-container table td:nth-child(2) {
-    text-align: left; 
-    vertical-align: middle; 
-    padding-right: 20px;
-}
-
-
-
-.admin-content-main-container .delete-button {
-    padding: 4px 12px;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #fff;
-    background-color: red;
-    border-radius: 4px;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.admin-content-main-container .delete-button:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    opacity: 0.85;
-} */
-
-/* datatable */
-/* Tùy chỉnh bảng DataTable */
 .dataTables_wrapper {
     font-family: "Roboto", sans-serif;
     font-size: 1.6rem;
@@ -619,4 +531,13 @@ h2 {
 
 .table th, .table td {
     padding: 10px;
+}
+#list-user td:last-child {
+    white-space: nowrap;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+.btn-edit, .delete-button, .btn-assign {
+    flex-shrink: 0;
 }
