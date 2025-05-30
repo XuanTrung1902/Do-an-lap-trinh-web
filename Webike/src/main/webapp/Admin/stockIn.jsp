@@ -84,6 +84,28 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script>
+        const modal = document.getElementById('stockInModal');
+        const modalContent = document.querySelector('.modal-content');
+        document.querySelector('.btn_stock-in').addEventListener('click', function () {
+            modal.style.display = 'flex';
+        });
+
+        function closeStockInModal() {
+            modal.style.display = 'none';
+        }
+
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                closeStockInModal();
+            }
+        });
+        document.getElementById('stockInForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Lô hàng đã được thêm!');
+            closeStockInModal();
+        });
+    </script>
+    <script>
         $(document).ready(function () {
             $('#stockIn').DataTable({
                 pageLength: 5,
