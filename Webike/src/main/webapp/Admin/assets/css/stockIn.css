@@ -153,14 +153,44 @@ li {
     animation: notification 2s ease;
 }
 
+.admin-content-main-title {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 24px 32px;
+    border-left: 5px solid var(--primary-color);
+}
+
 .admin-content-main-title h1 {
-    position: relative;
-    margin: 0;
-    padding: 20px;
-    font-size: 1.6rem;
+    font-size: 2.4rem;
     font-weight: 700;
-    color: var(--black-color);
-    border-left: 5px solid var(--border-color);
+    color: var(--primary-color);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.admin-content-main-title .btn_stock-in {
+    padding: 12px 32px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--white-color);
+    background: linear-gradient(90deg, #ee4d2d 60%, #f37055 100%);
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(238, 77, 45, 0.10);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    margin-left: 24px;
+    letter-spacing: 0.5px;
+}
+
+.admin-content-main-title .btn_stock-in:hover {
+    background: linear-gradient(90deg, #d9441d 60%, #f37055 100%);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 16px rgba(238, 77, 45, 0.18);
+    opacity: 0.97;
 }
 
 /*  */
@@ -435,54 +465,105 @@ table.dataTable tbody tr:hover {
     transition: background-color 0.2s ease-in-out;
 }
 
-/* Nút Tuỳ chỉnh: Sửa và Xóa */
-.btn-edit, .btn-delete {
-    display: inline-block;
-    padding: 5px 12px;
-    border-radius: 5px;
-    text-decoration: none;
+/*Modal thêm lô hàng*/
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    width: 500px;
+    max-width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.4s ease-out;
+    overflow: hidden;
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.modal-close {
+    font-size: 2.4rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form .form-group {
+    margin-bottom: 16px;
+}
+
+.modal-form label {
+    font-size: 1.4rem;
     font-weight: 500;
-    transition: all 0.2s ease;
-    margin: 0 3px;
+    margin-bottom: 6px;
+    display: block;
 }
 
-.btn-edit {
-    background-color: #28a745; /* Màu xanh lá */
-    color: #fff;
+.modal-form input[type="text"],
+.modal-form input[type="date"],
+.modal-form input[type="file"],
+.modal-form select {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1.4rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
 }
 
-.btn-delete {
-    background-color: #dc3545; /* Màu đỏ */
-    color: #fff;
+.modal-form input:focus,
+.modal-form select:focus {
+    outline: none;
+    border-color: var(--primary-color);
 }
 
-.btn-edit:hover {
-    background-color: #218838; /* Xanh lá đậm hơn */
-    transform: scale(1.05);
+.modal-form .btn-submit {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.btn-delete:hover {
-    background-color: #c82333; /* Đỏ đậm hơn */
-    transform: scale(1.05);
+.modal-form .btn-submit:hover {
+    background-color: #d9441d;
 }
 
-/* Đảm bảo các nút trong form cũng được áp dụng CSS */
-form .btn-delete {
-    display: inline-block;
-    padding: 5px 12px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    margin: 0 3px;
-    background-color: #dc3545; /* Màu đỏ */
-    color: #fff;
-}
-
-form .btn-delete:hover {
-    background-color: #c82333; /* Đỏ đậm hơn */
-    transform: scale(1.05);
-}
 
 /* ==== Phân trang và điều khiển DataTable ==== */
 /* Thanh phân trang */
