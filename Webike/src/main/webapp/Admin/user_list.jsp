@@ -385,8 +385,6 @@
                          'Phân quyền' +
                          '</button>'
                      ]).draw(false);
-
-// Gắn attribute data-id cho dòng vừa thêm
                      $(newRow.node()).attr('data-id', user.id);
 
                      form.reset();
