@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Scanner;
 
 
-
 @WebServlet(name = "loginController", value = "/Login")
 public class loginController extends HttpServlet {
 
@@ -27,7 +26,10 @@ public class loginController extends HttpServlet {
     final String LEVEL_WARNING = LogService.LEVEL_WARNING;
 //    key Localhost
     private static final String SECRET_KEY = "6LfYyu4qAAAAAC7wHwxKsL8AV4NY3f9vgjA1BZM1";
+//    key máy ảo XT
 //    private static final String SECRET_KEY = "6LfJJ0UrAAAAAFQje295yNzwRcCZkkIgfHsMJvj-";
+//    key VPS, domain
+//    private static final String SECRET_KEY = "6Lf2vU4rAAAAAM5hTNj6xukEVT6rvIGaGs5fvYWe";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,7 +60,7 @@ public class loginController extends HttpServlet {
                 session.setAttribute("cart", cart);
                 cart.setData(user.getId()); // lấy dữ liệu từ DB và lưu vào cart
 
-                LogService.log(LEVEL_INFO, "Đăng nhập",user.getId()+"" , "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
+                LogService.log(LEVEL_INFO, "Đăng nhập", user.getId() + "", "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
 
                 List<PermissionDTO> permissions = PermissionService.getPermissionsForUser(user.getId());
                 session.setAttribute("permissions", permissions);

@@ -89,9 +89,9 @@ dependencies {
 apply plugin: 'org.hidetake.ssh'
 remotes {
     host {
-        host = '192.168.254.136'
+        host = '139.59.121.168'
         user = 'root'
-        password = 'centos'
+        password = 'cEntos1@s'
     }
 }
 ssh.settings {
@@ -123,11 +123,16 @@ task docker_upload_file_to_server {
                 execute 'mkdir -p /usr/deploy'
 
                 // Xóa file cũ nếu có
-                remove '/usr/deploy/Webike.war'
-                remove '/usr/deploy/Webike'
+//                remove '/usr/deploy/Webike.war'
+//                remove '/usr/deploy/Webike'
+                remove '/usr/deploy/ROOT.war'
+                remove '/usr/deploy/ROOT'
+
                 // Upload file
+//                put from: "${project.projectDir}/build/libs/Webike-1.0-SNAPSHOT.war",
+//                        into: "/usr/deploy/Webike.war"
                 put from: "${project.projectDir}/build/libs/Webike-1.0-SNAPSHOT.war",
-                        into: "/usr/deploy/Webike.war"
+                        into: "/usr/deploy/ROOT.war"
             }
         }
     }
