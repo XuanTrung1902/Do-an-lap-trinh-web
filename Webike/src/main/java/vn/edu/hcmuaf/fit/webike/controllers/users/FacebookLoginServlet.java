@@ -16,6 +16,11 @@ import java.net.URLEncoder;
 
 @WebServlet(name = "FacebookLoginServlet", value = "/login")
 public class FacebookLoginServlet extends HttpServlet {
+//    key có domain
+//    private static final String CLIENT_ID = "1334977080938355";
+//    private static final String CLIENT_SECRET = "12ddd9daa25677857b374a4e49357a81";
+//    private static final String REDIRECT_URI = "http://webike.id.vn/login?action=facebook";
+//    localhost
     private static final String CLIENT_ID = "1418575426075396";
     private static final String CLIENT_SECRET = "6ce550295abab520ba3a9fd2f6427982";
     private static final String REDIRECT_URI = "http://localhost:8080/Webike/login?action=facebook";

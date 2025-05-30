@@ -115,9 +115,17 @@
                         <div class="field">
                             <div class="ssolink">
                                 <span style="margin-right: 10px;text-align: center; font-weight: 600; color: #e31c25;">Đăng nhập bằng</span>
+<%--                                key có domain--%>
+                                <a href="https://www.facebook.com/v20.0/dialog/oauth?client_id=1334977080938355&redirect_uri=http://webike.id.vn/login?action=facebook&scope=email">
+                                    <img src="<%= request.getContextPath()%>/GKY/assets/img/facebook.png" style="width: 30px; margin-right: 10px; alt="" />
+                                </a>
+<%--                                localhost--%>
                                 <a href="https://www.facebook.com/v20.0/dialog/oauth?client_id=1418575426075396&redirect_uri=http://localhost:8080/Webike/login?action=facebook&scope=email">
                                     <img src="<%= request.getContextPath()%>/GKY/assets/img/facebook.png" style="width: 30px; margin-right: 10px; alt="" />
                                 </a>
+<%--                                key có domain--%>
+<%--                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://webike.id.vn/googlelogin&response_type=code&client_id=972007866215-3koe9d0fsifej7pijjiqign771j5glrm.apps.googleusercontent.com&approval_prompt=force"><img src="<%= request.getContextPath()%>/GKY/assets/img/google.png" alt="" style="width: 30px; border: 0.2px #ebd3d3 solid; border-radius: 100px;"></a>--%>
+                            <%--                                localhost--%>
                                 <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/Webike/googlelogin&response_type=code&client_id=972007866215-3koe9d0fsifej7pijjiqign771j5glrm.apps.googleusercontent.com&approval_prompt=force"><img src="<%= request.getContextPath()%>/GKY/assets/img/google.png" alt="" style="width: 30px; border: 0.2px #ebd3d3 solid; border-radius: 100px;"></a>
                             </div>
                         </div>
