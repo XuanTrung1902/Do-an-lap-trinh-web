@@ -29,6 +29,11 @@
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
+                        <button>
+                            <a href="stock-in-list">
+                                <i class="ri-arrow-left-line"></i>
+                            </a>
+                        </button>
                         <h1>Chi tiết lô hàng</h1>
                     </div>
                     <div class="admin-content-main-container">

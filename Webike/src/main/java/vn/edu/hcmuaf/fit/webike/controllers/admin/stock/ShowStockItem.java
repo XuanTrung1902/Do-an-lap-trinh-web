@@ -22,6 +22,14 @@ public class ShowStockItem extends HttpServlet {
         ProductDAO productDAO = new ProductDAO();
         List<StockItem> ls = dao.getStockItemByBatchID(batchID);
 
+        // Lấy stockID từ batchID
+        int stockID = dao.getStockIDByBatchID(batchID);
+        if (stockID == -1) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Không tìm thấy stockID cho batchID: " + batchID);
+            return;
+        }
+        request.setAttribute("stockID", stockID);
+
         for (StockItem item : ls) {
             Product product = item.getProduct();
             Color color = item.getColor();
