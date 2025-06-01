@@ -27,4 +27,13 @@ public class LogDAO {
                         .list()
         );
     }
+
+
+    public void deleteLog(int id) {
+        JDBIConnect.get().useHandle(handle ->
+                handle.createUpdate("DELETE FROM logs WHERE id = :id")
+                        .bind("id", id)
+                        .execute()
+        );
+    }
 }

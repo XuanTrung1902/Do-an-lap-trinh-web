@@ -15,33 +15,58 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/discount.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/sidebar.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/base.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/Admin/assets/css/header.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.css" />
+
+
     <style>
-        .table th, .table td {
-            padding: 10px; /* Tăng khoảng cách giữa các ô */
+        #logTable {
+            table-layout: auto;
+            width: 100%;
         }
 
-        .table th:nth-child(2), .table td:nth-child(2) {
-            width: 100px; /* Điều chỉnh chiều rộng của cột "Giảm giá" */
+        #logTable td, #logTable th {
+            vertical-align: middle !important;
+            text-align: center;
+            white-space: nowrap;
         }
 
-        .table th:nth-child(3), .table td:nth-child(3),
-        .table th:nth-child(4), .table td:nth-child(4),
-        .table th:nth-child(5), .table td:nth-child(5) {
-            width: 150px; /* Điều chỉnh chiều rộng của các cột "Ngày bắt đầu", "Ngày kết thúc", và "Mã sản phẩm" */
+        #logTable .btn-edit,
+        #logTable .btn-delete {
+            font-size: 1.3rem;
+            padding: 6px 10px;
+            margin: 2px;
         }
 
-        .table th:last-child, .table td:last-child {
-            width: 200px; /* Điều chỉnh chiều rộng của cột "Tuỳ chỉnh" */
+        #logTable td:nth-child(5),
+        #logTable td:nth-child(6) {
+            white-space: normal !important;
+            word-break: break-word;
+            max-width: 200px;
+            width: 180px;
+            text-align: left;
         }
 
-        .btn-edit, .btn-delete {
-            display: inline-block; /* Đảm bảo các nút nằm chung một hàng */
+        #logTable .btn-edit,
+        #logTable .btn-delete {
+            font-size: 1.3rem;
+            padding: 6px 12px;
+            margin: 0;
         }
+
+        div.dt-container .dt-paging .dt-paging-button {
+            min-width: 0; !important;
+        }
+
+        #logTable td.wrap-text {
+            max-width: 200px;
+            white-space: normal !important;
+            word-break: break-word;
+        }
+
     </style>
     <title>Admin</title>
 </head>
@@ -70,7 +95,7 @@
                     <h1>Nhật ký hoạt động</h1>
                 </div>
                 <div class="admin-content-main-container">
-                    <table id="log-table" style="background-color: white; font-size: 1.6rem;">
+                    <table id="logTable" class="display" style="background-color: white; font-size: 1.6rem;">
                         <thead>
                         <tr>
                             <th>Level</th>
@@ -89,17 +114,19 @@
                                 <td>${log.logTime}</td>
                                 <td>${log.location}</td>
                                 <td>${log.userInfo}</td>
-                                <td>${log.before}</td>
-                                <td>${log.after}</td>
+                                <td class="wrap-text">${log.before}</td>
+                                <td class="wrap-text">${log.after}</td>
                                 <td>
-                                    <a href="" class="btn-edit" style="width: 100%; margin-bottom: 4px;">Sửa</a>
-                                    <form style="display:inline;">
-                                        <input type="hidden" name="id">
-                                        <button type="submit" class="btn btn-danger btn-sm btn-delete">
-                                            Xóa
-                                        </button>
-                                    </form>
-                                    <a href="" class="btn-edit" style="width: 100%; margin-bottom: 4px;">Quay lại</a>
+                                    <div style="display: flex; gap: 5px; justify-content: center;">
+                                            <c:if test="${canDeletetDiscount}">
+                                                <a href="#" class="btn-edit">Sửa</a>
+                                                <a href="<%= request.getContextPath() %>/delete-log?id=${log.id}"
+                                                   class="btn-delete"
+                                                   onclick="return confirm('Bạn có chắc chắn muốn xóa log này?')"
+                                                >Xóa</a>
+                                                <a href="#" class="btn-edit" style="background-color: #17a2b8;">Quay lại</a>
+                                            </c:if>
+                                    </div>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -114,41 +141,32 @@
 
 <script src="<%= request.getContextPath() %>/Admin/assets/js/discount.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
 <script>
-    $(document).ready(function () {
-        // Khởi tạo DataTable
-        $('#log-table').DataTable({
+    $(document).ready(function() {
+        $('#logTable').DataTable({
             language: {
                 search: "Tìm kiếm:",
-                lengthMenu: "Hiển thị _MENU_ dòng",
-                info: "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                lengthMenu: "Hiển thị _MENU_ dòng mỗi trang",
+                info: "Hiển thị từ _START_ đến _END_ của _TOTAL_ dòng",
                 paginate: {
-                    first: "Đầu",
-                    last: "Cuối",
-                    next: ">",
-                    previous: "<",
+                    next: "Sau",
+                    previous: "Trước"
                 },
-                infoFiltered: "(Lọc từ _MAX_ dòng)",
-                infoEmpty: "Không có dữ liệu",
                 zeroRecords: "Không tìm thấy dữ liệu phù hợp",
+                infoEmpty: "Không có dữ liệu",
+                infoFiltered: "(lọc từ tổng số _MAX_ dòng)"
             },
-            pageLength: 5, // Số dòng mặc định
-            lengthMenu: [5, 10, 20], // Tuỳ chọn số dòng hiển thị
-        });
-
-        // Hiệu ứng hover cho bảng
-        $("#log-table").on({
-            mouseenter: function () {
-                $(this).css("background-color", "white");
-            },
-            mouseleave: function () {
-                $(this).css("background-color", "white");
-            },
+            pageLength: 10,
+            lengthMenu: [5, 10, 25, 50, 100],
+            columnDefs: [
+                { targets: [4, 5], className: 'text-start' }, // căn trái cho dữ liệu
+                { targets: 6, orderable: false } // không cho sort cột nút
+            ],
+            responsive: true
         });
     });
 </script>
-
 <script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>
 
 </body>
