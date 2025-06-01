@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.webike.dao;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 import vn.edu.hcmuaf.fit.webike.models.Color;
+import vn.edu.hcmuaf.fit.webike.models.Order;
 import vn.edu.hcmuaf.fit.webike.models.Shop;
 
 import java.util.List;
@@ -67,6 +68,17 @@ public class PaymentDAO {
                 .bind("orderID", oid)
                 .bind("productID", pid)
                 .execute() > 0 ? 1 : 0
+        );
+    }
+    public Order getOrderById(int id) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "SELECT * FROM orders WHERE id = :id";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("id", id)
+                        .mapToBean(Order.class)
+                        .findOne()
+                        .orElse(null)
         );
     }
 }

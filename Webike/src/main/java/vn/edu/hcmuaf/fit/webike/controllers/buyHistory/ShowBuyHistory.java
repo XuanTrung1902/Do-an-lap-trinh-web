@@ -45,14 +45,12 @@ public class ShowBuyHistory extends HttpServlet {
 
         // Lấy danh sách phân trang từ cơ sở dữ liệu
         List<OrderItem> paginatedItems = dao.getPaginatedOrderItems(accountID, page, ITEMS_PER_PAGE);
-
-        LogService.log(levelInfo, "Xem lịch sử mua hàng", user.getId()+"",paginatedItems.toString() , "");
         request.setAttribute("ls", paginatedItems);
         request.setAttribute("currentPage", page);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("totalItems", totalItems);
 
-        LogService.log(levelInfo, "Xem lịch sử mua hàng", user.getId()+"", "", "Xem trang " + page);
+        LogService.log(levelInfo, "Xem lịch sử mua hàng", user.getId()+"", "", "");
         request.getRequestDispatcher("GKY/buyHistory.jsp").forward(request, response);
 
     }
@@ -72,7 +70,7 @@ public class ShowBuyHistory extends HttpServlet {
             int orderItemID = Integer.parseInt(request.getParameter("orderItemID"));
             int insert = dao.insertComment(content, created, color, productID, accountID);
             int updateCommented = dao.updateCommented(orderItemID);
-            LogService.log(levelInfo, "Bình luận", user.getId()+"","" , content);
+            LogService.log(levelInfo, "Bình luận", user.getId()+"","" ,content);
         }
 
         // Xử lý phân trang sau khi gửi bình luận

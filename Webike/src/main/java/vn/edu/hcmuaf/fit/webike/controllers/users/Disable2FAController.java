@@ -22,18 +22,18 @@ public class Disable2FAController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("auth");
-
+        String userOld = user.toString();
         if (user == null) {
             resp.sendRedirect(req.getContextPath() + "/Login");
             return;
         }
 
         // Tắt 2FA
-        LogService.log(LEVEL_ALERT, "Tắt xác thực bước 2", user.getId()+"", "", "");
         user.setOtpEnabled(false);
         user.setOtpSecret(null);
         new UserDao().updateOtpEnabled(user.getId(), false);
         new UserDao().updateOtpSecret(user.getId(), null);
+        LogService.log(LEVEL_ALERT, "Tắt xác thực bước 2", user.getId()+"", userOld, user.toString());
 
         session.setAttribute("auth", user);
         resp.sendRedirect(req.getContextPath() + "/Profile");

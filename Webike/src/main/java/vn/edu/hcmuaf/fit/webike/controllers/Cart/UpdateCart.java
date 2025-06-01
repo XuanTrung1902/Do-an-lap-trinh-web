@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.json.JSONObject;
 import vn.edu.hcmuaf.fit.webike.models.Cart;
+import vn.edu.hcmuaf.fit.webike.models.CartItem;
 import vn.edu.hcmuaf.fit.webike.models.User;
 import vn.edu.hcmuaf.fit.webike.services.LogService;
 
@@ -28,10 +29,10 @@ public class UpdateCart extends HttpServlet {
         User user = (User) request.getSession().getAttribute("auth");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         Cart cart = (Cart) request.getSession().getAttribute("cart");
-        String cartOld = cart.toString();
+        CartItem cartItemOld = cart.getCartItemByID(id);
         cart.update(id, quantity);
-
-        LogService.log(LEVEL_ALERT, "Câập nhật sản phẩm trong giỏ hàng", user.getId()+"",cartOld , cart.toString());
+        CartItem cartItemNew = cart.getCartItemByID(id);
+        LogService.log(LEVEL_ALERT, "Cập nhật sản phẩm trong giỏ hàng", user.getId()+"",cartItemOld.toString() ,cartItemNew.toString());
         request.getRequestDispatcher("GKY/cart.jsp").forward(request, response);
     }
 }

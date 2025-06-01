@@ -47,10 +47,9 @@ public class AddCart extends HttpServlet {
         item.setUid(uid);
 
         Cart cart = (Cart) request.getSession().getAttribute("cart");
-        String cartOld = cart.toString();
         cart.add(item);
         cart.setData(uid);
-        LogService.log(LEVEL_ALERT, "Thêm sản phẩm vào giỏ hàng", user.getId()+"",cartOld , cart.toString());
+        LogService.log(LEVEL_ALERT, "Thêm sản phẩm vào giỏ hàng", user.getId()+"","" , item.toString());
 
         response.setContentType("application/json");
         response.getWriter().write("{\"status\": \"success\", \"message\": \"Đã thêm vào giỏ hàng\"}");

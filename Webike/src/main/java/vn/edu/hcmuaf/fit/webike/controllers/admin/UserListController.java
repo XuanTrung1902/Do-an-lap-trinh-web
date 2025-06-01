@@ -27,7 +27,7 @@ public class UserListController extends HttpServlet {
         HttpSession session = request.getSession();
         User currentUser = (User) session.getAttribute("auth");
         String userInfo = (currentUser != null) ? currentUser.getId()+"" : "Khách";
-        LogService.log(level, "Xem danh sách users", userInfo, userList.toString(), "");
+        LogService.log(level, "Xem danh sách users", userInfo,"", "");
         ResourceDao r = new ResourceDao();
         List<Resource> allResources = r.getAllResources();
         PermissionDao p = new PermissionDao();

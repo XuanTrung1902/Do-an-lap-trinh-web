@@ -36,7 +36,7 @@ public class ProductController extends HttpServlet {
         String userInfo = (currentUser != null) ? currentUser.getId()+"" : "Khách";
 
         // Ghi log hành động xem danh sách sản phẩm
-        LogService.log(level, "Xem danh sách sản phẩm", userInfo, loadProducts.toString(), "");
+        LogService.log(level, "Xem danh sách sản phẩm", userInfo, "", "");
 
         request.setAttribute("p", loadProducts);
         request.setAttribute("bt", loadBikeTypes);

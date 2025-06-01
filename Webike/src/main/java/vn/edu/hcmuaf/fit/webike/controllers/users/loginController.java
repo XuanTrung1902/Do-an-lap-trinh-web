@@ -71,7 +71,7 @@ public class loginController extends HttpServlet {
                     response.sendRedirect("homepage");
                 }
             } else { // nếu login sai
-                LogService.log(LEVEL_WARNING, "Đăng nhập", phoneNum, "Trạng thái: Chưa đăng nhập", "Trạng thái: Dăng nhập sai");
+                LogService.log(LEVEL_WARNING, "Đăng nhập", user.getId()+"", "Trạng thái: Chưa đăng nhập", "Trạng thái: Dăng nhập sai");
                 request.setAttribute("error", "Sai tên đăng nhập hoặc mật khẩu");
                 request.setAttribute("phone", phoneNum);
                 request.getRequestDispatcher("GKY/Dangnhap.jsp").forward(request, response);

@@ -23,7 +23,7 @@ public class UpdateEmailController extends HttpServlet {
         UserDao userDao = new UserDao();
         User user = (User) session.getAttribute("auth");
         String emailOld = request.getParameter("email");
-
+        String emailN = user.getEmail();
         if (user == null) {
             request.setAttribute("error", "Bạn chưa đăng nhập!");
             request.getRequestDispatcher("GKY/trangTTKhachHang.jsp").forward(request, response);
@@ -64,7 +64,7 @@ public class UpdateEmailController extends HttpServlet {
             session.removeAttribute("otpTimestamp");
             request.setAttribute("message", "Email đã được cập nhật thành công!");
         }
-        LogService.log(LEVEL_WARNING, "Đổi email", user.getId()+"",emailOld , user.getEmail());
+        LogService.log(LEVEL_WARNING, "Đổi email", user.getId()+"",emailN, user.getEmail());
         response.sendRedirect(request.getContextPath() + "/Profile");
     }
 
