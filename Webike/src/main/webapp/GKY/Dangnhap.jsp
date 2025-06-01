@@ -116,9 +116,9 @@
                             <div class="ssolink">
                                 <span style="margin-right: 10px;text-align: center; font-weight: 600; color: #e31c25;">Đăng nhập bằng</span>
 <%--                                key có domain--%>
-                                <a href="https://www.facebook.com/v20.0/dialog/oauth?client_id=1334977080938355&redirect_uri=http://webike.id.vn/login?action=facebook&scope=email">
-                                    <img src="<%= request.getContextPath()%>/GKY/assets/img/facebook.png" style="width: 30px; margin-right: 10px; alt="" />
-                                </a>
+<%--                                <a href="https://www.facebook.com/v20.0/dialog/oauth?client_id=1334977080938355&redirect_uri=http://webike.id.vn/login?action=facebook&scope=email">--%>
+<%--                                    <img src="<%= request.getContextPath()%>/GKY/assets/img/facebook.png" style="width: 30px; margin-right: 10px; alt="" />--%>
+<%--                                </a>--%>
 <%--                                localhost--%>
                                 <a href="https://www.facebook.com/v20.0/dialog/oauth?client_id=1418575426075396&redirect_uri=http://localhost:8080/Webike/login?action=facebook&scope=email">
                                     <img src="<%= request.getContextPath()%>/GKY/assets/img/facebook.png" style="width: 30px; margin-right: 10px; alt="" />
