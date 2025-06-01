@@ -9,6 +9,7 @@ import vn.edu.hcmuaf.fit.webike.dao.PaymentDAO;
 import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
 import vn.edu.hcmuaf.fit.webike.dao.UserDao;
 import vn.edu.hcmuaf.fit.webike.models.*;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -20,8 +21,8 @@ import java.util.StringTokenizer;
 
 @WebServlet(name = "Pay", value = "/pay")
 public class Pay extends HttpServlet {
-
-
+    final String LEVEL_INFO = LogService.LEVEL_INFO;
+    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -76,10 +77,13 @@ public class Pay extends HttpServlet {
             }
 
             oid = dao.insertOrder(phoneNum, deposit, remain, address, appointment, depositDate, null, status, accountID, shopID);
+            Order orderOld = dao.getOrderById(oid);
+            LogService.log(LEVEL_INFO, "Thanh toán", user.getId() + "", "", orderOld.toString());
         }else if (responseCode.equalsIgnoreCase("09") || responseCode.equalsIgnoreCase("24")) {
             status = "Đã hủy";
             oid = dao.insertOrder(phoneNum,0, 0, "", null, null,null, status, accountID, shopID);
             request.getSession().setAttribute("cancelMessage", "Bạn đã hủy thanh toán!");
+            LogService.log(LEVEL_ALERT, "Hũy thanh toán", user.getId() + "", "", status);
         }
 
         request.setAttribute("orderItem", order.getData());

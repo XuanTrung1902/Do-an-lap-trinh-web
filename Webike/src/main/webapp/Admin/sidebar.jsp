@@ -159,6 +159,24 @@
                 </ul>
             </li>
             </c:if>
+            <li>
+                <a href="#">
+                    <i class="ri-file-list-line"></i>
+                    Nhật ký hệ thống
+                    <i class="ri-add-box-line"></i>
+                </a>
+                <ul class="sub-menu">
+                    <div class="sub-menu-items">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/logList">
+                                <i class="ri-arrow-right-s-fill"></i>
+                                Danh sách
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>

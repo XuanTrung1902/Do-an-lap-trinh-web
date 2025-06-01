@@ -61,7 +61,7 @@ public class Enable2FAController extends HttpServlet {
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             HttpSession session = req.getSession(false);
             User user = (User) session.getAttribute("auth");
-
+            String userOld = user.toString();
             resp.setContentType("application/json");
             resp.setCharacterEncoding("UTF-8");
             PrintWriter out = resp.getWriter();
@@ -84,9 +84,9 @@ public class Enable2FAController extends HttpServlet {
                 boolean isCodeValid = gAuth.authorize(user.getOtpSecret(), Integer.parseInt(otp));
 
                 if (isCodeValid) {
-                    LogService.log(LEVEL_ALERT, "Bật xác thực bước 2", user.getId()+"", "", "");
                     user.setOtpEnabled(true);
                     new UserDao().updateOtpEnabled(user.getId(), true);
+                    LogService.log(LEVEL_ALERT, "Bật xác thực bước 2", user.getId()+"",userOld , user.toString());
                     session.setAttribute("auth", user);
                     resp.sendRedirect(req.getContextPath() + "/Profile");
                 } else {
