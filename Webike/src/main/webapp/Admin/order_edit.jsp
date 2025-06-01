@@ -38,6 +38,10 @@
                     <form action="order-edit" method="post" class="order-edit-form">
                         <input type="hidden" name="oid" value="${order.id}">
                         <div class="form-group">
+                            <label for="username">Tên người dùng</label>
+                            <input type="text" value="${username}" id="username" name="username">
+                        </div>
+                        <div class="form-group">
                             <label for="customer-phoneNum">Số điện thoại liên lạc</label>
                             <input type="tel" value="${order.phoneNum}" id="customer-phoneNum" name="phoneNum">
                         </div>

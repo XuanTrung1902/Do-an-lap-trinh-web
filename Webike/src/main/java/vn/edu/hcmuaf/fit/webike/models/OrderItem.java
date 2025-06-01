@@ -14,6 +14,7 @@ public class OrderItem {
     private String type;
     private int commented;
     private String status;
+    private String leadtime;
 
     public OrderItem() {
     }
@@ -139,6 +140,13 @@ public void setStatus(String status) {
     this.status = status;
 }
 
+    public String getLeadtime() {
+        return leadtime;
+    }
+
+    public void setLeadtime(String leadtime) {
+        this.leadtime = leadtime;
+    }
 
     @Override
     public String toString() {
@@ -156,6 +164,7 @@ public void setStatus(String status) {
                 ", type='" + type + '\'' +
                 ", commented=" + commented +
                 ", status='" + status + '\'' +
+                ", leadtime='" + leadtime + '\'' +
                 '}';
     }
 }

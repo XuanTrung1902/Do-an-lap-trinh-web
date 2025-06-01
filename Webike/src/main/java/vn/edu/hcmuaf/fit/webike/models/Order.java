@@ -21,6 +21,7 @@ public class Order implements Serializable {
     private String status;
     private User user;
     private Shop shop;
+    private String leadtime;
 
     public Order() {
         this.id = id;
@@ -207,6 +208,14 @@ public class Order implements Serializable {
         this.address = address;
     }
 
+    public String getLeadtime() {
+        return leadtime;
+    }
+
+    public void setLeadtime(String leadtime) {
+        this.leadtime = leadtime;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -220,8 +229,9 @@ public class Order implements Serializable {
                 ", depositDate='" + depositDate + '\'' +
                 ", payDate='" + payDate + '\'' +
                 ", status='" + status + '\'' +
-                ", user=" + user +
-                ", shop=" + shop +
+                ", user=" + user + '\'' +
+                ", shop=" + shop + '\'' +
+                ", leadtime='" + leadtime +
                 '}';
     }
 }
