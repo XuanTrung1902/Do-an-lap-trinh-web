@@ -129,6 +129,11 @@ public class StockDAO {
         );
     }
 
+    public int getStockIDByBatchID(int batchID) {
+        StockBatch batch = getStockBatchById(batchID);
+        return batch != null ? batch.getStockID() : -1;
+    }
+
     public List<StockBatch> getStockBatchByStockId(int id) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = "select * from stockbatches where stockID = :id";

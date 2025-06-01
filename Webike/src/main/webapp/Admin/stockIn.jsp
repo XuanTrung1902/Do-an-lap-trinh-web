@@ -29,6 +29,8 @@
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
                         <h1>Nhập kho</h1>
+                        <button class="btn_stock-in"> Nhập kho mới </button>
+
                     </div>
                     <div class="admin-content-main-container">
                         <table id="stockIn" style="background-color: white; font-size: 1.6rem;" >
@@ -64,9 +66,45 @@
         </div>
     </section>
 
+    <!-- Modal Thêm Lô Hàng -->
+    <div id="stockInModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content slide-in">
+            <div class="modal-header">
+                <h2>Thêm Lô Hàng</h2>
+                <span class="modal-close" onclick="closeStockInModal()">&times;</span>
+            </div>
+
+            <div class="modal-body">
+                <jsp:include page="/Admin/stockAdd.jsp" />
+            </div>
+        </div>
+    </div>
+
     <script src="<%= request.getContextPath()%>/Admin/assets/js/admin.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        const modal = document.getElementById('stockInModal');
+        const modalContent = document.querySelector('.modal-content');
+        document.querySelector('.btn_stock-in').addEventListener('click', function () {
+            modal.style.display = 'flex';
+        });
+
+        function closeStockInModal() {
+            modal.style.display = 'none';
+        }
+
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                closeStockInModal();
+            }
+        });
+        document.getElementById('stockInForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Lô hàng đã được thêm!');
+            closeStockInModal();
+        });
+    </script>
     <script>
         $(document).ready(function () {
             $('#stockIn').DataTable({

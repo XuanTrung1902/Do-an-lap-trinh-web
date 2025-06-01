@@ -111,6 +111,7 @@ public class StockAdd extends HttpServlet {
                 }
             }
         }
+        response.sendRedirect("stock-in-list");
     }
 
     private String getCellValue(Cell cell) {

@@ -29,6 +29,11 @@
 
                 <div class="admin-content-main">
                     <div class="admin-content-main-title">
+                        <button>
+                            <a href="stock-batch-list?stockID=${stockID}">
+                                <i class="ri-arrow-left-line"></i>
+                            </a>
+                        </button>
                         <h1>Chi tiết sản phẩm</h1>
                     </div>
                     <div class="admin-content-main-container">
