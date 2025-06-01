@@ -10,6 +10,7 @@ import vn.edu.hcmuaf.fit.webike.GHN.Ultis.GHN_ultis;
 import vn.edu.hcmuaf.fit.webike.dao.OrderDAO;
 import vn.edu.hcmuaf.fit.webike.dao.PaymentDAO;
 import vn.edu.hcmuaf.fit.webike.models.*;
+import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -17,10 +18,12 @@ import java.util.List;
 
 @WebServlet(name = "OrderEdit", value = "/order-edit")
 public class OrderEdit extends HttpServlet {
-
+    final String LEVEL_INFO = LogService.LEVEL_INFO;
+    final String LEVEL_ALERT = LogService.LEVEL_ALERT;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int oid = Integer.parseInt(request.getParameter("oid"));
+        User user = (User) request.getSession().getAttribute("auth");
         String username = request.getParameter("username");
         OrderDAO dao = new OrderDAO();
         Order o = dao.getOrdersByID(oid);
@@ -44,15 +47,17 @@ public class OrderEdit extends HttpServlet {
         request.setAttribute("status", status);
         request.setAttribute("itemList", itemList);
         request.setAttribute("colorMap", colorMap);
-
+        LogService.log(LEVEL_INFO, "Truy cập chỉnh sửa đơn hàng", user.getId()+"",oid+"" ,"" );
         request.getRequestDispatcher("Admin/order_edit.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = (User) request.getSession().getAttribute("auth");
         OrderDAO dao = new OrderDAO();
         String username = request.getParameter("username");
         int oid = Integer.parseInt(request.getParameter("oid"));
+        Order oOLd = dao.getOrdersByID(oid);
         String phoneNum = request.getParameter("phoneNum");
         String address = request.getParameter("address");
         String status = request.getParameter("status");
@@ -60,6 +65,8 @@ public class OrderEdit extends HttpServlet {
         String payDate = request.getParameter("payDate");
         int shopID = Integer.parseInt(request.getParameter("branch")); // chi nhánh
         int update = dao.updateOrder(oid, phoneNum, address,status, appointment, payDate, shopID);
+        Order oNew = dao.getOrdersByID(oid);
+        LogService.log(LEVEL_ALERT, "Chỉnh sửa đơn hàng",user.getId()+"", oOLd.toString(), oNew.toString());
 
         if (status.equalsIgnoreCase("Đã thanh toán")) {
             String json = GHN_ultis.generateJsonOrder(oid, username, phoneNum, address);

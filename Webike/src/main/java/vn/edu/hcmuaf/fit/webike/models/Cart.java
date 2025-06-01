@@ -39,6 +39,9 @@ public class Cart implements Serializable {
         int remove = dao.removeCartItem(id);
         return remove > 0;
     }
+    public CartItem getCartItemByID(String id) {
+        return dao.getCartItemByID(id);
+    }
 
     public List<CartItem> getList() {
         return data;

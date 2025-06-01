@@ -44,7 +44,7 @@ public class GoogleLoginServlet extends HttpServlet {
             user = userService.findByEmail(account.getEmail());
             session.setAttribute("auth", user);
         }
-        LogService.log(LEVEL_INFO, "Đăng nhập Google", user.getPhoneNum(), "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
+        LogService.log(LEVEL_INFO, "Đăng nhập Google", user.getId()+"", "Trạng thái: Chưa đăng nhập", "Trạng thái: Đã đăng nhập");
 
         response.sendRedirect("homepage");
     }

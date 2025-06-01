@@ -52,7 +52,8 @@ public class SearchProduct extends HttpServlet {
             }
         }
         jsonResponse.append("]");
-        LogService.log(LEVEL_INFO, "Tìm sản phẩm", user.getId()+"", "", keyword);
+//        LogService.log(LEVEL_INFO, "Tìm sản phẩm", user.getId()+"", "", keyword);
+        LogService.log(LEVEL_INFO, "Tìm sản phẩm", user.getId()+"", "", "");
 
         // Trả về JSON response
         response.setContentType("application/json");
