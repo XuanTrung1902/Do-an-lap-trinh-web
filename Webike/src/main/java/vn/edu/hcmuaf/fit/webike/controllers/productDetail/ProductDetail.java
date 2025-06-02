@@ -35,12 +35,11 @@ public class ProductDetail extends HttpServlet {
 //        System.out.println("Received cid: " + cidParam);
         try {
             if (cidParam != null && !cidParam.trim().isEmpty()) {
-                // Kiểm tra nếu cidParam có định dạng "Color{id=..., name=..., code=...}"
-                if (cidParam.startsWith("Color{id=")) {
-                    // Trích xuất id từ chuỗi
-                    // Ví dụ: "Color{id=2, name='#000000', code='?en'}" -> "2"
-                    String idPart = cidParam.substring("Color{id=".length(), cidParam.indexOf(","));
-                    cid = Integer.parseInt(idPart);
+                // Kiểm tra nếu cidParam có định dạng "Color: X, #XXXXXX, TenMau"
+                if (cidParam.startsWith("Color: ")) {
+                    // Trích xuất id từ chuỗi (ví dụ: "Color: 10, #FFFFFF, Trắng" -> "10")
+                    String idPart = cidParam.substring("Color: ".length(), cidParam.indexOf(","));
+                    cid = Integer.parseInt(idPart.trim());
 //                    System.out.println("Parsed cid from Color format: " + cid);
                 } else {
                     // Nếu không phải định dạng Color, thử parse trực tiếp
