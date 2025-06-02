@@ -1,13 +1,16 @@
 package vn.edu.hcmuaf.fit.webike.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.hcmuaf.fit.webike.dao.ProductDAO;
+import vn.edu.hcmuaf.fit.webike.dao.SearchDAO;
+import vn.edu.hcmuaf.fit.webike.models.Product;
 import vn.edu.hcmuaf.fit.webike.models.User;
 import vn.edu.hcmuaf.fit.webike.services.LogService;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,49 +23,38 @@ public class SearchProduct extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
         String keyword = request.getParameter("keyword");
-//        System.out.println("keyword: " + keyword);
+        int page = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+        int limit = request.getParameter("limit") != null ? Integer.parseInt(request.getParameter("limit")) : 10;
 
         if (keyword == null || keyword.trim().isEmpty()) {
-            keyword = ""; // Nếu không có từ khóa, lấy toàn bộ sản phẩm
+            keyword = "";
         }
 
-        ProductDAO productDAO = new ProductDAO();
-        List<Map<String, Object>> products = productDAO.searchProducts(keyword);
-//        System.out.println("products: " + products.size());
+        SearchDAO sDao = new SearchDAO();
+        List<Product> products = sDao.searchProductsWithImages(keyword, page, limit);
+        int totalProducts = sDao.countSearchProducts(keyword);
 
-        // Xây dựng chuỗi JSON thủ công
-        StringBuilder jsonResponse = new StringBuilder("[");
-        for (int i = 0; i < products.size(); i++) {
-            Map<String, Object> product = products.get(i);
-            jsonResponse.append("{");
+        int totalPages = (int) Math.ceil((double) totalProducts / limit);
 
-            for (Map.Entry<String, Object> entry : product.entrySet()) {
-                jsonResponse.append("\"").append(entry.getKey()).append("\":\"")
-                        .append(entry.getValue()).append("\",");
-            }
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("products", products);
+        responseData.put("totalPages", totalPages);
 
-            // Xóa dấu phẩy cuối cùng
-            if (jsonResponse.charAt(jsonResponse.length() - 1) == ',') {
-                jsonResponse.deleteCharAt(jsonResponse.length() - 1);
-            }
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonResponse = objectMapper.writeValueAsString(responseData);
 
-            jsonResponse.append("}");
-            if (i < products.size() - 1) {
-                jsonResponse.append(",");
-            }
+        // Log chỉ khi user đã đăng nhập
+        if (user != null) {
+            LogService.log(LEVEL_INFO, "Tìm sản phẩm", String.valueOf(user.getId()), "", keyword);
         }
-        jsonResponse.append("]");
-//        LogService.log(LEVEL_INFO, "Tìm sản phẩm", user.getId()+"", "", keyword);
-        LogService.log(LEVEL_INFO, "Tìm sản phẩm", user.getId()+"", "", "");
 
-        // Trả về JSON response
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-//        System.out.println(jsonResponse);
-        response.getWriter().write(jsonResponse.toString());
+        response.getWriter().write(jsonResponse);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 }

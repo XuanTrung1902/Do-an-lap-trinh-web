@@ -138,7 +138,7 @@
                             <h2 class="filter mb-0 me-5">Hãng xe</h2>
                             <c:forEach var="ab" items="${allBrand}">
                                 <label>
-                                    <input onclick="sort()" type="checkbox" class="filter-checkbox" name="brand"
+                                    <input type="checkbox" class="filter-checkbox" name="brand"
                                            value="${ab.name}"
                                            <c:if test="${checkedBrands != null && checkedBrands.contains(ab.name)}">checked</c:if>
                                     >${ab.name}
@@ -147,8 +147,7 @@
                         </div>
                     </div>
                     <div class="list-bike">
-                        <div id="product-grid" onclick="checkLoginForProducts(event)" class="grid__row"
-                             style="padding: 0 40px;">
+                        <div id="product-grid" onclick="checkLoginForProducts(event)" class="grid__row" style="padding: 0 40px;">
                             <c:forEach var="p" items="${products}">
                                 <div id="SP${p.id}" class="grid__column-2" style="padding: 10px; height: 380px">
                                     <c:forEach var="color" items="${p.img.entrySet()}">
@@ -190,12 +189,9 @@
                 </button>
                 <div class="pagination">
                     <ul>
-                        <li class="pagination__link pagination__link--active" value="1">1</li>
-                        <li class="pagination__link" value="2">2</li>
-                        <li class="pagination__link" value="3">3</li>
-                        <li class="pagination__link" value="4">4</li>
-                        <li class="pagination__link" value="5">5</li>
-                        <li class="pagination__link" value="6">6</li>
+                        <c:forEach begin="1" end="${totalPages}" var="pageNum">
+                            <li class="pagination__link ${pageNum == currentPage ? 'pagination__link--active' : ''}" data-page="${pageNum}">${pageNum}</li>
+                        </c:forEach>
                     </ul>
                 </div>
                 <button class="pagination__btn btn--right">
@@ -250,8 +246,11 @@
     <% session.removeAttribute("cancelMessage"); %>
     </c:if>
 </script>
+<script>
+    let currentPage = ${not empty param.page ? param.page : 1};
+</script>
 <script src="${pageContext.request.contextPath}/GKY/assets/js/product.js"></script>
-<%--<script src="${pageContext.request.contextPath}/GKY/assets/js/FilterProductAjax.js"></script>--%>
+<script src="${pageContext.request.contextPath}/GKY/assets/js/FilterProductAjax.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}/GKY/assets/bootstrap/js/popper.min.js"></script>
 

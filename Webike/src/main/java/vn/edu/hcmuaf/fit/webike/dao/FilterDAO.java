@@ -14,54 +14,49 @@ public class FilterDAO {
     public static void main(String[] args) {
         FilterDAO filterDAO = new FilterDAO();
 //        List<Map<String, Object>> products = filterDAO.getAllProducts(1, 10);
-        String [] b = {"Ducati"};
-        List<Product> products = filterDAO.getProductsByBrands(b,1, 10);
-        System.out.println(products);
+//        String [] b = {"Ducati"};
+//        List<Product> products = filterDAO.getProductsByBrands(b,1, 10);
+//        System.out.println(products);
+//        List<Product> products = filterDAO.getAllProducts(1, 10);
+//        System.out.println(products.size());
+//        for (Product p : products) {
+//            System.out.println(p.getName() + " - " + p.getBrand() + " - " + p.getType() + " - " + p.getImg().size());
+//        }
+//        System.out.println(filterDAO.getAllProducts(17, 10).size());
+//        System.out.println(filterDAO.getTotalProducts());
     }
-
-//    public List<Map<String, Object>> getAllProducts(int page, int limit) {
-//        Jdbi jdbi = JDBIConnect.get();
-//        String sql = """
-//                    SELECT p.id, p.name, p.des, p.price, p.quantity, p.version, p.launch,
-//                           p.status, b.name AS brand, MIN(i.url) AS url
-//                    FROM products AS p
-//                    LEFT JOIN imgs AS i ON i.productID = p.id
-//                    LEFT JOIN brands AS b ON p.brandID = b.id
-//                    GROUP BY p.id
-//                    LIMIT :limit OFFSET :offset
-//                """;
-//
-//
-//        int offset = (page - 1) * limit;
-//
-//        return jdbi.withHandle(handle ->
-//                handle.createQuery(sql)
-//                        .bind("limit", limit)
-//                        .bind("offset", offset)
-//                        .mapToMap()
-//                        .list()
-//        );
-//    }
 
     public List<Product> getAllProducts(int page, int limit) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """ 
-                SELECT p.*, b.name as brand, t.type, d.amount, i.url, i.colorID, c.code, c.name AS colorName
-                FROM products p
-                JOIN (
+            SELECT DISTINCT p.*, b.name AS brand, t.type,
+                CASE
+                    WHEN d.active = 1 THEN d.amount
+                    ELSE 0
+                END AS amount, i.url, i.colorID, c.code, c.name AS colorName
+            FROM products p
+            LEFT JOIN (
                 SELECT * FROM imgs
                 WHERE (productID, id) IN (
-                SELECT productID, MIN(id) FROM imgs
-                GROUP BY productID)) 
+                    SELECT productID, MIN(id) FROM imgs
+                    GROUP BY productID)) 
                 i ON p.id = i.productID
-                JOIN colors c ON i.colorID = c.id
-                JOIN brands b ON b.id = p.brandID
-                JOIN biketypes t ON t.id = p.typeID
-                JOIN discounts d on d.productID = p.id
-                WHERE b.name in ("Ducati")
-                ORDER BY p.id
-                LIMIT :limit OFFSET :offset
-                """;
+            LEFT JOIN colors c ON i.colorID = c.id
+            LEFT JOIN brands b ON b.id = p.brandID
+            LEFT JOIN biketypes t ON t.id = p.typeID
+            LEFT JOIN (
+                SELECT d1.* FROM discounts d1
+                INNER JOIN (
+                    SELECT productID, MAX(active) AS max_active, MIN(id) AS min_id FROM discounts
+                    GROUP BY productID
+                ) d2 ON d1.productID = d2.productID
+                     AND d1.active = d2.max_active
+                     AND d1.id = d2.min_id
+            ) d ON d.productID = p.id
+            WHERE p.deleted = 0
+            ORDER BY p.id
+            LIMIT :limit OFFSET :offset
+            """;
         int offset = (page - 1) * limit;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)
@@ -83,8 +78,8 @@ public class FilterDAO {
                             int colorID = rs.getInt("colorID");
                             String code = rs.getString("code");
                             String colorName = rs.getString("colorName");
-                            Color color = new Color(colorID, code, colorName);
-                            String url = rs.getString("url");
+                            Color color = (colorID > 0) ? new Color(colorID, code, colorName) : new Color(0, "default", "Default");
+                            String url = rs.getString("url") != null ? rs.getString("url") : "";
                             Map<Color, String> img = new LinkedHashMap<>();
                             img.put(color, url);
                             return new Product(id, name, des, price, quantity, version, launch, status, brand, type, img, discount);
@@ -98,7 +93,7 @@ public class FilterDAO {
         String sql = """
             SELECT COUNT(*)
             FROM products AS p
-            LEFT JOIN brands AS b ON p.brandID = b.id
+            WHERE p.deleted = 0
             """;
 
         return jdbi.withHandle(handle ->
@@ -114,7 +109,7 @@ public class FilterDAO {
             SELECT COUNT(*)
             FROM products AS p
             LEFT JOIN brands AS b ON p.brandID = b.id
-            WHERE b.name IN (<brands>)
+            WHERE b.name IN (<brands>) AND p.deleted = 0
             """;
 
         return jdbi.withHandle(handle ->
@@ -164,16 +159,16 @@ public class FilterDAO {
                         ELSE 0
                     END AS amount, i.url, i.colorID, c.code, c.name AS colorName
                 FROM products p
-                JOIN (
+                LEFT JOIN (
                     SELECT *
                     FROM imgs
                     WHERE (productID, id) IN (
                         SELECT productID, MIN(id) FROM imgs
                         GROUP BY productID))
                         i ON p.id = i.productID
-                JOIN colors c ON i.colorID = c.id
-                JOIN brands b ON b.id = p.brandID
-                JOIN biketypes t ON t.id = p.typeID
+                LEFT JOIN colors c ON i.colorID = c.id
+                LEFT JOIN brands b ON b.id = p.brandID
+                LEFT JOIN biketypes t ON t.id = p.typeID
                 LEFT JOIN (
                     SELECT d1.* FROM discounts d1
                     INNER JOIN (
@@ -183,7 +178,7 @@ public class FilterDAO {
                          AND d1.active = d2.max_active
                          AND d1.id = d2.min_id
                 ) d ON d.productID = p.id
-                WHERE b.name in (<brands>) AND p.deleted = 0
+                WHERE b.name IN (<brands>) AND p.deleted = 0
                 ORDER BY p.id
                 LIMIT :limit OFFSET :offset
                 """;
@@ -209,8 +204,8 @@ public class FilterDAO {
                             int colorID = rs.getInt("colorID");
                             String code = rs.getString("code");
                             String colorName = rs.getString("colorName");
-                            Color color = new Color(colorID, code, colorName);
-                            String url = rs.getString("url");
+                            Color color = (colorID > 0) ? new Color(colorID, code, colorName) : new Color(0, "default", "Default");
+                            String url = rs.getString("url") != null ? rs.getString("url") : "";
                             Map<Color, String> img = new LinkedHashMap<>();
                             img.put(color, url);
                             return new Product(id, name, des, price, quantity, version, launch, status, brand, type, img, discount);

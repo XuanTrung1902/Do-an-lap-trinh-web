@@ -28,7 +28,35 @@ public class ProductDetail extends HttpServlet {
             System.out.println("ko nhan dc id");
         }
         int id = Integer.parseInt(request.getParameter("id"));
-        int cid = Integer.parseInt(request.getParameter("cid"));
+//        int cid = Integer.parseInt(request.getParameter("cid"));
+
+        int cid = 0; // Giá trị mặc định
+        String cidParam = request.getParameter("cid");
+//        System.out.println("Received cid: " + cidParam);
+        try {
+            if (cidParam != null && !cidParam.trim().isEmpty()) {
+                // Kiểm tra nếu cidParam có định dạng "Color{id=..., name=..., code=...}"
+                if (cidParam.startsWith("Color{id=")) {
+                    // Trích xuất id từ chuỗi
+                    // Ví dụ: "Color{id=2, name='#000000', code='?en'}" -> "2"
+                    String idPart = cidParam.substring("Color{id=".length(), cidParam.indexOf(","));
+                    cid = Integer.parseInt(idPart);
+//                    System.out.println("Parsed cid from Color format: " + cid);
+                } else {
+                    // Nếu không phải định dạng Color, thử parse trực tiếp
+                    cid = Integer.parseInt(cidParam);
+                }
+            } else {
+                // Nếu không có cid, lấy màu mặc định
+                ProductDAO dao = new ProductDAO();
+                cid = dao.getDefaultColorId(id);
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid cid: " + cidParam + ". Using default color.");
+            ProductDAO dao = new ProductDAO();
+            cid = dao.getDefaultColorId(id);
+        }
+
 
         ProductDAO dao = new ProductDAO();
         Product p = dao.getProduct(id);

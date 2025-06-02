@@ -1,374 +1,172 @@
-// $(document).ready(function() {
-//     let currentPage = 1;
-//     const itemsPerPage = 10;
-//
-//
-//     function fetchFilteredProducts() {
-//         var selectedBrands = [];
-//         $("input[name='brand']:checked").each(function() {
-//             selectedBrands.push($(this).val());
-//         });
-//
-//         $.ajax({
-//             url: "/Webike/filter",
-//             type: "POST",
-//             data: {
-//                 brand: selectedBrands.length > 0 ? selectedBrands : null,
-//                 page: currentPage,
-//                 limit: itemsPerPage
-//             },
-//             traditional: true,
-//             success: function(response) {
-//                 $(".grid__row").empty();
-//                 response.products.forEach(function(product) {
-//                     var colorHTML = "";
-//                     for (var cid in product.imgMap) {
-//                         var imgUrl = product.imgMap[cid];
-//                         colorHTML += `
-//                     <a href="productDetail?id=${product.id}&cid=${cid}"
-//                        onclick="checkLoginForProduct(event, ${product.id})" class="bike--item">
-//                         <div class="bike__img zoom-img">
-//                             <img src="${imgUrl}" alt="${product.name}"/>
-//                         </div>
-//                 `;
-//                     }
-//                     var productHTML = `
-//                         <div class="grid__column-2" style="padding: 10px; height: 380px" data-attributes="${product.brand || ''}">
-//                             ${colorHTML}
-//                                 <div class="bike__info">
-//                                     <h3 class="bike__name" style="display: block; height: 49px;">${product.name}</h3>
-//                                     <span class="bike__price">${new Intl.NumberFormat().format(product.price)}₫</span>
-//                                     <div class="source">
-//                                         <span class="condition">${product.version}</span>
-//                                         <span class="time">${product.launch}</span>
-//                                     </div>
-//                                     <address class="address">${product.status}</address>
-//                                 </div>
-//                             </a>
-//                         </div>
-//                     `;
-//                     $(".grid__row").append(productHTML);
-//                 });
-//
-//                 // console.log(response);
-//                 renderPagination(response.totalPages);
-//             },
-//             error: function(xhr, status, error) {
-//                 console.error("AJAX Error:", error);
-//                 console.error("Status:", status);
-//                 console.error("Response:", xhr.responseText);
-//             }
-//         });
-//     }
-//
-//     function fetchAllProducts() {
-//         $.ajax({
-//             url: "/Webike/filter",
-//             type: "POST",
-//             data: {
-//                 page: currentPage,
-//                 limit: itemsPerPage
-//             },
-//             success: function(response) {
-//                 $(".grid__row").empty();
-//
-//                 response.products.forEach(function(product) {
-//                     var colorHTML = "";
-//                     for (var cid in product.imgMap) {
-//                         var imgUrl = product.imgMap[cid];
-//                         colorHTML += `
-//                     <a href="productDetail?id=${product.id}&cid=${cid}"
-//                        onclick="checkLoginForProduct(event, ${product.id})" class="bike--item">
-//                         <div class="bike__img zoom-img">
-//                             <img src="${imgUrl}" alt="${product.name}"/>
-//                         </div>
-//                 `;
-//                     }
-//                     var productHTML = `
-//                         <div class="grid__column-2" style="padding: 10px; height: 380px" data-attributes="${product.brand || ''}">
-//                             ${colorHTML}
-//                                 <div class="bike__info">
-//                                     <h3 class="bike__name" style="display: block; height: 49px;">${product.name}</h3>
-//                                     <span class="bike__price">${new Intl.NumberFormat().format(product.price)}₫</span>
-//                                     <div class="source">
-//                                         <span class="condition">${product.version}</span>
-//                                         <span class="time">${product.launch}</span>
-//                                     </div>
-//                                     <address class="address">${product.status}</address>
-//                                 </div>
-//                             </a>
-//                         </div>
-//                     `;
-//                     $(".grid__row").append(productHTML);
-//                 });
-//
-//                 // console.log(response);
-//                 renderPagination(response.totalPages);
-//             },
-//             error: function(xhr, status, error) {
-//                 console.error("AJAX Error:", error);
-//                 console.error("Status:", status);
-//                 console.error("Response:", xhr.responseText);
-//             }
-//         });
-//     }
-//
-//     function renderPagination(totalPages) {
-//         $(".pagination ul").empty();
-//
-//         // Số trang tối đa hiển thị xung quanh trang hiện tại (2 trang trước và 2 trang sau)
-//         const maxPagesBeforeCurrent = 2;
-//         const maxPagesAfterCurrent = 2;
-//
-//         // Tính toán các trang sẽ hiển thị
-//         let startPage = Math.max(2, currentPage - maxPagesBeforeCurrent); // Trang bắt đầu
-//         let endPage = Math.min(totalPages - 1, currentPage + maxPagesAfterCurrent); // Trang kết thúc
-//
-//         // Điều chỉnh startPage và endPage để đảm bảo số lượng trang hiển thị hợp lý
-//         const maxVisiblePages = maxPagesBeforeCurrent + maxPagesAfterCurrent + 1; // Tổng số trang hiển thị (không tính trang 1 và totalPages)
-//         if (endPage - startPage + 1 < maxVisiblePages) {
-//             if (currentPage <= totalPages / 2) {
-//                 endPage = Math.min(totalPages - 1, startPage + maxVisiblePages - 1);
-//             } else {
-//                 startPage = Math.max(2, endPage - maxVisiblePages + 1);
-//             }
-//         }
-//
-//         // Thêm trang 1
-//         const pageItem1 = `<li class="pagination__link ${1 === currentPage ? 'pagination__link--active' : ''}" data-page="1">1</li>`;
-//         $(".pagination ul").append(pageItem1);
-//
-//         // Thêm dấu "..." nếu cần (giữa trang 1 và startPage)
-//         if (startPage > 2) {
-//             $(".pagination ul").append('<li class="pagination__ellipsis">...</li>');
-//         }
-//
-//         // Thêm các trang từ startPage đến endPage
-//         for (let i = startPage; i <= endPage; i++) {
-//             const pageItem = `<li class="pagination__link ${i === currentPage ? 'pagination__link--active' : ''}" data-page="${i}">${i}</li>`;
-//             $(".pagination ul").append(pageItem);
-//         }
-//
-//         // Thêm dấu "..." nếu cần (giữa endPage và totalPages)
-//         if (endPage < totalPages - 1) {
-//             $(".pagination ul").append('<li class="pagination__ellipsis">...</li>');
-//         }
-//
-//         // Thêm trang cuối (totalPages) nếu totalPages > 1
-//         if (totalPages > 1) {
-//             const pageItemLast = `<li class="pagination__link ${totalPages === currentPage ? 'pagination__link--active' : ''}" data-page="${totalPages}">${totalPages}</li>`;
-//             $(".pagination ul").append(pageItemLast);
-//         }
-//
-//         // Gắn sự kiện click cho các trang
-//         $(".pagination__link").off("click").on("click", function() {
-//             currentPage = parseInt($(this).data("page"));
-//             var selectedBrands = [];
-//             $("input[name='brand']:checked").each(function() {
-//                 selectedBrands.push($(this).val());
-//             });
-//
-//             if (selectedBrands.length === 0) {
-//                 fetchAllProducts();
-//             } else {
-//                 fetchFilteredProducts();
-//             }
-//         });
-//
-//         // Xử lý nút trái/phải
-//         const leftButton = document.querySelector(".btn--left");
-//         const rightButton = document.querySelector(".btn--right");
-//
-//         if (leftButton) {
-//             leftButton.onclick = function() {
-//                 if (currentPage > 1) {
-//                     currentPage--;
-//                     var selectedBrands = [];
-//                     $("input[name='brand']:checked").each(function() {
-//                         selectedBrands.push($(this).val());
-//                     });
-//
-//                     if (selectedBrands.length === 0) {
-//                         fetchAllProducts();
-//                     } else {
-//                         fetchFilteredProducts();
-//                     }
-//                 }
-//             };
-//         }
-//
-//         if (rightButton) {
-//             rightButton.onclick = function() {
-//                 if (currentPage < totalPages) {
-//                     currentPage++;
-//                     var selectedBrands = [];
-//                     $("input[name='brand']:checked").each(function() {
-//                         selectedBrands.push($(this).val());
-//                     });
-//
-//                     if (selectedBrands.length === 0) {
-//                         fetchAllProducts();
-//                     } else {
-//                         fetchFilteredProducts();
-//                     }
-//                 }
-//             };
-//         }
-//     }
-//
-//     $("input[name='brand']").on("change", function() {
-//         currentPage = 1;
-//         var selectedBrands = [];
-//         $("input[name='brand']:checked").each(function() {
-//             selectedBrands.push($(this).val());
-//         });
-//
-//         if (selectedBrands.length === 0) {
-//             fetchAllProducts();
-//         } else {
-//             fetchFilteredProducts();
-//         }
-//     });
-//
-//     fetchAllProducts();
-// });
-//
-// ///////////////////////
-// ///// Search Product ////
-// ///////////////////////
-//
-// $(document).ready(function () {
-//     $('#search-input').on('keyup', function () {
-//         let keyword = $(this).val();
-//         $.ajax({
-//             url: '/Webike/search',
-//             method: 'GET',
-//             data: { keyword: keyword },
-//             success: function (response) {
-//                 // console.log('Response:', response);
-//                 let productGrid = $('#product-grid');
-//                 productGrid.empty(); // Xóa kết quả cũ
-//
-//                 if (response.length > 0) {
-//                     response.forEach(product => {
-//                         let productHTML = `
-//                             <div class="grid__column-2" style="padding: 10px; height: 380px">
-//                                 <a href="productDetail?id=${product.id}" class="bike--item">
-//                                     <div class="bike__img zoom-img">
-//                                         <img src="${product.imgurl}" alt="${product.name}" />
-//                                     </div>
-//                                     <div class="bike__info">
-//                                         <h3 class="bike__name">${product.name}</h3>
-//                                         <span class="bike__price">${new Intl.NumberFormat().format(product.price)}₫</span>
-//                                         <div class="source">
-//                                             <span class="condition">${product.version}</span>
-//                                             <span class="time">${product.launch}</span>
-//                                         </div>
-//                                         <address class="address">${product.status}</address>
-//                                     </div>
-//                                 </a>
-//                             </div>`;
-//                         productGrid.append(productHTML);
-//                     });
-//                 } else {
-//                     productGrid.append('<p>Không tìm thấy sản phẩm nào.</p>');
-//                 }
-//             },
-//             error: function (xhr, status, error) {
-//                 console.error('Error status:', xhr.status); // Kiểm tra HTTP status code
-//                 console.error('AJAX Error:', error);
-//                 // console.error('Status:', status);
-//                 // console.error('Response:', xhr.responseText);
-//             }
-//         });
-//     });
-// });
-//
-//
-// //////////////////////////////////////////////////////////////
-// /////////////////////// gợi ý tìm kiếm ///////////////////////
-// //////////////////////////////////////////////////////////////
-// $(document).ready(function () {
-//     let typingTimer;
-//     const doneTypingInterval = 300; // Thời gian chờ (ms) trước khi gọi API
-//
-//     // Lắng nghe sự kiện khi người dùng nhập vào ô tìm kiếm
-//     $('.header__search--input').on('keyup', function () {
-//         clearTimeout(typingTimer);
-//         typingTimer = setTimeout(() => {
-//             let keyword = $(this).val().trim();
-//
-//             // Nếu từ khóa rỗng, ẩn danh sách gợi ý
-//             if (keyword === '') {
-//                 $('.search-suggestions').hide();
-//                 return;
-//             }
-//
-//             // Gọi API để lấy danh sách gợi ý
-//             $.ajax({
-//                 url: '/Webike/search',
-//                 method: 'GET',
-//                 data: { keyword: keyword },
-//                 success: function (response) {
-//                     let suggestionList = $('#suggestion-list');
-//                     suggestionList.empty(); // Xóa danh sách gợi ý cũ
-//
-//                     if (response.length > 0) {
-//                         // Duyệt qua danh sách sản phẩm trả về và hiển thị gợi ý
-//                         response.forEach(product => {
-//                             let suggestionItem = `
-//                                 <li data-id="${product.id}">
-//                                 <div>
-//                                     <img src="${product.imgurl}" alt="${product.name}"/>
-//                                     <span><strong>${product.name}</strong></span>
-//                                 </div>
-//                                     <span>${new Intl.NumberFormat().format(product.price)}₫</span>
-//                                 </li>`;
-//                             suggestionList.append(suggestionItem);
-//                         });
-//
-//                         // Hiển thị danh sách gợi ý
-//                         $('.search-suggestions').show();
-//                     } else {
-//                         // Nếu không có kết quả, hiển thị thông báo
-//                         suggestionList.append('<li>Không tìm thấy xe nào.</li>');
-//                         $('.search-suggestions').show();
-//                     }
-//                 },
-//                 error: function (xhr, status, error) {
-//                     console.error('AJAX Error:', error);
-//                     $('.search-suggestions').hide();
-//                 }
-//             });
-//         }, doneTypingInterval);
-//     });
-//
-//     // Xử lý khi người dùng nhấp vào một gợi ý
-//     $(document).on('click', '#suggestion-list li', function () {
-//         let productId = $(this).data('id');
-//         if (productId) {
-//             // Chuyển hướng đến trang chi tiết sản phẩm
-//             window.location.href = `productDetail?id=${productId}`;
-//         }
-//         $('.search-suggestions').hide(); // Ẩn danh sách gợi ý sau khi chọn
-//     });
-//
-//     // Ẩn danh sách gợi ý khi người dùng nhấp ra ngoài
-//     $(document).on('click', function (e) {
-//         if (!$(e.target).closest('.header__search').length) {
-//             $('.search-suggestions').hide();
-//         }
-//     });
-//
-//     // Xử lý khi nhấn nút tìm kiếm
-//     $('.header__search--btn').on('click', function () {
-//         let keyword = $('.header__search--input').val().trim();
-//         if (keyword) {
-//             // Chuyển hướng đến trang kết quả tìm kiếm
-//             window.location.href = `/Webike/list-products?keyword=${encodeURIComponent(keyword)}`;
-//         }
-//     });
-// });
-//
-//
-//
+$(document).ready(function() {
+    let currentPage = 1;
+    const itemsPerPage = 10;
+
+    // Hàm lấy danh sách sản phẩm theo bộ lọc hoặc tất cả sản phẩm
+    function fetchFilteredProducts() {
+        var selectedBrands = [];
+        $("input[name='brand']:checked").each(function() {
+            selectedBrands.push($(this).val());
+        });
+        // console.log("Selected Brands:", selectedBrands);
+
+        $.ajax({
+            url: "/Webike/filter",
+            type: "POST",
+            data: {
+                brand: selectedBrands,
+                page: currentPage,
+                limit: itemsPerPage
+            },
+            traditional: true,
+            success: function(response) {
+                // Xóa danh sách sản phẩm hiện tại
+                $("#product-grid").empty();
+
+                // Kiểm tra nếu không có sản phẩm
+                if (!response.products || response.products.length === 0) {
+                    $("#product-grid").append('<p>Không có sản phẩm nào phù hợp.</p>');
+                    renderPagination(0); // Không có trang
+                    return;
+                }
+
+                // console.log("Response:", response);
+
+                // Hiển thị danh sách sản phẩm
+                response.products.forEach(function(product) {
+                    var colorHTML = "";
+                    // Duyệt qua các cặp color-url trong img
+                    for (var colorKey in product.img) {
+                        var imgUrl = product.img[colorKey];
+                        var colorId = colorKey; // Sử dụng colorKey làm colorID (đã serialize trong FilterProduct.java)
+                        colorHTML += `
+                            <a href="productDetail?id=${product.id}&cid=${colorId}"
+                               onclick="checkLoginForProduct(event, ${product.id})" class="bike--item">
+                                <div class="bike__img zoom-img">
+                                    <img src="${imgUrl}" alt="${product.name}"/>
+                                </div>
+                        `;
+                    }
+
+                    var productHTML = `
+                        <div class="grid__column-2" style="padding: 10px; height: 380px" data-attributes="${product.brand || ''}">
+                            ${colorHTML}
+                            <div class="bike__info">
+                                <h3 class="bike__name" style="display: block; height: 49px;">${product.name}</h3>
+                                <div class="d-flex justify-content-between">
+                                    <span class="bike__price">${new Intl.NumberFormat('vi-VN').format(product.price)}₫</span>
+                                    ${product.discount > 0 ? `<span class="text-danger" style="text-align: center; display: flex; font-size: 1.3rem;">-${product.discount}%</span>` : ''}
+                                </div>
+                                <div class="source">
+                                    <span class="condition">${product.version}</span>
+                                    <span class="time">${product.launch}</span>
+                                </div>
+                                <address class="address">${product.status}</address>
+                            </div>
+                            </a>
+                        </div>
+                    `;
+                    $("#product-grid").append(productHTML);
+                });
+
+                // Cập nhật phân trang
+                renderPagination(response.totalPages);
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", error);
+                console.error("Status:", status);
+                console.error("Response:", xhr.responseText);
+                $("#product-grid").empty();
+                $("#product-grid").append('<p>Có lỗi xảy ra khi tải sản phẩm. Vui lòng thử lại.</p>');
+                renderPagination(0);
+            }
+        });
+    }
+
+    // Hàm render phân trang
+    function renderPagination(totalPages) {
+        $(".pagination ul").empty();
+
+        if (totalPages === 0) {
+            $(".pagination ul").append('<li class="pagination__link pagination__link--disabled">1</li>');
+            const leftButton = document.querySelector(".btn--left");
+            const rightButton = document.querySelector(".btn--right");
+            if (leftButton) leftButton.disabled = true;
+            if (rightButton) rightButton.disabled = true;
+            return;
+        }
+
+        const maxPagesBeforeCurrent = 2;
+        const maxPagesAfterCurrent = 2;
+
+        let startPage = Math.max(2, currentPage - maxPagesBeforeCurrent);
+        let endPage = Math.min(totalPages - 1, currentPage + maxPagesAfterCurrent);
+
+        const maxVisiblePages = maxPagesBeforeCurrent + maxPagesAfterCurrent + 1;
+        if (endPage - startPage + 1 < maxVisiblePages) {
+            if (currentPage <= totalPages / 2) {
+                endPage = Math.min(totalPages - 1, startPage + maxVisiblePages - 1);
+            } else {
+                startPage = Math.max(2, endPage - maxVisiblePages + 1);
+            }
+        }
+
+        const pageItem1 = `<li class="pagination__link ${1 === currentPage ? 'pagination__link--active' : ''}" data-page="1">1</li>`;
+        $(".pagination ul").append(pageItem1);
+
+        if (startPage > 2) {
+            $(".pagination ul").append('<li class="pagination__ellipsis">...</li>');
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            const pageItem = `<li class="pagination__link ${i === currentPage ? 'pagination__link--active' : ''}" data-page="${i}">${i}</li>`;
+            $(".pagination ul").append(pageItem);
+        }
+
+        if (endPage < totalPages - 1) {
+            $(".pagination ul").append('<li class="pagination__ellipsis">...</li>');
+        }
+
+        if (totalPages > 1) {
+            const pageItemLast = `<li class="pagination__link ${totalPages === currentPage ? 'pagination__link--active' : ''}" data-page="${totalPages}">${totalPages}</li>`;
+            $(".pagination ul").append(pageItemLast);
+        }
+
+        $(".pagination__link").off("click").on("click", function() {
+            currentPage = parseInt($(this).data("page"));
+            fetchFilteredProducts();
+        });
+
+        const leftButton = document.querySelector(".btn--left");
+        const rightButton = document.querySelector(".btn--right");
+
+        if (leftButton) {
+            leftButton.disabled = currentPage === 1;
+            leftButton.onclick = function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    fetchFilteredProducts();
+                }
+            };
+        }
+
+        if (rightButton) {
+            rightButton.disabled = currentPage === totalPages;
+            rightButton.onclick = function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    fetchFilteredProducts();
+                }
+            };
+        }
+    }
+
+    // Xử lý sự kiện khi thay đổi checkbox
+    $("input[name='brand']").on("change", function() {
+        currentPage = 1; // Reset về trang 1 khi thay đổi bộ lọc
+        fetchFilteredProducts();
+    });
+
+    // Tải tất cả sản phẩm khi trang được load lần đầu
+    fetchFilteredProducts();
+});
