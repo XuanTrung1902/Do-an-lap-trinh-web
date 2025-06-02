@@ -43,11 +43,7 @@ public class OrderStatus {
 
     @Override
     public String toString() {
-        return "OrderStatus{" +
-                "id=" + id +
-                ", statusCode='" + statusCode + '\'' +
-                ", statusValue='" + statusValue + '\'' +
-                ", valueString='" + valueString + '\'' +
-                '}';
+        return "OrderStatus: " + id + ", " + statusCode + ", " + statusValue + ", " + valueString;
     }
+
 }

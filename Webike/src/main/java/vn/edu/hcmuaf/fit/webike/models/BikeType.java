@@ -40,10 +40,6 @@ public class BikeType implements Serializable {
 
     @Override
     public String toString() {
-        return "BikeType{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", img='" + img + '\'' +
-                '}';
+        return "BikeType: " + id + ", " + type + ", " + img;
     }
 }

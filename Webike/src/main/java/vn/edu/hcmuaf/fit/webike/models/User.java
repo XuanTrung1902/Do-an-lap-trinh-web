@@ -162,22 +162,9 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phoneNum='" + phoneNum + '\'' +
-                ", DOB=" + DOB +
-                ", sex='" + sex + '\'' +
-                ", password='" + password + '\'' +
-                ", created='" + created + '\'' +
-                ", locked=" + locked +
-                ", verify=" + verify +
-                ", role=" + role +
-                ", address='" + address + '\'' +
-                ", image='" + image + '\'' +
-                ", email='" + email + '\'' +
-                ", otpEnabled=" + otpEnabled +
-                ", otpSecret='" + otpSecret + '\'' +
-                '}';
+        return "User: " + id + ", " + name + ", " + phoneNum + ", " + DOB + ", " + sex + ", " +
+                password + ", " + created + ", " + locked + ", " + verify + ", " + role + ", " +
+                address + ", " + image + ", " + email + ", " + otpEnabled + ", " + otpSecret;
     }
+
 }

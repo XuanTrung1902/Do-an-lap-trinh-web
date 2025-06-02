@@ -29,10 +29,7 @@ public class Resource {
 
     @Override
     public String toString() {
-        return "Resource{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "Resource: " + id + ", " + name;
     }
 
 }

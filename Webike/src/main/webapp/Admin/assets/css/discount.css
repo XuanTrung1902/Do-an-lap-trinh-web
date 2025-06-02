@@ -584,7 +584,155 @@ form .btn-delete:hover {
 }
 
 
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
- 
+.modal-dialog {
+    position: relative;
+    margin: 10% auto;
+    max-width: 600px;
+}
 
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
 
+/* Tiêu đề modal */
+.modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Nền mờ phía sau modal */
+.modal {
+    display: none; /* Ẩn mặc định */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Nền đen mờ */
+}
+
+/* Hộp nội dung modal */
+.modal-content {
+    background-color: #fff;
+    margin: 60px auto;
+    padding: 20px 30px;
+    border-radius: 12px;
+    width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Header modal */
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Đóng modal */
+.modal .close {
+    color: #aaa;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal .close:hover {
+    color: #000;
+}
+
+/* Nhóm input */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    font-weight: 500;
+    color: #444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #fefefe;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Nút */
+.btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: red;
+    color: white;
+    margin-right: 10px;
+}
+
+/*.btn-primary:hover {*/
+/*    background-color: #0056b3;*/
+/*}*/
+
+.btn-secondary {
+    background-color: red;
+    color: white;
+}
+
+/*.btn-secondary:hover {*/
+/*    background-color: #5a6268;*/
+/*}*/
+
+/* Căn phải các nút */
+.text-right {
+    text-align: right;
+}
+
+/* Hiệu ứng fade in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}

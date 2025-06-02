@@ -61,8 +61,6 @@ public class Cart implements Serializable {
 
     @Override
     public String toString() {
-        return "Cart{" +
-                ", data=" + data +
-                '}';
+        return "Cart: " + data;
     }
 }

@@ -9,6 +9,17 @@ public class Log {
     private String userInfo;
     private String before;
     private String after;
+    public Log() {
+    }
+    public Log(int id, String level, Timestamp logTime, String location, String userInfo, String before, String after) {
+        this.id = id;
+        this.level = level;
+        this.logTime = logTime;
+        this.location = location;
+        this.userInfo = userInfo;
+        this.before = before;
+        this.after = after;
+    }
 
     // Getters and Setters
     public int getId() { return id; }

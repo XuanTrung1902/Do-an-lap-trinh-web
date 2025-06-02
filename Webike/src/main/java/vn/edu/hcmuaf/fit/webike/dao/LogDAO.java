@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.webike.dao;
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 import vn.edu.hcmuaf.fit.webike.models.Log;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,14 +21,14 @@ public class LogDAO {
         );
     }
     // Lấy danh sách toàn bộ logs (sắp xếp theo thời gian mới nhất)
+//
     public List<Log> getAllLogs() {
         return JDBIConnect.get().withHandle(handle ->
-                handle.createQuery("SELECT * FROM logs ORDER BY logTime DESC")
+                handle.createQuery("SELECT * FROM logs")
                         .mapToBean(Log.class)
                         .list()
         );
     }
-
 
     public void deleteLog(int id) {
         JDBIConnect.get().useHandle(handle ->
@@ -36,4 +37,28 @@ public class LogDAO {
                         .execute()
         );
     }
+    public Log getLogById(int id) {
+        return JDBIConnect.get().withHandle(handle ->
+                handle.createQuery("SELECT * FROM logs WHERE id = :id")
+                        .bind("id", id)
+                        .mapToBean(Log.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
+    public boolean updateLog(Log log) {
+        int rowsAffected = JDBIConnect.get().withHandle(handle ->
+                handle.createUpdate("UPDATE logs SET level = :level, logTime = :logTime, location = :location, userInfo = :userInfo, `before` = :before, `after` = :after WHERE id = :id")
+                        .bind("id", log.getId())
+                        .bind("level", log.getLevel())
+                        .bind("logTime",log.getLogTime())
+                        .bind("location", log.getLocation())
+                        .bind("userInfo", log.getUserInfo())
+                        .bind("before", log.getBefore())
+                        .bind("after", log.getAfter())
+                        .execute()
+        );
+        return rowsAffected > 0;
+    }
+
 }

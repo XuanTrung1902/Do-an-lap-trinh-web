@@ -49,14 +49,8 @@ public class Feature implements Serializable {
     public void setImg(String img) {
         this.img = img;
     }
-
     @Override
     public String toString() {
-        return "Feature{" +
-                "id=" + id +
-                ", tag='" + tag + '\'' +
-                ", des='" + des + '\'' +
-                ", img='" + img + '\'' +
-                '}' + "\n";
+        return "Feature: " + id + ", " + tag + ", " + des + ", " + img;
     }
 }

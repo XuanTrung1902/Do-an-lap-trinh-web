@@ -76,13 +76,8 @@ public class PermissionDTO {
 
     @Override
     public String toString() {
-        return "Permission{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", resource='" + resource + '\'' +
-                ", action='" + action + '\'' +
-                ", resourceId=" + resourceId +
-                ", permissionId=" + permissionId +
-                '}';
+        return "Permission: " + id + ", " + name + ", " + resource + ", " + action + ", " +
+                resourceId + ", " + permissionId;
     }
+
 }

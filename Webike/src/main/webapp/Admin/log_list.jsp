@@ -119,7 +119,10 @@
                                 <td>
                                     <div style="display: flex; gap: 5px; justify-content: center;">
                                             <c:if test="${canDeletetDiscount}">
-                                                <a href="#" class="btn-edit">Sửa</a>
+<%--                                                <a href="#" class="btn-edit" data-id="${log.id}">Sửa</a>--%>
+<%--                                                <a href="updateLog?id=${log.id}" class="btn btn-primary">Sửa</a>--%>
+                                                <a href="#" class="btn-edit" data-id="${log.id}">Sửa</a>
+
                                                 <a href="<%= request.getContextPath() %>/delete-log?id=${log.id}"
                                                    class="btn-delete"
                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa log này?')"
@@ -138,6 +141,64 @@
         </div>
     </div>
 </section>
+<!-- Modal Sửa Log -->
+<div class="modal" id="editLogModal" tabindex="-1" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Sửa log</h5>
+                <button type="button" class="close close-edit-log-modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editLogForm">
+                    <input type="hidden" name="logId" id="logId">
+                    <div class="form-group">
+                        <label for="level">Level:</label>
+                        <select class="form-control" name="level" id="level">
+                            <option value="INFO">INFO</option>
+                            <option value="WARNING">WARNING</option>
+                            <option value="ERROR">ERROR</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="logTime">Thời gian log:</label>
+                        <input type="datetime-local" class="form-control" name="logTime" id="logTime">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Vị trí:</label>
+                        <input type="text" class="form-control" name="location" id="location">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userInfo">Thông tin người dùng:</label>
+                        <input type="text" class="form-control" name="userInfo" id="userInfo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="before">Trạng thái trước:</label>
+                        <textarea class="form-control" name="before" id="before" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="after">Trạng thái sau:</label>
+                        <textarea class="form-control" name="after" id="after" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close-edit-log-modal">Đóng</button>
+                <button type="submit" class="btn btn-primary" form="editLogForm">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="<%= request.getContextPath() %>/Admin/assets/js/discount.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -167,7 +228,25 @@
         });
     });
 </script>
-<script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>
+<script>
+    document.querySelectorAll('.btn-edit').forEach(btn => {
+        btn.addEventListener('click', function () {
+            document.getElementById('editLogModal').style.display = 'block';
+        });
+    });
 
+    // Đóng modal sửa log
+    document.querySelectorAll('.close-edit-log-modal').forEach(btn => {
+        btn.addEventListener('click', function () {
+            document.getElementById('editLogModal').style.display = 'none';
+        });
+    });
+
+</script>
+<script>
+    const contextPath = '<%= request.getContextPath() %>';
+</script>
+<script src="<%= request.getContextPath()%>/Admin/assets/js/Log.js"></script>
+<script src="<%= request.getContextPath()%>/Admin/assets/js/session-check.js"></script>
 </body>
 </html>

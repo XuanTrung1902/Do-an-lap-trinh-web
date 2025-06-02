@@ -52,11 +52,6 @@ public class Brand implements Serializable {
 
     @Override
     public String toString() {
-        return "Brand{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", des='" + des + '\'' +
-                ", img='" + img + '\'' +
-                '}';
+        return "Brand: " + id + ", " + name + ", " + des + ", " + img;
     }
 }

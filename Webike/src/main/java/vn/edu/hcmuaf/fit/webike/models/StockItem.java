@@ -66,16 +66,10 @@ public class StockItem {
     public void setDeleted(int deleted) {
         this.deleted = deleted;
     }
-
     @Override
     public String toString() {
-        return "StockItem{" +
-                "id=" + id +
-                ", color=" + color +
-                ", batch=" + batch +
-                ", product=" + product +
-                ", status='" + status +
-                ", deleted=" + deleted +
-                '}';
+        return "StockItem: " + id + ", " + color + ", " + batch + ", " + product + ", " +
+                status + ", " + deleted;
     }
+
 }

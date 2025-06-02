@@ -84,16 +84,7 @@ public class GoogleAccount {
 
     @Override
     public String toString() {
-        return "GoogleAccount{" +
-                "id='" + id + '\'' +
-                ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
-                ", first_name='" + first_name + '\'' +
-                ", given_name='" + given_name + '\'' +
-                ", family_name='" + family_name + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", verified_email=" + verified_email +
-                '}';
+        return "GoogleAccount: " + id + ", " + email + ", " + name + ", " + first_name + ", " +
+                given_name + ", " + family_name + ", " + avatar + ", " + verified_email;
     }
-
 }

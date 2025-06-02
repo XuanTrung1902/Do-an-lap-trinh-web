@@ -180,21 +180,11 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", des='" + des + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", version='" + version + '\'' +
-                ", launch='" + launch + '\'' +
-                ", status='" + status + '\'' +
-                ", brand='" + brand + '\'' +
-                ", type='" + type + '\'' +
-                ", img=" + img +
-                ", discount=" + discount +
-                '}';
+        return "Product: " + id + ", " + name + ", " + des + ", " + price + ", " + quantity + ", " +
+                version + ", " + launch + ", " + status + ", " + brand + ", " + type + ", " +
+                img + ", " + discount;
     }
+
 }
 
 

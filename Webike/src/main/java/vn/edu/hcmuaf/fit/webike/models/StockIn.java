@@ -72,14 +72,8 @@ public class StockIn {
 
     @Override
     public String toString() {
-        return "StockIn{" +
-                "id=" + id +
-                ", supplier=" + supplier +
-                ", employeeID=" + employeeID +
-                ", receiptDate='" + receiptDate + '\'' +
-                ", note='" + note + '\'' +
-                ", batches=" + batches +
-                ", deleted=" + deleted +
-                '}';
+        return "StockIn: " + id + ", " + supplier + ", " + employeeID + ", " + receiptDate + ", " +
+                note + ", " + batches + ", " + deleted;
     }
+
 }

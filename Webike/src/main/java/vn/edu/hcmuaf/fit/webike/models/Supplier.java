@@ -90,15 +90,8 @@ public class Supplier {
 
     @Override
     public String toString() {
-        return "Supplier{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", contact_name='" + contact_name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", status=" + status +
-                ", created='" + created + '\'' +
-                '}';
+        return "Supplier: " + id + ", " + name + ", " + contact_name + ", " + phone + ", " +
+                email + ", " + address + ", " + status + ", " + created;
     }
+
 }
