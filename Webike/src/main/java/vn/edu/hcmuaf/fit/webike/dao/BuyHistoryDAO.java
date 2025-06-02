@@ -25,7 +25,7 @@ public class BuyHistoryDAO {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
                 SELECT oi.*, c.*, p.name, p.version, (oi.quantity * p.price) AS price, o.status, o.leadtime, b.name as brand, t.type as type
-                FROM orderItems AS oi
+                FROM orderitems AS oi
                 JOIN orders AS o ON oi.orderID = o.id
                 JOIN products AS p ON oi.productID = p.id
                 JOIN brands AS b ON p.brandID = b.id
@@ -71,7 +71,7 @@ public class BuyHistoryDAO {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
                 SELECT oi.*, c.*, p.name, p.version, (oi.quantity * p.price) AS price, o.status, o.leadtime, b.name as brand, t.type as type
-                FROM orderItems AS oi
+                FROM orderitems AS oi
                 JOIN orders AS o ON oi.orderID = o.id
                 JOIN products AS p ON oi.productID = p.id
                 JOIN brands AS b ON p.brandID = b.id
