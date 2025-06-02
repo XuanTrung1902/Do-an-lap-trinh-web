@@ -49,14 +49,9 @@ public class Spec implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
-
     @Override
     public String toString() {
-        return "Spec{" +
-                "id=" + id +
-                ", tag='" + tag + '\'' +
-                ", des='" + des + '\'' +
-                ", type='" + type + '\'' +
-                '}' + "\n";
+        return "Spec: " + id + ", " + tag + ", " + des + ", " + type;
     }
+
 }

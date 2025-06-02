@@ -156,22 +156,21 @@ public class CartItem implements Serializable {
 
     @Override
     public String toString() {
-        return "CartItem{" +
-                "id=" + id +
-                ", pid=" + pid +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", status='" + status + '\'' +
-                ", version='" + version + '\'' +
-                ", brand='" + brand + '\'' +
-                ", type='" + type + '\'' +
-                ", cid=" + cid +
-                ", colorName='" + colorName + '\'' +
-                ", img='" + img + '\'' +
-                ", uid=" + uid +
-                ", added=" + added +
-                '}';
+        return "CartItem: " +
+                id + ", " +
+                pid + ", " +
+                name + ", " +
+                price + ", " +
+                quantity + ", " +
+                status + ", " +
+                version + ", " +
+                brand + ", " +
+                type + ", " +
+                cid + ", " +
+                colorName + ", " +
+                img + ", " +
+                uid + ", " +
+                added;
     }
 
     @Override

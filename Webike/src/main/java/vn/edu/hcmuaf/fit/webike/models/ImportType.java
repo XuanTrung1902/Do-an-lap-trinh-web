@@ -54,11 +54,6 @@ public class ImportType {
 
     @Override
     public String toString() {
-        return "ImportType{" +
-                "id=" + id +
-                ", code=" + code +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return "ImportType: " + id + ", " + code + ", " + name + ", " + description;
     }
 }

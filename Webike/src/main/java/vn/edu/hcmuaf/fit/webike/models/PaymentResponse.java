@@ -44,10 +44,7 @@ public class PaymentResponse {
 
     @Override
     public String toString() {
-        return "PaymentResponse{" +
-                "status='" + status + '\'' +
-                ", message='" + message + '\'' +
-                ", url=" + url +
-                '}';
+        return "PaymentResponse: " + status + ", " + message + ", " + url;
     }
+
 }

@@ -142,21 +142,9 @@ public void setStatus(String status) {
 
     @Override
     public String toString() {
-        return "OrderItem{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", quantity=" + quantity +
-                ", img='" + img + '\'' +
-                ", color='" + color + '\'' +
-                ", productID=" + productID +
-                ", orderID='" + orderID + '\'' +
-                ", price=" + price +
-                ", version='" + version + '\'' +
-                ", brand='" + brand + '\'' +
-                ", type='" + type + '\'' +
-                ", commented=" + commented +
-                ", status='" + status + '\'' +
-                '}';
+        return "OrderItem: " + id + ", " + name + ", " + quantity + ", " + img + ", " + color + ", " +
+                productID + ", " + orderID + ", " + price + ", " + version + ", " + brand + ", " +
+                type + ", " + commented + ", " + status;
     }
 }
 

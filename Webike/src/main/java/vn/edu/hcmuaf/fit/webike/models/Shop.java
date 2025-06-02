@@ -33,13 +33,9 @@ public class Shop implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-
     @Override
     public String toString() {
-        return "Shop{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+        return "Shop: " + id + ", " + name + ", " + address;
     }
+
 }

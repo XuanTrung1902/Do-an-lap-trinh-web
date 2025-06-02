@@ -209,19 +209,8 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", data=" + data +
-                ", phoneNum=" + phoneNum +
-                ", deposit=" + deposit +
-                ", remain=" + remain +
-                ", address='" + address + '\'' +
-                ", appointment='" + appointment + '\'' +
-                ", depositDate='" + depositDate + '\'' +
-                ", payDate='" + payDate + '\'' +
-                ", status='" + status + '\'' +
-                ", user=" + user +
-                ", shop=" + shop +
-                '}';
+        return "Order: " + id + ", " + data + ", " + phoneNum + ", " + deposit + ", " + remain + ", " +
+                address + ", " + appointment + ", " + depositDate + ", " + payDate + ", " +
+                status + ", " + user + ", " + shop;
     }
 }

@@ -88,16 +88,8 @@ public class StockBatch {
 
     @Override
     public String toString() {
-        return "StockBatch{" +
-                "id=" + id +
-                ", stockID=" + stockID +
-                ", productID=" + productID +
-                ", quantity=" + quantity +
-                ", unitPrice=" + unitPrice +
-                ", totalPrice=" + totalPrice +
-                ", batch='" + batch + '\'' +
-                ", importID=" + importID +
-                ", deleted=" + deleted +
-                '}';
+        return "StockBatch: " + id + ", " + stockID + ", " + productID + ", " + quantity + ", " +
+                unitPrice + ", " + totalPrice + ", " + batch + ", " + importID + ", " + deleted;
     }
+
 }

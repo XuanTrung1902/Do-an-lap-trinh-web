@@ -60,12 +60,6 @@ public class Comment implements Serializable {
 
     @Override
     public String toString() {
-        return "Comment{" +
-                "content='" + content + '\'' +
-                ", created='" + created + '\'' +
-                ", username='" + username + '\'' +
-                ", color='" + color + '\'' +
-                ", avt='" + avt + '\'' +
-                '}';
+        return "Comment: " + content + ", " + created + ", " + username + ", " + color + ", " + avt;
     }
 }

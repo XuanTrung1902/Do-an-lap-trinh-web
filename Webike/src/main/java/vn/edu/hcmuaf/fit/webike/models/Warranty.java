@@ -53,11 +53,7 @@ public class Warranty implements Serializable {
 
     @Override
     public String toString() {
-        return "Warranty{" +
-                "id=" + id +
-                ", km=" + km +
-                ", duration=" + duration +
-                ", productID=" + productID +
-                '}' + "\n";
+        return "Warranty: " + id + ", " + km + ", " + duration + ", " + productID;
     }
+
 }
