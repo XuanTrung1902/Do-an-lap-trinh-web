@@ -17,11 +17,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-@WebServlet(name = "ShowBuyHistory", value = "/buy-history")
-public class ShowBuyHistory extends HttpServlet {
+@WebServlet(name = "Delivered", value = "/delivered")
+public class Delivered extends HttpServlet {
     private static final int ITEMS_PER_PAGE = 5;
     final String levelInfo = LogService.LEVEL_INFO;
-
+    private static final String status = "Đã giao";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BuyHistoryDAO dao = new BuyHistoryDAO();
@@ -40,7 +40,7 @@ public class ShowBuyHistory extends HttpServlet {
         }
 
         // Lấy tổng số order items
-        int totalItems = dao.getTotalOrderItems(accountID);
+        int totalItems = dao.getTotalOrderItemsByStatus(accountID, status);
         int totalPages = (int) Math.ceil((double) totalItems / ITEMS_PER_PAGE);
 
         // Đảm bảo số trang không vượt quá tổng số trang
@@ -49,19 +49,20 @@ public class ShowBuyHistory extends HttpServlet {
         }
 
         // Lấy danh sách phân trang từ cơ sở dữ liệu
-        List<OrderItem> paginatedItems = dao.getPaginatedOrderItems(accountID, page, ITEMS_PER_PAGE);
+        List<OrderItem> paginatedItems = dao.getPaginatedOrderItemsByStatus(status, accountID, page, ITEMS_PER_PAGE);
+
+        LogService.log(levelInfo, "Xem lịch sử mua hàng", user.getId() + "", paginatedItems.toString(), "");
         request.setAttribute("ls", paginatedItems);
         request.setAttribute("currentPage", page);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("totalItems", totalItems);
-        request.setAttribute("status", "Tất cả");
+        request.setAttribute("status", status);
 
-        LogService.log(levelInfo, "Xem lịch sử mua hàng", user.getId()+"", "", "");
-        request.getRequestDispatcher("GKY/buyHistory.jsp").forward(request, response);
+        LogService.log(levelInfo, "Xem lịch sử mua hàng", user.getId() + "", "", "Xem trang " + page);
+        request.getRequestDispatcher("GKY/buyHistoryDelivered.jsp").forward(request, response);
 
     }
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CommentDAO dao = new CommentDAO();
         String content = request.getParameter("comment");
@@ -76,7 +77,7 @@ public class ShowBuyHistory extends HttpServlet {
             int orderItemID = Integer.parseInt(request.getParameter("orderItemID"));
             int insert = dao.insertComment(content, created, color, productID, accountID);
             int updateCommented = dao.updateCommented(orderItemID);
-            LogService.log(levelInfo, "Bình luận", user.getId()+"","" ,content);
+            LogService.log(levelInfo, "Bình luận", user.getId()+"","" , content);
         }
 
         // Xử lý phân trang sau khi gửi bình luận
@@ -104,10 +105,9 @@ public class ShowBuyHistory extends HttpServlet {
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("totalItems", totalItems);
 
-        request.getRequestDispatcher("GKY/buyHistory.jsp").forward(request, response);
+        request.getRequestDispatcher("GKY/buyHistoryDelivered.jsp").forward(request, response);
     }
-
-    private void itemStatus(){
+    private void itemStatus() {
         OrderDAO dao = new OrderDAO();
         List<Order> orders = dao.getOrders();
 
@@ -150,4 +150,5 @@ public class ShowBuyHistory extends HttpServlet {
             }
         }
     }
+
 }

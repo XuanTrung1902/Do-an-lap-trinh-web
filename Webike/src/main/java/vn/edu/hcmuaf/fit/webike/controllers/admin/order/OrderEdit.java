@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
+import vn.edu.hcmuaf.fit.webike.GHN.Ultis.GHN_ultis;
 import vn.edu.hcmuaf.fit.webike.dao.OrderDAO;
 import vn.edu.hcmuaf.fit.webike.dao.PaymentDAO;
 import vn.edu.hcmuaf.fit.webike.models.*;
@@ -22,6 +24,7 @@ public class OrderEdit extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int oid = Integer.parseInt(request.getParameter("oid"));
         User user = (User) request.getSession().getAttribute("auth");
+        String username = request.getParameter("username");
         OrderDAO dao = new OrderDAO();
         Order o = dao.getOrdersByID(oid);
 
@@ -37,6 +40,7 @@ public class OrderEdit extends HttpServlet {
             colorMap.put(item.getProductID(), dao.mapOfColorsAndProductID(item.getProductID()));
         }
 
+        request.setAttribute("username", username);
         request.setAttribute("order", o);
         request.setAttribute("shops", shops);
         request.setAttribute("branch", branch);
@@ -51,7 +55,7 @@ public class OrderEdit extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("auth");
         OrderDAO dao = new OrderDAO();
-
+        String username = request.getParameter("username");
         int oid = Integer.parseInt(request.getParameter("oid"));
         Order oOLd = dao.getOrdersByID(oid);
         String phoneNum = request.getParameter("phoneNum");
@@ -63,7 +67,18 @@ public class OrderEdit extends HttpServlet {
         int update = dao.updateOrder(oid, phoneNum, address,status, appointment, payDate, shopID);
         Order oNew = dao.getOrdersByID(oid);
         LogService.log(LEVEL_ALERT, "Chỉnh sửa đơn hàng",user.getId()+"", oOLd.toString(), oNew.toString());
-        response.sendRedirect("order-list");
 
+        if (status.equalsIgnoreCase("Đã thanh toán")) {
+            String json = GHN_ultis.generateJsonOrder(oid, username, phoneNum, address);
+            String ghnResponse = GHN_ultis.createOrder(json);
+            System.out.println("GHN RESPONSE: " + ghnResponse);
+
+            JSONObject jsonObj = new JSONObject(ghnResponse);
+            JSONObject dataObj = jsonObj.getJSONObject("data");
+            String order_code = dataObj.getString("order_code");
+
+            dao.insert_order_code(oid, order_code);
+        }
+        response.sendRedirect("order-list");
     }
 }

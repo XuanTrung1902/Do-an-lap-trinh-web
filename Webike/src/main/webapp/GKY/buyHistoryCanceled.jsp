@@ -62,7 +62,7 @@
                     <div class="product-actions">
                         <form action="buy-history" method="post" id="comment${oi.productID}" style="display: flex;align-items: center">
                             <input type="hidden" name="productID" value="${oi.productID}">
-                            <c:if test="${oi.status == 'Đã giao'}">
+                            <c:if test="${oi.status == 'Đã thanh toán'}">
                                 <c:if test="${oi.commented == 0}">
                                     <textarea name="comment" class="resize" form="comment${oi.productID}" rows="3"
                                               cols="50" placeholder="Nhập đánh giá của bạn!"
@@ -85,7 +85,7 @@
         <c:if test="${totalPages > 1}">
             <div class="pagination d-flex justify-content-center mt-4 mb-4">
                 <c:if test="${currentPage > 1}">
-                    <a href="buy-history?page=${currentPage - 1}" class="page__link">Trang trước</a>
+                    <a href="canceled?page=${currentPage - 1}" class="page__link">Trang trước</a>
                 </c:if>
                 <c:forEach begin="1" end="${totalPages}" var="i">
                     <c:choose>
@@ -93,12 +93,12 @@
                             <span class="page__link active">${i}</span>
                         </c:when>
                         <c:otherwise>
-                            <a href="buy-history?page=${i}" class="page__link">${i}</a>
+                            <a href="canceled?page=${i}" class="page__link">${i}</a>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
                 <c:if test="${currentPage < totalPages}">
-                    <a href="buy-history?page=${currentPage + 1}" class="page__link">Trang sau</a>
+                    <a href="canceled?page=${currentPage + 1}" class="page__link">Trang sau</a>
                 </c:if>
             </div>
         </c:if>
