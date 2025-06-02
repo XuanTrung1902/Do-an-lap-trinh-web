@@ -589,4 +589,16 @@ public class ProductDAO {
                 .first()
         );
     }
+
+    public int getDefaultColorId(int productId) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "SELECT MIN(id) FROM imgs WHERE productID = :productId AND url IS NOT NULL";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("productId", productId)
+                        .mapTo(Integer.class)
+                        .findFirst()
+                        .orElse(0) // Trả về 0 nếu không tìm thấy (cần xử lý thêm nếu cần)
+        );
+    }
 }

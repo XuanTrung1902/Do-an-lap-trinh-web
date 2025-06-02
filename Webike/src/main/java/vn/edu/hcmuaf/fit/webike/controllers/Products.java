@@ -26,13 +26,36 @@ public class Products extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductDAO dao = new ProductDAO();
-        List<Product> products = dao.getAllProduct();
-        List<Map<String, Object>> products2 = dao.getAllProductImg2();
+        FilterDAO filterDAO = new FilterDAO();
+
+        // Lấy tham số trang, mặc định là trang 1
+        int page = 1;
+        int limit = 10; // 10 sản phẩm mỗi trang
+        String pageParam = request.getParameter("page");
+        if (pageParam != null && !pageParam.isEmpty()) {
+            try {
+                page = Integer.parseInt(pageParam);
+            } catch (NumberFormatException e) {
+                page = 1;
+            }
+        }
+
+        // Lấy sản phẩm theo trang
+        List<Product> products = filterDAO.getAllProducts(page, limit);
+        List<Map<String, Object>> products2 = dao.getAllProductImg2(); // Sản phẩm cho slider
         List<Brand> allBrand = dao.getAllBrand();
 
+        // Tính tổng số trang
+        int totalProducts = filterDAO.getTotalProducts();
+        int totalPages = (int) Math.ceil((double) totalProducts / limit);
+
+        // Đặt các thuộc tính cho JSP
         request.setAttribute("allBrand", allBrand);
         request.setAttribute("products2", products2);
         request.setAttribute("products", products);
+        request.setAttribute("currentPage", page);
+        request.setAttribute("totalPages", totalPages);
+
         request.getRequestDispatcher("GKY/product.jsp").forward(request, response);
     }
 
@@ -40,24 +63,44 @@ public class Products extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
-        String[] brands = request.getParameterValues("brands");
-//        int page = Integer.parseInt(request.getParameter("page"));
-        FilterDAO dao = new FilterDAO();
+        FilterDAO filterDAO = new FilterDAO();
         ProductDAO pdao = new ProductDAO();
 
-        List<Brand> allBrand = pdao.getAllBrand();
-        List<Product> products = new ArrayList<>();
-        if (brands != null) {
-            products = dao.getProductsByBrands(brands, 1, 10);
-        } else {
-            products = pdao.getAllProduct();
+        // Lấy tham số lọc và trang
+        String[] brands = request.getParameterValues("brands");
+        int page = 1;
+        int limit = 10;
+        String pageParam = request.getParameter("page");
+        if (pageParam != null && !pageParam.isEmpty()) {
+            try {
+                page = Integer.parseInt(pageParam);
+            } catch (NumberFormatException e) {
+                page = 1;
+            }
         }
-        List<String> brandList = (brands == null) ? new ArrayList<>() : Arrays.asList(brands);
 
-        LogService.log(LEVEL_INFO, "Xem danh sách sản phẩm", user.getId()+"", "", "");
+        // Lấy sản phẩm theo bộ lọc
+        List<Product> products;
+        int totalProducts;
+        List<String> brandList = (brands == null) ? new ArrayList<>() : Arrays.asList(brands);
+        if (brands != null && brands.length > 0) {
+            products = filterDAO.getProductsByBrands(brands, page, limit);
+            totalProducts = filterDAO.getTotalProductsByBrands(brands);
+        } else {
+            products = filterDAO.getAllProducts(page, limit);
+            totalProducts = filterDAO.getTotalProducts();
+        }
+        int totalPages = (int) Math.ceil((double) totalProducts / limit);
+
+        // Ghi log
+        LogService.log(LEVEL_INFO, "Xem danh sách sản phẩm", user != null ? user.getId() + "" : "Guest", "", "");
+
+        // Đặt các thuộc tính
         request.setAttribute("checkedBrands", brandList);
-        request.setAttribute("allBrand", allBrand);
+        request.setAttribute("allBrand", pdao.getAllBrand());
         request.setAttribute("products", products);
+        request.setAttribute("currentPage", page);
+        request.setAttribute("totalPages", totalPages);
 
         request.getRequestDispatcher("GKY/product.jsp").forward(request, response);
     }

@@ -126,3 +126,14 @@
     }
 </script>
 <script src="${pageContext.request.contextPath}/GKY/assets/js/FilterProductAjax.js"></script>
+<script src="${pageContext.request.contextPath}/GKY/assets/js/SearchAjax.js"></script>
+<script>
+    function checkLoginForSearch(event) {
+        <c:if test="${empty sessionScope.auth}">
+        event.preventDefault();
+        showToast("Bạn cần phải đăng nhập trước!");
+        return false;
+        </c:if>
+        return true;
+    }
+</script>

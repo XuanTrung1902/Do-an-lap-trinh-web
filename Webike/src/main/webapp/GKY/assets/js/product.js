@@ -26,25 +26,25 @@ function scroll() {
     });
 }
 
-// Lọc sp theo hãng
-function sort() {
-    // Lấy tất cả các checkbox được chọn
-    const checkedBrands = Array.from(
-        document.querySelectorAll('input.filter-checkbox[name="brand"]:checked'))
-        .map(brands => brands.value);
-
-    const formBody = checkedBrands.map(brands => `brands=${encodeURIComponent(brands)}`).join('&');
-
-    fetch('/Webike/list-products', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: formBody
-    })
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("app").innerHTML = data;
-        })
-        .catch(error => console.error('Lỗi:', error));
-}
+// // Lọc sp theo hãng
+// function sort() {
+//     // Lấy tất cả các checkbox được chọn
+//     const checkedBrands = Array.from(
+//         document.querySelectorAll('input.filter-checkbox[name="brand"]:checked'))
+//         .map(brands => brands.value);
+//
+//     const formBody = checkedBrands.map(brands => `brands=${encodeURIComponent(brands)}`).join('&');
+//
+//     fetch('/Webike/list-products', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded'
+//         },
+//         body: formBody
+//     })
+//         .then(response => response.text())
+//         .then(data => {
+//             document.getElementById("app").innerHTML = data;
+//         })
+//         .catch(error => console.error('Lỗi:', error));
+// }
