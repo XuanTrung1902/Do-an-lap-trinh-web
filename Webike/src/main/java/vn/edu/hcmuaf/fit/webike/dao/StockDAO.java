@@ -189,9 +189,9 @@ public class StockDAO {
         );
     }
 
-    public StockItem getStockItemByID(int id) {
+    public StockItem getStockItemByOrderID(int id) {
         Jdbi jdbi = JDBIConnect.get();
-        String sql = "select * from stockitems where id = :id";
+        String sql = "select * from stockitems where orderID = :id";
         return jdbi.withHandle(handle -> handle.createQuery(sql)
                 .bind("id", id)
                 .map((rs, ctx) -> {
@@ -273,6 +273,19 @@ public class StockDAO {
                         .bind("stockItemID", stockItemID)
                         .bind("batchID", batchID)
                         .execute()
+        );
+    }
+
+    public int updateProductQuantity(int productID, int quantity) {
+        ProductDAO pdao = new ProductDAO();
+        Product product = pdao.getProduct(productID);
+        int product_quantity = product.getQuantity();
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "update products set quantity = :quantity where id = :productID";
+        return jdbi.withHandle(handle -> handle.createUpdate(sql)
+                .bind("productID", productID)
+                .bind("quantity", quantity + product_quantity)
+                .execute()
         );
     }
 }

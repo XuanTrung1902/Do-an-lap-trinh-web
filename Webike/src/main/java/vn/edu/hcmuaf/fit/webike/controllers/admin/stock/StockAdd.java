@@ -95,6 +95,7 @@ public class StockAdd extends HttpServlet {
                                 int itemID = dao.insertStockItem(cid, pid1, status);
                                 stockItemMap.put(itemID, temp_batchID1);
                             }
+                            int update_quantity = dao.updateProductQuantity(pid1, quantity1);
                         } else {
                             continue;
                         }
