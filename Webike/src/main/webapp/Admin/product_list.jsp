@@ -41,107 +41,68 @@
                 </c:if>
 
             </c:forEach>
+
+            <!-- Input ẩn để truyền quyền cho JavaScript -->
+            <input type="hidden" id="canWriteProduct" value="${canWriteProduct}">
+            <input type="hidden" id="canDeleteProduct" value="${canDeleteProduct}">
+
             <div class="admin-content-main">
                 <div class="admin-content-main-title">
                     <h1>Danh sách sản phẩm</h1>
                 </div>
-<%--                <div class="admin-content-main-container">--%>
-<%--                    <div class="admin-content-main-header">--%>
-<%--                        <div class="admin-content-main-search">--%>
-<%--                            <label style="font-size: 16px">Tìm kiếm</label>--%>
-<%--                            <input type="text" id="searchInput" placeholder="Tên sản phẩm" class="search-input">--%>
-<%--                        </div>--%>
-<%--                        <div class="admin-content-main-filter">--%>
-<%--                            <label style="font-size: 16px">Loại sản phẩm</label>--%>
-<%--                            <select class="filter-select" id="typeFilter">--%>
-<%--                                <option value="0" >Tất cả</option>--%>
-<%--                                <c:forEach var="bt" items="${bt}">--%>
-<%--                                    <option value="${bt.id}">${bt.type}</option>--%>
-<%--                                </c:forEach>--%>
-<%--                            </select>--%>
-<%--                        </div>--%>
-<%--                    <div class="admin-content-main-header">--%>
-<%--                        <div class="admin-content-main-search">--%>
-<%--                            <label style="font-size: 16px">Tìm kiếm</label>--%>
-<%--                            <input type="text" id="searchInput" placeholder="Tên sản phẩm" class="search-input">--%>
-<%--                        </div>--%>
-<%--                        <div class="admin-content-main-filter">--%>
-<%--                            <label style="font-size: 16px">Loại sản phẩm</label>--%>
-<%--                            <select class="filter-select" id="typeFilter">--%>
-<%--                                <option value="0" >Tất cả</option>--%>
-<%--                                <c:forEach var="bt" items="${bt}">--%>
-<%--                                    <option value="${bt.id}">${bt.type}</option>--%>
-<%--                                </c:forEach>--%>
-<%--                            </select>--%>
-<%--                        </div>--%>
-<%--                    <div class="admin-content-main-header">--%>
-<%--                        <div class="admin-content-main-search">--%>
-<%--                            <label style="font-size: 16px">Tìm kiếm</label>--%>
-<%--                            <input type="text" id="searchInput" placeholder="Tên sản phẩm" class="search-input">--%>
-<%--                        </div>--%>
-<%--                        <div class="admin-content-main-filter">--%>
-<%--                            <label style="font-size: 16px">Loại sản phẩm</label>--%>
-<%--                            <select class="filter-select" id="typeFilter">--%>
-<%--                                <option value="0" >Tất cả</option>--%>
-<%--                                <c:forEach var="bt" items="${bt}">--%>
-<%--                                    <option value="${bt.id}">${bt.type}</option>--%>
-<%--                                </c:forEach>--%>
-<%--                            </select>--%>
-<%--                        </div>--%>
-
-                    <div class="admin-content-main-header">
-                        <div class="admin-content-main-search">
-                            <label style="font-size: 16px">Tìm kiếm</label>
-                            <input type="text" id="searchInput" placeholder="Tên sản phẩm" class="search-input">
-                        </div>
-                        <div class="admin-content-main-filter">
-                            <label style="font-size: 16px">Loại sản phẩm</label>
-                            <select class="filter-select" id="typeFilter">
-                                <option value="0" >Tất cả</option>
-                                <c:forEach var="bt" items="${bt}">
-                                    <option value="${bt.id}">${bt.type}</option>
-                                </c:forEach>
-                            </select>
+                    <div class="admin-content-main-container">
+                        <div class="admin-content-main-header">
+                            <div class="admin-content-main-search">
+                                <label style="font-size: 16px">Tìm kiếm</label>
+                                <input type="text" id="searchInput" placeholder="Tên sản phẩm" class="search-input">
+                            </div>
+                            <div class="admin-content-main-filter">
+                                <label style="font-size: 16px">Loại sản phẩm</label>
+                                <select class="filter-select" id="typeFilter">
+                                    <option value="0" >Tất cả</option>
+                                    <c:forEach var="bt" items="${bt}">
+                                        <option value="${bt.id}">${bt.type}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
 
-                    </div>
-
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Giá bán</th>
-                            <th>Số lượng</th>
-                            <th>Tuỳ chỉnh</th>
-                        </tr>
-                        </thead>
-                        <tbody id="productTableBody">
-                        <c:forEach var="p" items="${products}">
+                        <table>
+                            <thead>
                             <tr>
-                                    <%--<%= request.getContextPath() %>--%>
-                                <td>${p.id}</td>
-                                <td class="img__item"><img src="${p.img.values().iterator().next()}" alt="${p.name}" style="height: 100px; width: 200px"></td>
-                                <td>${p.name}</td>
-                                <td>
-                                    <f:setLocale value="vi_VN"/>
-                                    <f:formatNumber value="${p.price}" type="currency"/>
-                                </td>
-                                <td>${p.quantity}</td>
-                                <td>
-                                    <c:if test="${canWritetProdcut}">
-                                    <a href="update-product?id=${p.id}" class="btn-edit">Sửa</a>
-                                    </c:if>
-                                    <c:if test="${canDeletetProduct}">
-                                    <a href="delete-product?id=${p.id}" class="btn-delete"
-                                       onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">Xóa</a>
-                                    </c:if>
-                                </td>
+                                <th>ID</th>
+                                <th>Ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá bán</th>
+                                <th>Số lượng</th>
+                                <th>Tuỳ chỉnh</th>
                             </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody id="productTableBody">
+                            <c:forEach var="p" items="${products}">
+                                <tr>
+                                    <td>${p.id}</td>
+                                    <td class="img__item"><img src="${p.img.values().iterator().next()}" alt="${p.name}" style="height: 75px; width: 115px"></td>
+                                    <td>${p.name}</td>
+                                    <td>
+                                        <f:setLocale value="vi_VN"/>
+                                        <f:formatNumber value="${p.price}" type="currency"/>
+                                    </td>
+                                    <td>${p.quantity}</td>
+                                    <td>
+                                        <c:if test="${canWritetProdcut}">
+                                        <a href="update-product?id=${p.id}" class="btn-edit">Sửa</a>
+                                        </c:if>
+                                        <c:if test="${canDeletetProduct}">
+                                        <a href="delete-product?id=${p.id}" class="btn-delete"
+                                           onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">Xóa</a>
+                                        </c:if>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

@@ -161,6 +161,7 @@ $(document).ready(function () {
     $(document).on('click', '#suggestion-list li', function () {
         let productId = $(this).data('id');
         let colorId = $(this).data('color-id');
+        console.log("Product ID:", productId, "Color ID:", colorId);
         if (productId) {
             let url = `/Webike/productDetail?id=${encodeURIComponent(productId)}`;
             if (colorId) {
