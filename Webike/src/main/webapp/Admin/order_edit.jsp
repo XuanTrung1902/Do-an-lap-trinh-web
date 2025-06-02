@@ -38,6 +38,10 @@
                     <form action="order-edit" method="post" class="order-edit-form">
                         <input type="hidden" name="oid" value="${order.id}">
                         <div class="form-group">
+                            <label for="username">Tên người dùng</label>
+                            <input type="text" value="${username}" id="username" name="username">
+                        </div>
+                        <div class="form-group">
                             <label for="customer-phoneNum">Số điện thoại liên lạc</label>
                             <input type="tel" value="${order.phoneNum}" id="customer-phoneNum" name="phoneNum">
                         </div>
@@ -104,40 +108,40 @@
                             <button type="reset" class="cancel-button">Hủy</button>
                         </div>
                     </form>
-                    <div class="orderItem cotainer mt-5">
-                        <div class="mb-3 " style="font-size: 20px">
-                            <strong>Danh sách sản phẩm trong đơn</strong>
-                        </div>
-                        <c:forEach var="i" items="${itemList}">
-                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start">
-                                <div class="me-3">
-                                    <h5 class="card-title" style="padding: 5px 0; font-size: 15px;">
-                                        Tên: ${i.name}
-                                    </h5>
-                                    <p class="card-text " style="font-size: 15px;">
-                                        Số lượng: ${i.quantity}
-                                    </p>
-                                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                                        <label for="colorOption_${i.productID}" class="form-label" style="font-size: 15px; margin-right: 5px;">
-                                            Màu
-                                        </label>
-                                        <select id="colorOption_${i.productID}" name="color" class="form-select" style="font-size: 15px">
-                                            <c:forEach var="c" items="${colorMap[i.productID]}">
-                                                <option value="${c.id}">${c.name}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="text-end mt-3 mt-md-0">
-                                    <f:setLocale value="vi_VN" />
-                                    <p class="text-muted" style="font-size: 15px;">
-                                        Giá: <f:formatNumber value="${i.price * i.quantity}" type="currency" var="formattedDeposit"/>
-                                            ${formattedDeposit}
-                                    </p>
-                                </div>
-                            </div>
-                        </c:forEach>
-                    </div>
+<%--                    <div class="orderItem cotainer mt-5">--%>
+<%--                        <div class="mb-3 " style="font-size: 20px">--%>
+<%--                            <strong>Danh sách sản phẩm trong đơn</strong>--%>
+<%--                        </div>--%>
+<%--                        <c:forEach var="i" items="${itemList}">--%>
+<%--                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start">--%>
+<%--                                <div class="me-3">--%>
+<%--                                    <h5 class="card-title" style="padding: 5px 0; font-size: 15px;">--%>
+<%--                                        Tên: ${i.name}--%>
+<%--                                    </h5>--%>
+<%--                                    <p class="card-text " style="font-size: 15px;">--%>
+<%--                                        Số lượng: ${i.quantity}--%>
+<%--                                    </p>--%>
+<%--                                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">--%>
+<%--                                        <label for="colorOption_${i.productID}" class="form-label" style="font-size: 15px; margin-right: 5px;">--%>
+<%--                                            Màu--%>
+<%--                                        </label>--%>
+<%--                                        <select id="colorOption_${i.productID}" name="color" class="form-select" style="font-size: 15px">--%>
+<%--                                            <c:forEach var="c" items="${colorMap[i.productID]}">--%>
+<%--                                                <option value="${c.id}">${c.name}</option>--%>
+<%--                                            </c:forEach>--%>
+<%--                                        </select>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="text-end mt-3 mt-md-0">--%>
+<%--                                    <f:setLocale value="vi_VN" />--%>
+<%--                                    <p class="text-muted" style="font-size: 15px;">--%>
+<%--                                        Giá: <f:formatNumber value="${i.price * i.quantity}" type="currency" var="formattedDeposit"/>--%>
+<%--                                            ${formattedDeposit}--%>
+<%--                                    </p>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </c:forEach>--%>
+<%--                    </div>--%>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ $(document).ready(function() {
         // console.log("Type ID: " + typeID); // In ra ID loại sản phẩm đã chọn
 
         $.ajax({
-            url: "/Webike/products",
+            url: "${pageContext.request.contextPath}/products",
             type: "GET",
             data: { typeID: typeID },
             success: function(data) {

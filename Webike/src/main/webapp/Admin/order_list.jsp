@@ -93,6 +93,7 @@
                                     <c:if test="${canWritetOrder}">
                                     <form action="order-edit" method="get" style="width: 100%;">
                                         <input type="hidden" name="oid" value="${o.id}">
+                                        <input type="hidden" name="username" value="${o.user.name}">
                                         <button type="submit" class="edit-button" style="width: 100%">Sửa</button>
                                     </form>
                                     </c:if>

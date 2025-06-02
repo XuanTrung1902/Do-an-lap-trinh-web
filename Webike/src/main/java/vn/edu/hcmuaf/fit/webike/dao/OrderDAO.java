@@ -4,6 +4,9 @@ import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.webike.db.JDBIConnect;
 import vn.edu.hcmuaf.fit.webike.models.*;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 public class OrderDAO {
@@ -48,6 +51,7 @@ public class OrderDAO {
                     o.setDepositDate(rs.getString("depositDate"));
                     o.setPayDate(rs.getString("payDate"));
                     o.setStatus(rs.getString("status"));
+                    o.setLeadtime(rs.getString("leadtime"));
 
                     User u = new User();
                     u.setId(rs.getInt("accountID"));
@@ -206,6 +210,55 @@ public class OrderDAO {
                 .bind("id", id)
                 .mapToBean(Color.class)
                 .list()
+        );
+    }
+
+    public int updateOrderStatus(String oid, String status) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "UPDATE orders SET status = :status WHERE id = :id";
+        return jdbi.withHandle(handle -> handle.createUpdate(sql)
+                .bind("id", oid)
+                .bind("status", status)
+                .execute() > 0 ? 1 : 0
+        );
+    }
+
+    public String find_oid_by_GHN_order_code(String order_code) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "select order_code from orderGHN where order_code = :order_code";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("order_code", order_code)
+                .mapTo(String.class)
+                .findOne().orElse(null)
+        );
+    }
+
+    public String find_GHN_order_code_by_oid(String oid) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "select order_code from orderGHN where oid = :oid";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("oid", oid)
+                .mapTo(String.class)
+                .findOne().orElse(null)
+        );
+    }
+
+    public int insert_order_code(int oid, String order_code) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "INSERT INTO orderGHN (oid, order_code) VALUES (:oid, :order_code)";
+        return jdbi.withHandle(handle -> handle.createUpdate(sql)
+                .bind("oid", oid)
+                .bind("order_code", order_code)
+                .execute() > 0 ? 1 : 0
+        );
+    }
+    public int updateLeadTime(String id, String time){
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "update orders set leadtime = :leadtime where id = :id";
+        return jdbi.withHandle(handle -> handle.createUpdate(sql)
+                .bind("id", id)
+                .bind("leadtime", time)
+                .execute() > 0 ? 1 : 0
         );
     }
 }
