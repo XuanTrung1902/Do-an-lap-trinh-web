@@ -24,13 +24,14 @@ public class BuyHistoryDAO {
     public List<OrderItem> getPaginatedOrderItems(int accountID, int page, int itemsPerPage) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                SELECT oi.*, c.*, p.name, p.version, (oi.quantity * p.price) AS price, o.status, o.leadtime, b.name as brand, t.type as type
+                SELECT oi.*, c.*, p.name, p.version, (oi.quantity * p.price) AS price, o.status, o.leadtime, b.name as brand, t.type as type, ghn.order_code
                 FROM orderitems AS oi
                 JOIN orders AS o ON oi.orderID = o.id
                 JOIN products AS p ON oi.productID = p.id
                 JOIN brands AS b ON p.brandID = b.id
                 JOIN biketypes AS t ON p.typeID = t.id
                 JOIN colors AS c ON oi.color = c.id
+                JOIN orderGHN AS ghn ON oi.orderID = ghn.oid
                 WHERE o.accountID = :accountID
                 ORDER BY o.id DESC
                 LIMIT :limit OFFSET :offset
@@ -61,6 +62,7 @@ public class BuyHistoryDAO {
                     item.setCommented(rs.getInt("oi.commented"));
                     item.setStatus(rs.getString("o.status"));
                     item.setLeadtime(rs.getString("leadtime"));
+                    item.setOrder_code(rs.getString("order_code"));
                     return item;
                 })
 //                .mapToBean(OrderItem.class)
@@ -70,13 +72,14 @@ public class BuyHistoryDAO {
     public List<OrderItem> getPaginatedOrderItemsByStatus(String status, int accountID, int page, int itemsPerPage) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                SELECT oi.*, c.*, p.name, p.version, (oi.quantity * p.price) AS price, o.status, o.leadtime, b.name as brand, t.type as type
+                SELECT oi.*, c.*, p.name, p.version, (oi.quantity * p.price) AS price, o.status, o.leadtime, b.name as brand, t.type as type, ghn.order_code
                 FROM orderitems AS oi
                 JOIN orders AS o ON oi.orderID = o.id
                 JOIN products AS p ON oi.productID = p.id
                 JOIN brands AS b ON p.brandID = b.id
                 JOIN biketypes AS t ON p.typeID = t.id
                 JOIN colors AS c ON oi.color = c.id
+                JOIN orderGHN AS ghn ON oi.orderID = ghn.oid
                 WHERE o.accountID = :accountID AND o.status = :status
                 ORDER BY o.id DESC
                 LIMIT :limit OFFSET :offset
@@ -108,6 +111,7 @@ public class BuyHistoryDAO {
                     item.setCommented(rs.getInt("oi.commented"));
                     item.setStatus(rs.getString("o.status"));
                     item.setLeadtime(rs.getString("leadtime"));
+                    item.setOrder_code(rs.getString("order_code"));
                     return item;
                 })
                 .list());

@@ -15,6 +15,7 @@ public class OrderItem {
     private int commented;
     private String status;
     private String leadtime;
+    private String order_code;
 
     public OrderItem() {
     }
@@ -148,11 +149,19 @@ public void setStatus(String status) {
         this.leadtime = leadtime;
     }
 
+    public String getOrder_code() {
+        return order_code;
+    }
+
+    public void setOrder_code(String order_code) {
+        this.order_code = order_code;
+    }
+
     @Override
     public String toString() {
         return "OrderItem: " + id + ", " + name + ", " + quantity + ", " + img + ", " + color + ", " +
                 productID + ", " + orderID + ", " + price + ", " + version + ", " + brand + ", " +
-                type + ", " + commented + ", " + status;
+                type + ", " + commented + ", " + status + ", " + leadtime + ", " + order_code;
     }
 }
 
