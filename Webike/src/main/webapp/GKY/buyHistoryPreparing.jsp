@@ -54,6 +54,7 @@
           <div class="product-status">${oi.status}</div>
           <c:if test="${not empty oi.leadtime and (oi.status == 'Đang giao' or oi.status == 'Đang chuẩn bị hàng')}">
             <div class="product-status">Ngày giao hàng dự kiến: ${oi.leadtime}</div>
+            <div class="product-status">Mã vận đơn GHN: ${oi.order_code}</div>
           </c:if>
           <div class="product-price">Tổng số tiền:
             <f:setLocale value="vi_VN"/>

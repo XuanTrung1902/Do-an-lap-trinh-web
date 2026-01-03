@@ -37,6 +37,12 @@
                 <div class="admin-content-main-container">
                     <form action="order-edit" method="post" class="order-edit-form">
                         <input type="hidden" name="oid" value="${order.id}">
+                        <c:if test="${not empty order_code}">
+                            <div class="form-group">
+                                <label for="order_code">Mã đơn vận</label>
+                                <input type="text" value="${order_code}" id="order_code" name="order_code">
+                            </div>
+                        </c:if>
                         <div class="form-group">
                             <label for="username">Tên người dùng</label>
                             <input type="text" value="${username}" id="username" name="username">

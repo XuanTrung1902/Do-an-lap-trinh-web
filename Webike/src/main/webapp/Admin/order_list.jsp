@@ -42,18 +42,20 @@
                 <div class="admin-content-main-title">
                     <h1>Danh sách đơn hàng</h1>
                 </div>
+
                 <div class="admin-content-main-container">
 <%--                    <div class="admin-content-main-title">--%>
 <%--                        <h1>Lọc đơn hàng</h1>--%>
 <%--                        <input type="text" id="searchInput" placeholder="Tìm kiếm người dùng...">--%>
 <%--                        <select id="order-status-filter">--%>
 <%--                            <option value="all">Tất cả</option>--%>
-<%--                            <option value="success">Đã thanh toán</option>--%>
 <%--                            <option value="warning">Đã đặt cọc</option>--%>
-<%--                            <!-- <option value="pending">Chưa xác nhận</option> -->--%>
+<%--                            <option value="pending">Đã giao</option>--%>
+<%--                            <option value="cancel">Đã huỷ</option>--%>
 <%--                        </select>--%>
 <%--                        <button class="search-button">Tìm kiếm</button>--%>
 <%--                    </div>--%>
+
                     <table>
                         <thead>
                         <tr>
@@ -73,7 +75,9 @@
                             <tr>
                                 <td>${o.id}</td>
                                 <td>${o.user.name}</td>
-                                <td>${o.address}</td>
+                                <td style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                                        ${o.address}
+                                </td>
                                 <td>
                                     <f:setLocale value="vi_VN"/>
                                     <f:formatNumber value="${o.deposit + o.remain}" type="currency"/>

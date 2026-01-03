@@ -26,10 +26,10 @@ public class DeleteDiscountController extends HttpServlet {
         DiscountDao discountDao = new DiscountDao();
         Discount discountOld = discountDao.getDiscountById(id);
         boolean isDeleted = discountDao.deleteDiscount(id);
-        Discount discountNew = discountDao.getDiscountById(id);
+//        Discount discountNew = discountDao.getDiscountById(id);
 
         if (isDeleted) {
-            LogService.log(LEVEL_WARNING, "Xóa Discount", user.getId()+"",discountOld.toString() ,discountNew.toString());
+            LogService.log(LEVEL_WARNING, "Xóa Discount", user.getId()+"",discountOld.toString() ,"");
             response.sendRedirect(request.getContextPath() + "/discountList");
         } else {
             request.setAttribute("error", "Xóa giảm giá thất bại.");

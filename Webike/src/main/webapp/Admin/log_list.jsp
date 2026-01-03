@@ -43,7 +43,6 @@
 
         #logTable td:nth-child(5),
         #logTable td:nth-child(6) {
-            white-space: normal !important;
             word-break: break-word;
             max-width: 200px;
             width: 180px;
@@ -62,9 +61,9 @@
         }
 
         #logTable td.wrap-text {
-            max-width: 200px;
-            white-space: normal !important;
-            word-break: break-word;
+            overflow-x: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
     </style>
@@ -127,7 +126,7 @@
                                                    class="btn-delete"
                                                    onclick="return confirm('Bạn có chắc chắn muốn xóa log này?')"
                                                 >Xóa</a>
-                                                <a href="#" class="btn-edit" style="background-color: #17a2b8;">Quay lại</a>
+<%--                                                <a href="#" class="btn-edit" style="background-color: #17a2b8;">Quay lại</a>--%>
                                             </c:if>
                                     </div>
                                 </td>

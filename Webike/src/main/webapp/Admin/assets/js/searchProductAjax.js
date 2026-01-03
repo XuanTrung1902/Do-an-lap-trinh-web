@@ -3,7 +3,7 @@ $(document).ready(function () {
         let keyword = $(this).val();
         console.log(keyword);
         $.ajax({
-            url: '/Webike/search_by_name',
+            url: '/search_by_name',
             type: 'POST',
             data: { keyword: keyword },
             success: function (response) {

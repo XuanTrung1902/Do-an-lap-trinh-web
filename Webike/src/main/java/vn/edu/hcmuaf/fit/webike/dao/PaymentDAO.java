@@ -67,7 +67,9 @@ public class PaymentDAO {
                 .bind("color", color.getId())
                 .bind("orderID", oid)
                 .bind("productID", pid)
-                .execute() > 0 ? 1 : 0
+                .executeAndReturnGeneratedKeys()
+                .mapTo(Integer.class)
+                .findOne().orElse(null)
         );
     }
     public Order getOrderById(int id) {
@@ -79,6 +81,33 @@ public class PaymentDAO {
                         .mapToBean(Order.class)
                         .findOne()
                         .orElse(null)
+        );
+    }
+    public int orderItem_stockItem(int orderItemID, int stockItemID) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "update orderitems set stockItemID = :stockItemID where id = :orderItemID";
+        return jdbi.withHandle(handle -> handle.createUpdate(sql)
+                .bind("orderItemID", orderItemID)
+                .bind("stockItemID", stockItemID)
+                .execute()
+        );
+    }
+    public int getOneStockItemByPID(int pid) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "select distinct id from stockitems where productID = :pid and status = 'Trong kho' limit 1";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("pid", pid)
+                .mapTo(Integer.class)
+                .findOne().orElse(null)
+        );
+    }
+    public int updateStockItemStatus(int id, String status){
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "update stockitems set status = :status where id = :id";
+        return jdbi.withHandle(handle -> handle.createUpdate(sql)
+                .bind("id", id)
+                .bind("status", status)
+                .execute()
         );
     }
 }

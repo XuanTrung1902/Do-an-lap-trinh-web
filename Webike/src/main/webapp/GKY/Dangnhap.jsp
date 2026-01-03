@@ -104,11 +104,11 @@
                             </label>
                         </div>
 <%--                        Key localhost--%>
-                        <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6LfYyu4qAAAAADQyzw-_afuoVxOh-VJAkfjPvd7N"></div>
+<%--                        <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6LfYyu4qAAAAADQyzw-_afuoVxOh-VJAkfjPvd7N"></div>--%>
 <%--                        Key máy ảo XT--%>
 <%--                        <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6LfJJ0UrAAAAAGg6Egsy-pezktCxeqs6iH6hD5b4"></div>--%>
 <%--                        Key VPS, Domain--%>
-<%--                        <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6Lf2vU4rAAAAAN_FAdcvxXTnydveeRsvFGj9qqyq"></div>--%>
+                        <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6Lf2vU4rAAAAAN_FAdcvxXTnydveeRsvFGj9qqyq"></div>
                         <div class="field padding-bottom--24">
                             <input type="submit" name="submit" value="Đăng nhập">
                         </div>
@@ -124,9 +124,10 @@
                                     <img src="<%= request.getContextPath()%>/GKY/assets/img/facebook.png" style="width: 30px; margin-right: 10px; alt="" />
                                 </a>
 <%--                                key có domain--%>
-<%--                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://webike.id.vn/googlelogin&response_type=code&client_id=972007866215-3koe9d0fsifej7pijjiqign771j5glrm.apps.googleusercontent.com&approval_prompt=force"><img src="<%= request.getContextPath()%>/GKY/assets/img/google.png" alt="" style="width: 30px; border: 0.2px #ebd3d3 solid; border-radius: 100px;"></a>--%>
-                            <%--                                localhost--%>
-                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/Webike/googlelogin&response_type=code&client_id=972007866215-3koe9d0fsifej7pijjiqign771j5glrm.apps.googleusercontent.com&approval_prompt=force"><img src="<%= request.getContextPath()%>/GKY/assets/img/google.png" alt="" style="width: 30px; border: 0.2px #ebd3d3 solid; border-radius: 100px;"></a>
+                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://webike.id.vn/googlelogin&response_type=code&client_id=972007866215-3koe9d0fsifej7pijjiqign771j5glrm.apps.googleusercontent.com&approval_prompt=force"><img src="<%= request.getContextPath()%>/GKY/assets/img/google.png" alt="" style="width: 30px; border: 0.2px #ebd3d3 solid; border-radius: 100px;"></a>
+
+                                <%--                                localhost--%>
+<%--                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/Webike/googlelogin&response_type=code&client_id=972007866215-3koe9d0fsifej7pijjiqign771j5glrm.apps.googleusercontent.com&approval_prompt=force"><img src="<%= request.getContextPath()%>/GKY/assets/img/google.png" alt="" style="width: 30px; border: 0.2px #ebd3d3 solid; border-radius: 100px;"></a>--%>
                             </div>
                         </div>
                     </form>

@@ -34,7 +34,7 @@ public class SearchProductListByName extends HttpServlet {
                     .append("\"id\":").append(product.getOrDefault("id", "null")).append(",")
                     .append("\"name\":\"").append(product.getOrDefault("name", "")).append("\",")
                     .append("\"price\":").append(product.getOrDefault("price", 0)).append(",")
-                    .append("\"launch\":\"").append(product.getOrDefault("launch", "")).append("\",")
+                    .append("\"quantity\":\"").append(product.getOrDefault("quantity", "")).append("\",")
                     .append("\"imgurl\":\"").append(product.getOrDefault("imgurl", "")).append("\"")
                     .append("}");
 

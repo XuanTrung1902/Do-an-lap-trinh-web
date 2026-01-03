@@ -25,11 +25,11 @@ public class loginController extends HttpServlet {
     final String LEVEL_INFO = LogService.LEVEL_INFO;
     final String LEVEL_WARNING = LogService.LEVEL_WARNING;
 //    key Localhost
-    private static final String SECRET_KEY = "6LfYyu4qAAAAAC7wHwxKsL8AV4NY3f9vgjA1BZM1";
+//    private static final String SECRET_KEY = "6LfYyu4qAAAAAC7wHwxKsL8AV4NY3f9vgjA1BZM1";
 //    key máy ảo XT
 //    private static final String SECRET_KEY = "6LfJJ0UrAAAAAFQje295yNzwRcCZkkIgfHsMJvj-";
 //    key VPS, domain
-//    private static final String SECRET_KEY = "6Lf2vU4rAAAAAM5hTNj6xukEVT6rvIGaGs5fvYWe";
+    private static final String SECRET_KEY = "6Lf2vU4rAAAAAM5hTNj6xukEVT6rvIGaGs5fvYWe";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -12,7 +12,7 @@ public class StockDAO {
         StockDAO dao = new StockDAO();
 //        System.out.println(dao.getStockIn());
 //        System.out.println(dao.getStockInByID(1));
-        System.out.println(dao.getStockItemByBatchID(1));
+//        System.out.println(dao.getStockItemByBatchID(1));
 //        System.out.println(dao.getStockBatchByStockId(1));
 //        System.out.println(dao.getStockBatch());
 //        String batch = dao.getStockBatch().get(0).getBatch();
@@ -23,6 +23,10 @@ public class StockDAO {
 //        System.out.println(dao.getStockBatchById(1));
 //        for (StockItem item : dao.getStockItem()) {
 //            System.out.println(item);
+//        }
+//        List<StockItem> ls = dao.getStockItem();
+//        for (StockItem si : ls) {
+//            System.out.println(si);
 //        }
     }
 
@@ -166,6 +170,29 @@ public class StockDAO {
         );
     }
 
+    public StockItem getStockItemByID(int id) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "select * from stockitems where id = :id";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("id", id)
+                .map((rs, ctx) -> {
+                    StockItem si = new StockItem();
+                    ProductDAO pdao = new ProductDAO();
+                    Color c = pdao.getColorByID(rs.getInt("colorID"));
+                    StockBatch batch = getStockBatchById(rs.getInt("batchID"));
+                    Product product = pdao.getProduct(rs.getInt("productID"));
+                    String status = rs.getString("status");
+                    si.setId(rs.getInt("id"));
+                    si.setColor(c);
+                    si.setProduct(product);
+                    si.setBatch(batch);
+                    si.setStatus(status);
+                    return si;
+                })
+                .findOne().orElse(null)
+        );
+    }
+
     public List<StockItem> getStockItemByBatchID(int id) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = "select * from stockitems where batchID = :id";
@@ -189,7 +216,7 @@ public class StockDAO {
         );
     }
 
-    public StockItem getStockItemByID(int id) {
+    public StockItem getStockItemByOrderItemID(int id) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = "select * from stockitems where id = :id";
         return jdbi.withHandle(handle -> handle.createQuery(sql)
@@ -215,7 +242,7 @@ public class StockDAO {
 
     public int insertStockIn(int supplierID, int employeeID, String receiptDate, String note) {
         Jdbi jdbi = JDBIConnect.get();
-        String sql = "INSERT INTO stockIn (supplierID, employeeID, receiptDate, note) VALUES (:supplierID, :employeeID, :receiptDate, :note)";
+        String sql = "INSERT INTO stockin (supplierID, employeeID, receiptDate, note) VALUES (:supplierID, :employeeID, :receiptDate, :note)";
         return jdbi.withHandle(handle ->
                 handle.createUpdate(sql)
                         .bind("supplierID", supplierID)
@@ -230,7 +257,7 @@ public class StockDAO {
 
     public int insertStockBatch(int stockID, int pid, int quantity, double unitPrice, double totalPrice, String batch, int importID) {
         Jdbi jdbi = JDBIConnect.get();
-        String sql = "insert into stockBatches (stockID, productID, quantity, unitPrice, totalPrice, batch, importID)" +
+        String sql = "insert into stockbatches (stockID, productID, quantity, unitPrice, totalPrice, batch, importID)" +
                 "values (:stockID, :productID, :quantity, :unitPrice, :totalPrice, :batch, :importID)";
         return jdbi.withHandle(handle ->
                 handle.createUpdate(sql)
@@ -250,7 +277,7 @@ public class StockDAO {
     public int insertStockItem(int colorID, int productID, String status) {
         Jdbi jdbi = JDBIConnect.get();
 //        String sql = "insert into stockItems (colorID, batchID, productID, status) VALUES (:colorID, :batchID, :productID, :status)";
-        String sql = "insert into stockItems (colorID, productID, status) VALUES (:colorID, :productID, :status)";
+        String sql = "insert into stockitems (colorID, productID, status) VALUES (:colorID, :productID, :status)";
 
         return jdbi.withHandle(handle ->
                         handle.createUpdate(sql)
@@ -264,15 +291,37 @@ public class StockDAO {
         );
     }
 
-
     public int updateBatchID(int stockItemID, int batchID) {
         Jdbi jdbi = JDBIConnect.get();
-        String sql = "update stockItems set batchID = :batchID where id = :stockItemID";
+        String sql = "update stockitems set batchID = :batchID where id = :stockItemID";
         return jdbi.withHandle(handle ->
                 handle.createUpdate(sql)
                         .bind("stockItemID", stockItemID)
                         .bind("batchID", batchID)
                         .execute()
+        );
+    }
+
+    public int updateProductQuantity(int productID, int quantity) {
+        ProductDAO pdao = new ProductDAO();
+        Product product = pdao.getProduct(productID);
+        int product_quantity = product.getQuantity();
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "update products set quantity = :quantity where id = :productID";
+        return jdbi.withHandle(handle -> handle.createUpdate(sql)
+                .bind("productID", productID)
+                .bind("quantity", quantity + product_quantity)
+                .execute()
+        );
+    }
+
+    public int updateStockItemStatus(int id, String status){
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "update stockitems set status = :status where id = :id";
+        return jdbi.withHandle(handle -> handle.createUpdate(sql)
+                .bind("id", id)
+                .bind("status", status)
+                .execute()
         );
     }
 }

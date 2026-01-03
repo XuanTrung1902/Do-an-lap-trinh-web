@@ -21,7 +21,7 @@ public class CommentDAO {
     }
     public int updateCommented(int orderItemID){
         Jdbi jdbi = JDBIConnect.get();
-        String sql = "update orderItems set commented = 1 where id = :orderItemID";
+        String sql = "update orderitems set commented = 1 where id = :orderItemID";
         return jdbi.withHandle(handle ->
                 handle.createUpdate(sql)
                         .bind("orderItemID", orderItemID)
