@@ -768,7 +768,8 @@ public class ProductDAO {
         return jdbi.withHandle(handle -> handle.createQuery(sql)
                 .bind("id", id)
                 .mapToBean(Color.class)
-                .first()
+                .findOne()
+                .orElse(null)
         );
     }
 

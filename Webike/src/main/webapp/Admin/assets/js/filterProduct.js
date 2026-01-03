@@ -1,30 +1,10 @@
-// $(document).ready(function() {
-//     $('#typeFilter').change(function() {
-//         var typeID = $(this).val();
-//         // console.log("Type ID: " + typeID); // In ra ID loại sản phẩm đã chọn
-//
-//         $.ajax({
-//             url: "${pageContext.request.contextPath}/products",
-//             type: "GET",
-//             data: { typeID: typeID },
-//             success: function(data) {
-//                 // Cập nhật bảng sản phẩm bằng cách parse HTML từ response
-//                 $("#productTableBody").html($(data).find("#productTableBody").html());
-//             },
-//             error: function(xhr, status, error) {
-//                 alert("Lỗi khi lọc sản phẩm!");
-//             }
-//         });
-//     });
-// });
 // ${$('#canWriteProduct').val() === 'true' ? `<a href="update-product?id=${product.id}" class="btn-edit">Sửa</a>` : ''}
 // ${$('#canDeleteProduct').val() === 'true' ? `<a href="delete-product?id=${product.id}" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">Xóa</a>` : ''}
-
 $(document).ready(function() {
     $('#typeFilter').change(function() {
         var typeID = $(this).val();
         $.ajax({
-            url: "/products/filter",
+            url: "/Webike/products/filter",
             type: "GET",
             data: { typeID: typeID },
             dataType: "json",
