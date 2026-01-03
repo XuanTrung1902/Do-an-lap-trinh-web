@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     function fetchSearchProducts(keyword, page) {
         $.ajax({
-            url: '/Webike/search',
+            url: '/search',
             method: 'GET',
             data: {
                 keyword: keyword,
@@ -25,7 +25,8 @@ $(document).ready(function () {
                         var colorHTML = "";
                         for (var colorKey in product.img) {
                             var imgUrl = product.img[colorKey];
-                            var colorId = colorKey;
+                            // var colorId = colorKey;
+                            var colorId = colorKey.split(',')[0].trim();
                             colorHTML += `
                                 <a href="productDetail?id=${product.id}&cid=${colorId}" class="bike--item">
                                     <div class="bike__img zoom-img">
@@ -119,7 +120,7 @@ $(document).ready(function () {
             }
 
             $.ajax({
-                url: '/Webike/search',
+                url: '/search',
                 method: 'GET',
                 data: { keyword: keyword },
                 success: function (response) {
@@ -162,7 +163,7 @@ $(document).ready(function () {
         let productId = $(this).data('id');
         let colorId = $(this).data('color-id');
         if (productId) {
-            let url = `/Webike/productDetail?id=${encodeURIComponent(productId)}`;
+            let url = `/productDetail?id=${encodeURIComponent(productId)}`;
             if (colorId) {
                 url += `&cid=${encodeURIComponent(colorId)}`;
             } else {
@@ -182,7 +183,7 @@ $(document).ready(function () {
     $('.header__search--btn').on('click', function () {
         let keyword = $('.header__search--input').val().trim();
         if (keyword) {
-            window.location.href = `/Webike/list-products?keyword=${encodeURIComponent(keyword)}`;
+            window.location.href = `/list-products?keyword=${encodeURIComponent(keyword)}`;
         }
     });
 });

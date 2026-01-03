@@ -11,7 +11,7 @@ $(document).ready(function() {
         // console.log("Selected Brands:", selectedBrands);
 
         $.ajax({
-            url: "/Webike/filter",
+            url: "/filter",
             type: "POST",
             data: {
                 brand: selectedBrands,

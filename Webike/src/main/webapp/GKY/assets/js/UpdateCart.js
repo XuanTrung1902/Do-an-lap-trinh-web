@@ -1,5 +1,5 @@
 function updateCart(id, quantity) {
-    fetch('/Webike/update-cart', {
+    fetch('/update-cart', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -8,7 +8,7 @@ function updateCart(id, quantity) {
     })
         .then(response => response.text())
         .then(() => {
-            return fetch('/Webike/show-cart'); // Gửi yêu cầu lấy dữ liệu mới của giỏ hàng
+            return fetch('/show-cart'); // Gửi yêu cầu lấy dữ liệu mới của giỏ hàng
         })
         .then(response => response.text())
         .then(data => {

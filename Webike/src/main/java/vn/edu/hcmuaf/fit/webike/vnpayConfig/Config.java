@@ -14,8 +14,8 @@ public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 //    public static String vnp_ReturnUrl = "http://localhost:8080/Webike/pay";
-//    public static String vnp_ReturnUrl = "http://192.168.254.136/Webike/pay";
     public static String vnp_ReturnUrl = "http://webike.id.vn/pay";
+    //    public static String vnp_ReturnUrl = "http://192.168.254.136/Webike/pay";
     public static String vnp_TmnCode = "QUQKJ72Q";
     public static String vnp_HashSecret = "0DBOHJ677YA5SBX53AKIHPK5SO45G7N7";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";

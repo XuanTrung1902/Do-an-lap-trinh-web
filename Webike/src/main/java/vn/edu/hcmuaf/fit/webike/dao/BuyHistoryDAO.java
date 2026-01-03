@@ -24,14 +24,13 @@ public class BuyHistoryDAO {
     public List<OrderItem> getPaginatedOrderItems(int accountID, int page, int itemsPerPage) {
         Jdbi jdbi = JDBIConnect.get();
         String sql = """
-                SELECT oi.*, c.*, p.name, p.version, (oi.quantity * p.price) AS price, o.status, o.leadtime, b.name as brand, t.type as type, ghn.order_code
+                SELECT oi.*, c.*, p.name, p.version, (oi.quantity * p.price) AS price, o.status, o.leadtime, b.name as brand, t.type as type
                 FROM orderitems AS oi
                 JOIN orders AS o ON oi.orderID = o.id
                 JOIN products AS p ON oi.productID = p.id
                 JOIN brands AS b ON p.brandID = b.id
                 JOIN biketypes AS t ON p.typeID = t.id
                 JOIN colors AS c ON oi.color = c.id
-                JOIN orderGHN AS ghn ON oi.orderID = ghn.oid
                 WHERE o.accountID = :accountID
                 ORDER BY o.id DESC
                 LIMIT :limit OFFSET :offset
@@ -62,7 +61,7 @@ public class BuyHistoryDAO {
                     item.setCommented(rs.getInt("oi.commented"));
                     item.setStatus(rs.getString("o.status"));
                     item.setLeadtime(rs.getString("leadtime"));
-                    item.setOrder_code(rs.getString("order_code"));
+//                    item.setOrder_code(rs.getString("order_code"));
                     return item;
                 })
 //                .mapToBean(OrderItem.class)
@@ -79,7 +78,7 @@ public class BuyHistoryDAO {
                 JOIN brands AS b ON p.brandID = b.id
                 JOIN biketypes AS t ON p.typeID = t.id
                 JOIN colors AS c ON oi.color = c.id
-                JOIN orderGHN AS ghn ON oi.orderID = ghn.oid
+                JOIN orderghn AS ghn ON oi.orderID = ghn.oid
                 WHERE o.accountID = :accountID AND o.status = :status
                 ORDER BY o.id DESC
                 LIMIT :limit OFFSET :offset
@@ -112,6 +111,53 @@ public class BuyHistoryDAO {
                     item.setStatus(rs.getString("o.status"));
                     item.setLeadtime(rs.getString("leadtime"));
                     item.setOrder_code(rs.getString("order_code"));
+                    return item;
+                })
+                .list());
+    }
+
+    public List<OrderItem> getPaginatedOrderItemsByStatus1(String status, int accountID, int page, int itemsPerPage) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = """
+                SELECT oi.*, c.*, p.name, p.version, (oi.quantity * p.price) AS price, o.status, o.leadtime, b.name as brand, t.type as type
+                FROM orderitems AS oi
+                JOIN orders AS o ON oi.orderID = o.id
+                JOIN products AS p ON oi.productID = p.id
+                JOIN brands AS b ON p.brandID = b.id
+                JOIN biketypes AS t ON p.typeID = t.id
+                JOIN colors AS c ON oi.color = c.id
+                WHERE o.accountID = :accountID AND o.status = :status
+                ORDER BY o.id DESC
+                LIMIT :limit OFFSET :offset
+                """;
+        int offset = (page - 1) * itemsPerPage;
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("accountID", accountID)
+                .bind("limit", itemsPerPage)
+                .bind("offset", offset)
+                .bind("status", status)
+                .map((rs, ctx) -> {
+                    Color color = new Color();
+                    color.setId(rs.getInt("c.id"));
+                    color.setName(rs.getString("c.name"));
+                    color.setCode(rs.getString("c.code"));
+
+                    OrderItem item = new OrderItem();
+                    item.setId(rs.getInt("oi.id"));
+                    item.setName(rs.getString("p.name"));
+                    item.setQuantity(rs.getInt("oi.quantity"));
+                    item.setImg(rs.getString("oi.img"));
+                    item.setColor(color);
+                    item.setProductID(rs.getInt("oi.productID"));
+                    item.setOrderID(rs.getString("oi.orderID"));
+                    item.setPrice(rs.getDouble("price"));
+                    item.setVersion(rs.getString("p.version"));
+                    item.setBrand(rs.getString("brand"));
+                    item.setType(rs.getString("t.type"));
+                    item.setCommented(rs.getInt("oi.commented"));
+                    item.setStatus(rs.getString("o.status"));
+                    item.setLeadtime(rs.getString("leadtime"));
+//                    item.setOrder_code(rs.getString("order_code"));
                     return item;
                 })
                 .list());

@@ -1,5 +1,5 @@
 function remove(id) {
-    fetch(`/Webike/remove-cart`, {
+    fetch(`/remove-cart`, {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -8,7 +8,7 @@ function remove(id) {
     })
         .then(response => response.text())
         .then(() => {
-            return fetch(`/Webike/show-cart`);
+            return fetch(`/show-cart`);
         })
         .then(response => response.text())
         .then(data => {

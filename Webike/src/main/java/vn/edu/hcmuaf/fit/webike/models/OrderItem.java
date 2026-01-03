@@ -16,6 +16,7 @@ public class OrderItem {
     private String status;
     private String leadtime;
     private String order_code;
+    private StockItem stockItem;
 
     public OrderItem() {
     }
@@ -132,12 +133,11 @@ public class OrderItem {
         this.commented = commented;
     }
 
-
     public String getStatus() {
         return status;
     }
 
-public void setStatus(String status) {
+    public void setStatus(String status) {
     this.status = status;
 }
 
@@ -155,6 +155,14 @@ public void setStatus(String status) {
 
     public void setOrder_code(String order_code) {
         this.order_code = order_code;
+    }
+
+    public StockItem getStockItem() {
+        return stockItem;
+    }
+
+    public void setStockItem(StockItem stockItem) {
+        this.stockItem = stockItem;
     }
 
     @Override

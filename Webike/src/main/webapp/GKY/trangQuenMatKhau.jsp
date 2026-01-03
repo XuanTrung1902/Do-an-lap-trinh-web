@@ -51,7 +51,9 @@
 
                 <button type="button" onclick="sendOtp()" style="width: 100%; padding: 12px; background-color: #e31c25; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease, box-shadow 0.3s ease; margin-bottom: 10px;">
                     Gửi OTP</button>
-                <div class="g-recaptcha" data-sitekey="6LfYyu4qAAAAADQyzw-_afuoVxOh-VJAkfjPvd7N"></div>
+<%--                <div class="g-recaptcha" data-sitekey="6LfYyu4qAAAAADQyzw-_afuoVxOh-VJAkfjPvd7N"></div>--%>
+                <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6Lf2vU4rAAAAAN_FAdcvxXTnydveeRsvFGj9qqyq"></div>
+
 
                 <button type="submit">Gửi</button>
             </form>

@@ -113,6 +113,10 @@ public class OrderDAO {
                             oi.setStatus(rs.getString("status"));
                             oi.setBrand(rs.getString("brand"));
                             oi.setType(rs.getString("type"));
+
+                            StockDAO dao = new StockDAO();
+                            StockItem si = dao.getStockItemByOrderItemID(rs.getInt("stockItemID"));
+                            oi.setStockItem(si);
                             return oi;
                         })
                         .list()
@@ -225,7 +229,7 @@ public class OrderDAO {
 
     public String find_oid_by_GHN_order_code(String order_code) {
         Jdbi jdbi = JDBIConnect.get();
-        String sql = "select order_code from orderGHN where order_code = :order_code";
+        String sql = "select order_code from orderghn where order_code = :order_code";
         return jdbi.withHandle(handle -> handle.createQuery(sql)
                 .bind("order_code", order_code)
                 .mapTo(String.class)
@@ -235,7 +239,7 @@ public class OrderDAO {
 
     public String find_GHN_order_code_by_oid(String oid) {
         Jdbi jdbi = JDBIConnect.get();
-        String sql = "select order_code from orderGHN where oid = :oid";
+        String sql = "select order_code from orderghn where oid = :oid";
         return jdbi.withHandle(handle -> handle.createQuery(sql)
                 .bind("oid", oid)
                 .mapTo(String.class)
@@ -245,7 +249,7 @@ public class OrderDAO {
 
     public int insert_order_code(int oid, String order_code) {
         Jdbi jdbi = JDBIConnect.get();
-        String sql = "INSERT INTO orderGHN (oid, order_code) VALUES (:oid, :order_code)";
+        String sql = "INSERT INTO orderghn (oid, order_code) VALUES (:oid, :order_code)";
         return jdbi.withHandle(handle -> handle.createUpdate(sql)
                 .bind("oid", oid)
                 .bind("order_code", order_code)
@@ -259,6 +263,16 @@ public class OrderDAO {
                 .bind("id", id)
                 .bind("leadtime", time)
                 .execute() > 0 ? 1 : 0
+        );
+    }
+
+    public String getOrderCode(int oid) {
+        Jdbi jdbi = JDBIConnect.get();
+        String sql = "select order_code from orderghn where oid = :oid";
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("oid", oid)
+                .mapTo(String.class)
+                .findOne().orElse(null)
         );
     }
 }

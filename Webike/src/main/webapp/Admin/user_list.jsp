@@ -448,7 +448,7 @@
                                 user.role,
                                 user.locked,
                                 `<img src="${fullImagePath}"
-                          onerror="this.onerror=null; this.src='${contextPath}/Webike/img/Users/default.png';"
+                          onerror="this.onerror=null; this.src='${contextPath}/img/Users/default.png';"
                           style="width:50px;height:50px;border-radius:50%;">`,
                                 `<a href="${contextPath}/Webike/updateUser?id=${user.id}" class="btn-edit">Sửa</a>
                      <button type="button" class="delete-button" onclick="confirmDeleteUser(${user.id}, '${user.name}')">Xóa</button>

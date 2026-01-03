@@ -120,7 +120,9 @@
             <div class="input_field">
                 <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" required>
             </div>
-            <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6LfYyu4qAAAAADQyzw-_afuoVxOh-VJAkfjPvd7N"></div>
+<%--            <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6LfYyu4qAAAAADQyzw-_afuoVxOh-VJAkfjPvd7N"></div>--%>
+            <div style="margin-bottom: 10px" class="g-recaptcha" data-sitekey="6Lf2vU4rAAAAAN_FAdcvxXTnydveeRsvFGj9qqyq"></div>
+
             <div class="checkbox">
                 <input type="checkbox" name="terms" required>
                 <label>Tôi đã đọc và chấp nhận <a href="#">Chính sách quyền riêng tư và chính sách bảo mật</a></label>

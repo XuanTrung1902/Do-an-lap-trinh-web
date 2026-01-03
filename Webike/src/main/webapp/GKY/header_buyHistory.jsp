@@ -19,9 +19,9 @@
         <li class="tab-item ${status eq 'Đã cọc' ? 'tab-item--active' : ''}">
             <a class="tab-item__link" href="${pageContext.request.contextPath}/deposited">Đã cọc</a>
         </li>
-        <li class="tab-item ${status eq 'Đã thanh toán' ? 'tab-item--active' : ''}">
-            <a class="tab-item__link" href="${pageContext.request.contextPath}/paid">Đã thanh toán</a>
-        </li>
+<%--        <li class="tab-item ${status eq 'Đã thanh toán' ? 'tab-item--active' : ''}">--%>
+<%--            <a class="tab-item__link" href="${pageContext.request.contextPath}/paid">Đã thanh toán</a>--%>
+<%--        </li>--%>
         <li class="tab-item ${status eq 'Đang chuẩn bị hàng' ? 'tab-item--active' : ''}">
             <a class="tab-item__link" href="${pageContext.request.contextPath}/preparing">Đang chuẩn bị hàng</a>
         </li>

@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/sidebar.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/base.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/detail.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/assets/css/header.css">
+
 
     <title>Admin</title>
 </head>

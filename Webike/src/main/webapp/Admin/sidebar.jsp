@@ -128,6 +128,12 @@
                                 Nhập kho
                             </a>
                         </li>
+                        <li>
+                            <a href="list-stock-items">
+                                <i class="ri-arrow-right-s-fill"></i>
+                                Tồn kho
+                            </a>
+                        </li>
                     </div>
                 </ul>
             </li>

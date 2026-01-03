@@ -1,5 +1,5 @@
 function changeColor(pid, cid, colorName) {
-    fetch('/Webike/changeColor?id=' + encodeURIComponent(pid) + '&cid=' + encodeURIComponent(cid) + '&colorName=' + encodeURIComponent(colorName))
+    fetch('/changeColor?id=' + encodeURIComponent(pid) + '&cid=' + encodeURIComponent(cid) + '&colorName=' + encodeURIComponent(colorName))
         .then(response => response.text())
         .then(imgURL => {
             document.getElementById('img').src = imgURL;
